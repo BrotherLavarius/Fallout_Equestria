@@ -1,27 +1,30 @@
 {
   "forge_marker": 1,
   "defaults": {
-    "textures": {
-      //"#texture": "forgedebugmodelloaderregistry:texture",
-      "#chest": "entity/chest/normal"
-    },
-    "model": "fallout_equestria:SparkleCola_VendingMachine.obj",
-    "custom": {
-      "mesh": ["Base", "Lid"]
-    }
+    "textures": {},
+    "model": "fallout_equestria:SparkleCola_VendingMachine.obj"
   },
   "variants": {
     "normal": [{}],
     "inventory": [{
-      "transform": "forge:default-block"
+      "transform": {
+        "thirdperson": {
+          "translation": [0, 0.09375, -0.171875],
+          "rotation": [ { "y": -45}, {"x": 10}, {"z": 170} ],
+          "scale": 0.375
+        },
+        "gui": {
+          "rotation": [ {"y": 90} ]
+        }
+      }
     }],
     "facing": {
-      "down": {"x": 90},
-      "up": {"x": 270},
-      "north": {"y": 180},
-      "south": {},
-      "west": {"y": 90},
-      "east": {"y": 270}
+      "down": { "model": "fallout_equestria:SparkleCola_VendingMachine.obj", "x": 90 },
+      "up": { "model": "fallout_equestria:SparkleCola_VendingMachine.obj", "x": 270 },
+      "north": { "model": "fallout_equestria:SparkleCola_VendingMachine.obj" },
+      "south": { "model": "fallout_equestria:SparkleCola_VendingMachine.obj", "y": 180 },
+      "west": { "model": "fallout_equestria:SparkleCola_VendingMachine.obj", "y": 270 },
+      "east": { "model": "fallout_equestria:SparkleCola_VendingMachine.obj", "y": 90 }
     }
   }
 }
