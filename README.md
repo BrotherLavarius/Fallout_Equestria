@@ -8,13 +8,13 @@ Done\in progress
 :large_orange_diamond: - in progress
 :large_blue_circle:    - done
 
-Task         | status
------------- | -------------
-Basic blocks |:large_orange_diamond:
-Weapons      |:red_circle:
-Armor        |:red_circle:
+Task                | status
+------------------- | -------------
+Basic blocks        |:large_orange_diamond:
+Weapons             |:red_circle:
+Armor               |:red_circle:
 Rads and Enervation |:red_circle:
-Crafting and meds   | :red_circle:
+Crafting and meds   |:red_circle:
 Mobs                |:red_circle:
 
 
