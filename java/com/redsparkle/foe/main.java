@@ -3,7 +3,7 @@ package com.redsparkle.foe;
 
 import com.google.common.collect.Lists;
 import com.redsparkle.foe.block.containers.SparkleColaMachineBlock;
-import com.redsparkle.foe.block.containers.SparkleColaMachineTileEntity;
+import com.redsparkle.foe.block.containers.TileEntitys.SparkleColaMachineTileEntity;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
