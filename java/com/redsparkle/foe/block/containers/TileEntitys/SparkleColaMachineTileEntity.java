@@ -1,4 +1,4 @@
-package com.redsparkle.foe.block.containers;
+package com.redsparkle.foe.block.containers.TileEntitys;
 
 import com.google.common.base.Optional;
 import com.google.common.collect.UnmodifiableIterator;
