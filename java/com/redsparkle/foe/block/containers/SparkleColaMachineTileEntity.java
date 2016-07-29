@@ -1,4 +1,4 @@
-package com.redsparkle.foe.blocks;
+package com.redsparkle.foe.block.containers;
 
 import com.google.common.base.Optional;
 import com.google.common.collect.UnmodifiableIterator;

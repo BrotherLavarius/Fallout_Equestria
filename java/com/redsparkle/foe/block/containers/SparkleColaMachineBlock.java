@@ -1,4 +1,4 @@
-package com.redsparkle.foe.blocks;
+package com.redsparkle.foe.block.containers;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
