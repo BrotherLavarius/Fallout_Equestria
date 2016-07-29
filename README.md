@@ -23,3 +23,6 @@ Mobs                |:red_circle:
 
 
 Some plans here(https://drive.google.com/open?id=0B3xXl4Gn7Id4bEg0VzRiNFFlR0U)
+
+Also this will be mostly made playable to like January 2017.
+So brace yourselfs :3
