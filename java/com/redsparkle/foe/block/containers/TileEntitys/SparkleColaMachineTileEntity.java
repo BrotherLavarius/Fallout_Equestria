@@ -128,12 +128,12 @@ public class SparkleColaMachineTileEntity extends TileEntity implements IInvento
 
     @Override
     public String getName() {
-        return null;
+        return customName;
     }
 
     @Override
     public boolean hasCustomName() {
-        return false;
+        return true;
     }
 
     @Override

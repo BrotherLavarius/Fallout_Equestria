@@ -4,6 +4,7 @@ package com.redsparkle.foe;
 import com.google.common.collect.Lists;
 import com.redsparkle.foe.block.containers.SparkleColaMachineBlock;
 import com.redsparkle.foe.block.containers.TileEntitys.SparkleColaMachineTileEntity;
+import com.redsparkle.foe.block.effectDispenser.RadiationBlock;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
@@ -68,6 +69,8 @@ public class main
 
         List<Block> blocks = Lists.newArrayList();
         blocks.add(SparkleColaMachineBlock.instance);
+        blocks.add(RadiationBlock.instance);
+
         for(Block block : blocks)
         {
             GameRegistry.register(block);

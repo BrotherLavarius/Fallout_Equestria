@@ -42,16 +42,15 @@ public class SparkleColaMachineBlock extends Block {
     public static final SparkleColaMachineBlock instance = new SparkleColaMachineBlock();
     public static final String name = "SparkleColaMachine";
     public static final AxisAlignedBB FULL_BLOCK_AABB = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 3.0D, 1.0D);
-    private int counter = 1;
     private ExtendedBlockState state = new ExtendedBlockState(this, new IProperty[]{FACING}, new IUnlistedProperty[]{OBJModel.OBJProperty.INSTANCE});
 
-    private SparkleColaMachineBlock()
+     SparkleColaMachineBlock()
     {
         super(Material.IRON);
         setLightLevel(1);
         setSoundType(SoundType.METAL);
         setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
-        setUnlocalizedName(MODID + ":" + name);
+        setUnlocalizedName(name);
         setRegistryName(new ResourceLocation(MODID, name));
 
     }
