@@ -52,6 +52,7 @@ public class SparkleColaMachineBlock extends Block {
         setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
         setUnlocalizedName(name);
         setRegistryName(new ResourceLocation(MODID, name));
+        setSoundType(SoundType.METAL);
 
     }
 

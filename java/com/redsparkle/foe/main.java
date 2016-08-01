@@ -5,13 +5,16 @@ import com.google.common.collect.Lists;
 import com.redsparkle.foe.block.containers.SparkleColaMachineBlock;
 import com.redsparkle.foe.block.containers.TileEntitys.SparkleColaMachineTileEntity;
 import com.redsparkle.foe.block.effectDispenser.RadiationBlock;
+import com.redsparkle.foe.block.effectDispenser.TileEntitys.RadiationBlockTileEntity;
 import net.minecraft.block.Block;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.client.model.obj.OBJLoader;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
@@ -23,7 +26,6 @@ public class main
 {
     public static final String MODID = "fallout_equestria";
     public static final String VERSION = "0.0000000-VERY ALPHA";
-
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event){
         System.out.println("FOE PACK LOADING");
@@ -77,6 +79,7 @@ public class main
             GameRegistry.register(new ItemBlock(block).setRegistryName(block.getRegistryName()));
         }
         GameRegistry.registerTileEntity(SparkleColaMachineTileEntity.class, SparkleColaMachineBlock.name);
+        GameRegistry.registerTileEntity(RadiationBlockTileEntity.class, RadiationBlock.name);
 
 
         if (event.getSide() == Side.CLIENT)
@@ -86,6 +89,14 @@ public class main
     private void clientPreInit() {
         Item SparkleColaMachineI = Item.getItemFromBlock(SparkleColaMachineBlock.instance);
         ModelLoader.setCustomModelResourceLocation(SparkleColaMachineI, 0, new ModelResourceLocation(MODID.toLowerCase() + ":" + SparkleColaMachineBlock.name, "inventory"));
+
+
+    }
+    private void init(FMLInitializationEvent event){
+        if (event.getSide() == Side.CLIENT) {
+            Minecraft.getMinecraft().getRenderItem().getItemModelMesher()
+                    .register(Item.getItemFromBlock(RadiationBlock.instance), 0, new ModelResourceLocation(MODID.toLowerCase() + ":" + RadiationBlock.name, "inventory"));
+        }
     }
 
 }
