@@ -6,6 +6,8 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.EnumFacing;
@@ -28,10 +30,10 @@ public class RadiationBlock extends Block {
     public static final RadiationBlock instance = new RadiationBlock();
     public static final String name = "RadiationBlock";
     private final boolean isOn = true;
-
+    int collide_rad = 0;
     int a1 = 0, a2 = 0, a3 = 0, a4 = 0, a5 = 0, a6 = 0;
 
-    boolean red = false;
+    boolean red = true;
 
     public RadiationBlock() {
         super(Material.IRON);
@@ -65,8 +67,9 @@ public class RadiationBlock extends Block {
 
     @Override
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
-        return new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 1.0D, 1.0D);
+        return new AxisAlignedBB(-2.0D, -2.0D, -2.0D, 2.0D, 2.0D, 2.0D);
     }
+
 
     @Override
     public int tickRate(World world) {
@@ -99,7 +102,7 @@ public class RadiationBlock extends Block {
 
     public boolean canCollideCheck(IBlockState state, boolean hitIfLiquid)
     {
-        return false;
+        return true;
     }
 
     /**
@@ -125,28 +128,26 @@ public class RadiationBlock extends Block {
     @Override
     public void randomDisplayTick(IBlockState state, World world, BlockPos pos, Random random) {
         EntityPlayer entity = Minecraft.getMinecraft().thePlayer;
-        int i = pos.getX();
-        int j = pos.getY();
-        int k = pos.getZ();
         World par1World = world;
-        int par2 = i;
-        int par3 = j;
-        int par4 = k;
+        int par2 = pos.getX();
+        int par3 = pos.getY();
+        int par4 = pos.getZ();
         Random par5Random = random;
-        if (true)
-            for (int l = 0; l < 4; ++l) {
-                double d0 = (double) ((float) par2 + par5Random.nextFloat());
-                double d1 = (double) ((float) par3 + par5Random.nextFloat());
-                double d2 = (double) ((float) par4 + par5Random.nextFloat());
-                double d3 = 0.0D;
-                double d4 = 0.0D;
-                double d5 = 0.0D;
-                int i1 = par5Random.nextInt(2) * 2 - 1;
-                d3 = ((double) par5Random.nextFloat() - 0.5D) * 1.9D;
-                d4 = ((double) par5Random.nextFloat() - 0.5D) * 1.9D;
-                d5 = ((double) par5Random.nextFloat() - 0.5D) * 1.9D;
-                par1World.spawnParticle(EnumParticleTypes.CRIT_MAGIC, d0, d1, d2, d3, d4, d5);
+            for (int la = 0; la < 1; ++la) {
+                double d0 = (double) ((float) par2 + 0.5F) + (double) (par5Random.nextFloat() - 0.5F) * 1.9D * 20;
+                double d1 = ((double) ((float) par3 + 0.7F) + (double) (par5Random.nextFloat() - 0.5F) * 1.9D) + 0.5D;
+                double d2 = (double) ((float) par4 + 0.5F) + (double) (par5Random.nextFloat() - 0.5F) * 1.9D * 20;
+                double d3 = 0.2199999988079071D;
+                double d4 = 0.27000001072883606D;
+                par1World.spawnParticle(EnumParticleTypes.FIREWORKS_SPARK, d0 - d4, d1 + d3, d2, 0.0D, 0.0D, 0.0D);
             }
 
+    }
+    public void onEntityCollidedWithBlock( World world, int x, int y, int z, Entity entity ) {
+        if (entity instanceof EntityLiving) {
+            collide_rad++;
+            System.out.println("+"+collide_rad+"rads");
+            entity.attackEntityFrom(null, 1);
+        }
     }
 }
