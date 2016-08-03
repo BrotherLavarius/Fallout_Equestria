@@ -2,6 +2,7 @@ package com.redsparkle.foe.block.effectDispenser;
 
 import com.redsparkle.foe.block.effectDispenser.TileEntitys.RadiationBlockTileEntity;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockContainer;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyDirection;
@@ -28,7 +29,7 @@ import static com.redsparkle.foe.main.MODID;
 /**
  * Created by hoijima desu on 29.07.16 desu.
  */
-public class RadiationBlock extends Block {
+public class RadiationBlock extends BlockContainer {
     public static final PropertyDirection FACING = PropertyDirection.create("facing");
 
     public static final RadiationBlock instance = new RadiationBlock();
@@ -124,7 +125,7 @@ public class RadiationBlock extends Block {
     //displays the bonding box - true for debug
     public boolean canCollideCheck(IBlockState state, boolean hitIfLiquid)
     {
-        return true;
+        return false;
     }
 
     /**
