@@ -42,7 +42,6 @@ public class RadiationBlockTileEntity extends TileEntity implements ITickable {
         List<EntityPlayer> list = this.worldObj.getEntitiesWithinAABB(EntityPlayer.class, axisalignedbb);
         for (EntityPlayer entityplayer : list)
         {
-            entityplayer.addExperience(0);
             collide_rad++;
             entityplayer.worldObj.playSound(null , k, l, i1, ModSoundEvents.RadMeter, SoundCategory.PLAYERS , 2.0F, 1.0F);
             System.out.println("+"+collide_rad+"rads");

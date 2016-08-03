@@ -17,7 +17,7 @@ Task                | status
 Basic blocks        |:large_orange_diamond:
 Weapons             |:red_circle:
 Armor               |:red_circle:
-Rads and Enervation |:red_circle:
+Rads and Enervation |:large_orange_diamond:
 Crafting and meds   |:red_circle:
 Mobs                |:red_circle:
 
