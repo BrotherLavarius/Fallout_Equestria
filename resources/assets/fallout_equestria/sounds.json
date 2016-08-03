@@ -1,0 +1,9 @@
+{
+  "RadMeter": {
+    "category": "player",
+    "sounds": [
+      "fallout_equestria:GeigerCounterSound"
+    ],
+    "subtitle": "RadMeter"
+  }
+}

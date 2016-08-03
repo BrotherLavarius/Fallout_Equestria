@@ -67,8 +67,9 @@ public class main
         System.out.println("                       ╙▀▀▀██████▀▀▀╙       								");
         System.out.println("WAR");
         System.out.println("WAR NEVER CHANGES");
-        OBJLoader.INSTANCE.addDomain(MODID.toLowerCase());
 
+        ModSoundEvents.registerSounds();
+        OBJLoader.INSTANCE.addDomain(MODID.toLowerCase());
         List<Block> blocks = Lists.newArrayList();
         blocks.add(SparkleColaMachineBlock.instance);
         blocks.add(RadiationBlock.instance);
