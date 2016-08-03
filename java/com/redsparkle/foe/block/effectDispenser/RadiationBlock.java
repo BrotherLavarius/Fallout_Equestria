@@ -1,44 +1,42 @@
 package com.redsparkle.foe.block.effectDispenser;
 
+import com.redsparkle.foe.block.effectDispenser.TileEntitys.RadiationBlockTileEntity;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.ChatLine;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLiving;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.potion.PotionEffect;
-import net.minecraft.util.*;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.EnumBlockRenderType;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import net.minecraftforge.client.event.RenderGameOverlayEvent;
-import net.minecraftforge.event.entity.EntityEvent;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nullable;
 import java.util.Random;
 
 import static com.redsparkle.foe.main.MODID;
-import static sun.audio.AudioPlayer.player;
 
 /**
  * Created by hoijima desu on 29.07.16 desu.
  */
 public class RadiationBlock extends Block {
+    public static final PropertyDirection FACING = PropertyDirection.create("facing");
+
     public static final RadiationBlock instance = new RadiationBlock();
     public static final String name = "RadiationBlock";
     private final boolean isOn = true;
     int collide_rad = 0;
 
-    protected static final AxisAlignedBB CACTUS_AABB = new AxisAlignedBB(0.0625D, 0.0D, 0.0625D, 0.9375D, 0.9375D, 0.9375D);
-    protected static final AxisAlignedBB CACTUS_COLLISION_AABB = new AxisAlignedBB(0.0625D, 0.0D, 0.0625D, 0.9375D, 1.0D, 0.9375D);
+
     EntityPlayer entity = Minecraft.getMinecraft().thePlayer;
 
     int a1 = 0, a2 = 0, a3 = 0, a4 = 0, a5 = 0, a6 = 0;
@@ -46,7 +44,7 @@ public class RadiationBlock extends Block {
     boolean red = true;
 
     public RadiationBlock() {
-        super(Material.IRON);
+        super(Material.AIR);
         setLightLevel(1);
         setSoundType(SoundType.METAL);
         setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
@@ -54,6 +52,10 @@ public class RadiationBlock extends Block {
         setRegistryName(new ResourceLocation(MODID, name));
         setSoundType(SoundType.GROUND);
 
+    }
+    public TileEntity createNewTileEntity(World worldIn, int meta)
+    {
+        return new RadiationBlockTileEntity();
     }
 
     @Override
@@ -75,20 +77,24 @@ public class RadiationBlock extends Block {
         return red ? 15 : 0;
     }
 
+    // ###########################################################3
     @Override
-    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
-        return new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 1.0D, 1.0D);
-    }
-    public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, World worldIn, BlockPos pos)
+    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
     {
-        return CACTUS_AABB;
+        AxisAlignedBB bb = new AxisAlignedBB(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
+
+        return bb;
     }
 
-    @SideOnly(Side.CLIENT)
+    // ###########################################################3
+    @Override
     public AxisAlignedBB getSelectedBoundingBox(IBlockState state, World worldIn, BlockPos pos)
     {
-        return CACTUS_COLLISION_AABB.offset(pos);
+        AxisAlignedBB bb = new AxisAlignedBB(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
+
+        return bb;
     }
+    // ###########################################################
 
     @Override
     public int tickRate(World world) {
@@ -115,9 +121,10 @@ public class RadiationBlock extends Block {
         return false;
     }
 
+    //displays the bonding box - true for debug
     public boolean canCollideCheck(IBlockState state, boolean hitIfLiquid)
     {
-        return this.isCollidable();
+        return true;
     }
 
     /**
@@ -159,16 +166,8 @@ public class RadiationBlock extends Block {
 
     }
 
-    public void onEntityWalk(World worldIn, BlockPos pos, Entity entityIn)
-    {
-        //collide_rad++;
-        //System.out.println("+"+collide_rad+"rads");
-
-    }
-
     public void onEntityCollidedWithBlock(World worldIn, BlockPos pos, IBlockState state, Entity entityIn)
     {
-        collide_rad++;
-        System.out.println("+"+collide_rad+"rads");
+
     }
 }
