@@ -5,5 +5,12 @@
       "fallout_equestria:GeigerCounterSound"
     ],
     "subtitle": "RadMeter"
+  },
+  "Enervation": {
+    "category": "player",
+    "sounds": [
+      "fallout_equestria:enervation"
+    ],
+    "subtitle": "Enervation"
   }
 }

@@ -16,12 +16,14 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 @SuppressWarnings("WeakerAccess")
 public class ModSoundEvents {
     public static SoundEvent RadMeter;
+    public  static SoundEvent Enervation;
 
     /**
      * Register the {@link SoundEvent}s.
      */
     public static void registerSounds() {
         RadMeter = registerSound("RadMeter");
+        Enervation = registerSound("Enervation");
     }
 
     /**
