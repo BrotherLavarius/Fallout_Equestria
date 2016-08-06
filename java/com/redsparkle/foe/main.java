@@ -1,27 +1,20 @@
 package com.redsparkle.foe;
 
 
-import com.google.common.collect.Lists;
-import com.redsparkle.foe.block.containers.SparkleColaMachineBlock;
-import com.redsparkle.foe.block.containers.TileEntitys.SparkleColaMachineTileEntity;
+import com.redsparkle.foe.Init.ModBlocks;
+import com.redsparkle.foe.Init.ModItems;
 import com.redsparkle.foe.block.effectDispenser.RadiationBlock;
-import com.redsparkle.foe.block.effectDispenser.TileEntitys.RadiationBlockTileEntity;
-import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemBlock;
-import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.client.model.obj.OBJLoader;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 
-import java.util.List;
-
-@Mod(modid = main.MODID, version = main.VERSION, useMetadata = true)
+@Mod(modid = main.MODID, version = main.VERSION, useMetadata = true,acceptedMinecraftVersions = "[1.9.4,)")
 public class main
 {
     public static final String MODID = "fallout_equestria";
@@ -68,19 +61,15 @@ public class main
         System.out.println("WAR");
         System.out.println("WAR NEVER CHANGES");
 
+        final CreativeTabs Fallout_ammo = InitCreativeTabs.Fallout_ammo;
+        final CreativeTabs Fallout_blocks = InitCreativeTabs.Fallout_blocks;
+        final CreativeTabs Fallout_guns = InitCreativeTabs.Fallout_guns;
+        final CreativeTabs Fallout_meds = InitCreativeTabs.Fallout_meds;
+        final CreativeTabs Fallout_stats_blocks = InitCreativeTabs.Fallout_stats_blocks;
+
         ModSoundEvents.registerSounds();
         OBJLoader.INSTANCE.addDomain(MODID.toLowerCase());
-        List<Block> blocks = Lists.newArrayList();
-        blocks.add(SparkleColaMachineBlock.instance);
-        blocks.add(RadiationBlock.instance);
 
-        for(Block block : blocks)
-        {
-            GameRegistry.register(block);
-            GameRegistry.register(new ItemBlock(block).setRegistryName(block.getRegistryName()));
-        }
-        GameRegistry.registerTileEntity(SparkleColaMachineTileEntity.class, SparkleColaMachineBlock.name);
-        GameRegistry.registerTileEntity(RadiationBlockTileEntity.class, RadiationBlock.name);
 
 
         if (event.getSide() == Side.CLIENT)
@@ -88,15 +77,16 @@ public class main
     }
 
     private void clientPreInit() {
-        Item SparkleColaMachineI = Item.getItemFromBlock(SparkleColaMachineBlock.instance);
-        ModelLoader.setCustomModelResourceLocation(SparkleColaMachineI, 0, new ModelResourceLocation(MODID.toLowerCase() + ":" + SparkleColaMachineBlock.name, "inventory"));
-
+        ModBlocks.registerBlocks();
+        ModBlocks.registerTileEntities();
+        ModItems.registerItems();
 
     }
     private void init(FMLInitializationEvent event){
         if (event.getSide() == Side.CLIENT) {
             Minecraft.getMinecraft().getRenderItem().getItemModelMesher()
                     .register(Item.getItemFromBlock(RadiationBlock.instance), 0, new ModelResourceLocation(MODID.toLowerCase() + ":" + RadiationBlock.name, "inventory"));
+
         }
     }
 

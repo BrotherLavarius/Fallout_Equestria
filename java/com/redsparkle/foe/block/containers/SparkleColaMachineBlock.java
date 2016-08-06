@@ -1,5 +1,6 @@
 package com.redsparkle.foe.block.containers;
 
+import com.redsparkle.foe.InitCreativeTabs;
 import com.redsparkle.foe.block.containers.TileEntitys.SparkleColaMachineTileEntity;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
@@ -8,7 +9,6 @@ import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -44,12 +44,12 @@ public class SparkleColaMachineBlock extends Block {
     public static final AxisAlignedBB FULL_BLOCK_AABB = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 3.0D, 1.0D);
     private ExtendedBlockState state = new ExtendedBlockState(this, new IProperty[]{FACING}, new IUnlistedProperty[]{OBJModel.OBJProperty.INSTANCE});
 
-     SparkleColaMachineBlock()
+     public SparkleColaMachineBlock()
     {
         super(Material.IRON);
         setLightLevel(1);
         setSoundType(SoundType.METAL);
-        setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
+        setCreativeTab(InitCreativeTabs.Fallout_blocks);
         setUnlocalizedName(name);
         setRegistryName(new ResourceLocation(MODID, name));
         setSoundType(SoundType.METAL);

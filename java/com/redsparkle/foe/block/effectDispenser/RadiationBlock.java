@@ -1,14 +1,13 @@
 package com.redsparkle.foe.block.effectDispenser;
 
+import com.redsparkle.foe.InitCreativeTabs;
 import com.redsparkle.foe.block.effectDispenser.TileEntitys.RadiationBlockTileEntity;
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
@@ -48,7 +47,7 @@ public class RadiationBlock extends BlockContainer {
         super(Material.AIR);
         setLightLevel(1);
         setSoundType(SoundType.METAL);
-        setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
+        setCreativeTab(InitCreativeTabs.Fallout_stats_blocks);
         setUnlocalizedName(name);
         setRegistryName(new ResourceLocation(MODID, name));
         setSoundType(SoundType.GROUND);
