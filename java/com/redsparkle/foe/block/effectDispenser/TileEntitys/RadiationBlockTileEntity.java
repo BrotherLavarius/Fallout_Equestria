@@ -1,6 +1,6 @@
 package com.redsparkle.foe.block.effectDispenser.TileEntitys;
 
-import com.redsparkle.foe.ModSoundEvents;
+import com.redsparkle.foe.sounds.ModSoundEvents;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;

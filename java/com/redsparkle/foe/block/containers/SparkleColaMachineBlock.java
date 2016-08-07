@@ -1,7 +1,7 @@
 package com.redsparkle.foe.block.containers;
 
-import com.redsparkle.foe.InitCreativeTabs;
 import com.redsparkle.foe.block.containers.TileEntitys.SparkleColaMachineTileEntity;
+import com.redsparkle.foe.creativeTabs.InitCreativeTabs;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
