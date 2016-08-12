@@ -4,20 +4,21 @@ package com.redsparkle.foe;
 import com.redsparkle.foe.Init.ModBlocks;
 import com.redsparkle.foe.Init.ModItems;
 import com.redsparkle.foe.block.effectDispenser.RadiationBlock;
+import com.redsparkle.foe.capabilities.CapabilityRadiation;
 import com.redsparkle.foe.creativeTabs.InitCreativeTabs;
 import com.redsparkle.foe.sounds.ModSoundEvents;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
+import net.minecraft.util.IThreadListener;
 import net.minecraftforge.client.model.obj.OBJLoader;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.common.capabilities.Capability;
-import net.minecraftforge.common.capabilities.CapabilityInject;
-import net.minecraftforge.common.capabilities.CapabilityManager;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import net.minecraftforge.fml.relauncher.Side;
 
 @Mod(modid = main.MODID, version = main.VERSION, useMetadata = true,acceptedMinecraftVersions = "[1.9.4,)")
@@ -25,8 +26,10 @@ public class main
 {
     public static final String MODID = "fallout_equestria";
     public static final String VERSION = "0.0000000-VERY ALPHA";
-    @CapabilityInject(IRadiation.class)
-    public static final Capability<IRadiation> RADIATION_CAPABILITY = null;
+
+    //public static CommonProxy proxy;
+
+
 
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event){
@@ -78,7 +81,7 @@ public class main
 
         ModSoundEvents.registerSounds();
         OBJLoader.INSTANCE.addDomain(MODID.toLowerCase());
-
+        //proxy.PreInit(event);
 
 
         if (event.getSide() == Side.CLIENT)
@@ -89,9 +92,7 @@ public class main
         ModBlocks.registerBlocks();
         ModBlocks.registerTileEntities();
         ModItems.registerItems();
-        CapabilityManager.INSTANCE.register(IRadiation.class, new Storage(),Factory.class );
-        MinecraftForge.EVENT_BUS.register(new EventHandler());
-
+        CapabilityRadiation.register();
         //ModCapabilities.registerCapabilities();
 
     }
@@ -104,4 +105,15 @@ public class main
         }
     }
 
+    private void postInit(FMLPostInitializationEvent event) {
+
+    }
+
+    public static EntityPlayer getPlayerEntity(MessageContext ctx) {
+        return ctx.getServerHandler().playerEntity;
+    }
+
+    public static IThreadListener getThreadFromContext(MessageContext ctx) {
+        return ctx.getServerHandler().playerEntity.getServer();
+    }
 }
