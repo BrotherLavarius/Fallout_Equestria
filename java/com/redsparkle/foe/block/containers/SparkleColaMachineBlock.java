@@ -155,7 +155,7 @@ public class SparkleColaMachineBlock extends Block {
         }else if (state.getValue(FACING).toString() == "east"){
             Fixed = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 3.0D, 1.0D);
         }else if (state.getValue(FACING).toString() == "west"){
-            Fixed = new AxisAlignedBB(1.0D, 0.0D, 0.0D, -1.0D, 3.0D, 2.0D);
+            Fixed = new AxisAlignedBB(-1.0D, 3.0D, 2.0D, 0.0D, 0.0D, 0.0D);
         }else {
             Fixed = FULL_BLOCK_AABB;
         }

@@ -7,32 +7,32 @@ public interface IRad {
     /**
      * Offers power to the Tesla Consumer.
      *
-     * @param rads The amount of power to offer.
+     * @param rads The amount of rads to offer.
      * @param simulated Whether or not this is being called as part of a simulation.
      *        Simulations are used to get information without affecting the Tesla Producer.
      * @return The amount of power that the consumer accepts.
      */
     long giveRads (long rads, boolean simulated);
     /**
-     * Gets the amount of Tesla power stored being stored.
+     * Gets the amount of rads being stored.
      *
-     * @return The amount of Tesla power being stored.
+     * @return The amount of rads being stored.
      */
     long getStoredRads ();
 
     /**
-     * Gets the maximum amount of Tesla power that can be held.
+     * Gets the maximum amount of rads that can be held.
      *
-     * @return The maximum amount of Tesla power that can be held.
+     * @return The maximum amount of rads that can be held.
      */
     long getCapacity ();
     /**
-     * Requests an amount of power from the Tesla Producer.
+     * Requests an amount of rads.
      *
-     * @param rads The amount of power to request.
+     * @param rads The amount of rads to request.
      * @param simulated Whether or not this is being called as part of a simulation.
-     *        Simulations are used to get information without affecting the Tesla Producer.
-     * @return The amount of power that the Tesla Producer will give.
+     *        Simulations are used to get information without affecting the Rads counter.
+     * @return The amount of rads that will be given.
      */
     long takeRads (long rads, boolean simulated);
 }
