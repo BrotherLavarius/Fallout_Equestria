@@ -4,19 +4,21 @@ package com.redsparkle.foe;
 import com.redsparkle.foe.Init.ModBlocks;
 import com.redsparkle.foe.Init.ModItems;
 import com.redsparkle.foe.block.effectDispenser.RadiationBlock;
-import com.redsparkle.foe.capabilities.BaseRadContainer;
-import com.redsparkle.foe.capabilities.CapabilityRadiation.CapabilityRad;
-import com.redsparkle.foe.capabilities.interfaces.IRad;
+import com.redsparkle.foe.capa.IRadiationCapability;
+import com.redsparkle.foe.capa.RadsFactory;
+import com.redsparkle.foe.capa.StorageRads;
 import com.redsparkle.foe.creativeTabs.InitCreativeTabs;
 import com.redsparkle.foe.sounds.ModSoundEvents;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.PlayerCapabilities;
 import net.minecraft.item.Item;
 import net.minecraft.util.IThreadListener;
 import net.minecraftforge.client.model.obj.OBJLoader;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.common.capabilities.CapabilityInject;
 import net.minecraftforge.common.capabilities.CapabilityManager;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.fml.common.Mod;
@@ -33,6 +35,23 @@ public class main
     public static final String VERSION = "0.0000000-VERY ALPHA";
     public static Configuration config;
 
+    @CapabilityInject(IRadiationCapability.class)
+    private static void capRegistered(Capability<IRadiationCapability> cap) {
+        System.out.println("I-----------------------------------I");
+        System.out.println(" RadiationCapability was initialized ");
+        System.out.println("        YAY FOR THOSE ATOMS!         ");
+        System.out.println("        You will die, enjoy          ");
+        System.out.println("I-----------------------------------I");
+
+    }
+
+    public static EntityPlayer getPlayerEntity(MessageContext ctx) {
+        return ctx.getServerHandler().playerEntity;
+    }
+
+    public static IThreadListener getThreadFromContext(MessageContext ctx) {
+        return ctx.getServerHandler().playerEntity.getServer();
+    }
 
     public void syncConfig() {
         if (config.hasChanged())
@@ -58,12 +77,13 @@ public class main
         OBJLoader.INSTANCE.addDomain(MODID.toLowerCase());
 
 
-        CapabilityManager.INSTANCE.register(IRad.class, new CapabilityRad<IRad>(), BaseRadContainer.class);
+        CapabilityManager.INSTANCE.register(IRadiationCapability.class, new StorageRads(), RadsFactory.class);
 
-
+        MinecraftForge.EVENT_BUS.register(new EventHandler());
         if (event.getSide() == Side.CLIENT)
             clientPreInit();
     }
+
     private void clientPreInit() {
         ModBlocks.registerBlocks();
         ModBlocks.registerTileEntities();
@@ -81,13 +101,5 @@ public class main
 
     private void postInit(FMLPostInitializationEvent event) {
 
-    }
-
-    public static EntityPlayer getPlayerEntity(MessageContext ctx) {
-        return ctx.getServerHandler().playerEntity;
-    }
-
-    public static IThreadListener getThreadFromContext(MessageContext ctx) {
-        return ctx.getServerHandler().playerEntity.getServer();
     }
 }

@@ -28,16 +28,12 @@ import static com.redsparkle.foe.main.MODID;
 /**
  * Created by hoijima desu on 29.07.16 desu.
  */
-public class RadiationBlock extends BlockContainer {
+public class RadiationBlock extends BlockContainer{
     public static final PropertyDirection FACING = PropertyDirection.create("facing");
 
     public static final RadiationBlock instance = new RadiationBlock();
     public static final String name = "RadiationBlock";
     private final boolean isOn = true;
-    int collide_rad = 0;
-
-
-    EntityPlayer entity = Minecraft.getMinecraft().thePlayer;
 
 
     boolean red = true;
@@ -148,7 +144,6 @@ public class RadiationBlock extends BlockContainer {
 
     @Override
     public void randomDisplayTick(IBlockState state, World world, BlockPos pos, Random random) {
-        EntityPlayer entity = Minecraft.getMinecraft().thePlayer;
         World par1World = world;
         int par2 = pos.getX();
         int par3 = pos.getY();
