@@ -2,7 +2,7 @@
   "forge_marker": 1,
   "defaults": {
     "textures": {},
-    "model": "fallout_equestria:SparkleCola_VendingMachine.obj"
+    "model": "fallout_equestria:SparkleColaMachine.obj"
   },
   "variants": {
     "normal": [{}],
@@ -19,12 +19,12 @@
       }
     }],
     "facing": {
-      "down": { "model": "fallout_equestria:SparkleCola_VendingMachine.obj", "x": 90 },
-      "up": { "model": "fallout_equestria:SparkleCola_VendingMachine.obj", "x": 270 },
-      "north": { "model": "fallout_equestria:SparkleCola_VendingMachine.obj" },
-      "south": { "model": "fallout_equestria:SparkleCola_VendingMachine.obj", "y": 180 },
-      "west": { "model": "fallout_equestria:SparkleCola_VendingMachine.obj", "y": 270 },
-      "east": { "model": "fallout_equestria:SparkleCola_VendingMachine.obj", "y": 90 }
+      "down": { "model": "fallout_equestria:SparkleColaMachine.obj", "x": 90 },
+      "up": { "model": "fallout_equestria:SparkleColaMachine.obj", "x": 270 },
+      "north": { "model": "fallout_equestria:SparkleColaMachine.obj" },
+      "south": { "model": "fallout_equestria:SparkleColaMachine.obj", "y": 180 },
+      "west": { "model": "fallout_equestria:SparkleColaMachine.obj", "y": 270 },
+      "east": { "model": "fallout_equestria:SparkleColaMachine.obj", "y": 90 }
     }
   }
 }

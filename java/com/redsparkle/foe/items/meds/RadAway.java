@@ -1,8 +1,9 @@
 package com.redsparkle.foe.items.meds;
 
-import com.redsparkle.foe.InitCreativeTabs;
+import com.redsparkle.foe.creativeTabs.InitCreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.EnumAction;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -17,14 +18,16 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import javax.annotation.Nullable;
 import java.util.List;
 
+
+
 /**
  * Created by hoijima desu on 29.07.16 desu.
  */
 public class RadAway extends Item {
     public static final RadAway instance = new RadAway();
+    public NBTTagCompound nbt;
     protected String name = "RadAway";
     int collide_rad;
-
     public RadAway(){
         this.name = name;
         setUnlocalizedName(name);
@@ -32,6 +35,13 @@ public class RadAway extends Item {
         this.setMaxStackSize(2);
         this.setCreativeTab(InitCreativeTabs.Fallout_meds);
     }
+    public void readFromNBT(NBTTagCompound nbt)
+    {
+        this.readFromNBT(nbt);
+        this.collide_rad = nbt.getInteger("Rads");
+    }
+
+
     /**
      * How long it takes to use or consume an item
      */
@@ -75,7 +85,7 @@ public class RadAway extends Item {
     @Nullable
     public ItemStack onItemUseFinish(ItemStack stack, World worldIn, EntityLivingBase entityLiving)
     {
-        EntityPlayer entityplayer = entityLiving instanceof EntityPlayer ? (EntityPlayer)entityLiving : null;
+        EntityPlayerMP entityplayer = entityLiving instanceof EntityPlayerMP ? (EntityPlayerMP)entityLiving : null;
 
         if (entityplayer == null || !entityplayer.capabilities.isCreativeMode)
         {
@@ -84,24 +94,21 @@ public class RadAway extends Item {
 
         if (!worldIn.isRemote)
         {
-            collide_rad = collide_rad-30;
+
         }
+
+
+        collide_rad = collide_rad -10;
+        System.out.println("RADS" + collide_rad);
         return stack;
     }
 
 
-    public void readFromNBT(NBTTagCompound compound)
-    {
-        readFromNBT(compound);
-        this.collide_rad = compound.getInteger("Rads");
 
+    public void writeToNBT(NBTTagCompound nbt)
+    {
+        writeToNBT(nbt);
+        nbt.setInteger("Rads", collide_rad);
     }
 
-    public NBTTagCompound writeToNBT(NBTTagCompound compound)
-    {
-        writeToNBT(compound);
-        compound.setInteger("Rads", collide_rad);
-
-        return compound;
-    }
 }

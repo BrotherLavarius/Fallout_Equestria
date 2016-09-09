@@ -1,8 +1,9 @@
-package com.redsparkle.foe;
+package com.redsparkle.foe.sounds;
 
 /**
  * Created by hoijima desu on 04.08.16 desu.
  */
+import com.redsparkle.foe.main;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;

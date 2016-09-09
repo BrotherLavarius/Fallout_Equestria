@@ -1,7 +1,7 @@
 package com.redsparkle.foe.block.effectDispenser;
 
-import com.redsparkle.foe.InitCreativeTabs;
 import com.redsparkle.foe.block.effectDispenser.TileEntitys.RadiationBlockTileEntity;
+import com.redsparkle.foe.creativeTabs.InitCreativeTabs;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -39,7 +39,6 @@ public class RadiationBlock extends BlockContainer {
 
     EntityPlayer entity = Minecraft.getMinecraft().thePlayer;
 
-    int a1 = 0, a2 = 0, a3 = 0, a4 = 0, a5 = 0, a6 = 0;
 
     boolean red = true;
 

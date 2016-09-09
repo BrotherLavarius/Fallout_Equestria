@@ -1,7 +1,7 @@
 package com.redsparkle.foe.block.containers;
 
-import com.redsparkle.foe.InitCreativeTabs;
 import com.redsparkle.foe.block.containers.TileEntitys.SparkleColaMachineTileEntity;
+import com.redsparkle.foe.creativeTabs.InitCreativeTabs;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -42,8 +42,11 @@ public class SparkleColaMachineBlock extends Block {
     public static final SparkleColaMachineBlock instance = new SparkleColaMachineBlock();
     public static final String name = "SparkleColaMachine";
     public static final AxisAlignedBB FULL_BLOCK_AABB = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 3.0D, 1.0D);
+    public AxisAlignedBB Fixed;
     private ExtendedBlockState state = new ExtendedBlockState(this, new IProperty[]{FACING}, new IUnlistedProperty[]{OBJModel.OBJProperty.INSTANCE});
 
+
+    public EnumFacing current ;
      public SparkleColaMachineBlock()
     {
         super(Material.IRON);
@@ -145,7 +148,21 @@ public class SparkleColaMachineBlock extends Block {
     @Deprecated
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
     {
-        return FULL_BLOCK_AABB;
+        if(state.getValue(FACING).toString() == "south"){
+            Fixed = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 3.0D, 1.0D);
+        }else if (state.getValue(FACING).toString() == "north"){
+            Fixed = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 3.0D, 1.0D);
+        }else if (state.getValue(FACING).toString() == "east"){
+            Fixed = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 3.0D, 1.0D);
+        }else if (state.getValue(FACING).toString() == "west"){
+            Fixed = new AxisAlignedBB(-1.0D, 3.0D, 2.0D, 0.0D, 0.0D, 0.0D);
+        }else {
+            Fixed = FULL_BLOCK_AABB;
+        }
+
+
+        return Fixed;
+
     }
     public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, @Nullable ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ)
     {
@@ -162,7 +179,6 @@ public class SparkleColaMachineBlock extends Block {
                 playerIn.displayGUIChest((SparkleColaMachineTileEntity)tileentity);
                 playerIn.addStat(StatList.CHEST_OPENED);
             }
-
             return true;
         }
     }
