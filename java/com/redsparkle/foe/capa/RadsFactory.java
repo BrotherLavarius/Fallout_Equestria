@@ -5,17 +5,22 @@ package com.redsparkle.foe.capa;
  */
 public class RadsFactory implements IRadiationCapability{
     @Override
-    public int getRadiation() {
+    public int getRadiation()
+    {
         return 0;
     }
 
     @Override
     public int removeRadiation() {
+
         return 0;
     }
 
+
+
     @Override
     public int setRadiation() {
+
         return 0;
     }
 }
