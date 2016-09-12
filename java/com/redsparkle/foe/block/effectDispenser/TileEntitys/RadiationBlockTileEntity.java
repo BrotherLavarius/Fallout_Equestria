@@ -1,5 +1,7 @@
 package com.redsparkle.foe.block.effectDispenser.TileEntitys;
 
+import com.redsparkle.foe.FOECapabilitiesInit;
+import com.redsparkle.foe.capa.IRadiationCapability;
 import com.redsparkle.foe.sounds.ModSoundEvents;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;
@@ -47,6 +49,7 @@ public class RadiationBlockTileEntity extends TileEntity implements ITickable {
         List<EntityPlayerMP> list = this.worldObj.getEntitiesWithinAABB(EntityPlayerMP.class, axisalignedbb);
         for (EntityPlayerMP entityplayer : list)
         {
+            System.out.println(entityplayer.getCapability(FOECapabilitiesInit.RADIATION_CAPABILITY,null).toString());
             //System.out.println(entityplayer.getCapability(CapabilityRadiation.RADS,UP).toString());
             entityplayer.worldObj.playSound(null , k, l, i1, ModSoundEvents.RadMeter, SoundCategory.PLAYERS , 2.0F, 1.0F);
         }
