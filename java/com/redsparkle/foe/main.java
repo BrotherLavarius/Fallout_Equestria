@@ -5,7 +5,7 @@ import com.redsparkle.foe.Init.ModBlocks;
 import com.redsparkle.foe.Init.ModItems;
 import com.redsparkle.foe.block.effectDispenser.RadiationBlock;
 import com.redsparkle.foe.capa.IRadiationCapability;
-import com.redsparkle.foe.capa.RadsFactoryProvider;
+import com.redsparkle.foe.capa.RadsDefaultImpl;
 import com.redsparkle.foe.capa.RadsFactoryStorage;
 import com.redsparkle.foe.creativeTabs.InitCreativeTabs;
 import com.redsparkle.foe.sounds.ModSoundEvents;
@@ -77,7 +77,7 @@ public class main
         OBJLoader.INSTANCE.addDomain(MODID.toLowerCase());
 
 
-        CapabilityManager.INSTANCE.register(IRadiationCapability.class, new RadsFactoryStorage(), RadsFactoryProvider::new);
+        CapabilityManager.INSTANCE.register(IRadiationCapability.class, new RadsFactoryStorage(), RadsDefaultImpl.class);
 
         MinecraftForge.EVENT_BUS.register(new EventHandler());
         if (event.getSide() == Side.CLIENT)

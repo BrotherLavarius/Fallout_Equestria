@@ -48,24 +48,32 @@ public class RadiationBlockTileEntity extends TileEntity implements ITickable {
         {
             System.out.println(entityplayer.getCapability(FOECapabilitiesInit.RADIATION_CAPABILITY,null).getRadiation());
             entityplayer.getCapability(FOECapabilitiesInit.RADIATION_CAPABILITY,null).update(entityplayer,getWorld(), TickEvent.Phase.START);
-            entityplayer.getCapability(FOECapabilitiesInit.RADIATION_CAPABILITY,null).addRadiation(10);
+            entityplayer.getCapability(FOECapabilitiesInit.RADIATION_CAPABILITY, null).addRadiation(3);
             entityplayer.getCapability(FOECapabilitiesInit.RADIATION_CAPABILITY,null).update(entityplayer,getWorld(), TickEvent.Phase.END);
-            //System.out.println(entityplayer.getCapability(CapabilityRadiation.RADS,UP).toString());
-            entityplayer.worldObj.playSound(null , k, l, i1, ModSoundEvents.RadMeter, SoundCategory.PLAYERS , 2.0F, 1.0F);
+            entityplayer.worldObj.playSound(null, k, l, i1, ModSoundEvents.HighEntensityRad, SoundCategory.PLAYERS, 2.0F, 1.0F);
         }
 
         AxisAlignedBB axisalignedbbd1 = (new AxisAlignedBB((double)k, (double)l, (double)i1, (double)(k + 1), (double)(l + 1), (double)(i1 + 1))).expandXyz(d1).addCoord(0.0D, (double)this.worldObj.getHeight(), 0.0D);
         List<EntityPlayerMP> listd1 = this.worldObj.getEntitiesWithinAABB(EntityPlayerMP.class, axisalignedbbd1);
         for (EntityPlayerMP entityplayer : listd1)
         {
-            //entityplayer.worldObj.playSound(null , k, l, i1, ModSoundEvents.RadMeter, SoundCategory.PLAYERS , 2.0F, 1.0F);
+            System.out.println(entityplayer.getCapability(FOECapabilitiesInit.RADIATION_CAPABILITY, null).getRadiation());
+            entityplayer.getCapability(FOECapabilitiesInit.RADIATION_CAPABILITY, null).update(entityplayer, getWorld(), TickEvent.Phase.START);
+            entityplayer.getCapability(FOECapabilitiesInit.RADIATION_CAPABILITY, null).addRadiation(2);
+            entityplayer.getCapability(FOECapabilitiesInit.RADIATION_CAPABILITY, null).update(entityplayer, getWorld(), TickEvent.Phase.END);
+            entityplayer.worldObj.playSound(null, k, l, i1, ModSoundEvents.MediumEntensityRad, SoundCategory.PLAYERS, 2.0F, 1.0F);
+
 
         }
         AxisAlignedBB axisalignedbbd3 = (new AxisAlignedBB((double)k, (double)l, (double)i1, (double)(k + 1), (double)(l + 1), (double)(i1 + 1))).expandXyz(d2).addCoord(0.0D, (double)this.worldObj.getHeight(), 0.0D);
         List<EntityPlayerMP> liste2 = this.worldObj.getEntitiesWithinAABB(EntityPlayerMP.class, axisalignedbbd3);
         for (EntityPlayerMP entityplayer : liste2)
         {
-            //entityplayer.worldObj.playSound(null , k, l, i1, ModSoundEvents.RadMeter, SoundCategory.PLAYERS , 2.0F, 1.0F);
+            System.out.println(entityplayer.getCapability(FOECapabilitiesInit.RADIATION_CAPABILITY, null).getRadiation());
+            entityplayer.getCapability(FOECapabilitiesInit.RADIATION_CAPABILITY, null).update(entityplayer, getWorld(), TickEvent.Phase.START);
+            entityplayer.getCapability(FOECapabilitiesInit.RADIATION_CAPABILITY, null).addRadiation(1);
+            entityplayer.getCapability(FOECapabilitiesInit.RADIATION_CAPABILITY, null).update(entityplayer, getWorld(), TickEvent.Phase.END);
+            entityplayer.worldObj.playSound(null, k, l, i1, ModSoundEvents.LowEntensityRad, SoundCategory.PLAYERS, 2.0F, 1.0F);
 
         }
 

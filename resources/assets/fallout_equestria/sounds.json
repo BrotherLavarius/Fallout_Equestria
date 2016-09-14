@@ -1,10 +1,24 @@
 {
-  "RadMeter": {
+  "LowEntensityRad": {
     "category": "player",
     "sounds": [
-      "fallout_equestria:GeigerCounterSound"
+      "fallout_equestria:LowEntensityRad"
     ],
-    "subtitle": "RadMeter"
+    "subtitle": "LowEntensityRad"
+  },
+  "MediumEntensityRad": {
+    "category": "player",
+    "sounds": [
+      "fallout_equestria:MediumEntensityRad"
+    ],
+    "subtitle": "MediumEntensityRad"
+  },
+  "HighEntensityRad": {
+    "category": "player",
+    "sounds": [
+      "fallout_equestria:HighEntensityRad"
+    ],
+    "subtitle": "HighEntensityRad"
   },
   "Enervation": {
     "category": "player",
