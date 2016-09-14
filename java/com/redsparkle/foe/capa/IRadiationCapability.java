@@ -7,7 +7,13 @@ import net.minecraft.nbt.NBTTagCompound;
  */
 public interface IRadiationCapability  extends IPlayerData{
 
-    public void setRadiation(int newRadiationLevel);
     public void addRadiation(int addRadiationLevel);
+
     public int getRadiation();
+
+    public void setRadiation(int newRadiationLevel);
+
+    public NBTTagCompound saveNBTData();
+
+    public void loadNBTData(NBTTagCompound compound);
 }

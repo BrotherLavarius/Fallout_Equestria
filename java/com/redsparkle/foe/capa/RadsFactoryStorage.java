@@ -12,6 +12,7 @@ import net.minecraftforge.common.capabilities.Capability.IStorage;
  */
 public class RadsFactoryStorage implements IStorage<IRadiationCapability> {
 
+    public static final RadsFactoryStorage radsStorageUnit = new RadsFactoryStorage();
     @Override
     public NBTBase writeNBT(Capability<IRadiationCapability> capability, IRadiationCapability instance, EnumFacing side)
     {
