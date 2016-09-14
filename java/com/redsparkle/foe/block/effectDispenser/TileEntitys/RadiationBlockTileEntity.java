@@ -1,16 +1,13 @@
 package com.redsparkle.foe.block.effectDispenser.TileEntitys;
 
 import com.redsparkle.foe.FOECapabilitiesInit;
-import com.redsparkle.foe.capa.IRadiationCapability;
 import com.redsparkle.foe.sounds.ModSoundEvents;
 import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.AxisAlignedBB;
-import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.fml.common.gameevent.TickEvent;
 
 import java.util.List;
 
@@ -49,7 +46,10 @@ public class RadiationBlockTileEntity extends TileEntity implements ITickable {
         List<EntityPlayerMP> list = this.worldObj.getEntitiesWithinAABB(EntityPlayerMP.class, axisalignedbb);
         for (EntityPlayerMP entityplayer : list)
         {
-            System.out.println(entityplayer.getCapability(FOECapabilitiesInit.RADIATION_CAPABILITY,null).toString());
+            System.out.println(entityplayer.getCapability(FOECapabilitiesInit.RADIATION_CAPABILITY,null).getRadiation());
+            entityplayer.getCapability(FOECapabilitiesInit.RADIATION_CAPABILITY,null).update(entityplayer,getWorld(), TickEvent.Phase.START);
+            entityplayer.getCapability(FOECapabilitiesInit.RADIATION_CAPABILITY,null).addRadiation(10);
+            entityplayer.getCapability(FOECapabilitiesInit.RADIATION_CAPABILITY,null).update(entityplayer,getWorld(), TickEvent.Phase.END);
             //System.out.println(entityplayer.getCapability(CapabilityRadiation.RADS,UP).toString());
             entityplayer.worldObj.playSound(null , k, l, i1, ModSoundEvents.RadMeter, SoundCategory.PLAYERS , 2.0F, 1.0F);
         }
