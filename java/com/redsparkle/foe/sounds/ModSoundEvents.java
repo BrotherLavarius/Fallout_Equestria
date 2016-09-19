@@ -14,7 +14,6 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
  *
  * @author Choonster
  */
-@SuppressWarnings("WeakerAccess")
 public class ModSoundEvents {
     public static SoundEvent LowEntensityRad;
     public static SoundEvent MediumEntensityRad;

@@ -9,6 +9,8 @@ import com.redsparkle.foe.capa.RadsDefaultImpl;
 import com.redsparkle.foe.capa.RadsFactoryStorage;
 import com.redsparkle.foe.creativeTabs.InitCreativeTabs;
 import com.redsparkle.foe.sounds.ModSoundEvents;
+
+import gui.GuiHealthBar;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.creativetab.CreativeTabs;
@@ -79,7 +81,7 @@ public class main
 
         CapabilityManager.INSTANCE.register(IRadiationCapability.class, new RadsFactoryStorage(), RadsDefaultImpl.class);
 
-        MinecraftForge.EVENT_BUS.register(new EventHandler());
+        MinecraftForge.EVENT_BUS.register(new EventHandlerPre());
         if (event.getSide() == Side.CLIENT)
             clientPreInit();
     }
@@ -88,6 +90,8 @@ public class main
         ModBlocks.registerBlocks();
         ModBlocks.registerTileEntities();
         ModItems.registerItems();
+        MinecraftForge.EVENT_BUS.register(new GuiHealthBar(Minecraft.getMinecraft()));
+
 
     }
 
@@ -100,6 +104,6 @@ public class main
     }
 
     private void postInit(FMLPostInitializationEvent event) {
-
+        MinecraftForge.EVENT_BUS.register(new EventHandlerPost());
     }
 }

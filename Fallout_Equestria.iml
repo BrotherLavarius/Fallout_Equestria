@@ -8,5 +8,7 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module" module-name="forge-1.10.2-12.18.1.2077-mdk" />
+    <orderEntry type="module" module-name="forge-1.10.2-12.18.1.2077-mdk_api" />
   </component>
 </module>
