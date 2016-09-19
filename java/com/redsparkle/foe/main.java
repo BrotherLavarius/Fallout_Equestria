@@ -10,7 +10,7 @@ import com.redsparkle.foe.capa.RadsFactoryStorage;
 import com.redsparkle.foe.creativeTabs.InitCreativeTabs;
 import com.redsparkle.foe.sounds.ModSoundEvents;
 
-import gui.GuiHealthBar;
+import com.redsparkle.foe.gui.GuiHealthBar;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.creativetab.CreativeTabs;
@@ -90,7 +90,6 @@ public class main
         ModBlocks.registerBlocks();
         ModBlocks.registerTileEntities();
         ModItems.registerItems();
-        MinecraftForge.EVENT_BUS.register(new GuiHealthBar(Minecraft.getMinecraft()));
 
 
     }
