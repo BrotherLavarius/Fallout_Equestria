@@ -16,6 +16,7 @@ import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.IThreadListener;
 import net.minecraftforge.client.model.obj.OBJLoader;
 import net.minecraftforge.common.MinecraftForge;
@@ -23,6 +24,7 @@ import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.CapabilityInject;
 import net.minecraftforge.common.capabilities.CapabilityManager;
 import net.minecraftforge.common.config.Configuration;
+import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
@@ -36,7 +38,7 @@ public class main
     public static final String MODID = "fallout_equestria";
     public static final String VERSION = "0.0000000-VERY ALPHA";
     public static Configuration config;
-
+    GuiHealthBar ghb;
     @CapabilityInject(IRadiationCapability.class)
     private static void capRegistered(Capability<IRadiationCapability> cap) {
         System.out.println("I-----------------------------------I");
@@ -103,6 +105,8 @@ public class main
     }
 
     private void postInit(FMLPostInitializationEvent event) {
+    	ghb = new GuiHealthBar(Minecraft.getMinecraft(), FMLCommonHandler.instance().getMinecraftServerInstance());
+    	ghb.setInstance(ghb);
         MinecraftForge.EVENT_BUS.register(new EventHandlerPost());
     }
 }

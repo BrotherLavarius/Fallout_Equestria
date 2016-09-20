@@ -27,11 +27,11 @@ public class GuiHealthBar extends GuiIngame {
 	private MinecraftServer server;
 	private GuiHealthBar instance;
 	private int pRads;
+	private int RADS_CAP = 500;
 	private static final ResourceLocation texturepath = new ResourceLocation(main.MODID.toLowerCase(), "textures/gui/bar.png");
-	public GuiHealthBar(Minecraft mc, MinecraftServer server){
+	public GuiHealthBar(Minecraft mc, MinecraftServer minecraftServer){
 		super(mc);
 		this.mc = mc;
-		this.server = server;
 	}
 	public void setInstance(GuiHealthBar instance){
 		this.instance = instance;
@@ -50,7 +50,7 @@ public class GuiHealthBar extends GuiIngame {
 			return;
 		}
 		if(this.mc.thePlayer.isInsideOfMaterial(Material.PORTAL))return;
-		if{true}
+		if(true){
 		int xPos = 10;
 		int yPos = 2;
 
@@ -58,7 +58,7 @@ public class GuiHealthBar extends GuiIngame {
 		FontRenderer fontrenderer = this.mc.fontRendererObj;
 		this.mc.renderEngine.bindTexture(texturepath);
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-		ScaledResolution scaledresolution = new ScaledResolution(this.mc,this.mc.displayHeight,this.mc.displayHeight);
+		ScaledResolution scaledresolution = new ScaledResolution(this.mc);
 		int k = scaledresolution.getScaledWidth();
 		int l = scaledresolution.getScaledHeight();
 		int rads;
@@ -69,6 +69,22 @@ public class GuiHealthBar extends GuiIngame {
 			rads = 0;
 			System.out.println("NullPtrExeption");
 		}
+		int barCalc;
+		
+		barCalc = Math.round(RADS_CAP*rads/100);//calculates percentage of full
+		
+		this.drawTexturedModalRect(20, 150, 0, 0, 83, 9);
+		
+		if (barCalc < 500){
+			this.drawTexturedModalRect(23,153,0,25,59,9);
+			String s1 = Integer.toString(barCalc);
+			 fontrenderer.drawStringWithShadow("Rads:", 0, 0, 5010157);
+		}
+		
+		
+
+		}
+	}
 }
 
 
