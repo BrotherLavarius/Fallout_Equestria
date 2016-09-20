@@ -8,15 +8,13 @@ import com.redsparkle.foe.capa.IRadiationCapability;
 import com.redsparkle.foe.capa.RadsDefaultImpl;
 import com.redsparkle.foe.capa.RadsFactoryStorage;
 import com.redsparkle.foe.creativeTabs.InitCreativeTabs;
-import com.redsparkle.foe.sounds.ModSoundEvents;
-
 import com.redsparkle.foe.gui.GuiHealthBar;
+import com.redsparkle.foe.sounds.ModSoundEvents;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
-import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.IThreadListener;
 import net.minecraftforge.client.model.obj.OBJLoader;
 import net.minecraftforge.common.MinecraftForge;
@@ -80,6 +78,10 @@ public class main
         ModSoundEvents.registerSounds();
         OBJLoader.INSTANCE.addDomain(MODID.toLowerCase());
 
+        ghb = new GuiHealthBar(Minecraft.getMinecraft(), FMLCommonHandler.instance().getMinecraftServerInstance());
+        ghb.setInstance(ghb);
+
+
 
         CapabilityManager.INSTANCE.register(IRadiationCapability.class, new RadsFactoryStorage(), RadsDefaultImpl.class);
 
@@ -105,8 +107,7 @@ public class main
     }
 
     private void postInit(FMLPostInitializationEvent event) {
-    	ghb = new GuiHealthBar(Minecraft.getMinecraft(), FMLCommonHandler.instance().getMinecraftServerInstance());
-    	ghb.setInstance(ghb);
+
         MinecraftForge.EVENT_BUS.register(new EventHandlerPost());
     }
 }

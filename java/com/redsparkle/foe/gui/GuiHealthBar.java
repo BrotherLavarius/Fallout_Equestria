@@ -1,48 +1,47 @@
 package com.redsparkle.foe.gui;
 
+import com.redsparkle.foe.capa.RadsFactoryProvider;
+import com.redsparkle.foe.main;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiIngame;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.server.MinecraftServer;
-import org.lwjgl.opengl.GL11;
-
-import com.redsparkle.foe.main;
-import com.redsparkle.foe.capa.IRadiationCapability;
-import com.redsparkle.foe.capa.RadsFactoryProvider;
-
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.Gui;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent.ElementType;
-import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import org.lwjgl.opengl.GL11;
 
 @SideOnly(Side.CLIENT)
 public class GuiHealthBar extends GuiIngame {
+	private static final ResourceLocation texturepath = new ResourceLocation(main.MODID.toLowerCase(), "textures/gui/bar.png");
 	private Minecraft mc;
 	private MinecraftServer server;
 	private GuiHealthBar instance;
 	private int pRads;
 	private int RADS_CAP = 500;
-	private static final ResourceLocation texturepath = new ResourceLocation(main.MODID.toLowerCase(), "textures/gui/bar.png");
 	public GuiHealthBar(Minecraft mc, MinecraftServer minecraftServer){
 		super(mc);
 		this.mc = mc;
 	}
-	public void setInstance(GuiHealthBar instance){
-		this.instance = instance;
-	}
-	public void setRads(int rads){
-		pRads = rads;
-	}
+
 	public static GuiHealthBar getInstance(){
 		return null;
 	}
-	@SubscribeEvent(priority = EventPriority.NORMAL)
+
+	public void setInstance(GuiHealthBar instance){
+		this.instance = instance;
+	}
+
+	public void setRads(int rads){
+		pRads = rads;
+	}
+
+	@SubscribeEvent
 	public void onRenderExperienceBar(RenderGameOverlayEvent event) {
 
 		if(event.isCancelable() || event.getType() != ElementType.EXPERIENCE)
@@ -90,4 +89,5 @@ public class GuiHealthBar extends GuiIngame {
 
 
 //TODO: Rewrite according to https://github.com/TVoidS/MANA-Mod/blob/master/java/com/tvoids/firstmod/init/GuiBuffBar.java
+//TODO: NO REWRITE LIKE THIS GUY https://minecraft.curseforge.com/projects/health-bar
 
