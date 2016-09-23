@@ -3,26 +3,18 @@ package com.redsparkle.foe;
 
 import com.redsparkle.foe.Init.ModBlocks;
 import com.redsparkle.foe.Init.ModItems;
-import com.redsparkle.foe.block.effectDispenser.RadiationBlock;
 import com.redsparkle.foe.capa.IRadiationCapability;
 import com.redsparkle.foe.capa.RadsDefaultImpl;
 import com.redsparkle.foe.capa.RadsFactoryStorage;
-import com.redsparkle.foe.creativeTabs.InitCreativeTabs;
 import com.redsparkle.foe.gui.GuiHealthBar;
 import com.redsparkle.foe.sounds.ModSoundEvents;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.block.model.ModelResourceLocation;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
 import net.minecraft.util.IThreadListener;
-import net.minecraftforge.client.model.obj.OBJLoader;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.CapabilityInject;
 import net.minecraftforge.common.capabilities.CapabilityManager;
 import net.minecraftforge.common.config.Configuration;
-import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
@@ -36,7 +28,7 @@ public class main
     public static final String MODID = "fallout_equestria";
     public static final String VERSION = "0.0000000-VERY ALPHA";
     public static Configuration config;
-    GuiHealthBar ghb;
+    public static GuiHealthBar gd;
     @CapabilityInject(IRadiationCapability.class)
     private static void capRegistered(Capability<IRadiationCapability> cap) {
         System.out.println("I-----------------------------------I");
@@ -69,41 +61,28 @@ public class main
         config = new Configuration(event.getSuggestedConfigurationFile());
         config.load();
         syncConfig();
-        final CreativeTabs Fallout_ammo = InitCreativeTabs.Fallout_ammo;
-        final CreativeTabs Fallout_blocks = InitCreativeTabs.Fallout_blocks;
-        final CreativeTabs Fallout_guns = InitCreativeTabs.Fallout_guns;
-        final CreativeTabs Fallout_meds = InitCreativeTabs.Fallout_meds;
-        final CreativeTabs Fallout_stats_blocks = InitCreativeTabs.Fallout_stats_blocks;
 
+
+        ModBlocks.registerBlocks();
+        ModBlocks.registerTileEntities();
+        ModItems.registerItems();
         ModSoundEvents.registerSounds();
-        OBJLoader.INSTANCE.addDomain(MODID.toLowerCase());
-
-        ghb = new GuiHealthBar(Minecraft.getMinecraft(), FMLCommonHandler.instance().getMinecraftServerInstance());
-        ghb.setInstance(ghb);
-
 
 
         CapabilityManager.INSTANCE.register(IRadiationCapability.class, new RadsFactoryStorage(), RadsDefaultImpl.class);
 
         MinecraftForge.EVENT_BUS.register(new EventHandlerPre());
         if (event.getSide() == Side.CLIENT)
-            clientPreInit();
+            ClientOnlyStartup.preInitClientOnly();
     }
 
-    private void clientPreInit() {
-        ModBlocks.registerBlocks();
-        ModBlocks.registerTileEntities();
-        ModItems.registerItems();
-
-
-    }
-
-    private void init(FMLInitializationEvent event){
+      private void init(FMLInitializationEvent event){
         if (event.getSide() == Side.CLIENT) {
-            Minecraft.getMinecraft().getRenderItem().getItemModelMesher()
-                    .register(Item.getItemFromBlock(RadiationBlock.instance), 0, new ModelResourceLocation(MODID.toLowerCase() + ":" + RadiationBlock.name, "inventory"));
+            ClientOnlyStartup.initClientOnly();
 
         }
+
+        MinecraftForge.EVENT_BUS.register(new EventHandlerInit());
     }
 
     private void postInit(FMLPostInitializationEvent event) {

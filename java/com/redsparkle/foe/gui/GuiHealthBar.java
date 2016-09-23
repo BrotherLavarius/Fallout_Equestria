@@ -10,7 +10,6 @@ import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
-import net.minecraftforge.client.event.RenderGameOverlayEvent.ElementType;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -19,6 +18,7 @@ import org.lwjgl.opengl.GL11;
 @SideOnly(Side.CLIENT)
 public class GuiHealthBar extends GuiIngame {
 	private static final ResourceLocation texturepath = new ResourceLocation(main.MODID.toLowerCase(), "textures/gui/bar.png");
+	private static String registryName;
 	private Minecraft mc;
 	private MinecraftServer server;
 	private GuiHealthBar instance;
@@ -37,6 +37,10 @@ public class GuiHealthBar extends GuiIngame {
 		this.instance = instance;
 	}
 
+	public static void setRegistryName(String registryName) {
+		GuiHealthBar.registryName = registryName;
+	}
+
 	public void setRads(int rads){
 		pRads = rads;
 	}
@@ -44,10 +48,6 @@ public class GuiHealthBar extends GuiIngame {
 	@SubscribeEvent
 	public void onRenderExperienceBar(RenderGameOverlayEvent event) {
 
-		if(event.isCancelable() || event.getType() != ElementType.EXPERIENCE)
-		{
-			return;
-		}
 		if(this.mc.thePlayer.isInsideOfMaterial(Material.PORTAL))return;
 		if(true){
 		int xPos = 10;
@@ -90,4 +90,6 @@ public class GuiHealthBar extends GuiIngame {
 
 //TODO: Rewrite according to https://github.com/TVoidS/MANA-Mod/blob/master/java/com/tvoids/firstmod/init/GuiBuffBar.java
 //TODO: NO REWRITE LIKE THIS GUY https://minecraft.curseforge.com/projects/health-bar
+
+//TODO : OR THIS ONE https://github.com/TheGreyGhost/MinecraftByExample/blob/master/src/main/java/minecraftbyexample/mbe40_hud_overlay/Notes.txt
 
