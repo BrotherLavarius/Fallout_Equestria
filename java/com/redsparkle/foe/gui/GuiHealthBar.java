@@ -51,8 +51,8 @@ public class GuiHealthBar extends Gui {
 
 		// we will draw the status bar just above the hotbar.
 		//  obtained by inspecting the vanilla hotbar rendering code
-		final int vanillaExpLeftX = screenWidth / 2 - 91; // leftmost edge of the experience bar
-		final int vanillaExpTopY = screenHeight - 32 + 3;  // top of the experience bar
+		final int vanillaExpLeftX = screenWidth / 2; // leftmost edge of the experience bar
+		final int vanillaExpTopY = screenHeight / 2;  // top of the experience bar
 
       /* Shift our rendering origin to just above the experience bar
        * The top left corner of the screen is x=0, y=0
