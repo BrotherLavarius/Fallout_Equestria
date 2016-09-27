@@ -1,11 +1,15 @@
 package com.redsparkle.foe;
 
 
+import com.redsparkle.foe.Init.ClientOnlyStartup;
 import com.redsparkle.foe.Init.ModBlocks;
 import com.redsparkle.foe.Init.ModItems;
 import com.redsparkle.foe.capa.IRadiationCapability;
 import com.redsparkle.foe.capa.RadsDefaultImpl;
 import com.redsparkle.foe.capa.RadsFactoryStorage;
+import com.redsparkle.foe.events.EventHandlerInit;
+import com.redsparkle.foe.events.EventHandlerPost;
+import com.redsparkle.foe.events.EventHandlerPre;
 import com.redsparkle.foe.gui.GuiHealthBar;
 import com.redsparkle.foe.sounds.ModSoundEvents;
 import net.minecraft.entity.player.EntityPlayer;
@@ -36,7 +40,6 @@ public class main
         System.out.println("        YAY FOR THOSE ATOMS!         ");
         System.out.println("        You will die, enjoy          ");
         System.out.println("I-----------------------------------I");
-
     }
 
     public static EntityPlayer getPlayerEntity(MessageContext ctx) {
@@ -70,8 +73,9 @@ public class main
 
 
         CapabilityManager.INSTANCE.register(IRadiationCapability.class, new RadsFactoryStorage(), RadsDefaultImpl.class);
-
         MinecraftForge.EVENT_BUS.register(new EventHandlerPre());
+
+
         if (event.getSide() == Side.CLIENT)
             ClientOnlyStartup.preInitClientOnly();
     }
@@ -88,5 +92,10 @@ public class main
     private void postInit(FMLPostInitializationEvent event) {
 
         MinecraftForge.EVENT_BUS.register(new EventHandlerPost());
+
+
+        System.out.println("I-----------------------------------I");
+        System.out.println("   Fallout pack fully initialized    ");
+        System.out.println("I-----------------------------------I");
     }
 }

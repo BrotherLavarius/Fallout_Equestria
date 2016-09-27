@@ -1,5 +1,6 @@
-package com.redsparkle.foe;
+package com.redsparkle.foe.events;
 
+import com.redsparkle.foe.main;
 import net.minecraft.client.Minecraft;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;

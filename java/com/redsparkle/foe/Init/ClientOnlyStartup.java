@@ -1,4 +1,4 @@
-package com.redsparkle.foe;
+package com.redsparkle.foe.Init;
 
 import com.redsparkle.foe.block.effectDispenser.RadiationBlock;
 import com.redsparkle.foe.creativeTabs.InitCreativeTabs;

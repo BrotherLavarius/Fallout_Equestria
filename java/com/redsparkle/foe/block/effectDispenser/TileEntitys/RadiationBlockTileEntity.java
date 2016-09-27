@@ -1,6 +1,6 @@
 package com.redsparkle.foe.block.effectDispenser.TileEntitys;
 
-import com.redsparkle.foe.FOECapabilitiesInit;
+import com.redsparkle.foe.Init.FOECapabilitiesInit;
 import com.redsparkle.foe.sounds.ModSoundEvents;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.tileentity.TileEntity;

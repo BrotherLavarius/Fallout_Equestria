@@ -1,4 +1,4 @@
-package com.redsparkle.foe;
+package com.redsparkle.foe.events;
 
 
 import com.redsparkle.foe.capa.RadsDefaultImpl;

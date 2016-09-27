@@ -1,4 +1,4 @@
-package com.redsparkle.foe;
+package com.redsparkle.foe.Init;
 
 import com.redsparkle.foe.capa.IRadiationCapability;
 import net.minecraftforge.common.capabilities.Capability;
