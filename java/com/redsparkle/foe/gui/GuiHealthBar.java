@@ -16,12 +16,16 @@ import java.text.DecimalFormat;
 @SideOnly(Side.CLIENT)
 public class GuiHealthBar extends Gui {
 	private static final ResourceLocation texturepath = new ResourceLocation(main.MODID.toLowerCase(), "textures/gui/bar.png");
-
+	private static String name = "HealthBar";
 	private int HEALTH_CAP = 20;
 	private Minecraft mc;
 
 	public GuiHealthBar(Minecraft mc) {
 		this.mc = mc;
+	}
+
+	public static String setRegistryName(String healthBar) {
+		return name;
 	}
 
 	public void renderStatusBar(int screenWidth, int screenHeight) {
@@ -57,7 +61,7 @@ public class GuiHealthBar extends Gui {
       /* Shift our rendering origin to just above the experience bar
        * The top left corner of the screen is x=0, y=0
        */
-		GL11.glTranslatef(vanillaExpLeftX, vanillaExpTopY - BAR_SPACING_ABOVE_EXP_BAR - BAR_HEIGHT, 0);
+		GL11.glTranslatef(vanillaExpLeftX, vanillaExpTopY, 0);
 
       /* Draw a part of the image file at the current position
        *
@@ -76,12 +80,12 @@ public class GuiHealthBar extends Gui {
        *
        * This line draws the background of the custom bar
        */
-		drawTexturedModalRect(0, 0, 0, 0, BAR_WIDTH, BAR_HEIGHT);
+		drawTexturedModalRect(0, 0, 0, 0, 83, 8);
 
       /* This line draws the outline effect that corresponds to how much armor the player has.
        * I slide the right-most side of the rectangle using the player's armor value.
        */
-		drawTexturedModalRect(0, 0, 0, BAR_HEIGHT, (int)(BAR_WIDTH*(player.getTotalArmorValue()/20f)), BAR_HEIGHT);
+		//drawTexturedModalRect(0, 0, 0, BAR_HEIGHT, (int)(BAR_WIDTH*(player.getTotalArmorValue()/20f)), BAR_HEIGHT);
 
       /* This part draws the inside of the bar, which starts 1 pixel right and down */
 		GL11.glPushMatrix();
@@ -106,7 +110,7 @@ public class GuiHealthBar extends Gui {
            *
            * The width of the bar's interior is BAR_WIDTH - 2
            */
-		GL11.glScalef((BAR_WIDTH - 2)*Math.min(1, effectiveHp/maxHp), 1, 1);
+		//GL11.glScalef((BAR_WIDTH - 2)*Math.min(1, effectiveHp/maxHp), 1, 1);
 
 
           /* This chain of if-else blocks checks if the player has any status effects. I check if a potion effect
@@ -176,7 +180,6 @@ public class GuiHealthBar extends Gui {
 		GL11.glPopMatrix();
 		GL11.glPopAttrib();
 	}
-
 }
 
 
