@@ -1,5 +1,6 @@
 package com.redsparkle.foe.capa;
 
+import com.sun.org.apache.bcel.internal.generic.INSTANCEOF;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;

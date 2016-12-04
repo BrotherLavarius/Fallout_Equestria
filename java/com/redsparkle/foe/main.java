@@ -10,7 +10,10 @@ import com.redsparkle.foe.capa.RadsFactoryStorage;
 import com.redsparkle.foe.events.EventHandlerInit;
 import com.redsparkle.foe.events.EventHandlerPost;
 import com.redsparkle.foe.events.EventHandlerPre;
-import com.redsparkle.foe.gui.GuiHealthBar;
+import com.redsparkle.foe.network.MyMessageClass;
+import com.redsparkle.foe.network.MyMessageHandler;
+import com.redsparkle.foe.network.RadiationMessage;
+import com.redsparkle.foe.network.RadiatonRefreshHandler;
 import com.redsparkle.foe.sounds.ModSoundEvents;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.IThreadListener;
@@ -23,7 +26,9 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
+import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import net.minecraftforge.fml.relauncher.Side;
 
 @Mod(modid = main.MODID, version = main.VERSION, useMetadata = true,acceptedMinecraftVersions = "[1.9.4,)")
@@ -32,7 +37,7 @@ public class main
     public static final String MODID = "fallout_equestria";
     public static final String VERSION = "0.0000000-VERY ALPHA";
     public static Configuration config;
-    public static GuiHealthBar gd;
+
     @CapabilityInject(IRadiationCapability.class)
     private static void capRegistered(Capability<IRadiationCapability> cap) {
         System.out.println("I-----------------------------------I");
@@ -55,6 +60,8 @@ public class main
             config.save();
     }
 
+    public static final SimpleNetworkWrapper INSTANCE = NetworkRegistry.INSTANCE.newSimpleChannel(MODID);
+
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event){
         System.out.println("FOE PACK LOADING");
@@ -71,27 +78,28 @@ public class main
         ModItems.registerItems();
         ModSoundEvents.registerSounds();
 
+        INSTANCE.registerMessage(MyMessageHandler.class, MyMessageClass.class, 0, Side.SERVER);
+        INSTANCE.registerMessage(RadiatonRefreshHandler.class, RadiationMessage.class, 1, Side.CLIENT);
 
         CapabilityManager.INSTANCE.register(IRadiationCapability.class, new RadsFactoryStorage(), RadsDefaultImpl.class);
         MinecraftForge.EVENT_BUS.register(new EventHandlerPre());
 
-
-        if (event.getSide() == Side.CLIENT)
-            ClientOnlyStartup.preInitClientOnly();
-    }
+        if (event.getSide() == Side.CLIENT){ClientOnlyStartup.preInitClientOnly();}
+            }
 
       private void init(FMLInitializationEvent event){
         if (event.getSide() == Side.CLIENT) {
             ClientOnlyStartup.initClientOnly();
-
         }
-
         MinecraftForge.EVENT_BUS.register(new EventHandlerInit());
     }
 
     private void postInit(FMLPostInitializationEvent event) {
-
+        if (event.getSide() == Side.CLIENT) {
+            ClientOnlyStartup.postInitClientOnly();
+        }
         MinecraftForge.EVENT_BUS.register(new EventHandlerPost());
+
 
 
         System.out.println("I-----------------------------------I");

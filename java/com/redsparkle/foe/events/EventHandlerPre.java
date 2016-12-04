@@ -3,13 +3,16 @@ package com.redsparkle.foe.events;
 
 import com.redsparkle.foe.capa.RadsDefaultImpl;
 import com.redsparkle.foe.capa.RadsFactoryProvider;
+import com.redsparkle.foe.network.RadiationMessage;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
+import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
+import static com.redsparkle.foe.main.INSTANCE;
 import static com.redsparkle.foe.main.MODID;
 
 /**
@@ -25,8 +28,13 @@ public class EventHandlerPre {
         event.addCapability(new ResourceLocation(MODID + ":Radiation_CAPABILITY"), new RadsFactoryProvider(new RadsDefaultImpl()));
         
     }
+    public void onLivingUpdateEvent(LivingEvent.LivingUpdateEvent event)
+    {
+        INSTANCE.sendToAll(RadiationMessage);
+    }
 
-    @SubscribeEvent(receiveCanceled=true)
+    // LEFT HERE TO KILL MC GUI
+    /*@SubscribeEvent(receiveCanceled=true)
     public void onEvent(RenderGameOverlayEvent.Pre event) {
         EntityPlayerSP entityPlayerSP = Minecraft.getMinecraft().thePlayer;
         if (entityPlayerSP == null) return;  // just in case
@@ -49,6 +57,7 @@ public class EventHandlerPre {
                 break;
         }
     }
+    */
 }
     
     

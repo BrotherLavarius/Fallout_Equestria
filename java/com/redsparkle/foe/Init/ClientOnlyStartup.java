@@ -2,12 +2,13 @@ package com.redsparkle.foe.Init;
 
 import com.redsparkle.foe.block.effectDispenser.RadiationBlock;
 import com.redsparkle.foe.creativeTabs.InitCreativeTabs;
-import com.redsparkle.foe.gui.GuiHealthBar;
+import com.redsparkle.foe.events.*;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraftforge.client.model.obj.OBJLoader;
+import net.minecraftforge.common.MinecraftForge;
 
 import static com.redsparkle.foe.main.MODID;
 
@@ -23,8 +24,7 @@ public class ClientOnlyStartup {
         final CreativeTabs Fallout_guns = InitCreativeTabs.Fallout_guns;
         final CreativeTabs Fallout_meds = InitCreativeTabs.Fallout_meds;
         final CreativeTabs Fallout_stats_blocks = InitCreativeTabs.Fallout_stats_blocks;
-
-        GuiHealthBar.setRegistryName("HealthBar");
+        MinecraftForge.EVENT_BUS.register(new GuiRenderHandler());
 
 
 
