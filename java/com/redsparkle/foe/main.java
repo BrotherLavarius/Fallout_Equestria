@@ -10,7 +10,10 @@ import com.redsparkle.foe.capa.RadsFactoryStorage;
 import com.redsparkle.foe.events.EventHandlerInit;
 import com.redsparkle.foe.events.EventHandlerPost;
 import com.redsparkle.foe.events.EventHandlerPre;
-import com.redsparkle.foe.network.*;
+import com.redsparkle.foe.network.MessagePlayerProperties;
+import com.redsparkle.foe.network.MessagePlayerPropertiesHandler;
+import com.redsparkle.foe.network.Packethandler;
+import com.redsparkle.foe.network.SampleEntityPropertiesEventHandler;
 import com.redsparkle.foe.sounds.ModSoundEvents;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.IThreadListener;
@@ -19,6 +22,7 @@ import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.CapabilityInject;
 import net.minecraftforge.common.capabilities.CapabilityManager;
 import net.minecraftforge.common.config.Configuration;
+import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
@@ -34,6 +38,7 @@ public class main
     public static final String MODID = "fallout_equestria";
     public static final String VERSION = "0.0000000-VERY ALPHA";
     public static Configuration config;
+    public static final SimpleNetworkWrapper INSTANCE = NetworkRegistry.INSTANCE.newSimpleChannel(main.MODID);
 
     @CapabilityInject(IRadiationCapability.class)
     private static void capRegistered(Capability<IRadiationCapability> cap) {
@@ -57,7 +62,6 @@ public class main
             config.save();
     }
 
-    public static SimpleNetworkWrapper network;
 
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event){
@@ -65,24 +69,26 @@ public class main
         System.out.println("WAR...");
         System.out.println("WAR NEVER CHANGES...");
 
+        // INIT THE CONFIG I SAY!
         config = new Configuration(event.getSuggestedConfigurationFile());
         config.load();
         syncConfig();
 
-
+        // INIT Blocks etc that needs to be init everywhere
         ModBlocks.registerBlocks();
         ModBlocks.registerTileEntities();
         ModItems.registerItems();
         ModSoundEvents.registerSounds();
 
-        network = NetworkRegistry.INSTANCE.newSimpleChannel(MODID);
-        network.registerMessage(MyMessage.MyMessageHandler.class, MyMessage.class, 0, Side.SERVER);
-        //network.registerMessage(RadiatonRefreshHandler.class, RadiationMessage.class, 1, Side.CLIENT);
-        network.registerMessage(TutorialMessageHandler.class, TutorialMessage.class, 2, Side.SERVER);
+        // PACHET HANDLER STUFF
 
+        // INIT CAPA
         CapabilityManager.INSTANCE.register(IRadiationCapability.class, new RadsFactoryStorage(), RadsDefaultImpl.class);
+
+        // INIT Handler
         MinecraftForge.EVENT_BUS.register(new EventHandlerPre());
 
+        //INIT Client Only stuff
         if (event.getSide() == Side.CLIENT){
             ClientOnlyStartup.preInitClientOnly();}
             }
@@ -91,6 +97,12 @@ public class main
         if (event.getSide() == Side.CLIENT) {
             ClientOnlyStartup.initClientOnly();
         }
+        INSTANCE.registerMessage(MessagePlayerPropertiesHandler.class, MessagePlayerProperties.class, 0, Side.SERVER);
+
+          SampleEntityPropertiesEventHandler sampleEntityPropertiesEventHandler = new SampleEntityPropertiesEventHandler();
+          MinecraftForge.EVENT_BUS.register(sampleEntityPropertiesEventHandler);
+          FMLCommonHandler.instance().bus().register(sampleEntityPropertiesEventHandler);
+
         MinecraftForge.EVENT_BUS.register(new EventHandlerInit());
     }
 
@@ -98,6 +110,7 @@ public class main
         if (event.getSide() == Side.CLIENT) {
             ClientOnlyStartup.postInitClientOnly();
         }
+
         MinecraftForge.EVENT_BUS.register(new EventHandlerPost());
 
 
