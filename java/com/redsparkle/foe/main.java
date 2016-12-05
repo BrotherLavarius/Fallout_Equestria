@@ -10,10 +10,7 @@ import com.redsparkle.foe.capa.RadsFactoryStorage;
 import com.redsparkle.foe.events.EventHandlerInit;
 import com.redsparkle.foe.events.EventHandlerPost;
 import com.redsparkle.foe.events.EventHandlerPre;
-import com.redsparkle.foe.network.MyMessageClass;
-import com.redsparkle.foe.network.MyMessageHandler;
-import com.redsparkle.foe.network.RadiationMessage;
-import com.redsparkle.foe.network.RadiatonRefreshHandler;
+import com.redsparkle.foe.network.*;
 import com.redsparkle.foe.sounds.ModSoundEvents;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.IThreadListener;
@@ -60,7 +57,7 @@ public class main
             config.save();
     }
 
-    public static final SimpleNetworkWrapper INSTANCE = NetworkRegistry.INSTANCE.newSimpleChannel(MODID);
+    public static SimpleNetworkWrapper network;
 
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event){
@@ -78,13 +75,16 @@ public class main
         ModItems.registerItems();
         ModSoundEvents.registerSounds();
 
-        INSTANCE.registerMessage(MyMessageHandler.class, MyMessageClass.class, 0, Side.SERVER);
-        INSTANCE.registerMessage(RadiatonRefreshHandler.class, RadiationMessage.class, 1, Side.CLIENT);
+        network = NetworkRegistry.INSTANCE.newSimpleChannel(MODID);
+        network.registerMessage(MyMessage.MyMessageHandler.class, MyMessage.class, 0, Side.SERVER);
+        //network.registerMessage(RadiatonRefreshHandler.class, RadiationMessage.class, 1, Side.CLIENT);
+        network.registerMessage(TutorialMessageHandler.class, TutorialMessage.class, 2, Side.SERVER);
 
         CapabilityManager.INSTANCE.register(IRadiationCapability.class, new RadsFactoryStorage(), RadsDefaultImpl.class);
         MinecraftForge.EVENT_BUS.register(new EventHandlerPre());
 
-        if (event.getSide() == Side.CLIENT){ClientOnlyStartup.preInitClientOnly();}
+        if (event.getSide() == Side.CLIENT){
+            ClientOnlyStartup.preInitClientOnly();}
             }
 
       private void init(FMLInitializationEvent event){
