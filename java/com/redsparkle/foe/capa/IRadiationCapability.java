@@ -18,4 +18,6 @@ public interface IRadiationCapability  extends IPlayerData{
     public NBTTagCompound saveNBTData();
 
     public void loadNBTData(NBTTagCompound compound);
+
+
 }

@@ -12,7 +12,6 @@ import com.redsparkle.foe.events.EventHandlerPost;
 import com.redsparkle.foe.events.EventHandlerPre;
 import com.redsparkle.foe.network.MessagePlayerProperties;
 import com.redsparkle.foe.network.MessagePlayerPropertiesHandler;
-import com.redsparkle.foe.network.Packethandler;
 import com.redsparkle.foe.network.SampleEntityPropertiesEventHandler;
 import com.redsparkle.foe.sounds.ModSoundEvents;
 import net.minecraft.entity.player.EntityPlayer;
@@ -22,7 +21,6 @@ import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.CapabilityInject;
 import net.minecraftforge.common.capabilities.CapabilityManager;
 import net.minecraftforge.common.config.Configuration;
-import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
@@ -38,7 +36,7 @@ public class main
     public static final String MODID = "fallout_equestria";
     public static final String VERSION = "0.0000000-VERY ALPHA";
     public static Configuration config;
-    public static final SimpleNetworkWrapper INSTANCE = NetworkRegistry.INSTANCE.newSimpleChannel(main.MODID);
+    public static SimpleNetworkWrapper INSTANCE;
 
     @CapabilityInject(IRadiationCapability.class)
     private static void capRegistered(Capability<IRadiationCapability> cap) {
@@ -81,9 +79,13 @@ public class main
         ModSoundEvents.registerSounds();
 
         // PACHET HANDLER STUFF
+        INSTANCE = NetworkRegistry.INSTANCE.newSimpleChannel(main.MODID);
+        INSTANCE.registerMessage(MessagePlayerPropertiesHandler.class, MessagePlayerProperties.class, 0, Side.SERVER);
+        //MinecraftForge.EVENT_BUS.register(SampleEntityPropertiesEventHandler.class);
 
         // INIT CAPA
         CapabilityManager.INSTANCE.register(IRadiationCapability.class, new RadsFactoryStorage(), RadsDefaultImpl.class);
+
 
         // INIT Handler
         MinecraftForge.EVENT_BUS.register(new EventHandlerPre());
@@ -97,11 +99,7 @@ public class main
         if (event.getSide() == Side.CLIENT) {
             ClientOnlyStartup.initClientOnly();
         }
-        INSTANCE.registerMessage(MessagePlayerPropertiesHandler.class, MessagePlayerProperties.class, 0, Side.SERVER);
 
-          SampleEntityPropertiesEventHandler sampleEntityPropertiesEventHandler = new SampleEntityPropertiesEventHandler();
-          MinecraftForge.EVENT_BUS.register(sampleEntityPropertiesEventHandler);
-          FMLCommonHandler.instance().bus().register(sampleEntityPropertiesEventHandler);
 
         MinecraftForge.EVENT_BUS.register(new EventHandlerInit());
     }
@@ -112,8 +110,6 @@ public class main
         }
 
         MinecraftForge.EVENT_BUS.register(new EventHandlerPost());
-
-
 
         System.out.println("I-----------------------------------I");
         System.out.println("   Fallout pack fully initialized    ");

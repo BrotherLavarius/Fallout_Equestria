@@ -11,21 +11,40 @@ import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
  * Created by NENYN on 12/6/2016.
  */
 public class MessagePlayerProperties implements IMessage {
-    public Integer RadData;
-    public MessagePlayerProperties(){}
+    public Integer RadData = 0;
 
     public MessagePlayerProperties(EntityPlayer entityPlayer) {
-        this.RadData = RadData;
-        RadData = entityPlayer.getCapability(FOECapabilitiesInit.RADIATION_CAPABILITY,null).getRadiation();
+        this.RadData = entityPlayer.getCapability(FOECapabilitiesInit.RADIATION_CAPABILITY,null).getRadiation();
     }
 
-    @Override
-    public void fromBytes(ByteBuf buf) {
-        RadData = ByteBufUtils.varIntByteCount(RadData);
-    }
 
+    /**
+     * Called by the network code.
+     * Used to write the contents of your message member variables into the ByteBuf, ready for transmission over the network.
+     * @param buf
+     */
     @Override
     public void toBytes(ByteBuf buf) {
-        ByteBufUtils.varIntByteCount(RadData);
+
+        buf.writeInt(RadData);
+        System.out.println("TargetEffectMessageToClient:toBytes length=" + buf.readableBytes());
     }
+
+
+    /**
+     * Called by the network code once it has received the message bytes over the network.
+     * Used to read the ByteBuf contents into your member variables
+     * @param buf
+     */
+    @Override
+    public void fromBytes(ByteBuf buf) {
+    try {
+        this.RadData = buf.readInt();
+        }catch (IndexOutOfBoundsException ioe) {
+            System.err.println("Exception while reading TargetEffectMessageToClient: " + ioe);
+            return;
+        }
+    }
+
+
 }
