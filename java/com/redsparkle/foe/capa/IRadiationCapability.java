@@ -9,6 +9,8 @@ public interface IRadiationCapability  extends IPlayerData{
 
     public void addRadiation(int addRadiationLevel);
 
+    public void removeRadiation(int removeRadiationLevel);
+
     public int getRadiation();
 
     public void setRadiation(int newRadiationLevel);

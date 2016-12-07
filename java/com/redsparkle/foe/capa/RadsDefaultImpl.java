@@ -18,7 +18,14 @@ public class RadsDefaultImpl implements IRadiationCapability {
 
     @Override
     public void addRadiation(int addRadiationLevel) {
-        this.radiationLevel = Math.max(this.radiationLevel + addRadiationLevel + basicRads, 1);
+        //this.radiationLevel = Math.max(this.radiationLevel + addRadiationLevel + basicRads, 1);
+        this.radiationLevel = (this.radiationLevel + addRadiationLevel + basicRads);
+
+    }
+    @Override
+    public void removeRadiation(int removeRadiationLevel) {
+        //this.radiationLevel = Math.max(this.radiationLevel - removeRadiationLevel + basicRads, 1);
+        this.radiationLevel = (this.radiationLevel - removeRadiationLevel + basicRads);
     }
 
     @Override

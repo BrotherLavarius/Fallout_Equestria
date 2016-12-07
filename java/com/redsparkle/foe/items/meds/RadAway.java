@@ -28,7 +28,7 @@ public class RadAway extends Item {
     public RadAway(){
         setUnlocalizedName(name);
         setRegistryName(name);
-        this.setMaxStackSize(2);
+        this.setMaxStackSize(10);
         this.setCreativeTab(InitCreativeTabs.Fallout_meds);
     }
 
@@ -51,9 +51,6 @@ public class RadAway extends Item {
     public ActionResult<ItemStack> onItemRightClick(ItemStack itemStackIn, World worldIn, EntityPlayer playerIn, EnumHand hand)
     {
         playerIn.setActiveHand(hand);
-        if (playerIn.hasCapability(RadsFactoryProvider.RADIATION_CAPABILITY, null)) {
-            playerIn.getCapability(RadsFactoryProvider.RADIATION_CAPABILITY, null).addRadiation(-10);
-        }
         return new ActionResult(EnumActionResult.SUCCESS, itemStackIn);
     }
 
@@ -79,7 +76,9 @@ public class RadAway extends Item {
     public ItemStack onItemUseFinish(ItemStack stack, World worldIn, EntityLivingBase entityLiving)
     {
         EntityPlayerMP entityplayer = entityLiving instanceof EntityPlayerMP ? (EntityPlayerMP)entityLiving : null;
-
+        if (entityLiving.hasCapability(RadsFactoryProvider.RADIATION_CAPABILITY, null)) {
+            entityLiving.getCapability(RadsFactoryProvider.RADIATION_CAPABILITY, null).removeRadiation(10);
+        }
         if (entityplayer == null || !entityplayer.capabilities.isCreativeMode)
         {
             --stack.stackSize;
