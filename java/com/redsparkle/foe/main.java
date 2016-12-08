@@ -36,7 +36,7 @@ public class main
     public static final String MODID = "fallout_equestria";
     public static final String VERSION = "0.0000000-VERY ALPHA";
     public static Configuration config;
-    public static SimpleNetworkWrapper INSTANCE;
+    public static SimpleNetworkWrapper INSTANCE ;
 
     @CapabilityInject(IRadiationCapability.class)
     private static void capRegistered(Capability<IRadiationCapability> cap) {
@@ -81,6 +81,7 @@ public class main
         // PACHET HANDLER STUFF
         INSTANCE = NetworkRegistry.INSTANCE.newSimpleChannel(main.MODID);
         INSTANCE.registerMessage(MessagePlayerPropertiesHandler.class, MessagePlayerProperties.class, 0, Side.SERVER);
+
         //MinecraftForge.EVENT_BUS.register(SampleEntityPropertiesEventHandler.class);
 
         // INIT CAPA

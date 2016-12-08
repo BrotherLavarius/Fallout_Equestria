@@ -11,7 +11,7 @@ import net.minecraftforge.fml.common.gameevent.TickEvent;
  */
 public class RadsDefaultImpl implements IRadiationCapability {
 
-    private int basicRads = 0;
+    private int basicRads;
     private int radiationLevel;
     private int prevRadiationLevel;
     private int radiationTimer;

@@ -2,16 +2,14 @@ package com.redsparkle.foe.gui;
 
 
 import com.redsparkle.foe.Init.FOECapabilitiesInit;
+import com.redsparkle.foe.main;
+import com.redsparkle.foe.network.MessagePlayerProperties;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.server.MinecraftServer;
-import net.minecraftforge.fml.common.FMLCommonHandler;
-
-
-import static com.redsparkle.foe.capa.RadsFactoryProvider.RADIATION_CAPABILITY;
+import net.minecraftforge.fml.client.FMLClientHandler;
 
 
 /**
@@ -20,8 +18,8 @@ import static com.redsparkle.foe.capa.RadsFactoryProvider.RADIATION_CAPABILITY;
 
 public class RadsOverlay extends Gui {
 
-    EntityPlayer player = Minecraft.getMinecraft().thePlayer;
-    Integer radtext = player.getCapability(FOECapabilitiesInit.RADIATION_CAPABILITY, null).getRadiation();
+    EntityPlayer EntityPlayerSP = FMLClientHandler.instance().getClient().thePlayer;
+    Integer radtext = EntityPlayerSP.getCapability(FOECapabilitiesInit.RADIATION_CAPABILITY, null).getRadiation();
     String text = "Rads:";
     public RadsOverlay(Minecraft mc, EntityPlayer player){
 
@@ -31,7 +29,8 @@ public class RadsOverlay extends Gui {
         int strw = mc.fontRendererObj.getStringWidth("Pitch: -90.00");
         int strh = mc.fontRendererObj.FONT_HEIGHT;
         mc.fontRendererObj.drawStringWithShadow(text + Integer.toString(radtext),width-20-strw, height - 20 - strh, 0x00FFFFFF);
-
-
+        MessagePlayerProperties messagePlayerProperties = new MessagePlayerProperties(player);
+        System.out.println("Trying to send a message to server!");
+        main.INSTANCE.sendToServer(messagePlayerProperties);
     }
 }

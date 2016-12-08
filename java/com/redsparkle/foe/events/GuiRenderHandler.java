@@ -7,6 +7,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
+import net.minecraftforge.fml.client.FMLClientHandler;
 import net.minecraftforge.fml.common.MinecraftDummyContainer;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
@@ -15,13 +16,14 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
  */
 public class GuiRenderHandler {
 
-    public EntityPlayer player;
+
 
     @SubscribeEvent
     public void onRenderGui(RenderGameOverlayEvent.Post event) {
+            EntityPlayer player = FMLClientHandler.instance().getClient().thePlayer;
             Minecraft mc = Minecraft.getMinecraft();
         if (event.getType() == RenderGameOverlayEvent.ElementType.ALL){
-            new RadsOverlay(Minecraft.getMinecraft(), player);
+            new RadsOverlay(mc, player);
         }
     }
 
