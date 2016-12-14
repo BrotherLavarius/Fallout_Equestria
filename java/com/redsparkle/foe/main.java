@@ -80,8 +80,7 @@ public class main
 
         // PACHET HANDLER STUFF
         INSTANCE = NetworkRegistry.INSTANCE.newSimpleChannel(main.MODID);
-        INSTANCE.registerMessage(MessagePlayerPropertiesHandler.class, MessagePlayerProperties.class, 0, Side.SERVER);
-
+        INSTANCE.registerMessage(MessagePlayerPropertiesHandler.class, MessagePlayerProperties.class, 0, Side.CLIENT);
         //MinecraftForge.EVENT_BUS.register(SampleEntityPropertiesEventHandler.class);
 
         // INIT CAPA

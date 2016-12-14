@@ -17,8 +17,27 @@ import net.minecraftforge.fml.relauncher.Side;
 public class MessagePlayerPropertiesHandler implements IMessageHandler<MessagePlayerProperties, IMessage> {
     @Override
     public IMessage onMessage(final MessagePlayerProperties message, MessageContext ctx) {
-        System.err.println("TargetEffectMessageToClient received on wrong side:" + ctx.side);
+        if(ctx.side != Side.SERVER) {
+            System.err.println("Message was received on wrong side:" + ctx.side);
+        }
+
+        final EntityPlayerMP sendingPlayer = ctx.getServerHandler().playerEntity;
+        if (sendingPlayer == null) {
+            System.err.println("EntityPlayerMP was null when Message was received");
+            return null;
+        }
+
+        final WorldServer playerWorldServer = sendingPlayer.getServerWorld();
+        playerWorldServer.addScheduledTask(new Runnable() {
+            public void run() {
+                processMessage(message, sendingPlayer);
+            }
+        });
+
         return null;
+    }
+    void processMessage(MessagePlayerProperties message, EntityPlayerMP sendingPlayer) {
+
     }
 }
 

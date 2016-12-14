@@ -13,6 +13,8 @@ import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 public class MessagePlayerProperties implements IMessage {
     public Integer RadData = 0;
 
+    public MessagePlayerProperties() {}
+
     public MessagePlayerProperties(EntityPlayer entityPlayer) {
         this.RadData = entityPlayer.getCapability(FOECapabilitiesInit.RADIATION_CAPABILITY,null).getRadiation();
     }
