@@ -1,21 +1,8 @@
 package com.redsparkle.foe.events;
 
 
-import com.redsparkle.foe.capa.IRadiationCapability;
-import com.redsparkle.foe.capa.RadsDefaultImpl;
-import com.redsparkle.foe.capa.RadsFactoryProvider;
-import com.redsparkle.foe.main;
-import com.redsparkle.foe.network.MessagePlayerProperties;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
-import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.fml.common.gameevent.TickEvent;
-
-import static com.redsparkle.foe.Init.FOECapabilitiesInit.RADIATION_CAPABILITY;
-import static com.redsparkle.foe.main.MODID;
 
 /**
  * Created by hoijima on 07.09.16.
@@ -27,9 +14,9 @@ public class EventHandlerPre {
     public void AttachCapability(AttachCapabilitiesEvent.Entity event)
     {
         //Attach it! The resource location MUST be unique it's recommended that you tag it with your modid and what the cap is.
-        if (!event.getEntity().hasCapability(RADIATION_CAPABILITY,null)) {
-            event.addCapability(new ResourceLocation(MODID + ":Radiation_CAPABILITY"), new RadsFactoryProvider(new RadsDefaultImpl()));
-        }
+        //if (!event.getEntity().hasCapability(RADIATION_CAPABILITY,null)) {
+        //    event.addCapability(new ResourceLocation(MODID + ":Radiation_CAPABILITY"), new RadsFactoryProvider(new RadsDefaultImpl()));
+        //}
         
     }
 

@@ -53,8 +53,6 @@ public class SparkleColaMachineBlock extends Block {
         setLightLevel(1);
         setSoundType(SoundType.METAL);
         setCreativeTab(InitCreativeTabs.Fallout_blocks);
-        setUnlocalizedName(name);
-        setRegistryName(new ResourceLocation(MODID, name));
         setSoundType(SoundType.METAL);
 
     }

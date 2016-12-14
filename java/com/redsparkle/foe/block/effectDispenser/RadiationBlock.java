@@ -43,8 +43,6 @@ public class RadiationBlock extends BlockContainer{
         setLightLevel(1);
         setSoundType(SoundType.METAL);
         setCreativeTab(InitCreativeTabs.Fallout_stats_blocks);
-        setUnlocalizedName(name);
-        setRegistryName(new ResourceLocation(MODID, name));
         setSoundType(SoundType.GROUND);
 
     }

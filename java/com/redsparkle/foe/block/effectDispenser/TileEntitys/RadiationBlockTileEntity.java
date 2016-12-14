@@ -1,6 +1,7 @@
 package com.redsparkle.foe.block.effectDispenser.TileEntitys;
 
-import com.redsparkle.foe.Init.FOECapabilitiesInit;
+import com.redsparkle.foe.Init.CapabilityInit;
+import com.redsparkle.foe.Init.CapabilityInit;
 import com.redsparkle.foe.sounds.ModSoundEvents;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.tileentity.TileEntity;
@@ -46,10 +47,10 @@ public class RadiationBlockTileEntity extends TileEntity implements ITickable {
         List<EntityPlayerMP> list = this.worldObj.getEntitiesWithinAABB(EntityPlayerMP.class, axisalignedbb);
         for (EntityPlayerMP entityplayer : list)
         {
-            System.out.println(entityplayer.getCapability(FOECapabilitiesInit.RADIATION_CAPABILITY,null).getRadiation());
-            entityplayer.getCapability(FOECapabilitiesInit.RADIATION_CAPABILITY,null).update(entityplayer,getWorld(), TickEvent.Phase.START);
-            entityplayer.getCapability(FOECapabilitiesInit.RADIATION_CAPABILITY, null).addRadiation(3);
-            entityplayer.getCapability(FOECapabilitiesInit.RADIATION_CAPABILITY,null).update(entityplayer,getWorld(), TickEvent.Phase.END);
+            System.out.println(entityplayer.getCapability(CapabilityInit.RADIATION_CAPABILITY,null).getRadiation());
+            entityplayer.getCapability(CapabilityInit.RADIATION_CAPABILITY,null).update(entityplayer,getWorld(), TickEvent.Phase.START);
+            entityplayer.getCapability(CapabilityInit.RADIATION_CAPABILITY, null).addRadiation(3);
+            entityplayer.getCapability(CapabilityInit.RADIATION_CAPABILITY,null).update(entityplayer,getWorld(), TickEvent.Phase.END);
             entityplayer.worldObj.playSound(null, k, l, i1, ModSoundEvents.HighEntensityRad, SoundCategory.PLAYERS, 2.0F, 1.0F);
         }
 
@@ -57,10 +58,10 @@ public class RadiationBlockTileEntity extends TileEntity implements ITickable {
         List<EntityPlayerMP> listd1 = this.worldObj.getEntitiesWithinAABB(EntityPlayerMP.class, axisalignedbbd1);
         for (EntityPlayerMP entityplayer : listd1)
         {
-            System.out.println(entityplayer.getCapability(FOECapabilitiesInit.RADIATION_CAPABILITY, null).getRadiation());
-            entityplayer.getCapability(FOECapabilitiesInit.RADIATION_CAPABILITY, null).update(entityplayer, getWorld(), TickEvent.Phase.START);
-            entityplayer.getCapability(FOECapabilitiesInit.RADIATION_CAPABILITY, null).addRadiation(2);
-            entityplayer.getCapability(FOECapabilitiesInit.RADIATION_CAPABILITY, null).update(entityplayer, getWorld(), TickEvent.Phase.END);
+            System.out.println(entityplayer.getCapability(CapabilityInit.RADIATION_CAPABILITY, null).getRadiation());
+            entityplayer.getCapability(CapabilityInit.RADIATION_CAPABILITY, null).update(entityplayer, getWorld(), TickEvent.Phase.START);
+            entityplayer.getCapability(CapabilityInit.RADIATION_CAPABILITY, null).addRadiation(2);
+            entityplayer.getCapability(CapabilityInit.RADIATION_CAPABILITY, null).update(entityplayer, getWorld(), TickEvent.Phase.END);
             entityplayer.worldObj.playSound(null, k, l, i1, ModSoundEvents.MediumEntensityRad, SoundCategory.PLAYERS, 2.0F, 1.0F);
 
 
@@ -69,10 +70,10 @@ public class RadiationBlockTileEntity extends TileEntity implements ITickable {
         List<EntityPlayerMP> liste2 = this.worldObj.getEntitiesWithinAABB(EntityPlayerMP.class, axisalignedbbd3);
         for (EntityPlayerMP entityplayer : liste2)
         {
-            System.out.println(entityplayer.getCapability(FOECapabilitiesInit.RADIATION_CAPABILITY, null).getRadiation());
-            entityplayer.getCapability(FOECapabilitiesInit.RADIATION_CAPABILITY, null).update(entityplayer, getWorld(), TickEvent.Phase.START);
-            entityplayer.getCapability(FOECapabilitiesInit.RADIATION_CAPABILITY, null).addRadiation(1);
-            entityplayer.getCapability(FOECapabilitiesInit.RADIATION_CAPABILITY, null).update(entityplayer, getWorld(), TickEvent.Phase.END);
+            System.out.println(entityplayer.getCapability(CapabilityInit.RADIATION_CAPABILITY, null).getRadiation());
+            entityplayer.getCapability(CapabilityInit.RADIATION_CAPABILITY, null).update(entityplayer, getWorld(), TickEvent.Phase.START);
+            entityplayer.getCapability(CapabilityInit.RADIATION_CAPABILITY, null).addRadiation(1);
+            entityplayer.getCapability(CapabilityInit.RADIATION_CAPABILITY, null).update(entityplayer, getWorld(), TickEvent.Phase.END);
             entityplayer.worldObj.playSound(null, k, l, i1, ModSoundEvents.LowEntensityRad, SoundCategory.PLAYERS, 2.0F, 1.0F);
 
         }

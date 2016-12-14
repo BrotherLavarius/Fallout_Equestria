@@ -24,10 +24,7 @@ import java.util.List;
  * Created by hoijima desu on 29.07.16 desu.
  */
 public class RadAway extends Item {
-    protected String name = "RadAway";
     public RadAway(){
-        setUnlocalizedName(name);
-        setRegistryName(name);
         this.setMaxStackSize(10);
         this.setCreativeTab(InitCreativeTabs.Fallout_meds);
     }
