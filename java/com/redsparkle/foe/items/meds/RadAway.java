@@ -1,5 +1,6 @@
 package com.redsparkle.foe.items.meds;
 
+import com.redsparkle.foe.capa.RadsFactoryProvider;
 import com.redsparkle.foe.creativeTabs.InitCreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -7,7 +8,6 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.EnumAction;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
@@ -24,23 +24,10 @@ import java.util.List;
  * Created by hoijima desu on 29.07.16 desu.
  */
 public class RadAway extends Item {
-    public static final RadAway instance = new RadAway();
-    public NBTTagCompound nbt;
-    protected String name = "RadAway";
-    int collide_rad;
     public RadAway(){
-        this.name = name;
-        setUnlocalizedName(name);
-        setRegistryName(name);
-        this.setMaxStackSize(2);
+        this.setMaxStackSize(10);
         this.setCreativeTab(InitCreativeTabs.Fallout_meds);
     }
-    public void readFromNBT(NBTTagCompound nbt)
-    {
-        this.readFromNBT(nbt);
-        this.collide_rad = nbt.getInteger("Rads");
-    }
-
 
     /**
      * How long it takes to use or consume an item
@@ -86,7 +73,9 @@ public class RadAway extends Item {
     public ItemStack onItemUseFinish(ItemStack stack, World worldIn, EntityLivingBase entityLiving)
     {
         EntityPlayerMP entityplayer = entityLiving instanceof EntityPlayerMP ? (EntityPlayerMP)entityLiving : null;
-
+        if (entityLiving.hasCapability(RadsFactoryProvider.RADIATION_CAPABILITY, null)) {
+            entityLiving.getCapability(RadsFactoryProvider.RADIATION_CAPABILITY, null).removeRadiation(10);
+        }
         if (entityplayer == null || !entityplayer.capabilities.isCreativeMode)
         {
             --stack.stackSize;
@@ -96,19 +85,7 @@ public class RadAway extends Item {
         {
 
         }
-
-
-        collide_rad = collide_rad -10;
-        System.out.println("RADS" + collide_rad);
         return stack;
-    }
-
-
-
-    public void writeToNBT(NBTTagCompound nbt)
-    {
-        writeToNBT(nbt);
-        nbt.setInteger("Rads", collide_rad);
     }
 
 }

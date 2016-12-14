@@ -53,8 +53,6 @@ public class SparkleColaMachineBlock extends Block {
         setLightLevel(1);
         setSoundType(SoundType.METAL);
         setCreativeTab(InitCreativeTabs.Fallout_blocks);
-        setUnlocalizedName(name);
-        setRegistryName(new ResourceLocation(MODID, name));
         setSoundType(SoundType.METAL);
 
     }
@@ -149,11 +147,11 @@ public class SparkleColaMachineBlock extends Block {
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
     {
         if(state.getValue(FACING).toString() == "south"){
-            Fixed = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 3.0D, 1.0D);
+            Fixed = new AxisAlignedBB(0.0D, 0D, 0.0D, 1.0D, 3.0D, 1.0D);
         }else if (state.getValue(FACING).toString() == "north"){
             Fixed = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 3.0D, 1.0D);
         }else if (state.getValue(FACING).toString() == "east"){
-            Fixed = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 3.0D, 1.0D);
+            Fixed = new AxisAlignedBB(1.0D, 0.0D, 1.0D, 2.0D, 3.0D, -1.0D);
         }else if (state.getValue(FACING).toString() == "west"){
             Fixed = new AxisAlignedBB(-1.0D, 3.0D, 2.0D, 0.0D, 0.0D, 0.0D);
         }else {
