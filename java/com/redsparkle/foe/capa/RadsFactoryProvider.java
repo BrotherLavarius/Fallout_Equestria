@@ -13,7 +13,7 @@ import net.minecraftforge.common.util.INBTSerializable;
 public class RadsFactoryProvider implements ICapabilityProvider, INBTSerializable<NBTTagCompound> {
     @CapabilityInject(IRadiationCapability.class)
 
-    public static final Capability<IRadiationCapability> RADIATION_CAPABILITY = null;
+    public static Capability<IRadiationCapability> RADIATION_CAPABILITY = null;
     private IRadiationCapability radiationI = null;
 
     public RadsFactoryProvider() {
@@ -26,13 +26,12 @@ public class RadsFactoryProvider implements ICapabilityProvider, INBTSerializabl
 
 
     @Override
-    public boolean hasCapability(Capability<?> capability, EnumFacing facing)
-    {
+    public boolean hasCapability(Capability<?> capability, EnumFacing facing) {
         return RADIATION_CAPABILITY != null && capability == RADIATION_CAPABILITY;
     }
+
     @Override
-    public <T> T getCapability(Capability<T> capability, EnumFacing facing)
-    {
+    public <T> T getCapability(Capability<T> capability, EnumFacing facing) {
 
         if (RADIATION_CAPABILITY != null && capability == RADIATION_CAPABILITY)
             return (T) radiationI;

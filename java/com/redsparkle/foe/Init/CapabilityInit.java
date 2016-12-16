@@ -5,14 +5,14 @@ import com.redsparkle.foe.capa.RadsDefaultImpl;
 import com.redsparkle.foe.capa.RadsFactoryStorage;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.CapabilityManager;
+import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
 /**
  * Created by hoijima on 14.12.16.
  */
 public class CapabilityInit {
-    public static final Capability<IRadiationCapability> RADIATION_CAPABILITY = null;
-    public static void radRegistered() {
-    //public static void radRegistered(Capability<IRadiationCapability> cap) {
+    public static Capability<IRadiationCapability> RADIATION_CAPABILITY;
+        public static void radRegistered() {
 
         System.out.println("I-----------------------------------I");
         System.out.println(" RadiationCapability was initialized ");

@@ -30,27 +30,37 @@ public class main
 
 
     @CapabilityInject(IRadiationCapability.class)
-
+    private static void capRegistered(Capability<IRadiationCapability> cap) {
+        System.out.println("I-----------------------------------I");
+        System.out.println(" RadiationCapability was initialized ");
+        System.out.println("        YAY FOR THOSE ATOMS!         ");
+        System.out.println("        You will die, enjoy          ");
+        System.out.println("I-----------------------------------I");
+    }
 
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event)
     {
-        MinecraftForge.EVENT_BUS.register(new EventHandlerPre());
+        CapabilityInit.radRegistered();
         proxy.preInit();
+
     }
 
     @Mod.EventHandler
     public void init(FMLInitializationEvent event)
     {
-        MinecraftForge.EVENT_BUS.register(new EventHandlerInit());
+        MinecraftForge.EVENT_BUS.register(main.instance);
+
         proxy.init();
+
     }
 
     @Mod.EventHandler
     public void postInit(FMLPostInitializationEvent event)
     {
-        MinecraftForge.EVENT_BUS.register(new EventHandlerPost());
         proxy.postInit();
+
+
 
         System.out.println("I-----------------------------------I");
         System.out.println("   Fallout pack fully initialized    ");

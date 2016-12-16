@@ -24,6 +24,7 @@ public class ClientOnlyStartup {
         final CreativeTabs Fallout_guns = InitCreativeTabs.Fallout_guns;
         final CreativeTabs Fallout_meds = InitCreativeTabs.Fallout_meds;
         final CreativeTabs Fallout_stats_blocks = InitCreativeTabs.Fallout_stats_blocks;
+        //final CreativeTabs Fallout_Util = InitCreativeTabs.Fallout_Utils;
         MinecraftForge.EVENT_BUS.register(new GuiRenderHandler());
 
 

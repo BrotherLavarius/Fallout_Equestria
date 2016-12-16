@@ -1,6 +1,8 @@
 package com.redsparkle.foe;
 
 import com.redsparkle.foe.Init.*;
+import com.redsparkle.foe.events.EventHandlerInit;
+import com.redsparkle.foe.events.EventHandlerPost;
 import com.redsparkle.foe.events.EventHandlerPre;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.common.MinecraftForge;
@@ -22,10 +24,6 @@ public abstract class CommonProxy {
         ItemInit.preInitCommon();
 
 
-        //ModItems.registerItems();
-        //ModSoundEvents.registerSounds();
-
-        CapabilityInit.radRegistered();
         SoundInit.registerSounds();
 
 
@@ -38,11 +36,13 @@ public abstract class CommonProxy {
         StartUpCommon.InitCommon();
         BlockInit.InitCommon();
         ItemInit.InitCommon();
+        MinecraftForge.EVENT_BUS.register(new EventHandlerInit());
     }
     public void postInit(){
         StartUpCommon.postInitCommon();
         BlockInit.postInitCommon();
         ItemInit.postInitCommon();
+        MinecraftForge.EVENT_BUS.register(new EventHandlerPost());
     }
 
     // helper to determine whether the given player is in creative mode

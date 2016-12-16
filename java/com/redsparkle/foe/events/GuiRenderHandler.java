@@ -1,5 +1,6 @@
 package com.redsparkle.foe.events;
 
+import com.redsparkle.foe.CommonProxy;
 import com.redsparkle.foe.gui.RadsOverlay;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
