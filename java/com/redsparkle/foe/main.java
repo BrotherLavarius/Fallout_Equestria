@@ -31,11 +31,6 @@ public class main
 
     @CapabilityInject(IRadiationCapability.class)
     private static void capRegistered(Capability<IRadiationCapability> cap) {
-        System.out.println("I-----------------------------------I");
-        System.out.println(" RadiationCapability was initialized ");
-        System.out.println("        YAY FOR THOSE ATOMS!         ");
-        System.out.println("        You will die, enjoy          ");
-        System.out.println("I-----------------------------------I");
     }
 
     @Mod.EventHandler
@@ -59,8 +54,6 @@ public class main
     public void postInit(FMLPostInitializationEvent event)
     {
         proxy.postInit();
-
-
 
         System.out.println("I-----------------------------------I");
         System.out.println("   Fallout pack fully initialized    ");

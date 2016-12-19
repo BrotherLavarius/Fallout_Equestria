@@ -1,13 +1,19 @@
 package com.redsparkle.foe.Init;
 
+import com.google.common.collect.Lists;
 import com.redsparkle.foe.block.containers.SparkleColaMachineBlock;
 import com.redsparkle.foe.block.containers.TileEntitys.SparkleColaMachineTileEntity;
 import com.redsparkle.foe.block.effectDispenser.RadiationBlock;
 
 import com.redsparkle.foe.block.effectDispenser.TileEntitys.RadiationBlockTileEntity;
+import com.redsparkle.foe.utils.GlobalNames;
+import net.minecraft.block.Block;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraftforge.client.model.obj.OBJLoader;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+
+import java.util.List;
 
 import static com.redsparkle.foe.main.MODID;
 
@@ -34,29 +40,27 @@ public class BlockInit {
         //  +--------------------+----------------------+
         //
 
-        OBJLoader.INSTANCE.addDomain(MODID.toLowerCase());
 
-        SPARKLE_COLA_MACHINE = (SparkleColaMachineBlock)(new SparkleColaMachineBlock().setUnlocalizedName("SparkleCola_machine"));
-        SPARKLE_COLA_MACHINE.setRegistryName("SparkleCola_machine");
+
+
+        Block SPARKLE_COLA_MACHINE = SparkleColaMachineBlock.instance;
         GameRegistry.register(SPARKLE_COLA_MACHINE);
 
-        RADIATION_BLOCK = (RadiationBlock)(new RadiationBlock().setUnlocalizedName("Radiation_block"));
-        RADIATION_BLOCK.setRegistryName("Radiation_block");
+        Block RADIATION_BLOCK = RadiationBlock.instance;
+        RADIATION_BLOCK.setRegistryName(GlobalNames.RadBlock);
         GameRegistry.register(RADIATION_BLOCK);
 
         // We also need to create and register an ItemBlock for this block otherwise it won't appear in the inventory
-        itemSparkleColaMachine = new ItemBlock(SPARKLE_COLA_MACHINE);
+        Item itemSparkleColaMachine = new ItemBlock(SPARKLE_COLA_MACHINE);
         itemSparkleColaMachine.setRegistryName(SPARKLE_COLA_MACHINE.getRegistryName());
         GameRegistry.register(itemSparkleColaMachine);
 
-        itemRadiationBlock = new ItemBlock(RADIATION_BLOCK);
+        Item itemRadiationBlock = new ItemBlock(RADIATION_BLOCK);
         itemRadiationBlock.setRegistryName(RADIATION_BLOCK.getRegistryName());
         GameRegistry.register(itemRadiationBlock);
 
-        GameRegistry.registerTileEntity(SparkleColaMachineTileEntity.class,"SparkleCola_machine_tile_entity");
-        GameRegistry.registerTileEntity(RadiationBlockTileEntity.class,"Radiation_block_tile_entity");
-
-
+        GameRegistry.registerTileEntity(SparkleColaMachineTileEntity.class,GlobalNames.SPCmachine);
+        GameRegistry.registerTileEntity(RadiationBlockTileEntity.class,GlobalNames.RadBlock);
     }
     public static void InitCommon()
     {}

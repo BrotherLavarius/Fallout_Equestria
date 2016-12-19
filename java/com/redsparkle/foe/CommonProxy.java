@@ -12,21 +12,12 @@ import net.minecraftforge.common.MinecraftForge;
  */
 public abstract class CommonProxy {
     public void preInit(){
-
-
-
-
         System.out.println("FOE Initiating");
         System.out.println("WAR...");
         System.out.println("WAR NEVER CHANGES...");
         StartUpCommon.preInitCommon();
         BlockInit.preInitCommon();
         ItemInit.preInitCommon();
-
-
-        SoundInit.registerSounds();
-
-
         // INIT Handler
         MinecraftForge.EVENT_BUS.register(new EventHandlerPre());
 

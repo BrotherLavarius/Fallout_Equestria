@@ -2,6 +2,7 @@ package com.redsparkle.foe.block.containers;
 
 import com.redsparkle.foe.block.containers.TileEntitys.SparkleColaMachineTileEntity;
 import com.redsparkle.foe.creativeTabs.InitCreativeTabs;
+import com.redsparkle.foe.utils.GlobalNames;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -40,7 +41,6 @@ import static com.redsparkle.foe.main.MODID;
 public class SparkleColaMachineBlock extends Block {
     public static final PropertyDirection FACING = PropertyDirection.create("facing");
     public static final SparkleColaMachineBlock instance = new SparkleColaMachineBlock();
-    public static final String name = "SparkleColaMachine";
     public static final AxisAlignedBB FULL_BLOCK_AABB = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 3.0D, 1.0D);
     public AxisAlignedBB Fixed;
     private ExtendedBlockState state = new ExtendedBlockState(this, new IProperty[]{FACING}, new IUnlistedProperty[]{OBJModel.OBJProperty.INSTANCE});
@@ -54,7 +54,8 @@ public class SparkleColaMachineBlock extends Block {
         setSoundType(SoundType.METAL);
         setCreativeTab(InitCreativeTabs.Fallout_blocks);
         setSoundType(SoundType.METAL);
-
+        setUnlocalizedName(MODID + ":" + GlobalNames.SPCmachine);
+        setRegistryName(new ResourceLocation(MODID, GlobalNames.SPCmachine));
     }
 
     public static EnumFacing getFacingFromEntity(World worldIn, BlockPos clickedBlock, EntityLivingBase entityIn)
