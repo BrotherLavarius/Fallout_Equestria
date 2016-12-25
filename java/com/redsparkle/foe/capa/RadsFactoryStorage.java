@@ -12,28 +12,13 @@ import net.minecraftforge.common.capabilities.Capability.IStorage;
  */
 public class RadsFactoryStorage implements IStorage<IRadiationCapability> {
 
-    public static final RadsFactoryStorage radsStorageUnit = new RadsFactoryStorage();
-    @Override
     public NBTBase writeNBT(Capability<IRadiationCapability> capability, IRadiationCapability instance, EnumFacing side)
     {
-        NBTTagCompound compound = new NBTTagCompound();
-
-        compound.setInteger("RadiationLevel", instance.getRadiation());
-
-        return compound;
+        return ((RadsFactoryProvider)instance).serializeNBT();
     }
 
-    @Override
     public void readNBT(Capability<IRadiationCapability> capability, IRadiationCapability instance, EnumFacing side, NBTBase nbt)
     {
-        if (!(nbt instanceof NBTTagCompound)) throw new IllegalArgumentException("Thirst must be read from an NBTTagCompound!");
-
-        NBTTagCompound compound = (NBTTagCompound)nbt;
-
-        if (compound.hasKey("RadiationLevel"))
-        {
-            instance.setRadiation(compound.getInteger("RadiationLevel"));
-        }
-
+        ((RadsFactoryProvider)instance).deserializeNBT((NBTTagCompound)nbt);
     }
 }

@@ -41,7 +41,7 @@ import static com.redsparkle.foe.main.MODID;
 public class SparkleColaMachineBlock extends Block {
     public static final PropertyDirection FACING = PropertyDirection.create("facing");
     public static final SparkleColaMachineBlock instance = new SparkleColaMachineBlock();
-    public static final AxisAlignedBB FULL_BLOCK_AABB = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 3.0D, 1.0D);
+    public static final AxisAlignedBB FULL_BLOCK_AABB = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 1.0D, 1.0D);
     public AxisAlignedBB Fixed;
     private ExtendedBlockState state = new ExtendedBlockState(this, new IProperty[]{FACING}, new IUnlistedProperty[]{OBJModel.OBJProperty.INSTANCE});
 
@@ -145,16 +145,16 @@ public class SparkleColaMachineBlock extends Block {
     }
 
     @Deprecated
-    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
+    public AxisAlignedBB getCollisionBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
     {
         if(state.getValue(FACING).toString() == "south"){
-            Fixed = new AxisAlignedBB(0.0D, 0D, 0.0D, 1.0D, 3.0D, 1.0D);
+            Fixed = FULL_BLOCK_AABB;
         }else if (state.getValue(FACING).toString() == "north"){
-            Fixed = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 3.0D, 1.0D);
+            Fixed = FULL_BLOCK_AABB;
         }else if (state.getValue(FACING).toString() == "east"){
-            Fixed = new AxisAlignedBB(1.0D, 0.0D, 1.0D, 2.0D, 3.0D, -1.0D);
+            Fixed = FULL_BLOCK_AABB;
         }else if (state.getValue(FACING).toString() == "west"){
-            Fixed = new AxisAlignedBB(-1.0D, 3.0D, 2.0D, 0.0D, 0.0D, 0.0D);
+            Fixed = new AxisAlignedBB(0.0D, 0.0D, 1.0D, 1.0D, 3.0D, 3.0D);
         }else {
             Fixed = FULL_BLOCK_AABB;
         }
@@ -163,6 +163,9 @@ public class SparkleColaMachineBlock extends Block {
         return Fixed;
 
     }
+
+
+
     public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, @Nullable ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ)
     {
         if (worldIn.isRemote)

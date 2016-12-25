@@ -1,13 +1,18 @@
 package com.redsparkle.foe.Init;
 
 import com.redsparkle.foe.items.meds.RadAway;
+import com.redsparkle.foe.items.meds.RadX;
+import com.redsparkle.foe.items.utility.PipBuck;
+import com.redsparkle.foe.utils.GlobalNames;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
 /**
  * Created by hoijima on 14.12.16.
  */
 public class ItemInit {
+    public static RadX radx;
     public static RadAway radAway;
+    public static PipBuck pipbuck;
     //public static ItemSimple itemSimple;  // this holds the unique instance of your block
 
     public static void preInitCommon()
@@ -24,9 +29,18 @@ public class ItemInit {
         //  |  extinguished_candle  +       candle          |
         //  +-----------------------+-----------------------+
         //
-        radAway = (RadAway)(new RadAway().setUnlocalizedName("Rad_away"));
-        radAway.setRegistryName("Rad_away");
+        radAway = (RadAway)(new RadAway().setUnlocalizedName(GlobalNames.RadAway));
+        radAway.setRegistryName(GlobalNames.RadAway);
         GameRegistry.register(radAway);
+
+        radx = (RadX)(new RadX().setUnlocalizedName(GlobalNames.RadX));
+        radx.setRegistryName(GlobalNames.RadX);
+        GameRegistry.register(radx);
+        //
+        pipbuck = (PipBuck)(new PipBuck().setUnlocalizedName("Pip Buck 3000"));
+        pipbuck.setRegistryName(GlobalNames.Pipbuck);
+        GameRegistry.register(pipbuck);
+
     }
     public static void InitCommon()
     {}

@@ -4,6 +4,7 @@ import com.redsparkle.foe.block.containers.SparkleColaMachineBlock;
 import com.redsparkle.foe.block.effectDispenser.RadiationBlock;
 import com.redsparkle.foe.creativeTabs.InitCreativeTabs;
 import com.redsparkle.foe.events.*;
+import com.redsparkle.foe.gui.PipBuckGui;
 import com.redsparkle.foe.main;
 import com.redsparkle.foe.utils.GlobalNames;
 import net.minecraft.client.Minecraft;
@@ -29,27 +30,37 @@ public class ClientOnlyStartup {
         final CreativeTabs Fallout_stats_blocks = InitCreativeTabs.Fallout_stats_blocks;
         //final CreativeTabs Fallout_Util = InitCreativeTabs.Fallout_Utils;
         SoundInit.registerSounds();
-        MinecraftForge.EVENT_BUS.register(new GuiRenderHandler());
-        OBJLoader.INSTANCE.addDomain(MODID.toLowerCase());
+        OBJLoader.INSTANCE.addDomain(GlobalNames.Domain);
         Item SPCmachine = Item.getItemFromBlock(SparkleColaMachineBlock.instance);
-        ModelLoader.setCustomModelResourceLocation(SPCmachine,0, new ModelResourceLocation(main.MODID.toLowerCase() + ":" + GlobalNames.SPCmachine,"inventory"));
+        ModelLoader.setCustomModelResourceLocation(SPCmachine,0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.SPCmachine,"inventory"));
 
+
+        //ITEMS SECTION#########################################
+
+        //---------------------UTILITY--------------------------
+        final int DEFAULT_ITEM_SUBTYPE = 0;
+        ModelLoader.setCustomModelResourceLocation(ItemInit.pipbuck, DEFAULT_ITEM_SUBTYPE,  new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.Pipbuck, "inventory"));
+
+        //---------------------MEDS--------------------------
+        ModelLoader.setCustomModelResourceLocation(ItemInit.radAway, DEFAULT_ITEM_SUBTYPE, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.RadAway, "inventory"));
+        ModelLoader.setCustomModelResourceLocation(ItemInit.radx, DEFAULT_ITEM_SUBTYPE, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.RadX, "inventory"));
     }
 
 
     public static void initClientOnly()
     {
-        Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(Item.getItemFromBlock(SparkleColaMachineBlock.instance),0,new ModelResourceLocation(MODID.toLowerCase() + ":" + GlobalNames.SPCmachine));
-        Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(Item.getItemFromBlock(RadiationBlock.instance), 0, new ModelResourceLocation(MODID.toLowerCase() + ":" + GlobalNames.RadBlock));
+        Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(Item.getItemFromBlock(SparkleColaMachineBlock.instance),0,new ModelResourceLocation(MODID + ":" + GlobalNames.SPCmachine));
+        Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(Item.getItemFromBlock(RadiationBlock.instance), 0, new ModelResourceLocation(MODID + ":" + GlobalNames.RadBlock));
     }
 
-
+    private static PipBuckGui pipBuckGui;
     public static void postInitClientOnly()
     {
   /* Here, we register the event handler that modifies the overlay. Since
    * the overlay is a GUI element, and the GUI only exists on the client side,
    * we only register this event handler on the client side.
    */
-
+        pipBuckGui = new PipBuckGui(Minecraft.getMinecraft());
+        MinecraftForge.EVENT_BUS.register(new EventHandlerOverlay(pipBuckGui));
     }
 }

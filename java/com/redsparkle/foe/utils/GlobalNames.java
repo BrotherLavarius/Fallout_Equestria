@@ -13,7 +13,7 @@ import com.redsparkle.foe.items.utility.StealthBuck;
  * Created by NENYN on 12/16/2016.
  */
 public class GlobalNames {
-
+    public static final String Domain = "fallout_equestria";
     //Tabs
     public static final String
     Creative_tab_utils = "FOE_Utils",
@@ -68,6 +68,6 @@ public class GlobalNames {
     public static final String
     AdvanceRadMonitor ="AdvanceRadMonitor",
     BasicRadMonitor = "BasicRadMonitor",
-    Pipbuck = "Pipbuck",
+    Pipbuck = "PipBuck",
     StealthBuck = "StealthBuck";
 }

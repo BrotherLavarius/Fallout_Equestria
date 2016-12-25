@@ -1,7 +1,6 @@
 package com.redsparkle.foe.capa;
 
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 
@@ -11,25 +10,18 @@ import net.minecraftforge.fml.common.gameevent.TickEvent;
 public interface IRadiationCapability  {
 
 
-    public void addRadiation(int addRadiationLevel);
+    public Integer addRadiation(Integer addRadiationLevel);
 
-    public void removeRadiation(int removeRadiationLevel);
+    public Integer removeRadiation(Integer removeRadiationLevel);
 
-    public int getRadiation();
+    public Integer getRadiation();
 
-    public void setRadiation(int newRadiationLevel);
-
-    public NBTTagCompound saveNBTData();
-
-    public void loadNBTData(NBTTagCompound compound);
+    public Integer setRadiation(Integer newRadiationLevel);
 
     public void update(EntityPlayer player, World world, TickEvent.Phase phase);
 
-    public boolean hasChanged();
+    public void updateClient(EntityPlayer player);
 
-    public void onSendClientUpdate();
-
-//public IMessage createUpdateMessage();
-
+    public void timedRemoveRad(EntityPlayer player,TickEvent.Phase phase,Integer startCycle,Integer Cycles, Integer FortificationValue);
 
 }

@@ -57,12 +57,13 @@ public class RadAway extends Item {
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack stack, EntityPlayer playerIn, List<String> tooltip, boolean advanced)
     {
-        //PotionUtils.addPotionTooltip(stack, tooltip, 1.0F);
+        tooltip.add("Best item to have when radiation is around!");
+        tooltip.add("Has a nasty orange after taste. Yuhc");
     }
     @SideOnly(Side.CLIENT)
     public boolean hasEffect(ItemStack stack)
     {
-        return true;
+        return false;
     }
 
     /**

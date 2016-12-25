@@ -40,7 +40,7 @@ public class RadiationBlock extends BlockContainer{
 
     public RadiationBlock() {
         super(Material.AIR);
-        setLightLevel(1);
+        setLightLevel(0.1F);
         setSoundType(SoundType.METAL);
         setCreativeTab(InitCreativeTabs.Fallout_stats_blocks);
         setSoundType(SoundType.GROUND);

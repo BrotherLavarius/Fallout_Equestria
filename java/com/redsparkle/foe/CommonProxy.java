@@ -1,11 +1,15 @@
 package com.redsparkle.foe;
 
 import com.redsparkle.foe.Init.*;
+import com.redsparkle.foe.capa.IRadiationCapability;
+import com.redsparkle.foe.capa.RadsFactoryProvider;
+import com.redsparkle.foe.capa.RadsFactoryStorage;
 import com.redsparkle.foe.events.EventHandlerInit;
 import com.redsparkle.foe.events.EventHandlerPost;
 import com.redsparkle.foe.events.EventHandlerPre;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.capabilities.CapabilityManager;
 
 /**
  * Created by hoijima on 14.12.16.
@@ -27,6 +31,7 @@ public abstract class CommonProxy {
         StartUpCommon.InitCommon();
         BlockInit.InitCommon();
         ItemInit.InitCommon();
+        CapabilityManager.INSTANCE.register(IRadiationCapability.class,new RadsFactoryStorage(),RadsFactoryProvider::new);
         MinecraftForge.EVENT_BUS.register(new EventHandlerInit());
     }
     public void postInit(){
