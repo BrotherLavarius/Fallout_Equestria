@@ -1,4 +1,4 @@
-package com.redsparkle.foe.block.containers;
+package com.redsparkle.foe.block.interractable;
 
 import com.redsparkle.foe.block.containers.TileEntitys.SparkleColaMachineTileEntity;
 import com.redsparkle.foe.creativeTabs.InitCreativeTabs;
@@ -38,24 +38,24 @@ import static com.redsparkle.foe.main.MODID;
 /**
  * Created by hoijima on 04.07.16.
  */
-public class SparkleColaMachineBlock extends Block {
+public class DesktopTerminal extends Block {
     public static final PropertyDirection FACING = PropertyDirection.create("facing");
-    public static final SparkleColaMachineBlock instance = new SparkleColaMachineBlock();
+    public static final DesktopTerminal instance = new DesktopTerminal();
     public static final AxisAlignedBB FULL_BLOCK_AABB = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 1.0D, 1.0D);
     public AxisAlignedBB Fixed;
     private ExtendedBlockState state = new ExtendedBlockState(this, new IProperty[]{FACING}, new IUnlistedProperty[]{OBJModel.OBJProperty.INSTANCE});
 
 
     public EnumFacing current ;
-     public SparkleColaMachineBlock()
+     public DesktopTerminal()
     {
         super(Material.IRON);
-        setLightLevel(1);
+        setLightLevel(0);
         setSoundType(SoundType.METAL);
         setCreativeTab(InitCreativeTabs.Fallout_blocks);
         setSoundType(SoundType.METAL);
-        setUnlocalizedName(MODID + ":" + GlobalNames.SPCmachine);
-        setRegistryName(new ResourceLocation(MODID, GlobalNames.SPCmachine));
+        setUnlocalizedName(MODID + ":" + GlobalNames.Terminal);
+        setRegistryName(new ResourceLocation(MODID, GlobalNames.Terminal));
     }
 
     public static EnumFacing getFacingFromEntity(World worldIn, BlockPos clickedBlock, EntityLivingBase entityIn)
@@ -112,7 +112,7 @@ public class SparkleColaMachineBlock extends Block {
     @Override
     public BlockStateContainer createBlockState()
     {
-        return new BlockStateContainer(this, new IProperty[] {FACING});
+        return new ExtendedBlockState(this, new IProperty[]{FACING}, new IUnlistedProperty[] {Properties.AnimationProperty});
     }
 
     @Override
@@ -154,7 +154,7 @@ public class SparkleColaMachineBlock extends Block {
         }else if (state.getValue(FACING).toString() == "east"){
             Fixed = FULL_BLOCK_AABB;
         }else if (state.getValue(FACING).toString() == "west"){
-            Fixed = new AxisAlignedBB(0.0D, 0.0D, 1.0D, 1.0D, 3.0D, 3.0D);
+            Fixed = FULL_BLOCK_AABB;
         }else {
             Fixed = FULL_BLOCK_AABB;
         }

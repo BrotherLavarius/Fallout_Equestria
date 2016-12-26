@@ -51,7 +51,8 @@ public class GlobalNames {
 
     // Blocks
     public static final String
-    SPCmachine = "Sparkle Cola machine";
+    SPCmachine = "Sparkle Cola machine",
+    Terminal = "Desktop Terminal";
 
     // Blocks - Stat dispencers
     public static final String

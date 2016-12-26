@@ -2,6 +2,7 @@ package com.redsparkle.foe.Init;
 
 import com.redsparkle.foe.block.containers.SparkleColaMachineBlock;
 import com.redsparkle.foe.block.effectDispenser.RadiationBlock;
+import com.redsparkle.foe.block.interractable.DesktopTerminal;
 import com.redsparkle.foe.creativeTabs.InitCreativeTabs;
 import com.redsparkle.foe.events.*;
 import com.redsparkle.foe.gui.PipBuckGui;
@@ -34,6 +35,8 @@ public class ClientOnlyStartup {
         Item SPCmachine = Item.getItemFromBlock(SparkleColaMachineBlock.instance);
         ModelLoader.setCustomModelResourceLocation(SPCmachine,0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.SPCmachine,"inventory"));
 
+        Item Dterminal = Item.getItemFromBlock(DesktopTerminal.instance);
+        ModelLoader.setCustomModelResourceLocation(SPCmachine,0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.Terminal,"inventory"));
 
         //ITEMS SECTION#########################################
 
