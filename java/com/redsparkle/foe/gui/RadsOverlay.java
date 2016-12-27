@@ -19,7 +19,7 @@ import net.minecraftforge.fml.client.FMLClientHandler;
 
 public class RadsOverlay extends Gui {
     private final static ResourceLocation RadiationBar = new ResourceLocation(main.MODID,
-            "/textures/gui/Rads_hud_overlay.png");
+            "/textures/gui/rads_hud_overlay.png");
 
     private Minecraft mc;
     private EntityPlayerSP player = mc.thePlayer;

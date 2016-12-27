@@ -29,6 +29,25 @@ public class RadAway extends Item {
         this.setCreativeTab(InitCreativeTabs.Fallout_meds);
     }
 
+    public ItemStack onItemUseFinish(ItemStack stack, World worldIn, EntityLivingBase entityLiving)
+    {
+        EntityPlayerMP entityplayer = entityLiving instanceof EntityPlayerMP ? (EntityPlayerMP)entityLiving : null;
+        if (entityplayer == null || !entityplayer.capabilities.isCreativeMode)
+        {
+            if (entityLiving.hasCapability(RadsFactoryProvider.RADIATION_CAPABILITY, null)) {
+                entityLiving.getCapability(RadsFactoryProvider.RADIATION_CAPABILITY, null).removeRadiation(10);
+                System.out.println("Your Rads are now: "+entityLiving.getCapability(RadsFactoryProvider.RADIATION_CAPABILITY,null).getRadiation());
+            }
+            //here was --stack.stackSize; ..im sad that it was removed
+            stack.func_190918_g(1);
+        }
+
+        if (!worldIn.isRemote)
+        {
+
+        }
+        return stack;
+    }
     /**
      * How long it takes to use or consume an item
      */
@@ -45,10 +64,11 @@ public class RadAway extends Item {
         return EnumAction.DRINK;
     }
 
-    public ActionResult<ItemStack> onItemRightClick(ItemStack itemStackIn, World worldIn, EntityPlayer playerIn, EnumHand hand)
+
+    public ActionResult<ItemStack> onItemRightClick(World itemStackIn, EntityPlayer worldIn, EnumHand playerIn)
     {
-        playerIn.setActiveHand(hand);
-        return new ActionResult(EnumActionResult.SUCCESS, itemStackIn);
+        worldIn.setActiveHand(playerIn);
+        return new ActionResult(EnumActionResult.SUCCESS, worldIn.getHeldItem(playerIn));
     }
 
     /**
@@ -70,23 +90,5 @@ public class RadAway extends Item {
      * Called when the player finishes using this Item (E.g. finishes eating.). Not called when the player stops using
      * the Item before the action is complete.
      */
-    @Nullable
-    public ItemStack onItemUseFinish(ItemStack stack, World worldIn, EntityLivingBase entityLiving)
-    {
-        EntityPlayerMP entityplayer = entityLiving instanceof EntityPlayerMP ? (EntityPlayerMP)entityLiving : null;
-        if (entityLiving.hasCapability(RadsFactoryProvider.RADIATION_CAPABILITY, null)) {
-            entityLiving.getCapability(RadsFactoryProvider.RADIATION_CAPABILITY, null).removeRadiation(10);
-        }
-        if (entityplayer == null || !entityplayer.capabilities.isCreativeMode)
-        {
-            //--stack.stackSize;
-        }
-
-        if (!worldIn.isRemote)
-        {
-
-        }
-        return stack;
-    }
 
 }

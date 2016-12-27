@@ -2,6 +2,7 @@ package com.redsparkle.foe.gui;
 
 
 import com.redsparkle.foe.main;
+import com.redsparkle.foe.utils.GlobalNames;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.Gui;
@@ -26,8 +27,8 @@ public class PipBuckGui extends Gui {
      *
      *   "resources/assets/MODID/textures/gui/advanced_overlay.png"
      */
-    private final static ResourceLocation overlayBar = new ResourceLocation(main.MODID,
-            "/textures/gui/Health_hud_overlay.png");
+    private final static ResourceLocation overlayBar = new ResourceLocation(GlobalNames.Domain,
+            "textures/gui/health_hud_overlay.png");
 
     /* These two variables describe the size of the bar */
     private final static int BAR_WIDTH = 86;
