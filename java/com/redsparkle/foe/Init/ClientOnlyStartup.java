@@ -6,6 +6,7 @@ import com.redsparkle.foe.block.interractable.DesktopTerminal;
 import com.redsparkle.foe.creativeTabs.InitCreativeTabs;
 import com.redsparkle.foe.events.*;
 import com.redsparkle.foe.gui.PipBuckGui;
+import com.redsparkle.foe.gui.RadsOverlay;
 import com.redsparkle.foe.main;
 import com.redsparkle.foe.utils.GlobalNames;
 import net.minecraft.client.Minecraft;
@@ -57,13 +58,16 @@ public class ClientOnlyStartup {
     }
 
     private static PipBuckGui pipBuckGui;
+    //private static RadsOverlay radsGui;
     public static void postInitClientOnly()
     {
   /* Here, we register the event handler that modifies the overlay. Since
    * the overlay is a GUI element, and the GUI only exists on the client side,
    * we only register this event handler on the client side.
    */
+        //radsGui = new RadsOverlay(Minecraft.getMinecraft());
+        //MinecraftForge.EVENT_BUS.register(new EventHandlerOverlayRads(radsGui));
         pipBuckGui = new PipBuckGui(Minecraft.getMinecraft());
-        MinecraftForge.EVENT_BUS.register(new EventHandlerOverlay(pipBuckGui));
+        MinecraftForge.EVENT_BUS.register(new EventHandlerOverlayPipBuck(pipBuckGui));
     }
 }

@@ -38,8 +38,8 @@ public class RadsFactoryProvider implements IRadiationCapability, ICapabilitySer
     public Integer getRadiation() {
         return radiationLevel + basicRads;
     }
-    public Integer addRadiation(Integer addRadiationLevel) {return radiationLevel = (this.radiationLevel + addRadiationLevel + basicRads);}
-    public Integer removeRadiation(Integer removeRadiationLevel) {return radiationLevel = (this.radiationLevel - removeRadiationLevel + basicRads);}
+    public Integer addRadiation(Integer addRadiationLevel) {return radiationLevel = (radiationLevel + addRadiationLevel + basicRads);}
+    public Integer removeRadiation(Integer removeRadiationLevel) {return radiationLevel = (radiationLevel - removeRadiationLevel + basicRads);}
     public Integer setRadiation(Integer newRadiationLevel) {return radiationLevel = (basicRads + newRadiationLevel);}
 
 
