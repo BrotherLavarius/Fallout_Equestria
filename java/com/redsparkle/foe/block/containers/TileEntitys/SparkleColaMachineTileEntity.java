@@ -58,6 +58,11 @@ public class SparkleColaMachineTileEntity extends TileEntity implements IInvento
         return 10;
     }
 
+    @Override
+    public boolean func_191420_l() {
+        return false;
+    }
+
     @Nullable
     @Override
     public ItemStack getStackInSlot(int index) {

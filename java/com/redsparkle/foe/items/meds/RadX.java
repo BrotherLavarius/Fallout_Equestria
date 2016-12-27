@@ -82,7 +82,7 @@ public class RadX extends Item {
         }
         if (entityplayer == null || !entityplayer.capabilities.isCreativeMode)
         {
-            --stack.stackSize;
+            //--stack.stackSize;
         }
 
         if (!worldIn.isRemote)

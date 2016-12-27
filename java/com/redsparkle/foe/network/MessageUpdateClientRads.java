@@ -21,10 +21,7 @@ public class MessageUpdateClientRads implements IMessage {
         this.radiation = rad.getRadiation();
     }
     @Override
-    public void fromBytes(ByteBuf buf) {
-
-        radiation = buf.readInt();
-    }
+    public void fromBytes(ByteBuf buf) {radiation = buf.readInt();   }
 
     @Override
     public void toBytes(ByteBuf buf)

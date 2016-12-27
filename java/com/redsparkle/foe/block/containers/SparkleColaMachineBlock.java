@@ -89,8 +89,7 @@ public class SparkleColaMachineBlock extends Block {
     @Override
     public boolean isFullCube(IBlockState state) { return false; }
 
-    @Override
-    public boolean isVisuallyOpaque() { return false; }
+
 
     @Override
     public boolean hasTileEntity(IBlockState state)
