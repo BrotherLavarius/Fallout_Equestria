@@ -50,15 +50,17 @@ public class ClientOnlyStartup {
         ModelLoader.setCustomModelResourceLocation(ItemInit.radx, DEFAULT_ITEM_SUBTYPE, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.RadX, "inventory"));
     }
 
-
+    private static PipBuckGui pipBuckGui;
+    private static RadsOverlay radsGui;
     public static void initClientOnly()
     {
         Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(Item.getItemFromBlock(SparkleColaMachineBlock.instance),0,new ModelResourceLocation(MODID + ":" + GlobalNames.SPCmachine));
         Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(Item.getItemFromBlock(RadiationBlock.instance), 0, new ModelResourceLocation(MODID + ":" + GlobalNames.RadBlock));
+        pipBuckGui = new PipBuckGui(Minecraft.getMinecraft());
+        MinecraftForge.EVENT_BUS.register(new EventHandlerOverlayPipBuck(pipBuckGui));
     }
 
-    private static PipBuckGui pipBuckGui;
-    //private static RadsOverlay radsGui;
+
     public static void postInitClientOnly()
     {
   /* Here, we register the event handler that modifies the overlay. Since
@@ -67,7 +69,6 @@ public class ClientOnlyStartup {
    */
         //radsGui = new RadsOverlay(Minecraft.getMinecraft());
         //MinecraftForge.EVENT_BUS.register(new EventHandlerOverlayRads(radsGui));
-        pipBuckGui = new PipBuckGui(Minecraft.getMinecraft());
-        MinecraftForge.EVENT_BUS.register(new EventHandlerOverlayPipBuck(pipBuckGui));
+
     }
 }

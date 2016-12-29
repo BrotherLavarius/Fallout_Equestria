@@ -24,14 +24,15 @@ public class RadsOverlay extends Gui {
     //private final static ResourceLocation RadiationBar = new ResourceLocation(main.MODID,            "/textures/gui/rads_hud_overlay.png");
     private Minecraft mc;
 
-    public RadsOverlay(Minecraft mc) {
-        this.mc = mc;
-    }
+    public RadsOverlay(Minecraft mc){
 
-    public void renderStatusBar(int screenWidth, int screenHeight) {
-        EntityPlayer player = mc.thePlayer;
+     EntityPlayer player = mc.thePlayer;
         Integer radtext = player.getCapability(RadsFactoryProvider.RADIATION_CAPABILITY, null).getRadiation();
         String text = "Rads:";
+
+        ScaledResolution scaled = new ScaledResolution(mc);
+        int screenWidth = scaled.getScaledWidth();
+        int screenHeight = scaled.getScaledHeight();
         int strw = mc.fontRendererObj.getStringWidth("Pitch: -90.00");
         int strh = mc.fontRendererObj.FONT_HEIGHT;
 

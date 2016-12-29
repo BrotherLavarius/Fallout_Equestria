@@ -71,6 +71,7 @@ public class EventHandlerOverlayPipBuck {
             default: // If it's not one of the above cases, do nothing
                 break;
         }
+        new RadsOverlay(Minecraft.getMinecraft());
 
     }
 
