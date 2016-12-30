@@ -4,6 +4,7 @@ package com.redsparkle.foe.gui;
 
 import com.redsparkle.foe.capa.RadsFactoryProvider;
 import com.redsparkle.foe.main;
+import com.redsparkle.foe.utils.GlobalNames;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.client.gui.Gui;
@@ -21,7 +22,9 @@ import org.lwjgl.opengl.GL11;
  */
 
 public class RadsOverlay extends Gui {
-    private final static ResourceLocation RadiationBar = new ResourceLocation(main.MODID,            "/textures/gui/rads_hud_overlay.png");
+    private final static ResourceLocation overlayBar = new ResourceLocation(GlobalNames.Domain,"/textures/gui/rads_hud_overlay.png");
+
+
     private Minecraft mc;
 
     public RadsOverlay(Minecraft mc){
