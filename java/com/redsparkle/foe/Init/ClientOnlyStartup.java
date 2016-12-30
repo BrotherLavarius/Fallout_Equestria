@@ -56,8 +56,7 @@ public class ClientOnlyStartup {
     {
         Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(Item.getItemFromBlock(SparkleColaMachineBlock.instance),0,new ModelResourceLocation(MODID + ":" + GlobalNames.SPCmachine));
         Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(Item.getItemFromBlock(RadiationBlock.instance), 0, new ModelResourceLocation(MODID + ":" + GlobalNames.RadBlock));
-        pipBuckGui = new PipBuckGui(Minecraft.getMinecraft());
-        MinecraftForge.EVENT_BUS.register(new EventHandlerOverlayPipBuck(pipBuckGui));
+
     }
 
 
@@ -67,8 +66,8 @@ public class ClientOnlyStartup {
    * the overlay is a GUI element, and the GUI only exists on the client side,
    * we only register this event handler on the client side.
    */
-        //radsGui = new RadsOverlay(Minecraft.getMinecraft());
-        //MinecraftForge.EVENT_BUS.register(new EventHandlerOverlayRads(radsGui));
+        pipBuckGui = new PipBuckGui(Minecraft.getMinecraft());
+        MinecraftForge.EVENT_BUS.register(new EventHandlerOverlayPipBuck(pipBuckGui));
 
     }
 }

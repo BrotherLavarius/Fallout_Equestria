@@ -87,7 +87,7 @@ public class RadsFactoryProvider implements IRadiationCapability, ICapabilitySer
     public void updateClient(EntityPlayer player) {
         if(!player.getEntityWorld().isRemote) {
             if(dirty) main.simpleNetworkWrapper.sendTo(new MessageUpdateClientRads(this), (EntityPlayerMP)player);
-            dirty = false;
+            //dirty = false;
         }
     }
 }

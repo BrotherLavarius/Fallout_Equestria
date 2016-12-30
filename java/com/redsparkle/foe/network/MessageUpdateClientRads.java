@@ -37,7 +37,10 @@ public class MessageUpdateClientRads implements IMessage {
                 EntityPlayer player = Minecraft.getMinecraft().thePlayer;
                 IRadiationCapability rad = RadsFactoryProvider.instanceFor(player);
                 rad.setRadiation(message.radiation);
-                System.out.println("Client: "+message.radiation);
+                /** DEBUG MESSAGE ENABLER
+                 * System.out.println("Client: "+message.radiation);
+                 */
+
             });
             return null;
         }

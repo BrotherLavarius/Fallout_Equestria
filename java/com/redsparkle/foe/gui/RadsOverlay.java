@@ -21,7 +21,7 @@ import org.lwjgl.opengl.GL11;
  */
 
 public class RadsOverlay extends Gui {
-    //private final static ResourceLocation RadiationBar = new ResourceLocation(main.MODID,            "/textures/gui/rads_hud_overlay.png");
+    private final static ResourceLocation RadiationBar = new ResourceLocation(main.MODID,            "/textures/gui/rads_hud_overlay.png");
     private Minecraft mc;
 
     public RadsOverlay(Minecraft mc){

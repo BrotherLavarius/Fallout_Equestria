@@ -36,7 +36,10 @@ public class RadAway extends Item {
         {
             if (entityLiving.hasCapability(RadsFactoryProvider.RADIATION_CAPABILITY, null)) {
                 entityLiving.getCapability(RadsFactoryProvider.RADIATION_CAPABILITY, null).removeRadiation(10);
+                entityplayer.getCapability(RadsFactoryProvider.RADIATION_CAPABILITY, null).updateClient(entityplayer);
+
                 System.out.println("Your Rads are now: "+entityLiving.getCapability(RadsFactoryProvider.RADIATION_CAPABILITY,null).getRadiation());
+
             }
             //here was --stack.stackSize; ..im sad that it was removed
             stack.func_190918_g(1);
