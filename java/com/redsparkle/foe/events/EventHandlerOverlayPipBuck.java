@@ -59,6 +59,7 @@ public class EventHandlerOverlayPipBuck {
         switch (event.getType()) {
             case HEALTH:
                 statusBarRenderer.renderStatusBar(event.getResolution().getScaledWidth(), event.getResolution().getScaledHeight());        /* Call a helper method so that this method stays organized */
+                new RadsOverlay(Minecraft.getMinecraft());
         /* Don't render the vanilla heart bar */
                 event.setCanceled(true);
                 break;
@@ -71,7 +72,7 @@ public class EventHandlerOverlayPipBuck {
             default: // If it's not one of the above cases, do nothing
                 break;
         }
-        new RadsOverlay(Minecraft.getMinecraft());
+
 
     }
 

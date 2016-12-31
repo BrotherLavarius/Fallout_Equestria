@@ -32,7 +32,7 @@ public class RadAway extends Item {
     public ItemStack onItemUseFinish(ItemStack stack, World worldIn, EntityLivingBase entityLiving)
     {
         EntityPlayerMP entityplayer = entityLiving instanceof EntityPlayerMP ? (EntityPlayerMP)entityLiving : null;
-        if (entityplayer == null || !entityplayer.capabilities.isCreativeMode)
+        if (!(entityplayer == null) || !entityplayer.capabilities.isCreativeMode)
         {
             if (entityLiving.hasCapability(RadsFactoryProvider.RADIATION_CAPABILITY, null)) {
                 entityLiving.getCapability(RadsFactoryProvider.RADIATION_CAPABILITY, null).removeRadiation(10);
