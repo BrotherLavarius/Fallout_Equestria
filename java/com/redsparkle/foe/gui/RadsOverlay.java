@@ -25,17 +25,12 @@ public class RadsOverlay extends Gui {
     private final static ResourceLocation overlayBarRad = new ResourceLocation(GlobalNames.Domain,"textures/gui/rads_hud_overlay.png");
 
 
-    private final static int BAR_WIDTH = 51;
-    private final static int BAR_HEIGHT = 25;
+    private final static int BAR_WIDTH = 103;
+    private final static int BAR_HEIGHT = 26;
 
-    private final static int GREEN_BAR_WIDTH = 45;
-    private final static int GREEN_BAR_HEIGHT = 5;
+    private final static int RadBAR_WIDTH = 100;
+    private final static int RadBAR_HEIGHT = 8;
 
-    private final static int YELLOW_BAR_WIDTH = 30;
-    private final static int YELLOW_BAR_HEIGHT = 5;
-
-    private final static int RED_BAR_WIDTH = 11;
-    private final static int RED_BAR_HEIGHT = 5;
 
 
     private Minecraft mc;
@@ -68,34 +63,27 @@ public class RadsOverlay extends Gui {
       /* This method tells OpenGL to draw with the custom texture */
         mc.renderEngine.bindTexture(overlayBarRad);
 
-        final int PositionX = screenWidth - 20 -BAR_WIDTH; // leftmost edge of the experience bar
+        final int PositionX = screenWidth -75; // leftmost edge of the experience bar
         final int PositionY = screenHeight / 19+ BAR_HEIGHT;  // top of the experience bar
 
         GL11.glTranslatef(PositionX, PositionY - BAR_HEIGHT, 0);
+        GL11.glScalef(0.76F,0.76F,0.76F);
         drawTexturedModalRect(0, 0, 0, 0, BAR_WIDTH, BAR_HEIGHT);
+
+        GL11.glPushMatrix();
         if (playerRadlevel <= 1){
 
-        } else if (playerRadlevel < 300){
-            drawTexturedModalRect(7,14,7,27,(45-Math.round(1000/playerRadlevel)),GREEN_BAR_HEIGHT);
-        } else if (playerRadlevel > 300 || playerRadlevel < 600 ) {
-            drawTexturedModalRect(7,14,7,27,15,GREEN_BAR_HEIGHT);
-            drawTexturedModalRect(22,14,22,32,(45-Math.round(1000/playerRadlevel)),YELLOW_BAR_HEIGHT);
-        } else if (playerRadlevel > 600 || playerRadlevel <= 1000) {
-            drawTexturedModalRect(7,14,7,27,15,GREEN_BAR_HEIGHT);
-            drawTexturedModalRect(22,14,22,32,15,YELLOW_BAR_HEIGHT);
-            drawTexturedModalRect(37,14,37,37,(45-Math.round(1000/playerRadlevel)),RED_BAR_HEIGHT);
-        } else if (playerRadlevel > 1000){
-            drawTexturedModalRect(7,14,7,27,15,GREEN_BAR_HEIGHT);
-            drawTexturedModalRect(22,14,22,32,15,YELLOW_BAR_HEIGHT);
-            drawTexturedModalRect(37,14,37,37,15,RED_BAR_HEIGHT);
+        } else if (playerRadlevel >= 1){
+            drawTexturedModalRect(2,6,2,29,Math.round(0.1F*playerRadlevel),RadBAR_HEIGHT);
+            GL11.glScalef(0.76F,0.76F,0.76F);
         }
         GL11.glPushMatrix();
 
-
+        GL11.glPopMatrix();
         GL11.glPopMatrix();
 
         GL11.glPopMatrix();
         GL11.glPopAttrib();
     }
 }
-//TODO: FINISH THIS
+

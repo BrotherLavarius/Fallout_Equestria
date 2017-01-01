@@ -9,6 +9,8 @@ import net.minecraft.client.gui.Gui;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.MobEffects;
+import net.minecraft.potion.Potion;
+import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import org.lwjgl.opengl.GL11;
@@ -31,11 +33,11 @@ public class PipBuckGui extends Gui {
             "textures/gui/health_hud_overlay.png");
 
     /* These two variables describe the size of the bar */
-    private final static int BAR_WIDTH = 86;
-    private final static int BAR_HEIGHT = 21;
+    private final static int BAR_WIDTH = 152;
+    private final static int BAR_HEIGHT = 42;
     private final static int BAR_SPACING_ABOVE_EXP_BAR = 3;  // pixels between the BAR and the Experience Bar below it
-    private final static int ACTUAL_BAR_WIDTH = 75;
-    private final static int ACTUAL_BAR_HEIGHT = 5;
+    private final static int ACTUAL_BAR_WIDTH = 135;
+    private final static int ACTUAL_BAR_HEIGHT = 9;
 
     /* Sometimes you want to include extra information from the game. This instance of
      * Minecraft will let you access the World and EntityPlayer objects which is more than
@@ -61,11 +63,6 @@ public class PipBuckGui extends Gui {
         float maxHp = player.getMaxHealth();
         float absorptionAmount = player.getAbsorptionAmount();
         float effectiveHp = player.getHealth() + absorptionAmount;
-    /* This object draws text using the Minecraft font */
-        FontRenderer fr = mc.fontRendererObj;
-
-    /* This object inserts commas into number strings */
-        DecimalFormat d = new DecimalFormat("#,###");
 
     /* Saving the current state of OpenGL so that I can restore it when I'm done */
         GL11.glPushAttrib(GL11.GL_ALL_ATTRIB_BITS);
@@ -87,12 +84,13 @@ public class PipBuckGui extends Gui {
         // we will draw the status bar just above the hotbar.
         //  obtained by inspecting the vanilla hotbar rendering code
         final int vanillaExpLeftX = screenWidth / screenWidth + 2; // leftmost edge of the experience bar
-        final int vanillaExpTopY = screenHeight - 5;  // top of the experience bar
+        final int vanillaExpTopY = screenHeight - 40;  // top of the experience bar
 
       /* Shift our rendering origin to just above the experience bar
        * The top left corner of the screen is x=0, y=0
        */
-        GL11.glTranslatef(vanillaExpLeftX, vanillaExpTopY - BAR_SPACING_ABOVE_EXP_BAR - BAR_HEIGHT, 0);
+        GL11.glTranslatef(vanillaExpLeftX, vanillaExpTopY, 0);
+        GL11.glScalef(0.76F,0.76F,0.76F);
       /* Draw a part of the image file at the current position
        *
        * The first two arguments are the x,y position that you want to draw the texture at
@@ -111,66 +109,52 @@ public class PipBuckGui extends Gui {
        * This line draws the background of the custom bar
        */
         drawTexturedModalRect(0, 0, 0, 0, BAR_WIDTH, BAR_HEIGHT);
+        
         int health = Math.round((ACTUAL_BAR_WIDTH - 2) * Math.min(1, effectiveHp / maxHp));
+        GL11.glPushMatrix();
 
-        final int SPACER = 6;
-        final int NORMAL_TEXTURE_U = 22;     // red texels  - see mbe40_hud_overlay.png
-        final int REGEN_TEXTURE_U = NORMAL_TEXTURE_U + SPACER;  //  green texels
-        final int POISON_TEXTURE_U = REGEN_TEXTURE_U + SPACER;  // black texels
-        final int WITHER_TEXTURE_U = POISON_TEXTURE_U + SPACER;  // brown texels
-        final int ARMOR_TEXTURE_U = WITHER_TEXTURE_U + SPACER;  // brown texels
+        final int SPACER = 1;
+        final int NORMAL_TEXTURE_U = 47;     // red texels  -
+        final int REGEN_TEXTURE_U = 57;  //  green texels
+        final int POISON_TEXTURE_U = 67;  // black texels
+        final int WITHER_TEXTURE_U = 77;  // brown texels
+        final int ENERVATION_TEXTURE_U = 87;  // brown texels
+        final int ARMOR_TEXTURE_U = 97;  // brown texels
 
 
         if (player.isPotionActive(MobEffects.WITHER)) {
-            drawTexturedModalRect(6, 2, 6, WITHER_TEXTURE_U, health, 5);
+            drawTexturedModalRect(4, 11, 7, WITHER_TEXTURE_U, health, ACTUAL_BAR_HEIGHT);
+            GL11.glScalef(0.76F,0.76F,0.76F);
         } else if (player.isPotionActive(MobEffects.POISON)) {
-            drawTexturedModalRect(6, 2, 6, POISON_TEXTURE_U, health, 5);
+            drawTexturedModalRect(4, 11, 7, POISON_TEXTURE_U, health, ACTUAL_BAR_HEIGHT);
+            GL11.glScalef(0.76F,0.76F,0.76F);
         } else if (player.isPotionActive(MobEffects.REGENERATION)) {
-            drawTexturedModalRect(6, 2, 6, REGEN_TEXTURE_U, health, 5);
+            drawTexturedModalRect(4, 11, 7, REGEN_TEXTURE_U, health, ACTUAL_BAR_HEIGHT);
+            GL11.glScalef(0.76F,0.76F,0.76F);
         } else {
-            drawTexturedModalRect(6, 2, 6, NORMAL_TEXTURE_U, health, 5);
+            drawTexturedModalRect(4, 11, 7, NORMAL_TEXTURE_U, health, ACTUAL_BAR_HEIGHT);
+            GL11.glScalef(0.76F,0.76F,0.76F);
         }
 
         if (PLayerArmor == 0) {
             int armor = 0;
-            drawTexturedModalRect(6, 12, 6, ARMOR_TEXTURE_U, armor, 5);
+            drawTexturedModalRect(4, 10, 7, ARMOR_TEXTURE_U, armor, 3);
+            GL11.glScalef(0.76F,0.76F,0.76F);
 
         } else {
-            int armor = Math.round(ACTUAL_BAR_WIDTH / PLayerArmor);
-            drawTexturedModalRect(6, 12, 6, ARMOR_TEXTURE_U, armor, 5);
+            int armor = Math.round(100-(ACTUAL_BAR_WIDTH / PLayerArmor));
+            drawTexturedModalRect(4, 10, 7, ARMOR_TEXTURE_U, armor, 3);
+            GL11.glScalef(0.76F,0.76F,0.76F);
 
         }
 
         GL11.glPushMatrix();
         GL11.glTranslatef(BAR_WIDTH + 25, 1, 0);
-
-        /* The default minecraft font is too big, so I scale it down a bit. */
-        GL11.glPushMatrix();
-        GL11.glScalef(0.5f, 0.5f, 1);
-
-          /* This generates the string that I want to draw. */
-        String s = d.format(effectiveHp) + "/" + d.format(maxHp);
-
-          /* If the player has the absorption effect, draw the string in gold color, otherwise
-           * draw the string in white color. For each case, I call drawString twice, once to
-           * draw the shadow, and once for the actual string.
-           */
-        if (absorptionAmount > 0) {
-
-            /* Draw the shadow string */
-            fr.drawString(s, -fr.getStringWidth(s) + 1, 2, 0x5A2B00);
-
-            /* Draw the actual string */
-            fr.drawString(s, -fr.getStringWidth(s), 1, 0xFFD200);
-        } else {
-            fr.drawString(s, -fr.getStringWidth(s) + 1, 2, 0x4D0000);
-            fr.drawString(s, -fr.getStringWidth(s), 1, 0xFFFFFF);
-        }
+        GL11.glScalef(0.76F,0.76F,0.76F);
 
 
         GL11.glPopMatrix();
         GL11.glPopMatrix();
-
         GL11.glPopMatrix();
         GL11.glPopAttrib();
     }

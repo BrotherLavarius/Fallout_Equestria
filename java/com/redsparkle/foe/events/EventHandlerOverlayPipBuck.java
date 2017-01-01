@@ -1,6 +1,7 @@
 package com.redsparkle.foe.events;
 
 import com.redsparkle.foe.Init.ItemInit;
+import com.redsparkle.foe.gui.APBar;
 import com.redsparkle.foe.gui.PipBuckGui;
 import com.redsparkle.foe.gui.RadsOverlay;
 import net.minecraft.client.Minecraft;
@@ -66,6 +67,15 @@ public class EventHandlerOverlayPipBuck {
 
             case ARMOR:
         /* Don't render the vanilla armor bar, it's part of the status bar in the HEALTH event */
+                event.setCanceled(true);
+                break;
+            case FOOD:
+        // Don't render the vanilla FOOD bar
+                new APBar(Minecraft.getMinecraft());
+                event.setCanceled(true);
+                break;
+            case EXPERIENCE:
+        // Don't render the vanilla EXPERIENCE bar
                 event.setCanceled(true);
                 break;
 
