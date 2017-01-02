@@ -1,7 +1,6 @@
 package com.redsparkle.foe.items.guns.Ammo;
 
 import com.redsparkle.foe.creativeTabs.InitCreativeTabs;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -11,12 +10,13 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import java.util.List;
 
 /**
- * Created by hoijima desu on 29.07.16 desu.
+ * Created by NENYN on 1/2/2017.
  */
-public class TenMM extends Item {
-    public TenMM()
+public class TenMMClip extends Item {
+
+    public TenMMClip()
     {
-        final int NUMBER_OF_BOXES = 100;
+        final int NUMBER_OF_BOXES = 1;
         this.setMaxStackSize(NUMBER_OF_BOXES);
         this.setCreativeTab(InitCreativeTabs.Fallout_ammo);   // the item will appear on the Miscellaneous tab in creative
     }
@@ -27,7 +27,6 @@ public class TenMM extends Item {
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack stack, EntityPlayer playerIn, List<String> tooltip, boolean advanced)
     {
-        tooltip.add("Widely produced before the war");
-        tooltip.add("USed by any 10mm gun");
+        tooltip.add("Ammo clip for 10mm pistol");
     }
 }

@@ -1,5 +1,7 @@
 package com.redsparkle.foe.Init;
 
+import com.redsparkle.foe.items.guns.Ammo.TenMM;
+import com.redsparkle.foe.items.guns.Ammo.TenMMClip;
 import com.redsparkle.foe.items.meds.RadAway;
 import com.redsparkle.foe.items.meds.RadX;
 import com.redsparkle.foe.items.utility.PipBuck;
@@ -12,7 +14,12 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 public class ItemInit {
     public static RadX radx;
     public static RadAway radAway;
+
     public static PipBuck pipbuck;
+
+    public static TenMM tenMMAmmo;
+    public static TenMMClip tenMMClip;
+
     //public static ItemSimple itemSimple;  // this holds the unique instance of your block
 
     public static void preInitCommon()
@@ -29,6 +36,7 @@ public class ItemInit {
         //  |  extinguished_candle  +       candle          |
         //  +-----------------------+-----------------------+
         //
+        //----------------------MEDS-----------------
         radAway = (RadAway)(new RadAway().setUnlocalizedName(GlobalNames.RadAway));
         radAway.setRegistryName(GlobalNames.RadAway);
         GameRegistry.register(radAway);
@@ -36,7 +44,17 @@ public class ItemInit {
         radx = (RadX)(new RadX().setUnlocalizedName(GlobalNames.RadX));
         radx.setRegistryName(GlobalNames.RadX);
         GameRegistry.register(radx);
-        //
+
+        //----------------------AMMO-----------------
+        tenMMAmmo = (TenMM)(new TenMM().setUnlocalizedName(GlobalNames.TenMMAmmo));
+        tenMMAmmo.setRegistryName(GlobalNames.TenMMAmmo);
+        GameRegistry.register(tenMMAmmo);
+
+        tenMMClip = (TenMMClip) (new TenMMClip().setUnlocalizedName(GlobalNames.TenMMClip));
+        tenMMClip.setRegistryName(GlobalNames.TenMMClip);
+        GameRegistry.register(tenMMClip);
+
+        //----------------------UTILITY-----------------
         pipbuck = (PipBuck)(new PipBuck().setUnlocalizedName("Pip Buck 3000"));
         pipbuck.setRegistryName(GlobalNames.Pipbuck);
         GameRegistry.register(pipbuck);

@@ -48,6 +48,11 @@ public class ClientOnlyStartup {
         //---------------------MEDS--------------------------
         ModelLoader.setCustomModelResourceLocation(ItemInit.radAway, DEFAULT_ITEM_SUBTYPE, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.RadAway, "inventory"));
         ModelLoader.setCustomModelResourceLocation(ItemInit.radx, DEFAULT_ITEM_SUBTYPE, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.RadX, "inventory"));
+
+        //---------------------AMMO--------------------------
+        ModelLoader.setCustomModelResourceLocation(ItemInit.tenMMAmmo, DEFAULT_ITEM_SUBTYPE, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.TenMMAmmo, "inventory"));
+        ModelLoader.setCustomModelResourceLocation(ItemInit.tenMMClip, DEFAULT_ITEM_SUBTYPE, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.TenMMClip, "inventory"));
+
     }
 
     private static PipBuckGui pipBuckGui;

@@ -48,6 +48,10 @@ public class GlobalNames {
 
     // Food
 
+    // AMMO
+    public static final String
+            TenMMAmmo = "10mm Ammo",
+            TenMMClip = "10mm Clip";
 
     // Blocks
     public static final String
