@@ -37,8 +37,8 @@ public class RadsOverlay extends Gui {
 
     public RadsOverlay(Minecraft mc){
 
-        EntityPlayer player = mc.thePlayer;
-        World world = mc.theWorld;
+        EntityPlayer player = mc.player;
+        World world = mc.world;
         int playerRadlevel = player.getCapability(RadsFactoryProvider.RADIATION_CAPABILITY, null).getRadiation();
 
 

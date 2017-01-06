@@ -2,6 +2,7 @@ package com.redsparkle.foe.block.containers.TileEntitys;
 
 import com.google.common.base.Optional;
 import com.google.common.collect.UnmodifiableIterator;
+import com.redsparkle.foe.utils.GlobalNames;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
@@ -46,6 +47,7 @@ public class SparkleColaMachineTileEntity extends TileEntity implements IInvento
         }
     };
     private String customName;
+    private String customInventoryName;
 
     public void setCustomName(String name)
     {
@@ -59,9 +61,10 @@ public class SparkleColaMachineTileEntity extends TileEntity implements IInvento
     }
 
     @Override
-    public boolean func_191420_l() {
+    public boolean isEmpty() {
         return false;
     }
+
 
     @Nullable
     @Override
@@ -92,7 +95,7 @@ public class SparkleColaMachineTileEntity extends TileEntity implements IInvento
     }
 
     @Override
-    public boolean isUseableByPlayer(EntityPlayer player) {
+    public boolean isUsableByPlayer(EntityPlayer player) {
         return false;
     }
 
@@ -144,5 +147,9 @@ public class SparkleColaMachineTileEntity extends TileEntity implements IInvento
     @Override
     public ITextComponent getDisplayName() {
         return null;
+    }
+
+    public void setCustomInventoryName(String customInventoryName) {
+        this.customInventoryName = GlobalNames.SPCmachine;
     }
 }

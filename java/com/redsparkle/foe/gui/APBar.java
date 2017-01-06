@@ -30,8 +30,8 @@ public class APBar extends Gui {
 
     public APBar(Minecraft mc){
 
-        EntityPlayer player = mc.thePlayer;
-        World world = mc.theWorld;
+        EntityPlayer player = mc.player;
+        World world = mc.world;
         int playerFood = player.getFoodStats().getFoodLevel();
 
 

@@ -42,7 +42,7 @@ public class RadAway extends Item {
 
             }
             //here was --stack.stackSize; ..im sad that it was removed
-            stack.func_190918_g(1);
+            stack.grow(-1);
         }
 
         if (!worldIn.isRemote)

@@ -1,9 +1,11 @@
 package com.redsparkle.foe.block.interractable;
 
 import com.redsparkle.foe.block.containers.TileEntitys.SparkleColaMachineTileEntity;
+import com.redsparkle.foe.block.interractable.TileEntitys.DesktopTerminalTileEntity;
 import com.redsparkle.foe.creativeTabs.InitCreativeTabs;
 import com.redsparkle.foe.utils.GlobalNames;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockHorizontal;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
@@ -39,7 +41,7 @@ import static com.redsparkle.foe.main.MODID;
  * Created by hoijima on 04.07.16.
  */
 public class DesktopTerminal extends Block {
-    public static final PropertyDirection FACING = PropertyDirection.create("facing");
+    public static final PropertyDirection FACING = BlockHorizontal.FACING;
     public static final DesktopTerminal instance = new DesktopTerminal();
     public static final AxisAlignedBB FULL_BLOCK_AABB = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 1.0D, 1.0D);
     public AxisAlignedBB Fixed;
@@ -58,29 +60,58 @@ public class DesktopTerminal extends Block {
         setRegistryName(new ResourceLocation(MODID, GlobalNames.Terminal));
     }
 
-    public static EnumFacing getFacingFromEntity(World worldIn, BlockPos clickedBlock, EntityLivingBase entityIn)
+    /**
+     * Called after the block is set in the Chunk data, but before the Tile Entity is set
+     */
+    public void onBlockAdded(World worldIn, BlockPos pos, IBlockState state)
     {
-        if (MathHelper.abs((float)entityIn.posX - (float)clickedBlock.getX()) < 2.0F && MathHelper.abs((float)entityIn.posZ - (float)clickedBlock.getZ()) < 2.0F)
-        {
-            double d0 = entityIn.posY + (double)entityIn.getEyeHeight();
-
-            if (d0 - (double)clickedBlock.getY() > 2.0D)
-            {
-                return EnumFacing.UP;
-            }
-
-            if ((double)clickedBlock.getY() - d0 > 0.0D)
-            {
-                return EnumFacing.DOWN;
-            }
-        }
-
-        return entityIn.getHorizontalFacing().getOpposite();
+        this.setDefaultFacing(worldIn, pos, state);
     }
 
-    public TileEntity createNewTileEntity(World worldIn, int meta)
+    private void setDefaultFacing(World worldIn, BlockPos pos, IBlockState state)
     {
-        return new SparkleColaMachineTileEntity();
+        if (!worldIn.isRemote)
+        {
+            IBlockState iblockstate = worldIn.getBlockState(pos.north());
+            IBlockState iblockstate1 = worldIn.getBlockState(pos.south());
+            IBlockState iblockstate2 = worldIn.getBlockState(pos.west());
+            IBlockState iblockstate3 = worldIn.getBlockState(pos.east());
+            EnumFacing enumfacing = (EnumFacing)state.getValue(FACING);
+
+            if (enumfacing == EnumFacing.NORTH && iblockstate.isFullBlock() && !iblockstate1.isFullBlock())
+            {
+                enumfacing = EnumFacing.SOUTH;
+            }
+            else if (enumfacing == EnumFacing.SOUTH && iblockstate1.isFullBlock() && !iblockstate.isFullBlock())
+            {
+                enumfacing = EnumFacing.NORTH;
+            }
+            else if (enumfacing == EnumFacing.WEST && iblockstate2.isFullBlock() && !iblockstate3.isFullBlock())
+            {
+                enumfacing = EnumFacing.EAST;
+            }
+            else if (enumfacing == EnumFacing.EAST && iblockstate3.isFullBlock() && !iblockstate2.isFullBlock())
+            {
+                enumfacing = EnumFacing.WEST;
+            }
+
+            worldIn.setBlockState(pos, state.withProperty(FACING, enumfacing), 2);
+        }
+    }
+
+    public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack)
+    {
+        worldIn.setBlockState(pos, state.withProperty(FACING, placer.getHorizontalFacing().getOpposite()), 2);
+
+        if (stack.hasDisplayName())
+        {
+            TileEntity tileentity = worldIn.getTileEntity(pos);
+
+            if (tileentity instanceof DesktopTerminalTileEntity)
+            {
+                ((DesktopTerminalTileEntity)tileentity).setCustomInventoryName(stack.getDisplayName());
+            }
+        }
     }
 
     @Override
@@ -113,11 +144,6 @@ public class DesktopTerminal extends Block {
         return new ExtendedBlockState(this, new IProperty[]{FACING}, new IUnlistedProperty[] {Properties.AnimationProperty});
     }
 
-    @Override
-    public IBlockState onBlockPlaced(World world, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer)
-    {
-        return this.getDefaultState().withProperty(FACING, getFacingFromEntity(world, pos, placer));
-    }
 
     public int getMetaFromState(IBlockState state)
     {
@@ -136,11 +162,7 @@ public class DesktopTerminal extends Block {
         return this.getDefaultState().withProperty(FACING, enumfacing);
     }
 
-        @SideOnly(Side.CLIENT)
-    public IBlockState getStateForEntityRender(IBlockState state)
-    {
-        return this.getDefaultState().withProperty(FACING, EnumFacing.NORTH);
-    }
+
 
     @Deprecated
     public AxisAlignedBB getCollisionBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
@@ -160,27 +182,6 @@ public class DesktopTerminal extends Block {
 
         return Fixed;
 
-    }
-
-
-
-    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, @Nullable ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ)
-    {
-        if (worldIn.isRemote)
-        {
-            return true;
-        }
-        else
-        {
-            TileEntity tileentity = worldIn.getTileEntity(pos);
-
-            if (tileentity instanceof SparkleColaMachineTileEntity)
-            {
-                playerIn.displayGUIChest((SparkleColaMachineTileEntity)tileentity);
-                playerIn.addStat(StatList.CHEST_OPENED);
-            }
-            return true;
-        }
     }
 }
 

@@ -34,7 +34,7 @@ public class MessageUpdateClientRads implements IMessage {
         @Override
         public IMessage onMessage(MessageUpdateClientRads message, MessageContext ctx) {
             Minecraft.getMinecraft().addScheduledTask(() -> {
-                EntityPlayer player = Minecraft.getMinecraft().thePlayer;
+                EntityPlayer player = Minecraft.getMinecraft().player;
                 IRadiationCapability rad = RadsFactoryProvider.instanceFor(player);
                 rad.setRadiation(message.radiation);
                 /** DEBUG MESSAGE ENABLER

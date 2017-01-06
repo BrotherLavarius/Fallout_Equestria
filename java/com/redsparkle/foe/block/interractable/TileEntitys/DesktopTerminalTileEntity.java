@@ -47,6 +47,7 @@ public class DesktopTerminalTileEntity extends TileEntity implements IInventory 
         }
     };
     private String customName;
+    private String displayName;
 
     public void setCustomName(String name)
     {
@@ -60,7 +61,7 @@ public class DesktopTerminalTileEntity extends TileEntity implements IInventory 
     }
 
     @Override
-    public boolean func_191420_l() {
+    public boolean isEmpty() {
         return false;
     }
 
@@ -93,11 +94,11 @@ public class DesktopTerminalTileEntity extends TileEntity implements IInventory 
     }
 
     @Override
-    public boolean isUseableByPlayer(EntityPlayer player) {
+    public boolean isUsableByPlayer(EntityPlayer player) {
         return false;
     }
 
-    @Override
+     @Override
     public void openInventory(EntityPlayer player) {
 
     }
@@ -145,5 +146,9 @@ public class DesktopTerminalTileEntity extends TileEntity implements IInventory 
     @Override
     public ITextComponent getDisplayName() {
         return null;
+    }
+
+    public void setCustomInventoryName(String displayName) {
+        this.displayName = GlobalNames.Terminal;
     }
 }

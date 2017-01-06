@@ -1,5 +1,3 @@
 {
-  "variants": {
-    "normal": { "model": "fallout_equestria:mbe01_block_simple_model" }
-  }
+  "parent": "fallout_equestria:block/mbe01_block_simple_model"
 }

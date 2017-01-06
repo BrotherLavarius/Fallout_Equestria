@@ -1,6 +1,6 @@
 ## Fallout Equestria BI(block |items| pack)
 
-currently uses `forge 1.11-13.19.1.2189`
+currently uses `forge 1.11.2-13.20.0.2204`
 A pack of stuff from FE with a fallout 4 inspired items
 
 Done\in progress

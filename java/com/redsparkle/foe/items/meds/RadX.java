@@ -38,7 +38,7 @@ public class RadX extends Item {
                 System.out.println("Your Rads are now: "+entityLiving.getCapability(RadsFactoryProvider.RADIATION_CAPABILITY,null).getRadiation());
             }
             //here was --stack.stackSize; ..im sad that it was removed
-            stack.func_190918_g(1);
+            stack.grow(-1);
         }
 
         if (!worldIn.isRemote)

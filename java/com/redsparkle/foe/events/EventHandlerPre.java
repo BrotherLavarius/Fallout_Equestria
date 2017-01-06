@@ -36,7 +36,7 @@ public class EventHandlerPre {
     }
 
     private void updatePlayerRads(EntityPlayer player) {
-        if (!player.worldObj.isRemote) {
+        if (!player.world.isRemote) {
             IRadiationCapability rad = player.getCapability(RadsFactoryProvider.RADIATION_CAPABILITY, null);
             rad.setRadiation(rad.getRadiation());
             rad.updateClient(player);
