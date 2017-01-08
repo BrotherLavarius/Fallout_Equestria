@@ -1,7 +1,8 @@
 package com.redsparkle.foe.Init;
 
-import com.redsparkle.foe.items.guns.Ammo.TenMM;
-import com.redsparkle.foe.items.guns.Ammo.TenMMClip;
+import com.redsparkle.foe.items.guns.TenMM;
+import com.redsparkle.foe.items.guns.ammo.TenMMammo;
+import com.redsparkle.foe.items.guns.ammo.TenMMClip;
 import com.redsparkle.foe.items.meds.RadAway;
 import com.redsparkle.foe.items.meds.RadX;
 import com.redsparkle.foe.items.utility.PipBuck;
@@ -17,8 +18,11 @@ public class ItemInit {
 
     public static PipBuck pipbuck;
 
-    public static TenMM tenMMAmmo;
+    public static TenMMammo tenMMAmmo;
     public static TenMMClip tenMMClip;
+
+
+    public static TenMM tenMM;
 
     //public static ItemSimple itemSimple;  // this holds the unique instance of your block
 
@@ -46,13 +50,22 @@ public class ItemInit {
         GameRegistry.register(radx);
 
         //----------------------AMMO-----------------
-        tenMMAmmo = (TenMM)(new TenMM().setUnlocalizedName(GlobalNames.TenMMAmmo));
+        tenMMAmmo = (TenMMammo)(new TenMMammo().setUnlocalizedName(GlobalNames.TenMMAmmo));
         tenMMAmmo.setRegistryName(GlobalNames.TenMMAmmo);
         GameRegistry.register(tenMMAmmo);
 
         tenMMClip = (TenMMClip) (new TenMMClip().setUnlocalizedName(GlobalNames.TenMMClip));
         tenMMClip.setRegistryName(GlobalNames.TenMMClip);
         GameRegistry.register(tenMMClip);
+
+
+        //----------------------GUNS--------------------
+
+        tenMM = (TenMM) (new TenMM().setUnlocalizedName(GlobalNames.TenMM));
+        tenMM.setRegistryName(GlobalNames.TenMM);
+        GameRegistry.register(tenMM);
+
+
 
         //----------------------UTILITY-----------------
         pipbuck = (PipBuck)(new PipBuck().setUnlocalizedName("Pip Buck 3000"));

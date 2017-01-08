@@ -1,0 +1,151 @@
+package com.redsparkle.foe.items.guns;
+
+import com.redsparkle.foe.Init.ItemInit;
+import com.redsparkle.foe.Init.SoundInit;
+import com.redsparkle.foe.creativeTabs.InitCreativeTabs;
+import com.redsparkle.foe.items.guns.ammo.TenMMClip;
+import com.redsparkle.foe.items.guns.inits.EntityBullet;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.SoundEvents;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.EnumActionResult;
+import net.minecraft.util.EnumHand;
+import net.minecraft.util.SoundCategory;
+import net.minecraft.world.World;
+import net.minecraftforge.common.capabilities.ICapabilityProvider;
+
+import java.lang.reflect.Constructor;
+
+/**
+ * Created by NENYN on 1/5/2017.
+ */
+public class TenMM extends Item {
+
+
+    public Item ammoItem = ItemInit.tenMMClip;
+    public int damage =15;
+    public int clipRounds =13;
+    public Integer[] invArray = {0,1,2,3,4,5,6,7,8,9};
+    public Class<? extends EntityBullet> bulletClass;
+
+
+    public TenMM()
+    {
+        this.setMaxStackSize(1);
+        this.setMaxDamage(clipRounds);
+        this.setCreativeTab(InitCreativeTabs.Fallout_guns);
+        this.bulletClass = EntityBullet.class;
+
+    }
+
+
+    @Override
+    public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand hand)
+    {
+        ItemStack itemstack = playerIn.getHeldItem(hand);
+
+        if (!playerIn.capabilities.isCreativeMode )
+        {
+            if (!worldIn.isRemote)
+            {
+                try
+                {
+                    if(itemstack.getItemDamage() == 12){
+                        if(findAmmo(playerIn) == ItemStack.EMPTY){
+                            worldIn.playSound(playerIn, playerIn.getPosition(), SoundInit.tenMMOOA, SoundCategory.HOSTILE, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
+                            return new ActionResult<>(EnumActionResult.PASS, itemstack);
+                        }
+                        else {
+                            worldIn.playSound(playerIn, playerIn.getPosition(), SoundInit.tenMMReload, SoundCategory.HOSTILE, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
+                            findAmmo(playerIn).grow(-1);
+                            playerIn.getHeldItem(hand).setItemDamage(0);
+                            return new ActionResult<>(EnumActionResult.PASS, itemstack);
+                        }
+
+                    }else {
+                        Constructor<? extends EntityBullet> bulletConstructor = bulletClass.getConstructor(World.class, EntityLivingBase.class);
+                        EntityBullet bullet = bulletConstructor.newInstance(worldIn, playerIn);
+                        bullet.damage = this.damage;
+                        worldIn.playSound(playerIn, playerIn.getPosition(), SoundInit.tenMMShot, SoundCategory.HOSTILE, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
+                        worldIn.spawnEntity(bullet);
+                        itemstack.setItemDamage(itemstack.getItemDamage() +1);
+                    }
+                }
+                catch (Exception e)
+                {
+                    e.printStackTrace();
+                }
+            }
+        }else{
+            try{
+            worldIn.playSound(playerIn, playerIn.getPosition(), SoundInit.tenMMShot, SoundCategory.HOSTILE, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
+            Constructor<? extends EntityBullet> bulletConstructor = bulletClass.getConstructor(World.class, EntityLivingBase.class);
+            EntityBullet bullet = bulletConstructor.newInstance(worldIn, playerIn);
+            bullet.damage = this.damage;
+            worldIn.spawnEntity(bullet);
+            }
+            catch (Exception e)
+            {
+                e.printStackTrace();
+            }
+        }
+        return new ActionResult<>(EnumActionResult.PASS, itemstack);
+    }
+
+
+
+
+
+
+
+
+
+    public ItemStack findAmmo(EntityPlayer player)
+    {
+        //if (this.isAmmo(player.getHeldItem(EnumHand.OFF_HAND)))
+        //{
+        //    if (player.getHeldItem(EnumHand.OFF_HAND).getItemDamage() <= 12){return player.getHeldItem(EnumHand.OFF_HAND);}
+        //}
+        //else if (this.isAmmo(player.getHeldItem(EnumHand.MAIN_HAND)))
+        //{
+        //    if (player.getHeldItem(EnumHand.MAIN_HAND).getItemDamage() <= 12){return player.getHeldItem(EnumHand.MAIN_HAND);}
+        //}
+        //else{
+            for (int i = 0; i < invArray.length; ++i)
+            {
+                ItemStack itemstack = player.inventory.getStackInSlot(i);
+
+                if (this.isAmmo(itemstack))
+                {
+                    return itemstack;
+                }
+        // }
+        }
+        return ItemStack.EMPTY;
+    }
+
+    public boolean isAmmo(ItemStack stack)
+    {
+        return stack.getItem() instanceof TenMMClip;
+    }
+
+
+
+
+
+
+
+
+
+
+
+}
+
+
+
+
+

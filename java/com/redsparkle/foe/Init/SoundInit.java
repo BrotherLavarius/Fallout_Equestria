@@ -12,11 +12,17 @@ public class SoundInit {
     public static SoundEvent MediumEntensityRad;
     public static SoundEvent HighEntensityRad;
     public  static SoundEvent Enervation;
+    public  static SoundEvent tenMMShot;
+    public  static SoundEvent tenMMReload;
+    public  static SoundEvent tenMMOOA;
     public static void registerSounds() {
             LowEntensityRad = registerSound("LowEntensityRad");
             MediumEntensityRad = registerSound("MediumEntensityRad");
             HighEntensityRad = registerSound("HighEntensityRad");
             Enervation = registerSound("Enervation");
+            tenMMShot = registerSound("tenMMShot");
+            tenMMReload = registerSound("tenMMReload");
+            tenMMOOA = registerSound("tenMMOutOfAmmo");
         }
     /**
      * Register a {@link SoundEvent}.

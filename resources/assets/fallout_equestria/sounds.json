@@ -1,22 +1,43 @@
 {
+  "tenMMShot": {
+  "category": "player",
+  "sounds": [
+    "fallout_equestria:10mmshot"
+  ],
+  "subtitle": "tenMMShot"
+  },
+  "tenMMReload": {
+    "category": "player",
+    "sounds": [
+      "fallout_equestria:10mmreload"
+    ],
+    "subtitle": "tenMMReload"
+  },
+  "tenMMOOA": {
+    "category": "player",
+    "sounds": [
+      "fallout_equestria:10mmoutofammo"
+    ],
+    "subtitle": "tenMMOOA"
+  },
   "LowEntensityRad": {
     "category": "player",
     "sounds": [
-      "fallout_equestria:LowEntensityRad"
+      "fallout_equestria:lowentensityrad"
     ],
     "subtitle": "LowEntensityRad"
   },
   "MediumEntensityRad": {
     "category": "player",
     "sounds": [
-      "fallout_equestria:MediumEntensityRad"
+      "fallout_equestria:mediumentensityrad"
     ],
     "subtitle": "MediumEntensityRad"
   },
   "HighEntensityRad": {
     "category": "player",
     "sounds": [
-      "fallout_equestria:HighEntensityRad"
+      "fallout_equestria:highentensityrad"
     ],
     "subtitle": "HighEntensityRad"
   },

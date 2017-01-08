@@ -7,9 +7,13 @@ import com.redsparkle.foe.capa.RadsFactoryStorage;
 import com.redsparkle.foe.events.EventHandlerInit;
 import com.redsparkle.foe.events.EventHandlerPost;
 import com.redsparkle.foe.events.EventHandlerPre;
+import com.redsparkle.foe.items.guns.inits.EntityBullet;
+import com.redsparkle.foe.utils.GlobalNames;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.capabilities.CapabilityManager;
+import net.minecraftforge.fml.common.registry.EntityRegistry;
 
 /**
  * Created by hoijima on 14.12.16.
@@ -24,7 +28,7 @@ public abstract class CommonProxy {
         ItemInit.preInitCommon();
         // INIT Handler
         MinecraftForge.EVENT_BUS.register(new EventHandlerPre());
-
+        EntityRegistry.registerModEntity(new ResourceLocation(GlobalNames.Domain+":entity/bullet"),EntityBullet.class, "Bullet", 13, main.instance, 20, 30, false);
 
     }
     public void init() {

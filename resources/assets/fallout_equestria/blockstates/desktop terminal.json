@@ -9,7 +9,7 @@
     "inventory": [{
       "transform": {
         "thirdperson": {
-          "translation": [0, 0.09375, -0.171875],
+          "translation": [0, 0, 0],
           "rotation": [ { "y": -45}, {"x": 10}, {"z": 170} ],
           "scale": 0.15
         },

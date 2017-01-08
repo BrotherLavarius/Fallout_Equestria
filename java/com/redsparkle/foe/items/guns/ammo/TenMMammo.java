@@ -1,4 +1,4 @@
-package com.redsparkle.foe.items.guns.Ammo;
+package com.redsparkle.foe.items.guns.ammo;
 
 import com.redsparkle.foe.creativeTabs.InitCreativeTabs;
 import net.minecraft.creativetab.CreativeTabs;
@@ -13,8 +13,8 @@ import java.util.List;
 /**
  * Created by hoijima desu on 29.07.16 desu.
  */
-public class TenMM extends Item {
-    public TenMM()
+public class TenMMammo extends Item {
+    public TenMMammo()
     {
         final int NUMBER_OF_BOXES = 100;
         this.setMaxStackSize(NUMBER_OF_BOXES);

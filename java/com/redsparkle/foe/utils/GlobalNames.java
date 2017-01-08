@@ -45,7 +45,9 @@ public class GlobalNames {
     WhiteHealpotion = "WhiteHealpotion";
 
     // Guns
-
+    public static final String
+            TenMM = "10mm Pistol",
+            nineMM = "9mm Pistol";
     // Food
 
     // AMMO
