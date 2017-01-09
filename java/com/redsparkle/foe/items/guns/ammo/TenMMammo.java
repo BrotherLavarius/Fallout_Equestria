@@ -16,7 +16,7 @@ import java.util.List;
 public class TenMMammo extends Item {
     public TenMMammo()
     {
-        final int NUMBER_OF_BOXES = 100;
+        final int NUMBER_OF_BOXES = 64;
         this.setMaxStackSize(NUMBER_OF_BOXES);
         this.setCreativeTab(InitCreativeTabs.Fallout_ammo);   // the item will appear on the Miscellaneous tab in creative
     }
