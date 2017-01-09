@@ -5,18 +5,16 @@ import com.redsparkle.foe.Init.SoundInit;
 import com.redsparkle.foe.creativeTabs.InitCreativeTabs;
 import com.redsparkle.foe.items.guns.ammo.TenMMClip;
 import com.redsparkle.foe.items.guns.inits.EntityBullet;
+import com.redsparkle.foe.utils.InventoryManager;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.world.World;
-import net.minecraftforge.common.capabilities.ICapabilityProvider;
 
 import java.lang.reflect.Constructor;
 
@@ -29,7 +27,7 @@ public class TenMM extends Item {
     public Item ammoItem = ItemInit.tenMMClip;
     public int damage =15;
     public int clipRounds =13;
-    public Integer[] invArray = {0,1,2,3,4,5,6,7,8,9};
+    public Integer[] invArray = {0,1,2,3,4,5,6,7,8};
     public Class<? extends EntityBullet> bulletClass;
 
 
@@ -61,8 +59,15 @@ public class TenMM extends Item {
                         }
                         else {
                             worldIn.playSound(playerIn, playerIn.getPosition(), SoundInit.tenMMReload, SoundCategory.HOSTILE, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
-                            findAmmo(playerIn).grow(-1);
+                            findAmmo(playerIn).shrink(1);
                             playerIn.getHeldItem(hand).setItemDamage(0);
+
+
+                            Item emptyclip = ItemInit.tenMMClip;
+                            ItemStack emptyClipStack = new ItemStack(emptyclip);
+                            emptyClipStack.setItemDamage(12);
+                            playerIn.inventory.setInventorySlotContents(InventoryManager.FindEmpty(playerIn),emptyClipStack);
+                            //playerIn.inventory.addItemStackToInventory(emptyClipStack);
                             return new ActionResult<>(EnumActionResult.PASS, itemstack);
                         }
 
@@ -115,13 +120,15 @@ public class TenMM extends Item {
         //    if (player.getHeldItem(EnumHand.MAIN_HAND).getItemDamage() <= 12){return player.getHeldItem(EnumHand.MAIN_HAND);}
         //}
         //else{
-            for (int i = 0; i < invArray.length; ++i)
+        for (int i = 0; i < invArray.length; ++i)
             {
                 ItemStack itemstack = player.inventory.getStackInSlot(i);
 
                 if (this.isAmmo(itemstack))
                 {
-                    return itemstack;
+                    if (itemstack.getItemDamage() >= 12){return ItemStack.EMPTY;}
+
+                    else {return itemstack;}
                 }
         // }
         }
