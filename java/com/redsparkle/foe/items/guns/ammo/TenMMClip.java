@@ -55,8 +55,10 @@ public class TenMMClip extends Item {
         EntityPlayer playerIn = (EntityPlayer) entityLiving;
         playerIn.getHeldItem(EnumHand.MAIN_HAND);
         if(stack.getItemDamage() <= MaxDamage){
-            if(InventoryManager.findItemOffBar(playerIn, ammo) == ItemStack.EMPTY){return  stack;}
-            else {
+            ItemStack found = InventoryManager.findItemOffBar(playerIn, ammo);
+            if(found == ItemStack.EMPTY || found != ammo ){
+                return  stack;
+            }else {
                 InventoryManager.findItemOffBar(playerIn, ammo).shrink(1);
                 stack.setItemDamage(stack.getItemDamage() - 1);
                 return stack;

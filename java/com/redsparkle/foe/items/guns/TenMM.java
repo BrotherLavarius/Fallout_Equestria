@@ -55,7 +55,7 @@ public class TenMM extends Item {
                     if(itemstack.getItemDamage() == 12){
                         if(findAmmo(playerIn) == ItemStack.EMPTY){
                             worldIn.playSound(playerIn, playerIn.getPosition(), SoundInit.tenMMOOA, SoundCategory.HOSTILE, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
-                            return new ActionResult<>(EnumActionResult.PASS, itemstack);
+                            return new ActionResult<>(EnumActionResult.SUCCESS, itemstack);
                         }
                         else {
                             worldIn.playSound(playerIn, playerIn.getPosition(), SoundInit.tenMMReload, SoundCategory.HOSTILE, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
@@ -68,7 +68,7 @@ public class TenMM extends Item {
                             emptyClipStack.setItemDamage(12);
                             playerIn.inventory.setInventorySlotContents(InventoryManager.FindEmpty(playerIn),emptyClipStack);
                             //playerIn.inventory.addItemStackToInventory(emptyClipStack);
-                            return new ActionResult<>(EnumActionResult.PASS, itemstack);
+                            return new ActionResult<>(EnumActionResult.SUCCESS, itemstack);
                         }
 
                     }else {
@@ -98,7 +98,7 @@ public class TenMM extends Item {
                 e.printStackTrace();
             }
         }
-        return new ActionResult<>(EnumActionResult.PASS, itemstack);
+        return new ActionResult<>(EnumActionResult.SUCCESS, itemstack);
     }
 
 

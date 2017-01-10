@@ -50,12 +50,9 @@ public class InventoryManager {
     }
 
     public static ItemStack findItemOffBar(EntityPlayer player,ItemStack stack){
-        for (int i = 0; i < player.inventory.getSizeInventory(); ++i)
+        for (int i = 9; i <= player.inventory.getSizeInventory(); ++i)
         {
-
             ItemStack itemstack = player.inventory.getStackInSlot(i);
-
-
             if (stack == (itemstack))
             {
                 return itemstack;
