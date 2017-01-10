@@ -58,13 +58,13 @@ public class TenMM extends Item {
                     return new ActionResult<>(EnumActionResult.FAIL, itemstack);
                 }
                 else {
-                    // ---------------_RELOAD CLIP
+                // ---------------_RELOAD CLIP
                     worldIn.playSound(playerIn, playerIn.getPosition(), SoundInit.tenMMReload, SoundCategory.HOSTILE, 1.0F, 1.0F);
                     findAmmo(playerIn).shrink(1);
                     playerIn.getHeldItem(hand).setItemDamage(0);
                     Item emptyclip = ItemInit.tenMMClip;
                     ItemStack emptyClipStack = new ItemStack(emptyclip);
-                    emptyClipStack.setItemDamage(getDamage(emptyClipStack));
+                    emptyClipStack.setItemDamage(12);
                     playerIn.inventory.setInventorySlotContents(InventoryManager.FindEmpty(playerIn),emptyClipStack);
                     return new ActionResult<>(EnumActionResult.SUCCESS, itemstack);
                 }
