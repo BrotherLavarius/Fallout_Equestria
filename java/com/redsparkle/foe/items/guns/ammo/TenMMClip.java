@@ -22,6 +22,7 @@ import java.util.List;
  */
 public class TenMMClip extends Item {
 
+    public Item ammo = ItemInit.tenMMAmmo;
     public int MaxDamage = 13;
     public TenMMClip()
     {
@@ -51,15 +52,14 @@ public class TenMMClip extends Item {
 
     public ItemStack onItemUseFinish(ItemStack stack, World worldIn, EntityLivingBase entityLiving)
     {
-        ItemStack ammo = new ItemStack(ItemInit.tenMMAmmo);
         EntityPlayer playerIn = (EntityPlayer) entityLiving;
         playerIn.getHeldItem(EnumHand.MAIN_HAND);
         if(stack.getItemDamage() <= MaxDamage){
-            ItemStack found = InventoryManager.findItemOffBar(playerIn, ammo);
-            if(found == ItemStack.EMPTY || found != ammo ){
+            ItemStack found = findItemOffBar(playerIn);
+            if(found == ItemStack.EMPTY){
                 return  stack;
             }else {
-                InventoryManager.findItemOffBar(playerIn, ammo).shrink(1);
+                found.shrink(1);
                 stack.setItemDamage(stack.getItemDamage() - 1);
                 return stack;
             }
@@ -76,6 +76,16 @@ public class TenMMClip extends Item {
     public int getMaxItemUseDuration(ItemStack stack)
     {
         return 16;
+    }
+
+
+    public static ItemStack findItemOffBar(EntityPlayer player){
+        for (int slot = 0; slot < player.inventory.getSizeInventory(); ++slot)
+            if (player.inventory.getStackInSlot(slot).getItem() instanceof TenMMammo)
+                return player.inventory.getStackInSlot(slot);
+
+        return ItemStack.EMPTY;
+
     }
 
 }

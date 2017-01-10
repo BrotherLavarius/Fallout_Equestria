@@ -1,6 +1,8 @@
 package com.redsparkle.foe.utils;
 
+import com.redsparkle.foe.Init.ItemInit;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.IInventory;
 import net.minecraft.item.EnumAction;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumHand;
@@ -59,5 +61,8 @@ public class InventoryManager {
             }
         }
         return ItemStack.EMPTY;
+
+
+
     }
 }
