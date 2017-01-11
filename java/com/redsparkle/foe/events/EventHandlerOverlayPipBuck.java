@@ -6,10 +6,9 @@ import com.redsparkle.foe.gui.PipBuckGui;
 import com.redsparkle.foe.gui.RadsOverlay;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraft.item.ItemStack;
 
 /**
  * Created by NENYN on 12/25/2016.
@@ -21,11 +20,11 @@ public class EventHandlerOverlayPipBuck {
     ##############################################################################
     */
 
-    public EventHandlerOverlayPipBuck(PipBuckGui i_HUDrenderer)
-    {
+    private PipBuckGui statusBarRenderer;
+
+    public EventHandlerOverlayPipBuck(PipBuckGui i_HUDrenderer) {
         statusBarRenderer = i_HUDrenderer;
     }
-    private PipBuckGui statusBarRenderer;
 
     /* The RenderGameOverlayEvent.Pre event is called before each game overlay element is
    * rendered. It is called multiple times. A list of existing overlay elements can be found
@@ -37,7 +36,7 @@ public class EventHandlerOverlayPipBuck {
    * Note that you can entirely remove the vanilla rendering by cancelling the event here.
    */
 
-    @SubscribeEvent(receiveCanceled=true)
+    @SubscribeEvent(receiveCanceled = true)
     public void onEvent(RenderGameOverlayEvent.Pre event) {
         EntityPlayerSP entityPlayerSP = Minecraft.getMinecraft().player;
         if (entityPlayerSP == null) return;  // just in case
@@ -70,12 +69,12 @@ public class EventHandlerOverlayPipBuck {
                 event.setCanceled(true);
                 break;
             case FOOD:
-        // Don't render the vanilla FOOD bar
+                // Don't render the vanilla FOOD bar
                 new APBar(Minecraft.getMinecraft());
                 event.setCanceled(true);
                 break;
             case EXPERIENCE:
-        // Don't render the vanilla EXPERIENCE bar
+                // Don't render the vanilla EXPERIENCE bar
                 event.setCanceled(true);
                 break;
 
@@ -92,7 +91,7 @@ public class EventHandlerOverlayPipBuck {
      * If you want something to be rendered over an existing vanilla element, you would render
      * it here.
      */
-    @SubscribeEvent(receiveCanceled=true)
+    @SubscribeEvent(receiveCanceled = true)
     public void onEvent(RenderGameOverlayEvent.Post event) {
 
         switch (event.getType()) {

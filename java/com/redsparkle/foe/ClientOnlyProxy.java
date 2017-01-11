@@ -11,7 +11,7 @@ import net.minecraft.entity.player.EntityPlayerMP;
  */
 public class ClientOnlyProxy extends CommonProxy {
 
-    public void preInit(){
+    public void preInit() {
         super.preInit();
         ClientOnlyStartup.preInitClientOnly();
     }
@@ -26,10 +26,11 @@ public class ClientOnlyProxy extends CommonProxy {
         super.postInit();
         ClientOnlyStartup.postInitClientOnly();
     }
+
     @Override
     public boolean playerIsInCreativeMode(EntityPlayer player) {
         if (player instanceof EntityPlayerMP) {
-            EntityPlayerMP entityPlayerMP = (EntityPlayerMP)player;
+            EntityPlayerMP entityPlayerMP = (EntityPlayerMP) player;
             return entityPlayerMP.interactionManager.isCreative();
         } else if (player instanceof EntityPlayerSP) {
             return Minecraft.getMinecraft().playerController.isInCreativeMode();

@@ -19,38 +19,38 @@ import java.util.List;
  * 1) in the configuration file on disk, as text.
  * 2) in the Configuration object config (accessed by the mod GUI), as text.
  * 3) in the MBEConfiguration variables (fields), as native values (integer, double, etc).
- *
+ * <p>
  * Setup:
  * (1) During your mod preInit(), call MBEConfiguration.preInit() to:
- *     a) set up the format of the configuration file.
- *     b) load the settings from the existing file, or if it doesn't exist yet - create it with default values.
+ * a) set up the format of the configuration file.
+ * b) load the settings from the existing file, or if it doesn't exist yet - create it with default values.
  * (2) On the client proxy (not dedicated server), call clientPreInit() to register an OnConfigChangedEvent handler-
- *     your GUI will modify the config object, and when it is closed it will trigger a OnConfigChangedEvent,
- *     which should call syncFromGUI().
- *
+ * your GUI will modify the config object, and when it is closed it will trigger a OnConfigChangedEvent,
+ * which should call syncFromGUI().
+ * <p>
  * Usage:
  * (3) You can read the fields such as myInteger directly.
  * (4) If you modify the configuration fields, you can save them to disk using syncFromFields().
  * (5) To reload the values from disk, call syncFromFile().
  * (6) If you have used a GUI to alter the config values, call syncFromGUI()
- *     (If you called clientPreInit(), this will happen automatically).
- *
- *  => See ForgeModContainer for more examples.
+ * (If you called clientPreInit(), this will happen automatically).
+ * <p>
+ * => See ForgeModContainer for more examples.
  */
 public class ConfigInit {
+    public static final String CATEGORY_NAME_GENERAL = "category_general";
+    public static final String CATEGORY_NAME_OTHER = "category_other";
     public static int myInteger;
     public static boolean myBoolean;
     public static double myDouble;
     public static int[] myIntList;
     public static String myString;
     public static String myColour;
+    // Define your configuration object
+    private static Configuration config = null;
 
-    public static final String CATEGORY_NAME_GENERAL = "category_general";
-    public static final String CATEGORY_NAME_OTHER = "category_other";
-
-    public static void preInit()
-    {
-		/*
+    public static void preInit() {
+        /*
 		 * Here is where you specify the location from where your config file
 		 * will be read, or created if it is not present.
 		 *
@@ -107,12 +107,11 @@ public class ConfigInit {
      * 2) !loadConfigFromFile && readFieldsFromConfig --> copy everything from the config file (altered by GUI).
      * 3) !loadConfigFromFile && !readFieldsFromConfig --> copy everything from the native fields.
      *
-     * @param loadConfigFromFile if true, load the config field from the configuration file on disk.
+     * @param loadConfigFromFile   if true, load the config field from the configuration file on disk.
      * @param readFieldsFromConfig if true, reload the member variables from the config field.
      */
 
-    private static void syncConfig(boolean loadConfigFromFile, boolean readFieldsFromConfig)
-    {
+    private static void syncConfig(boolean loadConfigFromFile, boolean readFieldsFromConfig) {
 		/*
 		 * ---- step 1 - load raw values from config file (if loadFromFile true) -------------------
 		 *
@@ -190,14 +189,14 @@ public class ConfigInit {
         propMyString.setLanguageKey("gui.mbe70_configuration.myString").setRequiresWorldRestart(true);
 
         // list of integer values
-        final int[] MY_INT_LIST_DEFAULT_VALUE = new int[] { 1, 2, 3, 4, 5 };
+        final int[] MY_INT_LIST_DEFAULT_VALUE = new int[]{1, 2, 3, 4, 5};
         Property propMyIntList = config.get(CATEGORY_NAME_GENERAL, "myIntList", MY_INT_LIST_DEFAULT_VALUE,
                 "Configuration integer list (myIntList)");
         propMyIntList.setLanguageKey("gui.mbe70_configuration.myIntList");
 
         // a string restricted to several choices - located on a separate category tab in the GUI
         final String COLOUR_DEFAULT_VALUE = "red";
-        final String[] COLOUR_CHOICES = { "blue", "red", "yellow" };
+        final String[] COLOUR_CHOICES = {"blue", "red", "yellow"};
         Property propColour = config.get(CATEGORY_NAME_OTHER, "myColour", COLOUR_DEFAULT_VALUE);
         propColour.setComment("Configuration string (myColour): blue, red, yellow");
         propColour.setLanguageKey("gui.mbe70_configuration.myColour").setRequiresWorldRestart(true);
@@ -228,8 +227,7 @@ public class ConfigInit {
 		 * even if you have specified a MIN and MAX value of the property.
 		 */
 
-        if (readFieldsFromConfig)
-        {
+        if (readFieldsFromConfig) {
             // If getInt() cannot get an integer value from the config file
             // value of myInteger (e.g. corrupted file).
             // It will set it to the default value passed to the function.
@@ -282,22 +280,15 @@ public class ConfigInit {
         }
     }
 
-    // Define your configuration object
-    private static Configuration config = null;
-
-    public static class ConfigEventHandler
-    {
+    public static class ConfigEventHandler {
         /*
          * This class, when instantiated as an object, will listen on the Forge
          * event bus for an OnConfigChangedEvent
          */
         @SubscribeEvent(priority = EventPriority.NORMAL)
-        public void onEvent(ConfigChangedEvent.OnConfigChangedEvent event)
-        {
-            if (main.MODID.equals(event.getModID()) && !event.isWorldRunning())
-            {
-                if (event.getConfigID().equals(CATEGORY_NAME_GENERAL) || event.getConfigID().equals(CATEGORY_NAME_OTHER))
-                {
+        public void onEvent(ConfigChangedEvent.OnConfigChangedEvent event) {
+            if (main.MODID.equals(event.getModID()) && !event.isWorldRunning()) {
+                if (event.getConfigID().equals(CATEGORY_NAME_GENERAL) || event.getConfigID().equals(CATEGORY_NAME_OTHER)) {
                     syncFromGUI();
                 }
             }

@@ -22,23 +22,18 @@ import java.util.List;
  */
 public class DesktopTerminalTileEntity extends TileEntity implements IInventory {
     private final List<String> hidden = new ArrayList<String>();
-    public final IModelState state = new IModelState()
-    {
+    public final IModelState state = new IModelState() {
         private final Optional<TRSRTransformation> value = Optional.of(TRSRTransformation.identity());
 
         @Override
-        public Optional<TRSRTransformation> apply(Optional<? extends IModelPart> part)
-        {
-            if(part.isPresent())
-            {
+        public Optional<TRSRTransformation> apply(Optional<? extends IModelPart> part) {
+            if (part.isPresent()) {
                 // This whole thing is subject to change, but should do for now.
                 UnmodifiableIterator<String> parts = Models.getParts(part.get());
-                if(parts.hasNext())
-                {
+                if (parts.hasNext()) {
                     String name = parts.next();
                     // only interested in the root level
-                    if(!parts.hasNext() && hidden.contains(name))
-                    {
+                    if (!parts.hasNext() && hidden.contains(name)) {
                         return value;
                     }
                 }
@@ -49,13 +44,12 @@ public class DesktopTerminalTileEntity extends TileEntity implements IInventory 
     private String customName;
     private String displayName;
 
-    public void setCustomName(String name)
-    {
+    public void setCustomName(String name) {
 
         this.customName = GlobalNames.Terminal;
     }
-    public int getSizeInventory()
-    {
+
+    public int getSizeInventory() {
 
         return 10;
     }
@@ -98,7 +92,7 @@ public class DesktopTerminalTileEntity extends TileEntity implements IInventory 
         return false;
     }
 
-     @Override
+    @Override
     public void openInventory(EntityPlayer player) {
 
     }

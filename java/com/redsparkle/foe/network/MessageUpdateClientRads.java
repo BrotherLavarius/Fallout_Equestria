@@ -15,17 +15,20 @@ import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 public class MessageUpdateClientRads implements IMessage {
     public Integer radiation;
 
-    public MessageUpdateClientRads() {}
-    public MessageUpdateClientRads(IRadiationCapability rad)
-    {
+    public MessageUpdateClientRads() {
+    }
+
+    public MessageUpdateClientRads(IRadiationCapability rad) {
         this.radiation = rad.getRadiation();
     }
-    @Override
-    public void fromBytes(ByteBuf buf) {radiation = buf.readInt();   }
 
     @Override
-    public void toBytes(ByteBuf buf)
-    {
+    public void fromBytes(ByteBuf buf) {
+        radiation = buf.readInt();
+    }
+
+    @Override
+    public void toBytes(ByteBuf buf) {
         buf.writeInt(radiation);
     }
 

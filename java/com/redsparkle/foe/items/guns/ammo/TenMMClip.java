@@ -2,7 +2,6 @@ package com.redsparkle.foe.items.guns.ammo;
 
 import com.redsparkle.foe.Init.ItemInit;
 import com.redsparkle.foe.creativeTabs.InitCreativeTabs;
-import com.redsparkle.foe.utils.InventoryManager;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumAction;
@@ -24,8 +23,8 @@ public class TenMMClip extends Item {
 
     public Item ammo = ItemInit.tenMMAmmo;
     public int MaxDamage = 13;
-    public TenMMClip()
-    {
+
+    public TenMMClip() {
         final int NUMBER_OF_BOXES = 1;
         this.setMaxStackSize(NUMBER_OF_BOXES);
         this.setCreativeTab(InitCreativeTabs.Fallout_ammo);   // the item will appear on the Miscellaneous tab in creative
@@ -33,59 +32,53 @@ public class TenMMClip extends Item {
 
     }
 
-    /**
-     * allows items to add custom lines of information to the mouseover description
-     */
-    @SideOnly(Side.CLIENT)
-    public void addInformation(ItemStack stack, EntityPlayer playerIn, List<String> tooltip, boolean advanced)
-    {
-        tooltip.add("Ammo clip for 10mm pistol");
-    }
-
-
-    public ActionResult<ItemStack> onItemRightClick(World itemStackIn, EntityPlayer worldIn, EnumHand playerIn)
-    {
-        worldIn.setActiveHand(playerIn);
-        return new ActionResult(EnumActionResult.SUCCESS, worldIn.getHeldItem(playerIn));
-    }
-
-
-    public ItemStack onItemUseFinish(ItemStack stack, World worldIn, EntityLivingBase entityLiving)
-    {
-        EntityPlayer playerIn = (EntityPlayer) entityLiving;
-        playerIn.getHeldItem(EnumHand.MAIN_HAND);
-        if(stack.getItemDamage() <= MaxDamage){
-            ItemStack found = findItemOffBar(playerIn);
-            if(found == ItemStack.EMPTY){
-                return  stack;
-            }else {
-                found.shrink(1);
-                stack.setItemDamage(stack.getItemDamage() - 1);
-                return stack;
-            }
-        }else{
-            return stack;
-        }
-    }
-
-
-    public EnumAction getItemUseAction(ItemStack stack)
-    {
-        return EnumAction.NONE;
-    }
-    public int getMaxItemUseDuration(ItemStack stack)
-    {
-        return 16;
-    }
-
-
-    public static ItemStack findItemOffBar(EntityPlayer player){
+    public static ItemStack findItemOffBar(EntityPlayer player) {
         for (int slot = 0; slot < player.inventory.getSizeInventory(); ++slot)
             if (player.inventory.getStackInSlot(slot).getItem() instanceof TenMMammo)
                 return player.inventory.getStackInSlot(slot);
 
         return ItemStack.EMPTY;
 
+    }
+
+    /**
+     * allows items to add custom lines of information to the mouseover description
+     */
+    @SideOnly(Side.CLIENT)
+    public void addInformation(ItemStack stack, EntityPlayer playerIn, List<String> tooltip, boolean advanced) {
+        tooltip.add("Ammo clip for 10mm pistol");
+    }
+
+    public ActionResult<ItemStack> onItemRightClick(World itemStackIn, EntityPlayer worldIn, EnumHand playerIn) {
+        worldIn.setActiveHand(playerIn);
+        return new ActionResult(EnumActionResult.SUCCESS, worldIn.getHeldItem(playerIn));
+    }
+
+    public ItemStack onItemUseFinish(ItemStack stack, World worldIn, EntityLivingBase entityLiving) {
+        EntityPlayer playerIn = (EntityPlayer) entityLiving;
+        playerIn.getHeldItem(EnumHand.MAIN_HAND);
+        if (stack.getItemDamage() <= MaxDamage ||stack.getItemDamage() >= 1) {
+            ItemStack found = findItemOffBar(playerIn);
+            if (found == ItemStack.EMPTY) {
+                return stack;
+            } else {
+                found.shrink(1);
+                stack.setItemDamage(stack.getItemDamage() - 1);
+                return stack;
+            }
+        } else if (stack.getItemDamage() >= 1) {
+            return stack;
+        }
+        return stack;
+
+    }
+
+    public EnumAction getItemUseAction(ItemStack stack) {
+        return EnumAction.NONE;
+    }
+
+    public int getMaxItemUseDuration(ItemStack stack) {
+        return 16;
     }
 
 }

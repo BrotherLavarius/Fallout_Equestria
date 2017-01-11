@@ -6,7 +6,6 @@ import com.redsparkle.foe.capa.RadsFactoryProvider;
 import com.redsparkle.foe.main;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.world.World;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
@@ -42,7 +41,8 @@ public class EventHandlerPre {
             rad.updateClient(player);
         }
     }
-    private void onUpdate(TickEvent.WorldTickEvent event){
+
+    private void onUpdate(TickEvent.WorldTickEvent event) {
 
     }
 }

@@ -6,56 +6,46 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 
-public class EntityBullet extends EntityThrowable
-{
-	public int damage = 15;
+public class EntityBullet extends EntityThrowable {
+    public int damage = 15;
 
-	public EntityBullet(World worldIn)
-	{
-		super(worldIn);
-	}
+    public EntityBullet(World worldIn) {
+        super(worldIn);
+    }
 
-	public EntityBullet(World worldIn, EntityLivingBase livingBaseIn)
-	{
-		super(worldIn, livingBaseIn);
-		
-		this.setThrowableHeading(livingBaseIn.getLookVec().xCoord, livingBaseIn.getLookVec().yCoord, livingBaseIn.getLookVec().zCoord, 1.5f, 0.0f);
-	}
+    public EntityBullet(World worldIn, EntityLivingBase livingBaseIn) {
+        super(worldIn, livingBaseIn);
 
-	public EntityBullet(World worldIn, double x, double y, double z)
-	{
-		super(worldIn, x, y, z);
-	}
+        this.setThrowableHeading(livingBaseIn.getLookVec().xCoord, livingBaseIn.getLookVec().yCoord, livingBaseIn.getLookVec().zCoord, 1.5f, 0.0f);
+    }
 
-	@Override
-	protected void onImpact(RayTraceResult rayTraceResult)
-	{
-		if (!this.world.isRemote)
-		{
-			if (rayTraceResult.entityHit != null)
-			{
-				rayTraceResult.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, this.getThrower()), damage);
-			}
+    public EntityBullet(World worldIn, double x, double y, double z) {
+        super(worldIn, x, y, z);
+    }
 
-			this.setDead();
-		}
-	}
+    @Override
+    protected void onImpact(RayTraceResult rayTraceResult) {
+        if (!this.world.isRemote) {
+            if (rayTraceResult.entityHit != null) {
+                rayTraceResult.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, this.getThrower()), damage);
+            }
 
-	@Override
-	public void onUpdate()
-	{
-		super.onUpdate();
+            this.setDead();
+        }
+    }
 
-		if (this.motionX < 0.001 && this.motionY < 0.001 && this.motionZ < 0.001)
-		{
-			this.setDead();
-		}
-	}
+    @Override
+    public void onUpdate() {
+        super.onUpdate();
 
-	@Override
-	protected float getGravityVelocity()
-	{
-		return 0F;
-	}
+        if (this.motionX < 0.001 && this.motionY < 0.001 && this.motionZ < 0.001) {
+            this.setDead();
+        }
+    }
+
+    @Override
+    protected float getGravityVelocity() {
+        return 0F;
+    }
 
 }

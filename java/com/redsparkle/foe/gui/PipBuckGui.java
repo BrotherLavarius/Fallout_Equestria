@@ -1,21 +1,15 @@
 package com.redsparkle.foe.gui;
 
 
-import com.redsparkle.foe.main;
 import com.redsparkle.foe.utils.GlobalNames;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.MobEffects;
-import net.minecraft.potion.Potion;
-import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import org.lwjgl.opengl.GL11;
-
-import java.text.DecimalFormat;
 
 /**
  * Created by NENYN on 12/25/2016.
@@ -90,7 +84,7 @@ public class PipBuckGui extends Gui {
        * The top left corner of the screen is x=0, y=0
        */
         GL11.glTranslatef(vanillaExpLeftX, vanillaExpTopY, 0);
-        GL11.glScalef(0.76F,0.76F,0.76F);
+        GL11.glScalef(0.76F, 0.76F, 0.76F);
       /* Draw a part of the image file at the current position
        *
        * The first two arguments are the x,y position that you want to draw the texture at
@@ -109,7 +103,7 @@ public class PipBuckGui extends Gui {
        * This line draws the background of the custom bar
        */
         drawTexturedModalRect(0, 0, 0, 0, BAR_WIDTH, BAR_HEIGHT);
-        
+
         int health = Math.round((ACTUAL_BAR_WIDTH - 2) * Math.min(1, effectiveHp / maxHp));
         GL11.glPushMatrix();
 
@@ -124,33 +118,33 @@ public class PipBuckGui extends Gui {
 
         if (player.isPotionActive(MobEffects.WITHER)) {
             drawTexturedModalRect(4, 11, 7, WITHER_TEXTURE_U, health, ACTUAL_BAR_HEIGHT);
-            GL11.glScalef(0.76F,0.76F,0.76F);
+            GL11.glScalef(0.76F, 0.76F, 0.76F);
         } else if (player.isPotionActive(MobEffects.POISON)) {
             drawTexturedModalRect(4, 11, 7, POISON_TEXTURE_U, health, ACTUAL_BAR_HEIGHT);
-            GL11.glScalef(0.76F,0.76F,0.76F);
+            GL11.glScalef(0.76F, 0.76F, 0.76F);
         } else if (player.isPotionActive(MobEffects.REGENERATION)) {
             drawTexturedModalRect(4, 11, 7, REGEN_TEXTURE_U, health, ACTUAL_BAR_HEIGHT);
-            GL11.glScalef(0.76F,0.76F,0.76F);
+            GL11.glScalef(0.76F, 0.76F, 0.76F);
         } else {
             drawTexturedModalRect(4, 11, 7, NORMAL_TEXTURE_U, health, ACTUAL_BAR_HEIGHT);
-            GL11.glScalef(0.76F,0.76F,0.76F);
+            GL11.glScalef(0.76F, 0.76F, 0.76F);
         }
 
         if (PLayerArmor == 0) {
             int armor = 0;
             drawTexturedModalRect(4, 10, 7, ARMOR_TEXTURE_U, armor, 3);
-            GL11.glScalef(0.76F,0.76F,0.76F);
+            GL11.glScalef(0.76F, 0.76F, 0.76F);
 
         } else {
-            int armor = Math.round(100-(ACTUAL_BAR_WIDTH / PLayerArmor));
+            int armor = Math.round(100 - (ACTUAL_BAR_WIDTH / PLayerArmor));
             drawTexturedModalRect(4, 10, 7, ARMOR_TEXTURE_U, armor, 3);
-            GL11.glScalef(0.76F,0.76F,0.76F);
+            GL11.glScalef(0.76F, 0.76F, 0.76F);
 
         }
 
         GL11.glPushMatrix();
         GL11.glTranslatef(BAR_WIDTH + 25, 1, 0);
-        GL11.glScalef(0.76F,0.76F,0.76F);
+        GL11.glScalef(0.76F, 0.76F, 0.76F);
 
 
         GL11.glPopMatrix();

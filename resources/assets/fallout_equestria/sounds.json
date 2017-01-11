@@ -1,10 +1,10 @@
 {
   "tenMMShot": {
-  "category": "player",
-  "sounds": [
-    "fallout_equestria:10mmshot"
-  ],
-  "subtitle": "tenMMShot"
+    "category": "player",
+    "sounds": [
+      "fallout_equestria:10mmshot"
+    ],
+    "subtitle": "tenMMShot"
   },
   "tenMMReload": {
     "category": "player",

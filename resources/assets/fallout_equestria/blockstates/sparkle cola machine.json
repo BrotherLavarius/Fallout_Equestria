@@ -5,26 +5,65 @@
     "model": "fallout_equestria:sparkle cola machine.obj"
   },
   "variants": {
-    "normal": [{}],
-    "inventory": [{
-      "transform": {
-        "thirdperson": {
-          "translation": [0, 0, 0],
-          "rotation": [ { "y": -45}, {"x": 10}, {"z": 170} ],
-          "scale": 0.15
-        },
-        "gui": {
-          "rotation": [ {"y": 90} ]
+    "normal": [
+      {}
+    ],
+    "inventory": [
+      {
+        "transform": {
+          "thirdperson": {
+            "translation": [
+              0,
+              0,
+              0
+            ],
+            "rotation": [
+              {
+                "y": -45
+              },
+              {
+                "x": 10
+              },
+              {
+                "z": 170
+              }
+            ],
+            "scale": 0.15
+          },
+          "gui": {
+            "rotation": [
+              {
+                "y": 90
+              }
+            ]
+          }
         }
       }
-    }],
+    ],
     "facing": {
-      "down": { "model": "fallout_equestria:sparkle cola machine.obj", "x": 90 },
-      "up": { "model": "fallout_equestria:sparkle cola machine.obj", "x": 270 },
-      "north": { "model": "fallout_equestria:sparkle cola machine.obj" },
-      "south": { "model": "fallout_equestria:sparkle cola machine.obj", "y": 180 },
-      "west": { "model": "fallout_equestria:sparkle cola machine.obj", "y": 270 },
-      "east": { "model": "fallout_equestria:sparkle cola machine.obj", "y": 90 }
+      "down": {
+        "model": "fallout_equestria:sparkle cola machine.obj",
+        "x": 90
+      },
+      "up": {
+        "model": "fallout_equestria:sparkle cola machine.obj",
+        "x": 270
+      },
+      "north": {
+        "model": "fallout_equestria:sparkle cola machine.obj"
+      },
+      "south": {
+        "model": "fallout_equestria:sparkle cola machine.obj",
+        "y": 180
+      },
+      "west": {
+        "model": "fallout_equestria:sparkle cola machine.obj",
+        "y": 270
+      },
+      "east": {
+        "model": "fallout_equestria:sparkle cola machine.obj",
+        "y": 90
+      }
     }
   }
 }

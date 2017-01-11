@@ -7,7 +7,7 @@ import net.minecraftforge.fml.common.gameevent.TickEvent;
 /**
  * Created by hoijima on 08.09.16.
  */
-public interface IRadiationCapability  {
+public interface IRadiationCapability {
 
 
     public Integer addRadiation(Integer addRadiationLevel);
@@ -22,6 +22,6 @@ public interface IRadiationCapability  {
 
     public void updateClient(EntityPlayer player);
 
-    public void timedRemoveRad(EntityPlayer player,TickEvent.Phase phase,Integer startCycle,Integer Cycles, Integer FortificationValue);
+    public void timedRemoveRad(EntityPlayer player, TickEvent.Phase phase, Integer startCycle, Integer Cycles, Integer FortificationValue);
 
 }

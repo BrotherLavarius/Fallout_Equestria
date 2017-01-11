@@ -1,6 +1,8 @@
 package com.redsparkle.foe;
 
-import com.redsparkle.foe.Init.*;
+import com.redsparkle.foe.Init.BlockInit;
+import com.redsparkle.foe.Init.ItemInit;
+import com.redsparkle.foe.Init.StartUpCommon;
 import com.redsparkle.foe.capa.IRadiationCapability;
 import com.redsparkle.foe.capa.RadsFactoryProvider;
 import com.redsparkle.foe.capa.RadsFactoryStorage;
@@ -19,7 +21,7 @@ import net.minecraftforge.fml.common.registry.EntityRegistry;
  * Created by hoijima on 14.12.16.
  */
 public abstract class CommonProxy {
-    public void preInit(){
+    public void preInit() {
         System.out.println("FOE Initiating");
         System.out.println("WAR...");
         System.out.println("WAR NEVER CHANGES...");
@@ -28,17 +30,19 @@ public abstract class CommonProxy {
         ItemInit.preInitCommon();
         // INIT Handler
         MinecraftForge.EVENT_BUS.register(new EventHandlerPre());
-        EntityRegistry.registerModEntity(new ResourceLocation(GlobalNames.Domain+":entity/bullet"),EntityBullet.class, "Bullet", 13, main.instance, 20, 30, false);
+        EntityRegistry.registerModEntity(new ResourceLocation(GlobalNames.Domain + ":entity/bullet"), EntityBullet.class, "Bullet", 13, main.instance, 20, 30, false);
 
     }
+
     public void init() {
         StartUpCommon.InitCommon();
         BlockInit.InitCommon();
         ItemInit.InitCommon();
-        CapabilityManager.INSTANCE.register(IRadiationCapability.class,new RadsFactoryStorage(),RadsFactoryProvider::new);
+        CapabilityManager.INSTANCE.register(IRadiationCapability.class, new RadsFactoryStorage(), RadsFactoryProvider::new);
         MinecraftForge.EVENT_BUS.register(new EventHandlerInit());
     }
-    public void postInit(){
+
+    public void postInit() {
         StartUpCommon.postInitCommon();
         BlockInit.postInitCommon();
         ItemInit.postInitCommon();
@@ -51,6 +55,7 @@ public abstract class CommonProxy {
 
     /**
      * is this a dedicated server?
+     *
      * @return true if this is a dedicated server, false otherwise
      */
     abstract public boolean isDedicatedServer();

@@ -1,8 +1,6 @@
 package com.redsparkle.foe.items.utility;
 
-import com.redsparkle.foe.ClientOnlyProxy;
 import com.redsparkle.foe.creativeTabs.InitCreativeTabs;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -20,11 +18,11 @@ import java.util.List;
  */
 public class PipBuck extends Item {
 
-    public PipBuck()
-    {
+    public PipBuck() {
         this.setMaxStackSize(1);
         this.setCreativeTab(InitCreativeTabs.Fallout_meds);   // the item will appear on the Miscellaneous tab in creative
     }
+
     @Override
     public void onUpdate(ItemStack stack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected) {
         final int FIRST_HOTBAR_SLOT_NUMBER = 0;
@@ -38,6 +36,7 @@ public class PipBuck extends Item {
             entityPlayerMP.setGameType(GameType.SURVIVAL);
         }
     }
+
     // adds 'tooltip' text
     @SideOnly(Side.CLIENT)
     @SuppressWarnings("unchecked")

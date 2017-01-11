@@ -3,6 +3,7 @@ package com.redsparkle.foe.sounds;
 /**
  * Created by hoijima desu on 04.08.16 desu.
  */
+
 import com.redsparkle.foe.main;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
@@ -18,7 +19,7 @@ public class ModSoundEvents {
     public static SoundEvent LowEntensityRad;
     public static SoundEvent MediumEntensityRad;
     public static SoundEvent HighEntensityRad;
-    public  static SoundEvent Enervation;
+    public static SoundEvent Enervation;
 
     /**
      * Register the {@link SoundEvent}s.

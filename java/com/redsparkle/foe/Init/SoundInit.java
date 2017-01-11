@@ -4,6 +4,7 @@ import com.redsparkle.foe.main;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+
 /**
  * Created by hoijima on 14.12.16.
  */
@@ -11,19 +12,21 @@ public class SoundInit {
     public static SoundEvent LowEntensityRad;
     public static SoundEvent MediumEntensityRad;
     public static SoundEvent HighEntensityRad;
-    public  static SoundEvent Enervation;
-    public  static SoundEvent tenMMShot;
-    public  static SoundEvent tenMMReload;
-    public  static SoundEvent tenMMOOA;
+    public static SoundEvent Enervation;
+    public static SoundEvent tenMMShot;
+    public static SoundEvent tenMMReload;
+    public static SoundEvent tenMMOOA;
+
     public static void registerSounds() {
-            LowEntensityRad = registerSound("LowEntensityRad");
-            MediumEntensityRad = registerSound("MediumEntensityRad");
-            HighEntensityRad = registerSound("HighEntensityRad");
-            Enervation = registerSound("Enervation");
-            tenMMShot = registerSound("tenMMShot");
-            tenMMReload = registerSound("tenMMReload");
-            tenMMOOA = registerSound("tenMMOutOfAmmo");
-        }
+        LowEntensityRad = registerSound("LowEntensityRad");
+        MediumEntensityRad = registerSound("MediumEntensityRad");
+        HighEntensityRad = registerSound("HighEntensityRad");
+        Enervation = registerSound("Enervation");
+        tenMMShot = registerSound("tenMMShot");
+        tenMMReload = registerSound("tenMMReload");
+        tenMMOOA = registerSound("tenMMOutOfAmmo");
+    }
+
     /**
      * Register a {@link SoundEvent}.
      *

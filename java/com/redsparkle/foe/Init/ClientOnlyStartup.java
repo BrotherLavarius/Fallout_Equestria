@@ -1,16 +1,13 @@
 package com.redsparkle.foe.Init;
 
-import com.ibm.icu.text.Normalizer;
 import com.redsparkle.foe.block.containers.SparkleColaMachineBlock;
 import com.redsparkle.foe.block.effectDispenser.RadiationBlock;
 import com.redsparkle.foe.block.interractable.DesktopTerminal;
 import com.redsparkle.foe.creativeTabs.InitCreativeTabs;
-import com.redsparkle.foe.events.*;
+import com.redsparkle.foe.events.EventHandlerOverlayPipBuck;
 import com.redsparkle.foe.gui.PipBuckGui;
-import com.redsparkle.foe.gui.RadsOverlay;
 import com.redsparkle.foe.items.guns.inits.EntityBullet;
 import com.redsparkle.foe.items.guns.inits.render.RenderBulletEntity;
-import com.redsparkle.foe.main;
 import com.redsparkle.foe.utils.GlobalNames;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
@@ -27,8 +24,9 @@ import static com.redsparkle.foe.main.MODID;
  * Created by hoijima on 23.09.16.
  */
 public class ClientOnlyStartup {
-    public static void preInitClientOnly()
-    {
+    private static PipBuckGui pipBuckGui;
+
+    public static void preInitClientOnly() {
         final CreativeTabs Fallout_ammo = InitCreativeTabs.Fallout_ammo;
         final CreativeTabs Fallout_blocks = InitCreativeTabs.Fallout_blocks;
         final CreativeTabs Fallout_guns = InitCreativeTabs.Fallout_guns;
@@ -38,18 +36,17 @@ public class ClientOnlyStartup {
         SoundInit.registerSounds();
         OBJLoader.INSTANCE.addDomain(GlobalNames.Domain);
         Item SPCmachine = Item.getItemFromBlock(SparkleColaMachineBlock.instance);
-        ModelLoader.setCustomModelResourceLocation(SPCmachine,0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.SPCmachine,"inventory"));
+        ModelLoader.setCustomModelResourceLocation(SPCmachine, 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.SPCmachine, "inventory"));
 
         Item Dterminal = Item.getItemFromBlock(DesktopTerminal.instance);
-        ModelLoader.setCustomModelResourceLocation(Dterminal,0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.Terminal,"inventory"));
-
+        ModelLoader.setCustomModelResourceLocation(Dterminal, 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.Terminal, "inventory"));
 
 
         //ITEMS SECTION#########################################
 
         //---------------------UTILITY--------------------------
         final int DEFAULT_ITEM_SUBTYPE = 0;
-        ModelLoader.setCustomModelResourceLocation(ItemInit.pipbuck, DEFAULT_ITEM_SUBTYPE,  new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.Pipbuck, "inventory"));
+        ModelLoader.setCustomModelResourceLocation(ItemInit.pipbuck, DEFAULT_ITEM_SUBTYPE, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.Pipbuck, "inventory"));
 
         //---------------------MEDS--------------------------
         ModelLoader.setCustomModelResourceLocation(ItemInit.radAway, DEFAULT_ITEM_SUBTYPE, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.RadAway, "inventory"));
@@ -63,12 +60,11 @@ public class ClientOnlyStartup {
         //---------------------GUNS--------------------------
         ModelLoader.setCustomModelResourceLocation(ItemInit.tenMM, 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.TenMM, "inventory"));
 
+
     }
 
-    private static PipBuckGui pipBuckGui;
-    public static void initClientOnly()
-    {
-        Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(Item.getItemFromBlock(SparkleColaMachineBlock.instance),0,new ModelResourceLocation(MODID + ":" + GlobalNames.SPCmachine));
+    public static void initClientOnly() {
+        Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(Item.getItemFromBlock(SparkleColaMachineBlock.instance), 0, new ModelResourceLocation(MODID + ":" + GlobalNames.SPCmachine));
         Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(Item.getItemFromBlock(RadiationBlock.instance), 0, new ModelResourceLocation(MODID + ":" + GlobalNames.RadBlock));
 
 
@@ -76,8 +72,7 @@ public class ClientOnlyStartup {
     }
 
 
-    public static void postInitClientOnly()
-    {
+    public static void postInitClientOnly() {
   /* Here, we register the event handler that modifies the overlay. Since
    * the overlay is a GUI element, and the GUI only exists on the client side,
    * we only register this event handler on the client side.

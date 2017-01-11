@@ -12,13 +12,11 @@ import net.minecraftforge.common.capabilities.Capability.IStorage;
  */
 public class RadsFactoryStorage implements IStorage<IRadiationCapability> {
 
-    public NBTBase writeNBT(Capability<IRadiationCapability> capability, IRadiationCapability instance, EnumFacing side)
-    {
-        return ((RadsFactoryProvider)instance).serializeNBT();
+    public NBTBase writeNBT(Capability<IRadiationCapability> capability, IRadiationCapability instance, EnumFacing side) {
+        return ((RadsFactoryProvider) instance).serializeNBT();
     }
 
-    public void readNBT(Capability<IRadiationCapability> capability, IRadiationCapability instance, EnumFacing side, NBTBase nbt)
-    {
-        ((RadsFactoryProvider)instance).deserializeNBT((NBTTagCompound)nbt);
+    public void readNBT(Capability<IRadiationCapability> capability, IRadiationCapability instance, EnumFacing side, NBTBase nbt) {
+        ((RadsFactoryProvider) instance).deserializeNBT((NBTTagCompound) nbt);
     }
 }

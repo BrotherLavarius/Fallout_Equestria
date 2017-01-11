@@ -1,8 +1,8 @@
 package com.redsparkle.foe.Init;
 
 import com.redsparkle.foe.items.guns.TenMM;
-import com.redsparkle.foe.items.guns.ammo.TenMMammo;
 import com.redsparkle.foe.items.guns.ammo.TenMMClip;
+import com.redsparkle.foe.items.guns.ammo.TenMMammo;
 import com.redsparkle.foe.items.meds.RadAway;
 import com.redsparkle.foe.items.meds.RadX;
 import com.redsparkle.foe.items.utility.PipBuck;
@@ -26,8 +26,7 @@ public class ItemInit {
 
     //public static ItemSimple itemSimple;  // this holds the unique instance of your block
 
-    public static void preInitCommon()
-    {
+    public static void preInitCommon() {
         // each instance of your item should have two names:
         // 1) a registry name that is used to uniquely identify this item.  Should be unique within your mod.  use lower case.
         // 2) an 'unlocalised name' that is used to retrieve the text name of your item in the player's language.  For example-
@@ -41,16 +40,16 @@ public class ItemInit {
         //  +-----------------------+-----------------------+
         //
         //----------------------MEDS-----------------
-        radAway = (RadAway)(new RadAway().setUnlocalizedName(GlobalNames.RadAway));
+        radAway = (RadAway) (new RadAway().setUnlocalizedName(GlobalNames.RadAway));
         radAway.setRegistryName(GlobalNames.RadAway);
         GameRegistry.register(radAway);
 
-        radx = (RadX)(new RadX().setUnlocalizedName(GlobalNames.RadX));
+        radx = (RadX) (new RadX().setUnlocalizedName(GlobalNames.RadX));
         radx.setRegistryName(GlobalNames.RadX);
         GameRegistry.register(radx);
 
         //----------------------AMMO-----------------
-        tenMMAmmo = (TenMMammo)(new TenMMammo().setUnlocalizedName(GlobalNames.TenMMAmmo));
+        tenMMAmmo = (TenMMammo) (new TenMMammo().setUnlocalizedName(GlobalNames.TenMMAmmo));
         tenMMAmmo.setRegistryName(GlobalNames.TenMMAmmo);
         GameRegistry.register(tenMMAmmo);
 
@@ -66,15 +65,16 @@ public class ItemInit {
         GameRegistry.register(tenMM);
 
 
-
         //----------------------UTILITY-----------------
-        pipbuck = (PipBuck)(new PipBuck().setUnlocalizedName("Pip Buck 3000"));
+        pipbuck = (PipBuck) (new PipBuck().setUnlocalizedName("Pip Buck 3000"));
         pipbuck.setRegistryName(GlobalNames.Pipbuck);
         GameRegistry.register(pipbuck);
 
     }
-    public static void InitCommon()
-    {}
-    public static void postInitCommon()
-    {}
+
+    public static void InitCommon() {
+    }
+
+    public static void postInitCommon() {
+    }
 }
