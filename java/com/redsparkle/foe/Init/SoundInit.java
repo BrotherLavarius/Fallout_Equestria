@@ -16,6 +16,7 @@ public class SoundInit {
     public static SoundEvent tenMMShot;
     public static SoundEvent tenMMReload;
     public static SoundEvent tenMMOOA;
+    public static SoundEvent tenMMClipReload;
 
     public static void registerSounds() {
         LowEntensityRad = registerSound("LowEntensityRad");
@@ -25,6 +26,7 @@ public class SoundInit {
         tenMMShot = registerSound("tenMMShot");
         tenMMReload = registerSound("tenMMReload");
         tenMMOOA = registerSound("tenMMOutOfAmmo");
+        tenMMClipReload = registerSound("tenMMClipreload");
     }
 
     /**

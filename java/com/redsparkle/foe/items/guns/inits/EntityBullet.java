@@ -16,7 +16,7 @@ public class EntityBullet extends EntityThrowable {
     public EntityBullet(World worldIn, EntityLivingBase livingBaseIn) {
         super(worldIn, livingBaseIn);
 
-        this.setThrowableHeading(livingBaseIn.getLookVec().xCoord, livingBaseIn.getLookVec().yCoord, livingBaseIn.getLookVec().zCoord, 1.5f, 0.0f);
+        this.setThrowableHeading(livingBaseIn.getLookVec().xCoord, livingBaseIn.getLookVec().yCoord, livingBaseIn.getLookVec().zCoord, 3.5f, 0.1f);
     }
 
     public EntityBullet(World worldIn, double x, double y, double z) {

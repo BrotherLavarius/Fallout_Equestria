@@ -47,6 +47,14 @@ public class GlobalNames {
             TenMMAmmo = "10mm Ammo",
             TenMMClip = "10mm Clip";
 
+
+    // PLACEHOLDERS
+
+    public static final String
+            TenMMbullet = "bullet10mm",
+            Buckshot = "buckshot",
+            RifleRound = "rifleround";
+
     // Blocks
     public static final String
             SPCmachine = "Sparkle Cola machine",

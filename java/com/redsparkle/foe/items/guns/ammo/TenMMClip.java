@@ -1,6 +1,7 @@
 package com.redsparkle.foe.items.guns.ammo;
 
 import com.redsparkle.foe.Init.ItemInit;
+import com.redsparkle.foe.Init.SoundInit;
 import com.redsparkle.foe.creativeTabs.InitCreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -10,6 +11,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -50,6 +52,27 @@ public class TenMMClip extends Item {
     }
 
     public ActionResult<ItemStack> onItemRightClick(World itemStackIn, EntityPlayer worldIn, EnumHand playerIn) {
+
+        /*
+            -------------------THIS FOR INSTA LOADING------------
+                        Ill keep this here just because.
+
+                ItemStack stack = player.getHeldItem(hand);
+        if (stack.getItemDamage() <= MaxDamage ) {
+            ItemStack found = findItemOffBar(player);
+            if (found == ItemStack.EMPTY) {
+                return new ActionResult(EnumActionResult.FAIL, player.getHeldItem(hand));
+            }else if(stack.getItemDamage() <= 0){
+                return new ActionResult(EnumActionResult.FAIL, player.getHeldItem(hand));
+            } else {
+                found.shrink(1);
+                stack.setItemDamage(stack.getItemDamage() - 1);
+                return new ActionResult(EnumActionResult.SUCCESS, player.getHeldItem(hand));
+            }
+        }
+
+         */
+
         worldIn.setActiveHand(playerIn);
         return new ActionResult(EnumActionResult.SUCCESS, worldIn.getHeldItem(playerIn));
     }
@@ -57,17 +80,18 @@ public class TenMMClip extends Item {
     public ItemStack onItemUseFinish(ItemStack stack, World worldIn, EntityLivingBase entityLiving) {
         EntityPlayer playerIn = (EntityPlayer) entityLiving;
         playerIn.getHeldItem(EnumHand.MAIN_HAND);
-        if (stack.getItemDamage() <= MaxDamage ||stack.getItemDamage() >= 1) {
+        if (stack.getItemDamage() <= MaxDamage ) {
             ItemStack found = findItemOffBar(playerIn);
             if (found == ItemStack.EMPTY) {
+                return stack;
+            }else if(stack.getItemDamage() <= 0){
                 return stack;
             } else {
                 found.shrink(1);
                 stack.setItemDamage(stack.getItemDamage() - 1);
+                worldIn.playSound(playerIn, playerIn.getPosition(), SoundInit.tenMMClipReload, SoundCategory.HOSTILE, 1.0F, 1.0F);
                 return stack;
             }
-        } else if (stack.getItemDamage() >= 1) {
-            return stack;
         }
         return stack;
 

@@ -61,6 +61,9 @@ public class ClientOnlyStartup {
         ModelLoader.setCustomModelResourceLocation(ItemInit.tenMM, 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.TenMM, "inventory"));
 
 
+        //---------------------PLACEHOLDERS--------------------------
+        ModelLoader.setCustomModelResourceLocation(ItemInit.tenMMbullet, 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.TenMMbullet, "inventory"));
+
     }
 
     public static void initClientOnly() {

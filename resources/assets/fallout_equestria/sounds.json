@@ -16,9 +16,16 @@
   "tenMMOOA": {
     "category": "player",
     "sounds": [
-      "fallout_equestria:10mmoutofammo"
+      "fallout_equestria:10mmclipload"
     ],
     "subtitle": "tenMMOOA"
+  },
+  "tenMMClipreload": {
+    "category": "player",
+    "sounds": [
+      "fallout_equestria:10mmclipload"
+    ],
+    "subtitle": "tenMMClipreload"
   },
   "LowEntensityRad": {
     "category": "player",

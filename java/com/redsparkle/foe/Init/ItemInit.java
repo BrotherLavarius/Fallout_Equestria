@@ -3,6 +3,7 @@ package com.redsparkle.foe.Init;
 import com.redsparkle.foe.items.guns.TenMM;
 import com.redsparkle.foe.items.guns.ammo.TenMMClip;
 import com.redsparkle.foe.items.guns.ammo.TenMMammo;
+import com.redsparkle.foe.items.guns.bullets.TenMMbullet;
 import com.redsparkle.foe.items.meds.RadAway;
 import com.redsparkle.foe.items.meds.RadX;
 import com.redsparkle.foe.items.utility.PipBuck;
@@ -13,16 +14,28 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
  * Created by hoijima on 14.12.16.
  */
 public class ItemInit {
+
+    // MEDS
     public static RadX radx;
     public static RadAway radAway;
 
+
+    // UTILITY
     public static PipBuck pipbuck;
 
+
+    // AMMO and CLIPS
     public static TenMMammo tenMMAmmo;
     public static TenMMClip tenMMClip;
 
-
+    // GUNS
     public static TenMM tenMM;
+
+
+    // PLACEHOLDER
+    public static TenMMbullet tenMMbullet;
+
+
 
     //public static ItemSimple itemSimple;  // this holds the unique instance of your block
 
@@ -69,6 +82,16 @@ public class ItemInit {
         pipbuck = (PipBuck) (new PipBuck().setUnlocalizedName("Pip Buck 3000"));
         pipbuck.setRegistryName(GlobalNames.Pipbuck);
         GameRegistry.register(pipbuck);
+
+
+
+
+        //----------------------PLACEHOLDER--------------------
+
+        tenMMbullet = (TenMMbullet) (new TenMMbullet().setUnlocalizedName("bullet10mm"));
+        tenMMbullet.setRegistryName("bullet10mm");
+        GameRegistry.register(tenMMbullet);
+
 
     }
 
