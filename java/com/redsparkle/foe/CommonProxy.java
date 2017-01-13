@@ -7,11 +7,8 @@ import com.redsparkle.foe.capa.IRadiationCapability;
 import com.redsparkle.foe.capa.RadsFactoryProvider;
 import com.redsparkle.foe.capa.RadsFactoryStorage;
 import com.redsparkle.foe.events.EventHandlerInit;
-import com.redsparkle.foe.events.EventHandlerPost;
 import com.redsparkle.foe.events.EventHandlerPre;
 import com.redsparkle.foe.items.guns.inits.EntityBullet;
-import com.redsparkle.foe.keys.KeyInputHandler;
-import com.redsparkle.foe.keys.testkey;
 import com.redsparkle.foe.utils.GlobalNames;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
@@ -51,7 +48,7 @@ public abstract class CommonProxy {
         StartUpCommon.postInitCommon();
         BlockInit.postInitCommon();
         ItemInit.postInitCommon();
-        MinecraftForge.EVENT_BUS.register(new EventHandlerPost());
+        //MinecraftForge.EVENT_BUS.register(new EventHandlerPost());
     }
 
     // helper to determine whether the given player is in creative mode
