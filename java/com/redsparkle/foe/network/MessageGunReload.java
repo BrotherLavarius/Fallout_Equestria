@@ -50,6 +50,12 @@ public class MessageGunReload implements IMessage {
                     if ( heldItem.getItem() instanceof TenMM){
 
                         if(findAmmo(player,"TenMM") != ItemStack.EMPTY){
+                            if (heldItem.getItemDamage() >= 13){
+                                world.playSound(playerSP, player.getPosition(), SoundInit.tenMMReload, SoundCategory.HOSTILE, 1.0F, 1.0F);
+                                heldItem.setItemDamage(findAmmo(player,"TenMM").getItemDamage());
+                                findAmmo(player,"TenMM").shrink(1);
+                            }
+                            else{
                             world.playSound(playerSP, player.getPosition(), SoundInit.tenMMReload, SoundCategory.HOSTILE, 1.0F, 1.0F);
                             Item emptyclip = ItemInit.tenMMClip;
                             ItemStack emptyClipStack = new ItemStack(emptyclip);
@@ -58,13 +64,15 @@ public class MessageGunReload implements IMessage {
                             heldItem.setItemDamage(findAmmo(player,"TenMM").getItemDamage());
                             findAmmo(player,"TenMM").shrink(1);
 
-                            player.inventory.setInventorySlotContents(InventoryManager.FindEmpty(player), emptyClipStack);
+                            player.inventory.setInventorySlotContents(InventoryManager.FindEmpty(player), emptyClipStack);}
                         }else{
-                            if (heldItem.getItemDamage() == 12) {
+
+                            if (heldItem.getItemDamage() >= 13){}
+                            if (heldItem.getItemDamage() <= 12) {
                                 world.playSound(playerSP, player.getPosition(), SoundInit.tenMMReload, SoundCategory.HOSTILE, 1.0F, 1.0F);
                                 Item emptyclip = ItemInit.tenMMClip;
                                 ItemStack emptyClipStack = new ItemStack(emptyclip);
-                                emptyClipStack.setItemDamage(12);
+                                emptyClipStack.setItemDamage(heldItem.getItemDamage());
 
                                 heldItem.setItemDamage(13);
                                 player.inventory.setInventorySlotContents(InventoryManager.FindEmpty(player), emptyClipStack);
