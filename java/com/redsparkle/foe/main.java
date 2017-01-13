@@ -1,6 +1,7 @@
 package com.redsparkle.foe;
 
 
+import com.redsparkle.foe.network.MessageGunReload;
 import com.redsparkle.foe.network.MessageUpdateClientRads;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
@@ -18,6 +19,7 @@ public class main {
     public static final String VERSION = "0.0000000-VERY ALPHA";
     public static final byte RAIATION_CAPABILITY_MESSAGE_ID_SERVER = 95;      // a unique ID for this message type.  It helps detect errors if you don't use zero!
     public static final byte RAIATION_CAPABILITY_MESSAGE_ID_CLIENT = 96;
+    public static final byte RELOAD_MESSAGE_ID_SERVER = 97;
     public static SimpleNetworkWrapper simpleNetworkWrapper;    // used to transmit your network messages
     @Mod.Instance(main.MODID)
     public static main instance;
@@ -48,7 +50,7 @@ public class main {
 
         simpleNetworkWrapper = NetworkRegistry.INSTANCE.newSimpleChannel("FOE Network Channel");
         simpleNetworkWrapper.registerMessage(MessageUpdateClientRads.Handler.class, MessageUpdateClientRads.class, RAIATION_CAPABILITY_MESSAGE_ID_CLIENT, Side.CLIENT);
-
+        simpleNetworkWrapper.registerMessage(MessageGunReload.Handler.class, MessageGunReload.class, RELOAD_MESSAGE_ID_SERVER, Side.SERVER);
 
     }
 
