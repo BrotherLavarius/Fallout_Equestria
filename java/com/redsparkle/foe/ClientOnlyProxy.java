@@ -3,11 +3,13 @@ package com.redsparkle.foe;
 import com.redsparkle.foe.Init.ClientOnlyStartup;
 import com.redsparkle.foe.keys.KeyInputHandler;
 import com.redsparkle.foe.keys.testkey;
+import com.redsparkle.foe.network.MessageUpdateClientRads;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.fml.relauncher.Side;
 
 /**
  * Created by hoijima on 14.12.16.
@@ -23,6 +25,8 @@ public class ClientOnlyProxy extends CommonProxy {
 
     public void Init() {
         super.init();
+        main.simpleNetworkWrapper.registerMessage(MessageUpdateClientRads.Handler.class, MessageUpdateClientRads.class, main.RAIATION_CAPABILITY_MESSAGE_ID_CLIENT, Side.CLIENT);
+
         ClientOnlyStartup.initClientOnly();
     }
 
