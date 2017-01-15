@@ -50,22 +50,18 @@ public class MessageGunReload implements IMessage {
                     mainThread.addScheduledTask(new Runnable() {
                         @Override
                         public void run() {
-                            if (heldItem.getItemDamage() == 12) {
+                            if (heldItem.getItemDamage() <= 12){
                                 if (findAmmo(player, "TenMM") != ItemStack.EMPTY) {
                                     heldItem.setItemDamage(findAmmo(player, "TenMM").getItemDamage());
                                     findAmmo(player, "TenMM").shrink(1);
-                                    //main.simpleNetworkWrapper.sendTo(new MessageGunReloadToClient(0), player);
-
-                                } else {
-                                    Item emptyclip = ItemInit.tenMMClip;
-                                    ItemStack emptyClipStack = new ItemStack(emptyclip);
-                                    emptyClipStack.setItemDamage(heldItem.getItemDamage());
-                                    heldItem.setItemDamage(findAmmo(player, "TenMM").getItemDamage());
-                                    findAmmo(player, "TenMM").shrink(1);
-                                    player.inventory.setInventorySlotContents(InventoryManager.FindEmpty(player), emptyClipStack);
-                                    //main.simpleNetworkWrapper.sendTo(new MessageGunReloadToClient(0), player);
-
-                                }
+                                }else {
+                                        Item emptyclip = ItemInit.tenMMClip;
+                                        ItemStack emptyClipStack = new ItemStack(emptyclip);
+                                        emptyClipStack.setItemDamage(heldItem.getItemDamage());
+                                        heldItem.setItemDamage(13);
+                                        player.inventory.setInventorySlotContents(InventoryManager.FindEmpty(player), emptyClipStack);
+                                        //main.simpleNetworkWrapper.sendTo(new MessageGunReloadToClient(0), player);
+                                    }
                             }else if (heldItem.getItemDamage() == 13){
                                 if (findAmmo(player, "TenMM") != ItemStack.EMPTY) {
                                     heldItem.setItemDamage(findAmmo(player, "TenMM").getItemDamage());
