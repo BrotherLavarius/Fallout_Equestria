@@ -70,7 +70,7 @@ public class TenMM extends Item {
 
 
         if (!playerIn.capabilities.isCreativeMode) {
-            if (itemstack.getItemDamage() == 12) {
+            if (itemstack.getItemDamage() >= 12) {
                 if (findAmmo(playerIn) == ItemStack.EMPTY) {
                     // ---------------_EMPTY CLIP
                     worldIn.playSound(playerIn, playerIn.getPosition(), SoundInit.tenMMOOA, SoundCategory.HOSTILE, 0.5F, 0.4F);

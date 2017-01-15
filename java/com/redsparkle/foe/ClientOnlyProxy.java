@@ -1,6 +1,10 @@
 package com.redsparkle.foe;
 
 import com.redsparkle.foe.Init.ClientOnlyStartup;
+import com.redsparkle.foe.Init.SoundInit;
+import com.redsparkle.foe.capa.IRadiationCapability;
+import com.redsparkle.foe.capa.RadsFactoryProvider;
+import com.redsparkle.foe.items.guns.TenMM;
 import com.redsparkle.foe.keys.KeyInputHandler;
 import com.redsparkle.foe.keys.testkey;
 import com.redsparkle.foe.network.MessageUpdateClientRads;
@@ -8,6 +12,10 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.SoundCategory;
+import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.relauncher.Side;
 
@@ -51,4 +59,29 @@ public class ClientOnlyProxy extends CommonProxy {
     public boolean isDedicatedServer() {
         return false;
     }
+
+    public static void handleRadMessage(MessageUpdateClientRads message) {
+        Minecraft.getMinecraft().addScheduledTask(() -> {
+            EntityPlayer player = Minecraft.getMinecraft().player;
+            IRadiationCapability rad = RadsFactoryProvider.instanceFor(player);
+            rad.setRadiation(message.radiation);
+            /** DEBUG MESSAGE ENABLER
+             * System.out.println("Client: "+message.radiation);
+             */
+
+        });
+    }
+
+    public static void handleGunMessageFire(Item gun){
+
+    }
+    public static void handleGundMessageReload(ItemStack gun,World world){
+        EntityPlayer player = Minecraft.getMinecraft().player;
+        if ( gun.getItem() instanceof TenMM){
+            world.playSound(player, player.getPosition(), SoundInit.tenMMReload, SoundCategory.HOSTILE, 1.0F, 1.0F);
+
+        }
+
+    }
+
 }
