@@ -5,6 +5,7 @@ import com.redsparkle.foe.Init.ItemInit;
 import com.redsparkle.foe.Init.SoundInit;
 import com.redsparkle.foe.items.guns.TenMM;
 import com.redsparkle.foe.items.guns.ammo.TenMMClip;
+import com.redsparkle.foe.main;
 import com.redsparkle.foe.utils.InventoryManager;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.client.Minecraft;
@@ -41,50 +42,46 @@ public class MessageGunReload implements IMessage {
 
         @Override
         public IMessage onMessage(MessageGunReload message, MessageContext ctx) {
-            EntityPlayerMP player = ctx.getServerHandler().playerEntity;
-            WorldServer world = (WorldServer) player.world;
+            final EntityPlayerMP player = ctx.getServerHandler().playerEntity;
+            WorldServer mainThread = (WorldServer) (player.world);
             ItemStack heldItem = player.getHeldItem(EnumHand.MAIN_HAND);
-            world.addScheduledTask(() -> {
-                ItemStack stack = player.getHeldItemMainhand();
-                if (stack != null && heldItem.getTagCompound().getBoolean("isgun")) {
-                    if ( heldItem.getItem() instanceof TenMM){
+            if (heldItem != null  ) { //&& heldItem.getTagCompound().getBoolean("isgun")
+                if (heldItem.getItem() instanceof TenMM) {
+                    mainThread.addScheduledTask(new Runnable() {
+                        @Override
+                        public void run() {
+                            if (heldItem.getItemDamage() == 12) {
+                                if (findAmmo(player, "TenMM") != ItemStack.EMPTY) {
+                                    heldItem.setItemDamage(findAmmo(player, "TenMM").getItemDamage());
+                                    findAmmo(player, "TenMM").shrink(1);
+                                    //main.simpleNetworkWrapper.sendTo(new MessageGunReloadToClient(0), player);
 
-                        if(findAmmo(player,"TenMM") != ItemStack.EMPTY){
-                            if (heldItem.getItemDamage() >= 13){
-                                ClientOnlyProxy.handleGundMessageReload(heldItem,world);
-                                heldItem.setItemDamage(findAmmo(player,"TenMM").getItemDamage());
-                                findAmmo(player,"TenMM").shrink(1);
-                            }
-                            else{
-                                ClientOnlyProxy.handleGundMessageReload(heldItem,world);
-                                Item emptyclip = ItemInit.tenMMClip;
-                                ItemStack emptyClipStack = new ItemStack(emptyclip);
-                                emptyClipStack.setItemDamage(heldItem.getItemDamage());
-                                heldItem.setItemDamage(findAmmo(player,"TenMM").getItemDamage());
-                                findAmmo(player,"TenMM").shrink(1);
-                                player.inventory.setInventorySlotContents(InventoryManager.FindEmpty(player), emptyClipStack);}
-                        }else{
+                                } else {
+                                    Item emptyclip = ItemInit.tenMMClip;
+                                    ItemStack emptyClipStack = new ItemStack(emptyclip);
+                                    emptyClipStack.setItemDamage(heldItem.getItemDamage());
+                                    heldItem.setItemDamage(findAmmo(player, "TenMM").getItemDamage());
+                                    findAmmo(player, "TenMM").shrink(1);
+                                    player.inventory.setInventorySlotContents(InventoryManager.FindEmpty(player), emptyClipStack);
+                                    //main.simpleNetworkWrapper.sendTo(new MessageGunReloadToClient(0), player);
 
-                            if (heldItem.getItemDamage() >= 13){}
-                            if (heldItem.getItemDamage() <= 12) {
-                                ClientOnlyProxy.handleGundMessageReload(heldItem,world);
-                                Item emptyclip = ItemInit.tenMMClip;
-                                ItemStack emptyClipStack = new ItemStack(emptyclip);
-                                emptyClipStack.setItemDamage(heldItem.getItemDamage());
-
-                                heldItem.setItemDamage(13);
-                                player.inventory.setInventorySlotContents(InventoryManager.FindEmpty(player), emptyClipStack);
+                                }
+                            }else if (heldItem.getItemDamage() == 13){
+                                if (findAmmo(player, "TenMM") != ItemStack.EMPTY) {
+                                    heldItem.setItemDamage(findAmmo(player, "TenMM").getItemDamage());
+                                    findAmmo(player, "TenMM").shrink(1);
+                                    //main.simpleNetworkWrapper.sendTo(new MessageGunReloadToClient(0), player);
+                                }
                             }
                         }
-
-                    }
-
-
-
+                    });
                 }
-            });
+
+            }
             return null;
         }
+
+
 
         public ItemStack findAmmo(EntityPlayer player, String ammo) {
             for (int i = 0; i < invArray.length; ++i) {

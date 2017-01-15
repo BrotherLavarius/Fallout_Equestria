@@ -7,6 +7,7 @@ import com.redsparkle.foe.capa.RadsFactoryProvider;
 import com.redsparkle.foe.items.guns.TenMM;
 import com.redsparkle.foe.keys.KeyInputHandler;
 import com.redsparkle.foe.keys.testkey;
+import com.redsparkle.foe.network.MessageGunReloadToClient;
 import com.redsparkle.foe.network.MessageUpdateClientRads;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
@@ -75,13 +76,14 @@ public class ClientOnlyProxy extends CommonProxy {
     public static void handleGunMessageFire(Item gun){
 
     }
-    public static void handleGundMessageReload(ItemStack gun,World world){
+    public static void handleGundMessageReload(String gun){
+        System.out.println(gun);
         EntityPlayer player = Minecraft.getMinecraft().player;
-        if ( gun.getItem() instanceof TenMM){
-            world.playSound(player, player.getPosition(), SoundInit.tenMMReload, SoundCategory.HOSTILE, 1.0F, 1.0F);
+        //if ( gun. instanceof TenMM){
+        //    world.playSound(player, player.getPosition(), SoundInit.tenMMReload, SoundCategory.HOSTILE, 1.0F, 1.0F);
 
         }
 
     }
 
-}
+
