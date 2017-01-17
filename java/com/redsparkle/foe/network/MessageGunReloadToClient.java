@@ -10,8 +10,8 @@ import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
  * Created by NENYN on 1/15/2017.
  */
 public class MessageGunReloadToClient implements IMessage {
-    public Integer gun;
-    public String[] guns = {"TenMM","LazerPistol","DobleBarrelShotgun"};
+    public Integer gun ;
+    //public String[] guns = {"TenMM","LazerPistol","DobleBarrelShotgun"};
 
     MessageGunReloadToClient(){}
 
@@ -21,18 +21,20 @@ public class MessageGunReloadToClient implements IMessage {
 
     @Override
     public void fromBytes(ByteBuf buf) {
+
         gun = buf.readInt();
     }
 
     @Override
     public void toBytes(ByteBuf buf) {
+
         buf.writeInt(gun);
     }
     public static class Handler implements IMessageHandler<MessageGunReloadToClient, IMessage> {
 
         @Override
         public IMessage onMessage(MessageGunReloadToClient message, MessageContext ctx) {
-            //ClientOnlyProxy.handleGundMessageReload(message.toString());
+            ClientOnlyProxy.handleGundMessageReload(message);
             return null;
         }
 

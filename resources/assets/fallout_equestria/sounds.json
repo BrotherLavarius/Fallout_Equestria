@@ -13,12 +13,12 @@
     ],
     "subtitle": "tenMMReload"
   },
-  "tenMMOOA": {
+  "tenMMOutOfAmmo": {
     "category": "player",
     "sounds": [
       "fallout_equestria:10mmclipload"
     ],
-    "subtitle": "tenMMOOA"
+    "subtitle": "tenMMOutOfAmmo"
   },
   "tenMMClipreload": {
     "category": "player",

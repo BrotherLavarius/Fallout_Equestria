@@ -60,13 +60,13 @@ public class MessageGunReload implements IMessage {
                                         emptyClipStack.setItemDamage(heldItem.getItemDamage());
                                         heldItem.setItemDamage(13);
                                         player.inventory.setInventorySlotContents(InventoryManager.FindEmpty(player), emptyClipStack);
-                                        //main.simpleNetworkWrapper.sendTo(new MessageGunReloadToClient(0), player);
+                                        //main.simpleNetworkWrapper.sendToAll(new MessageGunReloadToClient(0));
                                     }
                             }else if (heldItem.getItemDamage() == 13){
                                 if (findAmmo(player, "TenMM") != ItemStack.EMPTY) {
                                     heldItem.setItemDamage(findAmmo(player, "TenMM").getItemDamage());
                                     findAmmo(player, "TenMM").shrink(1);
-                                    //main.simpleNetworkWrapper.sendTo(new MessageGunReloadToClient(0), player);
+                                    //main.simpleNetworkWrapper.sendToAll(new MessageGunReloadToClient(0));
                                 }
                             }
                         }
