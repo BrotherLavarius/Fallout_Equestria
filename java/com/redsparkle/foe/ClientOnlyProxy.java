@@ -78,8 +78,8 @@ public class ClientOnlyProxy extends CommonProxy {
     }
     public static void handleGundMessageReload(MessageGunReloadToClient message){
         Minecraft.getMinecraft().addScheduledTask(() -> {
-        System.out.println(message.gun);
-        EntityPlayer player = Minecraft.getMinecraft().player;
+            System.out.println(message.gun.toString());
+        //EntityPlayer player = Minecraft.getMinecraft().player;
         //if ( gun. instanceof TenMM){
         //    world.playSound(player, player.getPosition(), SoundInit.tenMMReload, SoundCategory.HOSTILE, 1.0F, 1.0F);
 
