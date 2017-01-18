@@ -9,8 +9,10 @@ import com.redsparkle.foe.capa.RadsFactoryStorage;
 import com.redsparkle.foe.events.EventHandlerInit;
 import com.redsparkle.foe.events.EventHandlerPre;
 import com.redsparkle.foe.items.guns.inits.EntityBullet;
+import com.redsparkle.foe.network.MessageGunReloadReply;
 import com.redsparkle.foe.utils.GlobalNames;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.capabilities.CapabilityManager;
@@ -61,4 +63,6 @@ public abstract class CommonProxy {
      * @return true if this is a dedicated server, false otherwise
      */
     abstract public boolean isDedicatedServer();
+
+
 }

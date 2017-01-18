@@ -14,19 +14,25 @@ public class SoundInit {
     public static SoundEvent HighEntensityRad;
     public static SoundEvent Enervation;
     public static SoundEvent tenMMShot;
-    public static SoundEvent tenMMReload;
     public static SoundEvent tenMMOOA;
-    public static SoundEvent tenMMClipReload;
+    public static SoundEvent tenMMReload;
+    public static SoundEvent tenMMClipLoad;
+    public static SoundEvent tenMMClipIn;
+    public static SoundEvent tenMMClipOut;
 
     public static void registerSounds() {
         LowEntensityRad = registerSound("LowEntensityRad");
         MediumEntensityRad = registerSound("MediumEntensityRad");
         HighEntensityRad = registerSound("HighEntensityRad");
         Enervation = registerSound("Enervation");
+
+
         tenMMShot = registerSound("tenMMShot");
         tenMMReload = registerSound("tenMMReload");
         tenMMOOA = registerSound("tenMMOutOfAmmo");
-        tenMMClipReload = registerSound("tenMMClipreload");
+        tenMMClipLoad = registerSound("tenMMClipLoad");
+        tenMMClipIn = registerSound("tenMMClipIn");
+        tenMMClipOut = registerSound("tenMMClipOut");
     }
 
     /**

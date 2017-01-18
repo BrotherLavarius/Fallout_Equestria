@@ -9,31 +9,33 @@ import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 /**
  * Created by NENYN on 1/15/2017.
  */
-public class MessageGunReloadToClient implements IMessage {
-    public Integer gun ;
+public class MessageGunReloadReply implements IMessage {
+    public int soundname = 0;
     //public String[] guns = {"TenMM","LazerPistol","DobleBarrelShotgun"};
 
-    MessageGunReloadToClient(){}
+    public MessageGunReloadReply(){}
 
-    MessageGunReloadToClient(Integer gun){
-        this.gun = gun;
-    }
-
-    @Override
-    public void fromBytes(ByteBuf buf) {
-
-        gun = buf.readInt();
+    public MessageGunReloadReply(Integer soundname){
+        this.soundname = soundname;
     }
 
     @Override
     public void toBytes(ByteBuf buf) {
 
-        buf.writeInt(gun);
+        buf.writeInt(soundname);
     }
-    public static class Handler implements IMessageHandler<MessageGunReloadToClient, IMessage> {
+
+    @Override
+    public void fromBytes(ByteBuf buf) {
+
+        soundname = buf.readInt();
+    }
+
+
+    public static class Handler implements IMessageHandler<MessageGunReloadReply, IMessage> {
 
         @Override
-        public IMessage onMessage(MessageGunReloadToClient message, MessageContext ctx) {
+        public IMessage onMessage(MessageGunReloadReply message, MessageContext ctx) {
             ClientOnlyProxy.handleGundMessageReload(message);
             return null;
         }

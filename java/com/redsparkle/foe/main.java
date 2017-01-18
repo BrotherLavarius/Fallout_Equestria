@@ -2,7 +2,7 @@ package com.redsparkle.foe;
 
 
 import com.redsparkle.foe.network.MessageGunReload;
-import com.redsparkle.foe.network.MessageGunReloadToClient;
+import com.redsparkle.foe.network.MessageGunReloadReply;
 import com.redsparkle.foe.network.MessageUpdateClientRads;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
@@ -52,7 +52,7 @@ public class main {
         simpleNetworkWrapper = NetworkRegistry.INSTANCE.newSimpleChannel("FOE Network Channel");
         simpleNetworkWrapper.registerMessage(MessageUpdateClientRads.Handler.class, MessageUpdateClientRads.class, RAIATION_CAPABILITY_MESSAGE_ID_CLIENT, Side.CLIENT);
         simpleNetworkWrapper.registerMessage(MessageGunReload.Handler.class, MessageGunReload.class, RELOAD_MESSAGE_ID_SERVER, Side.SERVER);
-        simpleNetworkWrapper.registerMessage(MessageGunReloadToClient.Handler.class, MessageGunReloadToClient.class, RELOAD_MESSAGE_ID_CLIENT, Side.CLIENT);
+        simpleNetworkWrapper.registerMessage(MessageGunReloadReply.Handler.class, MessageGunReloadReply.class, RELOAD_MESSAGE_ID_CLIENT, Side.CLIENT);
 
     }
 

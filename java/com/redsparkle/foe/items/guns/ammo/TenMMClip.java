@@ -89,7 +89,7 @@ public class TenMMClip extends Item {
             } else {
                 found.shrink(1);
                 stack.setItemDamage(stack.getItemDamage() - 1);
-                worldIn.playSound(playerIn, playerIn.getPosition(), SoundInit.tenMMClipReload, SoundCategory.HOSTILE, 1.0F, 1.0F);
+                worldIn.playSound(playerIn, playerIn.getPosition(), SoundInit.tenMMClipLoad, SoundCategory.HOSTILE, 1.0F, 1.0F);
                 return stack;
             }
         }

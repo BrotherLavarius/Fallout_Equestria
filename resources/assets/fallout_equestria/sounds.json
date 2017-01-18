@@ -2,31 +2,48 @@
   "tenMMShot": {
     "category": "player",
     "sounds": [
-      "fallout_equestria:10mmshot"
+      "fallout_equestria:guns/10mm/wpn_pistol10mm_fire_2d"
     ],
     "subtitle": "tenMMShot"
   },
   "tenMMReload": {
     "category": "player",
     "sounds": [
-      "fallout_equestria:10mmreload"
+      "fallout_equestria:guns/10mm/wpn_pistol10mm_reload_boltclo"
     ],
     "subtitle": "tenMMReload"
   },
   "tenMMOutOfAmmo": {
     "category": "player",
     "sounds": [
-      "fallout_equestria:10mmclipload"
+      "fallout_equestria:guns/10mm/wpn_pistol10mm_fire_dry"
     ],
     "subtitle": "tenMMOutOfAmmo"
   },
-  "tenMMClipreload": {
+
+  "tenMMClipLoad": {
     "category": "player",
     "sounds": [
-      "fallout_equestria:10mmclipload"
+      "fallout_equestria:guns/10mm/10mmclipload"
     ],
-    "subtitle": "tenMMClipreload"
+    "subtitle": "tenMMClipLoad"
   },
+
+  "tenMMClipIn": {
+    "category": "player",
+    "sounds": [
+      "fallout_equestria:guns/10mm/wpn_pistol10mm_reload_magin_0"
+    ],
+    "subtitle": "tenMMClipIn"
+  },
+  "tenMMClipOut": {
+    "category": "player",
+    "sounds": [
+      "fallout_equestria:guns/10mm/wpn_pistol10mm_reload_magout_"
+    ],
+    "subtitle": "tenMMClipOut"
+  },
+
   "LowEntensityRad": {
     "category": "player",
     "sounds": [

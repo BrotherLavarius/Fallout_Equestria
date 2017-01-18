@@ -23,17 +23,13 @@ public class EntityBullet extends EntityThrowable {
     public EntityBullet(World worldIn, EntityLivingBase livingBaseIn) {
         super(worldIn, livingBaseIn);
 
-        this.setThrowableHeading(livingBaseIn.getLookVec().xCoord, livingBaseIn.getLookVec().yCoord, livingBaseIn.getLookVec().zCoord, 3.5f, 3.1f);
+        this.setThrowableHeading(livingBaseIn.getLookVec().xCoord, livingBaseIn.getLookVec().yCoord, livingBaseIn.getLookVec().zCoord, 0.5f, 3.1f);
     }
 
     public EntityBullet(World worldIn, double x, double y, double z) {
         super(worldIn, x, y, z);
     }
 
-    public static void registerFixesSnowball(DataFixer fixer)
-    {
-        EntityThrowable.registerFixesThrowable(fixer, "Snowball");
-    }
 
     @SideOnly(Side.CLIENT)
     public void handleStatusUpdate(byte id)
@@ -54,11 +50,11 @@ public class EntityBullet extends EntityThrowable {
     {
         if (result.entityHit != null)
         {
-            int i = 0;
+            int i = damage;
 
             if (result.entityHit instanceof EntityBlaze)
             {
-                i = 3;
+                i = damage -2;
             }
 
             result.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, this.getThrower()), (float)i);

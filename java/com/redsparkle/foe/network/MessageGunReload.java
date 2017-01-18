@@ -1,20 +1,17 @@
 package com.redsparkle.foe.network;
 
-import com.redsparkle.foe.ClientOnlyProxy;
+import com.redsparkle.foe.CommonProxy;
 import com.redsparkle.foe.Init.ItemInit;
-import com.redsparkle.foe.Init.SoundInit;
 import com.redsparkle.foe.items.guns.TenMM;
 import com.redsparkle.foe.items.guns.ammo.TenMMClip;
 import com.redsparkle.foe.main;
 import com.redsparkle.foe.utils.InventoryManager;
 import io.netty.buffer.ByteBuf;
-import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumHand;
-import net.minecraft.util.SoundCategory;
 import net.minecraft.world.WorldServer;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
@@ -52,21 +49,28 @@ public class MessageGunReload implements IMessage {
                         public void run() {
                             if (heldItem.getItemDamage() <= 12){
                                 if (findAmmo(player, "TenMM") != ItemStack.EMPTY) {
+                                    Item clip = ItemInit.tenMMClip;
+                                    ItemStack clipstack = new ItemStack(clip);
+                                    clipstack.setItemDamage(heldItem.getItemDamage());
                                     heldItem.setItemDamage(findAmmo(player, "TenMM").getItemDamage());
                                     findAmmo(player, "TenMM").shrink(1);
+                                    player.inventory.setInventorySlotContents(InventoryManager.FindEmpty(player), clipstack);
+                                    main.simpleNetworkWrapper.sendTo(new MessageGunReloadReply(0),player);
                                 }else {
                                         Item emptyclip = ItemInit.tenMMClip;
                                         ItemStack emptyClipStack = new ItemStack(emptyclip);
                                         if(heldItem.getItemDamage() == 0){emptyClipStack.setItemDamage(1);}else{emptyClipStack.setItemDamage(heldItem.getItemDamage());}
                                         heldItem.setItemDamage(13);
                                         player.inventory.setInventorySlotContents(InventoryManager.FindEmpty(player), emptyClipStack);
-                                        //main.simpleNetworkWrapper.sendToAll(new MessageGunReloadToClient(0));
+                                        main.simpleNetworkWrapper.sendTo(new MessageGunReloadReply(1),player);
+                                 //CommonProxy.sendSound(0,player);
                                     }
                             }else if (heldItem.getItemDamage() == 13){
                                 if (findAmmo(player, "TenMM") != ItemStack.EMPTY) {
                                     heldItem.setItemDamage(findAmmo(player, "TenMM").getItemDamage());
                                     findAmmo(player, "TenMM").shrink(1);
-                                    //main.simpleNetworkWrapper.sendToAll(new MessageGunReloadToClient(0));
+                                    main.simpleNetworkWrapper.sendTo(new MessageGunReloadReply(0),player);
+
                                 }
                             }
                         }
