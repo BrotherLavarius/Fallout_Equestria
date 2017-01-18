@@ -75,7 +75,7 @@ public class TenMM extends Item {
                     entitybullet.setHeadingFromThrower(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, 1.5F, 1.0F);
                     worldIn.spawnEntity(entitybullet);
                     itemstack.setItemDamage(itemstack.getItemDamage() + 1);
-                    playerIn.cameraYaw = +1.5F;
+                    playerIn.cameraYaw = -0.5F;
                     return new ActionResult<>(EnumActionResult.SUCCESS, itemstack);
             }
 

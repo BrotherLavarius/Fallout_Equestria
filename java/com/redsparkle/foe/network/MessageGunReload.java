@@ -57,7 +57,7 @@ public class MessageGunReload implements IMessage {
                                 }else {
                                         Item emptyclip = ItemInit.tenMMClip;
                                         ItemStack emptyClipStack = new ItemStack(emptyclip);
-                                        emptyClipStack.setItemDamage(heldItem.getItemDamage());
+                                        if(heldItem.getItemDamage() == 0){emptyClipStack.setItemDamage(1);}else{emptyClipStack.setItemDamage(heldItem.getItemDamage());}
                                         heldItem.setItemDamage(13);
                                         player.inventory.setInventorySlotContents(InventoryManager.FindEmpty(player), emptyClipStack);
                                         //main.simpleNetworkWrapper.sendToAll(new MessageGunReloadToClient(0));

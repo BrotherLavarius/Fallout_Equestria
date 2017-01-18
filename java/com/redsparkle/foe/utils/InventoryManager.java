@@ -1,6 +1,7 @@
 package com.redsparkle.foe.utils;
 
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemAir;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumHand;
 
@@ -15,7 +16,7 @@ public class InventoryManager {
         for (int i = 9; i <= player.inventory.getSizeInventory(); ++i) {
             ItemStack itemstack = player.inventory.getStackInSlot(i);
 
-            if (itemstack == ItemStack.EMPTY || itemstack == null) {
+            if (itemstack == ItemStack.EMPTY || itemstack == null || itemstack != player.inventory.getStackInSlot(i)) {
                 return i;
             }
         }
