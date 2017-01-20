@@ -1,15 +1,10 @@
 package com.redsparkle.foe.network;
 
-import com.redsparkle.foe.CommonProxy;
-import com.redsparkle.foe.Init.ItemInit;
+import com.redsparkle.foe.items.guns.LaserPistol;
 import com.redsparkle.foe.items.guns.TenMM;
-import com.redsparkle.foe.items.guns.ammo.TenMMClip;
-import com.redsparkle.foe.main;
-import com.redsparkle.foe.utils.InventoryManager;
+import com.redsparkle.foe.network.helpers.gunReload;
 import io.netty.buffer.ByteBuf;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumHand;
 import net.minecraft.world.WorldServer;
@@ -42,69 +37,19 @@ public class MessageGunReload implements IMessage {
             final EntityPlayerMP player = ctx.getServerHandler().playerEntity;
             WorldServer mainThread = (WorldServer) (player.world);
             ItemStack heldItem = player.getHeldItem(EnumHand.MAIN_HAND);
-            if (heldItem != null  ) { //&& heldItem.getTagCompound().getBoolean("isgun")
+            if (heldItem != null) { //&& heldItem.getTagCompound().getBoolean("isgun")
                 if (heldItem.getItem() instanceof TenMM) {
-                    mainThread.addScheduledTask(new Runnable() {
-                        @Override
-                        public void run() {
-                            if (heldItem.getItemDamage() <= 12){
-                                if (findAmmo(player, "TenMM") != ItemStack.EMPTY) {
-                                    Item clip = ItemInit.tenMMClip;
-                                    ItemStack clipstack = new ItemStack(clip);
-                                    clipstack.setItemDamage(heldItem.getItemDamage());
-                                    heldItem.setItemDamage(findAmmo(player, "TenMM").getItemDamage());
-                                    findAmmo(player, "TenMM").shrink(1);
-                                    player.inventory.setInventorySlotContents(InventoryManager.FindEmpty(player), clipstack);
-                                    main.simpleNetworkWrapper.sendTo(new MessageGunReloadReply(0),player);
-                                }else {
-                                        Item emptyclip = ItemInit.tenMMClip;
-                                        ItemStack emptyClipStack = new ItemStack(emptyclip);
-                                        if(heldItem.getItemDamage() == 0){emptyClipStack.setItemDamage(1);}else{emptyClipStack.setItemDamage(heldItem.getItemDamage());}
-                                        heldItem.setItemDamage(13);
-                                        player.inventory.setInventorySlotContents(InventoryManager.FindEmpty(player), emptyClipStack);
-                                        main.simpleNetworkWrapper.sendTo(new MessageGunReloadReply(1),player);
-                                 //CommonProxy.sendSound(0,player);
-                                    }
-                            }else if (heldItem.getItemDamage() == 13){
-                                if (findAmmo(player, "TenMM") != ItemStack.EMPTY) {
-                                    heldItem.setItemDamage(findAmmo(player, "TenMM").getItemDamage());
-                                    findAmmo(player, "TenMM").shrink(1);
-                                    main.simpleNetworkWrapper.sendTo(new MessageGunReloadReply(0),player);
+                    gunReload.TenMM(mainThread, heldItem, player);
 
-                                }
-                            }
-                        }
-                    });
+                }else if (heldItem.getItem() instanceof LaserPistol){
+                    gunReload.LaserPistol(mainThread, heldItem, player);
                 }
+
 
             }
             return null;
         }
 
 
-
-        public ItemStack findAmmo(EntityPlayer player, String ammo) {
-            for (int i = 0; i < invArray.length; ++i) {
-                ItemStack itemstack = player.inventory.getStackInSlot(i);
-
-                if (this.isAmmo(itemstack,ammo)) {
-                    if (itemstack.getItemDamage() >= 12) {
-                        return ItemStack.EMPTY;
-                    } else {
-                        return itemstack;
-                    }
-                }
-                // }
-            }
-            return ItemStack.EMPTY;
-        }
-
-        public boolean isAmmo(ItemStack stack,String ammo) {
-            if (ammo == "TenMM"){
-                return stack.getItem() instanceof TenMMClip;
-            }
-            return false;
-
-        }
     }
 }

@@ -1,9 +1,10 @@
 package com.redsparkle.foe.Init;
 
+import com.redsparkle.foe.items.guns.LaserPistol;
 import com.redsparkle.foe.items.guns.TenMM;
-import com.redsparkle.foe.items.guns.ammo.TenMMClip;
-import com.redsparkle.foe.items.guns.ammo.TenMMammo;
-import com.redsparkle.foe.items.guns.bullets.TenMMbullet;
+import com.redsparkle.foe.items.guns.ammo.LaserWeapons.Battery;
+import com.redsparkle.foe.items.guns.ammo.TenMM.TenMMClip;
+import com.redsparkle.foe.items.guns.ammo.TenMM.TenMMammo;
 import com.redsparkle.foe.items.meds.RadAway;
 import com.redsparkle.foe.items.meds.RadX;
 import com.redsparkle.foe.items.utility.PipBuck;
@@ -28,12 +29,14 @@ public class ItemInit {
     public static TenMMammo tenMMAmmo;
     public static TenMMClip tenMMClip;
 
+    public static Battery battery;
+
     // GUNS
     public static TenMM tenMM;
-
+    public static LaserPistol laserPistol;
 
     // PLACEHOLDER
-    public static TenMMbullet tenMMbullet;
+    //public static TenMMbullet tenMMbullet;
 
 
 
@@ -70,6 +73,10 @@ public class ItemInit {
         tenMMClip.setRegistryName(GlobalNames.TenMMClip);
         GameRegistry.register(tenMMClip);
 
+        battery = (Battery) (new Battery().setUnlocalizedName(GlobalNames.Battery));
+        battery.setRegistryName(GlobalNames.Battery);
+        GameRegistry.register(battery);
+
 
         //----------------------GUNS--------------------
 
@@ -77,6 +84,9 @@ public class ItemInit {
         tenMM.setRegistryName(GlobalNames.TenMM);
         GameRegistry.register(tenMM);
 
+        laserPistol = (LaserPistol) (new LaserPistol().setUnlocalizedName(GlobalNames.LaserPistol));
+        laserPistol.setRegistryName(GlobalNames.LaserPistol);
+        GameRegistry.register(laserPistol);
 
         //----------------------UTILITY-----------------
         pipbuck = (PipBuck) (new PipBuck().setUnlocalizedName("Pip Buck 3000"));
@@ -87,11 +97,11 @@ public class ItemInit {
 
 
         //----------------------PLACEHOLDER--------------------
-
+/*
         tenMMbullet = (TenMMbullet) (new TenMMbullet().setUnlocalizedName("bullet10mm"));
         tenMMbullet.setRegistryName("bullet10mm");
         GameRegistry.register(tenMMbullet);
-
+*/
 
     }
 

@@ -6,8 +6,8 @@ import com.redsparkle.foe.block.interractable.DesktopTerminal;
 import com.redsparkle.foe.creativeTabs.InitCreativeTabs;
 import com.redsparkle.foe.events.EventHandlerOverlayPipBuck;
 import com.redsparkle.foe.gui.PipBuckGui;
-import com.redsparkle.foe.items.guns.inits.EntityBullet;
-import com.redsparkle.foe.items.guns.inits.render.RenderBulletEntity;
+import com.redsparkle.foe.items.guns.inits.bulletFiredGuns.EntityBullet;
+import com.redsparkle.foe.items.guns.inits.bulletFiredGuns.render.RenderBulletEntity;
 import com.redsparkle.foe.utils.GlobalNames;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
@@ -56,13 +56,15 @@ public class ClientOnlyStartup {
         ModelLoader.setCustomModelResourceLocation(ItemInit.tenMMAmmo, DEFAULT_ITEM_SUBTYPE, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.TenMMAmmo, "inventory"));
         ModelLoader.setCustomModelResourceLocation(ItemInit.tenMMClip, DEFAULT_ITEM_SUBTYPE, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.TenMMClip, "inventory"));
 
+        ModelLoader.setCustomModelResourceLocation(ItemInit.battery, DEFAULT_ITEM_SUBTYPE, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.Battery, "inventory"));
 
         //---------------------GUNS--------------------------
         ModelLoader.setCustomModelResourceLocation(ItemInit.tenMM, 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.TenMM, "inventory"));
+        ModelLoader.setCustomModelResourceLocation(ItemInit.laserPistol, 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.LaserPistol, "inventory"));
 
 
         //---------------------PLACEHOLDERS--------------------------
-        ModelLoader.setCustomModelResourceLocation(ItemInit.tenMMbullet, 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.TenMMbullet, "inventory"));
+        //ModelLoader.setCustomModelResourceLocation(ItemInit.tenMMbullet, 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.TenMMbullet, "inventory"));
 
     }
 

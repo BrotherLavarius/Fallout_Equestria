@@ -1,6 +1,6 @@
 # Blender v2.78 (sub 0) OBJ File: ''
 # www.blender.org
-mtllib 10mm pistol.mtl
+mtllib tenmm pistol.mtl
 o Model
 v 5.821199 4.826232 0.314397
 v 5.703382 4.826232 0.650886

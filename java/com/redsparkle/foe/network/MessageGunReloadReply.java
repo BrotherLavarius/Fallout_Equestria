@@ -11,7 +11,7 @@ import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
  */
 public class MessageGunReloadReply implements IMessage {
     public int soundname = 0;
-    //public String[] guns = {"TenMM","LazerPistol","DobleBarrelShotgun"};
+    //public String[] guns = {"TenMM","LaserPistol","DobleBarrelShotgun"};
 
     public MessageGunReloadReply(){}
 

@@ -1,20 +1,10 @@
 package com.redsparkle.foe.keys;
 
-import com.redsparkle.foe.Init.ItemInit;
-import com.redsparkle.foe.Init.SoundInit;
-import com.redsparkle.foe.items.guns.TenMM;
-import com.redsparkle.foe.items.guns.ammo.TenMMClip;
 import com.redsparkle.foe.main;
 import com.redsparkle.foe.network.MessageGunReload;
-import com.redsparkle.foe.utils.AmmunitionListing;
-import com.redsparkle.foe.utils.InventoryManager;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.EnumHand;
-import net.minecraft.util.SoundCategory;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.InputEvent;
 

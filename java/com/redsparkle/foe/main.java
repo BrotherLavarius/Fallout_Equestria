@@ -14,10 +14,10 @@ import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import net.minecraftforge.fml.relauncher.Side;
 
-@Mod(modid = main.MODID, version = main.VERSION)
+@Mod(modid = main.MODID, version = main.VERSION,updateJSON = "https://fallout-equestria.tk/update/updates.json")
 public class main {
     public static final String MODID = "fallout_equestria";
-    public static final String VERSION = "0.0000000-VERY ALPHA";
+    public static final String VERSION = "0.1";
     public static final byte RAIATION_CAPABILITY_MESSAGE_ID_CLIENT = 96;
     public static final byte RELOAD_MESSAGE_ID_SERVER = 97;
     public static final byte RELOAD_MESSAGE_ID_CLIENT = 98;

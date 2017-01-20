@@ -1,7 +1,7 @@
-package com.redsparkle.foe.items.guns.inits.render;
+package com.redsparkle.foe.items.guns.inits.bulletFiredGuns.render;
 
-import com.redsparkle.foe.items.guns.inits.EntityBullet;
-import com.redsparkle.foe.items.guns.inits.model.ModelBullet;
+import com.redsparkle.foe.items.guns.inits.bulletFiredGuns.EntityBullet;
+import com.redsparkle.foe.items.guns.inits.bulletFiredGuns.model.ModelBullet;
 import com.redsparkle.foe.utils.GlobalNames;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.entity.Render;

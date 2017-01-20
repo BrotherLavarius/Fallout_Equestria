@@ -38,14 +38,17 @@ public class GlobalNames {
 
     // Guns
     public static final String
-            TenMM = "10mm Pistol",
+            TenMM = "TenMM Pistol",
+            LaserPistol = "Laser Pistol",
             nineMM = "9mm Pistol";
     // Food
 
     // AMMO
     public static final String
-            TenMMAmmo = "10mm Ammo",
-            TenMMClip = "10mm Clip";
+            TenMMAmmo = "TenMM Ammo",
+            TenMMClip = "TenMM Clip",
+
+            Battery = "Battery";
 
 
     // PLACEHOLDERS

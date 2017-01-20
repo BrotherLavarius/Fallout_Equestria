@@ -1,4 +1,4 @@
-package com.redsparkle.foe.items.guns.ammo;
+package com.redsparkle.foe.items.guns.ammo.TenMM;
 
 import com.redsparkle.foe.Init.ItemInit;
 import com.redsparkle.foe.Init.SoundInit;
@@ -48,7 +48,7 @@ public class TenMMClip extends Item {
      */
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack stack, EntityPlayer playerIn, List<String> tooltip, boolean advanced) {
-        tooltip.add("Ammo clip for 10mm pistol");
+        tooltip.add("Ammo clip for TenMM pistol");
     }
 
     public ActionResult<ItemStack> onItemRightClick(World itemStackIn, EntityPlayer worldIn, EnumHand playerIn) {

@@ -1,4 +1,4 @@
-package com.redsparkle.foe.items.guns.inits;
+package com.redsparkle.foe.items.guns.inits.bulletFiredGuns;
 
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.monster.EntityBlaze;

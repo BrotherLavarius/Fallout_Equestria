@@ -2,8 +2,10 @@ package com.redsparkle.foe.items.guns;
 
 import com.redsparkle.foe.Init.SoundInit;
 import com.redsparkle.foe.creativeTabs.InitCreativeTabs;
+import com.redsparkle.foe.items.guns.ammo.LaserWeapons.Battery;
 import com.redsparkle.foe.items.guns.ammo.TenMM.TenMMClip;
 import com.redsparkle.foe.items.guns.inits.bulletFiredGuns.EntityBullet;
+import com.redsparkle.foe.items.guns.inits.laserFired.EntityLaser;
 import com.redsparkle.foe.utils.AmmunitionListing;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -14,29 +16,23 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 
 /**
- * Created by NENYN on 1/5/2017.
+ * Created by hoijima on 20.01.17.
  */
-public class TenMM extends Item {
+public class LaserPistol extends Item{
 
-
-    public static Item ammoItem = AmmunitionListing.TenMMClip;
+    public static Item ammoItem = AmmunitionListing.Battery;
     public boolean isGun;
-    public int damage = 15;
-    public int clipRounds = 13;
+    public int clipRounds = 31;
     public Integer[] invArray = {0, 1, 2, 3, 4, 5, 6, 7, 8};
-    public Class<? extends EntityBullet> bulletClass;
+    public Class<? extends EntityLaser> laserClass;
 
 
-    public SoundEvent outOfammo = SoundInit.tenMMOOA;
-    public SoundEvent reload = SoundInit.tenMMReload;
-    public SoundEvent shoot = SoundInit.tenMMShot;
 
-
-    public TenMM() {
+    public LaserPistol() {
         this.setMaxStackSize(1);
         this.setMaxDamage(clipRounds);
         this.setCreativeTab(InitCreativeTabs.Fallout_guns);
-        this.bulletClass = EntityBullet.class;
+        this.laserClass = EntityLaser.class;
         isGun = true;
     }
 
@@ -61,31 +57,31 @@ public class TenMM extends Item {
 
 
         if (!playerIn.capabilities.isCreativeMode) {
-            if (itemstack.getItemDamage() >= 12) {
+            if (itemstack.getItemDamage() >= 30) {
                 if (findAmmo(playerIn) == ItemStack.EMPTY) {
                     // ---------------_EMPTY CLIP
-                    worldIn.playSound(playerIn, playerIn.getPosition(), SoundInit.tenMMOOA, SoundCategory.HOSTILE, 0.5F, 0.4F);
+                    //worldIn.playSound(playerIn, playerIn.getPosition(), SoundInit.tenMMOOA, SoundCategory.HOSTILE, 0.5F, 0.4F);
                     return new ActionResult<>(EnumActionResult.FAIL, itemstack);
                 }
 
             } else {
 
-                    worldIn.playSound(playerIn, playerIn.getPosition(), SoundInit.tenMMShot, SoundCategory.HOSTILE, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
-                    EntityBullet entitybullet = new EntityBullet(worldIn, playerIn);
-                    entitybullet.setHeadingFromThrower(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, 5.5F, 1.0F);
-                    worldIn.spawnEntity(entitybullet);
-                    itemstack.setItemDamage(itemstack.getItemDamage() + 1);
-                    playerIn.cameraYaw = -0.5F;
-                    return new ActionResult<>(EnumActionResult.SUCCESS, itemstack);
+                //worldIn.playSound(playerIn, playerIn.getPosition(), SoundInit.tenMMShot, SoundCategory.HOSTILE, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
+                EntityLaser entitylaser = new EntityLaser(worldIn, playerIn);
+                worldIn.spawnParticle(EnumParticleTypes.REDSTONE, playerIn.getPosition().getX(), playerIn.getPosition().getY(),playerIn.getPosition().getZ(), 0.0D, 0.0D, 0.0D, new int[5]);
+                entitylaser.setHeadingFromThrower(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, 1.5F, 1.0F);
+                worldIn.spawnEntity(entitylaser);
+                itemstack.setItemDamage(itemstack.getItemDamage() + 1);
+                return new ActionResult<>(EnumActionResult.SUCCESS, itemstack);
             }
 
 
         } else {
-            worldIn.playSound(playerIn, playerIn.getPosition(), SoundInit.tenMMShot, SoundCategory.HOSTILE, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
+            //worldIn.playSound(playerIn, playerIn.getPosition(), SoundInit.tenMMShot, SoundCategory.HOSTILE, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
 
-                EntityBullet entitybullet = new EntityBullet(worldIn, playerIn);
-                entitybullet.setHeadingFromThrower(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, 5.5F, 1.0F);
-                worldIn.spawnEntity(entitybullet);
+            EntityLaser entitylaser = new EntityLaser(worldIn, playerIn);
+            entitylaser.setHeadingFromThrower(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, 1.5F, 1.0F);
+            worldIn.spawnEntity(entitylaser);
 
         }
         return new ActionResult<>(EnumActionResult.PASS, itemstack);
@@ -109,13 +105,7 @@ public class TenMM extends Item {
     }
 
     public boolean isAmmo(ItemStack stack) {
-        return stack.getItem() instanceof TenMMClip;
+        return stack.getItem() instanceof Battery;
     }
 
-
 }
-
-
-
-
-

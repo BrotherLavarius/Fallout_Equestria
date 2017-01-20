@@ -2,7 +2,7 @@
   "forge_marker": 1,
   "defaults": {
     "textures": {},
-    "model": "fallout_equestria:10mm pistol.obj"
+    "model": "fallout_equestria:tenmm pistol.obj"
   },
   "variants": {
     "normal": [
