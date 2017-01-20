@@ -38,15 +38,15 @@ public class GlobalNames {
 
     // Guns
     public static final String
-            TenMM = "TenMM Pistol",
-            LaserPistol = "Laser Pistol",
-            nineMM = "9mm Pistol";
+            TenMM = "TenMM_Pistol",
+            LaserPistol = "Laser_Pistol",
+            nineMM = "9mm_Pistol";
     // Food
 
     // AMMO
     public static final String
-            TenMMAmmo = "TenMM Ammo",
-            TenMMClip = "TenMM Clip",
+            TenMMAmmo = "TenMM_Ammo",
+            TenMMClip = "TenMM_Clip",
 
             Battery = "Battery";
 
@@ -60,16 +60,16 @@ public class GlobalNames {
 
     // Blocks
     public static final String
-            SPCmachine = "Sparkle Cola machine",
-            Terminal = "Desktop Terminal";
+            SPCmachine = "Sparkle_Cola_machine",
+            Terminal = "Desktop_Terminal";
 
     // Blocks - Stat dispencers
     public static final String
-            RadBlock = "Radiation Dispencer",
-            EnvBlock = "Enervation dispencer",
-            FLMBlock = "Flamer block",
-            MagicBuffer = "Magic dispencer",
-            WirelessCharger = "Wireless Charger";
+            RadBlock = "Radiation_Dispencer",
+            EnvBlock = "Enervation_dispencer",
+            FLMBlock = "Flamer_block",
+            MagicBuffer = "Magic_dispencer",
+            WirelessCharger = "Wireless_Charger";
 
     // Items
 

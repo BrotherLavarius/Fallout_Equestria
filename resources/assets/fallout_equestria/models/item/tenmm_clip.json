@@ -1,7 +1,7 @@
 {
   "parent": "builtin/generated",
   "textures": {
-    "layer0": "fallout_equestria:items/10mm clip"
+    "layer0": "fallout_equestria:items/10mm_clip"
   },
   "display": {
     "thirdperson_righthand": {

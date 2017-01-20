@@ -60,13 +60,21 @@ public class LaserPistol extends Item{
             if (itemstack.getItemDamage() >= 30) {
                 if (findAmmo(playerIn) == ItemStack.EMPTY) {
                     // ---------------_EMPTY CLIP
-                    //worldIn.playSound(playerIn, playerIn.getPosition(), SoundInit.tenMMOOA, SoundCategory.HOSTILE, 0.5F, 0.4F);
+                    worldIn.playSound(playerIn, playerIn.getPosition(), SoundInit.laserPEmpty, SoundCategory.HOSTILE, 0.5F, 0.4F);
                     return new ActionResult<>(EnumActionResult.FAIL, itemstack);
                 }
 
             } else {
 
-                //worldIn.playSound(playerIn, playerIn.getPosition(), SoundInit.tenMMShot, SoundCategory.HOSTILE, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
+                int num = (int) Math.random()*100 %3;
+                switch(num)
+                {
+                    case 0 : worldIn.playSound(playerIn, playerIn.getPosition(), SoundInit.laserPShot1, SoundCategory.HOSTILE, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));break;
+                    case 1 : worldIn.playSound(playerIn, playerIn.getPosition(), SoundInit.laserPShot2, SoundCategory.HOSTILE, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));break;
+                    case 2 : worldIn.playSound(playerIn, playerIn.getPosition(), SoundInit.laserPShot3, SoundCategory.HOSTILE, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));break;
+                }
+
+
                 EntityLaser entitylaser = new EntityLaser(worldIn, playerIn);
                 worldIn.spawnParticle(EnumParticleTypes.REDSTONE, playerIn.getPosition().getX(), playerIn.getPosition().getY(),playerIn.getPosition().getZ(), 0.0D, 0.0D, 0.0D, new int[5]);
                 entitylaser.setHeadingFromThrower(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, 1.5F, 1.0F);
@@ -77,8 +85,7 @@ public class LaserPistol extends Item{
 
 
         } else {
-            //worldIn.playSound(playerIn, playerIn.getPosition(), SoundInit.tenMMShot, SoundCategory.HOSTILE, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
-
+            worldIn.playSound(playerIn, playerIn.getPosition(), SoundInit.laserPShot3, SoundCategory.HOSTILE, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
             EntityLaser entitylaser = new EntityLaser(worldIn, playerIn);
             entitylaser.setHeadingFromThrower(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, 1.5F, 1.0F);
             worldIn.spawnEntity(entitylaser);

@@ -1,4 +1,55 @@
 {
+  "LaserPShot1": {
+    "category": "player",
+    "sounds": [
+      "fallout_equestria:guns/laserpistol/wpn_pistol_laser_fire_player_01"
+    ],
+    "subtitle": "LaserPShot1"
+  },
+  "LaserPShot2": {
+    "category": "player",
+    "sounds": [
+      "fallout_equestria:guns/laserpistol/wpn_pistol_laser_fire_player_02"
+    ],
+    "subtitle": "LaserPShot2"
+  },
+  "LaserPShot3": {
+    "category": "player",
+    "sounds": [
+      "fallout_equestria:guns/laserpistol/wpn_pistol_laser_fire_player_03"
+    ],
+    "subtitle": "LaserPShot3"
+  },
+  "LaserPBoltClose": {
+    "category": "player",
+    "sounds": [
+      "fallout_equestria:guns/laserpistol/wpn_rifleLaser_reload_boltclose_01"
+    ],
+    "subtitle": "LaserPBoltClose"
+  },
+  "LaserPBoltOpen": {
+    "category": "player",
+    "sounds": [
+      "fallout_equestria:guns/laserpistol/wpn_rifleLaser_reload_boltopen_01"
+    ],
+    "subtitle": "LaserPBoltOpen"
+  },
+  "LaserPBoltMagIn": {
+    "category": "player",
+    "sounds": [
+      "fallout_equestria:guns/laserpistol/wpn_rifleLaser_reload_magin_01"
+    ],
+    "subtitle": "LaserPBoltMagIn"
+  },
+  "LaserPEmpty": {
+    "category": "player",
+    "sounds": [
+      "fallout_equestria:guns/laserpistol/wpn_riflelaser_charglight_a_01"
+    ],
+    "subtitle": "LaserPEmpty"
+  },
+
+
   "tenMMShot": {
     "category": "player",
     "sounds": [

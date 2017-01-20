@@ -20,6 +20,14 @@ public class SoundInit {
     public static SoundEvent tenMMClipIn;
     public static SoundEvent tenMMClipOut;
 
+    public static SoundEvent laserPShot1;
+    public static SoundEvent laserPShot2;
+    public static SoundEvent laserPShot3;
+    public static SoundEvent laserPBoltClose;
+    public static SoundEvent laserPBoltOpen;
+    public static SoundEvent laserPBoltMagIn;
+    public static SoundEvent laserPEmpty;
+
     public static void registerSounds() {
         LowEntensityRad = registerSound("LowEntensityRad");
         MediumEntensityRad = registerSound("MediumEntensityRad");
@@ -33,6 +41,16 @@ public class SoundInit {
         tenMMClipLoad = registerSound("tenMMClipLoad");
         tenMMClipIn = registerSound("tenMMClipIn");
         tenMMClipOut = registerSound("tenMMClipOut");
+
+        laserPShot1 = registerSound("laserPShot1");
+        laserPShot2 = registerSound("laserPShot2");
+        laserPShot3 = registerSound("laserPShot3");
+        laserPBoltClose = registerSound("laserPBoltClose");
+        laserPBoltOpen = registerSound("laserPBoltOpen");
+        laserPBoltMagIn = registerSound("laserPBoltMagIn");
+        laserPEmpty = registerSound("laserPEmpty");
+
+
     }
 
     /**
