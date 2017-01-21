@@ -10,12 +10,17 @@ import org.lwjgl.input.Keyboard;
  */
 public class testkey {
     public static KeyBinding reload ;
-    public static String reloadS = "Hello USERNAME";
+    public static KeyBinding ponymodel;
+    public static String reloadS = "Reload the gun";
 
     public static void register()
     {
         reload = new KeyBinding(reloadS, Keyboard.KEY_R, main.MODID);
 
+        ponymodel = new KeyBinding("Changethemode",Keyboard.KEY_P,main.MODID);
+
+
+        ClientRegistry.registerKeyBinding(ponymodel);
         ClientRegistry.registerKeyBinding(reload);
     }
 }

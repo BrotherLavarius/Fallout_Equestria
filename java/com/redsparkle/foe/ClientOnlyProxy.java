@@ -86,7 +86,15 @@ public class ClientOnlyProxy extends CommonProxy {
             world.playSound(player, player.getPosition(), SoundInit.tenMMReload, SoundCategory.HOSTILE, 1.0F, 1.0F);
         }else if (message.soundname == 1){
             world.playSound(player, player.getPosition(), SoundInit.tenMMClipOut, SoundCategory.HOSTILE, 1.0F, 1.0F);
+        }else if (message.soundname == 2 ){
+            world.playSound(player, player.getPosition(), SoundInit.laserPBoltOpen, SoundCategory.HOSTILE, 1.0F, 1.0F);
+            world.playSound(player, player.getPosition(), SoundInit.laserPBoltMagIn, SoundCategory.HOSTILE, 1.0F, 1.0F);
+            world.playSound(player, player.getPosition(), SoundInit.laserPBoltClose, SoundCategory.HOSTILE, 1.0F, 1.0F);
+        }else if (message.soundname == 3){
+            world.playSound(player, player.getPosition(), SoundInit.laserPBoltOpen, SoundCategory.HOSTILE, 1.0F, 1.0F);
+
         }
+
 
         });
     }

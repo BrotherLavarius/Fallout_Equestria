@@ -3,6 +3,7 @@ package com.redsparkle.foe.items.guns;
 import com.redsparkle.foe.Init.SoundInit;
 import com.redsparkle.foe.creativeTabs.InitCreativeTabs;
 import com.redsparkle.foe.items.guns.ammo.TenMM.TenMMClip;
+import com.redsparkle.foe.items.guns.inits.ItemFirearm;
 import com.redsparkle.foe.items.guns.inits.bulletFiredGuns.EntityBullet;
 import com.redsparkle.foe.utils.AmmunitionListing;
 import net.minecraft.entity.player.EntityPlayer;
@@ -16,7 +17,7 @@ import net.minecraftforge.common.capabilities.ICapabilityProvider;
 /**
  * Created by NENYN on 1/5/2017.
  */
-public class TenMM extends Item {
+public class TenMM extends ItemFirearm {
 
 
     public static Item ammoItem = AmmunitionListing.TenMMClip;
@@ -75,7 +76,7 @@ public class TenMM extends Item {
                     entitybullet.setHeadingFromThrower(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, 5.5F, 1.0F);
                     worldIn.spawnEntity(entitybullet);
                     itemstack.setItemDamage(itemstack.getItemDamage() + 1);
-                    playerIn.cameraYaw = -0.5F;
+                    playerIn.cameraYaw = -0.1F;
                     return new ActionResult<>(EnumActionResult.SUCCESS, itemstack);
             }
 

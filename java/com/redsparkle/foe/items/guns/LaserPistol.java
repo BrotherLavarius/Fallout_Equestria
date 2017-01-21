@@ -69,25 +69,27 @@ public class LaserPistol extends Item{
                 int num = (int) Math.random()*100 %3;
                 switch(num)
                 {
-                    case 0 : worldIn.playSound(playerIn, playerIn.getPosition(), SoundInit.laserPShot1, SoundCategory.HOSTILE, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));break;
-                    case 1 : worldIn.playSound(playerIn, playerIn.getPosition(), SoundInit.laserPShot2, SoundCategory.HOSTILE, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));break;
-                    case 2 : worldIn.playSound(playerIn, playerIn.getPosition(), SoundInit.laserPShot3, SoundCategory.HOSTILE, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));break;
+                    case 0 : worldIn.playSound(playerIn, playerIn.getPosition(), SoundInit.laserPShot1, SoundCategory.PLAYERS, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));break;
+                    case 1 : worldIn.playSound(playerIn, playerIn.getPosition(), SoundInit.laserPShot2, SoundCategory.PLAYERS, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));break;
+                    case 2 : worldIn.playSound(playerIn, playerIn.getPosition(), SoundInit.laserPShot3, SoundCategory.PLAYERS, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));break;
                 }
 
 
                 EntityLaser entitylaser = new EntityLaser(worldIn, playerIn);
                 worldIn.spawnParticle(EnumParticleTypes.REDSTONE, playerIn.getPosition().getX(), playerIn.getPosition().getY(),playerIn.getPosition().getZ(), 0.0D, 0.0D, 0.0D, new int[5]);
-                entitylaser.setHeadingFromThrower(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, 1.5F, 1.0F);
+                entitylaser.setHeadingFromThrower(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, -1.0F, 4.5F, 1.0F);
                 worldIn.spawnEntity(entitylaser);
                 itemstack.setItemDamage(itemstack.getItemDamage() + 1);
-                return new ActionResult<>(EnumActionResult.SUCCESS, itemstack);
+                playerIn.cameraYaw = -0.1F;
+
+                return new ActionResult<>(EnumActionResult.PASS, itemstack);
             }
 
 
         } else {
-            worldIn.playSound(playerIn, playerIn.getPosition(), SoundInit.laserPShot3, SoundCategory.HOSTILE, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
+            worldIn.playSound(playerIn, playerIn.getPosition(), SoundInit.laserPShot3, SoundCategory.PLAYERS, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
             EntityLaser entitylaser = new EntityLaser(worldIn, playerIn);
-            entitylaser.setHeadingFromThrower(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, 1.5F, 1.0F);
+            entitylaser.setHeadingFromThrower(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, -1.0F, 4.5F, 1.0F);
             worldIn.spawnEntity(entitylaser);
 
         }

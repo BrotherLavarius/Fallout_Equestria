@@ -92,21 +92,21 @@ public class gunReload {
                         heldItem.setItemDamage(findAmmo(player, "LaserPistol").getItemDamage());
                         findAmmo(player, "LaserPistol").shrink(1);
                         player.inventory.setInventorySlotContents(InventoryManager.FindEmpty(player), clipstack);
-                        main.simpleNetworkWrapper.sendTo(new MessageGunReloadReply(1),player);
+                        main.simpleNetworkWrapper.sendTo(new MessageGunReloadReply(2),player);
                     }else {
                         Item emptyclip = ItemInit.battery;
                         ItemStack emptyClipStack = new ItemStack(emptyclip);
                         if(heldItem.getItemDamage() == 0){emptyClipStack.setItemDamage(1);}else{emptyClipStack.setItemDamage(heldItem.getItemDamage());}
                         heldItem.setItemDamage(31);
                         player.inventory.setInventorySlotContents(InventoryManager.FindEmpty(player), emptyClipStack);
-                        main.simpleNetworkWrapper.sendTo(new MessageGunReloadReply(1),player);
+                        main.simpleNetworkWrapper.sendTo(new MessageGunReloadReply(3),player);
 
                     }
                 }else if (heldItem.getItemDamage() == 31){
                     if (findAmmo(player, "LaserPistol") != ItemStack.EMPTY) {
                         heldItem.setItemDamage(findAmmo(player, "LaserPistol").getItemDamage());
                         findAmmo(player, "LaserPistol").shrink(1);
-                        main.simpleNetworkWrapper.sendTo(new MessageGunReloadReply(1),player);
+                        main.simpleNetworkWrapper.sendTo(new MessageGunReloadReply(2),player);
 
                     }
                 }
