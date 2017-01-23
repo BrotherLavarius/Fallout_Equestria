@@ -1,14 +1,26 @@
 package com.redsparkle.foe.playerrenderers;
 
+
+import net.minecraft.client.renderer.entity.RenderPlayer;
 import net.minecraft.client.renderer.entity.layers.LayerRenderer;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 /**
  * Created by NENYN on 1/23/2017.
  */
-public class FoeGunsRender implements LayerRenderer<EntityPlayer>{
+@SideOnly(Side.CLIENT)
+public class FoeGunsRender implements LayerRenderer<EntityPlayer> {
+
+
+    public FoeGunsRender(RenderPlayer renderer) {
+
+    }
+
+
     @Override
-    public void doRenderLayer(EntityPlayer entitylivingbaseIn, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch, float scale) {
+    public void doRenderLayer(EntityPlayer player, float v, float v1, float v2, float v3, float v4, float v5, float v6) {
 
     }
 
@@ -16,6 +28,4 @@ public class FoeGunsRender implements LayerRenderer<EntityPlayer>{
     public boolean shouldCombineTextures() {
         return false;
     }
-
-    //TODO: make this render layer wor, and work for instanceof Gun items
 }

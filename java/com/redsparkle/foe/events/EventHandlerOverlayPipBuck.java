@@ -5,8 +5,11 @@ import com.redsparkle.foe.gui.APBar;
 import com.redsparkle.foe.gui.PipBuckGui;
 import com.redsparkle.foe.gui.RadsOverlay;
 import com.redsparkle.foe.items.guns.inits.ItemFirearm;
+import com.redsparkle.foe.playerrenderers.FoeGunsRender;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
+import net.minecraft.client.renderer.entity.RenderLiving;
+import net.minecraft.client.renderer.entity.RenderPlayer;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemFireball;
 import net.minecraft.item.ItemStack;
@@ -14,6 +17,7 @@ import net.minecraft.network.play.client.CPacketEntityAction;
 import net.minecraft.network.play.client.CPacketUseEntity;
 import net.minecraft.util.EnumHand;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
+import net.minecraftforge.client.event.RenderLivingEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
@@ -21,6 +25,22 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
  * Created by NENYN on 12/25/2016.
  */
 public class EventHandlerOverlayPipBuck {
+        public void onRenderEntity(RenderLivingEvent.Post event){
+            if(event.getEntity() instanceof EntityPlayer){
+                EntityPlayer player = (EntityPlayer) event.getEntity();
+
+                RenderPlayer renderer = Minecraft.getMinecraft().getRenderManager().getSkinMap().get("default");
+
+                renderer.addLayer(new FoeGunsRender(renderer));
+            }
+        }
+
+
+
+
+
+
+
     /*
     ##############################################################################
             GUI EVENTS SECTION
