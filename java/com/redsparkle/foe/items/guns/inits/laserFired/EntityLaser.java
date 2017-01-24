@@ -36,7 +36,7 @@ public class EntityLaser extends EntityThrowable {
     public void handleStatusUpdate(byte id) {
         if (id == 3) {
             for (int i = 0; i < 8; ++i) {
-                this.world.spawnParticle(EnumParticleTypes.SNOWBALL, this.posX, this.posY, this.posZ, 0.0D, 0.0D, 0.0D, new int[0]);
+                this.world.spawnParticle(EnumParticleTypes.REDSTONE, this.posX, this.posY, this.posZ, 0.0D, 0.0D, 0.0D, 1);
             }
         }
     }
@@ -51,8 +51,8 @@ public class EntityLaser extends EntityThrowable {
             if (result.entityHit instanceof EntityBlaze) {
                 i = damage - 2;
             }
-
             result.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, this.getThrower()), (float) i);
+
         }
 
         if (!this.world.isRemote) {

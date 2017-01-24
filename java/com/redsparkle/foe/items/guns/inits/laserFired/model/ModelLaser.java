@@ -12,8 +12,9 @@ public class ModelLaser extends ModelBase {
     public ModelRenderer model;
 
     public ModelLaser() {
+
         model = new ModelRenderer(this, 0, 0);
-        model.addBox(1F, 1F, 1F, 1, 3, 1);
+        model.addBox(1F, 1F, 1F, 1, 1, 1);
     }
 
     @Override
