@@ -5,6 +5,7 @@ import com.redsparkle.foe.block.effectDispenser.RadiationBlock;
 import com.redsparkle.foe.block.interractable.DesktopTerminal;
 import com.redsparkle.foe.creativeTabs.InitCreativeTabs;
 import com.redsparkle.foe.events.EventHandlerOverlayPipBuck;
+import com.redsparkle.foe.events.EventPlayerRenders;
 import com.redsparkle.foe.gui.PipBuckGui;
 import com.redsparkle.foe.items.guns.inits.bulletFiredGuns.EntityBullet;
 import com.redsparkle.foe.items.guns.inits.bulletFiredGuns.render.RenderBulletEntity;
@@ -84,6 +85,6 @@ public class ClientOnlyStartup {
    */
         pipBuckGui = new PipBuckGui(Minecraft.getMinecraft());
         MinecraftForge.EVENT_BUS.register(new EventHandlerOverlayPipBuck(pipBuckGui));
-
+        MinecraftForge.EVENT_BUS.register(new EventPlayerRenders());
     }
 }

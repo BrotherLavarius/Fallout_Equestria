@@ -4,6 +4,7 @@ import com.redsparkle.foe.Init.ClientOnlyStartup;
 import com.redsparkle.foe.Init.SoundInit;
 import com.redsparkle.foe.capa.IRadiationCapability;
 import com.redsparkle.foe.capa.RadsFactoryProvider;
+import com.redsparkle.foe.events.EventPlayerRenders;
 import com.redsparkle.foe.items.guns.TenMM;
 import com.redsparkle.foe.keys.KeyInputHandler;
 import com.redsparkle.foe.keys.testkey;
@@ -31,6 +32,7 @@ public class ClientOnlyProxy extends CommonProxy {
         ClientOnlyStartup.preInitClientOnly();
         testkey.register();
         MinecraftForge.EVENT_BUS.register(new KeyInputHandler());
+
     }
 
     public void Init() {
