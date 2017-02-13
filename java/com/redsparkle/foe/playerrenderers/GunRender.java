@@ -1,5 +1,6 @@
 package com.redsparkle.foe.playerrenderers;
 
+import com.redsparkle.foe.items.guns.inits.ItemFirearm;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.AbstractClientPlayer;
 import net.minecraft.client.renderer.GlStateManager;
@@ -30,11 +31,12 @@ public class GunRender implements LayerRenderer<AbstractClientPlayer> {
         ItemStack itemstack = entitylivingbaseIn.getHeldItem(EnumHand.MAIN_HAND);
         Item item = itemstack.getItem();
         Minecraft minecraft = Minecraft.getMinecraft();
-        if(itemstack != null ){
+        if(itemstack != null && item instanceof ItemFirearm){
             GlStateManager.pushMatrix();
             GlStateManager.translate(0.0F, 0.0F, 0.0F);
-            GlStateManager.scale(-0.5F,-0.5F,-0.5F);
-            GlStateManager.rotate(270F,0.0F,1.0F,0F);
+            //GlStateManager.scale(-0.5F,-0.5F,-0.5F);
+            GlStateManager.rotate(0F,0.0F,360.0F,0F);
+            minecraft.player.getHorizontalFacing().getDirectionVec().getX();
             minecraft.getItemRenderer().renderItem(entitylivingbaseIn,itemstack, ItemCameraTransforms.TransformType.HEAD);
             GlStateManager.popMatrix();
         }
