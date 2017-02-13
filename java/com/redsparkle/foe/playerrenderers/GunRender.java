@@ -26,6 +26,8 @@ public class GunRender implements LayerRenderer<AbstractClientPlayer> {
     }
 
 
+
+
     @Override
     public void doRenderLayer(AbstractClientPlayer entitylivingbaseIn, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch, float scale) {
         ItemStack itemstack = entitylivingbaseIn.getHeldItem(EnumHand.MAIN_HAND);
@@ -36,7 +38,7 @@ public class GunRender implements LayerRenderer<AbstractClientPlayer> {
             GlStateManager.translate(0.0F, 0.0F, 0.0F);
             //GlStateManager.scale(-0.5F,-0.5F,-0.5F);
             GlStateManager.rotate(0F,0.0F,360.0F,0F);
-            minecraft.player.getHorizontalFacing().getDirectionVec().getX();
+            //minecraft.player.getHorizontalFacing().getDirectionVec().getX();
             minecraft.getItemRenderer().renderItem(entitylivingbaseIn,itemstack, ItemCameraTransforms.TransformType.HEAD);
             GlStateManager.popMatrix();
         }
