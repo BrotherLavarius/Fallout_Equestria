@@ -1,0 +1,27 @@
+/** Add css rules here for your application. */
+
+h1 {
+    font-size: 2em;
+    font-weight: bold;
+    text-align: center;
+}
+
+body,
+td,
+a,
+div,
+.p {
+    font-family: arial, sans-serif;
+    background-blend-mode: darken;
+    opacity: inherit 90%;
+}
+
+body {
+    background: url("img/back.png");
+    background-size: contain;
+}
+
+.jumbotron {
+    opacity: 90%;
+    !important
+}
