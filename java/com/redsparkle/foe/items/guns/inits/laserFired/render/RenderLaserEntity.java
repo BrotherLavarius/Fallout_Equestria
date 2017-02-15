@@ -1,22 +1,14 @@
 package com.redsparkle.foe.items.guns.inits.laserFired.render;
 
-import com.redsparkle.foe.items.guns.inits.bulletFiredGuns.EntityBullet;
 import com.redsparkle.foe.items.guns.inits.bulletFiredGuns.model.ModelBullet;
 import com.redsparkle.foe.items.guns.inits.laserFired.EntityLaser;
 import com.redsparkle.foe.utils.GlobalNames;
 import net.minecraft.client.model.ModelBase;
-import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.client.renderer.RenderHelper;
-import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.client.renderer.VertexBuffer;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderManager;
-import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.MathHelper;
 import org.lwjgl.opengl.GL11;
 
-import javax.annotation.Nullable;
 import java.nio.FloatBuffer;
 
 /**

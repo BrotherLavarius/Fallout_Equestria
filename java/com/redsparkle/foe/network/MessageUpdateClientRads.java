@@ -2,10 +2,7 @@ package com.redsparkle.foe.network;
 
 import com.redsparkle.foe.ClientOnlyProxy;
 import com.redsparkle.foe.capa.IRadiationCapability;
-import com.redsparkle.foe.capa.RadsFactoryProvider;
 import io.netty.buffer.ByteBuf;
-import net.minecraft.client.Minecraft;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;

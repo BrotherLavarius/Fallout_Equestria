@@ -4,16 +4,10 @@ import com.redsparkle.foe.Init.ItemInit;
 import com.redsparkle.foe.gui.APBar;
 import com.redsparkle.foe.gui.PipBuckGui;
 import com.redsparkle.foe.gui.RadsOverlay;
-import com.redsparkle.foe.playerrenderers.GunRender;
-import com.redsparkle.foe.playerrenderers.LayerGunsRenderBase;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
-import net.minecraft.client.renderer.entity.RenderPlayer;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
-import net.minecraftforge.client.event.RenderPlayerEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 /**

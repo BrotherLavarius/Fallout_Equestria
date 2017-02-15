@@ -4,8 +4,6 @@ import com.redsparkle.foe.Init.ClientOnlyStartup;
 import com.redsparkle.foe.Init.SoundInit;
 import com.redsparkle.foe.capa.IRadiationCapability;
 import com.redsparkle.foe.capa.RadsFactoryProvider;
-import com.redsparkle.foe.events.EventPlayerRenders;
-import com.redsparkle.foe.items.guns.TenMM;
 import com.redsparkle.foe.keys.KeyInputHandler;
 import com.redsparkle.foe.keys.testkey;
 import com.redsparkle.foe.network.MessageGunReloadReply;
@@ -14,13 +12,10 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.item.Item;
-import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.relauncher.Side;
-import org.lwjgl.Sys;
 
 /**
  * Created by hoijima on 14.12.16.

@@ -1,6 +1,5 @@
 package com.redsparkle.foe.items.guns.ammo.TenMM;
 
-import com.redsparkle.foe.creativeTabs.InitCreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
