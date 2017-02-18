@@ -1,0 +1,23 @@
+#AMMO
+item.TenMM Ammo.name=10mm Ammo
+item.TenMM Clip.name=10mm Pistol clip
+item.Battery.name=Battery
+
+
+
+#GUNS
+item.TenMM Pistol.name=10MM Pistol
+item.Laser Pistol.name=Laser Pistol
+
+#MEDS
+item.RadAway.name=Rad Away
+item.RadX.name=Rad X
+item.Pip Buck 3000.name=Pip Buck 3000
+
+
+#Creative Tabs
+itemGroup.FOE_Meds=Medical stuff
+itemGroup.FOE_Guns=Guns
+itemGroup.FOE_Ammo=Ammo
+itemGroup.FOE_Blocks_Effect Dispencers=Env Modifyers
+itemGroup.FOE_Blocks= Blocks and stuff
