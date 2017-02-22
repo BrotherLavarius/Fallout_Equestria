@@ -1,9 +1,13 @@
 package com.redsparkle.foe.playerrenderers;
 
+import com.redsparkle.foe.Init.ItemInit;
 import com.redsparkle.foe.items.guns.inits.ItemFirearm;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.AbstractClientPlayer;
 import net.minecraft.client.entity.EntityPlayerSP;
+import net.minecraft.client.gui.ScaledResolution;
+import net.minecraft.client.model.ModelBiped;
+import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
 import net.minecraft.client.renderer.entity.RenderPlayer;
@@ -12,6 +16,8 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.Vec3d;
+import net.minecraftforge.client.model.ModelLoader;
+import net.minecraftforge.client.model.ModelLoaderRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -43,15 +49,7 @@ public class GunRender implements LayerRenderer<AbstractClientPlayer> {
         if(itemstack != null && item instanceof ItemFirearm){
             GlStateManager.pushMatrix();
             GlStateManager.translate(0.0F, 0.0F, 0.0F);
-            //GlStateManager.scale(-0.5F,-0.5F,-0.5F);
-            //GlStateManager.rotate(0F,0.0F,360.0F,0F);
-            //GlStateManager.rotate(player.prevRotationYawHead,0.0F,0.1F,0F);
-            //GlStateManager.rotate(playerPos.xCoord-currentPos.xCoord, playerPos.yCoord-currentPos.yCoord, playerPos.zCoord-currentPos.zCoord);
-
-            GlStateManager.rotate(player.getRotationYawHead(),0,1,0);
-            GlStateManager.rotate(player.cameraPitch,1,0,0);
-
-            //minecraft.player.getHorizontalFacing().getDirectionVec().getX();
+            GlStateManager.scale(-0.5F,-0.5F,-0.5F);
             minecraft.getItemRenderer().renderItem(entitylivingbaseIn,itemstack, ItemCameraTransforms.TransformType.HEAD);
             GlStateManager.popMatrix();
         }
