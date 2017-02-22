@@ -4,7 +4,9 @@ import com.redsparkle.foe.playerrenderers.GunRender;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.EnumHandSide;
 import net.minecraftforge.client.event.RenderPlayerEvent;
+import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 /**
@@ -20,6 +22,7 @@ public class EventPlayerRenders {
         if(event.getEntity() instanceof EntityPlayer && !done) {
             EntityPlayer player = (EntityPlayer)event.getEntity();
             //event.getRenderer().getMainModel().bipedHeadwear.addChild();
+
             event.getRenderer().addLayer(new GunRender(event.getRenderer().getRenderManager().getSkinMap().get(player)));
             //TODO: add this layer as child layer SYKA BLYAT
             done = true;
