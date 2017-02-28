@@ -1,0 +1,11 @@
+{
+  "homepage": "https://fallout-equestria.tk/",
+  "promos": {
+    "1.11.2-latest": "0.4",
+    "1.11.2-recommended": "0.4"
+  },
+  "1.11.2": {
+    "0.4": "Ponys can actually hold guns in there mouths now!",
+    "0.3": "Started layers"
+  }
+}
