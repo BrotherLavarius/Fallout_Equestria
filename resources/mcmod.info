@@ -1,16 +1,19 @@
-[
 {
-  "modid": "falloutequestria",
-  "name": "Fallout Equestria pack",
-  "description": "Guns guns guns!",
-  "version": "0.4",
-  "mcversion": "1.11.2",
-  "url": "https://fallout-equestria.tk",
-  "updateUrl": "https://fallout-equestria.tk/update/updates.json",
-  "authorList": ["RedSparkle"],
-  "credits": ":3 mew mew mew",
-  "logoFile": "",
-  "screenshots": [],
-  "dependencies": []
+  "modListVersion": 2,
+  "modList": [{
+    "modid": "falloutequestria",
+    "name": "Fallout Equestria pack",
+    "description": "Bringing Fallout to the ponys",
+    "version": "0.4",
+    "mcversion": "1.11.2",
+    "url": "https://fallout-equestria.tk",
+    "updateUrl": "https://fallout-equestria.tk/update/updates.json",
+    "authorList": ["RedSparkle"],
+    "logoFile": "",
+    "screenshots": [],
+    "dependants":[],
+    "dependencies": ["Forge@[13.20.0.2228,)"],
+    "requiredMods": [],
+    "useDependencyInformation": true
+  }]
 }
-]
