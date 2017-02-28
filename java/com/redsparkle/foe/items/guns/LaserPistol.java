@@ -3,6 +3,7 @@ package com.redsparkle.foe.items.guns;
 import com.redsparkle.foe.Init.SoundInit;
 import com.redsparkle.foe.creativeTabs.InitCreativeTabs;
 import com.redsparkle.foe.items.guns.ammo.LaserWeapons.Battery;
+import com.redsparkle.foe.items.guns.inits.ItemFirearm;
 import com.redsparkle.foe.items.guns.inits.laserFired.EntityLaser;
 import com.redsparkle.foe.utils.AmmunitionListing;
 import net.minecraft.entity.player.EntityPlayer;
@@ -16,7 +17,7 @@ import net.minecraftforge.common.capabilities.ICapabilityProvider;
 /**
  * Created by hoijima on 20.01.17.
  */
-public class LaserPistol extends Item{
+public class LaserPistol extends ItemFirearm {
 
     public static Item ammoItem = AmmunitionListing.Battery;
     public boolean isGun;

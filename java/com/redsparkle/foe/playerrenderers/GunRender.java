@@ -12,6 +12,7 @@ import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
 import net.minecraft.client.renderer.entity.RenderPlayer;
 import net.minecraft.client.renderer.entity.layers.LayerRenderer;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumHand;
@@ -28,7 +29,7 @@ import static java.lang.Math.abs;
  * Created by NENYN on 2/12/2017.
  */
 @SideOnly(Side.CLIENT)
-public class GunRender implements LayerRenderer<AbstractClientPlayer> {
+public class GunRender implements LayerRenderer<EntityLivingBase> {
     private final RenderPlayer playerRenderer;
     private Float yawCorrector = 0F;
     private Float rotationPitch = 0F;
@@ -40,43 +41,37 @@ public class GunRender implements LayerRenderer<AbstractClientPlayer> {
 
 
 
-
-    public void doRenderLayer(AbstractClientPlayer entitylivingbaseIn, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch, float scale) {
+    @Override
+    public void doRenderLayer(EntityLivingBase entitylivingbaseIn, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch, float scale) {
         ItemStack itemstack = entitylivingbaseIn.getHeldItem(EnumHand.MAIN_HAND);
         Item item = itemstack.getItem();
         Minecraft minecraft = Minecraft.getMinecraft();
 
 
-        if(itemstack != null && item instanceof ItemFirearm){
+        if (itemstack != null && item instanceof ItemFirearm) {
             GlStateManager.pushMatrix();
-            if (MathHelper.wrapDegrees(entitylivingbaseIn.getPitchYaw().y) >= 0.0F){
+            if (MathHelper.wrapDegrees(entitylivingbaseIn.getPitchYaw().y) >= 0.0F) {
                 yawCorrector = MathHelper.wrapDegrees(entitylivingbaseIn.getPitchYaw().y);
-            }else if(MathHelper.wrapDegrees(entitylivingbaseIn.getPitchYaw().y) < 0.0F){
+            } else if (MathHelper.wrapDegrees(entitylivingbaseIn.getPitchYaw().y) < 0.0F) {
                 yawCorrector = abs(MathHelper.wrapDegrees(entitylivingbaseIn.getPitchYaw().y) + 360);
             }
 
 
-            if (MathHelper.wrapDegrees(entitylivingbaseIn.rotationPitch) >= 0.0F){
+            if (MathHelper.wrapDegrees(entitylivingbaseIn.rotationPitch) >= 0.0F) {
                 rotationPitch = MathHelper.wrapDegrees(entitylivingbaseIn.rotationPitch);
-            }else if(MathHelper.wrapDegrees(entitylivingbaseIn.rotationPitch) < 0.0F){
+            } else if (MathHelper.wrapDegrees(entitylivingbaseIn.rotationPitch) < 0.0F) {
                 rotationPitch = abs(MathHelper.wrapDegrees(entitylivingbaseIn.rotationPitch) + 360);
             }
 
             GlStateManager.translate(0.0F, 0.0F, 0.0F);
-            GlStateManager.rotate(Float.valueOf(MathHelper.wrapDegrees(entitylivingbaseIn.rotationYaw)),0,0,0);
-
-            GlStateManager.rotate(rotationPitch ,1.0F,0,0);
-
-            System.out.println(Float.valueOf(MathHelper.wrapDegrees(entitylivingbaseIn.getRotationYawHead())));
-            //System.out.println(Float.valueOf(MathHelper.wrapDegrees(entitylivingbaseIn.rotationPitch)));
+            GlStateManager.rotate(netHeadYaw, 0, 1.0F, 0);
+            GlStateManager.rotate(headPitch, 1.0F, 0, 0);
 
 
-            minecraft.getItemRenderer().renderItem(entitylivingbaseIn,itemstack, ItemCameraTransforms.TransformType.HEAD);
+            minecraft.getItemRenderer().renderItem(entitylivingbaseIn, itemstack, ItemCameraTransforms.TransformType.HEAD);
             GlStateManager.popMatrix();
-
         }
     }
-
 
     public boolean shouldCombineTextures()
     {
