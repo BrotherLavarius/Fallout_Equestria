@@ -4,10 +4,13 @@ import com.redsparkle.foe.Init.ClientOnlyStartup;
 import com.redsparkle.foe.Init.SoundInit;
 import com.redsparkle.foe.capa.rad.IRadiationCapability;
 import com.redsparkle.foe.capa.rad.RadsFactoryProvider;
+import com.redsparkle.foe.capa.spechial.ISpechialCapability;
+import com.redsparkle.foe.capa.spechial.SpechialFactoryProvider;
 import com.redsparkle.foe.keys.KeyInputHandler;
 import com.redsparkle.foe.keys.testkey;
 import com.redsparkle.foe.network.MessageGunReloadReply;
 import com.redsparkle.foe.network.MessageUpdateClientRads;
+import com.redsparkle.foe.network.MessageUpdateClientServerSPECHIAL;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.entity.player.EntityPlayer;
@@ -64,6 +67,23 @@ public class ClientOnlyProxy extends CommonProxy {
             EntityPlayer player = Minecraft.getMinecraft().player;
             IRadiationCapability rad = RadsFactoryProvider.instanceFor(player);
             rad.setRadiation(message.radiation);
+            /** DEBUG MESSAGE ENABLER
+             * System.out.println("Client: "+message.radiation);
+             */
+
+        });
+    }
+    public static void handleSpechialMessage(MessageUpdateClientServerSPECHIAL message) {
+        Minecraft.getMinecraft().addScheduledTask(() -> {
+            EntityPlayer player = Minecraft.getMinecraft().player;
+            ISpechialCapability spechial = SpechialFactoryProvider.instanceFor(player);
+            spechial.setStreinght(message.Streinght);
+            spechial.setPerception(message.Perception);
+            spechial.setEndurance(message.Endurance);
+            spechial.setCharisma(message.Charisma);
+            spechial.setIntelligence(message.Intelligence);
+            spechial.setAgility(message.Agility);
+            spechial.setLuck(message.Luck);
             /** DEBUG MESSAGE ENABLER
              * System.out.println("Client: "+message.radiation);
              */

@@ -40,7 +40,8 @@ public class RadsFactoryProvider implements IRadiationCapability, ICapabilitySer
         return player.getCapability(RADIATION_CAPABILITY, null);
     }
 
-    public Integer getRadiation() {
+    public Integer getRadiation()
+    {
         return radiationLevel + basicRads;
     }
 
@@ -53,6 +54,7 @@ public class RadsFactoryProvider implements IRadiationCapability, ICapabilitySer
     }
 
     public Integer setRadiation(Integer newRadiationLevel) {
+
         return radiationLevel = (basicRads + newRadiationLevel);
     }
 
@@ -96,7 +98,7 @@ public class RadsFactoryProvider implements IRadiationCapability, ICapabilitySer
 
     public NBTTagCompound serializeNBT() {
         NBTTagCompound nbt = new NBTTagCompound();
-        nbt.setFloat("rads", radiationLevel);
+        nbt.setInteger("rads", radiationLevel);
         return nbt;
     }
 
