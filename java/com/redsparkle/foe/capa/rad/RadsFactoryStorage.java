@@ -1,4 +1,4 @@
-package com.redsparkle.foe.capa;
+package com.redsparkle.foe.capa.rad;
 
 import net.minecraft.nbt.NBTBase;
 import net.minecraft.nbt.NBTTagCompound;

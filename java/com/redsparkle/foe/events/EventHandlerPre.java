@@ -1,8 +1,8 @@
 package com.redsparkle.foe.events;
 
 
-import com.redsparkle.foe.capa.IRadiationCapability;
-import com.redsparkle.foe.capa.RadsFactoryProvider;
+import com.redsparkle.foe.capa.rad.IRadiationCapability;
+import com.redsparkle.foe.capa.rad.RadsFactoryProvider;
 import com.redsparkle.foe.main;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
@@ -10,7 +10,7 @@ import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 
-import static com.redsparkle.foe.capa.RadsFactoryProvider.RADIATION_CAPABILITY;
+import static com.redsparkle.foe.capa.rad.RadsFactoryProvider.RADIATION_CAPABILITY;
 
 
 /**

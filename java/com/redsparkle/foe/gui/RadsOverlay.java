@@ -1,7 +1,7 @@
 package com.redsparkle.foe.gui;
 
 
-import com.redsparkle.foe.capa.RadsFactoryProvider;
+import com.redsparkle.foe.capa.rad.RadsFactoryProvider;
 import com.redsparkle.foe.utils.GlobalNames;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;

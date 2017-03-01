@@ -1,4 +1,4 @@
-package com.redsparkle.foe.capa;
+package com.redsparkle.foe.capa.rad;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;

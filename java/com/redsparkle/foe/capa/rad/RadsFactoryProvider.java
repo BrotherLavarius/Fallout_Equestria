@@ -1,4 +1,4 @@
-package com.redsparkle.foe.capa.rads;
+package com.redsparkle.foe.capa.rad;
 
 import com.redsparkle.foe.main;
 import com.redsparkle.foe.network.MessageUpdateClientRads;
@@ -107,8 +107,7 @@ public class RadsFactoryProvider implements IRadiationCapability, ICapabilitySer
 
     public void updateClient(EntityPlayer player) {
         if (!player.getEntityWorld().isRemote) {
-            if (dirty)
-                main.simpleNetworkWrapper.sendTo(new MessageUpdateClientRads((com.redsparkle.foe.capa.IRadiationCapability) this), (EntityPlayerMP) player);
+            if (dirty) main.simpleNetworkWrapper.sendTo(new MessageUpdateClientRads(this), (EntityPlayerMP) player);
             //dirty = false;
         }
     }

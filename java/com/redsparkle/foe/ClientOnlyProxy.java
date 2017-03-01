@@ -2,8 +2,8 @@ package com.redsparkle.foe;
 
 import com.redsparkle.foe.Init.ClientOnlyStartup;
 import com.redsparkle.foe.Init.SoundInit;
-import com.redsparkle.foe.capa.IRadiationCapability;
-import com.redsparkle.foe.capa.RadsFactoryProvider;
+import com.redsparkle.foe.capa.rad.IRadiationCapability;
+import com.redsparkle.foe.capa.rad.RadsFactoryProvider;
 import com.redsparkle.foe.keys.KeyInputHandler;
 import com.redsparkle.foe.keys.testkey;
 import com.redsparkle.foe.network.MessageGunReloadReply;
