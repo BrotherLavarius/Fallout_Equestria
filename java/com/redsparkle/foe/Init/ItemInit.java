@@ -1,5 +1,6 @@
 package com.redsparkle.foe.Init;
 
+import com.redsparkle.foe.gui.ItemBackGround.PipBuckDummyOverlayItem;
 import com.redsparkle.foe.items.guns.LaserPistol;
 import com.redsparkle.foe.items.guns.TenMM;
 import com.redsparkle.foe.items.guns.ammo.LaserWeapons.Battery;
@@ -23,6 +24,7 @@ public class ItemInit {
 
     // UTILITY
     public static PipBuck pipbuck;
+    public static PipBuckDummyOverlayItem pbdoi;
 
 
     // AMMO and CLIPS
@@ -97,7 +99,13 @@ public class ItemInit {
 
 
         //----------------------PLACEHOLDER--------------------
+        pbdoi = (PipBuckDummyOverlayItem) (new PipBuckDummyOverlayItem().setUnlocalizedName("bullet10mm"));
+        pbdoi.setRegistryName("pbdoi");
+        GameRegistry.register(pbdoi);
+
 /*
+
+
         tenMMbullet = (TenMMbullet) (new TenMMbullet().setUnlocalizedName("bullet10mm"));
         tenMMbullet.setRegistryName("bullet10mm");
         GameRegistry.register(tenMMbullet);

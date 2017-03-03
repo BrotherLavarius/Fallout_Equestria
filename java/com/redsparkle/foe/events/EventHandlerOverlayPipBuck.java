@@ -2,7 +2,7 @@ package com.redsparkle.foe.events;
 
 import com.redsparkle.foe.Init.ItemInit;
 import com.redsparkle.foe.gui.APBar;
-import com.redsparkle.foe.gui.PipBuckGui;
+import com.redsparkle.foe.gui.PipBuckOverlay;
 import com.redsparkle.foe.gui.RadsOverlay;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
@@ -22,9 +22,9 @@ public class EventHandlerOverlayPipBuck {
     ##############################################################################
     */
 
-    private PipBuckGui statusBarRenderer;
+    private PipBuckOverlay statusBarRenderer;
 
-    public EventHandlerOverlayPipBuck(PipBuckGui i_HUDrenderer) {
+    public EventHandlerOverlayPipBuck(PipBuckOverlay i_HUDrenderer) {
         statusBarRenderer = i_HUDrenderer;
     }
 

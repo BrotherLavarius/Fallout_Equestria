@@ -1,0 +1,32 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "textures": {},
+    "model": "fallout_equestria:pipbuck2000alpha.obj"
+  },
+  "variants": {
+    "inventory": [
+      {
+        "gui": {
+          "translation": [
+            0,
+            0,
+            0
+          ],
+          "rotation": [
+            {
+              "y": 0
+            },
+            {
+              "x": 0
+            },
+            {
+              "z": 0
+            }
+          ],
+          "scale": 0.15
+        }
+      }
+    ]
+  }
+}

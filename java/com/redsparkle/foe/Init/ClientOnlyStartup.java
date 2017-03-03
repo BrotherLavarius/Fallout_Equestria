@@ -6,7 +6,7 @@ import com.redsparkle.foe.block.interractable.DesktopTerminal;
 import com.redsparkle.foe.creativeTabs.InitCreativeTabs;
 import com.redsparkle.foe.events.EventHandlerOverlayPipBuck;
 import com.redsparkle.foe.events.EventPlayerRenders;
-import com.redsparkle.foe.gui.PipBuckGui;
+import com.redsparkle.foe.gui.PipBuckOverlay;
 import com.redsparkle.foe.items.guns.inits.bulletFiredGuns.EntityBullet;
 import com.redsparkle.foe.items.guns.inits.bulletFiredGuns.render.RenderBulletEntity;
 import com.redsparkle.foe.utils.GlobalNames;
@@ -25,7 +25,7 @@ import static com.redsparkle.foe.main.MODID;
  * Created by hoijima on 23.09.16.
  */
 public class ClientOnlyStartup {
-    private static PipBuckGui pipBuckGui;
+    private static PipBuckOverlay pipBuckGui;
 
     public static void preInitClientOnly() {
         final CreativeTabs Fallout_ammo = InitCreativeTabs.Fallout_ammo;
@@ -61,10 +61,12 @@ public class ClientOnlyStartup {
 
         //---------------------GUNS--------------------------
         ModelLoader.setCustomModelResourceLocation(ItemInit.tenMM, 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.TenMM, "inventory"));
-        ModelLoader.setCustomModelResourceLocation(ItemInit.laserPistol, 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.LaserPistol, "inventory"));
+        ModelLoader.setCustomModelResourceLocation(ItemInit.laserPistol, 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.placeholderPipbuck, "inventory"));
 
 
         //---------------------PLACEHOLDERS--------------------------
+        ModelLoader.setCustomModelResourceLocation(ItemInit.pbdoi, 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.LaserPistol, "inventory"));
+
         //ModelLoader.setCustomModelResourceLocation(ItemInit.tenMMbullet, 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.TenMMbullet, "inventory"));
 
     }
@@ -83,7 +85,7 @@ public class ClientOnlyStartup {
    * the overlay is a GUI element, and the GUI only exists on the client side,
    * we only register this event handler on the client side.
    */
-        pipBuckGui = new PipBuckGui(Minecraft.getMinecraft());
+        pipBuckGui = new PipBuckOverlay(Minecraft.getMinecraft());
         MinecraftForge.EVENT_BUS.register(new EventHandlerOverlayPipBuck(pipBuckGui));
         MinecraftForge.EVENT_BUS.register(new EventPlayerRenders());
     }

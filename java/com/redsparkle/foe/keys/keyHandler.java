@@ -8,19 +8,18 @@ import org.lwjgl.input.Keyboard;
 /**
  * Created by NENYN on 1/12/2017.
  */
-public class testkey {
+public class keyHandler {
     public static KeyBinding reload ;
-    public static KeyBinding ponymodel;
+    public static KeyBinding pipbuck;
     public static String reloadS = "Reload the gun";
+    public static String pipbuckS = "open PipBuckDummyOverlayItem GUI";
 
     public static void register()
     {
         reload = new KeyBinding(reloadS, Keyboard.KEY_R, main.MODID);
+        pipbuck = new KeyBinding(pipbuckS,Keyboard.KEY_TAB,main.MODID);
 
-        ponymodel = new KeyBinding("Changethemode",Keyboard.KEY_P,main.MODID);
-
-
-        ClientRegistry.registerKeyBinding(ponymodel);
         ClientRegistry.registerKeyBinding(reload);
+        ClientRegistry.registerKeyBinding(pipbuck);
     }
 }

@@ -6,6 +6,7 @@ package com.redsparkle.foe.utils;
  */
 public class GlobalNames {
     public static final String Domain = "fallout_equestria";
+    public static final String placeholderPipbuck = "pb";
     //Tabs
     public static final String
             Creative_tab_utils = "FOE_Utils",
@@ -78,6 +79,6 @@ public class GlobalNames {
     public static final String
             AdvanceRadMonitor = "AdvanceRadMonitor",
             BasicRadMonitor = "BasicRadMonitor",
-            Pipbuck = "PipBuck",
+            Pipbuck = "PipBuckDummyOverlayItem",
             StealthBuck = "StealthBuck";
 }

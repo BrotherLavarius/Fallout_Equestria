@@ -14,7 +14,7 @@ import org.lwjgl.opengl.GL11;
 /**
  * Created by NENYN on 12/25/2016.
  */
-public class PipBuckGui extends Gui {
+public class PipBuckOverlay extends Gui {
 
     /* This line tells Minecraft/Forge where your texture is. The first argument is your MODID,
      * and the second argument is the path to your texture starting at "resources/assets/MODID"
@@ -44,7 +44,7 @@ public class PipBuckGui extends Gui {
      */
     private Minecraft mc;
 
-    public PipBuckGui(Minecraft mc) {
+    public PipBuckOverlay(Minecraft mc) {
         this.mc = mc;
     }
 

@@ -7,7 +7,7 @@ import com.redsparkle.foe.capa.rad.RadsFactoryProvider;
 import com.redsparkle.foe.capa.spechial.ISpechialCapability;
 import com.redsparkle.foe.capa.spechial.SpechialFactoryProvider;
 import com.redsparkle.foe.keys.KeyInputHandler;
-import com.redsparkle.foe.keys.testkey;
+import com.redsparkle.foe.keys.keyHandler;
 import com.redsparkle.foe.network.MessageGunReloadReply;
 import com.redsparkle.foe.network.MessageUpdateClientRads;
 import com.redsparkle.foe.network.MessageUpdateClientServerSPECHIAL;
@@ -28,7 +28,7 @@ public class ClientOnlyProxy extends CommonProxy {
     public void preInit() {
         super.preInit();
         ClientOnlyStartup.preInitClientOnly();
-        testkey.register();
+        keyHandler.register();
         MinecraftForge.EVENT_BUS.register(new KeyInputHandler());
 
     }
