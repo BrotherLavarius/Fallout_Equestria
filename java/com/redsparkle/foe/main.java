@@ -1,6 +1,7 @@
 package com.redsparkle.foe;
 
 
+import com.redsparkle.foe.handlers.GuiHandler;
 import com.redsparkle.foe.network.MessageGunReload;
 import com.redsparkle.foe.network.MessageGunReloadReply;
 import com.redsparkle.foe.network.MessageUpdateClientRads;
@@ -51,6 +52,7 @@ public class main {
         MinecraftForge.EVENT_BUS.register(main.instance);
 
         proxy.init();
+        NetworkRegistry.INSTANCE.registerGuiHandler(main.instance,new GuiHandler());
 
         simpleNetworkWrapper = NetworkRegistry.INSTANCE.newSimpleChannel("FOE Network Channel");
         simpleNetworkWrapper.registerMessage(MessageUpdateClientRads.Handler.class, MessageUpdateClientRads.class, RAIATION_CAPABILITY_MESSAGE_ID_CLIENT, Side.CLIENT);

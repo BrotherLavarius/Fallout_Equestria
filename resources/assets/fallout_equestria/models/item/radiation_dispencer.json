@@ -1,3 +1,11 @@
 {
-  "parent": "fallout_equestria:block/mbe01_block_simple_model"
+  "forge_marker": 1,
+  "defaults": {
+    "textures": {}
+  },
+  "variants": {
+    "normal": [
+      {}
+    ]
+  }
 }
