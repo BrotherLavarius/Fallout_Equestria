@@ -61,11 +61,11 @@ public class ClientOnlyStartup {
 
         //---------------------GUNS--------------------------
         ModelLoader.setCustomModelResourceLocation(ItemInit.tenMM, 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.TenMM, "inventory"));
-        ModelLoader.setCustomModelResourceLocation(ItemInit.laserPistol, 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.placeholderPipbuck, "inventory"));
+        ModelLoader.setCustomModelResourceLocation(ItemInit.laserPistol, 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.LaserPistol, "inventory"));
 
 
         //---------------------PLACEHOLDERS--------------------------
-        ModelLoader.setCustomModelResourceLocation(ItemInit.pbdoi, 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.LaserPistol, "inventory"));
+        ModelLoader.setCustomModelResourceLocation(ItemInit.pbdoi, 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.placeholderPipbuck, "inventory"));
 
         //ModelLoader.setCustomModelResourceLocation(ItemInit.tenMMbullet, 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.TenMMbullet, "inventory"));
 

@@ -99,17 +99,9 @@ public class ItemInit {
 
 
         //----------------------PLACEHOLDER--------------------
-        pbdoi = (PipBuckDummyOverlayItem) (new PipBuckDummyOverlayItem().setUnlocalizedName("bullet10mm"));
+        pbdoi = (PipBuckDummyOverlayItem) (new PipBuckDummyOverlayItem().setUnlocalizedName(GlobalNames.placeholderPipbuck));
         pbdoi.setRegistryName("pbdoi");
         GameRegistry.register(pbdoi);
-
-/*
-
-
-        tenMMbullet = (TenMMbullet) (new TenMMbullet().setUnlocalizedName("bullet10mm"));
-        tenMMbullet.setRegistryName("bullet10mm");
-        GameRegistry.register(tenMMbullet);
-*/
 
     }
 
