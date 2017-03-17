@@ -22,6 +22,9 @@ public class PipBuckGui extends GuiScreen{
     public void drawScreen(int mouseX, int mouseY, float partialTicks)
     {
 
+        this.drawDefaultBackground();
+        super.drawScreen(mouseX, mouseY, partialTicks);
+//
     }
 
     /**
@@ -35,16 +38,10 @@ public class PipBuckGui extends GuiScreen{
 
     @Override
     public void initGui() {
-
         Item pipbuck = new ItemInit().pbdoi;
         ItemStack pipbuckIS = new ItemStack(pipbuck);
+        mc.getItemRenderer()
+                .renderItem(mc.player,pipbuckIS, ItemCameraTransforms.TransformType.GUI);
 
-        GL11.glPushAttrib(GL11.GL_ALL_ATTRIB_BITS);
-        GL11.glPushMatrix();
-
-        mc.getItemRenderer().renderItemInFirstPerson(mc.player, 0, 0, EnumHand.MAIN_HAND, 0, pipbuckIS, 0);
-
-        GL11.glPopMatrix();
-        GL11.glPopAttrib();
     }
 }
