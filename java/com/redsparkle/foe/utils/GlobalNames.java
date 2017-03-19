@@ -19,37 +19,37 @@ public class GlobalNames {
             Creative_tab_Ammo = "FOE_Ammo";
     // Meds
     public static final String
-            Addictol = "Addictol",
-            Calmex = "Calmex",
-            Fury = "Fury",
-            Jet = "Jet",
+            Addictol = "addictol",
+            Calmex = "calmex",
+            Fury = "fury",
+            Jet = "jet",
             MedX = "MedX",
-            Psycho = "Psycho",
-            RadAway = "RadAway",
-            RadX = "RadX",
-            BerryMentats = "BerryMentals",
-            GrapeMentats = "GrapeMentals",
-            Mentals = "Mentals",
-            OrangeMentats = "OrangeMentats",
-            PartyTimeMentals = "PartyTimeMentals",
-            DarkHealPotion = "DarkHealPotion",
-            PurpleHealPotion = "PurpleHealPotion",
-            RedHealPotion = "RedHealPotion",
-            WhiteHealpotion = "WhiteHealpotion";
+            Psycho = "psycho",
+            RadAway = "radaway",
+            RadX = "radx",
+            BerryMentats = "berry_mentals",
+            GrapeMentats = "grape_mentals",
+            Mentals = "mentals",
+            OrangeMentats = "orangementats",
+            PartyTimeMentals = "partyTimementals",
+            DarkHealPotion = "dark_heal_potion",
+            PurpleHealPotion = "purple_heal_potion",
+            RedHealPotion = "red_heal_potion",
+            WhiteHealpotion = "white_heal_ppotion";
 
     // Guns
     public static final String
-            TenMM = "TenMM_Pistol",
-            LaserPistol = "Laser_Pistol",
+            TenMM = "tenmm_pistol",
+            LaserPistol = "laser_pistol",
             nineMM = "9mm_Pistol";
     // Food
 
     // AMMO
     public static final String
-            TenMMAmmo = "TenMM_Ammo",
-            TenMMClip = "TenMM_Clip",
+            TenMMAmmo = "tenmm_ammo",
+            TenMMClip = "tenmm_clip",
 
-            Battery = "Battery";
+            Battery = "battery";
 
 
     // PLACEHOLDERS
@@ -61,24 +61,24 @@ public class GlobalNames {
 
     // Blocks
     public static final String
-            SPCmachine = "Sparkle_Cola_machine",
-            Terminal = "Desktop_Terminal";
+            SPCmachine = "sparkle_cola_machine",
+            Terminal = "desktop_Terminal";
 
     // Blocks - Stat dispencers
     public static final String
-            RadBlock = "Radiation_Dispencer",
-            EnvBlock = "Enervation_dispencer",
-            FLMBlock = "Flamer_block",
-            MagicBuffer = "Magic_dispencer",
-            WirelessCharger = "Wireless_Charger";
+            RadBlock = "radiation_dispencer",
+            EnvBlock = "enervation_dispencer",
+            FLMBlock = "flamer_block",
+            MagicBuffer = "magic_dispencer",
+            WirelessCharger = "wireless_charger";
 
     // Items
 
 
     // Utils
     public static final String
-            AdvanceRadMonitor = "AdvanceRadMonitor",
-            BasicRadMonitor = "BasicRadMonitor",
-            Pipbuck = "PipBuckDummyOverlayItem",
-            StealthBuck = "StealthBuck";
+            AdvanceRadMonitor = "advance_rad_monitor",
+            BasicRadMonitor = "basic_rad_monitor",
+            Pipbuck = "pipbuck",
+            StealthBuck = "stealthbuck";
 }
