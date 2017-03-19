@@ -65,9 +65,6 @@ public class ClientOnlyStartup {
 
 
         //---------------------PLACEHOLDERS--------------------------
-        ModelLoader.setCustomModelResourceLocation(ItemInit.pbdoi, 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.placeholderPipbuck, "inventory"));
-
-        //ModelLoader.setCustomModelResourceLocation(ItemInit.tenMMbullet, 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.TenMMbullet, "inventory"));
 
     }
 

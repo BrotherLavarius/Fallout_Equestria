@@ -17,23 +17,22 @@ import net.minecraft.util.EnumHand;
 import net.minecraftforge.client.event.RenderSpecificHandEvent;
 import org.lwjgl.opengl.GL11;
 
+import java.io.IOException;
+
 /**
  * Created by hoijima on 3/4/2017.
  */
 public class PipBuckGui extends GuiScreen{
 
-    public static Item pipbuck = new ItemInit().pbdoi;
-    public static ItemStack pipbuckIS = new ItemStack(pipbuck);
+
+
     @Override
     public void drawScreen(int mouseX, int mouseY, float partialTicks)
     {
-
         this.drawDefaultBackground();
-        this.zLevel = 0.0F;
-        this.itemRender.zLevel = 1.0F;
-
-        this.itemRender.renderItemIntoGUI(pipbuckIS,50,50);
-
+        GlStateManager.rotate(1,0,90,0);
+        GL11.glPushMatrix();
+        GL11.glPopMatrix();
         super.drawScreen(mouseX, mouseY, partialTicks);
 //
     }
@@ -51,7 +50,9 @@ public class PipBuckGui extends GuiScreen{
     @Override
     public void initGui() {
 
-
-
+        super.initGui();
+    }
+    @Override
+    protected void actionPerformed(GuiButton button) throws IOException {
     }
 }

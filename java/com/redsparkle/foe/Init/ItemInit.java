@@ -24,7 +24,6 @@ public class ItemInit {
 
     // UTILITY
     public static PipBuck pipbuck;
-    public static PipBuckDummyOverlayItem pbdoi;
 
 
     // AMMO and CLIPS
@@ -99,9 +98,7 @@ public class ItemInit {
 
 
         //----------------------PLACEHOLDER--------------------
-        pbdoi = (PipBuckDummyOverlayItem) (new PipBuckDummyOverlayItem().setUnlocalizedName(GlobalNames.placeholderPipbuck));
-        pbdoi.setRegistryName("pbdoi");
-        GameRegistry.register(pbdoi);
+
 
     }
 
