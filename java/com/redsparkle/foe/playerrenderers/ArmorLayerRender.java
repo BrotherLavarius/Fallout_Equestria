@@ -57,7 +57,7 @@ public class ArmorLayerRender implements LayerRenderer<EntityLivingBase> {
             }
 
 
-            GlStateManager.translate(0.0F, -0.2F, -0.2F);
+            GlStateManager.translate(0.15F, 0F, 0F);
             GlStateManager.rotate(netHeadYaw, 0, 1.0F, 0);
             GlStateManager.rotate(headPitch, 1.0F, 0, 0);
 
