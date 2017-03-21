@@ -1,10 +1,11 @@
 {
   "homepage": "https://fallout-equestria.tk/",
   "promos": {
-    "1.11.2-latest": "0.5",
-    "1.11.2-recommended": "0.5"
+    "1.11.2-latest": "0.6",
+    "1.11.2-recommended": "0.6"
   },
   "1.11.2": {
+    "0.6": "New model T60 head ",
     "0.5": "New model for laser pistol, begining of pipbuck implementation",
     "0.4": "Ponys can actually hold guns in there mouths now!",
     "0.3": "Started layers"

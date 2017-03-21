@@ -16,7 +16,8 @@ public class GlobalNames {
             Creative_tab_Guns = "FOE_Guns",
             Creative_tab_Food = "FOE_Food",
             Creative_tab_Meds = "FOE_Meds",
-            Creative_tab_Ammo = "FOE_Ammo";
+            Creative_tab_Ammo = "FOE_Ammo",
+            Creative_tab_Armor = "FOE_Armor";
     // Meds
     public static final String
             Addictol = "addictol",
@@ -74,6 +75,9 @@ public class GlobalNames {
 
     // Items
 
+    // ARMOR
+    public static final String
+        T60Head = "t60head",T60Hooves = "t60hooves", T60Legs = "t60legs",T60Body = "t60body";
 
     // Utils
     public static final String

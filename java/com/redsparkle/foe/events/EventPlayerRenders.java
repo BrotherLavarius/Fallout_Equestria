@@ -1,5 +1,6 @@
 package com.redsparkle.foe.events;
 
+import com.redsparkle.foe.playerrenderers.ArmorLayerRender;
 import com.redsparkle.foe.playerrenderers.GunRender;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
@@ -24,7 +25,7 @@ public class EventPlayerRenders {
         if(event.getEntity() instanceof EntityPlayer && !done) {
             EntityPlayer player = (EntityPlayer)event.getEntity();
             event.getRenderer().addLayer(new GunRender(event.getRenderer().getRenderManager().getSkinMap().get(player)));
-
+            event.getRenderer().addLayer(new ArmorLayerRender(event.getRenderer().getRenderManager().getSkinMap().get(player)));
             //TODO: add this layer as child layer SYKA BLYAT
             done = true;
         }

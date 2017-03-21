@@ -33,6 +33,7 @@ public class ClientOnlyStartup {
         final CreativeTabs Fallout_guns = InitCreativeTabs.Fallout_guns;
         final CreativeTabs Fallout_meds = InitCreativeTabs.Fallout_meds;
         final CreativeTabs Fallout_stats_blocks = InitCreativeTabs.Fallout_stats_blocks;
+        final CreativeTabs Fallout_stats_armor = InitCreativeTabs.Fallout_armor;
         //final CreativeTabs Fallout_Util = InitCreativeTabs.Fallout_Utils;
         SoundInit.registerSounds();
         OBJLoader.INSTANCE.addDomain(GlobalNames.Domain);
@@ -64,8 +65,8 @@ public class ClientOnlyStartup {
         ModelLoader.setCustomModelResourceLocation(ItemInit.laserPistol, 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.LaserPistol, "inventory"));
 
 
-        //---------------------PLACEHOLDERS--------------------------
-
+        //---------------------ARMOR--------------------------
+        ModelLoader.setCustomModelResourceLocation(ItemInit.t60head, 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.T60Head, "inventory"));
     }
 
     public static void initClientOnly() {

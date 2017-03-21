@@ -36,8 +36,13 @@ public class InitCreativeTabs {
         }
     };
     public static final CreativeTabs Fallout_stats_blocks = new CreativeTabs(GlobalNames.Creative_tab_EFFBlocks) {
-        public ItemStack getTabIconItem() {
-            return new ItemStack(Item.getItemFromBlock(Blocks.REDSTONE_BLOCK));
+        @Override
+        public ItemStack getTabIconItem() {return new ItemStack(Item.getItemFromBlock(Blocks.REDSTONE_BLOCK));
+        }
+    };
+    public static final CreativeTabs Fallout_armor= new CreativeTabs(GlobalNames.Creative_tab_Armor) {
+        @Override
+        public ItemStack getTabIconItem() {return new ItemStack(Items.ARMOR_STAND);
         }
     };
 

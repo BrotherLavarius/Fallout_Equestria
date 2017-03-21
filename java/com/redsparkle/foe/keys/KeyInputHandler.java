@@ -28,7 +28,7 @@ public class KeyInputHandler
             if (keyHandler.pipbuck.isPressed()){
 
                 player.openGui(main.instance, 0, mc.world, (int) mc.player.posX, (int) mc.player.posY, (int) mc.player.posZ);;
-//TODO: Actually fix this shit, AND I MEAN FIX!
+
 
             }
     }

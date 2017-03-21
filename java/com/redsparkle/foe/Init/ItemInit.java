@@ -1,6 +1,8 @@
 package com.redsparkle.foe.Init;
 
 import com.redsparkle.foe.gui.ItemBackGround.PipBuckDummyOverlayItem;
+import com.redsparkle.foe.items.armor.powered.init.t60Armor_material;
+import com.redsparkle.foe.items.armor.powered.t60head;
 import com.redsparkle.foe.items.guns.LaserPistol;
 import com.redsparkle.foe.items.guns.TenMM;
 import com.redsparkle.foe.items.guns.ammo.LaserWeapons.Battery;
@@ -10,7 +12,11 @@ import com.redsparkle.foe.items.meds.RadAway;
 import com.redsparkle.foe.items.meds.RadX;
 import com.redsparkle.foe.items.utility.PipBuck;
 import com.redsparkle.foe.utils.GlobalNames;
+import net.minecraft.inventory.EntityEquipmentSlot;
+import net.minecraft.item.ItemArmor;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+
+import static net.minecraft.inventory.EntityEquipmentSlot.Type.ARMOR;
 
 /**
  * Created by hoijima on 14.12.16.
@@ -39,7 +45,8 @@ public class ItemInit {
     // PLACEHOLDER
     //public static TenMMbullet tenMMbullet;
 
-
+    //ARMOR
+    public static t60head t60head;
 
     //public static ItemSimple itemSimple;  // this holds the unique instance of your block
 
@@ -90,12 +97,14 @@ public class ItemInit {
         GameRegistry.register(laserPistol);
 
         //----------------------UTILITY-----------------
-        pipbuck = (PipBuck) (new PipBuck().setUnlocalizedName("Pip Buck 3000"));
+        pipbuck = (PipBuck) (new PipBuck().setUnlocalizedName("Pip Buck 2000"));
         pipbuck.setRegistryName(GlobalNames.Pipbuck);
         GameRegistry.register(pipbuck);
 
-
-
+        //----------------------ARMOR-------------------
+        t60head = (t60head) (new t60head(t60Armor_material.T60_ARMOR, 0, EntityEquipmentSlot.HEAD).setUnlocalizedName(GlobalNames.T60Head));
+        t60head.setRegistryName(GlobalNames.T60Head);
+        GameRegistry.register(t60head);
 
         //----------------------PLACEHOLDER--------------------
 

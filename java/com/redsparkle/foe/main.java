@@ -7,6 +7,7 @@ import com.redsparkle.foe.network.MessageGunReloadReply;
 import com.redsparkle.foe.network.MessageUpdateClientRads;
 import com.redsparkle.foe.network.MessageUpdateClientServerSPECHIAL;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -25,6 +26,7 @@ public class main {
     public static final byte RELOAD_MESSAGE_ID_CLIENT = 98;
     public static final byte SPECHIAL_MESSAGE_ID_CLIENT = 99;
     public static final byte SPECHIAL_MESSAGE_ID_SERVER = 100;
+
     public static SimpleNetworkWrapper simpleNetworkWrapper;    // used to transmit your network messages
     @Mod.Instance(main.MODID)
     public static main instance;
