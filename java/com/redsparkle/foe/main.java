@@ -39,6 +39,7 @@ public class main {
      * @param name
      * @return eg "minecraftbyexample:myblockname"
      */
+
     public static String prependModID(String name) {
         return MODID + ":" + name;
     }
