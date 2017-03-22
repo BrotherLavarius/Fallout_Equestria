@@ -1,4 +1,7 @@
 ## Fallout Equestria BI(block |items| pack)
+[![forthebadge](http://forthebadge.com/images/badges/you-didnt-ask-for-this.svg)](http://forthebadge.com)
+[![forthebadge](http://forthebadge.com/images/badges/built-with-swag.svg)](http://forthebadge.com)
+[![forthebadge](http://forthebadge.com/images/badges/contains-cat-gifs.svg)](http://forthebadge.com)
 
 currently uses `forge 1.11.2-13.20.0.2228`
 A pack of stuff from FE with a fallout 4 inspired items
@@ -26,6 +29,5 @@ pipBuck             |:large_orange_diamond:
 
 Some plans here(https://drive.google.com/open?id=0B3xXl4Gn7Id4bEg0VzRiNFFlR0U)
 
-Also this will be mostly made playable to like Jun 2017.
+[![forthebadge](http://forthebadge.com/images/badges/no-ragrets.svg)](http://forthebadge.com)
 
-So brace yourself's :3
