@@ -28,7 +28,6 @@ import static java.lang.Math.abs;
 /**
  * Created by NENYN on 2/12/2017.
  */
-@SideOnly(Side.CLIENT)
 public class GunRender implements LayerRenderer<EntityLivingBase> {
     private final RenderPlayer playerRenderer;
     private Float yawCorrector = 0F;

@@ -1,5 +1,6 @@
 package com.redsparkle.foe.playerrenderers;
 
+import com.redsparkle.foe.items.armor.powered.init.ItemBody;
 import com.redsparkle.foe.items.armor.powered.init.ItemHelmet;
 import com.redsparkle.foe.items.guns.inits.ItemFirearm;
 import net.minecraft.client.Minecraft;
@@ -21,7 +22,6 @@ import static java.lang.Math.abs;
 /**
  * Created by NENYN on 2/12/2017.
  */
-@SideOnly(Side.CLIENT)
 public class ArmorLayerRender implements LayerRenderer<EntityLivingBase> {
     private final RenderPlayer playerRenderer;
     private Float yawCorrector = 0F;
@@ -36,33 +36,42 @@ public class ArmorLayerRender implements LayerRenderer<EntityLivingBase> {
 
     @Override
     public void doRenderLayer(EntityLivingBase entitylivingbaseIn, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch, float scale) {
-        ItemStack itemstack = entitylivingbaseIn.getItemStackFromSlot(EntityEquipmentSlot.HEAD);
-        Item item = itemstack.getItem();
+        ItemStack itemstackHead = entitylivingbaseIn.getItemStackFromSlot(EntityEquipmentSlot.HEAD);
+        Item itemHead = itemstackHead.getItem();
+
+        ItemStack itemstackBody = entitylivingbaseIn.getItemStackFromSlot(EntityEquipmentSlot.CHEST);
+        Item itemBody = itemstackBody.getItem();
         Minecraft minecraft = Minecraft.getMinecraft();
 
 
-        if (itemstack != null && item instanceof ItemHelmet) {
+        if (MathHelper.wrapDegrees(entitylivingbaseIn.getPitchYaw().y) >= 0.0F) {
+            yawCorrector = MathHelper.wrapDegrees(entitylivingbaseIn.getPitchYaw().y);
+        } else if (MathHelper.wrapDegrees(entitylivingbaseIn.getPitchYaw().y) < 0.0F) {
+            yawCorrector = abs(MathHelper.wrapDegrees(entitylivingbaseIn.getPitchYaw().y) + 360);
+        }
+
+
+        if (itemstackHead != null && itemHead instanceof ItemHelmet) {
             GlStateManager.pushMatrix();
-            if (MathHelper.wrapDegrees(entitylivingbaseIn.getPitchYaw().y) >= 0.0F) {
-                yawCorrector = MathHelper.wrapDegrees(entitylivingbaseIn.getPitchYaw().y);
-            } else if (MathHelper.wrapDegrees(entitylivingbaseIn.getPitchYaw().y) < 0.0F) {
-                yawCorrector = abs(MathHelper.wrapDegrees(entitylivingbaseIn.getPitchYaw().y) + 360);
-            }
 
-
-            if (MathHelper.wrapDegrees(entitylivingbaseIn.rotationPitch) >= 0.0F) {
-                rotationPitch = MathHelper.wrapDegrees(entitylivingbaseIn.rotationPitch);
-            } else if (MathHelper.wrapDegrees(entitylivingbaseIn.rotationPitch) < 0.0F) {
-                rotationPitch = abs(MathHelper.wrapDegrees(entitylivingbaseIn.rotationPitch) + 360);
-            }
 
             GlStateManager.translate(0.0F, 0.0F, -0.1F);
-            GlStateManager.translate(0.15F, 0F, 0F);
+            GlStateManager.translate(0.125F, 0F, 0F);
             GlStateManager.rotate(netHeadYaw, 0, 1.0F, 0);
             GlStateManager.rotate(headPitch, 1.0F, 0, 0);
 
 
-            minecraft.getItemRenderer().renderItem(entitylivingbaseIn, itemstack, ItemCameraTransforms.TransformType.HEAD);
+            minecraft.getItemRenderer().renderItem(entitylivingbaseIn, itemstackHead, ItemCameraTransforms.TransformType.HEAD);
+            GlStateManager.popMatrix();
+        }
+        if (itemstackBody != null && itemBody instanceof ItemBody) {
+            GlStateManager.pushMatrix();
+
+
+            GlStateManager.translate(0.295F, 0.5F, 0F);
+            //GlStateManager.rotate(1, 0F, 1.0F, 0F);
+
+            minecraft.getItemRenderer().renderItem(entitylivingbaseIn, itemstackBody, ItemCameraTransforms.TransformType.HEAD);
             GlStateManager.popMatrix();
         }
     }

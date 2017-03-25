@@ -3,6 +3,7 @@ package com.redsparkle.foe.Init;
 import com.redsparkle.foe.gui.ItemBackGround.PipBuckDummyOverlayItem;
 import com.redsparkle.foe.items.armor.powered.init.t60Armor_material;
 import com.redsparkle.foe.items.armor.powered.t60head;
+import com.redsparkle.foe.items.armor.powered.t60body;
 import com.redsparkle.foe.items.guns.LaserPistol;
 import com.redsparkle.foe.items.guns.TenMM;
 import com.redsparkle.foe.items.guns.ammo.LaserWeapons.Battery;
@@ -47,6 +48,7 @@ public class ItemInit {
 
     //ARMOR
     public static t60head t60head;
+    public static t60body t60body;
 
     //public static ItemSimple itemSimple;  // this holds the unique instance of your block
 
@@ -105,6 +107,10 @@ public class ItemInit {
         t60head = (t60head) (new t60head(t60Armor_material.T60_ARMOR, 0, EntityEquipmentSlot.HEAD).setUnlocalizedName(GlobalNames.T60Head));
         t60head.setRegistryName(GlobalNames.T60Head);
         GameRegistry.register(t60head);
+
+        t60body = (t60body) (new t60body(t60Armor_material.T60_ARMOR, 0, EntityEquipmentSlot.CHEST).setUnlocalizedName(GlobalNames.T60Body));
+        t60body.setRegistryName(GlobalNames.T60Body);
+        GameRegistry.register(t60body);
 
         //----------------------PLACEHOLDER--------------------
 
