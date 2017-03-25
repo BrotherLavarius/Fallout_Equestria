@@ -55,8 +55,8 @@ public class ArmorLayerRender implements LayerRenderer<EntityLivingBase> {
             GlStateManager.pushMatrix();
 
 
-            GlStateManager.translate(0.0F, 0.0F, -0.1F);
-            GlStateManager.translate(0.125F, 0F, 0F);
+
+            GlStateManager.translate(0.115F, 0.15F, 0.05F);
             GlStateManager.rotate(netHeadYaw, 0, 1.0F, 0);
             GlStateManager.rotate(headPitch, 1.0F, 0, 0);
 
@@ -68,8 +68,8 @@ public class ArmorLayerRender implements LayerRenderer<EntityLivingBase> {
             GlStateManager.pushMatrix();
 
 
-            GlStateManager.translate(0.295F, 0.5F, 0F);
-            //GlStateManager.rotate(1, 0F, 1.0F, 0F);
+            GlStateManager.translate(0.280F, 0.65F, 0F);
+
 
             minecraft.getItemRenderer().renderItem(entitylivingbaseIn, itemstackBody, ItemCameraTransforms.TransformType.HEAD);
             GlStateManager.popMatrix();
