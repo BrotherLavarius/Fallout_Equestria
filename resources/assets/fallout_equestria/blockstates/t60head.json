@@ -86,7 +86,7 @@
           "head": {
             "translation": [0.070,-0.15,-0.30],
             "rotation": [{"y": 180},{"x": 180},{"z": 0}],
-            "scale": 0.6
+            "scale": 0.65
           },
           "firstperson_righthand": {
             "translation": [
