@@ -2,6 +2,7 @@ package com.redsparkle.foe.playerrenderers;
 
 import com.redsparkle.foe.items.armor.powered.init.ItemBody;
 import com.redsparkle.foe.items.armor.powered.init.ItemHelmet;
+import com.redsparkle.foe.items.armor.powered.init.ItemLegs;
 import com.redsparkle.foe.items.guns.inits.ItemFirearm;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
@@ -41,6 +42,10 @@ public class ArmorLayerRender implements LayerRenderer<EntityLivingBase> {
 
         ItemStack itemstackBody = entitylivingbaseIn.getItemStackFromSlot(EntityEquipmentSlot.CHEST);
         Item itemBody = itemstackBody.getItem();
+
+        ItemStack itemstackLegs = entitylivingbaseIn.getItemStackFromSlot(EntityEquipmentSlot.LEGS);
+        Item itemLegs = itemstackBody.getItem();
+
         Minecraft minecraft = Minecraft.getMinecraft();
 
 
