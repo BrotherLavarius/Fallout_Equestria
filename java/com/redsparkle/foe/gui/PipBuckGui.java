@@ -42,11 +42,6 @@ public class PipBuckGui extends GuiScreen{
     {
 
         this.drawDefaultBackground();
-
-
-
-
-
         GlStateManager.color(1,1,1,1);
         GlStateManager.enableAlpha();
         GlStateManager.enableBlend();
