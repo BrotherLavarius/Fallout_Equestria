@@ -1,10 +1,11 @@
 package com.redsparkle.foe.Init;
 
 import com.redsparkle.foe.gui.ItemBackGround.PipBuckDummyOverlayItem;
-import com.redsparkle.foe.items.armor.powered.init.t60Armor_material;
 import com.redsparkle.foe.items.armor.powered.t60head;
 import com.redsparkle.foe.items.armor.powered.t60body;
 import com.redsparkle.foe.items.armor.powered.t60legs;
+import com.redsparkle.foe.items.armor.powered.t50head;
+
 import com.redsparkle.foe.items.guns.LaserPistol;
 import com.redsparkle.foe.items.guns.TenMM;
 import com.redsparkle.foe.items.guns.ammo.LaserWeapons.Battery;
@@ -13,6 +14,7 @@ import com.redsparkle.foe.items.guns.ammo.TenMM.TenMMammo;
 import com.redsparkle.foe.items.meds.RadAway;
 import com.redsparkle.foe.items.meds.RadX;
 import com.redsparkle.foe.items.utility.PipBuck;
+import com.redsparkle.foe.utils.Armor_material;
 import com.redsparkle.foe.utils.GlobalNames;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemArmor;
@@ -52,6 +54,7 @@ public class ItemInit {
     public static t60body t60body;
     public static t60legs t60legs;
 
+    public static t50head t50head;
     //public static ItemSimple itemSimple;  // this holds the unique instance of your block
 
     public static void preInitCommon() {
@@ -106,17 +109,21 @@ public class ItemInit {
         GameRegistry.register(pipbuck);
 
         //----------------------ARMOR-------------------
-        t60head = (t60head) (new t60head(t60Armor_material.T60_ARMOR, 0, EntityEquipmentSlot.HEAD).setUnlocalizedName(GlobalNames.T60Head));
+        t60head = (t60head) (new t60head(Armor_material.T60_ARMOR, 0, EntityEquipmentSlot.HEAD).setUnlocalizedName(GlobalNames.T60Head));
         t60head.setRegistryName(GlobalNames.T60Head);
         GameRegistry.register(t60head);
 
-        t60body = (t60body) (new t60body(t60Armor_material.T60_ARMOR, 0, EntityEquipmentSlot.CHEST).setUnlocalizedName(GlobalNames.T60Body));
+        t60body = (t60body) (new t60body(Armor_material.T60_ARMOR, 0, EntityEquipmentSlot.CHEST).setUnlocalizedName(GlobalNames.T60Body));
         t60body.setRegistryName(GlobalNames.T60Body);
         GameRegistry.register(t60body);
 
-        t60legs = (t60legs) (new t60legs(t60Armor_material.T60_ARMOR, 0, EntityEquipmentSlot.LEGS).setUnlocalizedName(GlobalNames.T60Legs));
+        t60legs = (t60legs) (new t60legs(Armor_material.T60_ARMOR, 0, EntityEquipmentSlot.LEGS).setUnlocalizedName(GlobalNames.T60Legs));
         t60legs.setRegistryName(GlobalNames.T60Legs);
         GameRegistry.register(t60legs);
+
+        t50head = (t50head) (new t50head(Armor_material.T50_ARMOR, 0, EntityEquipmentSlot.HEAD).setUnlocalizedName(GlobalNames.T50Head));
+        t50head.setRegistryName(GlobalNames.T50Head);
+        GameRegistry.register(t50head);
 
         //----------------------PLACEHOLDER--------------------
 

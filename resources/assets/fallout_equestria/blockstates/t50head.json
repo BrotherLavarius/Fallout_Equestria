@@ -1,0 +1,114 @@
+ {
+  "forge_marker": 1,
+  "defaults": {
+    "textures": {},
+    "model": "fallout_equestria:t50head.obj"
+  },
+  "variants": {
+    "normal": [
+      {
+        "transform": {
+          "rotation": [
+            {
+              "y": 0
+            },
+            {
+              "x": 0
+            },
+            {
+              "z": 5
+            }
+          ]
+        },
+        "scale": 1
+      }
+    ],
+    "inventory": [
+      {
+        "transform": {
+          "thirdperson_righthand": {
+            "translation": [
+              0,
+              0,
+              0
+            ],
+            "rotation": [
+              {
+                "y": 0
+              },
+              {
+                "x": 0
+              },
+              {
+                "z": 0
+              }
+            ],
+            "scale": 1
+          },
+          "ground": {
+            "translation": [
+              0,
+              0,
+              0
+            ],
+            "rotation": [
+              {
+                "y": 0
+              },
+              {
+                "x": 0
+              },
+              {
+                "z": 0
+              }
+            ],
+            "scale": 0.5
+          },
+          "gui": {
+            "translation": [
+              180,
+              0,
+              0
+            ],
+            "rotation": [
+              {
+                "y": 0
+              },
+              {
+                "x": 0
+              },
+              {
+                "z": 0
+              }
+            ],
+            "scale": 0.5
+          },
+          "head": {
+            "translation": [0.070,-0.1,-0.33],
+            "rotation": [{"y": 180},{"x": 180},{"z": 0}],
+            "scale": 0.65
+          },
+          "firstperson_righthand": {
+            "translation": [
+              -2,
+              -2.5,
+              -3
+            ],
+            "rotation": [
+              {
+                "y": 5
+              },
+              {
+                "x": -3
+              },
+              {
+                "z": -1
+              }
+            ],
+            "scale": 0.5
+          }
+        }
+      }
+    ]
+  }
+}
