@@ -33,7 +33,7 @@ public class PipBuckGui extends GuiScreen{
     public int pip_buck_y = 0;
     public int pip_buck_H = 321;
     public int pip_buck_W = 484;
-    GuiButton Items;
+    GuiButton Inventory;
     GuiButton Stats;
     GuiButton Data;
 
@@ -57,9 +57,7 @@ public class PipBuckGui extends GuiScreen{
         GL11.glScalef((float)this.width/250, (float) this.height/140, 1.0f);
         GL11.glTranslatef(-30f, -25f, 0f);
         drawTexturedModalRect(this.width /9, this.height /9, pip_buck_x, pip_buck_y, 250, 140);
-
-
-
+        addButton(Inventory).drawTexturedModalRect(0,0,0,9,9,9);
         GL11.glPopMatrix();
 
         super.drawScreen(mouseX, mouseY, partialTicks);
@@ -78,10 +76,32 @@ public class PipBuckGui extends GuiScreen{
 
     @Override
     public void initGui() {
+        this.buttonList.add(this.Stats = new GuiButton(0, this.width / 2 - 100, this.height / 2 - 24, "This is button a"));
+        this.buttonList.add(this.Inventory = new GuiButton(1, this.width / 2 - 100, this.height / 2 + 4, "This is button b"));
+        this.buttonList.add(this.Data = new GuiButton(1, this.width / 2 - 100, this.height / 2 + 24, "This is button c"));
 
         super.initGui();
+
     }
     @Override
     protected void actionPerformed(GuiButton button) throws IOException {
+        if (button == this.Stats) {
+            //Main.packetHandler.sendToServer(...);
+            this.mc.displayGuiScreen(null);
+            if (this.mc.currentScreen == null)
+                this.mc.setIngameFocus();
+        }
+        if (button == this.Inventory){
+            //Main.packetHandler.sendToServer(...);
+            this.mc.displayGuiScreen(null);
+            if (this.mc.currentScreen == null)
+                this.mc.setIngameFocus();
+        }
+        if (button == this.Data){
+            //Main.packetHandler.sendToServer(...);
+            this.mc.displayGuiScreen(null);
+            if (this.mc.currentScreen == null)
+                this.mc.setIngameFocus();
+        }
     }
 }
