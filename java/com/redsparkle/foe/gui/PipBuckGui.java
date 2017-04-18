@@ -31,11 +31,22 @@ public class PipBuckGui extends GuiScreen{
 
     public int pip_buck_x = 0;
     public int pip_buck_y = 0;
-    public int pip_buck_H = 321;
-    public int pip_buck_W = 484;
-    GuiButton Inventory;
-    GuiButton Stats;
-    GuiButton Data;
+
+
+    public int global_y_active = 0;
+    public int global_x_active = 0;
+    public int global_x_inactive = 90;
+    public int stat_y = 330;
+    public int int_y = 373;
+    public int data_y = 414;
+
+    public int global_button_wight = 168;
+    public int global_button_hight = 39;
+
+
+    GuiButton Stats = new GuiButton(0,0,0,"");
+    GuiButton Inventory =  new GuiButton(1,0,0,"");
+    GuiButton Data = new GuiButton(2,0,0,"");
 
     @Override
     public void drawScreen(int mouseX, int mouseY, float partialTicks)
@@ -48,12 +59,26 @@ public class PipBuckGui extends GuiScreen{
         mc.getTextureManager().bindTexture(pipbuck);
 
         GL11.glPushMatrix();
-
-        GL11.glScalef((float)this.width/250, (float) this.height/140, 1.0f);
-        GL11.glTranslatef(-30f, -25f, 0f);
-        drawTexturedModalRect(this.width /9, this.height /9, pip_buck_x, pip_buck_y, 250, 140);
-        addButton(Inventory).drawTexturedModalRect(0,0,0,9,9,9);
+        {
+            GL11.glScalef((float) this.width / 250, (float) this.height / 140, 1.0f);
+            GL11.glTranslatef(-30f, -25f, 0f);
+            drawTexturedModalRect(this.width / 9, this.height / 9, pip_buck_x, pip_buck_y, 250, 140);
+        }
         GL11.glPopMatrix();
+
+
+        GL11.glPushMatrix();
+        {
+            this.buttonList.get(0).width = 0;
+            this.buttonList.get(0).height = 0;
+
+            //this.buttonList.get(0).xPosition = (this.width / 6 + 50);
+            //this.buttonList.get(0).yPosition = (this.height / 2 + 70);
+            this.buttonList.get(0).drawTexturedModalRect(this.width / 6 + 50, this.height / 2 + 70, global_x_inactive, stat_y,global_x_inactive + global_button_wight, global_button_hight);
+        }
+        GL11.glPopMatrix();
+        this.buttonList.get(1).width = 0;
+        this.buttonList.get(2).width = 0;
 
         super.drawScreen(mouseX, mouseY, partialTicks);
 //
@@ -71,9 +96,14 @@ public class PipBuckGui extends GuiScreen{
 
     @Override
     public void initGui() {
-        this.buttonList.add(this.Stats = new GuiButton(0, this.width / 2 - 100, this.height / 2 - 24, "This is button a"));
-        this.buttonList.add(this.Inventory = new GuiButton(1, this.width / 2 - 100, this.height / 2 + 4, "This is button b"));
-        this.buttonList.add(this.Data = new GuiButton(1, this.width / 2 - 100, this.height / 2 + 24, "This is button c"));
+        GL11.glPushMatrix();
+        {
+            GL11.glScalef(0,10f,0);
+            this.buttonList.add(this.Stats);
+        }
+        GL11.glPopMatrix();
+        this.buttonList.add(this.Inventory );
+        this.buttonList.add(this.Data );
 
         super.initGui();
 
