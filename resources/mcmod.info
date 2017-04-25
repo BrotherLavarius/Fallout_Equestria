@@ -7,7 +7,7 @@
     "version": "0.9",
     "mcversion": "1.11.2",
     "url": "https://fallout-equestria.tk",
-    "updateUrl": "https://fallout-equestria.tk/downloads/updates.json",
+    "updateUrl": "https://fallout-equestria.tk/download/updates.json",
     "authorList": ["RedSparkle"],
     "logoFile": "",
     "screenshots": [],
