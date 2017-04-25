@@ -18,7 +18,7 @@ Task                | status
 ------------------- | -------------
 Basic blocks        |:large_orange_diamond: 4 of 140
 Weapons             |:large_orange_diamond: 2 of MANY
-Armor               |:large_orange_diamond: 1 of 25
+Armor               |:large_orange_diamond: 3 of 25
 Rads                |:large_blue_circle:
 Enervation          |:red_circle:
 Crafting and meds   |:large_orange_diamond:
