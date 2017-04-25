@@ -82,6 +82,9 @@ public class GlobalNames {
     public static final String
             T50Head = "t50head",T50Hooves = "t50hooves", T50Legs = "t50legs",T50Body = "t50body";
 
+    public static final String
+            T40Head = "t40head",T40Hooves = "t40hooves", T40Legs = "t40legs",T40Body = "t40body";
+
     // Utils
     public static final String
             AdvanceRadMonitor = "advance_rad_monitor",

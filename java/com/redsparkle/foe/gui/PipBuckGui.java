@@ -1,6 +1,7 @@
 package com.redsparkle.foe.gui;
 
 import com.redsparkle.foe.Init.ItemInit;
+import com.redsparkle.foe.gui.pipbuck_gui_extenders.texturedButton;
 import com.redsparkle.foe.utils.GlobalNames;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
@@ -44,9 +45,9 @@ public class PipBuckGui extends GuiScreen{
     public int global_button_hight = 39;
 
 
-    GuiButton Stats = new GuiButton(0,0,0,"");
-    GuiButton Inventory =  new GuiButton(1,0,0,"");
-    GuiButton Data = new GuiButton(2,0,0,"");
+    texturedButton Stats = new texturedButton(0,0,0,"");
+    texturedButton Inventory =  new texturedButton(1,0,0,"");
+    texturedButton Data = new texturedButton(2,0,0,"");
 
     @Override
     public void drawScreen(int mouseX, int mouseY, float partialTicks)
@@ -63,20 +64,28 @@ public class PipBuckGui extends GuiScreen{
             GL11.glScalef((float) this.width / 250, (float) this.height / 140, 1.0f);
             GL11.glTranslatef(-30f, -25f, 0f);
             drawTexturedModalRect(this.width / 9, this.height / 9, pip_buck_x, pip_buck_y, 250, 140);
+            this.buttonList.get(0).drawTexturedModalRect((int)this.width / 4.5f, (int)this.height / 1.95f, 38, 396,33, 18);
+            //this.buttonList.get(0).drawScaledCustomSizeModalRect((int) (this.width / 4.5f), (int) (this.height / 1.95f),1.0f,1.0f, 38, 396,33, 18,1f,1f);
+            this.buttonList.get(0).width = 65;
+            this.buttonList.get(0).height = 20;
+            this.buttonList.get(0).xPosition = (int) (this.width / 3.24f);
+            this.buttonList.get(0).yPosition = (int) (this.height / 1.26f);
+            this.buttonList.get(0).visible = true;
         }
         GL11.glPopMatrix();
 
 
-        GL11.glPushMatrix();
-        {
-            this.buttonList.get(0).width = 0;
-            this.buttonList.get(0).height = 0;
-
-            //this.buttonList.get(0).xPosition = (this.width / 6 + 50);
-            //this.buttonList.get(0).yPosition = (this.height / 2 + 70);
-            this.buttonList.get(0).drawTexturedModalRect(this.width / 6 + 50, this.height / 2 + 70, global_x_inactive, stat_y,global_x_inactive + global_button_wight, global_button_hight);
-        }
-        GL11.glPopMatrix();
+//        GL11.glPushMatrix();
+//        {
+//            this.buttonList.get(0).width = 0;
+//            this.buttonList.get(0).height = 0;
+//            GL11.glScalef(1.9F, 2f, 1.0f);
+//            GL11.glTranslatef(-82f, -99f, 0f);
+//            //this.buttonList.get(0).xPosition = (this.width / 6 + 50);
+//            //this.buttonList.get(0).yPosition = (this.height / 2 + 70);
+//            this.buttonList.get(0).drawTexturedModalRect(this.width / 3 , this.height / 2 + 70, 38, 396,33, 18);
+//        }
+//        GL11.glPopMatrix();
         this.buttonList.get(1).width = 0;
         this.buttonList.get(2).width = 0;
 

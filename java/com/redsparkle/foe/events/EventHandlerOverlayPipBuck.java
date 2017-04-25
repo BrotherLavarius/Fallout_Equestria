@@ -42,7 +42,7 @@ public class EventHandlerOverlayPipBuck {
     public void onEvent(RenderGameOverlayEvent.Pre event) {
         EntityPlayerSP entityPlayerSP = Minecraft.getMinecraft().player;
         if (entityPlayerSP == null) return;  // just in case
-        if (!entityPlayerSP.isCreative()) {
+        //if (!entityPlayerSP.isCreative()) {
             // look for the ItemHUDactivator in the hotbar.  If not present, return without changing the HUD.
             boolean foundInHotbar = false;
             final int FIRST_HOTBAR_SLOT = 0;
@@ -55,7 +55,7 @@ public class EventHandlerOverlayPipBuck {
                 }
             }
             if (!foundInHotbar) return;
-        }
+        //}
 
 
         switch (event.getType()) {

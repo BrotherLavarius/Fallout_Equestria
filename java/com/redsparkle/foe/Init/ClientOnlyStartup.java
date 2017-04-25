@@ -70,6 +70,10 @@ public class ClientOnlyStartup {
         ModelLoader.setCustomModelResourceLocation(ItemInit.t60body, 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.T60Body, "inventory"));
 
         ModelLoader.setCustomModelResourceLocation(ItemInit.t50head, 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.T50Head, "inventory"));
+        ModelLoader.setCustomModelResourceLocation(ItemInit.t50body, 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.T50Body, "inventory"));
+
+        ModelLoader.setCustomModelResourceLocation(ItemInit.t40head, 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.T40Head, "inventory"));
+        ModelLoader.setCustomModelResourceLocation(ItemInit.t40body, 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.T40Body, "inventory"));
     }
 
     public static void initClientOnly() {
