@@ -11,7 +11,8 @@ public class ModelBullet extends ModelBase {
     public ModelBullet() {
         model = new ModelRenderer(this, 0, 0);
 
-        model.addBox(1F, 1F, 1F, 1, 3, 1);
+        model.addBox(3.5F, 3.5F, 3.5F, 1, 1, 1);
+
     }
 
     @Override

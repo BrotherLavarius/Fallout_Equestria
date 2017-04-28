@@ -9,6 +9,12 @@ import com.redsparkle.foe.items.armor.powered.t50body;
 
 import com.redsparkle.foe.items.armor.powered.t60head;
 import com.redsparkle.foe.items.armor.powered.t60body;
+
+
+import com.redsparkle.foe.items.armor.powered.t40legs;
+
+import com.redsparkle.foe.items.armor.powered.t50legs;
+
 import com.redsparkle.foe.items.armor.powered.t60legs;
 
 import com.redsparkle.foe.items.guns.LaserPistol;
@@ -57,9 +63,11 @@ public class ItemInit {
     //ARMOR
     public static t40head t40head;
     public static t40body t40body;
+    public static t40legs t40legs;
 
     public static t50head t50head;
     public static t50body t50body;
+    public static t50legs t50legs;
 
     public static t60head t60head;
     public static t60body t60body;
@@ -145,6 +153,16 @@ public class ItemInit {
         t60body = (t60body) (new t60body(Armor_material.T60_ARMOR, 0, EntityEquipmentSlot.CHEST).setUnlocalizedName(GlobalNames.T60Body));
         t60body.setRegistryName(GlobalNames.T60Body);
         GameRegistry.register(t60body);
+
+
+
+        t40legs = (t40legs) (new t40legs(Armor_material.T40_ARMOR, 0, EntityEquipmentSlot.LEGS).setUnlocalizedName(GlobalNames.T40Legs));
+        t40legs.setRegistryName(GlobalNames.T40Legs);
+        GameRegistry.register(t40legs);
+
+        t50legs = (t50legs) (new t50legs(Armor_material.T50_ARMOR, 0, EntityEquipmentSlot.LEGS).setUnlocalizedName(GlobalNames.T50Legs));
+        t50legs.setRegistryName(GlobalNames.T50Legs);
+        GameRegistry.register(t50legs);
 
         t60legs = (t60legs) (new t60legs(Armor_material.T60_ARMOR, 0, EntityEquipmentSlot.LEGS).setUnlocalizedName(GlobalNames.T60Legs));
         t60legs.setRegistryName(GlobalNames.T60Legs);
