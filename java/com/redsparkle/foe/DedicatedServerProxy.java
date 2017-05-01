@@ -14,6 +14,23 @@ import net.minecraft.entity.player.EntityPlayerMP;
  */
 public class DedicatedServerProxy extends CommonProxy {
 
+    public static void handleSpechialMessage(MessageUpdateClientServerSPECHIAL message, EntityPlayerMP playerEntity) {
+        Minecraft.getMinecraft().addScheduledTask(() -> {
+            ISpechialCapability spechial = SpechialFactoryProvider.instanceFor(playerEntity);
+            spechial.setStreinght(message.Streinght);
+            spechial.setPerception(message.Perception);
+            spechial.setEndurance(message.Endurance);
+            spechial.setCharisma(message.Charisma);
+            spechial.setIntelligence(message.Intelligence);
+            spechial.setAgility(message.Agility);
+            spechial.setLuck(message.Luck);
+            /** DEBUG MESSAGE ENABLER
+             * System.out.println("Client: "+message.radiation);
+             */
+
+        });
+    }
+
     /**
      * Run before anything else. Read your config, create blocks, items, etc, and register them with the GameRegistry
      */
@@ -45,22 +62,6 @@ public class DedicatedServerProxy extends CommonProxy {
         return false;
     }
 
-    public static void handleSpechialMessage(MessageUpdateClientServerSPECHIAL message, EntityPlayerMP playerEntity) {
-        Minecraft.getMinecraft().addScheduledTask(() -> {
-            ISpechialCapability spechial = SpechialFactoryProvider.instanceFor(playerEntity);
-            spechial.setStreinght(message.Streinght);
-            spechial.setPerception(message.Perception);
-            spechial.setEndurance(message.Endurance);
-            spechial.setCharisma(message.Charisma);
-            spechial.setIntelligence(message.Intelligence);
-            spechial.setAgility(message.Agility);
-            spechial.setLuck(message.Luck);
-            /** DEBUG MESSAGE ENABLER
-             * System.out.println("Client: "+message.radiation);
-             */
-
-        });
-    }
     @Override
     public boolean isDedicatedServer() {
         return true;

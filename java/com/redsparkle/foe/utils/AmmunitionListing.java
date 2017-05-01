@@ -9,6 +9,6 @@ import net.minecraft.item.Item;
 public class AmmunitionListing {
 
     public static final Item
-        TenMMClip = (Item) ItemInit.tenMMClip,
-        Battery = (Item) ItemInit.battery;
+            TenMMClip = (Item) ItemInit.tenMMClip,
+            Battery = (Item) ItemInit.battery;
 }

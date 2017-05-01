@@ -51,7 +51,7 @@ public class ConfigInit {
 
     public static void preInit() {
         /*
-		 * Here is where you specify the location from where your config file
+         * Here is where you specify the location from where your config file
 		 * will be read, or created if it is not present.
 		 *
 		 * Loader.instance().getConfigDir() returns the default config directory

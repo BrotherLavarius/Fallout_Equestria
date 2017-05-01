@@ -7,7 +7,6 @@ import com.redsparkle.foe.network.MessageGunReloadReply;
 import com.redsparkle.foe.network.MessageUpdateClientRads;
 import com.redsparkle.foe.network.MessageUpdateClientServerSPECHIAL;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -17,7 +16,7 @@ import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import net.minecraftforge.fml.relauncher.Side;
 
-@Mod(modid = main.MODID, version = main.VERSION,updateJSON = "https://fallout-equestria.tk/update/updates.json")
+@Mod(modid = main.MODID, version = main.VERSION, updateJSON = "https://fallout-equestria.tk/update/updates.json")
 public class main {
     public static final String MODID = "fallout_equestria";
     public static final String VERSION = "0.1";
@@ -55,14 +54,14 @@ public class main {
         MinecraftForge.EVENT_BUS.register(main.instance);
 
         proxy.init();
-        NetworkRegistry.INSTANCE.registerGuiHandler(main.instance,new GuiHandler());
+        NetworkRegistry.INSTANCE.registerGuiHandler(main.instance, new GuiHandler());
 
         simpleNetworkWrapper = NetworkRegistry.INSTANCE.newSimpleChannel("FOE Network Channel");
         simpleNetworkWrapper.registerMessage(MessageUpdateClientRads.Handler.class, MessageUpdateClientRads.class, RAIATION_CAPABILITY_MESSAGE_ID_CLIENT, Side.CLIENT);
         simpleNetworkWrapper.registerMessage(MessageGunReload.Handler.class, MessageGunReload.class, RELOAD_MESSAGE_ID_SERVER, Side.SERVER);
         simpleNetworkWrapper.registerMessage(MessageGunReloadReply.Handler.class, MessageGunReloadReply.class, RELOAD_MESSAGE_ID_CLIENT, Side.CLIENT);
-        simpleNetworkWrapper.registerMessage(MessageUpdateClientServerSPECHIAL.HandlerClient.class,MessageUpdateClientServerSPECHIAL.class,SPECHIAL_MESSAGE_ID_CLIENT,Side.CLIENT);
-        simpleNetworkWrapper.registerMessage(MessageUpdateClientServerSPECHIAL.HandlerServer.class,MessageUpdateClientServerSPECHIAL.class,SPECHIAL_MESSAGE_ID_SERVER,Side.SERVER);
+        simpleNetworkWrapper.registerMessage(MessageUpdateClientServerSPECHIAL.HandlerClient.class, MessageUpdateClientServerSPECHIAL.class, SPECHIAL_MESSAGE_ID_CLIENT, Side.CLIENT);
+        simpleNetworkWrapper.registerMessage(MessageUpdateClientServerSPECHIAL.HandlerServer.class, MessageUpdateClientServerSPECHIAL.class, SPECHIAL_MESSAGE_ID_SERVER, Side.SERVER);
     }
 
     @Mod.EventHandler

@@ -40,8 +40,7 @@ public class RadsFactoryProvider implements IRadiationCapability, ICapabilitySer
         return player.getCapability(RADIATION_CAPABILITY, null);
     }
 
-    public Integer getRadiation()
-    {
+    public Integer getRadiation() {
         return radiationLevel + basicRads;
     }
 

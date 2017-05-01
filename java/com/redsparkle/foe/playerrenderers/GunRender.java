@@ -1,13 +1,7 @@
 package com.redsparkle.foe.playerrenderers;
 
-import com.redsparkle.foe.Init.ItemInit;
 import com.redsparkle.foe.items.guns.inits.ItemFirearm;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.entity.AbstractClientPlayer;
-import net.minecraft.client.entity.EntityPlayerSP;
-import net.minecraft.client.gui.ScaledResolution;
-import net.minecraft.client.model.ModelBiped;
-import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
 import net.minecraft.client.renderer.entity.RenderPlayer;
@@ -17,11 +11,6 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.Vec3d;
-import net.minecraftforge.client.model.ModelLoader;
-import net.minecraftforge.client.model.ModelLoaderRegistry;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
 import static java.lang.Math.abs;
 
@@ -32,12 +21,11 @@ public class GunRender implements LayerRenderer<EntityLivingBase> {
     private final RenderPlayer playerRenderer;
     private Float yawCorrector = 0F;
     private Float rotationPitch = 0F;
+
     public GunRender(RenderPlayer playerRendererIn) {
 
         this.playerRenderer = playerRendererIn;
     }
-
-
 
 
     @Override
@@ -72,8 +60,7 @@ public class GunRender implements LayerRenderer<EntityLivingBase> {
         }
     }
 
-    public boolean shouldCombineTextures()
-    {
+    public boolean shouldCombineTextures() {
         return false;
     }
 }

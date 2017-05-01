@@ -1,23 +1,11 @@
 package com.redsparkle.foe.gui;
 
-import com.redsparkle.foe.Init.ItemInit;
 import com.redsparkle.foe.gui.pipbuck_gui_extenders.texturedButton;
 import com.redsparkle.foe.utils.GlobalNames;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.GuiButton;
-import net.minecraft.client.gui.GuiLabel;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.client.renderer.RenderHelper;
-import net.minecraft.client.renderer.block.model.IBakedModel;
-import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
-import net.minecraft.client.renderer.texture.TextureAtlasSprite;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.EnumHand;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.client.event.RenderSpecificHandEvent;
 import org.lwjgl.opengl.GL11;
 
 import java.io.IOException;
@@ -25,7 +13,7 @@ import java.io.IOException;
 /**
  * Created by hoijima on 3/4/2017.
  */
-public class PipBuckGui extends GuiScreen{
+public class PipBuckGui extends GuiScreen {
 
     final ResourceLocation pipbuck = new ResourceLocation(GlobalNames.Domain,
             "textures/gui/pipbuck_bg.png");
@@ -45,16 +33,15 @@ public class PipBuckGui extends GuiScreen{
     public int global_button_hight = 39;
 
 
-    texturedButton Stats = new texturedButton(0,0,0,"");
-    texturedButton Inventory =  new texturedButton(1,0,0,"");
-    texturedButton Data = new texturedButton(2,0,0,"");
+    texturedButton Stats = new texturedButton(0, 0, 0, "");
+    texturedButton Inventory = new texturedButton(1, 0, 0, "");
+    texturedButton Data = new texturedButton(2, 0, 0, "");
 
     @Override
-    public void drawScreen(int mouseX, int mouseY, float partialTicks)
-    {
+    public void drawScreen(int mouseX, int mouseY, float partialTicks) {
 
         this.drawDefaultBackground();
-        GlStateManager.color(1,1,1,1);
+        GlStateManager.color(1, 1, 1, 1);
         GlStateManager.enableAlpha();
         GlStateManager.enableBlend();
         mc.getTextureManager().bindTexture(pipbuck);
@@ -64,7 +51,7 @@ public class PipBuckGui extends GuiScreen{
             GL11.glScalef((float) this.width / 250, (float) this.height / 140, 1.0f);
             GL11.glTranslatef(-30f, -25f, 0f);
             drawTexturedModalRect(this.width / 9, this.height / 9, pip_buck_x, pip_buck_y, 250, 140);
-            this.buttonList.get(0).drawTexturedModalRect((int)this.width / 4.5f, (int)this.height / 1.95f, 38, 396,33, 18);
+            this.buttonList.get(0).drawTexturedModalRect((int) this.width / 4.5f, (int) this.height / 1.95f, 38, 396, 33, 18);
             //this.buttonList.get(0).drawScaledCustomSizeModalRect((int) (this.width / 4.5f), (int) (this.height / 1.95f),1.0f,1.0f, 38, 396,33, 18,1f,1f);
             this.buttonList.get(0).width = 65;
             this.buttonList.get(0).height = 20;
@@ -98,8 +85,7 @@ public class PipBuckGui extends GuiScreen{
      * Returns true if this GUI should pause the game when it is displayed in single-player
      */
     @Override
-    public boolean doesGuiPauseGame()
-    {
+    public boolean doesGuiPauseGame() {
         return false;
     }
 
@@ -107,16 +93,17 @@ public class PipBuckGui extends GuiScreen{
     public void initGui() {
         GL11.glPushMatrix();
         {
-            GL11.glScalef(0,10f,0);
+            GL11.glScalef(0, 10f, 0);
             this.buttonList.add(this.Stats);
         }
         GL11.glPopMatrix();
-        this.buttonList.add(this.Inventory );
-        this.buttonList.add(this.Data );
+        this.buttonList.add(this.Inventory);
+        this.buttonList.add(this.Data);
 
         super.initGui();
 
     }
+
     @Override
     protected void actionPerformed(GuiButton button) throws IOException {
         if (button == this.Stats) {
@@ -125,13 +112,13 @@ public class PipBuckGui extends GuiScreen{
             if (this.mc.currentScreen == null)
                 this.mc.setIngameFocus();
         }
-        if (button == this.Inventory){
+        if (button == this.Inventory) {
             //Main.packetHandler.sendToServer(...);
             this.mc.displayGuiScreen(null);
             if (this.mc.currentScreen == null)
                 this.mc.setIngameFocus();
         }
-        if (button == this.Data){
+        if (button == this.Data) {
             //Main.packetHandler.sendToServer(...);
             this.mc.displayGuiScreen(null);
             if (this.mc.currentScreen == null)

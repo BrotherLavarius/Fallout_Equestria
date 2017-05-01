@@ -13,7 +13,7 @@ import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
  * Created by hoijima on 3/1/2017.
  */
 public class MessageUpdateClientServerSPECHIAL implements IMessage {
-    public Integer Streinght,Perception,Endurance,Charisma,Intelligence,Agility,Luck;
+    public Integer Streinght, Perception, Endurance, Charisma, Intelligence, Agility, Luck;
 
     public MessageUpdateClientServerSPECHIAL() {
     }
@@ -63,12 +63,13 @@ public class MessageUpdateClientServerSPECHIAL implements IMessage {
         }
 
     }
+
     public static class HandlerServer implements IMessageHandler<MessageUpdateClientServerSPECHIAL, IMessage> {
 
         @Override
         public IMessage onMessage(MessageUpdateClientServerSPECHIAL message, MessageContext ctx) {
             EntityPlayerMP playerMP = ctx.getServerHandler().playerEntity;
-            DedicatedServerProxy.handleSpechialMessage(message,playerMP);
+            DedicatedServerProxy.handleSpechialMessage(message, playerMP);
             return null;
         }
 

@@ -35,29 +35,11 @@ public class ModEffects {
     public static final Potion LightOverWeight;
     public static final Potion MediumOverWeight;
     public static final Potion HeavyOverWeight;
-    @Nullable
-    private static Potion getRegisteredMobEffect(String id)
-    {
-        Potion potion = (Potion)Potion.REGISTRY.getObject(new ResourceLocation(id));
 
-        if (potion == null)
-        {
-            throw new IllegalStateException("Invalid ModEffect requested: " + id);
-        }
-        else
-        {
-            return potion;
-        }
-    }
-
-    static
-    {
-        if (!Bootstrap.isRegistered())
-        {
+    static {
+        if (!Bootstrap.isRegistered()) {
             throw new RuntimeException("Accessed MobEffects before Bootstrap!");
-        }
-        else
-        {
+        } else {
             BuckAddiction = getRegisteredMobEffect("BuckAddiction");
             JetAddiction = getRegisteredMobEffect("JetAddiction");
             MentAddiction = getRegisteredMobEffect("MentAddiction");
@@ -84,6 +66,17 @@ public class ModEffects {
             MediumOverWeight = getRegisteredMobEffect("MediumOverWeight");
             HeavyOverWeight = getRegisteredMobEffect("HeavyOverWeight");
 
+        }
+    }
+
+    @Nullable
+    private static Potion getRegisteredMobEffect(String id) {
+        Potion potion = (Potion) Potion.REGISTRY.getObject(new ResourceLocation(id));
+
+        if (potion == null) {
+            throw new IllegalStateException("Invalid ModEffect requested: " + id);
+        } else {
+            return potion;
         }
     }
 }

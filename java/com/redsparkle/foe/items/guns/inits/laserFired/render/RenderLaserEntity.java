@@ -1,7 +1,7 @@
 package com.redsparkle.foe.items.guns.inits.laserFired.render;
 
-import com.redsparkle.foe.items.guns.inits.bulletFiredGuns.model.ModelBullet;
 import com.redsparkle.foe.items.guns.inits.laserFired.EntityLaser;
+import com.redsparkle.foe.items.guns.inits.laserFired.model.ModelLaser;
 import com.redsparkle.foe.utils.GlobalNames;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.entity.Render;
@@ -21,7 +21,6 @@ public class RenderLaserEntity extends Render<EntityLaser> {
         super(rendermanager);
         this.shadowSize = 0.5F;
     }
-
 
 
     @Override
@@ -45,7 +44,7 @@ public class RenderLaserEntity extends Render<EntityLaser> {
         GL11.glRotatef(f, 0.0F, 1.0F, 0.0F);
         GL11.glRotatef(90F - entity.prevRotationPitch - (entity.rotationPitch - entity.prevRotationPitch) * f1, 1.0F, 0.0F, 0.0F);
 
-        ModelBase model = new ModelBullet();
+        ModelBase model = new ModelLaser();
 
         if (model != null) {
             model.render(entity, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F);

@@ -41,7 +41,7 @@ public class MessageGunReload implements IMessage {
                 if (heldItem.getItem() instanceof TenMM) {
                     gunReload.TenMM(mainThread, heldItem, player);
 
-                }else if (heldItem.getItem() instanceof LaserPistol){
+                } else if (heldItem.getItem() instanceof LaserPistol) {
                     gunReload.LaserPistol(mainThread, heldItem, player);
                 }
 

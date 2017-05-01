@@ -18,6 +18,7 @@ public class MessageFireToServer implements IMessage {
     public void toBytes(ByteBuf buf) {
 
     }
+
     public static class Handler implements IMessageHandler<MessageFireToServer, IMessage> {
 
         @Override

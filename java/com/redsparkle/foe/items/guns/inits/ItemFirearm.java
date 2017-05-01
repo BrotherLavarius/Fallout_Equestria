@@ -14,8 +14,7 @@ public class ItemFirearm extends Item {
     public int clipRounds;
     public Class<? extends EntityBullet> bulletClass;
 
-    public ItemFirearm()
-    {
+    public ItemFirearm() {
         this.clipRounds = 32;
         this.bulletClass = EntityBullet.class;
         this.setCreativeTab(InitCreativeTabs.Fallout_guns);

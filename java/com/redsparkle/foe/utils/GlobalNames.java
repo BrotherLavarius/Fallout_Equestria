@@ -50,7 +50,7 @@ public class GlobalNames {
             TenMMAmmo = "tenmm_ammo",
             TenMMClip = "tenmm_clip",
 
-            Battery = "battery";
+    Battery = "battery";
 
 
     // PLACEHOLDERS
@@ -77,13 +77,13 @@ public class GlobalNames {
 
     // ARMOR
     public static final String
-        T60Head = "t60head",T60Hooves = "t60hooves", T60Legs = "t60legs",T60Body = "t60body";
+            T60Head = "t60head", T60Hooves = "t60hooves", T60Legs = "t60legs", T60Body = "t60body";
 
     public static final String
-            T50Head = "t50head",T50Hooves = "t50hooves", T50Legs = "t50legs",T50Body = "t50body";
+            T50Head = "t50head", T50Hooves = "t50hooves", T50Legs = "t50legs", T50Body = "t50body";
 
     public static final String
-            T40Head = "t40head",T40Hooves = "t40hooves", T40Legs = "t40legs",T40Body = "t40body";
+            T40Head = "t40head", T40Hooves = "t40hooves", T40Legs = "t40legs", T40Body = "t40body";
 
     // Utils
     public static final String

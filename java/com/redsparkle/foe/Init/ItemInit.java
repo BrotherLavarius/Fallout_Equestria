@@ -1,22 +1,6 @@
 package com.redsparkle.foe.Init;
 
-import com.redsparkle.foe.gui.ItemBackGround.PipBuckDummyOverlayItem;
-import com.redsparkle.foe.items.armor.powered.t40head;
-import com.redsparkle.foe.items.armor.powered.t40body;
-
-import com.redsparkle.foe.items.armor.powered.t50head;
-import com.redsparkle.foe.items.armor.powered.t50body;
-
-import com.redsparkle.foe.items.armor.powered.t60head;
-import com.redsparkle.foe.items.armor.powered.t60body;
-
-
-import com.redsparkle.foe.items.armor.powered.t40legs;
-
-import com.redsparkle.foe.items.armor.powered.t50legs;
-
-import com.redsparkle.foe.items.armor.powered.t60legs;
-
+import com.redsparkle.foe.items.armor.powered.*;
 import com.redsparkle.foe.items.guns.LaserPistol;
 import com.redsparkle.foe.items.guns.TenMM;
 import com.redsparkle.foe.items.guns.ammo.LaserWeapons.Battery;
@@ -28,10 +12,7 @@ import com.redsparkle.foe.items.utility.PipBuck;
 import com.redsparkle.foe.utils.Armor_material;
 import com.redsparkle.foe.utils.GlobalNames;
 import net.minecraft.inventory.EntityEquipmentSlot;
-import net.minecraft.item.ItemArmor;
 import net.minecraftforge.fml.common.registry.GameRegistry;
-
-import static net.minecraft.inventory.EntityEquipmentSlot.Type.ARMOR;
 
 /**
  * Created by hoijima on 14.12.16.
@@ -153,7 +134,6 @@ public class ItemInit {
         t60body = (t60body) (new t60body(Armor_material.T60_ARMOR, 0, EntityEquipmentSlot.CHEST).setUnlocalizedName(GlobalNames.T60Body));
         t60body.setRegistryName(GlobalNames.T60Body);
         GameRegistry.register(t60body);
-
 
 
         t40legs = (t40legs) (new t40legs(Armor_material.T40_ARMOR, 0, EntityEquipmentSlot.LEGS).setUnlocalizedName(GlobalNames.T40Legs));

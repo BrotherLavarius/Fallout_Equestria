@@ -2,8 +2,6 @@ package com.redsparkle.foe.playerrenderers;
 
 import com.redsparkle.foe.items.armor.powered.init.ItemBody;
 import com.redsparkle.foe.items.armor.powered.init.ItemHelmet;
-import com.redsparkle.foe.items.armor.powered.init.ItemLegs;
-import com.redsparkle.foe.items.guns.inits.ItemFirearm;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
@@ -13,10 +11,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.MathHelper;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
 import static java.lang.Math.abs;
 
@@ -27,12 +22,11 @@ public class ArmorLayerRender implements LayerRenderer<EntityLivingBase> {
     private final RenderPlayer playerRenderer;
     private Float yawCorrector = 0F;
     private Float rotationPitch = 0F;
+
     public ArmorLayerRender(RenderPlayer playerRendererIn) {
 
         this.playerRenderer = playerRendererIn;
     }
-
-
 
 
     @Override
@@ -60,7 +54,6 @@ public class ArmorLayerRender implements LayerRenderer<EntityLivingBase> {
             GlStateManager.pushMatrix();
 
 
-
             GlStateManager.translate(0F, 0F, 0F);
             GlStateManager.rotate(netHeadYaw, 0, 1.0F, 0);
             GlStateManager.rotate(headPitch, 1.0F, 0, 0);
@@ -81,8 +74,7 @@ public class ArmorLayerRender implements LayerRenderer<EntityLivingBase> {
         }
     }
 
-    public boolean shouldCombineTextures()
-    {
+    public boolean shouldCombineTextures() {
         return false;
     }
 }

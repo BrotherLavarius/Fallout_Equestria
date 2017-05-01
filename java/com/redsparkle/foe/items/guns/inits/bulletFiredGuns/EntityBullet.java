@@ -12,8 +12,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class EntityBullet extends EntityThrowable {
     public int damage = 15;
 
-    public EntityBullet(World worldIn)
-    {
+    public EntityBullet(World worldIn) {
         super(worldIn);
     }
 
@@ -30,12 +29,9 @@ public class EntityBullet extends EntityThrowable {
 
 
     @SideOnly(Side.CLIENT)
-    public void handleStatusUpdate(byte id)
-    {
-        if (id == 3)
-        {
-            for (int i = 0; i < 8; ++i)
-            {
+    public void handleStatusUpdate(byte id) {
+        if (id == 3) {
+            for (int i = 0; i < 8; ++i) {
                 //this.world.spawnParticle(EnumParticleTypes.SNOWBALL, this.posX, this.posY, this.posZ, 0.0D, 0.0D, 0.0D, new int[0]);
             }
         }
@@ -44,30 +40,25 @@ public class EntityBullet extends EntityThrowable {
     /**
      * Called when this EntityThrowable hits a block or entity.
      */
-    protected void onImpact(RayTraceResult result)
-    {
-        if (result.entityHit != null)
-        {
+    protected void onImpact(RayTraceResult result) {
+        if (result.entityHit != null) {
             int i = damage;
 
-            if (result.entityHit instanceof EntityBlaze)
-            {
-                i = damage -2;
+            if (result.entityHit instanceof EntityBlaze) {
+                i = damage - 2;
             }
 
-            result.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, this.getThrower()), (float)i);
+            result.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, this.getThrower()), (float) i);
         }
 
-        if (!this.world.isRemote)
-        {
-            this.world.setEntityState(this, (byte)3);
+        if (!this.world.isRemote) {
+            this.world.setEntityState(this, (byte) 3);
             this.setDead();
         }
     }
 
     @Override
-    protected float getGravityVelocity()
-    {
+    protected float getGravityVelocity() {
         return 0F;
     }
 }

@@ -42,10 +42,8 @@ public class TenMM extends ItemFirearm {
     }
 
     @Override
-    public ICapabilityProvider initCapabilities(ItemStack stack, NBTTagCompound nbt)
-    {
-        if (nbt == null)
-        {
+    public ICapabilityProvider initCapabilities(ItemStack stack, NBTTagCompound nbt) {
+        if (nbt == null) {
             NBTTagCompound tag = new NBTTagCompound();
             tag.setBoolean("isgun", isGun);
             stack.setTagCompound(tag);
@@ -53,7 +51,6 @@ public class TenMM extends ItemFirearm {
 
         return super.initCapabilities(stack, nbt);
     }
-
 
 
     @Override
@@ -71,22 +68,22 @@ public class TenMM extends ItemFirearm {
 
             } else {
 
-                    worldIn.playSound(playerIn, playerIn.getPosition(), SoundInit.tenMMShot, SoundCategory.HOSTILE, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
-                    EntityBullet entitybullet = new EntityBullet(worldIn, playerIn);
-                    entitybullet.setHeadingFromThrower(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, 5.5F, 1.0F);
-                    worldIn.spawnEntity(entitybullet);
-                    itemstack.setItemDamage(itemstack.getItemDamage() + 1);
-                    playerIn.cameraYaw = -0.1F;
-                    return new ActionResult<>(EnumActionResult.SUCCESS, itemstack);
+                worldIn.playSound(playerIn, playerIn.getPosition(), SoundInit.tenMMShot, SoundCategory.HOSTILE, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
+                EntityBullet entitybullet = new EntityBullet(worldIn, playerIn);
+                entitybullet.setHeadingFromThrower(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, 5.5F, 1.0F);
+                worldIn.spawnEntity(entitybullet);
+                itemstack.setItemDamage(itemstack.getItemDamage() + 1);
+                playerIn.cameraYaw = -0.1F;
+                return new ActionResult<>(EnumActionResult.SUCCESS, itemstack);
             }
 
 
         } else {
             worldIn.playSound(playerIn, playerIn.getPosition(), SoundInit.tenMMShot, SoundCategory.HOSTILE, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
 
-                EntityBullet entitybullet = new EntityBullet(worldIn, playerIn);
-                entitybullet.setHeadingFromThrower(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, 5.5F, 1.0F);
-                worldIn.spawnEntity(entitybullet);
+            EntityBullet entitybullet = new EntityBullet(worldIn, playerIn);
+            entitybullet.setHeadingFromThrower(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, 5.5F, 1.0F);
+            worldIn.spawnEntity(entitybullet);
 
         }
         return new ActionResult<>(EnumActionResult.PASS, itemstack);

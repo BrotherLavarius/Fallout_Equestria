@@ -33,8 +33,6 @@ public abstract class CommonProxy {
         EntityRegistry.registerModEntity(new ResourceLocation(GlobalNames.Domain + ":entity/laser"), EntityBullet.class, "laser", 13, main.instance, 20, 30, false);
 
 
-
-
     }
 
     public void init() {

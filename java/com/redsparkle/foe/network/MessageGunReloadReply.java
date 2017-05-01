@@ -13,9 +13,10 @@ public class MessageGunReloadReply implements IMessage {
     public int soundname = 0;
     //public String[] guns = {"TenMM","LaserPistol","DobleBarrelShotgun"};
 
-    public MessageGunReloadReply(){}
+    public MessageGunReloadReply() {
+    }
 
-    public MessageGunReloadReply(Integer soundname){
+    public MessageGunReloadReply(Integer soundname) {
         this.soundname = soundname;
     }
 

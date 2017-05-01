@@ -16,13 +16,13 @@ import net.minecraft.world.WorldServer;
  * Created by hoijima on 20.01.17.
  */
 public class gunReload {
-    
-    
+
+
     public static void TenMM(WorldServer mainThread, ItemStack heldItem, EntityPlayerMP player) {
         mainThread.addScheduledTask(new Runnable() {
             @Override
             public void run() {
-                if (heldItem.getItemDamage() <= 12){
+                if (heldItem.getItemDamage() <= 12) {
                     if (findAmmo(player, "TenMM") != ItemStack.EMPTY) {
                         Item clip = ItemInit.tenMMClip;
                         ItemStack clipstack = new ItemStack(clip);
@@ -30,34 +30,39 @@ public class gunReload {
                         heldItem.setItemDamage(findAmmo(player, "TenMM").getItemDamage());
                         findAmmo(player, "TenMM").shrink(1);
                         player.inventory.setInventorySlotContents(InventoryManager.FindEmpty(player), clipstack);
-                        main.simpleNetworkWrapper.sendTo(new MessageGunReloadReply(0),player);
-                    }else {
+                        main.simpleNetworkWrapper.sendTo(new MessageGunReloadReply(0), player);
+                    } else {
                         Item emptyclip = ItemInit.tenMMClip;
                         ItemStack emptyClipStack = new ItemStack(emptyclip);
-                        if(heldItem.getItemDamage() == 0){emptyClipStack.setItemDamage(1);}else{emptyClipStack.setItemDamage(heldItem.getItemDamage());}
+                        if (heldItem.getItemDamage() == 0) {
+                            emptyClipStack.setItemDamage(1);
+                        } else {
+                            emptyClipStack.setItemDamage(heldItem.getItemDamage());
+                        }
                         heldItem.setItemDamage(13);
                         player.inventory.setInventorySlotContents(InventoryManager.FindEmpty(player), emptyClipStack);
-                        main.simpleNetworkWrapper.sendTo(new MessageGunReloadReply(1),player);
+                        main.simpleNetworkWrapper.sendTo(new MessageGunReloadReply(1), player);
                         //CommonProxy.sendSound(0,player);
                     }
-                }else if (heldItem.getItemDamage() == 13){
+                } else if (heldItem.getItemDamage() == 13) {
                     if (findAmmo(player, "TenMM") != ItemStack.EMPTY) {
                         heldItem.setItemDamage(findAmmo(player, "TenMM").getItemDamage());
                         findAmmo(player, "TenMM").shrink(1);
-                        main.simpleNetworkWrapper.sendTo(new MessageGunReloadReply(0),player);
+                        main.simpleNetworkWrapper.sendTo(new MessageGunReloadReply(0), player);
 
                     }
                 }
             }
         });
-        
+
     }
+
     public static ItemStack findAmmo(EntityPlayer player, String ammo) {
         Integer[] invArray = {0, 1, 2, 3, 4, 5, 6, 7, 8};
         for (int i = 0; i < invArray.length; ++i) {
             ItemStack itemstack = player.inventory.getStackInSlot(i);
 
-            if (isAmmo(itemstack,ammo)) {
+            if (isAmmo(itemstack, ammo)) {
                 if (itemstack.getItemDamage() >= 12) {
                     return ItemStack.EMPTY;
                 } else {
@@ -70,10 +75,10 @@ public class gunReload {
     }
 
     public static boolean isAmmo(ItemStack stack, String ammo) {
-        if (ammo == "TenMM"){
+        if (ammo == "TenMM") {
             return stack.getItem() instanceof TenMMClip;
         }
-        if (ammo == "LaserPistol"){
+        if (ammo == "LaserPistol") {
             return stack.getItem() instanceof Battery;
         }
         return false;
@@ -84,7 +89,7 @@ public class gunReload {
         mainThread.addScheduledTask(new Runnable() {
             @Override
             public void run() {
-                if (heldItem.getItemDamage() <= 30){
+                if (heldItem.getItemDamage() <= 30) {
                     if (findAmmo(player, "LaserPistol") != ItemStack.EMPTY) {
                         Item clip = ItemInit.battery;
                         ItemStack clipstack = new ItemStack(clip);
@@ -92,21 +97,25 @@ public class gunReload {
                         heldItem.setItemDamage(findAmmo(player, "LaserPistol").getItemDamage());
                         findAmmo(player, "LaserPistol").shrink(1);
                         player.inventory.setInventorySlotContents(InventoryManager.FindEmpty(player), clipstack);
-                        main.simpleNetworkWrapper.sendTo(new MessageGunReloadReply(2),player);
-                    }else {
+                        main.simpleNetworkWrapper.sendTo(new MessageGunReloadReply(2), player);
+                    } else {
                         Item emptyclip = ItemInit.battery;
                         ItemStack emptyClipStack = new ItemStack(emptyclip);
-                        if(heldItem.getItemDamage() == 0){emptyClipStack.setItemDamage(1);}else{emptyClipStack.setItemDamage(heldItem.getItemDamage());}
+                        if (heldItem.getItemDamage() == 0) {
+                            emptyClipStack.setItemDamage(1);
+                        } else {
+                            emptyClipStack.setItemDamage(heldItem.getItemDamage());
+                        }
                         heldItem.setItemDamage(31);
                         player.inventory.setInventorySlotContents(InventoryManager.FindEmpty(player), emptyClipStack);
-                        main.simpleNetworkWrapper.sendTo(new MessageGunReloadReply(3),player);
+                        main.simpleNetworkWrapper.sendTo(new MessageGunReloadReply(3), player);
 
                     }
-                }else if (heldItem.getItemDamage() == 31){
+                } else if (heldItem.getItemDamage() == 31) {
                     if (findAmmo(player, "LaserPistol") != ItemStack.EMPTY) {
                         heldItem.setItemDamage(findAmmo(player, "LaserPistol").getItemDamage());
                         findAmmo(player, "LaserPistol").shrink(1);
-                        main.simpleNetworkWrapper.sendTo(new MessageGunReloadReply(2),player);
+                        main.simpleNetworkWrapper.sendTo(new MessageGunReloadReply(2), player);
 
                     }
                 }

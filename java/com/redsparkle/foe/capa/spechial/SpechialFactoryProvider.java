@@ -58,40 +58,42 @@ public class SpechialFactoryProvider implements ISpechialCapability, ICapability
             basicLuck, //constant 0 to init
             LuckLevel, // real level
             prevLuckLevel; // prev before changing
+
     public SpechialFactoryProvider() {
-        this(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
+        this(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
     }
+
     public SpechialFactoryProvider(Integer basicStreinght, Integer StreinghtLevel, Integer prevStreinghtLevel,
                                    Integer basicPerception, Integer PerceptionLevel, Integer prevPerceptionLevel,
                                    Integer basicEndurance, Integer EnduranceLevel, Integer prevEnduranceLevel,
                                    Integer basicCharisma, Integer CharismaLevel, Integer prevCharismaLevel,
                                    Integer basicIntelligence, Integer IntelligenceLevel, Integer prevIntelligenceLevel,
                                    Integer basicAgility, Integer AgilityLevel, Integer prevAgilityLevel,
-                                   Integer basicLuck, Integer LuckLevel, Integer prevLuckLevel)
-    {
-        this.basicStreinght=basicStreinght;
-        this.StreinghtLevel=StreinghtLevel;
-        this.prevStreinghtLevel=prevStreinghtLevel;
-        this.basicPerception=basicPerception;
-        this.PerceptionLevel=PerceptionLevel;
-        this.prevPerceptionLevel=prevPerceptionLevel;
-        this.basicEndurance=basicEndurance;
-        this.EnduranceLevel=EnduranceLevel;
-        this.prevEnduranceLevel=prevEnduranceLevel;
-        this.basicCharisma=basicCharisma;
-        this.CharismaLevel=CharismaLevel;
-        this.prevCharismaLevel=prevCharismaLevel;
-        this.basicIntelligence=basicIntelligence;
-        this.IntelligenceLevel=IntelligenceLevel;
-        this.prevIntelligenceLevel=prevIntelligenceLevel;
-        this.basicAgility=basicAgility;
-        this.AgilityLevel=AgilityLevel;
-        this.prevAgilityLevel=prevAgilityLevel;
-        this.basicLuck=basicLuck;
-        this.LuckLevel=LuckLevel;
-        this.prevLuckLevel=prevLuckLevel;
+                                   Integer basicLuck, Integer LuckLevel, Integer prevLuckLevel) {
+        this.basicStreinght = basicStreinght;
+        this.StreinghtLevel = StreinghtLevel;
+        this.prevStreinghtLevel = prevStreinghtLevel;
+        this.basicPerception = basicPerception;
+        this.PerceptionLevel = PerceptionLevel;
+        this.prevPerceptionLevel = prevPerceptionLevel;
+        this.basicEndurance = basicEndurance;
+        this.EnduranceLevel = EnduranceLevel;
+        this.prevEnduranceLevel = prevEnduranceLevel;
+        this.basicCharisma = basicCharisma;
+        this.CharismaLevel = CharismaLevel;
+        this.prevCharismaLevel = prevCharismaLevel;
+        this.basicIntelligence = basicIntelligence;
+        this.IntelligenceLevel = IntelligenceLevel;
+        this.prevIntelligenceLevel = prevIntelligenceLevel;
+        this.basicAgility = basicAgility;
+        this.AgilityLevel = AgilityLevel;
+        this.prevAgilityLevel = prevAgilityLevel;
+        this.basicLuck = basicLuck;
+        this.LuckLevel = LuckLevel;
+        this.prevLuckLevel = prevLuckLevel;
 
     }
+
     public static ISpechialCapability instanceFor(EntityPlayer player) {
         return player.getCapability(SPECHIAL_CAPABILITY, null);
     }
@@ -119,6 +121,7 @@ public class SpechialFactoryProvider implements ISpechialCapability, ICapability
     public Integer getStreinght() {
         return StreinghtLevel + basicStreinght;
     }
+
     /*
     ##################################
     */
@@ -142,6 +145,7 @@ public class SpechialFactoryProvider implements ISpechialCapability, ICapability
     public Integer getPerception() {
         return PerceptionLevel + basicPerception;
     }
+
     /*
     ##################################
     */
@@ -165,6 +169,7 @@ public class SpechialFactoryProvider implements ISpechialCapability, ICapability
     public Integer getEndurance() {
         return EnduranceLevel + basicEndurance;
     }
+
     /*
     ##################################
     */
@@ -188,6 +193,7 @@ public class SpechialFactoryProvider implements ISpechialCapability, ICapability
     public Integer getCharisma() {
         return CharismaLevel + basicCharisma;
     }
+
     /*
     ##################################
     */
@@ -211,6 +217,7 @@ public class SpechialFactoryProvider implements ISpechialCapability, ICapability
     public Integer getIntelligence() {
         return IntelligenceLevel + basicIntelligence;
     }
+
     /*
     ##################################
     */
@@ -234,6 +241,7 @@ public class SpechialFactoryProvider implements ISpechialCapability, ICapability
     public Integer getAgility() {
         return AgilityLevel + basicAgility;
     }
+
     /*
     ##################################
     */
@@ -257,6 +265,7 @@ public class SpechialFactoryProvider implements ISpechialCapability, ICapability
     public Integer getLuck() {
         return LuckLevel + basicLuck;
     }
+
     /*
     ##################################
     */
@@ -267,7 +276,8 @@ public class SpechialFactoryProvider implements ISpechialCapability, ICapability
 
     public void updateClient(EntityPlayer player) {
         if (!player.getEntityWorld().isRemote) {
-            if (dirty) main.simpleNetworkWrapper.sendTo(new MessageUpdateClientServerSPECHIAL(this), (EntityPlayerMP) player);
+            if (dirty)
+                main.simpleNetworkWrapper.sendTo(new MessageUpdateClientServerSPECHIAL(this), (EntityPlayerMP) player);
             //dirty = false;
         }
     }
@@ -287,13 +297,13 @@ public class SpechialFactoryProvider implements ISpechialCapability, ICapability
     @Override
     public NBTTagCompound serializeNBT() {
         NBTTagCompound nbt = new NBTTagCompound();
-        nbt.setInteger("STR",StreinghtLevel);
-        nbt.setInteger("PER",PerceptionLevel);
-        nbt.setInteger("END",EnduranceLevel);
-        nbt.setInteger("CHR",CharismaLevel);
-        nbt.setInteger("INT",IntelligenceLevel);
-        nbt.setInteger("AGI",AgilityLevel);
-        nbt.setInteger("LUC",LuckLevel);
+        nbt.setInteger("STR", StreinghtLevel);
+        nbt.setInteger("PER", PerceptionLevel);
+        nbt.setInteger("END", EnduranceLevel);
+        nbt.setInteger("CHR", CharismaLevel);
+        nbt.setInteger("INT", IntelligenceLevel);
+        nbt.setInteger("AGI", AgilityLevel);
+        nbt.setInteger("LUC", LuckLevel);
         return nbt;
     }
 

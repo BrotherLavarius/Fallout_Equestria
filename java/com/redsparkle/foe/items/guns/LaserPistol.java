@@ -26,7 +26,6 @@ public class LaserPistol extends ItemFirearm {
     public Class<? extends EntityLaser> laserClass;
 
 
-
     public LaserPistol() {
         this.setMaxStackSize(1);
         this.setMaxDamage(clipRounds);
@@ -36,10 +35,8 @@ public class LaserPistol extends ItemFirearm {
     }
 
     @Override
-    public ICapabilityProvider initCapabilities(ItemStack stack, NBTTagCompound nbt)
-    {
-        if (nbt == null)
-        {
+    public ICapabilityProvider initCapabilities(ItemStack stack, NBTTagCompound nbt) {
+        if (nbt == null) {
             NBTTagCompound tag = new NBTTagCompound();
             tag.setBoolean("isgun", isGun);
             stack.setTagCompound(tag);
@@ -47,7 +44,6 @@ public class LaserPistol extends ItemFirearm {
 
         return super.initCapabilities(stack, nbt);
     }
-
 
 
     @Override
@@ -65,17 +61,22 @@ public class LaserPistol extends ItemFirearm {
 
             } else {
 
-                int num = (int) Math.random()*100 %3;
-                switch(num)
-                {
-                    case 0 : worldIn.playSound(playerIn, playerIn.getPosition(), SoundInit.laserPShot1, SoundCategory.PLAYERS, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));break;
-                    case 1 : worldIn.playSound(playerIn, playerIn.getPosition(), SoundInit.laserPShot2, SoundCategory.PLAYERS, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));break;
-                    case 2 : worldIn.playSound(playerIn, playerIn.getPosition(), SoundInit.laserPShot3, SoundCategory.PLAYERS, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));break;
+                int num = (int) Math.random() * 100 % 3;
+                switch (num) {
+                    case 0:
+                        worldIn.playSound(playerIn, playerIn.getPosition(), SoundInit.laserPShot1, SoundCategory.PLAYERS, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
+                        break;
+                    case 1:
+                        worldIn.playSound(playerIn, playerIn.getPosition(), SoundInit.laserPShot2, SoundCategory.PLAYERS, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
+                        break;
+                    case 2:
+                        worldIn.playSound(playerIn, playerIn.getPosition(), SoundInit.laserPShot3, SoundCategory.PLAYERS, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
+                        break;
                 }
 
 
                 EntityLaser entitylaser = new EntityLaser(worldIn, playerIn);
-                worldIn.spawnParticle(EnumParticleTypes.REDSTONE, playerIn.getPosition().getX(), playerIn.getPosition().getY()+2,playerIn.getPosition().getZ(), 0.0D, 0.1D, 0.0D, 1);
+                worldIn.spawnParticle(EnumParticleTypes.REDSTONE, playerIn.getPosition().getX(), playerIn.getPosition().getY() + 2, playerIn.getPosition().getZ(), 0.0D, 0.1D, 0.0D, 1);
                 entitylaser.setHeadingFromThrower(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, -1.0F, 4.5F, 1.0F);
                 worldIn.spawnEntity(entitylaser);
                 itemstack.setItemDamage(itemstack.getItemDamage() + 1);

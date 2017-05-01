@@ -1,5 +1,6 @@
 package com.redsparkle.foe.events;
 
+import com.redsparkle.foe.items.guns.inits.ItemFirearm;
 import com.redsparkle.foe.playerrenderers.ArmorLayerRender;
 import com.redsparkle.foe.playerrenderers.GunRender;
 import net.minecraft.client.Minecraft;
@@ -16,11 +17,12 @@ public class EventPlayerRenders {
     public EntityPlayerSP player = Minecraft.getMinecraft().player;
     Minecraft minecraft = Minecraft.getMinecraft();
     private boolean done = false;
+
     @SubscribeEvent
     public void onRenderEntity(RenderPlayerEvent.Pre event) {
 
-        if(event.getEntity() instanceof EntityPlayer && !done) {
-            EntityPlayer player = (EntityPlayer)event.getEntity();
+        if (event.getEntity() instanceof EntityPlayer && !done) {
+            EntityPlayer player = (EntityPlayer) event.getEntity();
             event.getRenderer().addLayer(new GunRender(event.getRenderer().getRenderManager().getSkinMap().get(player)));
             event.getRenderer().addLayer(new ArmorLayerRender(event.getRenderer().getRenderManager().getSkinMap().get(player)));
             //TODO: add this layer as child layer SYKA BLYAT
@@ -28,4 +30,13 @@ public class EventPlayerRenders {
         }
     }
 
+    @SubscribeEvent(receiveCanceled = true)
+    public void onWeaponCarry(RenderPlayerEvent.Pre event) {
+        if (event.getEntity() instanceof EntityPlayer && !done) {
+            EntityPlayer player = (EntityPlayer) event.getEntity();
+            if (player.getHeldItemMainhand().getItem() instanceof ItemFirearm) {
+
+            }
+        }
+    }
 }
