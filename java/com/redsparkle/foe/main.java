@@ -2,10 +2,7 @@ package com.redsparkle.foe;
 
 
 import com.redsparkle.foe.handlers.GuiHandler;
-import com.redsparkle.foe.network.MessageGunReload;
-import com.redsparkle.foe.network.MessageGunReloadReply;
-import com.redsparkle.foe.network.MessageUpdateClientRads;
-import com.redsparkle.foe.network.MessageUpdateClientServerSPECHIAL;
+import com.redsparkle.foe.network.*;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
@@ -25,6 +22,8 @@ public class main {
     public static final byte RELOAD_MESSAGE_ID_CLIENT = 98;
     public static final byte SPECHIAL_MESSAGE_ID_CLIENT = 99;
     public static final byte SPECHIAL_MESSAGE_ID_SERVER = 100;
+    public static final byte FIRE_MESSAGE_ID_CLIENT = 101;
+    public static final byte FIRE_MESSAGE_ID_SERVER = 102;
 
     public static SimpleNetworkWrapper simpleNetworkWrapper;    // used to transmit your network messages
     @Mod.Instance(main.MODID)
@@ -62,6 +61,9 @@ public class main {
         simpleNetworkWrapper.registerMessage(MessageGunReloadReply.Handler.class, MessageGunReloadReply.class, RELOAD_MESSAGE_ID_CLIENT, Side.CLIENT);
         simpleNetworkWrapper.registerMessage(MessageUpdateClientServerSPECHIAL.HandlerClient.class, MessageUpdateClientServerSPECHIAL.class, SPECHIAL_MESSAGE_ID_CLIENT, Side.CLIENT);
         simpleNetworkWrapper.registerMessage(MessageUpdateClientServerSPECHIAL.HandlerServer.class, MessageUpdateClientServerSPECHIAL.class, SPECHIAL_MESSAGE_ID_SERVER, Side.SERVER);
+        simpleNetworkWrapper.registerMessage(MessageFireToClientServer.HandlerClient.class,MessageFireToClientServer.class,FIRE_MESSAGE_ID_CLIENT,Side.CLIENT);
+        simpleNetworkWrapper.registerMessage(MessageFireToClientServer.HandlerServer.class,MessageFireToClientServer.class,FIRE_MESSAGE_ID_SERVER,Side.SERVER);
+
     }
 
     @Mod.EventHandler

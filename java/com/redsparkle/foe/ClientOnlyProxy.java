@@ -8,6 +8,7 @@ import com.redsparkle.foe.capa.spechial.ISpechialCapability;
 import com.redsparkle.foe.capa.spechial.SpechialFactoryProvider;
 import com.redsparkle.foe.keys.KeyInputHandler;
 import com.redsparkle.foe.keys.keyHandler;
+import com.redsparkle.foe.network.MessageFireToClientServer;
 import com.redsparkle.foe.network.MessageGunReloadReply;
 import com.redsparkle.foe.network.MessageUpdateClientRads;
 import com.redsparkle.foe.network.MessageUpdateClientServerSPECHIAL;
@@ -114,6 +115,9 @@ public class ClientOnlyProxy extends CommonProxy {
         return false;
     }
 
+    //TODO: finish this class
+    public static void handleFireMessage(MessageFireToClientServer message) {
+    }
 }
 
 
