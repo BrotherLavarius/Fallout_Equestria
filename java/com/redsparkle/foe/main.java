@@ -61,8 +61,8 @@ public class main {
         simpleNetworkWrapper.registerMessage(MessageGunReloadReply.Handler.class, MessageGunReloadReply.class, RELOAD_MESSAGE_ID_CLIENT, Side.CLIENT);
         simpleNetworkWrapper.registerMessage(MessageUpdateClientServerSPECHIAL.HandlerClient.class, MessageUpdateClientServerSPECHIAL.class, SPECHIAL_MESSAGE_ID_CLIENT, Side.CLIENT);
         simpleNetworkWrapper.registerMessage(MessageUpdateClientServerSPECHIAL.HandlerServer.class, MessageUpdateClientServerSPECHIAL.class, SPECHIAL_MESSAGE_ID_SERVER, Side.SERVER);
-        simpleNetworkWrapper.registerMessage(MessageFireToClientServer.HandlerClient.class,MessageFireToClientServer.class,FIRE_MESSAGE_ID_CLIENT,Side.CLIENT);
-        simpleNetworkWrapper.registerMessage(MessageFireToClientServer.HandlerServer.class,MessageFireToClientServer.class,FIRE_MESSAGE_ID_SERVER,Side.SERVER);
+//        simpleNetworkWrapper.registerMessage(MessageFireToClientServer.HandlerClient.class,MessageFireToClientServer.class,FIRE_MESSAGE_ID_CLIENT,Side.CLIENT);
+//        simpleNetworkWrapper.registerMessage(MessageFireToClientServer.HandlerServer.class,MessageFireToClientServer.class,FIRE_MESSAGE_ID_SERVER,Side.SERVER);
 
     }
 

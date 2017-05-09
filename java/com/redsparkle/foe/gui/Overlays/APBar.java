@@ -1,7 +1,5 @@
-package com.redsparkle.foe.gui;
+package com.redsparkle.foe.gui.Overlays;
 
-
-import com.redsparkle.foe.capa.rad.RadsFactoryProvider;
 import com.redsparkle.foe.utils.GlobalNames;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
@@ -12,29 +10,27 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import org.lwjgl.opengl.GL11;
 
-
 /**
- * Created by NENYN on 14.11.2016.
+ * Created by NENYN on 1/1/2017.
  */
+public class APBar extends Gui {
+    private final static ResourceLocation overlayBarRad = new ResourceLocation(GlobalNames.Domain, "textures/gui/food_hud_overlay.png");
 
-public class RadsOverlay extends Gui {
-    private final static ResourceLocation overlayBarRad = new ResourceLocation(GlobalNames.Domain, "textures/gui/rads_hud_overlay.png");
 
+    private final static int BAR_WIDTH = 154;
+    private final static int BAR_HEIGHT = 46;
 
-    private final static int BAR_WIDTH = 103;
-    private final static int BAR_HEIGHT = 26;
-
-    private final static int RadBAR_WIDTH = 100;
-    private final static int RadBAR_HEIGHT = 8;
+    private final static int RadBAR_WIDTH = 135;
+    private final static int RadBAR_HEIGHT = 9;
 
 
     private Minecraft mc;
 
-    public RadsOverlay(Minecraft mc) {
+    public APBar(Minecraft mc) {
 
         EntityPlayer player = mc.player;
         World world = mc.world;
-        int playerRadlevel = player.getCapability(RadsFactoryProvider.RADIATION_CAPABILITY, null).getRadiation();
+        int playerFood = player.getFoodStats().getFoodLevel();
 
 
         ScaledResolution scaled = new ScaledResolution(mc);
@@ -58,18 +54,18 @@ public class RadsOverlay extends Gui {
       /* This method tells OpenGL to draw with the custom texture */
         mc.renderEngine.bindTexture(overlayBarRad);
 
-        final int PositionX = screenWidth - 75; // leftmost edge of the experience bar
-        final int PositionY = screenHeight / 19 + BAR_HEIGHT;  // top of the experience bar
+        final int PositionX = screenWidth - 120; // leftmost edge of the experience bar
+        final int PositionY = screenHeight - 40;  // top of the experience bar
 
-        GL11.glTranslatef(PositionX, PositionY - BAR_HEIGHT, 0);
+        GL11.glTranslatef(PositionX, PositionY, 0);
         GL11.glScalef(0.76F, 0.76F, 0.76F);
         drawTexturedModalRect(0, 0, 0, 0, BAR_WIDTH, BAR_HEIGHT);
 
         GL11.glPushMatrix();
-        if (playerRadlevel <= 1) {
+        if (playerFood <= 1) {
 
-        } else if (playerRadlevel >= 1) {
-            drawTexturedModalRect(2, 6, 2, 29, Math.round(0.1F * playerRadlevel), RadBAR_HEIGHT);
+        } else if (playerFood >= 1) {
+            drawTexturedModalRect(18, 15, 17, 48, Math.round(6.75F * playerFood), RadBAR_HEIGHT);
             GL11.glScalef(0.76F, 0.76F, 0.76F);
         }
         GL11.glPushMatrix();
@@ -80,5 +76,5 @@ public class RadsOverlay extends Gui {
         GL11.glPopMatrix();
         GL11.glPopAttrib();
     }
-}
 
+}

@@ -89,6 +89,6 @@ public class GlobalNames {
     public static final String
             AdvanceRadMonitor = "advance_rad_monitor",
             BasicRadMonitor = "basic_rad_monitor",
-            Pipbuck = "pipbuck",
+            PipbuckTT = "pipbuck_2000",
             StealthBuck = "stealthbuck";
 }

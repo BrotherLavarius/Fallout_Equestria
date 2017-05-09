@@ -6,7 +6,7 @@ import com.redsparkle.foe.block.interractable.DesktopTerminal;
 import com.redsparkle.foe.creativeTabs.InitCreativeTabs;
 import com.redsparkle.foe.events.EventHandlerOverlayPipBuck;
 import com.redsparkle.foe.events.EventPlayerRenders;
-import com.redsparkle.foe.gui.PipBuckOverlay;
+import com.redsparkle.foe.gui.Overlays.PipBuckOverlay;
 import com.redsparkle.foe.items.guns.inits.bulletFiredGuns.EntityBullet;
 import com.redsparkle.foe.items.guns.inits.bulletFiredGuns.render.RenderBulletEntity;
 import com.redsparkle.foe.utils.GlobalNames;
@@ -48,7 +48,7 @@ public class ClientOnlyStartup {
 
         //---------------------UTILITY--------------------------
         final int DEFAULT_ITEM_SUBTYPE = 0;
-        ModelLoader.setCustomModelResourceLocation(ItemInit.pipbuck, DEFAULT_ITEM_SUBTYPE, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.Pipbuck, "inventory"));
+        ModelLoader.setCustomModelResourceLocation(ItemInit.pipbuck, DEFAULT_ITEM_SUBTYPE, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.PipbuckTT, "inventory"));
 
         //---------------------MEDS--------------------------
         ModelLoader.setCustomModelResourceLocation(ItemInit.radAway, DEFAULT_ITEM_SUBTYPE, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.RadAway, "inventory"));

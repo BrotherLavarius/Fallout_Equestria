@@ -1,9 +1,9 @@
 package com.redsparkle.foe.events;
 
 import com.redsparkle.foe.Init.ItemInit;
-import com.redsparkle.foe.gui.APBar;
-import com.redsparkle.foe.gui.PipBuckOverlay;
-import com.redsparkle.foe.gui.RadsOverlay;
+import com.redsparkle.foe.gui.Overlays.APBar;
+import com.redsparkle.foe.gui.Overlays.PipBuckOverlay;
+import com.redsparkle.foe.gui.Overlays.RadsOverlay;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.item.ItemStack;

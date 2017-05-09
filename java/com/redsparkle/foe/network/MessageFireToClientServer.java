@@ -1,6 +1,7 @@
 package com.redsparkle.foe.network;
 
 import com.redsparkle.foe.ClientOnlyProxy;
+import com.redsparkle.foe.DedicatedServerProxy;
 import com.sun.deploy.util.SessionState;
 import io.netty.buffer.ByteBuf;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
@@ -43,6 +44,7 @@ public class MessageFireToClientServer implements IMessage {
     public class HandlerServer implements IMessageHandler<MessageFireToClientServer, IMessage> {
         @Override
         public IMessage onMessage(MessageFireToClientServer message, MessageContext ctx) {
+            DedicatedServerProxy.handleFireMessage(message);
             return null;
         }
     }

@@ -103,8 +103,8 @@ public class ItemInit {
         GameRegistry.register(laserPistol);
 
         //----------------------UTILITY-----------------
-        pipbuck = (PipBuck) (new PipBuck().setUnlocalizedName("Pip Buck 2000"));
-        pipbuck.setRegistryName(GlobalNames.Pipbuck);
+        pipbuck = (PipBuck) (new PipBuck().setUnlocalizedName(GlobalNames.PipbuckTT));
+        pipbuck.setRegistryName(GlobalNames.PipbuckTT);
         GameRegistry.register(pipbuck);
 
         //----------------------ARMOR-------------------

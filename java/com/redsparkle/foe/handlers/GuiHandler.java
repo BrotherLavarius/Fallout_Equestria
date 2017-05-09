@@ -1,6 +1,9 @@
 package com.redsparkle.foe.handlers;
 
-import com.redsparkle.foe.gui.PipBuckGui;
+import com.redsparkle.foe.gui.Menus.PipBuckGui;
+import com.redsparkle.foe.gui.Menus.pipbuck_gui_extenders.DataGui;
+import com.redsparkle.foe.gui.Menus.pipbuck_gui_extenders.InventoryGui;
+import com.redsparkle.foe.gui.Menus.pipbuck_gui_extenders.StatsGui;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.IGuiHandler;
@@ -12,6 +15,10 @@ import javax.annotation.Nullable;
  */
 public class GuiHandler implements IGuiHandler {
     public static final int PIPBUCK_GUI = 0;
+    public static final int PIPBUCK_GUI_STAT = 1;
+    public static final int PIPBUCK_GUI_INVE = 2;
+    public static final int PIPBUCK_GUI_DATA = 3;
+
 
     @Nullable
     @Override
@@ -22,8 +29,10 @@ public class GuiHandler implements IGuiHandler {
     @Nullable
     @Override
     public Object getClientGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
-        if (ID == PIPBUCK_GUI)
-            return new PipBuckGui();
+        if (ID == PIPBUCK_GUI){return new PipBuckGui();}
+        if (ID == PIPBUCK_GUI_STAT){return new StatsGui();}
+        if (ID == PIPBUCK_GUI_INVE){return new InventoryGui();}
+        if (ID == PIPBUCK_GUI_DATA){return new DataGui();}
         return null;
     }
 }

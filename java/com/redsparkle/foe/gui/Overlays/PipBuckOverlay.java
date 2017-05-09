@@ -1,4 +1,4 @@
-package com.redsparkle.foe.gui;
+package com.redsparkle.foe.gui.Overlays;
 
 
 import com.redsparkle.foe.utils.GlobalNames;
@@ -151,5 +151,6 @@ public class PipBuckOverlay extends Gui {
         GL11.glPopMatrix();
         GL11.glPopMatrix();
         GL11.glPopAttrib();
+
     }
 }

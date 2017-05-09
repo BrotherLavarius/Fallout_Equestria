@@ -6,6 +6,9 @@ import com.redsparkle.foe.Init.StartUpCommon;
 import com.redsparkle.foe.capa.rad.IRadiationCapability;
 import com.redsparkle.foe.capa.rad.RadsFactoryProvider;
 import com.redsparkle.foe.capa.rad.RadsFactoryStorage;
+import com.redsparkle.foe.capa.spechial.ISpechialCapability;
+import com.redsparkle.foe.capa.spechial.SpechialFactoryProvider;
+import com.redsparkle.foe.capa.spechial.SpechialFactoryStorage;
 import com.redsparkle.foe.events.EventHandlerInit;
 import com.redsparkle.foe.events.EventHandlerPre;
 import com.redsparkle.foe.items.guns.inits.bulletFiredGuns.EntityBullet;
@@ -40,6 +43,8 @@ public abstract class CommonProxy {
         BlockInit.InitCommon();
         ItemInit.InitCommon();
         CapabilityManager.INSTANCE.register(IRadiationCapability.class, new RadsFactoryStorage(), RadsFactoryProvider::new);
+        CapabilityManager.INSTANCE.register(ISpechialCapability.class, new SpechialFactoryStorage(), SpechialFactoryProvider::new);
+
         MinecraftForge.EVENT_BUS.register(new EventHandlerInit());
     }
 

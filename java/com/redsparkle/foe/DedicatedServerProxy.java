@@ -2,6 +2,7 @@ package com.redsparkle.foe;
 
 import com.redsparkle.foe.capa.spechial.ISpechialCapability;
 import com.redsparkle.foe.capa.spechial.SpechialFactoryProvider;
+import com.redsparkle.foe.network.MessageFireToClientServer;
 import com.redsparkle.foe.network.MessageUpdateClientServerSPECHIAL;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
@@ -68,4 +69,6 @@ public class DedicatedServerProxy extends CommonProxy {
     }
 
 
+    public static void handleFireMessage(MessageFireToClientServer message) {
+    }
 }

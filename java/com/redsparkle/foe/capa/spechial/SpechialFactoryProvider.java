@@ -60,7 +60,27 @@ public class SpechialFactoryProvider implements ISpechialCapability, ICapability
             prevLuckLevel; // prev before changing
 
     public SpechialFactoryProvider() {
-        this(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+        this(0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0);
     }
 
     public SpechialFactoryProvider(Integer basicStreinght, Integer StreinghtLevel, Integer prevStreinghtLevel,

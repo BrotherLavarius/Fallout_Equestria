@@ -1,10 +1,12 @@
 package com.redsparkle.foe.keys;
 
-import com.redsparkle.foe.gui.PipBuckGui;
+import com.redsparkle.foe.Init.ItemInit;
+import com.redsparkle.foe.gui.Menus.PipBuckGui;
 import com.redsparkle.foe.main;
 import com.redsparkle.foe.network.MessageGunReload;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.InputEvent;
 
@@ -23,9 +25,9 @@ public class KeyInputHandler {
             main.simpleNetworkWrapper.sendToServer(new MessageGunReload());
         }
         if (keyHandler.pipbuck.isPressed()) {
-
-            player.openGui(main.instance, 0, mc.world, (int) mc.player.posX, (int) mc.player.posY, (int) mc.player.posZ);
-            ;
+            if(mc.player.inventory.hasItemStack(new ItemStack(ItemInit.pipbuck))) {
+                player.openGui(main.instance, 0, mc.world, (int) mc.player.posX, (int) mc.player.posY, (int) mc.player.posZ);
+            }
 
 
         }
