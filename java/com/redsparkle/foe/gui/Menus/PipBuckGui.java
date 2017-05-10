@@ -6,6 +6,7 @@ import com.redsparkle.foe.gui.Menus.pipbuck_gui_extenders.StatsGui;
 import com.redsparkle.foe.main;
 import com.redsparkle.foe.utils.GlobalNames;
 import com.redsparkle.foe.utils.ScreenGrid;
+import com.sun.org.glassfish.external.statistics.impl.StatsImpl;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.GlStateManager;
@@ -37,6 +38,7 @@ public class PipBuckGui extends GuiScreen {
     public int global_button_wight = 168;
     public int global_button_hight = 39;
 
+    public boolean StatsShow = false;
 
     GuiButtonExt Stats = new GuiButtonExt(0,
             0,
@@ -113,6 +115,7 @@ public class PipBuckGui extends GuiScreen {
 //                    432,
 //                    33,
 //                    18);
+
             //STATS BUTTON
             {
                 this.buttonList.get(0).xPosition = ScreenGrid.XCoordStart(
@@ -125,6 +128,108 @@ public class PipBuckGui extends GuiScreen {
                 this.buttonList.get(0).height = 28;
                 this.buttonList.get(0).width = 52;
             }
+
+            {
+                if(StatsShow){
+                    GL11.glPushMatrix();
+                    GL11.glScaled(0.5f,0.5f,0);
+                    this.fontRendererObj.drawString("STR : " + Integer.toString(
+                            mc.player.getCapability(SpechialFactoryProvider.SPECHIAL_CAPABILITY, null).getStreinght()),
+                            ScreenGrid.XCoordStart(
+                                    this.width,
+                                    27),
+                            ScreenGrid.YCoordStart(
+                                    this.height,
+                                    29),
+                            8453920,true
+                    );
+
+                    this.fontRendererObj.drawString("PER : " + Integer.toString(
+                            mc.player.getCapability(SpechialFactoryProvider.SPECHIAL_CAPABILITY, null).getPerception()),
+                            ScreenGrid.XCoordStart(
+                                    this.width,
+                                    27),
+                            ScreenGrid.YCoordStart(
+                                    this.height,
+                                    33),
+                            8453920,true
+                    );
+
+                    this.fontRendererObj.drawString("LUK : " + Integer.toString(
+                            mc.player.getCapability(SpechialFactoryProvider.SPECHIAL_CAPABILITY, null).getLuck()),
+                            ScreenGrid.XCoordStart(
+                                    this.width,
+                                    27),
+                            ScreenGrid.YCoordStart(
+                                    this.height,
+                                    37),
+                            8453920,true
+                    );
+
+                    this.fontRendererObj.drawString("INT : " + Integer.toString(
+                            mc.player.getCapability(SpechialFactoryProvider.SPECHIAL_CAPABILITY, null).getIntelligence()),
+                            ScreenGrid.XCoordStart(
+                                    this.width,
+                                    27),
+                            ScreenGrid.YCoordStart(
+                                    this.height,
+                                    41),
+                            8453920,true
+                    );
+
+                    this.fontRendererObj.drawString("END : " + Integer.toString(
+                            mc.player.getCapability(SpechialFactoryProvider.SPECHIAL_CAPABILITY, null).getEndurance()),
+                            ScreenGrid.XCoordStart(
+                                    this.width,
+                                    27),
+                            ScreenGrid.YCoordStart(
+                                    this.height,
+                                    45),
+                            8453920,true
+                    );
+
+                    this.fontRendererObj.drawString("CHR : " + Integer.toString(
+                            mc.player.getCapability(SpechialFactoryProvider.SPECHIAL_CAPABILITY, null).getCharisma()),
+                            ScreenGrid.XCoordStart(
+                                    this.width,
+                                    27),
+                            ScreenGrid.YCoordStart(
+                                    this.height,
+                                    49),
+                            8453920,true
+                    );
+
+                    this.fontRendererObj.drawString("AGI : " + Integer.toString(
+                            mc.player.getCapability(SpechialFactoryProvider.SPECHIAL_CAPABILITY, null).getAgility()),
+                            ScreenGrid.XCoordStart(
+                                    this.width,
+                                    27),
+                            ScreenGrid.YCoordStart(
+                                    this.height,
+                                    53),
+                            8453920,true
+                    );
+
+
+                    this.fontRendererObj.drawString("RADS: " + Integer.toString(
+                            mc.player.getCapability(RadsFactoryProvider.RADIATION_CAPABILITY, null).getRadiation()),
+                            ScreenGrid.XCoordStart(
+                                    this.width,
+                                    70),
+                            ScreenGrid.YCoordStart(
+                                    this.height,
+                                    29),
+                            8453920,false
+                    );
+                    GL11.glPopMatrix();
+                }
+            }
+
+
+
+
+
+
             //INVENTORY BUTTON
             {
                 this.buttonList.get(1).xPosition = ScreenGrid.XCoordStart(
@@ -150,10 +255,7 @@ public class PipBuckGui extends GuiScreen {
                 this.buttonList.get(2).width = 52;
             }
 
-            this.fontRendererObj.drawString("RADS: " + Integer.toString(
-                    mc.player.getCapability(RadsFactoryProvider.RADIATION_CAPABILITY, null).getRadiation()),
-                    5,5,8453920,true
-            );
+
 
 
         }
@@ -199,20 +301,10 @@ public class PipBuckGui extends GuiScreen {
 
     @Override
     protected void actionPerformed(GuiButton button) throws IOException {
-        this.zLevel =2;
+
         if (button == this.Stats) {
-        this.mc.displayGuiScreen(new StatsGui().drawScreen());
-            //this.mc.player.openGui(main.instance, 1, mc.world, (int) mc.player.posX, (int) mc.player.posY, (int) mc.player.posZ);
-//            this.fontRendererObj.drawString("STR: " + Integer.toString(
-//                    mc.player.getCapability(SpechialFactoryProvider.SPECHIAL_CAPABILITY, null).getStreinght()),
-//                    ScreenGrid.XCoordStart(
-//                            this.width,
-//                            5),
-//                    ScreenGrid.XCoordStart(
-//                            this.width,
-//                            5),
-//                    8453920,true
-//            );
+           // this.mc.player.openGui(main.instance, 1, mc.world, (int) mc.player.posX, (int) mc.player.posY, (int) mc.player.posZ);
+            StatsShow = true;
 
         }
         if (button == this.Inventory) {

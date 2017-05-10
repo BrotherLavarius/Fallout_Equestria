@@ -15,7 +15,7 @@ import net.minecraftforge.fml.common.gameevent.InputEvent;
  */
 public class KeyInputHandler {
     private static PipBuckGui pipBuckGui;
-    public Integer activated = 0;
+    public boolean activated = false;
 
     @SubscribeEvent
     public void onKeyInput(InputEvent.KeyInputEvent event) {
@@ -27,6 +27,7 @@ public class KeyInputHandler {
         if (keyHandler.pipbuck.isPressed()) {
             if(mc.player.inventory.hasItemStack(new ItemStack(ItemInit.pipbuck))) {
                 player.openGui(main.instance, 0, mc.world, (int) mc.player.posX, (int) mc.player.posY, (int) mc.player.posZ);
+
             }
 
 
