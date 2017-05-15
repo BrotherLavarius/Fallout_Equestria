@@ -22,6 +22,9 @@ public class main {
     public static final byte RELOAD_MESSAGE_ID_CLIENT = 98;
     public static final byte SPECHIAL_MESSAGE_ID_CLIENT = 99;
     public static final byte SPECHIAL_MESSAGE_ID_SERVER = 100;
+    public static final byte SKILLS_MESSAGE_ID_CLIENT = 101;
+    public static final byte SKILLS_MESSAGE_ID_SERVER = 102;
+
     public static final byte FIRE_MESSAGE_ID_CLIENT = 101;
     public static final byte FIRE_MESSAGE_ID_SERVER = 102;
 
@@ -64,6 +67,8 @@ public class main {
 //        simpleNetworkWrapper.registerMessage(MessageFireToClientServer.HandlerClient.class,MessageFireToClientServer.class,FIRE_MESSAGE_ID_CLIENT,Side.CLIENT);
 //        simpleNetworkWrapper.registerMessage(MessageFireToClientServer.HandlerServer.class,MessageFireToClientServer.class,FIRE_MESSAGE_ID_SERVER,Side.SERVER);
 
+        simpleNetworkWrapper.registerMessage(MessageUpdateClientServerSkills.HandlerClient.class, MessageUpdateClientServerSkills.class, SKILLS_MESSAGE_ID_CLIENT, Side.CLIENT);
+        simpleNetworkWrapper.registerMessage(MessageUpdateClientServerSkills.HandlerServer.class, MessageUpdateClientServerSkills.class, SKILLS_MESSAGE_ID_SERVER, Side.SERVER);
     }
 
     @Mod.EventHandler

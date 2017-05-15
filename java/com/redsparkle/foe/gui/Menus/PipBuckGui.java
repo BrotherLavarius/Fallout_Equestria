@@ -27,17 +27,6 @@ public class PipBuckGui extends GuiScreen {
     public int pip_buck_x = 0;
     public int pip_buck_y = 0;
 
-
-    public int global_y_active = 0;
-    public int global_x_active = 0;
-    public int global_x_inactive = 90;
-    public int stat_y = 330;
-    public int int_y = 373;
-    public int data_y = 414;
-
-    public int global_button_wight = 168;
-    public int global_button_hight = 39;
-
     public boolean StatsShow = false;
 
     GuiButtonExt Stats = new GuiButtonExt(0,

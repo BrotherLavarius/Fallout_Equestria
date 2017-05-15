@@ -4,14 +4,13 @@ import com.redsparkle.foe.Init.ClientOnlyStartup;
 import com.redsparkle.foe.Init.SoundInit;
 import com.redsparkle.foe.capa.rad.IRadiationCapability;
 import com.redsparkle.foe.capa.rad.RadsFactoryProvider;
+import com.redsparkle.foe.capa.skills.ISkillsCapability;
+import com.redsparkle.foe.capa.skills.SkillsFactoryProvider;
 import com.redsparkle.foe.capa.spechial.ISpechialCapability;
 import com.redsparkle.foe.capa.spechial.SpechialFactoryProvider;
 import com.redsparkle.foe.keys.KeyInputHandler;
 import com.redsparkle.foe.keys.keyHandler;
-import com.redsparkle.foe.network.MessageFireToClientServer;
-import com.redsparkle.foe.network.MessageGunReloadReply;
-import com.redsparkle.foe.network.MessageUpdateClientRads;
-import com.redsparkle.foe.network.MessageUpdateClientServerSPECHIAL;
+import com.redsparkle.foe.network.*;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.entity.player.EntityPlayer;
@@ -49,6 +48,28 @@ public class ClientOnlyProxy extends CommonProxy {
             spechial.setIntelligence(message.Intelligence);
             spechial.setAgility(message.Agility);
             spechial.setLuck(message.Luck);
+            /** DEBUG MESSAGE ENABLER
+             * System.out.println("Client: "+message.radiation);
+             */
+
+        });
+    }
+    public static void handleSkillsMessage(MessageUpdateClientServerSkills message) {
+        Minecraft.getMinecraft().addScheduledTask(() -> {
+            EntityPlayer player = Minecraft.getMinecraft().player;
+            ISkillsCapability skills = SkillsFactoryProvider.instanceFor(player);
+            skills.setBigGuns(message.BigGuns);
+            skills.setSmallGuns(message.SmallGuns);
+            skills.setEnergyWeapons(message.EnergyWeapons);
+            skills.setExplosives(message.Explosives);
+            skills.setMeleeWeapons(message.MeleeWeapons);
+            skills.setUnarmed(message.Unarmed);
+            skills.setMedicine(message.Medicine);
+            skills.setLockpick(message.Lockpick);
+            skills.setRepair(message.Repair);
+            skills.setScience(message.Science);
+            skills.setSneak(message.Sneak);
+            skills.setBarter(message.Barter);
             /** DEBUG MESSAGE ENABLER
              * System.out.println("Client: "+message.radiation);
              */
@@ -118,6 +139,8 @@ public class ClientOnlyProxy extends CommonProxy {
     //TODO: finish this class
     public static void handleFireMessage(MessageFireToClientServer message) {
     }
+
+
 }
 
 
