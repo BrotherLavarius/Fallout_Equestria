@@ -15,12 +15,9 @@ import javax.annotation.Nullable;
  */
 public class SkillsFactoryStorage implements IStorage<ISpechialCapability> {
 
-    @Nullable
-    @Override
     public NBTBase writeNBT(Capability<ISpechialCapability> capability, ISpechialCapability instance, EnumFacing side) {
         return ((SkillsFactoryProvider) instance).serializeNBT();    }
 
-    @Override
     public void readNBT(Capability<ISpechialCapability> capability, ISpechialCapability instance, EnumFacing side, NBTBase nbt) {
         ((SkillsFactoryProvider) instance).deserializeNBT((NBTTagCompound) nbt);
 

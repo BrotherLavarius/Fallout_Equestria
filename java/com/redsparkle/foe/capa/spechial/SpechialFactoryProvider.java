@@ -121,23 +121,23 @@ public class SpechialFactoryProvider implements ISpechialCapability, ICapability
     /*
     ##################################
     */
-    @Override
+    
     public Integer addStreinght(Integer addStreinght) {
         return StreinghtLevel + basicStreinght;
     }
 
-    @Override
+    
     public Integer removeStreinght(Integer removeStreinght) {
         return StreinghtLevel = (StreinghtLevel - removeStreinght + basicStreinght);
 
     }
 
-    @Override
+    
     public Integer setStreinght(Integer newStreinghtLevel) {
         return StreinghtLevel = (basicStreinght + newStreinghtLevel);
     }
 
-    @Override
+    
     public Integer getStreinght() {
         return StreinghtLevel + basicStreinght;
     }
@@ -145,23 +145,23 @@ public class SpechialFactoryProvider implements ISpechialCapability, ICapability
     /*
     ##################################
     */
-    @Override
+    
     public Integer addPerception(Integer addPerception) {
         return PerceptionLevel + basicPerception;
     }
 
-    @Override
+    
     public Integer removePerception(Integer removePerception) {
         return PerceptionLevel = (PerceptionLevel - removePerception + basicPerception);
 
     }
 
-    @Override
+    
     public Integer setPerception(Integer newPerceptionLevel) {
         return PerceptionLevel = (basicPerception + newPerceptionLevel);
     }
 
-    @Override
+    
     public Integer getPerception() {
         return PerceptionLevel + basicPerception;
     }
@@ -169,23 +169,23 @@ public class SpechialFactoryProvider implements ISpechialCapability, ICapability
     /*
     ##################################
     */
-    @Override
+    
     public Integer addEndurance(Integer addEndurance) {
         return EnduranceLevel + basicEndurance;
     }
 
-    @Override
+    
     public Integer removeEndurance(Integer removeEndurance) {
         return EnduranceLevel = (EnduranceLevel - removeEndurance + basicEndurance);
 
     }
 
-    @Override
+    
     public Integer setEndurance(Integer newEnduranceLevel) {
         return EnduranceLevel = (basicEndurance + newEnduranceLevel);
     }
 
-    @Override
+    
     public Integer getEndurance() {
         return EnduranceLevel + basicEndurance;
     }
@@ -193,23 +193,23 @@ public class SpechialFactoryProvider implements ISpechialCapability, ICapability
     /*
     ##################################
     */
-    @Override
+    
     public Integer addCharisma(Integer addCharisma) {
         return CharismaLevel + basicCharisma;
     }
 
-    @Override
+    
     public Integer removeCharisma(Integer removeCharisma) {
         return CharismaLevel = (CharismaLevel - removeCharisma + basicCharisma);
 
     }
 
-    @Override
+    
     public Integer setCharisma(Integer newCharismaLevel) {
         return CharismaLevel = (basicCharisma + newCharismaLevel);
     }
 
-    @Override
+    
     public Integer getCharisma() {
         return CharismaLevel + basicCharisma;
     }
@@ -217,23 +217,23 @@ public class SpechialFactoryProvider implements ISpechialCapability, ICapability
     /*
     ##################################
     */
-    @Override
+    
     public Integer addIntelligence(Integer addIntelligence) {
         return IntelligenceLevel + basicIntelligence;
     }
 
-    @Override
+    
     public Integer removeIntelligence(Integer removeIntelligence) {
         return IntelligenceLevel = (IntelligenceLevel - removeIntelligence + basicIntelligence);
 
     }
 
-    @Override
+    
     public Integer setIntelligence(Integer newIntelligenceLevel) {
         return IntelligenceLevel = (basicIntelligence + newIntelligenceLevel);
     }
 
-    @Override
+    
     public Integer getIntelligence() {
         return IntelligenceLevel + basicIntelligence;
     }
@@ -241,23 +241,23 @@ public class SpechialFactoryProvider implements ISpechialCapability, ICapability
     /*
     ##################################
     */
-    @Override
+    
     public Integer addAgility(Integer addAgility) {
         return AgilityLevel + basicAgility;
     }
 
-    @Override
+    
     public Integer removeAgility(Integer removeAgility) {
         return AgilityLevel = (AgilityLevel - removeAgility + basicAgility);
 
     }
 
-    @Override
+    
     public Integer setAgility(Integer newAgilityLevel) {
         return AgilityLevel = (basicAgility + newAgilityLevel);
     }
 
-    @Override
+    
     public Integer getAgility() {
         return AgilityLevel + basicAgility;
     }
@@ -265,23 +265,23 @@ public class SpechialFactoryProvider implements ISpechialCapability, ICapability
     /*
     ##################################
     */
-    @Override
+    
     public Integer addLuck(Integer addLuck) {
         return LuckLevel + basicLuck;
     }
 
-    @Override
+    
     public Integer removeLuck(Integer removeLuck) {
         return LuckLevel = (LuckLevel - removeLuck + basicLuck);
 
     }
 
-    @Override
+    
     public Integer setLuck(Integer newLuckLevel) {
         return LuckLevel = (basicLuck + newLuckLevel);
     }
 
-    @Override
+    
     public Integer getLuck() {
         return LuckLevel + basicLuck;
     }
@@ -289,7 +289,7 @@ public class SpechialFactoryProvider implements ISpechialCapability, ICapability
     /*
     ##################################
     */
-    @Override
+    
     public void update(EntityPlayer player, World world, TickEvent.Phase phase) {
         // dn if i will ever need it
     }
@@ -302,19 +302,19 @@ public class SpechialFactoryProvider implements ISpechialCapability, ICapability
         }
     }
 
-    @Override
-    public boolean hasCapability(@Nonnull Capability<?> capability, @Nullable EnumFacing facing) {
+    
+    public boolean hasCapability(Capability<?> capability,  EnumFacing facing) {
         return capability == SPECHIAL_CAPABILITY;
     }
 
-    @Nullable
-    @Override
-    public <T> T getCapability(@Nonnull Capability<T> capability, @Nullable EnumFacing facing) {
+    
+    
+    public <T> T getCapability(Capability<T> capability,  EnumFacing facing) {
         return capability == SPECHIAL_CAPABILITY ? (T) this : null;
     }
 
 
-    @Override
+    
     public NBTTagCompound serializeNBT() {
         NBTTagCompound nbt = new NBTTagCompound();
         nbt.setInteger("STR", StreinghtLevel);
@@ -327,7 +327,7 @@ public class SpechialFactoryProvider implements ISpechialCapability, ICapability
         return nbt;
     }
 
-    @Override
+    
     public void deserializeNBT(NBTTagCompound nbt) {
         setStreinght(nbt.getInteger("STR"));
         setPerception(nbt.getInteger("PER"));

@@ -280,7 +280,7 @@ public class SkillsFactoryProvider implements ISkillsCapability, ICapabilitySeri
     public Integer setBarter(Integer newBarterLevel) {return BarterLevel=(basicBarter+newBarterLevel);}
     public Integer getBarter() {return BarterLevel+basicBarter;}
     /* ################################## */
-    @Override
+    
     public void update(EntityPlayer player, World world, TickEvent.Phase phase) {
         // dn if i will ever need it
     }
@@ -293,19 +293,17 @@ public class SkillsFactoryProvider implements ISkillsCapability, ICapabilitySeri
         }
     }
 
-    @Override
-    public boolean hasCapability(@Nonnull Capability<?> capability, @Nullable EnumFacing facing) {
+    
+    public boolean hasCapability( Capability<?> capability, EnumFacing facing) {
         return capability == SKILLS_CAPABILITY;
     }
 
-    @Nullable
-    @Override
-    public <T> T getCapability(@Nonnull Capability<T> capability, @Nullable EnumFacing facing) {
+public <T> T getCapability(Capability<T> capability, EnumFacing facing) {
         return capability == SKILLS_CAPABILITY ? (T) this : null;
     }
 
 
-    @Override
+    
     public NBTTagCompound serializeNBT() {
         NBTTagCompound nbt = new NBTTagCompound();
         nbt.setInteger("BigGuns", BigGunsLevel);
@@ -324,7 +322,7 @@ public class SkillsFactoryProvider implements ISkillsCapability, ICapabilitySeri
     }
 
 
-    @Override
+    
     public void deserializeNBT(NBTTagCompound nbt) {
         setBigGuns(nbt.getInteger("BigGuns"));
         setSmallGuns(nbt.getInteger("SmallGuns"));

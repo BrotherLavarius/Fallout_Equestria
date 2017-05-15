@@ -6,6 +6,9 @@ import com.redsparkle.foe.Init.StartUpCommon;
 import com.redsparkle.foe.capa.rad.IRadiationCapability;
 import com.redsparkle.foe.capa.rad.RadsFactoryProvider;
 import com.redsparkle.foe.capa.rad.RadsFactoryStorage;
+import com.redsparkle.foe.capa.skills.ISkillsCapability;
+import com.redsparkle.foe.capa.skills.SkillsFactoryProvider;
+import com.redsparkle.foe.capa.skills.SkillsFactoryStorage;
 import com.redsparkle.foe.capa.spechial.ISpechialCapability;
 import com.redsparkle.foe.capa.spechial.SpechialFactoryProvider;
 import com.redsparkle.foe.capa.spechial.SpechialFactoryStorage;
@@ -44,7 +47,8 @@ public abstract class CommonProxy {
         ItemInit.InitCommon();
         CapabilityManager.INSTANCE.register(IRadiationCapability.class, new RadsFactoryStorage(), RadsFactoryProvider::new);
         CapabilityManager.INSTANCE.register(ISpechialCapability.class, new SpechialFactoryStorage(), SpechialFactoryProvider::new);
-
+        CapabilityManager.INSTANCE.register(ISkillsCapability.class, new SkillsFactoryStorage(), SkillsFactoryProvider::new);
+//TODO:FIX THIS
         MinecraftForge.EVENT_BUS.register(new EventHandlerInit());
     }
 
