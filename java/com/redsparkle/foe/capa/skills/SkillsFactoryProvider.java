@@ -1,8 +1,6 @@
 package com.redsparkle.foe.capa.skills;
 
-import com.redsparkle.foe.capa.spechial.ISpechialCapability;
 import com.redsparkle.foe.main;
-import com.redsparkle.foe.network.MessageUpdateClientServerSPECHIAL;
 import com.redsparkle.foe.network.MessageUpdateClientServerSkills;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -14,8 +12,6 @@ import net.minecraftforge.common.capabilities.CapabilityInject;
 import net.minecraftforge.common.capabilities.ICapabilitySerializable;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 
 /**
  * Created by hoijima on 01.03.17.

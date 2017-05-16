@@ -13,12 +13,12 @@ import javax.annotation.Nullable;
 /**
  * Created by hoijima on 3/1/2017.
  */
-public class SkillsFactoryStorage implements IStorage<ISpechialCapability> {
+public class SkillsFactoryStorage implements IStorage<ISkillsCapability> {
 
-    public NBTBase writeNBT(Capability<ISpechialCapability> capability, ISpechialCapability instance, EnumFacing side) {
+    public NBTBase writeNBT(Capability<ISkillsCapability> capability, ISkillsCapability instance, EnumFacing side) {
         return ((SkillsFactoryProvider) instance).serializeNBT();    }
 
-    public void readNBT(Capability<ISpechialCapability> capability, ISpechialCapability instance, EnumFacing side, NBTBase nbt) {
+    public void readNBT(Capability<ISkillsCapability> capability, ISkillsCapability instance, EnumFacing side, NBTBase nbt) {
         ((SkillsFactoryProvider) instance).deserializeNBT((NBTTagCompound) nbt);
 
     }

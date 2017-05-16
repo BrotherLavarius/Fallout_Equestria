@@ -48,7 +48,7 @@ public abstract class CommonProxy {
         CapabilityManager.INSTANCE.register(IRadiationCapability.class, new RadsFactoryStorage(), RadsFactoryProvider::new);
         CapabilityManager.INSTANCE.register(ISpechialCapability.class, new SpechialFactoryStorage(), SpechialFactoryProvider::new);
         CapabilityManager.INSTANCE.register(ISkillsCapability.class, new SkillsFactoryStorage(), SkillsFactoryProvider::new);
-//TODO:FIX THIS
+//TODO:FIX THISn
         MinecraftForge.EVENT_BUS.register(new EventHandlerInit());
     }
 
