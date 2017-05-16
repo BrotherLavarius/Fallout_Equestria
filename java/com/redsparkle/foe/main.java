@@ -24,6 +24,8 @@ public class main {
     public static final byte SPECHIAL_MESSAGE_ID_SERVER = 100;
     public static final byte SKILLS_MESSAGE_ID_CLIENT = 101;
     public static final byte SKILLS_MESSAGE_ID_SERVER = 102;
+    public static final byte LEVEL_MESSAGE_ID_CLIENT = 103;
+    public static final byte LEVEL_MESSAGE_ID_SERVER = 104;
 
     public static final byte FIRE_MESSAGE_ID_CLIENT = 101;
     public static final byte FIRE_MESSAGE_ID_SERVER = 102;
@@ -58,17 +60,30 @@ public class main {
         proxy.init();
         NetworkRegistry.INSTANCE.registerGuiHandler(main.instance, new GuiHandler());
 
+        System.out.println("STARTING BOOTING NETWORK MESSAGES");
         simpleNetworkWrapper = NetworkRegistry.INSTANCE.newSimpleChannel("FOE Network Channel");
         simpleNetworkWrapper.registerMessage(MessageUpdateClientRads.Handler.class, MessageUpdateClientRads.class, RAIATION_CAPABILITY_MESSAGE_ID_CLIENT, Side.CLIENT);
+        System.out.println("RADS------CHECK");
         simpleNetworkWrapper.registerMessage(MessageGunReload.Handler.class, MessageGunReload.class, RELOAD_MESSAGE_ID_SERVER, Side.SERVER);
         simpleNetworkWrapper.registerMessage(MessageGunReloadReply.Handler.class, MessageGunReloadReply.class, RELOAD_MESSAGE_ID_CLIENT, Side.CLIENT);
+        System.out.println("WEAPON RELOADS------CHECK");
         simpleNetworkWrapper.registerMessage(MessageUpdateClientServerSPECHIAL.HandlerClient.class, MessageUpdateClientServerSPECHIAL.class, SPECHIAL_MESSAGE_ID_CLIENT, Side.CLIENT);
         simpleNetworkWrapper.registerMessage(MessageUpdateClientServerSPECHIAL.HandlerServer.class, MessageUpdateClientServerSPECHIAL.class, SPECHIAL_MESSAGE_ID_SERVER, Side.SERVER);
-//        simpleNetworkWrapper.registerMessage(MessageFireToClientServer.HandlerClient.class,MessageFireToClientServer.class,FIRE_MESSAGE_ID_CLIENT,Side.CLIENT);
+        System.out.println("S.P.E.C.H.I.A.L------CHECK");
+
+//
+//  simpleNetworkWrapper.registerMessage(MessageFireToClientServer.HandlerClient.class,MessageFireToClientServer.class,FIRE_MESSAGE_ID_CLIENT,Side.CLIENT);
 //        simpleNetworkWrapper.registerMessage(MessageFireToClientServer.HandlerServer.class,MessageFireToClientServer.class,FIRE_MESSAGE_ID_SERVER,Side.SERVER);
 
         simpleNetworkWrapper.registerMessage(MessageUpdateClientServerSkills.HandlerClient.class, MessageUpdateClientServerSkills.class, SKILLS_MESSAGE_ID_CLIENT, Side.CLIENT);
         simpleNetworkWrapper.registerMessage(MessageUpdateClientServerSkills.HandlerServer.class, MessageUpdateClientServerSkills.class, SKILLS_MESSAGE_ID_SERVER, Side.SERVER);
+        System.out.println("SKILLS-----CHECK");
+
+        simpleNetworkWrapper.registerMessage(MessageUpdateClientServerLevel.HandlerClient.class, MessageUpdateClientServerLevel.class, LEVEL_MESSAGE_ID_CLIENT, Side.CLIENT);
+        simpleNetworkWrapper.registerMessage(MessageUpdateClientServerLevel.HandlerServer.class, MessageUpdateClientServerLevel.class, LEVEL_MESSAGE_ID_SERVER, Side.SERVER);
+        System.out.println("LEVELS------CHECK");
+
+        System.out.println("FINISHED BOOTING NETWORK MESSAGES");
     }
 
     @Mod.EventHandler

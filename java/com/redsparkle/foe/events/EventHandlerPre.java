@@ -1,6 +1,8 @@
 package com.redsparkle.foe.events;
 
 
+import com.redsparkle.foe.capa.level.ILevelCapability;
+import com.redsparkle.foe.capa.level.LevelFactoryProvider;
 import com.redsparkle.foe.capa.rad.IRadiationCapability;
 import com.redsparkle.foe.capa.rad.RadsFactoryProvider;
 import com.redsparkle.foe.capa.skills.ISkillsCapability;
@@ -10,10 +12,12 @@ import com.redsparkle.foe.capa.spechial.SpechialFactoryProvider;
 import com.redsparkle.foe.main;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 
+import static com.redsparkle.foe.capa.level.LevelFactoryProvider.LEVEL_CAPABILITY;
 import static com.redsparkle.foe.capa.rad.RadsFactoryProvider.RADIATION_CAPABILITY;
 import static com.redsparkle.foe.capa.skills.SkillsFactoryProvider.SKILLS_CAPABILITY;
 import static com.redsparkle.foe.capa.spechial.SpechialFactoryProvider.SPECHIAL_CAPABILITY;
@@ -23,6 +27,7 @@ import static com.redsparkle.foe.capa.spechial.SpechialFactoryProvider.SPECHIAL_
  * Created by hoijima on 07.09.16.
  */
 public class EventHandlerPre {
+
 
 
     @SubscribeEvent
@@ -39,14 +44,21 @@ public class EventHandlerPre {
             event.addCapability(new ResourceLocation(main.MODID + ":SKILLS_CAPABILITY"), new SkillsFactoryProvider());
         }
 
+        if (!event.getEntity().hasCapability(LEVEL_CAPABILITY, null)) {
+            event.addCapability(new ResourceLocation(main.MODID + ":LEVEL_CAPABILITY"), new LevelFactoryProvider());
+        }
+
     }
 
     @SubscribeEvent
     public void onPlayerTick(TickEvent.PlayerTickEvent e) {
         //if (e.phase != TickEvent.Phase.END) return;
         updatePlayerRads(e.player);
+
+        //TODO: we need to remove Spechials and Skills and level and spechials to ON Join,Exit,LVL up, they cant stay in ON TICK! THIS WILL STRESS THE SERVER CHANNEL VERY MUCH
         updatePlayerSpechial(e.player);
         updatePlayerSkills(e.player);
+        updatePlayerLevel(e.player);
     }
 
     private void updatePlayerSpechial(EntityPlayer player) {
@@ -87,6 +99,15 @@ public class EventHandlerPre {
             IRadiationCapability rad = player.getCapability(RadsFactoryProvider.RADIATION_CAPABILITY, null);
             rad.setRadiation(rad.getRadiation());
             rad.updateClient(player);
+        }
+    }
+
+    private void updatePlayerLevel(EntityPlayer player) {
+        if (!player.world.isRemote) {
+            ILevelCapability level = player.getCapability(LEVEL_CAPABILITY, null);
+            level.setLevel(level.getLevel());
+            level.setProgress(level.getProgress());
+            level.updateClient(player);
         }
     }
 

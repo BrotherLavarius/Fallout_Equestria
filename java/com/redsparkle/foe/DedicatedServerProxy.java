@@ -1,10 +1,13 @@
 package com.redsparkle.foe;
 
+import com.redsparkle.foe.capa.level.ILevelCapability;
+import com.redsparkle.foe.capa.level.LevelFactoryProvider;
 import com.redsparkle.foe.capa.skills.ISkillsCapability;
 import com.redsparkle.foe.capa.skills.SkillsFactoryProvider;
 import com.redsparkle.foe.capa.spechial.ISpechialCapability;
 import com.redsparkle.foe.capa.spechial.SpechialFactoryProvider;
 import com.redsparkle.foe.network.MessageFireToClientServer;
+import com.redsparkle.foe.network.MessageUpdateClientServerLevel;
 import com.redsparkle.foe.network.MessageUpdateClientServerSPECHIAL;
 import com.redsparkle.foe.network.MessageUpdateClientServerSkills;
 import net.minecraft.client.Minecraft;
@@ -57,6 +60,20 @@ public class DedicatedServerProxy extends CommonProxy {
         });
     }
 
+    public static void handleLevelMessage(MessageUpdateClientServerLevel message, EntityPlayerMP playerEntity) {
+        Minecraft.getMinecraft().addScheduledTask(() -> {
+            ILevelCapability level = LevelFactoryProvider.instanceFor(playerEntity);
+            level.setLevel(message.Level);
+            level.setProgress(message.Progress);
+
+            /** DEBUG MESSAGE ENABLER
+             * System.out.println("Client: "+message.radiation);
+             */
+
+        });
+
+    }
+
 
     /**
      * Run before anything else. Read your config, create blocks, items, etc, and register them with the GameRegistry
@@ -97,6 +114,7 @@ public class DedicatedServerProxy extends CommonProxy {
 
     public static void handleFireMessage(MessageFireToClientServer message) {
     }
+
 
 
 }

@@ -3,6 +3,9 @@ package com.redsparkle.foe;
 import com.redsparkle.foe.Init.BlockInit;
 import com.redsparkle.foe.Init.ItemInit;
 import com.redsparkle.foe.Init.StartUpCommon;
+import com.redsparkle.foe.capa.level.ILevelCapability;
+import com.redsparkle.foe.capa.level.LevelFactoryProvider;
+import com.redsparkle.foe.capa.level.LevelFactoryStorage;
 import com.redsparkle.foe.capa.rad.IRadiationCapability;
 import com.redsparkle.foe.capa.rad.RadsFactoryProvider;
 import com.redsparkle.foe.capa.rad.RadsFactoryStorage;
@@ -45,9 +48,17 @@ public abstract class CommonProxy {
         StartUpCommon.InitCommon();
         BlockInit.InitCommon();
         ItemInit.InitCommon();
+        System.out.println("STARTING BOOTING CAPABILITY SYSTEM");
         CapabilityManager.INSTANCE.register(IRadiationCapability.class, new RadsFactoryStorage(), RadsFactoryProvider::new);
+        System.out.println("RADS--------------CHECK!");
         CapabilityManager.INSTANCE.register(ISpechialCapability.class, new SpechialFactoryStorage(), SpechialFactoryProvider::new);
+        System.out.println("S.P.E.C.H.I.A.L--------------CHECK!");
         CapabilityManager.INSTANCE.register(ISkillsCapability.class, new SkillsFactoryStorage(), SkillsFactoryProvider::new);
+        System.out.println("SKILLS--------------CHECK!");
+        CapabilityManager.INSTANCE.register(ILevelCapability.class, new LevelFactoryStorage(), LevelFactoryProvider::new);
+        System.out.println("LEVELS--------------CHECK!");
+
+        System.out.println("FINISHED BOOTING CAPABILITY SYSTEM");
 //TODO:FIX THISn
         MinecraftForge.EVENT_BUS.register(new EventHandlerInit());
     }

@@ -2,6 +2,8 @@ package com.redsparkle.foe;
 
 import com.redsparkle.foe.Init.ClientOnlyStartup;
 import com.redsparkle.foe.Init.SoundInit;
+import com.redsparkle.foe.capa.level.ILevelCapability;
+import com.redsparkle.foe.capa.level.LevelFactoryProvider;
 import com.redsparkle.foe.capa.rad.IRadiationCapability;
 import com.redsparkle.foe.capa.rad.RadsFactoryProvider;
 import com.redsparkle.foe.capa.skills.ISkillsCapability;
@@ -77,6 +79,20 @@ public class ClientOnlyProxy extends CommonProxy {
         });
     }
 
+    public static void handleLevelMessage(MessageUpdateClientServerLevel message) {
+        Minecraft.getMinecraft().addScheduledTask(() -> {
+            EntityPlayer player = Minecraft.getMinecraft().player;
+            ILevelCapability level = LevelFactoryProvider.instanceFor(player);
+            level.setLevel(message.Level);
+            level.setProgress(message.Progress);
+            /** DEBUG MESSAGE ENABLER
+             * System.out.println("Client: "+message.radiation);
+             */
+
+        });
+
+    }
+
     public static void handleGundMessageReload(MessageGunReloadReply message) {
         Minecraft.getMinecraft().addScheduledTask(() -> {
             System.out.println("Sound int: " + message.soundname);
@@ -100,6 +116,8 @@ public class ClientOnlyProxy extends CommonProxy {
 
         });
     }
+
+
 
     public void preInit() {
         super.preInit();
@@ -139,6 +157,7 @@ public class ClientOnlyProxy extends CommonProxy {
     //TODO: finish this class
     public static void handleFireMessage(MessageFireToClientServer message) {
     }
+
 
 
 }

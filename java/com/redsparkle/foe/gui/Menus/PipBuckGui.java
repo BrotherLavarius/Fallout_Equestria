@@ -47,6 +47,13 @@ public class PipBuckGui extends GuiScreen {
             0,
             0, "DATA");
 
+
+    GuiButtonExt LvlUp = new GuiButtonExt(3,
+            0,
+            0,
+            0,
+            0,"Level Up");
+
     @Override
     public void drawScreen(int mouseX, int mouseY, float partialTicks) {
         this.zLevel=0;
