@@ -16,6 +16,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.PlayerCapabilities;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.common.capabilities.CapabilityDispatcher;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.entity.player.PlayerPickupXpEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -57,18 +58,40 @@ public class EventHandlerPre {
 
     @SubscribeEvent
     public void onPlayerTick(TickEvent.PlayerTickEvent e) {
-
         //if (e.phase != TickEvent.Phase.END) return;
         updatePlayerRads(e.player);
 
         //TODO: we need to remove Spechials and Skills and level and spechials to ON Join,Exit,LVL up, they cant stay in ON TICK! THIS WILL STRESS THE SERVER CHANNEL VERY MUCH
+
+
+
+
+        //TODO: THIS IS UNSAFE, LIKE TOTALLY UNSAFE, WE NEED TO PERFORMANCE THE SHIT OUT OF THIS
+        if(e.player.getEntityWorld().getTotalWorldTime() % 15000 == 0){
+            if (e.player.getCapability(LEVEL_CAPABILITY,null).getProgress() < e.player.experienceTotal){
+                e.player.getCapability(LEVEL_CAPABILITY,null).setProgress(e.player.experienceTotal);
+            } else
+                if (e.player.getCapability(LEVEL_CAPABILITY,null).getProgress() > e.player.experienceTotal){
+                    e.player.getCapability(LEVEL_CAPABILITY,null).setProgress(
+                            e.player.getCapability(LEVEL_CAPABILITY,null).getProgress() +
+                                    (e.player.getCapability(LEVEL_CAPABILITY,null).getProgress() -
+                                    e.player.experienceTotal));
+                }
+
+        }
+    }
+    @SubscribeEvent
+    public void onJoin(PlayerEvent.PlayerLoggedInEvent e){
         updatePlayerSpechial(e.player);
         updatePlayerSkills(e.player);
         updatePlayerLevel(e.player);
+    }
 
-        if(e.player.getEntityWorld().getTotalWorldTime() % 5000 == 0){
-            System.out.println("BOOP");
-        }
+    @SubscribeEvent
+    public void onExit(PlayerEvent.PlayerLoggedOutEvent e){
+        updatePlayerSpechial(e.player);
+        updatePlayerSkills(e.player);
+        updatePlayerLevel(e.player);
     }
 
 

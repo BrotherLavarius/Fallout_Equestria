@@ -77,7 +77,7 @@ public class PipBuckOverlay extends Gui {
 
         // we will draw the status bar just above the hotbar.
         //  obtained by inspecting the vanilla hotbar rendering code
-        final int vanillaExpLeftX = screenWidth / screenWidth + 2; // leftmost edge of the experience bar
+        final int vanillaExpLeftX = 1 + 2; // leftmost edge of the experience bar
         final int vanillaExpTopY = screenHeight - 40;  // top of the experience bar
 
       /* Shift our rendering origin to just above the experience bar

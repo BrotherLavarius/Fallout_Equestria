@@ -42,7 +42,6 @@ public class DesktopTerminalTileEntity extends TileEntity implements IInventory 
         }
     };
     private String customName;
-    private String displayName;
 
     public void setCustomName(String name) {
 
@@ -143,6 +142,6 @@ public class DesktopTerminalTileEntity extends TileEntity implements IInventory 
     }
 
     public void setCustomInventoryName(String displayName) {
-        this.displayName = GlobalNames.Terminal;
+        String displayName1 = GlobalNames.Terminal;
     }
 }

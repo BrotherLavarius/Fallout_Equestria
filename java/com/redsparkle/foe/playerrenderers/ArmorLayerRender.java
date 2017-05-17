@@ -19,13 +19,11 @@ import static java.lang.Math.abs;
  * Created by NENYN on 2/12/2017.
  */
 public class ArmorLayerRender implements LayerRenderer<EntityLivingBase> {
-    private final RenderPlayer playerRenderer;
-    private Float yawCorrector = 0F;
     private Float rotationPitch = 0F;
 
     public ArmorLayerRender(RenderPlayer playerRendererIn) {
 
-        this.playerRenderer = playerRendererIn;
+        RenderPlayer playerRenderer = playerRendererIn;
     }
 
 
@@ -43,6 +41,7 @@ public class ArmorLayerRender implements LayerRenderer<EntityLivingBase> {
         Minecraft minecraft = Minecraft.getMinecraft();
 
 
+        Float yawCorrector = 0F;
         if (MathHelper.wrapDegrees(entitylivingbaseIn.getPitchYaw().y) >= 0.0F) {
             yawCorrector = MathHelper.wrapDegrees(entitylivingbaseIn.getPitchYaw().y);
         } else if (MathHelper.wrapDegrees(entitylivingbaseIn.getPitchYaw().y) < 0.0F) {

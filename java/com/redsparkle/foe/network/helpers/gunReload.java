@@ -19,38 +19,35 @@ public class gunReload {
 
 
     public static void TenMM(WorldServer mainThread, ItemStack heldItem, EntityPlayerMP player) {
-        mainThread.addScheduledTask(new Runnable() {
-            @Override
-            public void run() {
-                if (heldItem.getItemDamage() <= 12) {
-                    if (findAmmo(player, "TenMM") != ItemStack.EMPTY) {
-                        Item clip = ItemInit.tenMMClip;
-                        ItemStack clipstack = new ItemStack(clip);
-                        clipstack.setItemDamage(heldItem.getItemDamage());
-                        heldItem.setItemDamage(findAmmo(player, "TenMM").getItemDamage());
-                        findAmmo(player, "TenMM").shrink(1);
-                        player.inventory.setInventorySlotContents(InventoryManager.FindEmpty(player), clipstack);
-                        main.simpleNetworkWrapper.sendTo(new MessageGunReloadReply(0), player);
+        mainThread.addScheduledTask(() -> {
+            if (heldItem.getItemDamage() <= 12) {
+                if (findAmmo(player, "TenMM") != ItemStack.EMPTY) {
+                    Item clip = ItemInit.tenMMClip;
+                    ItemStack clipstack = new ItemStack(clip);
+                    clipstack.setItemDamage(heldItem.getItemDamage());
+                    heldItem.setItemDamage(findAmmo(player, "TenMM").getItemDamage());
+                    findAmmo(player, "TenMM").shrink(1);
+                    player.inventory.setInventorySlotContents(InventoryManager.FindEmpty(player), clipstack);
+                    main.simpleNetworkWrapper.sendTo(new MessageGunReloadReply(0), player);
+                } else {
+                    Item emptyclip = ItemInit.tenMMClip;
+                    ItemStack emptyClipStack = new ItemStack(emptyclip);
+                    if (heldItem.getItemDamage() == 0) {
+                        emptyClipStack.setItemDamage(1);
                     } else {
-                        Item emptyclip = ItemInit.tenMMClip;
-                        ItemStack emptyClipStack = new ItemStack(emptyclip);
-                        if (heldItem.getItemDamage() == 0) {
-                            emptyClipStack.setItemDamage(1);
-                        } else {
-                            emptyClipStack.setItemDamage(heldItem.getItemDamage());
-                        }
-                        heldItem.setItemDamage(13);
-                        player.inventory.setInventorySlotContents(InventoryManager.FindEmpty(player), emptyClipStack);
-                        main.simpleNetworkWrapper.sendTo(new MessageGunReloadReply(1), player);
-                        //CommonProxy.sendSound(0,player);
+                        emptyClipStack.setItemDamage(heldItem.getItemDamage());
                     }
-                } else if (heldItem.getItemDamage() == 13) {
-                    if (findAmmo(player, "TenMM") != ItemStack.EMPTY) {
-                        heldItem.setItemDamage(findAmmo(player, "TenMM").getItemDamage());
-                        findAmmo(player, "TenMM").shrink(1);
-                        main.simpleNetworkWrapper.sendTo(new MessageGunReloadReply(0), player);
+                    heldItem.setItemDamage(13);
+                    player.inventory.setInventorySlotContents(InventoryManager.FindEmpty(player), emptyClipStack);
+                    main.simpleNetworkWrapper.sendTo(new MessageGunReloadReply(1), player);
+                    //CommonProxy.sendSound(0,player);
+                }
+            } else if (heldItem.getItemDamage() == 13) {
+                if (findAmmo(player, "TenMM") != ItemStack.EMPTY) {
+                    heldItem.setItemDamage(findAmmo(player, "TenMM").getItemDamage());
+                    findAmmo(player, "TenMM").shrink(1);
+                    main.simpleNetworkWrapper.sendTo(new MessageGunReloadReply(0), player);
 
-                    }
                 }
             }
         });
@@ -86,38 +83,35 @@ public class gunReload {
     }
 
     public static void LaserPistol(WorldServer mainThread, ItemStack heldItem, EntityPlayerMP player) {
-        mainThread.addScheduledTask(new Runnable() {
-            @Override
-            public void run() {
-                if (heldItem.getItemDamage() <= 30) {
-                    if (findAmmo(player, "LaserPistol") != ItemStack.EMPTY) {
-                        Item clip = ItemInit.battery;
-                        ItemStack clipstack = new ItemStack(clip);
-                        clipstack.setItemDamage(heldItem.getItemDamage());
-                        heldItem.setItemDamage(findAmmo(player, "LaserPistol").getItemDamage());
-                        findAmmo(player, "LaserPistol").shrink(1);
-                        player.inventory.setInventorySlotContents(InventoryManager.FindEmpty(player), clipstack);
-                        main.simpleNetworkWrapper.sendTo(new MessageGunReloadReply(2), player);
+        mainThread.addScheduledTask(() -> {
+            if (heldItem.getItemDamage() <= 30) {
+                if (findAmmo(player, "LaserPistol") != ItemStack.EMPTY) {
+                    Item clip = ItemInit.battery;
+                    ItemStack clipstack = new ItemStack(clip);
+                    clipstack.setItemDamage(heldItem.getItemDamage());
+                    heldItem.setItemDamage(findAmmo(player, "LaserPistol").getItemDamage());
+                    findAmmo(player, "LaserPistol").shrink(1);
+                    player.inventory.setInventorySlotContents(InventoryManager.FindEmpty(player), clipstack);
+                    main.simpleNetworkWrapper.sendTo(new MessageGunReloadReply(2), player);
+                } else {
+                    Item emptyclip = ItemInit.battery;
+                    ItemStack emptyClipStack = new ItemStack(emptyclip);
+                    if (heldItem.getItemDamage() == 0) {
+                        emptyClipStack.setItemDamage(1);
                     } else {
-                        Item emptyclip = ItemInit.battery;
-                        ItemStack emptyClipStack = new ItemStack(emptyclip);
-                        if (heldItem.getItemDamage() == 0) {
-                            emptyClipStack.setItemDamage(1);
-                        } else {
-                            emptyClipStack.setItemDamage(heldItem.getItemDamage());
-                        }
-                        heldItem.setItemDamage(31);
-                        player.inventory.setInventorySlotContents(InventoryManager.FindEmpty(player), emptyClipStack);
-                        main.simpleNetworkWrapper.sendTo(new MessageGunReloadReply(3), player);
-
+                        emptyClipStack.setItemDamage(heldItem.getItemDamage());
                     }
-                } else if (heldItem.getItemDamage() == 31) {
-                    if (findAmmo(player, "LaserPistol") != ItemStack.EMPTY) {
-                        heldItem.setItemDamage(findAmmo(player, "LaserPistol").getItemDamage());
-                        findAmmo(player, "LaserPistol").shrink(1);
-                        main.simpleNetworkWrapper.sendTo(new MessageGunReloadReply(2), player);
+                    heldItem.setItemDamage(31);
+                    player.inventory.setInventorySlotContents(InventoryManager.FindEmpty(player), emptyClipStack);
+                    main.simpleNetworkWrapper.sendTo(new MessageGunReloadReply(3), player);
 
-                    }
+                }
+            } else if (heldItem.getItemDamage() == 31) {
+                if (findAmmo(player, "LaserPistol") != ItemStack.EMPTY) {
+                    heldItem.setItemDamage(findAmmo(player, "LaserPistol").getItemDamage());
+                    findAmmo(player, "LaserPistol").shrink(1);
+                    main.simpleNetworkWrapper.sendTo(new MessageGunReloadReply(2), player);
+
                 }
             }
         });
