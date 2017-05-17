@@ -10,11 +10,16 @@ import com.redsparkle.foe.capa.skills.SkillsFactoryProvider;
 import com.redsparkle.foe.capa.spechial.ISpechialCapability;
 import com.redsparkle.foe.capa.spechial.SpechialFactoryProvider;
 import com.redsparkle.foe.main;
+import com.sun.media.jfxmedia.events.PlayerStateListener;
+import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.PlayerCapabilities;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
+import net.minecraftforge.event.entity.player.PlayerPickupXpEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.gameevent.PlayerEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 
 import static com.redsparkle.foe.capa.level.LevelFactoryProvider.LEVEL_CAPABILITY;
@@ -52,6 +57,7 @@ public class EventHandlerPre {
 
     @SubscribeEvent
     public void onPlayerTick(TickEvent.PlayerTickEvent e) {
+
         //if (e.phase != TickEvent.Phase.END) return;
         updatePlayerRads(e.player);
 
@@ -59,7 +65,15 @@ public class EventHandlerPre {
         updatePlayerSpechial(e.player);
         updatePlayerSkills(e.player);
         updatePlayerLevel(e.player);
+
+        if(e.player.getEntityWorld().getTotalWorldTime() % 5000 == 0){
+            System.out.println("BOOP");
+        }
     }
+
+
+
+
 
     private void updatePlayerSpechial(EntityPlayer player) {
         if (!player.world.isRemote) {
