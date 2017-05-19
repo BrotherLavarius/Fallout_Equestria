@@ -13,6 +13,10 @@ import com.redsparkle.foe.capa.spechial.SpechialFactoryProvider;
 import com.redsparkle.foe.keys.KeyInputHandler;
 import com.redsparkle.foe.keys.keyHandler;
 import com.redsparkle.foe.network.*;
+import com.redsparkle.foe.network.ClientServerOneClass.MessageUpdateClientRads;
+import com.redsparkle.foe.network.ClientServerOneClass.MessageUpdateClientServerLevel;
+import com.redsparkle.foe.network.ClientServerOneClass.MessageUpdateClientServerSPECHIAL;
+import com.redsparkle.foe.network.ClientServerOneClass.MessageUpdateClientServerSkills;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.entity.player.EntityPlayer;
@@ -116,7 +120,17 @@ public class ClientOnlyProxy extends CommonProxy {
 
         });
     }
-
+    public static void handleLevelMessageOnDemand(MessageUpdateSLSServerReplyOnDemand message) {
+        Minecraft.getMinecraft().addScheduledTask(() -> {
+            EntityPlayer player = Minecraft.getMinecraft().player;
+            ILevelCapability level = LevelFactoryProvider.instanceFor(player);
+            player.getCapability(LevelFactoryProvider.LEVEL_CAPABILITY,null).setLevel(message.Level);
+            player.getCapability(LevelFactoryProvider.LEVEL_CAPABILITY,null).setProgress(message.Progress);
+            level.setLevel(message.Level);
+            level.setProgress(message.Progress);
+            System.out.println("player progress: "+player.getCapability(LevelFactoryProvider.LEVEL_CAPABILITY,null).getProgress() );
+        });
+    }
 
 
     public void preInit() {

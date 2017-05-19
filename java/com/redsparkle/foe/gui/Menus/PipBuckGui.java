@@ -1,10 +1,12 @@
 package com.redsparkle.foe.gui.Menus;
 
+import com.redsparkle.foe.capa.level.LevelFactoryProvider;
 import com.redsparkle.foe.capa.rad.RadsFactoryProvider;
 import com.redsparkle.foe.capa.spechial.SpechialFactoryProvider;
 import com.redsparkle.foe.gui.Menus.pipbuck_gui_extenders.StatsGui;
 import com.redsparkle.foe.main;
 import com.redsparkle.foe.utils.GlobalNames;
+import com.redsparkle.foe.utils.Lvlutil;
 import com.redsparkle.foe.utils.ScreenGrid;
 import com.sun.org.glassfish.external.statistics.impl.StatsImpl;
 import net.minecraft.client.gui.GuiButton;
@@ -215,6 +217,41 @@ public class PipBuckGui extends GuiScreen {
                             ScreenGrid.YCoordStart(
                                     this.height,
                                     29),
+                            8453920,false
+                    );
+
+                    this.fontRendererObj.drawString("LVL: " + Integer.toString(
+                            mc.player.getCapability(LevelFactoryProvider.LEVEL_CAPABILITY,null).getLevel()),
+                            ScreenGrid.XCoordStart(
+                                    this.width,
+                                    70),
+                            ScreenGrid.YCoordStart(
+                                    this.height,
+                                    33),
+                            8453920,false
+                    );
+
+                    this.fontRendererObj.drawString("Total XP : " + Integer.toString(
+                            mc.player.getCapability(LevelFactoryProvider.LEVEL_CAPABILITY,null).getProgress()),
+                            ScreenGrid.XCoordStart(
+                                    this.width,
+                                    70),
+                            ScreenGrid.YCoordStart(
+                                    this.height,
+                                    37),
+                            8453920,false
+                    );
+
+                    this.fontRendererObj.drawString(Lvlutil.progress(
+                            mc.player.getCapability(LevelFactoryProvider.LEVEL_CAPABILITY,null).getLevel(),
+                            mc.player.getCapability(LevelFactoryProvider.LEVEL_CAPABILITY,null).getProgress()
+                            ),
+                            ScreenGrid.XCoordStart(
+                                    this.width,
+                                    70),
+                            ScreenGrid.YCoordStart(
+                                    this.height,
+                                    41),
                             8453920,false
                     );
                     GL11.glPopMatrix();

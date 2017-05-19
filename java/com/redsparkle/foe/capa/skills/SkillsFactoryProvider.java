@@ -1,7 +1,7 @@
 package com.redsparkle.foe.capa.skills;
 
 import com.redsparkle.foe.main;
-import com.redsparkle.foe.network.MessageUpdateClientServerSkills;
+import com.redsparkle.foe.network.ClientServerOneClass.MessageUpdateClientServerSkills;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;

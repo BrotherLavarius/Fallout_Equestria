@@ -1,7 +1,7 @@
 package com.redsparkle.foe.capa.rad;
 
 import com.redsparkle.foe.main;
-import com.redsparkle.foe.network.MessageUpdateClientRads;
+import com.redsparkle.foe.network.ClientServerOneClass.MessageUpdateClientRads;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;

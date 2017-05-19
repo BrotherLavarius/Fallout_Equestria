@@ -1,16 +1,14 @@
 package com.redsparkle.foe.capa.level;
 
 import com.redsparkle.foe.main;
-import com.redsparkle.foe.network.MessageUpdateClientServerLevel;
+import com.redsparkle.foe.network.ClientServerOneClass.MessageUpdateClientServerLevel;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.CapabilityInject;
 import net.minecraftforge.common.capabilities.ICapabilitySerializable;
-import net.minecraftforge.fml.common.gameevent.TickEvent;
 
 /**
  * Created by hoijima on 12.09.16.

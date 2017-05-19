@@ -77,6 +77,7 @@ public class EventHandlerPre {
                                     (e.player.getCapability(LEVEL_CAPABILITY,null).getProgress() -
                                     e.player.experienceTotal));
                 }
+            System.out.println("RUnning Update");
 
         }
     }

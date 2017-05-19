@@ -3,6 +3,10 @@ package com.redsparkle.foe;
 
 import com.redsparkle.foe.handlers.GuiHandler;
 import com.redsparkle.foe.network.*;
+import com.redsparkle.foe.network.ClientServerOneClass.MessageUpdateClientRads;
+import com.redsparkle.foe.network.ClientServerOneClass.MessageUpdateClientServerLevel;
+import com.redsparkle.foe.network.ClientServerOneClass.MessageUpdateClientServerSPECHIAL;
+import com.redsparkle.foe.network.ClientServerOneClass.MessageUpdateClientServerSkills;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
@@ -26,6 +30,9 @@ public class main {
     public static final byte SKILLS_MESSAGE_ID_SERVER = 102;
     public static final byte LEVEL_MESSAGE_ID_CLIENT = 103;
     public static final byte LEVEL_MESSAGE_ID_SERVER = 104;
+    public static final byte LEVEL_ONDEMAND_MESSAGE_ID_CLIENT = 105;
+    public static final byte LEVEL_ONDEMAND_MESSAGE_ID_SERVER = 106;
+
 
     public static final byte FIRE_MESSAGE_ID_CLIENT = 101;
     public static final byte FIRE_MESSAGE_ID_SERVER = 102;
@@ -81,6 +88,10 @@ public class main {
 
         simpleNetworkWrapper.registerMessage(MessageUpdateClientServerLevel.HandlerClient.class, MessageUpdateClientServerLevel.class, LEVEL_MESSAGE_ID_CLIENT, Side.CLIENT);
         simpleNetworkWrapper.registerMessage(MessageUpdateClientServerLevel.HandlerServer.class, MessageUpdateClientServerLevel.class, LEVEL_MESSAGE_ID_SERVER, Side.SERVER);
+        simpleNetworkWrapper.registerMessage(MessageUpdateSLSClientOnDemand.serverSideHandler.class, MessageUpdateSLSClientOnDemand.class, LEVEL_ONDEMAND_MESSAGE_ID_CLIENT, Side.SERVER);
+        simpleNetworkWrapper.registerMessage(MessageUpdateSLSServerReplyOnDemand.HandlerClient.class, MessageUpdateSLSServerReplyOnDemand.class, LEVEL_ONDEMAND_MESSAGE_ID_SERVER, Side.CLIENT);
+
+
         System.out.println("LEVELS------CHECK");
 
         System.out.println("FINISHED BOOTING NETWORK MESSAGES");

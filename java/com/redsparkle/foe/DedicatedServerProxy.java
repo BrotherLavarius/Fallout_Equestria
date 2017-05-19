@@ -6,13 +6,21 @@ import com.redsparkle.foe.capa.skills.ISkillsCapability;
 import com.redsparkle.foe.capa.skills.SkillsFactoryProvider;
 import com.redsparkle.foe.capa.spechial.ISpechialCapability;
 import com.redsparkle.foe.capa.spechial.SpechialFactoryProvider;
-import com.redsparkle.foe.network.MessageFireToClientServer;
-import com.redsparkle.foe.network.MessageUpdateClientServerLevel;
-import com.redsparkle.foe.network.MessageUpdateClientServerSPECHIAL;
-import com.redsparkle.foe.network.MessageUpdateClientServerSkills;
+import com.redsparkle.foe.items.guns.LaserPistol;
+import com.redsparkle.foe.items.guns.TenMM;
+import com.redsparkle.foe.network.*;
+import com.redsparkle.foe.network.ClientServerOneClass.MessageUpdateClientServerLevel;
+import com.redsparkle.foe.network.ClientServerOneClass.MessageUpdateClientServerSPECHIAL;
+import com.redsparkle.foe.network.ClientServerOneClass.MessageUpdateClientServerSkills;
+import com.redsparkle.foe.network.helpers.gunReload;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumHand;
+import net.minecraft.world.WorldServer;
+
+import static com.redsparkle.foe.capa.level.LevelFactoryProvider.LEVEL_CAPABILITY;
 
 /**
  * DedicatedServerProxy is used to set up the mod and start it running on dedicated servers.  It contains all the code that should run on the
@@ -73,7 +81,46 @@ public class DedicatedServerProxy extends CommonProxy {
         });
 
     }
+    public static void handleReloadMessage(EntityPlayerMP player) {
+        Minecraft.getMinecraft().addScheduledTask(() -> {
+        WorldServer mainThread = (WorldServer) (player.world);
+        ItemStack heldItem = player.getHeldItem(EnumHand.MAIN_HAND);
+        if (heldItem != null) { //&& heldItem.getTagCompound().getBoolean("isgun")
+            if (heldItem.getItem() instanceof TenMM) {
+                gunReload.TenMM(mainThread, heldItem, player);
 
+            } else if (heldItem.getItem() instanceof LaserPistol) {
+                gunReload.LaserPistol(mainThread, heldItem, player);
+            }
+
+
+        }
+        });
+    }
+    public static void handleSLSOnDemand(EntityPlayerMP player) {
+        Minecraft.getMinecraft().addScheduledTask(() -> {
+//        System.out.println("Client Wants an update: " +
+//                player.getDisplayNameString()+"   "+
+//                player.getCapability(LevelFactoryProvider.LEVEL_CAPABILITY,null).getLevel()+"   "+
+//                player.getCapability(LevelFactoryProvider.LEVEL_CAPABILITY,null).getProgress()+"   ");
+
+            if (player.getCapability(LEVEL_CAPABILITY,null).getProgress() < player.experienceTotal){
+                player.getCapability(LEVEL_CAPABILITY,null).setProgress(player.experienceTotal);
+            } else
+            if (player.getCapability(LEVEL_CAPABILITY,null).getProgress() > player.experienceTotal){
+                player.getCapability(LEVEL_CAPABILITY,null).setProgress(
+                        player.getCapability(LEVEL_CAPABILITY,null).getProgress() +
+                                (player.getCapability(LEVEL_CAPABILITY,null).getProgress() -
+                                        player.experienceTotal));
+            }
+
+
+        main.simpleNetworkWrapper.sendTo(new MessageUpdateSLSServerReplyOnDemand(
+                player.getCapability(LevelFactoryProvider.LEVEL_CAPABILITY,null).getLevel(),
+                player.getCapability(LevelFactoryProvider.LEVEL_CAPABILITY,null).getProgress()
+        ),player);
+        });
+    }
 
     /**
      * Run before anything else. Read your config, create blocks, items, etc, and register them with the GameRegistry
