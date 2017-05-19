@@ -2,11 +2,14 @@ package com.redsparkle.foe;
 
 
 import com.redsparkle.foe.handlers.GuiHandler;
-import com.redsparkle.foe.network.*;
 import com.redsparkle.foe.network.ClientServerOneClass.MessageUpdateClientRads;
 import com.redsparkle.foe.network.ClientServerOneClass.MessageUpdateClientServerLevel;
 import com.redsparkle.foe.network.ClientServerOneClass.MessageUpdateClientServerSPECHIAL;
 import com.redsparkle.foe.network.ClientServerOneClass.MessageUpdateClientServerSkills;
+import com.redsparkle.foe.network.MessageGunReload;
+import com.redsparkle.foe.network.MessageGunReloadReply;
+import com.redsparkle.foe.network.MessageUpdateSLSClientOnDemand;
+import com.redsparkle.foe.network.MessageUpdateSLSServerReplyOnDemand;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;

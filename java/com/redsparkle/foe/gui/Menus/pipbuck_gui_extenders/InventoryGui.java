@@ -1,6 +1,5 @@
 package com.redsparkle.foe.gui.Menus.pipbuck_gui_extenders;
 
-import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.GuiScreen;
 
 /**

@@ -1,14 +1,8 @@
 package com.redsparkle.foe.network;
 
 import com.redsparkle.foe.DedicatedServerProxy;
-import com.redsparkle.foe.items.guns.LaserPistol;
-import com.redsparkle.foe.items.guns.TenMM;
-import com.redsparkle.foe.network.helpers.gunReload;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.EnumHand;
-import net.minecraft.world.WorldServer;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;

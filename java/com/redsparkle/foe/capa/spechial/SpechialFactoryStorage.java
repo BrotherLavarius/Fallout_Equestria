@@ -6,8 +6,6 @@ import net.minecraft.util.EnumFacing;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.Capability.IStorage;
 
-import javax.annotation.Nullable;
-
 /**
  * Created by hoijima on 3/1/2017.
  */

@@ -4,7 +4,6 @@ import com.redsparkle.foe.Init.ItemInit;
 import com.redsparkle.foe.gui.Menus.PipBuckGui;
 import com.redsparkle.foe.main;
 import com.redsparkle.foe.network.MessageGunReload;
-import com.redsparkle.foe.network.ClientServerOneClass.MessageUpdateClientServerLevel;
 import com.redsparkle.foe.network.MessageUpdateSLSClientOnDemand;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;

@@ -1,7 +1,6 @@
 package com.redsparkle.foe.network;
 
 import com.redsparkle.foe.ClientOnlyProxy;
-import com.redsparkle.foe.network.ClientServerOneClass.MessageUpdateClientServerLevel;
 import io.netty.buffer.ByteBuf;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;

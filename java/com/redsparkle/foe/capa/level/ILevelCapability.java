@@ -1,8 +1,6 @@
 package com.redsparkle.foe.capa.level;
 
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.world.World;
-import net.minecraftforge.fml.common.gameevent.TickEvent;
 
 /**
  * Created by hoijima on 08.09.16.
