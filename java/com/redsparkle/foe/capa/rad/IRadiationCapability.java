@@ -10,18 +10,18 @@ import net.minecraftforge.fml.common.gameevent.TickEvent;
 public interface IRadiationCapability {
 
 
-    public Integer addRadiation(Integer addRadiationLevel);
+    Integer addRadiation(Integer addRadiationLevel);
 
-    public Integer removeRadiation(Integer removeRadiationLevel);
+    Integer removeRadiation(Integer removeRadiationLevel);
 
-    public Integer getRadiation();
+    Integer getRadiation();
 
-    public Integer setRadiation(Integer newRadiationLevel);
+    Integer setRadiation(Integer newRadiationLevel);
 
-    public void update(EntityPlayer player, World world, TickEvent.Phase phase);
+    void update(EntityPlayer player, World world, TickEvent.Phase phase);
 
-    public void updateClient(EntityPlayer player);
+    void updateClient(EntityPlayer player);
 
-    public void timedRemoveRad(EntityPlayer player, TickEvent.Phase phase, Integer startCycle, Integer Cycles, Integer FortificationValue);
+    void timedRemoveRad(EntityPlayer player, TickEvent.Phase phase, Integer startCycle, Integer Cycles, Integer FortificationValue);
 
 }

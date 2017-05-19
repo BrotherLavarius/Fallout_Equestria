@@ -71,7 +71,7 @@ public class ModEffects {
 
     @Nullable
     private static Potion getRegisteredMobEffect(String id) {
-        Potion potion = (Potion) Potion.REGISTRY.getObject(new ResourceLocation(id));
+        Potion potion = Potion.REGISTRY.getObject(new ResourceLocation(id));
 
         if (potion == null) {
             throw new IllegalStateException("Invalid ModEffect requested: " + id);

@@ -10,23 +10,23 @@ import net.minecraftforge.fml.common.gameevent.TickEvent;
 public interface ILevelCapability {
 
 
-    public Integer addLevel(Integer addLevelLevel);
+    Integer addLevel(Integer addLevelLevel);
 
-    public Integer removeLevel(Integer removeLevelLevel);
+    Integer removeLevel(Integer removeLevelLevel);
 
-    public Integer getLevel();
+    Integer getLevel();
 
-    public Integer setLevel(Integer newLevelLevel);
+    Integer setLevel(Integer newLevelLevel);
 
-    public Integer addProgress(Integer addProgressProgress);
+    Integer addProgress(Integer addProgressProgress);
 
-    public Integer removeProgress(Integer removeProgressProgress);
+    Integer removeProgress(Integer removeProgressProgress);
 
-    public Integer getProgress();
+    Integer getProgress();
 
-    public Integer setProgress(Integer newProgressProgress);
+    Integer setProgress(Integer newProgressProgress);
 
-    public void updateClient(EntityPlayer player);
+    void updateClient(EntityPlayer player);
 
 
 }

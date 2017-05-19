@@ -6,6 +6,7 @@ import com.redsparkle.foe.gui.Overlays.PipBuckOverlay;
 import com.redsparkle.foe.gui.Overlays.RadsOverlay;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
+import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -46,7 +47,7 @@ public class EventHandlerOverlayPipBuck {
         // look for the ItemHUDactivator in the hotbar.  If not present, return without changing the HUD.
         boolean foundInHotbar = false;
         final int FIRST_HOTBAR_SLOT = 0;
-        final int LAST_HOTBAR_SLOT_PLUS_ONE = FIRST_HOTBAR_SLOT + entityPlayerSP.inventory.getHotbarSize();
+        final int LAST_HOTBAR_SLOT_PLUS_ONE = FIRST_HOTBAR_SLOT + InventoryPlayer.getHotbarSize();
         for (int i = FIRST_HOTBAR_SLOT; i < LAST_HOTBAR_SLOT_PLUS_ONE; ++i) {
             ItemStack slotItemStack = entityPlayerSP.inventory.getStackInSlot(i);
             if (slotItemStack != null && slotItemStack.getItem() == ItemInit.pipbuck) {

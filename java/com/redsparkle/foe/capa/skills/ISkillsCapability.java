@@ -9,68 +9,68 @@ import net.minecraftforge.fml.common.gameevent.TickEvent;
  */
 public interface ISkillsCapability {
 
-    public Integer addBigGuns(Integer addBigGuns);
-    public Integer removeBigGuns(Integer removeBigGuns);
-    public Integer setBigGuns(Integer newBigGuns);
-    public Integer getBigGuns();
+    Integer addBigGuns(Integer addBigGuns);
+    Integer removeBigGuns(Integer removeBigGuns);
+    Integer setBigGuns(Integer newBigGuns);
+    Integer getBigGuns();
 
-    public Integer addSmallGuns(Integer addSmallGuns);
-    public Integer removeSmallGuns(Integer removeSmallGuns);
-    public Integer setSmallGuns(Integer newSmallGuns);
-    public Integer getSmallGuns();
+    Integer addSmallGuns(Integer addSmallGuns);
+    Integer removeSmallGuns(Integer removeSmallGuns);
+    Integer setSmallGuns(Integer newSmallGuns);
+    Integer getSmallGuns();
 
-    public Integer addEnergyWeapons(Integer addEnergyWeapons);
-    public Integer removeEnergyWeapons(Integer removeEnergyWeapons);
-    public Integer setEnergyWeapons(Integer newEnergyWeapons);
-    public Integer getEnergyWeapons();
+    Integer addEnergyWeapons(Integer addEnergyWeapons);
+    Integer removeEnergyWeapons(Integer removeEnergyWeapons);
+    Integer setEnergyWeapons(Integer newEnergyWeapons);
+    Integer getEnergyWeapons();
 
-    public Integer addExplosives(Integer addExplosives);
-    public Integer removeExplosives(Integer removeExplosives);
-    public Integer setExplosives(Integer newExplosives);
-    public Integer getExplosives();
+    Integer addExplosives(Integer addExplosives);
+    Integer removeExplosives(Integer removeExplosives);
+    Integer setExplosives(Integer newExplosives);
+    Integer getExplosives();
 
-    public Integer addMeleeWeapons(Integer addMeleeWeapons);
-    public Integer removeMeleeWeapons(Integer removeMeleeWeapons);
-    public Integer setMeleeWeapons(Integer newMeleeWeapons);
-    public Integer getMeleeWeapons();
+    Integer addMeleeWeapons(Integer addMeleeWeapons);
+    Integer removeMeleeWeapons(Integer removeMeleeWeapons);
+    Integer setMeleeWeapons(Integer newMeleeWeapons);
+    Integer getMeleeWeapons();
 
-    public Integer addUnarmed(Integer addUnarmed);
-    public Integer removeUnarmed(Integer removeUnarmed);
-    public Integer setUnarmed(Integer newUnarmed);
-    public Integer getUnarmed();
+    Integer addUnarmed(Integer addUnarmed);
+    Integer removeUnarmed(Integer removeUnarmed);
+    Integer setUnarmed(Integer newUnarmed);
+    Integer getUnarmed();
 
-    public Integer addMedicine(Integer addMedicine);
-    public Integer removeMedicine(Integer removeMedicine);
-    public Integer setMedicine(Integer newMedicine);
-    public Integer getMedicine();
+    Integer addMedicine(Integer addMedicine);
+    Integer removeMedicine(Integer removeMedicine);
+    Integer setMedicine(Integer newMedicine);
+    Integer getMedicine();
 
-    public Integer addLockpick(Integer addLockpick);
-    public Integer removeLockpick(Integer removeLockpick);
-    public Integer setLockpick(Integer newLockpick);
-    public Integer getLockpick();
+    Integer addLockpick(Integer addLockpick);
+    Integer removeLockpick(Integer removeLockpick);
+    Integer setLockpick(Integer newLockpick);
+    Integer getLockpick();
 
-    public Integer addRepair(Integer addRepair);
-    public Integer removeRepair(Integer removeRepair);
-    public Integer setRepair(Integer newRepair);
-    public Integer getRepair();
+    Integer addRepair(Integer addRepair);
+    Integer removeRepair(Integer removeRepair);
+    Integer setRepair(Integer newRepair);
+    Integer getRepair();
 
-    public Integer addScience(Integer addScience);
-    public Integer removeScience(Integer removeScience);
-    public Integer setScience(Integer newScience);
-    public Integer getScience();
+    Integer addScience(Integer addScience);
+    Integer removeScience(Integer removeScience);
+    Integer setScience(Integer newScience);
+    Integer getScience();
 
-    public Integer addSneak(Integer addSneak);
-    public Integer removeSneak(Integer removeSneak);
-    public Integer setSneak(Integer newSneak);
-    public Integer getSneak();
+    Integer addSneak(Integer addSneak);
+    Integer removeSneak(Integer removeSneak);
+    Integer setSneak(Integer newSneak);
+    Integer getSneak();
 
-    public Integer addBarter(Integer addBarter);
-    public Integer removeBarter(Integer removeBarter);
-    public Integer setBarter(Integer newBarter);
-    public Integer getBarter();
+    Integer addBarter(Integer addBarter);
+    Integer removeBarter(Integer removeBarter);
+    Integer setBarter(Integer newBarter);
+    Integer getBarter();
 
 
-    public void update(EntityPlayer player, World world, TickEvent.Phase phase);
+    void update(EntityPlayer player, World world, TickEvent.Phase phase);
 
-    public void updateClient(EntityPlayer player);
+    void updateClient(EntityPlayer player);
 }
