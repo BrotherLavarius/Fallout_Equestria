@@ -2,7 +2,9 @@ package com.redsparkle.foe.gui.Menus;
 
 import com.redsparkle.foe.capa.level.LevelFactoryProvider;
 import com.redsparkle.foe.capa.rad.RadsFactoryProvider;
+import com.redsparkle.foe.capa.skills.SkillsFactoryProvider;
 import com.redsparkle.foe.capa.spechial.SpechialFactoryProvider;
+import com.redsparkle.foe.main;
 import com.redsparkle.foe.utils.GlobalNames;
 import com.redsparkle.foe.utils.Lvlutil;
 import com.redsparkle.foe.utils.ScreenGrid;
@@ -26,7 +28,13 @@ public class PipBuckGui extends GuiScreen {
     public int pip_buck_x = 0;
     public int pip_buck_y = 0;
 
-    public boolean StatsShow = false;
+    public boolean StatsShow = true;
+    public boolean LvlUpShow = true;
+
+    public boolean StatsShowButton = false;
+    public boolean InvShowButton = true;
+    public boolean DataShowButton = true;
+
 
     GuiButtonExt Stats = new GuiButtonExt(0,
             0,
@@ -55,6 +63,31 @@ public class PipBuckGui extends GuiScreen {
 
     @Override
     public void drawScreen(int mouseX, int mouseY, float partialTicks) {
+
+        String[] skills = {
+                "STR", "PER", "END", "CHA", "INT", "AGI", "LUC"
+        };
+        Integer[] spechials = {
+                mc.player.getCapability(SpechialFactoryProvider.SPECHIAL_CAPABILITY, null).getStreinght(),
+                mc.player.getCapability(SpechialFactoryProvider.SPECHIAL_CAPABILITY, null).getPerception(),
+                mc.player.getCapability(SpechialFactoryProvider.SPECHIAL_CAPABILITY, null).getEndurance(),
+                mc.player.getCapability(SpechialFactoryProvider.SPECHIAL_CAPABILITY, null).getCharisma(),
+                mc.player.getCapability(SpechialFactoryProvider.SPECHIAL_CAPABILITY, null).getIntelligence(),
+                mc.player.getCapability(SpechialFactoryProvider.SPECHIAL_CAPABILITY, null).getAgility(),
+                mc.player.getCapability(SpechialFactoryProvider.SPECHIAL_CAPABILITY, null).getLuck()
+        };
+        Integer[] playerParams ={
+                mc.player.getCapability(RadsFactoryProvider.RADIATION_CAPABILITY,null).getRadiation(),
+                mc.player.getCapability(LevelFactoryProvider.LEVEL_CAPABILITY, null).getLevel(),
+                mc.player.getCapability(LevelFactoryProvider.LEVEL_CAPABILITY, null).getProgress()
+
+        };
+        String[] playerParamsString ={
+                "RADS:","LVL:","XP Total:"
+        };
+
+
+
         this.zLevel=0;
         this.drawDefaultBackground();
         GlStateManager.color(1, 1, 1, 1);
@@ -77,181 +110,80 @@ public class PipBuckGui extends GuiScreen {
                     250,
                     140);
 
-//            this.buttonList.get(0).drawTexturedModalRect(
-//                    ScreenGrid.XCoordStart(
-//                            this.width,
-//                            2) + 54,
-//                    ScreenGrid.YCoordStart(
-//                            this.height,
-//                            2) + 106,
-//                    38,
-//                    396,
-//                    33,
-//                    18);
-//            this.buttonList.get(1).drawTexturedModalRect(
-//                    ScreenGrid.XCoordStart(
-//                            this.width,
-//                            2) + 107,
-//                    ScreenGrid.YCoordStart(
-//                            this.height,
-//                            2) + 106,
-//                    38,
-//                    414,
-//                    33,
-//                    18);
-//            this.buttonList.get(2).drawTexturedModalRect(
-//                    ScreenGrid.XCoordStart(
-//                            this.width,
-//                            2) + 159,
-//                    ScreenGrid.YCoordStart(
-//                            this.height,
-//                            2) + 106,
-//                    38,
-//                    432,
-//                    33,
-//                    18);
 
-            //STATS BUTTON
-            {
-                this.buttonList.get(0).xPosition = ScreenGrid.XCoordStart(
-                        this.width,
-                        2) + 85;
-                this.buttonList.get(0).yPosition = ScreenGrid.XCoordStart(
-                        this.width,
-                        2) + 158;
 
-                this.buttonList.get(0).height = 28;
-                this.buttonList.get(0).width = 52;
-            }
 
             {
-                if(StatsShow){
-                    GL11.glPushMatrix();
-                    GL11.glScaled(0.5f,0.5f,0);
-                    this.fontRendererObj.drawString("STR : " + Integer.toString(
-                            mc.player.getCapability(SpechialFactoryProvider.SPECHIAL_CAPABILITY, null).getStreinght()),
-                            ScreenGrid.XCoordStart(
-                                    this.width,
-                                    27),
-                            ScreenGrid.YCoordStart(
-                                    this.height,
-                                    29),
-                            8453920,true
-                    );
+                if(StatsShow) {
+                    int startY=2;
+                    //GL11.glPushMatrix();
+                    //GL11.glScaled(0.5f, 0.5f, 0);
+                    for (int i = 0; i <= (skills.length - 1); i++) {
+                        this.fontRendererObj.drawString(skills[i],
+                                ScreenGrid.XCoordStart(
+                                        this.width,
+                                        2)+55,
+                                ScreenGrid.YCoordStart(
+                                        this.height,
+                                        startY)+27,
+                                8453920, true
+                        );
+                        this.fontRendererObj.drawString(Integer.toString(spechials[i]),
+                                ScreenGrid.XCoordStart(
+                                        this.width,
+                                        2)+75,
+                                ScreenGrid.YCoordStart(
+                                        this.height,
+                                        startY)+27,
+                                8453920, true
+                        );
+                        startY=startY+3;
 
-                    this.fontRendererObj.drawString("PER : " + Integer.toString(
-                            mc.player.getCapability(SpechialFactoryProvider.SPECHIAL_CAPABILITY, null).getPerception()),
-                            ScreenGrid.XCoordStart(
-                                    this.width,
-                                    27),
-                            ScreenGrid.YCoordStart(
-                                    this.height,
-                                    33),
-                            8453920,true
-                    );
+                    }
 
-                    this.fontRendererObj.drawString("LUK : " + Integer.toString(
-                            mc.player.getCapability(SpechialFactoryProvider.SPECHIAL_CAPABILITY, null).getLuck()),
-                            ScreenGrid.XCoordStart(
-                                    this.width,
-                                    27),
-                            ScreenGrid.YCoordStart(
-                                    this.height,
-                                    37),
-                            8453920,true
-                    );
+                    int paramY =2;
+                    for (int o=0;o<=(playerParams.length-1);o++){
 
-                    this.fontRendererObj.drawString("INT : " + Integer.toString(
-                            mc.player.getCapability(SpechialFactoryProvider.SPECHIAL_CAPABILITY, null).getIntelligence()),
-                            ScreenGrid.XCoordStart(
-                                    this.width,
-                                    27),
-                            ScreenGrid.YCoordStart(
-                                    this.height,
-                                    41),
-                            8453920,true
-                    );
+                        this.fontRendererObj.drawString(playerParamsString[o],
+                                ScreenGrid.XCoordStart(
+                                        this.width,
+                                        2)+105,
+                                ScreenGrid.YCoordStart(
+                                        this.height,
+                                        paramY)+27,
+                                8453920, false
+                        );
 
-                    this.fontRendererObj.drawString("END : " + Integer.toString(
-                            mc.player.getCapability(SpechialFactoryProvider.SPECHIAL_CAPABILITY, null).getEndurance()),
-                            ScreenGrid.XCoordStart(
-                                    this.width,
-                                    27),
-                            ScreenGrid.YCoordStart(
-                                    this.height,
-                                    45),
-                            8453920,true
-                    );
+                        this.fontRendererObj.drawString( Integer.toString(playerParams[o]),
+                                ScreenGrid.XCoordStart(
+                                        this.width,
+                                        2)+155,
+                                ScreenGrid.YCoordStart(
+                                        this.height,
+                                        paramY)+27,
+                                8453920, false
+                        );
+                        paramY=paramY+4;
+                    }
 
-                    this.fontRendererObj.drawString("CHR : " + Integer.toString(
-                            mc.player.getCapability(SpechialFactoryProvider.SPECHIAL_CAPABILITY, null).getCharisma()),
-                            ScreenGrid.XCoordStart(
-                                    this.width,
-                                    27),
-                            ScreenGrid.YCoordStart(
-                                    this.height,
-                                    49),
-                            8453920,true
-                    );
-
-                    this.fontRendererObj.drawString("AGI : " + Integer.toString(
-                            mc.player.getCapability(SpechialFactoryProvider.SPECHIAL_CAPABILITY, null).getAgility()),
-                            ScreenGrid.XCoordStart(
-                                    this.width,
-                                    27),
-                            ScreenGrid.YCoordStart(
-                                    this.height,
-                                    53),
-                            8453920,true
-                    );
-
-
-                    this.fontRendererObj.drawString("RADS: " + Integer.toString(
-                            mc.player.getCapability(RadsFactoryProvider.RADIATION_CAPABILITY, null).getRadiation()),
-                            ScreenGrid.XCoordStart(
-                                    this.width,
-                                    70),
-                            ScreenGrid.YCoordStart(
-                                    this.height,
-                                    29),
-                            8453920,false
-                    );
-
-                    this.fontRendererObj.drawString("LVL: " + Integer.toString(
-                            mc.player.getCapability(LevelFactoryProvider.LEVEL_CAPABILITY,null).getLevel()),
-                            ScreenGrid.XCoordStart(
-                                    this.width,
-                                    70),
-                            ScreenGrid.YCoordStart(
-                                    this.height,
-                                    33),
-                            8453920,false
-                    );
-
-                    this.fontRendererObj.drawString("Total XP : " + Integer.toString(
-                            mc.player.getCapability(LevelFactoryProvider.LEVEL_CAPABILITY,null).getProgress()),
-                            ScreenGrid.XCoordStart(
-                                    this.width,
-                                    70),
-                            ScreenGrid.YCoordStart(
-                                    this.height,
-                                    37),
-                            8453920,false
-                    );
 
                     this.fontRendererObj.drawString(Lvlutil.progress(
-                            mc.player.getCapability(LevelFactoryProvider.LEVEL_CAPABILITY,null).getLevel(),
-                            mc.player.getCapability(LevelFactoryProvider.LEVEL_CAPABILITY,null).getProgress()
+                            playerParams[1],playerParams[2]
                             ),
                             ScreenGrid.XCoordStart(
                                     this.width,
-                                    70),
+                                    2)+135,
                             ScreenGrid.YCoordStart(
                                     this.height,
-                                    41),
-                            8453920,false
+                                    2)+60,
+                            8453920, false
+
+
                     );
-                    GL11.glPopMatrix();
+
+                    //LVL UP BUTTON
+
+                    //GL11.glPopMatrix();
                 }
             }
 
@@ -260,17 +192,35 @@ public class PipBuckGui extends GuiScreen {
 
 
 
+
+
+
+            //STATS BUTTON
+            {
+                this.buttonList.get(0).xPosition = ScreenGrid.XCoordStart(
+                        this.width,
+                        2) + 85;
+                this.buttonList.get(0).yPosition = ScreenGrid.XCoordStart(
+                        this.height,
+                        2) + 163;
+
+                this.buttonList.get(0).height = 28;
+                this.buttonList.get(0).width = 52;
+                this.buttonList.get(0).enabled = StatsShowButton;
+            }
             //INVENTORY BUTTON
             {
                 this.buttonList.get(1).xPosition = ScreenGrid.XCoordStart(
                         this.width,
                         2) + 164;
                 this.buttonList.get(1).yPosition = ScreenGrid.XCoordStart(
-                        this.width,
-                        2) + 158;
+                        this.height,
+                        2) + 163;
 
                 this.buttonList.get(1).height = 28;
                 this.buttonList.get(1).width = 52;
+                this.buttonList.get(1).enabled = InvShowButton;
+
             }
             //DATA BUTTON
             {
@@ -278,15 +228,28 @@ public class PipBuckGui extends GuiScreen {
                         this.width,
                         2) + 241;
                 this.buttonList.get(2).yPosition = ScreenGrid.XCoordStart(
-                        this.width,
-                        2) + 158;
+                        this.height,
+                        2) + 163;
 
                 this.buttonList.get(2).height = 28;
                 this.buttonList.get(2).width = 52;
+                this.buttonList.get(2).enabled = DataShowButton;
+
             }
+            //LVLUp BUTTON
+            {
+                this.buttonList.get(3).xPosition = ScreenGrid.XCoordStart(
+                        this.width,
+                        2) + 215;
+                this.buttonList.get(3).yPosition = ScreenGrid.XCoordStart(
+                        this.height,
+                        2) + 105;
 
-
-
+                this.buttonList.get(3).height = 15;
+                this.buttonList.get(3).width = 66;
+                this.buttonList.get(3).visible = StatsShow;
+                this.buttonList.get(3).enabled = Lvlutil.canLvlup(playerParams[1],playerParams[2]);
+            }
 
         }
         GL11.glPopMatrix();
@@ -298,9 +261,9 @@ public class PipBuckGui extends GuiScreen {
 //            this.buttonList.get(0).height = 0;
 //            GL11.glScalef(1.9F, 2f, 1.0f);
 //            GL11.glTranslatef(-82f, -99f, 0f);
-//            //this.buttonList.get(0).xPosition = (this.width / 6 + 50);
-//            //this.buttonList.get(0).yPosition = (this.height / 2 + 70);
-//            this.buttonList.get(0).drawTexturedModalRect(this.width / 3 , this.height / 2 + 70, 38, 396,33, 18);
+//            this.buttonList.get(0).xPosition = (this.width / 6 + 50);
+//            this.buttonList.get(0).yPosition = (this.height / 2 + 70);
+//            //this.buttonList.get(0).drawTexturedModalRect(this.width / 3 , this.height / 2 + 70, 38, 396,33, 18);
 //        }
 //        GL11.glPopMatrix();
 
@@ -324,6 +287,7 @@ public class PipBuckGui extends GuiScreen {
         this.buttonList.add(this.Stats);
         this.buttonList.add(this.Inventory);
         this.buttonList.add(this.Data);
+        this.buttonList.add(this.LvlUp);
 
         super.initGui();
 
@@ -333,21 +297,46 @@ public class PipBuckGui extends GuiScreen {
     protected void actionPerformed(GuiButton button) throws IOException {
 
         if (button == this.Stats) {
-           // this.mc.player.openGui(main.instance, 1, mc.world, (int) mc.player.posX, (int) mc.player.posY, (int) mc.player.posZ);
+            StatsShowButton = false;
+            InvShowButton = true;
+            DataShowButton = true;
+            LvlUpShow = true;
             StatsShow = true;
 
         }
+        if (button == this.LvlUp){
+            this.mc.player.openGui(main.instance, 1, mc.world, (int) mc.player.posX, (int) mc.player.posY, (int) mc.player.posZ);
+
+        }
         if (button == this.Inventory) {
+            StatsShowButton = true;
+            InvShowButton = false;
+            DataShowButton = true;
+
+
+
+
+            LvlUpShow = false;
+            StatsShow = false;
             //Main.packetHandler.sendToServer(...);
-            this.mc.displayGuiScreen(null);
-            if (this.mc.currentScreen == null)
-                this.mc.setIngameFocus();
+//            this.mc.displayGuiScreen(null);
+//            if (this.mc.currentScreen == null)
+//                this.mc.setIngameFocus();
         }
         if (button == this.Data) {
+            StatsShowButton = true;
+            InvShowButton = true;
+            DataShowButton = false;
+
+
+
+
+            LvlUpShow = false;
+            StatsShow = false;
             //Main.packetHandler.sendToServer(...);
-            this.mc.displayGuiScreen(null);
-            if (this.mc.currentScreen == null)
-                this.mc.setIngameFocus();
+//            this.mc.displayGuiScreen(null);
+//            if (this.mc.currentScreen == null)
+//                this.mc.setIngameFocus();
         }
         super.actionPerformed(button);
     }
