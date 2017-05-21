@@ -2,7 +2,6 @@ package com.redsparkle.foe.gui.Menus;
 
 import com.redsparkle.foe.capa.level.LevelFactoryProvider;
 import com.redsparkle.foe.capa.rad.RadsFactoryProvider;
-import com.redsparkle.foe.capa.skills.SkillsFactoryProvider;
 import com.redsparkle.foe.capa.spechial.SpechialFactoryProvider;
 import com.redsparkle.foe.main;
 import com.redsparkle.foe.utils.GlobalNames;

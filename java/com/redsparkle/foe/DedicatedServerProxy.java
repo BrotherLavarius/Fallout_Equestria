@@ -14,12 +14,15 @@ import com.redsparkle.foe.network.ClientServerOneClass.MessageUpdateClientServer
 import com.redsparkle.foe.network.MessageFireToClientServer;
 import com.redsparkle.foe.network.MessageUpdateSLSServerReplyOnDemand;
 import com.redsparkle.foe.network.helpers.gunReload;
+import com.redsparkle.foe.utils.Lvlutil;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumHand;
 import net.minecraft.world.WorldServer;
+
+import java.util.logging.Level;
 
 import static com.redsparkle.foe.capa.level.LevelFactoryProvider.LEVEL_CAPABILITY;
 
@@ -123,6 +126,65 @@ public class DedicatedServerProxy extends CommonProxy {
         });
     }
 
+    public static void handleSkillsLVLUPMessage(MessageUpdateClientServerSkills message, EntityPlayerMP player) {
+        Minecraft.getMinecraft().addScheduledTask(() -> {
+            ISkillsCapability skills = SkillsFactoryProvider.instanceFor(player);
+            ILevelCapability level = LevelFactoryProvider.instanceFor(player);
+            int summ = (
+                    message.BigGuns+
+                    message.SmallGuns+
+                    message.EnergyWeapons+
+                    message.Explosives+
+                    message.MeleeWeapons+
+                    message.Unarmed+
+                    message.Medicine+
+                    message.Lockpick+
+                    message.Repair+
+                    message.Science+
+                    message.Sneak+
+                    message.Barter
+                    )-120;
+            int prevSumm= (
+
+                    skills.getBigGuns()+
+                    skills.getSmallGuns()+
+                    skills.getEnergyWeapons()+
+                    skills.getExplosives()+
+                    skills.getMeleeWeapons()+
+                    skills.getUnarmed()+
+                    skills.getMedicine()+
+                    skills.getLockpick()+
+                    skills.getRepair()+
+                    skills.getScience()+
+                    skills.getSneak()+
+                    skills.getBarter()
+                    )-120;
+            if (Lvlutil.ponitsAvailable(
+            player.getCapability(LevelFactoryProvider.LEVEL_CAPABILITY,null).getLevel(),
+            player.getCapability(LevelFactoryProvider.LEVEL_CAPABILITY,null).getProgress()) + prevSumm == summ
+                    ){
+
+
+                skills.setBigGuns(message.BigGuns);
+                skills.setSmallGuns(message.SmallGuns);
+                skills.setEnergyWeapons(message.EnergyWeapons);
+                skills.setExplosives(message.Explosives);
+                skills.setMeleeWeapons(message.MeleeWeapons);
+                skills.setUnarmed(message.Unarmed);
+                skills.setMedicine(message.Medicine);
+                skills.setLockpick(message.Lockpick);
+                skills.setRepair(message.Repair);
+                skills.setScience(message.Science);
+                skills.setSneak(message.Sneak);
+                skills.setBarter(message.Barter);
+                level.setLevel((summ/10));
+                skills.updateClient(player);
+                level.updateClient(player);
+
+            }
+
+        });
+    }
     /**
      * Run before anything else. Read your config, create blocks, items, etc, and register them with the GameRegistry
      */

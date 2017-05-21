@@ -3,6 +3,9 @@ package com.redsparkle.foe;
 import com.redsparkle.foe.Init.BlockInit;
 import com.redsparkle.foe.Init.ItemInit;
 import com.redsparkle.foe.Init.StartUpCommon;
+import com.redsparkle.foe.capa.FirtsTimeJoin.FTJFactoryProvider;
+import com.redsparkle.foe.capa.FirtsTimeJoin.FTJFactoryStorage;
+import com.redsparkle.foe.capa.FirtsTimeJoin.IFTJCapability;
 import com.redsparkle.foe.capa.level.ILevelCapability;
 import com.redsparkle.foe.capa.level.LevelFactoryProvider;
 import com.redsparkle.foe.capa.level.LevelFactoryStorage;
@@ -57,6 +60,8 @@ public abstract class CommonProxy {
         System.out.println("SKILLS--------------CHECK!");
         CapabilityManager.INSTANCE.register(ILevelCapability.class, new LevelFactoryStorage(), LevelFactoryProvider::new);
         System.out.println("LEVELS--------------CHECK!");
+        CapabilityManager.INSTANCE.register(IFTJCapability.class,new FTJFactoryStorage(), FTJFactoryProvider::new);
+        System.out.println("FTJ--------------CHECK!");
 
         System.out.println("FINISHED BOOTING CAPABILITY SYSTEM");
 //TODO:FIX THISn

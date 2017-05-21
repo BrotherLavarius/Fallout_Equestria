@@ -1,6 +1,7 @@
 package com.redsparkle.foe.events;
 
 
+import com.redsparkle.foe.capa.FirtsTimeJoin.FTJFactoryProvider;
 import com.redsparkle.foe.capa.level.ILevelCapability;
 import com.redsparkle.foe.capa.level.LevelFactoryProvider;
 import com.redsparkle.foe.capa.rad.IRadiationCapability;
@@ -48,12 +49,35 @@ public class EventHandlerPre {
             event.addCapability(new ResourceLocation(main.MODID + ":LEVEL_CAPABILITY"), new LevelFactoryProvider());
         }
 
+        if (!event.getEntity().hasCapability(FTJFactoryProvider.FTJ_CAPABILITY, null)) {
+            event.addCapability(new ResourceLocation(main.MODID + ":FTJ_CAPABILITY"), new FTJFactoryProvider());
+        }
+
     }
 
     @SubscribeEvent
     public void onPlayerTick(TickEvent.PlayerTickEvent e) {
         //if (e.phase != TickEvent.Phase.END) return;
         updatePlayerRads(e.player);
+
+        if(!e.player.getCapability(FTJFactoryProvider.FTJ_CAPABILITY,null).getFTJ())
+        {
+            e.player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).setBigGuns(10);
+            e.player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).setSmallGuns(10);
+            e.player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).setEnergyWeapons(10);
+            e.player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).setExplosives(10);
+            e.player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).setMeleeWeapons(10);
+            e.player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).setUnarmed(10);
+            e.player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).setMedicine(10);
+            e.player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).setLockpick(10);
+            e.player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).setRepair(10);
+            e.player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).setScience(10);
+            e.player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).setSneak(10);
+            e.player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).setBarter(10);
+
+            e.player.getCapability(FTJFactoryProvider.FTJ_CAPABILITY,null).setFTJ(true);
+        }
+        //updatePlayerSkills(e.player);
 
         //TODO: we need to remove Spechials and Skills and level and spechials to ON Join,Exit,LVL up, they cant stay in ON TICK! THIS WILL STRESS THE SERVER CHANNEL VERY MUCH
 
@@ -80,6 +104,9 @@ public class EventHandlerPre {
         updatePlayerSpechial(e.player);
         updatePlayerSkills(e.player);
         updatePlayerLevel(e.player);
+
+
+        
     }
 
     @SubscribeEvent

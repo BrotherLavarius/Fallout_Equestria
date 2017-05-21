@@ -3,6 +3,8 @@ package com.redsparkle.foe.gui.Menus.pipbuck_gui_extenders;
 import com.redsparkle.foe.capa.level.LevelFactoryProvider;
 import com.redsparkle.foe.capa.skills.SkillsFactoryProvider;
 import com.redsparkle.foe.capa.spechial.SpechialFactoryProvider;
+import com.redsparkle.foe.main;
+import com.redsparkle.foe.network.ClientServerOneClass.MessageUpdateClientServerSkills;
 import com.redsparkle.foe.utils.Lvlutil;
 import com.redsparkle.foe.utils.ScreenGrid;
 import net.minecraft.client.gui.GuiButton;
@@ -46,6 +48,9 @@ public class StatsGui extends GuiScreen {
     GuiButtonExt SCIminus = new GuiButtonExt(21,0,0,0,0, "-");
     GuiButtonExt SNIKminus = new GuiButtonExt(22,0,0,0,0, "-");
     GuiButtonExt BARTminus = new GuiButtonExt(23,0,0,0,0, "-");
+
+    GuiButtonExt Commit = new GuiButtonExt(24,0,0,0,0, "Level up!");
+    public Boolean CommitShow = false;
 
     Integer[] buttonsIdsPlus = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11};
     Integer[] buttonsIdsMinus = {12, 13, 14, 15, 16, 17, 18,19,20 , 21, 22, 23};
@@ -161,8 +166,7 @@ public class StatsGui extends GuiScreen {
                     mc.player.getCapability(LevelFactoryProvider.LEVEL_CAPABILITY,null).getLevel(),
                     mc.player.getCapability(LevelFactoryProvider.LEVEL_CAPABILITY,null).getProgress()
             );
-            this.fontRendererObj.drawString("Points available: " +Integer.toString(pointsAvailable - IntStream.of(temp).sum()
-),
+            this.fontRendererObj.drawString("Points available: " +Integer.toString(pointsAvailable - IntStream.of(temp).sum()),
                     ScreenGrid.XCoordStart(
                             this.width,
                             2)+30,
@@ -190,6 +194,14 @@ public class StatsGui extends GuiScreen {
                 }
 
             }
+            this.buttonList.get(24).xPosition = ScreenGrid.XCoordStart(this.width,55);
+            this.buttonList.get(24).yPosition = ScreenGrid.XCoordStart(this.height,75);
+            this.buttonList.get(24).height = 21;
+            this.buttonList.get(24).width = 80;
+            this.buttonList.get(24).enabled = CommitShow;
+            if((pointsAvailable - IntStream.of(temp).sum()) == 0) {
+                CommitShow = true;
+            }else CommitShow = false;
         }
         GL11.glPopMatrix();
 
@@ -210,6 +222,7 @@ public class StatsGui extends GuiScreen {
         for (int i =0;i <= (buttonsMinus.length-1);i++) {
             this.buttonList.add(buttonsMinus[i]);
         }
+        this.buttonList.add(Commit);
         super.initGui();
 
     }
@@ -230,6 +243,15 @@ public class StatsGui extends GuiScreen {
                     }
                 }
             }
+        }
+        if (button == this.Commit){
+            main.simpleNetworkWrapper.sendToServer(new MessageUpdateClientServerSkills(finished));
+            for (int i=0;i<=(finished.length-1);i++){
+                finished[i]=0;
+                temp[i]=0;
+                this.mc.displayGuiScreen(null);
+            }
+
         }
 
     }

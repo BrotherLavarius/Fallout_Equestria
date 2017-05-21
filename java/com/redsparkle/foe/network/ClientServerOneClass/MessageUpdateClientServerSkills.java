@@ -26,7 +26,34 @@ public class MessageUpdateClientServerSkills implements IMessage {
             Science,
             Sneak,
             Barter;
-    
+    public Integer[] params = {
+            BigGuns,
+            SmallGuns,
+            EnergyWeapons,
+            Explosives,
+            MeleeWeapons,
+            Unarmed,
+            Medicine,
+            Lockpick,
+            Repair,
+            Science,
+            Sneak,
+            Barter
+    };
+    public Integer[] thisParams = {
+            this.BigGuns,
+            this.SmallGuns,
+            this.EnergyWeapons,
+            this.Explosives,
+            this.MeleeWeapons,
+            this.Unarmed,
+            this.Medicine,
+            this.Lockpick,
+            this.Repair,
+            this.Science,
+            this.Sneak,
+            this.Barter
+    };
 
     public MessageUpdateClientServerSkills() {
     }
@@ -45,6 +72,23 @@ public class MessageUpdateClientServerSkills implements IMessage {
         this.Science=skills.getScience();
         this.Sneak=skills.getSneak();
         this.Barter=skills.getBarter();
+
+
+    }
+    public MessageUpdateClientServerSkills(Integer[] Skills) {
+//TODO : Дооформить этот класс
+        this.BigGuns=Skills[0];
+        this.SmallGuns=Skills[1];
+        this.EnergyWeapons=Skills[2];
+        this.Explosives=Skills[3];
+        this.MeleeWeapons=Skills[4];
+        this.Unarmed=Skills[5];
+        this.Medicine=Skills[6];
+        this.Lockpick=Skills[7];
+        this.Repair=Skills[8];
+        this.Science=Skills[9];
+        this.Sneak=Skills[10];
+        this.Barter=Skills[11];
 
 
     }
@@ -100,6 +144,16 @@ public class MessageUpdateClientServerSkills implements IMessage {
         public IMessage onMessage(MessageUpdateClientServerSkills message, MessageContext ctx) {
             EntityPlayerMP playerMP = ctx.getServerHandler().playerEntity;
             DedicatedServerProxy.handleSkillsMessage(message, playerMP);
+            return null;
+        }
+
+    }
+    public static class ServerOnLVLUP implements IMessageHandler<MessageUpdateClientServerSkills, IMessage> {
+
+        @Override
+        public IMessage onMessage(MessageUpdateClientServerSkills message, MessageContext ctx) {
+            EntityPlayerMP playerMP = ctx.getServerHandler().playerEntity;
+            DedicatedServerProxy.handleSkillsLVLUPMessage(message, playerMP);
             return null;
         }
 
