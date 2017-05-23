@@ -18,6 +18,7 @@ import com.redsparkle.foe.network.ClientServerOneClass.MessageUpdateClientServer
 import com.redsparkle.foe.network.ClientServerOneClass.MessageUpdateClientServerSkills;
 import com.redsparkle.foe.network.MessageFireToClientServer;
 import com.redsparkle.foe.network.MessageGunReloadReply;
+import com.redsparkle.foe.network.MessageOpenGuiClient;
 import com.redsparkle.foe.network.MessageUpdateSLSServerReplyOnDemand;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
@@ -33,6 +34,7 @@ import net.minecraftforge.fml.relauncher.Side;
  */
 public class ClientOnlyProxy extends CommonProxy {
 
+    public static Minecraft mc = Minecraft.getMinecraft();
     public static void handleRadMessage(MessageUpdateClientRads message) {
         Minecraft.getMinecraft().addScheduledTask(() -> {
             EntityPlayer player = Minecraft.getMinecraft().player;
@@ -133,7 +135,11 @@ public class ClientOnlyProxy extends CommonProxy {
             System.out.println("player progress: "+player.getCapability(LevelFactoryProvider.LEVEL_CAPABILITY,null).getProgress() );
         });
     }
-
+    public static void handleOpenGui(MessageOpenGuiClient message) {
+        Minecraft.getMinecraft().addScheduledTask(() -> {
+            //mc.player.openGui(main.instance, message.ID, mc.world, (int) mc.player.posX, (int) mc.player.posY, (int) mc.player.posZ);
+        });
+    }
 
     public void preInit() {
         super.preInit();

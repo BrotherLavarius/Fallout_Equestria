@@ -25,12 +25,21 @@ public class KeyInputHandler {
         if (keyHandler.reload.isPressed()) {
             main.simpleNetworkWrapper.sendToServer(new MessageGunReload());
         }
-        if (keyHandler.pipbuck.isPressed()) {
-            if(mc.player.inventory.hasItemStack(new ItemStack(ItemInit.pipbuck))) {
-                main.simpleNetworkWrapper.sendToServer(new MessageUpdateSLSClientOnDemand());
-                player.openGui(main.instance, 0, mc.world, (int) mc.player.posX, (int) mc.player.posY, (int) mc.player.posZ);
+        if (keyHandler.pipbuck.isPressed() ) {
 
-            }
+                if(mc.player.inventory.hasItemStack(new ItemStack(ItemInit.pipbuck))) {
+                    main.simpleNetworkWrapper.sendToServer(new MessageUpdateSLSClientOnDemand());
+                    player.openGui(main.instance, 0, mc.world, (int) mc.player.posX, (int) mc.player.posY, (int) mc.player.posZ);
+                    activated = true;
+                }
+
+
+
+        }
+        if (keyHandler.testButton.isPressed() ) {
+                player.openGui(main.instance, 4, mc.world, (int) mc.player.posX, (int) mc.player.posY, (int) mc.player.posZ);
+
+
 
 
         }

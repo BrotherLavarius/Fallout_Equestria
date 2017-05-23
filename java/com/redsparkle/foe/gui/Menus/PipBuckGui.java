@@ -31,8 +31,8 @@ public class PipBuckGui extends GuiScreen {
     public boolean LvlUpShow = true;
 
     public boolean StatsShowButton = false;
-    public boolean InvShowButton = true;
-    public boolean DataShowButton = true;
+    public boolean InvShowButton = false;
+    public boolean DataShowButton = false;
 
 
     GuiButtonExt Stats = new GuiButtonExt(0,
@@ -45,13 +45,13 @@ public class PipBuckGui extends GuiScreen {
             0,
             0,
             0,
-            0, "ITEMS");
+            0, "OFFLINE");
 
     GuiButtonExt Data = new GuiButtonExt(2,
             0,
             0,
             0,
-            0, "DATA");
+            0, "OFFLINE");
 
 
     GuiButtonExt LvlUp = new GuiButtonExt(3,
@@ -96,51 +96,50 @@ public class PipBuckGui extends GuiScreen {
 
         GL11.glPushMatrix();
         {
-            GL11.glScalef((float) 1.5, (float) 1.5, 1.0f);
-            drawTexturedModalRect(
-                    ScreenGrid.XCoordStart(
-                            this.width,
-                            2),
-                    ScreenGrid.YCoordStart(
-                            this.height,
-                            2),
-                    pip_buck_x,
-                    pip_buck_y,
-                    250,
-                    140);
+            //GL11.glScalef((float) 1.7, (float) 1.7, 1.0f);
+//            drawTexturedModalRect(
+//                    ScreenGrid.XCoordStart(
+//                            this.width,
+//                            2),
+//                    ScreenGrid.YCoordStart(
+//                            this.height,
+//                            2),
+//                    pip_buck_x,
+//                    pip_buck_y,
+//                    250,
+//                    140);
 
 
 
 
             {
                 if(StatsShow) {
-                    int startY=2;
+                    int startY=25;
                     //GL11.glPushMatrix();
                     //GL11.glScaled(0.5f, 0.5f, 0);
                     for (int i = 0; i <= (skills.length - 1); i++) {
                         this.fontRendererObj.drawString(skills[i],
                                 ScreenGrid.XCoordStart(
                                         this.width,
-                                        2)+55,
+                                        14),
                                 ScreenGrid.YCoordStart(
                                         this.height,
-                                        startY)+27,
+                                        startY),
                                 8453920, true
                         );
                         this.fontRendererObj.drawString(Integer.toString(spechials[i]),
                                 ScreenGrid.XCoordStart(
-                                        this.width,
-                                        2)+75,
+                                        this.width, 21),
                                 ScreenGrid.YCoordStart(
                                         this.height,
-                                        startY)+27,
+                                        startY),
                                 8453920, true
                         );
-                        startY=startY+3;
+                        startY=startY+5;
 
                     }
 
-                    int paramY =2;
+                    int paramY =25;
                     for (int o=0;o<=(playerParams.length-1);o++){
 
                         this.fontRendererObj.drawString(playerParamsString[o],
@@ -149,7 +148,7 @@ public class PipBuckGui extends GuiScreen {
                                         2)+105,
                                 ScreenGrid.YCoordStart(
                                         this.height,
-                                        paramY)+27,
+                                        paramY),
                                 8453920, false
                         );
 
@@ -159,7 +158,7 @@ public class PipBuckGui extends GuiScreen {
                                         2)+155,
                                 ScreenGrid.YCoordStart(
                                         this.height,
-                                        paramY)+27,
+                                        paramY),
                                 8453920, false
                         );
                         paramY=paramY+4;
@@ -171,10 +170,10 @@ public class PipBuckGui extends GuiScreen {
                             ),
                             ScreenGrid.XCoordStart(
                                     this.width,
-                                    2)+135,
+                                    2)+130,
                             ScreenGrid.YCoordStart(
                                     this.height,
-                                    2)+60,
+                                    40),
                             8453920, false
 
 

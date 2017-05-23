@@ -62,6 +62,7 @@ public class EventHandlerPre {
 
         if(!e.player.getCapability(FTJFactoryProvider.FTJ_CAPABILITY,null).getFTJ())
         {
+            //DedicatedServerProxy.SendOpenGui(4, (EntityPlayerMP) e.player);
             e.player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).setBigGuns(10);
             e.player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).setSmallGuns(10);
             e.player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).setEnergyWeapons(10);

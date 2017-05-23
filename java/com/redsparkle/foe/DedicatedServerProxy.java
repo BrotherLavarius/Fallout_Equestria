@@ -12,6 +12,7 @@ import com.redsparkle.foe.network.ClientServerOneClass.MessageUpdateClientServer
 import com.redsparkle.foe.network.ClientServerOneClass.MessageUpdateClientServerSPECHIAL;
 import com.redsparkle.foe.network.ClientServerOneClass.MessageUpdateClientServerSkills;
 import com.redsparkle.foe.network.MessageFireToClientServer;
+import com.redsparkle.foe.network.MessageOpenGuiClient;
 import com.redsparkle.foe.network.MessageUpdateSLSServerReplyOnDemand;
 import com.redsparkle.foe.network.helpers.gunReload;
 import com.redsparkle.foe.utils.Lvlutil;
@@ -21,8 +22,6 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumHand;
 import net.minecraft.world.WorldServer;
-
-import java.util.logging.Level;
 
 import static com.redsparkle.foe.capa.level.LevelFactoryProvider.LEVEL_CAPABILITY;
 
@@ -126,6 +125,9 @@ public class DedicatedServerProxy extends CommonProxy {
         });
     }
 
+    public static void SendOpenGui(int guiId,EntityPlayerMP player){
+        main.simpleNetworkWrapper.sendTo(new MessageOpenGuiClient(guiId),player);
+    }
     public static void handleSkillsLVLUPMessage(MessageUpdateClientServerSkills message, EntityPlayerMP player) {
         Minecraft.getMinecraft().addScheduledTask(() -> {
             ISkillsCapability skills = SkillsFactoryProvider.instanceFor(player);

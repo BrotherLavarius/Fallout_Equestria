@@ -33,6 +33,7 @@ public class main {
     public static final byte LEVEL_ONDEMAND_MESSAGE_ID_CLIENT = 105;
     public static final byte LEVEL_ONDEMAND_MESSAGE_ID_SERVER = 106;
     public static final byte LVLUP_MESSAGE_ID_CLIENT = 107;
+    public static final byte FIRTSTIME_MESSAGE_ID_CLIENT = 108;
 
     public static final byte FIRE_MESSAGE_ID_CLIENT = 101;
     public static final byte FIRE_MESSAGE_ID_SERVER = 102;
@@ -98,6 +99,7 @@ public class main {
 
 
         System.out.println("LEVELS------CHECK");
+        simpleNetworkWrapper.registerMessage(MessageOpenGuiClient.HandlerClient.class,MessageOpenGuiClient.class,FIRTSTIME_MESSAGE_ID_CLIENT,Side.CLIENT);
 
         System.out.println("FINISHED BOOTING NETWORK MESSAGES");
     }
