@@ -30,20 +30,20 @@ public class StatsGuiFirstJoin extends GuiScreen {
     GuiButtonExt AGI_Plus = new GuiButtonExt(5,0,0,0,0, "+");
     GuiButtonExt LUC_Plus = new GuiButtonExt(6,0,0,0,0, "+");
 
-    GuiButtonExt STR_Minus = new GuiButtonExt(12,0,0,0,0, "-");
-    GuiButtonExt PER_Minus = new GuiButtonExt(13,0,0,0,0, "-");
-    GuiButtonExt END_Minus = new GuiButtonExt(14,0,0,0,0, "-");
-    GuiButtonExt CHA_Minus = new GuiButtonExt(15,0,0,0,0, "-");
-    GuiButtonExt INT_Minus = new GuiButtonExt(16,0,0,0,0, "-");
-    GuiButtonExt AGI_Minus = new GuiButtonExt(17,0,0,0,0, "-");
-    GuiButtonExt LUC_Minus = new GuiButtonExt(18,0,0,0,0, "-");
+    GuiButtonExt STR_Minus = new GuiButtonExt(7,0,0,0,0, "-");
+    GuiButtonExt PER_Minus = new GuiButtonExt(8,0,0,0,0, "-");
+    GuiButtonExt END_Minus = new GuiButtonExt(9,0,0,0,0, "-");
+    GuiButtonExt CHA_Minus = new GuiButtonExt(10,0,0,0,0, "-");
+    GuiButtonExt INT_Minus = new GuiButtonExt(11,0,0,0,0, "-");
+    GuiButtonExt AGI_Minus = new GuiButtonExt(12,0,0,0,0, "-");
+    GuiButtonExt LUC_Minus = new GuiButtonExt(13,0,0,0,0, "-");
 
 
-    GuiButtonExt Commit = new GuiButtonExt(24,0,0,0,0, "Start Playing!");
+    GuiButtonExt Commit = new GuiButtonExt(14,0,0,0,0, "Start Playing!");
     public Boolean CommitShow = false;
 
     Integer[] buttonsIdsPlus = {0, 1, 2, 3, 4, 5, 6};
-    Integer[] buttonsIdsMinus = {12, 13, 14, 15, 16, 17, 18};
+    Integer[] buttonsIdsMinus ={7, 8, 9, 10,11,12,13};
 
     GuiButtonExt[] buttonsPLus = {
             STR_Plus,
@@ -63,7 +63,7 @@ public class StatsGuiFirstJoin extends GuiScreen {
             AGI_Minus,
             LUC_Minus
     };
-    int[] temp = {0, 0, 0, 0, 0, 0, 0};
+    int[] temp = {5, 5, 5, 5, 5, 5, 5};
     Integer[] finished = {0, 0, 0, 0, 0, 0, 0};
 
     Integer pointsAvailable =0 ;
@@ -81,13 +81,13 @@ public class StatsGuiFirstJoin extends GuiScreen {
 
 
         Integer[] params = {
-                (mc.player.getCapability(SpechialFactoryProvider.SPECHIAL_CAPABILITY, null).getStreinght()+5),
-                (mc.player.getCapability(SpechialFactoryProvider.SPECHIAL_CAPABILITY, null).getPerception()+5),
-                (mc.player.getCapability(SpechialFactoryProvider.SPECHIAL_CAPABILITY, null).getEndurance()+5),
-                (mc.player.getCapability(SpechialFactoryProvider.SPECHIAL_CAPABILITY, null).getCharisma()+5),
-                (mc.player.getCapability(SpechialFactoryProvider.SPECHIAL_CAPABILITY, null).getIntelligence()+5),
-                (mc.player.getCapability(SpechialFactoryProvider.SPECHIAL_CAPABILITY, null).getAgility()+5),
-                (mc.player.getCapability(SpechialFactoryProvider.SPECHIAL_CAPABILITY, null).getLuck()+5)
+                mc.player.getCapability(SpechialFactoryProvider.SPECHIAL_CAPABILITY, null).getStreinght(),
+                mc.player.getCapability(SpechialFactoryProvider.SPECHIAL_CAPABILITY, null).getPerception(),
+                mc.player.getCapability(SpechialFactoryProvider.SPECHIAL_CAPABILITY, null).getEndurance(),
+                mc.player.getCapability(SpechialFactoryProvider.SPECHIAL_CAPABILITY, null).getCharisma(),
+                mc.player.getCapability(SpechialFactoryProvider.SPECHIAL_CAPABILITY, null).getIntelligence(),
+                mc.player.getCapability(SpechialFactoryProvider.SPECHIAL_CAPABILITY, null).getAgility(),
+                mc.player.getCapability(SpechialFactoryProvider.SPECHIAL_CAPABILITY, null).getLuck()
         };
         String[] names = {
                 " Strength:     ",
@@ -178,11 +178,11 @@ public class StatsGuiFirstJoin extends GuiScreen {
                 }
 
             }
-            this.buttonList.get(24).xPosition = ScreenGrid.XCoordStart(this.width,55);
-            this.buttonList.get(24).yPosition = ScreenGrid.XCoordStart(this.height,75);
-            this.buttonList.get(24).height = 21;
-            this.buttonList.get(24).width = 80;
-            this.buttonList.get(24).enabled = CommitShow;
+            this.buttonList.get(14).xPosition = ScreenGrid.XCoordStart(this.width,55);
+            this.buttonList.get(14).yPosition = ScreenGrid.XCoordStart(this.height,75);
+            this.buttonList.get(14).height = 21;
+            this.buttonList.get(14).width = 80;
+            this.buttonList.get(14).enabled = CommitShow;
             if((pointsAvailable - IntStream.of(temp).sum()) == 0) {
                 CommitShow = true;
             }else CommitShow = false;
