@@ -2,11 +2,11 @@ package com.redsparkle.foe;
 
 
 import com.redsparkle.foe.handlers.GuiHandler;
-import com.redsparkle.foe.network.*;
 import com.redsparkle.foe.network.ClientServerOneClass.MessageUpdateClientRads;
 import com.redsparkle.foe.network.ClientServerOneClass.MessageUpdateClientServerLevel;
 import com.redsparkle.foe.network.ClientServerOneClass.MessageUpdateClientServerSPECHIAL;
 import com.redsparkle.foe.network.ClientServerOneClass.MessageUpdateClientServerSkills;
+import com.redsparkle.foe.network.*;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
@@ -34,6 +34,7 @@ public class main {
     public static final byte LEVEL_ONDEMAND_MESSAGE_ID_SERVER = 106;
     public static final byte LVLUP_MESSAGE_ID_CLIENT = 107;
     public static final byte FIRTSTIME_MESSAGE_ID_CLIENT = 108;
+    public static final byte FIRTSTIME_MESSAGE_ID_SERVER = 109;
 
     public static final byte FIRE_MESSAGE_ID_CLIENT = 101;
     public static final byte FIRE_MESSAGE_ID_SERVER = 102;
@@ -72,8 +73,8 @@ public class main {
         simpleNetworkWrapper = NetworkRegistry.INSTANCE.newSimpleChannel("FOE Network Channel");
         simpleNetworkWrapper.registerMessage(MessageUpdateClientRads.Handler.class, MessageUpdateClientRads.class, RAIATION_CAPABILITY_MESSAGE_ID_CLIENT, Side.CLIENT);
         System.out.println("RADS------CHECK");
-        simpleNetworkWrapper.registerMessage(MessageGunReload.Handler.class, MessageGunReload.class, RELOAD_MESSAGE_ID_SERVER, Side.SERVER);
-        simpleNetworkWrapper.registerMessage(MessageGunReloadReply.Handler.class, MessageGunReloadReply.class, RELOAD_MESSAGE_ID_CLIENT, Side.CLIENT);
+        simpleNetworkWrapper.registerMessage(MessageGunReload.HandlerServer.class, MessageGunReload.class, RELOAD_MESSAGE_ID_SERVER, Side.SERVER);
+        simpleNetworkWrapper.registerMessage(MessageGunReloadReply.HandlerClient.class, MessageGunReloadReply.class, RELOAD_MESSAGE_ID_CLIENT, Side.CLIENT);
         System.out.println("WEAPON RELOADS------CHECK");
         simpleNetworkWrapper.registerMessage(MessageUpdateClientServerSPECHIAL.HandlerClient.class, MessageUpdateClientServerSPECHIAL.class, SPECHIAL_MESSAGE_ID_CLIENT, Side.CLIENT);
         simpleNetworkWrapper.registerMessage(MessageUpdateClientServerSPECHIAL.HandlerServer.class, MessageUpdateClientServerSPECHIAL.class, SPECHIAL_MESSAGE_ID_SERVER, Side.SERVER);
@@ -96,11 +97,11 @@ public class main {
         simpleNetworkWrapper.registerMessage(MessageUpdateSLSServerReplyOnDemand.HandlerClient.class, MessageUpdateSLSServerReplyOnDemand.class, LEVEL_ONDEMAND_MESSAGE_ID_SERVER, Side.CLIENT);
 
 
-
-
         System.out.println("LEVELS------CHECK");
-        simpleNetworkWrapper.registerMessage(MessageOpenGuiClient.HandlerClient.class,MessageOpenGuiClient.class,FIRTSTIME_MESSAGE_ID_CLIENT,Side.CLIENT);
 
+        simpleNetworkWrapper.registerMessage(MessageOpenGuiClient.HandlerClient.class,MessageOpenGuiClient.class,FIRTSTIME_MESSAGE_ID_CLIENT,Side.CLIENT);
+        simpleNetworkWrapper.registerMessage(MessageOpenGuiClient.HandleServer.class, MessageOpenGuiClient.class, FIRTSTIME_MESSAGE_ID_SERVER, Side.SERVER);
+        System.out.println("GUI TRIGGERS ------CHECK");
         System.out.println("FINISHED BOOTING NETWORK MESSAGES");
     }
 

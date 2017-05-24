@@ -42,6 +42,8 @@ public class DedicatedServerProxy extends CommonProxy {
             spechial.setIntelligence(message.Intelligence);
             spechial.setAgility(message.Agility);
             spechial.setLuck(message.Luck);
+            main.simpleNetworkWrapper.sendTo(new MessageUpdateClientServerSPECHIAL(spechial), playerEntity);
+
             /** DEBUG MESSAGE ENABLER
              * System.out.println("Client: "+message.radiation);
              */
@@ -63,7 +65,6 @@ public class DedicatedServerProxy extends CommonProxy {
             skills.setScience(message.Science);
             skills.setSneak(message.Sneak);
             skills.setBarter(message.Barter);
-
             /** DEBUG MESSAGE ENABLER
              * System.out.println("Client: "+message.radiation);
              */
@@ -123,6 +124,13 @@ public class DedicatedServerProxy extends CommonProxy {
                 player.getCapability(LevelFactoryProvider.LEVEL_CAPABILITY,null).getProgress()
         ),player);
         });
+    }
+
+    public static void handleOpenGuiMessage(MessageOpenGuiClient message, EntityPlayerMP playerMP) {
+        Minecraft.getMinecraft().addScheduledTask(() -> {
+            main.simpleNetworkWrapper.sendTo(new MessageOpenGuiClient(message.ID), playerMP);
+        });
+
     }
 
     public static void SendOpenGui(int guiId,EntityPlayerMP player){
@@ -187,6 +195,10 @@ public class DedicatedServerProxy extends CommonProxy {
 
         });
     }
+
+    public static void handleFireMessage(MessageFireToClientServer message) {
+    }
+
     /**
      * Run before anything else. Read your config, create blocks, items, etc, and register them with the GameRegistry
      */
@@ -221,10 +233,6 @@ public class DedicatedServerProxy extends CommonProxy {
     @Override
     public boolean isDedicatedServer() {
         return true;
-    }
-
-
-    public static void handleFireMessage(MessageFireToClientServer message) {
     }
 
 

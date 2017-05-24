@@ -137,8 +137,12 @@ public class ClientOnlyProxy extends CommonProxy {
     }
     public static void handleOpenGui(MessageOpenGuiClient message) {
         Minecraft.getMinecraft().addScheduledTask(() -> {
-            //mc.player.openGui(main.instance, message.ID, mc.world, (int) mc.player.posX, (int) mc.player.posY, (int) mc.player.posZ);
+            mc.player.openGui(main.instance, message.ID, mc.world, (int) mc.player.posX, (int) mc.player.posY, (int) mc.player.posZ);
         });
+    }
+
+    //TODO: finish this class
+    public static void handleFireMessage(MessageFireToClientServer message) {
     }
 
     public void preInit() {
@@ -174,10 +178,6 @@ public class ClientOnlyProxy extends CommonProxy {
     @Override
     public boolean isDedicatedServer() {
         return false;
-    }
-
-    //TODO: finish this class
-    public static void handleFireMessage(MessageFireToClientServer message) {
     }
 
 

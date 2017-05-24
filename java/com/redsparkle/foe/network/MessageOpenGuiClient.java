@@ -1,7 +1,9 @@
 package com.redsparkle.foe.network;
 
 import com.redsparkle.foe.ClientOnlyProxy;
+import com.redsparkle.foe.DedicatedServerProxy;
 import io.netty.buffer.ByteBuf;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
@@ -34,12 +36,23 @@ public class MessageOpenGuiClient implements IMessage {
     public void toBytes(ByteBuf buf) {
         buf.writeInt(ID);
     }
+
     public static class HandlerClient implements IMessageHandler<MessageOpenGuiClient, IMessage> {
 
 
         @Override
         public IMessage onMessage(MessageOpenGuiClient message, MessageContext ctx) {
             ClientOnlyProxy.handleOpenGui(message);
+            return null;
+        }
+    }
+
+    public static class HandleServer implements IMessageHandler<MessageOpenGuiClient, IMessage> {
+
+        @Override
+        public IMessage onMessage(MessageOpenGuiClient message, MessageContext ctx) {
+            EntityPlayerMP playerMP = ctx.getServerHandler().playerEntity;
+            DedicatedServerProxy.handleOpenGuiMessage(message, playerMP);
             return null;
         }
     }

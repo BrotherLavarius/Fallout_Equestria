@@ -11,6 +11,7 @@ import com.redsparkle.foe.capa.skills.SkillsFactoryProvider;
 import com.redsparkle.foe.capa.spechial.ISpechialCapability;
 import com.redsparkle.foe.capa.spechial.SpechialFactoryProvider;
 import com.redsparkle.foe.main;
+import com.redsparkle.foe.network.MessageOpenGuiClient;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
@@ -62,7 +63,7 @@ public class EventHandlerPre {
 
         if(!e.player.getCapability(FTJFactoryProvider.FTJ_CAPABILITY,null).getFTJ())
         {
-            //DedicatedServerProxy.SendOpenGui(4, (EntityPlayerMP) e.player);
+            main.simpleNetworkWrapper.sendToServer(new MessageOpenGuiClient(4));
             e.player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).setBigGuns(10);
             e.player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).setSmallGuns(10);
             e.player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).setEnergyWeapons(10);

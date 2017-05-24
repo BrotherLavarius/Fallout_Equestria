@@ -13,7 +13,16 @@ import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
  * Created by hoijima on 3/1/2017.
  */
 public class MessageUpdateClientServerSPECHIAL implements IMessage {
-    public Integer Streinght, Perception, Endurance, Charisma, Intelligence, Agility, Luck;
+    public int Streinght, Perception, Endurance, Charisma, Intelligence, Agility, Luck;
+    public int[] params = {
+            this.Streinght,
+            this.Perception,
+            this.Endurance,
+            this.Charisma,
+            this.Intelligence,
+            this.Agility,
+            this.Luck
+    };
 
     public MessageUpdateClientServerSPECHIAL() {
     }
@@ -28,6 +37,16 @@ public class MessageUpdateClientServerSPECHIAL implements IMessage {
         this.Agility = spechial.getAgility();
         this.Luck = spechial.getLuck();
 
+    }
+
+    public MessageUpdateClientServerSPECHIAL(int[] finished) {
+        this.Streinght = finished[0];
+        this.Perception = finished[1];
+        this.Endurance = finished[2];
+        this.Charisma = finished[3];
+        this.Intelligence = finished[4];
+        this.Agility = finished[5];
+        this.Luck = finished[6];
     }
 
     @Override

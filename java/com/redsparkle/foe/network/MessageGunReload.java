@@ -23,7 +23,7 @@ public class MessageGunReload implements IMessage {
 
     }
 
-    public static class Handler implements IMessageHandler<MessageGunReload, IMessage> {
+    public static class HandlerServer implements IMessageHandler<MessageGunReload, IMessage> {
 
         @Override
         public IMessage onMessage(MessageGunReload message, MessageContext ctx) {

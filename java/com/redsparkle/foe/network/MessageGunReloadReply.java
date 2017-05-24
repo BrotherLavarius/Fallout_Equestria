@@ -33,7 +33,7 @@ public class MessageGunReloadReply implements IMessage {
     }
 
 
-    public static class Handler implements IMessageHandler<MessageGunReloadReply, IMessage> {
+    public static class HandlerClient implements IMessageHandler<MessageGunReloadReply, IMessage> {
 
         @Override
         public IMessage onMessage(MessageGunReloadReply message, MessageContext ctx) {
