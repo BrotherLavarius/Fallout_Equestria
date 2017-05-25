@@ -99,8 +99,8 @@ public class main {
 
         System.out.println("LEVELS------CHECK");
 
-        simpleNetworkWrapper.registerMessage(MessageOpenGuiClient.HandlerClient.class,MessageOpenGuiClient.class,FIRTSTIME_MESSAGE_ID_CLIENT,Side.CLIENT);
-        simpleNetworkWrapper.registerMessage(MessageOpenGuiClient.HandleServer.class, MessageOpenGuiClient.class, FIRTSTIME_MESSAGE_ID_SERVER, Side.SERVER);
+        simpleNetworkWrapper.registerMessage(MessageOpenGuiClient.HandlerClient.class,MessageOpenGuiClient.class,FIRTSTIME_MESSAGE_ID_CLIENT,Side.SERVER);
+        simpleNetworkWrapper.registerMessage(MessageOpenGuiClient.HandleServer.class, MessageOpenGuiClient.class, FIRTSTIME_MESSAGE_ID_SERVER, Side.CLIENT);
         System.out.println("GUI TRIGGERS ------CHECK");
         System.out.println("FINISHED BOOTING NETWORK MESSAGES");
     }

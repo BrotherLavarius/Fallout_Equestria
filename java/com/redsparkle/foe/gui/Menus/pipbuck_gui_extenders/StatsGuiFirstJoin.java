@@ -160,7 +160,6 @@ public class StatsGuiFirstJoin extends GuiScreen {
                     this.buttonList.get(buttonsIdsPlus[o]).yPosition = ScreenGrid.XCoordStart(this.height,2) + startYButtons;
                     this.buttonList.get(buttonsIdsPlus[o]).height = 12;
                     this.buttonList.get(buttonsIdsPlus[o]).width = 10;
-//TODO: some random bug
                     this.buttonList.get(buttonsIdsMinus[o]).xPosition = ScreenGrid.XCoordStart(this.width,2) + 258;
                     this.buttonList.get(buttonsIdsMinus[o]).yPosition = ScreenGrid.XCoordStart(this.height,2) + startYButtons;
                     this.buttonList.get(buttonsIdsMinus[o]).height = 10;

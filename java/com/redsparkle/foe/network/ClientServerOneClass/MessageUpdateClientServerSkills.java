@@ -76,7 +76,6 @@ public class MessageUpdateClientServerSkills implements IMessage {
 
     }
     public MessageUpdateClientServerSkills(Integer[] Skills) {
-//TODO : Дооформить этот класс
         this.BigGuns=Skills[0];
         this.SmallGuns=Skills[1];
         this.EnergyWeapons=Skills[2];

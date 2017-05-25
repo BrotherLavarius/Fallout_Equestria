@@ -64,7 +64,6 @@ public abstract class CommonProxy {
         System.out.println("FTJ--------------CHECK!");
 
         System.out.println("FINISHED BOOTING CAPABILITY SYSTEM");
-//TODO:FIX THISn
         MinecraftForge.EVENT_BUS.register(new EventHandlerInit());
     }
 

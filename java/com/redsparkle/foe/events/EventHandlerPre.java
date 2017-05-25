@@ -79,12 +79,6 @@ public class EventHandlerPre {
 
             e.player.getCapability(FTJFactoryProvider.FTJ_CAPABILITY,null).setFTJ(true);
         }
-        //updatePlayerSkills(e.player);
-
-        //TODO: we need to remove Spechials and Skills and level and spechials to ON Join,Exit,LVL up, they cant stay in ON TICK! THIS WILL STRESS THE SERVER CHANNEL VERY MUCH
-
-
-
 
         //TODO: THIS IS UNSAFE, LIKE TOTALLY UNSAFE, WE NEED TO PERFORMANCE THE SHIT OUT OF THIS
         if(e.player.getEntityWorld().getTotalWorldTime() % 15000 == 0){

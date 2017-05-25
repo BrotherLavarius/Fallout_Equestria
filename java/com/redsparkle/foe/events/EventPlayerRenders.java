@@ -25,7 +25,6 @@ public class EventPlayerRenders {
             EntityPlayer player = (EntityPlayer) event.getEntity();
             event.getRenderer().addLayer(new GunRender(event.getRenderer().getRenderManager().getSkinMap().get(player)));
             event.getRenderer().addLayer(new ArmorLayerRender(event.getRenderer().getRenderManager().getSkinMap().get(player)));
-            //TODO: add this layer as child layer SYKA BLYAT
             done = true;
         }
     }
