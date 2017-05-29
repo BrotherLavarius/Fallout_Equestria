@@ -38,4 +38,5 @@ itemGroup.FOE_Armor=Armor for body
 tile.fallout_equestria:sparkle_cola_machine.name=Sparkle Cola Machine
 tile.fallout_equestria:desktop_Terminal.name=Stable Tech terminal
 
-
+#UTILS
+item.lvlcrystal.name=Strainge Crystal

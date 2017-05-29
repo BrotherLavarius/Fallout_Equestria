@@ -16,7 +16,6 @@ import com.redsparkle.foe.network.MessageOpenGuiClient;
 import com.redsparkle.foe.network.MessageUpdateSLSServerReplyOnDemand;
 import com.redsparkle.foe.network.helpers.gunReload;
 import com.redsparkle.foe.utils.Lvlutil;
-import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
@@ -33,7 +32,6 @@ import static com.redsparkle.foe.capa.level.LevelFactoryProvider.LEVEL_CAPABILIT
 public class DedicatedServerProxy extends CommonProxy {
 
     public static void handleSpechialMessage(MessageUpdateClientServerSPECHIAL message, EntityPlayerMP playerEntity) {
-        Minecraft.getMinecraft().addScheduledTask(() -> {
             ISpechialCapability spechial = SpechialFactoryProvider.instanceFor(playerEntity);
             spechial.setStreinght(message.Streinght);
             spechial.setPerception(message.Perception);
@@ -48,10 +46,8 @@ public class DedicatedServerProxy extends CommonProxy {
              * System.out.println("Client: "+message.radiation);
              */
 
-        });
     }
     public static void handleSkillsMessage(MessageUpdateClientServerSkills message, EntityPlayerMP playerEntity) {
-        Minecraft.getMinecraft().addScheduledTask(() -> {
             ISkillsCapability skills = SkillsFactoryProvider.instanceFor(playerEntity);
             skills.setBigGuns(message.BigGuns);
             skills.setSmallGuns(message.SmallGuns);
@@ -69,11 +65,9 @@ public class DedicatedServerProxy extends CommonProxy {
              * System.out.println("Client: "+message.radiation);
              */
 
-        });
     }
 
     public static void handleLevelMessage(MessageUpdateClientServerLevel message, EntityPlayerMP playerEntity) {
-        Minecraft.getMinecraft().addScheduledTask(() -> {
             ILevelCapability level = LevelFactoryProvider.instanceFor(playerEntity);
             level.setLevel(message.Level);
             level.setProgress(message.Progress);
@@ -82,11 +76,9 @@ public class DedicatedServerProxy extends CommonProxy {
              * System.out.println("Client: "+message.radiation);
              */
 
-        });
 
     }
     public static void handleReloadMessage(EntityPlayerMP player) {
-        Minecraft.getMinecraft().addScheduledTask(() -> {
         WorldServer mainThread = (WorldServer) (player.world);
         ItemStack heldItem = player.getHeldItem(EnumHand.MAIN_HAND);
         if (heldItem != null) { //&& heldItem.getTagCompound().getBoolean("isgun")
@@ -99,14 +91,8 @@ public class DedicatedServerProxy extends CommonProxy {
 
 
         }
-        });
     }
     public static void handleSLSOnDemand(EntityPlayerMP player) {
-        Minecraft.getMinecraft().addScheduledTask(() -> {
-//        System.out.println("Client Wants an update: " +
-//                player.getDisplayNameString()+"   "+
-//                player.getCapability(LevelFactoryProvider.LEVEL_CAPABILITY,null).getLevel()+"   "+
-//                player.getCapability(LevelFactoryProvider.LEVEL_CAPABILITY,null).getProgress()+"   ");
 
             if (player.getCapability(LEVEL_CAPABILITY,null).getProgress() < player.experienceTotal){
                 player.getCapability(LEVEL_CAPABILITY,null).setProgress(player.experienceTotal);
@@ -123,13 +109,12 @@ public class DedicatedServerProxy extends CommonProxy {
                 player.getCapability(LevelFactoryProvider.LEVEL_CAPABILITY,null).getLevel(),
                 player.getCapability(LevelFactoryProvider.LEVEL_CAPABILITY,null).getProgress()
         ),player);
-        });
     }
 
     public static void handleOpenGuiMessage(MessageOpenGuiClient message, EntityPlayerMP playerMP) {
-        Minecraft.getMinecraft().addScheduledTask(() -> {
+        //Minecraft.getMinecraft().addScheduledTask(() -> {
             main.simpleNetworkWrapper.sendTo(new MessageOpenGuiClient(message.ID), playerMP);
-        });
+        //});
 
     }
 
@@ -137,7 +122,6 @@ public class DedicatedServerProxy extends CommonProxy {
         main.simpleNetworkWrapper.sendTo(new MessageOpenGuiClient(guiId),player);
     }
     public static void handleSkillsLVLUPMessage(MessageUpdateClientServerSkills message, EntityPlayerMP player) {
-        Minecraft.getMinecraft().addScheduledTask(() -> {
             ISkillsCapability skills = SkillsFactoryProvider.instanceFor(player);
             ILevelCapability level = LevelFactoryProvider.instanceFor(player);
             int summ = (
@@ -193,7 +177,6 @@ public class DedicatedServerProxy extends CommonProxy {
 
             }
 
-        });
     }
 
     public static void handleFireMessage(MessageFireToClientServer message) {

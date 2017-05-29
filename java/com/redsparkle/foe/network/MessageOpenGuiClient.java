@@ -14,8 +14,7 @@ import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 public class MessageOpenGuiClient implements IMessage {
 
 
-    public Integer
-            ID;
+    public Integer ID;
 
     public MessageOpenGuiClient(){}
     public MessageOpenGuiClient(

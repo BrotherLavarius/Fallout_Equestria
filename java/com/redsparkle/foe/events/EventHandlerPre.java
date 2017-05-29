@@ -85,7 +85,7 @@ public class EventHandlerPre {
         if(e.player.getCapability(FTJFactoryProvider.FTJ_CAPABILITY,null).getFTJ())
         {
 
-            Item lvliningCrystal = ItemInit.battery;
+            Item lvliningCrystal = ItemInit.lvlingCrystall;
             ItemStack lvlingcrystallS = new ItemStack(lvliningCrystal);
             lvlingcrystallS.setCount(1);
             e.player.inventory.addItemStackToInventory(lvlingcrystallS);

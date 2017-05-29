@@ -2,15 +2,14 @@ package com.redsparkle.foe.items.utility;
 
 import com.redsparkle.foe.creativeTabs.InitCreativeTabs;
 import com.redsparkle.foe.main;
-import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.EnumAction;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
-import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -26,22 +25,33 @@ public class LvlingCrystall extends Item {
         this.setMaxStackSize(1);
         this.setCreativeTab(InitCreativeTabs.Fallout_meds);   // the item will appear on the Miscellaneous tab in creative
     }
-    public EnumActionResult onItemUse(EntityPlayer player, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
-    {
+
+    public ItemStack onItemUseFinish(ItemStack stack, World worldIn, EntityLivingBase entityLiving) {
+
+        stack.setCount(0);
+        return stack;
+    }
+
+    /**
+     * How long it takes to use or consume an item
+     */
+    public int getMaxItemUseDuration(ItemStack stack) {
+        return 32;
+    }
+
+    /**
+     * returns the action that specifies what animation to play when the items is being used
+     */
+    public EnumAction getItemUseAction(ItemStack stack) {
+        return EnumAction.NONE;
+    }
+
+
+    public ActionResult<ItemStack> onItemRightClick(World itemStackIn, EntityPlayer player, EnumHand playerIn) {
+        player.setActiveHand(playerIn);
         player.openGui(main.instance, 4, player.world, (int) player.posX, (int) player.posY, (int) player.posZ);
 
-        return EnumActionResult.PASS;
-
-    }
-
-    public float getStrVsBlock(ItemStack stack, IBlockState state)
-    {
-        return 1.0F;
-    }
-
-    public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn)
-    {
-        return new ActionResult(EnumActionResult.PASS, playerIn.getHeldItem(handIn));
+        return new ActionResult(EnumActionResult.SUCCESS, player.getHeldItem(playerIn));
     }
 
 

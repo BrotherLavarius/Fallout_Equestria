@@ -49,6 +49,7 @@ public class ClientOnlyStartup {
         //---------------------UTILITY--------------------------
         final int DEFAULT_ITEM_SUBTYPE = 0;
         ModelLoader.setCustomModelResourceLocation(ItemInit.pipbuck, DEFAULT_ITEM_SUBTYPE, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.PipbuckTT, "inventory"));
+        ModelLoader.setCustomModelResourceLocation(ItemInit.lvlingCrystall, DEFAULT_ITEM_SUBTYPE, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.LevelingCrystall, "inventory"));
 
         //---------------------MEDS--------------------------
         ModelLoader.setCustomModelResourceLocation(ItemInit.radAway, DEFAULT_ITEM_SUBTYPE, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.RadAway, "inventory"));
