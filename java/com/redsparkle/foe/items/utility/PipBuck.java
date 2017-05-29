@@ -6,7 +6,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.world.GameType;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -31,10 +30,7 @@ public class PipBuck extends Item {
         if (itemSlot < FIRST_HOTBAR_SLOT_NUMBER || itemSlot > LAST_HOTBAR_SLOT_NUMBER) return;
         if (worldIn.isRemote) return;
         if (!(entityIn instanceof EntityPlayerMP)) return;
-        EntityPlayerMP entityPlayerMP = (EntityPlayerMP) entityIn;
-        if (entityPlayerMP.interactionManager.getGameType() != GameType.SURVIVAL) {
-            entityPlayerMP.setGameType(GameType.SURVIVAL);
-        }
+
     }
 
     // adds 'tooltip' text

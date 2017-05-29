@@ -8,6 +8,7 @@ import com.redsparkle.foe.items.guns.ammo.TenMM.TenMMClip;
 import com.redsparkle.foe.items.guns.ammo.TenMM.TenMMammo;
 import com.redsparkle.foe.items.meds.RadAway;
 import com.redsparkle.foe.items.meds.RadX;
+import com.redsparkle.foe.items.utility.LvlingCrystall;
 import com.redsparkle.foe.items.utility.PipBuck;
 import com.redsparkle.foe.utils.Armor_material;
 import com.redsparkle.foe.utils.GlobalNames;
@@ -26,6 +27,7 @@ public class ItemInit {
 
     // UTILITY
     public static PipBuck pipbuck;
+    public static LvlingCrystall lvlingCrystall;
 
 
     // AMMO and CLIPS
@@ -106,6 +108,10 @@ public class ItemInit {
         pipbuck = (PipBuck) (new PipBuck().setUnlocalizedName(GlobalNames.PipbuckTT));
         pipbuck.setRegistryName(GlobalNames.PipbuckTT);
         GameRegistry.register(pipbuck);
+
+        lvlingCrystall = (LvlingCrystall) (new LvlingCrystall().setUnlocalizedName(GlobalNames.LevelingCrystall));
+        lvlingCrystall.setRegistryName(GlobalNames.LevelingCrystall);
+        GameRegistry.register(lvlingCrystall);
 
         //----------------------ARMOR-------------------
 

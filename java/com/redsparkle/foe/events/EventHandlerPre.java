@@ -1,6 +1,7 @@
 package com.redsparkle.foe.events;
 
 
+import com.redsparkle.foe.Init.ItemInit;
 import com.redsparkle.foe.capa.FirtsTimeJoin.FTJFactoryProvider;
 import com.redsparkle.foe.capa.level.ILevelCapability;
 import com.redsparkle.foe.capa.level.LevelFactoryProvider;
@@ -11,8 +12,9 @@ import com.redsparkle.foe.capa.skills.SkillsFactoryProvider;
 import com.redsparkle.foe.capa.spechial.ISpechialCapability;
 import com.redsparkle.foe.capa.spechial.SpechialFactoryProvider;
 import com.redsparkle.foe.main;
-import com.redsparkle.foe.network.MessageOpenGuiClient;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -61,24 +63,7 @@ public class EventHandlerPre {
         //if (e.phase != TickEvent.Phase.END) return;
         updatePlayerRads(e.player);
 
-        if(!e.player.getCapability(FTJFactoryProvider.FTJ_CAPABILITY,null).getFTJ())
-        {
-            main.simpleNetworkWrapper.sendToServer(new MessageOpenGuiClient(4));
-            e.player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).setBigGuns(10);
-            e.player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).setSmallGuns(10);
-            e.player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).setEnergyWeapons(10);
-            e.player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).setExplosives(10);
-            e.player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).setMeleeWeapons(10);
-            e.player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).setUnarmed(10);
-            e.player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).setMedicine(10);
-            e.player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).setLockpick(10);
-            e.player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).setRepair(10);
-            e.player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).setScience(10);
-            e.player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).setSneak(10);
-            e.player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).setBarter(10);
 
-            e.player.getCapability(FTJFactoryProvider.FTJ_CAPABILITY,null).setFTJ(true);
-        }
 
         //TODO: THIS IS UNSAFE, LIKE TOTALLY UNSAFE, WE NEED TO PERFORMANCE THE SHIT OUT OF THIS
         if(e.player.getEntityWorld().getTotalWorldTime() % 15000 == 0){
@@ -97,6 +82,29 @@ public class EventHandlerPre {
     }
     @SubscribeEvent
     public void onJoin(PlayerEvent.PlayerLoggedInEvent e){
+        if(e.player.getCapability(FTJFactoryProvider.FTJ_CAPABILITY,null).getFTJ())
+        {
+
+            Item lvliningCrystal = ItemInit.battery;
+            ItemStack lvlingcrystallS = new ItemStack(lvliningCrystal);
+            lvlingcrystallS.setCount(1);
+            e.player.inventory.addItemStackToInventory(lvlingcrystallS);
+            e.player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).setBigGuns(10);
+            e.player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).setSmallGuns(10);
+            e.player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).setEnergyWeapons(10);
+            e.player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).setExplosives(10);
+            e.player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).setMeleeWeapons(10);
+            e.player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).setUnarmed(10);
+            e.player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).setMedicine(10);
+            e.player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).setLockpick(10);
+            e.player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).setRepair(10);
+            e.player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).setScience(10);
+            e.player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).setSneak(10);
+            e.player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).setBarter(10);
+
+            e.player.getCapability(FTJFactoryProvider.FTJ_CAPABILITY,null).setFTJ(false);
+        }
+
         updatePlayerSpechial(e.player);
         updatePlayerSkills(e.player);
         updatePlayerLevel(e.player);

@@ -14,11 +14,11 @@ public class FTJFactoryProvider implements IFTJCapability, ICapabilitySerializab
     @CapabilityInject(IFTJCapability.class)
     public static Capability<IFTJCapability> FTJ_CAPABILITY = null;
 
-    private boolean FTJ;
+    private boolean FTJ = true;
 
 
     public FTJFactoryProvider() {
-        this(false);
+        this(true);
     }
 
     public FTJFactoryProvider(boolean FTJ) {

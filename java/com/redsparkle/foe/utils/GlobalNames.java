@@ -90,5 +90,6 @@ public class GlobalNames {
             AdvanceRadMonitor = "advance_rad_monitor",
             BasicRadMonitor = "basic_rad_monitor",
             PipbuckTT = "pipbuck_2000",
-            StealthBuck = "stealthbuck";
+            StealthBuck = "stealthbuck",
+            LevelingCrystall = "lvlcrystal";
 }

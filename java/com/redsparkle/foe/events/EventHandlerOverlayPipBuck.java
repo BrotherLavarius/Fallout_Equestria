@@ -43,20 +43,21 @@ public class EventHandlerOverlayPipBuck {
     public void onEvent(RenderGameOverlayEvent.Pre event) {
         EntityPlayerSP entityPlayerSP = Minecraft.getMinecraft().player;
         if (entityPlayerSP == null) return;  // just in case
-        //if (!entityPlayerSP.isCreative()) {
-        // look for the ItemHUDactivator in the hotbar.  If not present, return without changing the HUD.
-        boolean foundInHotbar = false;
-        final int FIRST_HOTBAR_SLOT = 0;
-        final int LAST_HOTBAR_SLOT_PLUS_ONE = FIRST_HOTBAR_SLOT + InventoryPlayer.getHotbarSize();
-        for (int i = FIRST_HOTBAR_SLOT; i < LAST_HOTBAR_SLOT_PLUS_ONE; ++i) {
-            ItemStack slotItemStack = entityPlayerSP.inventory.getStackInSlot(i);
-            if (slotItemStack != null && slotItemStack.getItem() == ItemInit.pipbuck) {
-                foundInHotbar = true;
-                break;
+        if (!entityPlayerSP.isCreative()) {
+            // look for the ItemHUDactivator in the hotbar.  If not present, return without changing the HUD.
+            boolean foundInHotbar = false;
+            final int FIRST_HOTBAR_SLOT = 0;
+            final int LAST_HOTBAR_SLOT_PLUS_ONE = FIRST_HOTBAR_SLOT + InventoryPlayer.getHotbarSize();
+            for (int i = FIRST_HOTBAR_SLOT; i < LAST_HOTBAR_SLOT_PLUS_ONE; ++i) {
+                ItemStack slotItemStack = entityPlayerSP.inventory.getStackInSlot(i);
+                if (slotItemStack != null && slotItemStack.getItem() == ItemInit.pipbuck) {
+                    foundInHotbar = true;
+                    break;
+                }
             }
-        }
+
         if (!foundInHotbar) return;
-        //}
+        }
 
 
         switch (event.getType()) {
