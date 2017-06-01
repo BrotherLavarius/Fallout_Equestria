@@ -7,8 +7,6 @@ import com.redsparkle.foe.creativeTabs.InitCreativeTabs;
 import com.redsparkle.foe.events.EventHandlerOverlayPipBuck;
 import com.redsparkle.foe.events.EventPlayerRenders;
 import com.redsparkle.foe.gui.Overlays.PipBuckOverlay;
-import com.redsparkle.foe.items.guns.inits.bulletFiredGuns.EntityBullet;
-import com.redsparkle.foe.items.guns.inits.bulletFiredGuns.render.RenderBulletEntity;
 import com.redsparkle.foe.utils.GlobalNames;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
@@ -17,7 +15,6 @@ import net.minecraft.item.Item;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.client.model.obj.OBJLoader;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.fml.client.registry.RenderingRegistry;
 
 import static com.redsparkle.foe.main.MODID;
 
@@ -75,6 +72,9 @@ public class ClientOnlyStartup {
 
         ModelLoader.setCustomModelResourceLocation(ItemInit.t40head, 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.T40Head, "inventory"));
         ModelLoader.setCustomModelResourceLocation(ItemInit.t40body, 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.T40Body, "inventory"));
+        //---------------------PLACEHOLDER--------------------
+        ModelLoader.setCustomModelResourceLocation(ItemInit.tenMMbullet, DEFAULT_ITEM_SUBTYPE, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.TenMMbullet, "inventory"));
+
     }
 
     public static void initClientOnly() {
@@ -82,7 +82,6 @@ public class ClientOnlyStartup {
         Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(Item.getItemFromBlock(RadiationBlock.instance), 0, new ModelResourceLocation(MODID + ":" + GlobalNames.RadBlock));
 
 
-        RenderingRegistry.registerEntityRenderingHandler(EntityBullet.class, RenderBulletEntity::new);
     }
 
 

@@ -10,6 +10,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.stats.StatList;
 import net.minecraft.util.*;
 import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
@@ -80,13 +81,19 @@ public class TenMM extends ItemFirearm {
 
         } else {
             worldIn.playSound(playerIn, playerIn.getPosition(), SoundInit.tenMMShot, SoundCategory.HOSTILE, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
+            if (!worldIn.isRemote) {
 
-            EntityBullet entitybullet = new EntityBullet(worldIn, playerIn);
-            entitybullet.setHeadingFromThrower(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, 5.5F, 1.0F);
-            worldIn.spawnEntity(entitybullet);
+                //EntitySnowball entitysnowball = new EntitySnowball(worldIn, playerIn);
+                //entitysnowball.setHeadingFromThrower(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, 1.5F, 1.0F);
+                //worldIn.spawnEntity(entitysnowball);
+                EntityBullet entitybullet = new EntityBullet(worldIn, playerIn);
+                entitybullet.setHeadingFromThrower(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, 5.5F, 1.0F);
+                worldIn.spawnEntity(entitybullet);
+            }
 
         }
-        return new ActionResult<>(EnumActionResult.PASS, itemstack);
+        playerIn.addStat(StatList.getObjectUseStats(this));
+        return new ActionResult<>(EnumActionResult.SUCCESS, itemstack);
     }
 
 

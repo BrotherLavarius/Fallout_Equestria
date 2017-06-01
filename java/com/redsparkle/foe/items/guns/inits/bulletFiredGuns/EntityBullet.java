@@ -19,8 +19,6 @@ public class EntityBullet extends EntityThrowable {
 
     public EntityBullet(World worldIn, EntityLivingBase livingBaseIn) {
         super(worldIn, livingBaseIn);
-
-        this.setThrowableHeading(livingBaseIn.getLookVec().xCoord, livingBaseIn.getLookVec().yCoord, livingBaseIn.getLookVec().zCoord, 0.5f, 3.1f);
     }
 
     public EntityBullet(World worldIn, double x, double y, double z) {
@@ -40,6 +38,7 @@ public class EntityBullet extends EntityThrowable {
     /**
      * Called when this EntityThrowable hits a block or entity.
      */
+
     protected void onImpact(RayTraceResult result) {
         if (result.entityHit != null) {
             int i = damage;

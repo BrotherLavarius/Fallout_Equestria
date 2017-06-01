@@ -6,6 +6,7 @@ import com.redsparkle.foe.items.guns.TenMM;
 import com.redsparkle.foe.items.guns.ammo.LaserWeapons.Battery;
 import com.redsparkle.foe.items.guns.ammo.TenMM.TenMMClip;
 import com.redsparkle.foe.items.guns.ammo.TenMM.TenMMammo;
+import com.redsparkle.foe.items.guns.bullets.TenMMbullet;
 import com.redsparkle.foe.items.meds.RadAway;
 import com.redsparkle.foe.items.meds.RadX;
 import com.redsparkle.foe.items.utility.LvlingCrystall;
@@ -41,7 +42,7 @@ public class ItemInit {
     public static LaserPistol laserPistol;
 
     // PLACEHOLDER
-    //public static TenMMbullet tenMMbullet;
+    public static TenMMbullet tenMMbullet;
 
     //ARMOR
     public static t40head t40head;
@@ -156,7 +157,9 @@ public class ItemInit {
 
         //----------------------PLACEHOLDER--------------------
 
-
+        tenMMbullet = (TenMMbullet) (new TenMMbullet().setUnlocalizedName(GlobalNames.TenMMbullet));
+        tenMMbullet.setRegistryName(GlobalNames.TenMMbullet);
+        GameRegistry.register(tenMMbullet);
     }
 
     public static void InitCommon() {
