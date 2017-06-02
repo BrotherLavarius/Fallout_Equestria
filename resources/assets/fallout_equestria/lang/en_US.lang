@@ -30,7 +30,7 @@ item.pipbuck_2000.name=Pip Buck 2000
 itemGroup.FOE_Meds=Medical stuff
 itemGroup.FOE_Guns=Guns
 itemGroup.FOE_Ammo=Ammo
-itemGroup.FOE_Blocks_Effect Dispencers=Env Modifyers
+itemGroup.FOE_Blocks_Effect Dispencers=Env Modifiers
 itemGroup.FOE_Blocks=Blocks and stuff
 itemGroup.FOE_Armor=Armor for body
 
@@ -39,4 +39,5 @@ tile.fallout_equestria:sparkle_cola_machine.name=Sparkle Cola Machine
 tile.fallout_equestria:desktop_Terminal.name=Stable Tech terminal
 
 #UTILS
-item.lvlcrystal.name=Strainge Crystal
+item.lvlcrystal.name=Strange Crystal
+item.aem.name=Advanced Environment monitor

@@ -58,7 +58,7 @@ public class ConfigInit {
 		 * and you specify the name of the config file, together this works
 		 * similar to the old getSuggestedConfigurationFile() function.
 		 */
-        File configFile = new File(Loader.instance().getConfigDir(), "MinecraftByExample.cfg");
+        File configFile = new File(Loader.instance().getConfigDir(), "FOE.cfg");
 
         // initialize your configuration object with your configuration file values.
         config = new Configuration(configFile);

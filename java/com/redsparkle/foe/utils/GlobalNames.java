@@ -87,7 +87,7 @@ public class GlobalNames {
 
     // Utils
     public static final String
-            AdvanceRadMonitor = "advance_rad_monitor",
+            AEM = "aem",
             BasicRadMonitor = "basic_rad_monitor",
             PipbuckTT = "pipbuck_2000",
             StealthBuck = "stealthbuck",

@@ -36,8 +36,7 @@ public class APBar extends Gui {
         ScaledResolution scaled = new ScaledResolution(mc);
         int screenWidth = scaled.getScaledWidth();
         int screenHeight = scaled.getScaledHeight();
-
-/* Saving the current state of OpenGL so that I can restore it when I'm done */
+        /* Saving the current state of OpenGL so that I can restore it when I'm done */
         GL11.glPushAttrib(GL11.GL_ALL_ATTRIB_BITS);
         GL11.glPushMatrix();
 

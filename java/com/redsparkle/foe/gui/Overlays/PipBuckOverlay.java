@@ -44,12 +44,8 @@ public class PipBuckOverlay extends Gui {
      */
     private Minecraft mc;
 
-    public PipBuckOverlay(Minecraft mc) {
-        this.mc = mc;
-    }
+    public PipBuckOverlay(Minecraft mc, int screenWidht, int screenHeight) {
 
-    /* This helper method will render the bar */
-    public void renderStatusBar(int screenWidth, int screenHeight) {
     /* These are the variables that contain world and player information */
         World world = mc.world;
         EntityPlayer player = mc.player;
@@ -67,7 +63,7 @@ public class PipBuckOverlay extends Gui {
        */
 
       /* Set the rendering color to white */
-        GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
+        GL11.glColor4f(10.0F, 1.0F, 1.0F, 1.0F);
         GlStateManager.disableLighting();
         GlStateManager.enableAlpha();
         GlStateManager.enableBlend();

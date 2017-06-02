@@ -1,4 +1,4 @@
-package com.redsparkle.foe.events;
+package com.redsparkle.foe.events.gui;
 
 import com.redsparkle.foe.Init.ItemInit;
 import com.redsparkle.foe.gui.Overlays.APBar;
@@ -23,11 +23,11 @@ public class EventHandlerOverlayPipBuck {
     ##############################################################################
     */
 
-    private PipBuckOverlay statusBarRenderer;
-
-    public EventHandlerOverlayPipBuck(PipBuckOverlay i_HUDrenderer) {
-        statusBarRenderer = i_HUDrenderer;
-    }
+//    private PipBuckOverlay statusBarRenderer;
+//
+//    public EventHandlerOverlayPipBuck(PipBuckOverlay i_HUDrenderer) {
+//        statusBarRenderer = i_HUDrenderer;
+//    }
 
     /* The RenderGameOverlayEvent.Pre event is called before each game overlay element is
    * rendered. It is called multiple times. A list of existing overlay elements can be found
@@ -58,53 +58,18 @@ public class EventHandlerOverlayPipBuck {
 
         if (!foundInHotbar) return;
         }
-
-
         switch (event.getType()) {
             case HEALTH:
-                statusBarRenderer.renderStatusBar(event.getResolution().getScaledWidth(), event.getResolution().getScaledHeight());        /* Call a helper method so that this method stays organized */
+                new PipBuckOverlay(Minecraft.getMinecraft(),event.getResolution().getScaledWidth(),event.getResolution().getScaledHeight());
+                //statusBarRenderer.renderStatusBar(event.getResolution().getScaledWidth(), event.getResolution().getScaledHeight());        /* Call a helper method so that this method stays organized */
                 new RadsOverlay(Minecraft.getMinecraft());
-        /* Don't render the vanilla heart bar */
-                event.setCanceled(true);
-                break;
-
-            case ARMOR:
-        /* Don't render the vanilla armor bar, it's part of the status bar in the HEALTH event */
-                event.setCanceled(true);
-                break;
-            case FOOD:
-                // Don't render the vanilla FOOD bar
                 new APBar(Minecraft.getMinecraft());
                 event.setCanceled(true);
                 break;
-            case EXPERIENCE:
-                // Don't render the vanilla EXPERIENCE bar
-                event.setCanceled(true);
-                break;
-
             default: // If it's not one of the above cases, do nothing
                 break;
         }
 
 
     }
-
-    /* The RenderGameOverlayEvent.Post event is called after each game overlay element is rendered.
-     * Similar to the RenderGameOverlayEvent.Pre event, it is called multiple times.
-     *
-     * If you want something to be rendered over an existing vanilla element, you would render
-     * it here.
-     */
-    @SubscribeEvent(receiveCanceled = true)
-    public void onEvent(RenderGameOverlayEvent.Post event) {
-
-        switch (event.getType()) {
-            case HEALTH:
-                break;
-            default: // If it's not one of the above cases, do nothing
-                break;
-        }
-    }
-
-
 }

@@ -4,8 +4,9 @@ import com.redsparkle.foe.block.containers.SparkleColaMachineBlock;
 import com.redsparkle.foe.block.effectDispenser.RadiationBlock;
 import com.redsparkle.foe.block.interractable.DesktopTerminal;
 import com.redsparkle.foe.creativeTabs.InitCreativeTabs;
-import com.redsparkle.foe.events.EventHandlerOverlayPipBuck;
-import com.redsparkle.foe.events.EventPlayerRenders;
+import com.redsparkle.foe.events.gui.EventHandlerOverlayPipBuck;
+import com.redsparkle.foe.events.character.EventPlayerRenders;
+import com.redsparkle.foe.events.gui.EventPlayerGuiHandler;
 import com.redsparkle.foe.gui.Overlays.PipBuckOverlay;
 import com.redsparkle.foe.utils.GlobalNames;
 import net.minecraft.client.Minecraft;
@@ -90,8 +91,8 @@ public class ClientOnlyStartup {
    * the overlay is a GUI element, and the GUI only exists on the client side,
    * we only register this event handler on the client side.
    */
-        pipBuckGui = new PipBuckOverlay(Minecraft.getMinecraft());
-        MinecraftForge.EVENT_BUS.register(new EventHandlerOverlayPipBuck(pipBuckGui));
+        MinecraftForge.EVENT_BUS.register(new EventHandlerOverlayPipBuck());
+        MinecraftForge.EVENT_BUS.register(new EventPlayerGuiHandler());
         MinecraftForge.EVENT_BUS.register(new EventPlayerRenders());
     }
 }
