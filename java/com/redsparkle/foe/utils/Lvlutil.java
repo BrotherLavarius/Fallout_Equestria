@@ -111,10 +111,8 @@ public class Lvlutil {
 
     public static Boolean canLvlup(Integer currentLvl,Integer currentProgress){
 
-        if(currentProgress > lvls[currentLvl]) {
-            return true;
-        }else return false;
-    };
+        return currentProgress > lvls[currentLvl];
+    }
 
     public static Integer ponitsAvailable(Integer currentLvl,Integer currentProgress){
 
@@ -126,5 +124,5 @@ public class Lvlutil {
         }
         targetLvl=false;
         return points;
-    };
+    }
 }

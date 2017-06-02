@@ -87,9 +87,7 @@ public class TenMM extends ItemFirearm {
             if (!worldIn.isRemote) {
 
 
-
-
-                ItemArrow itemarrow = (ItemArrow)((ItemArrow)(itemstack.getItem() instanceof ItemArrow ? itemstack.getItem() : Items.ARROW));
+                ItemArrow itemarrow = (ItemArrow) (itemstack.getItem() instanceof ItemArrow ? itemstack.getItem() : Items.ARROW);
                 EntityArrow entityarrow = itemarrow.createArrow(worldIn, itemstack, playerIn);
                 entityarrow.setAim(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 1.0F, 10F, 0F);
                 worldIn.spawnEntity(entityarrow);

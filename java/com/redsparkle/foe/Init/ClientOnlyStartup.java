@@ -1,8 +1,5 @@
 package com.redsparkle.foe.Init;
 
-import com.redsparkle.foe.block.containers.SparkleColaMachineBlock;
-import com.redsparkle.foe.block.effectDispenser.RadiationBlock;
-import com.redsparkle.foe.block.interractable.DesktopTerminal;
 import com.redsparkle.foe.creativeTabs.InitCreativeTabs;
 import com.redsparkle.foe.events.character.EventPlayerRenders;
 import com.redsparkle.foe.events.gui.EventHandlerOverlayAEM;
@@ -12,6 +9,7 @@ import com.redsparkle.foe.gui.Overlays.PipBuckOverlay;
 import com.redsparkle.foe.items.guns.inits.bulletFiredGuns.EntityBullet;
 import com.redsparkle.foe.items.guns.inits.bulletFiredGuns.model.ModelBullet;
 import com.redsparkle.foe.items.guns.inits.bulletFiredGuns.render.RenderBulletEntity;
+import com.redsparkle.foe.utils.GlobalBlockArray;
 import com.redsparkle.foe.utils.GlobalNames;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
@@ -40,12 +38,10 @@ public class ClientOnlyStartup {
         //final CreativeTabs Fallout_Util = InitCreativeTabs.Fallout_Utils;
         SoundInit.registerSounds();
         OBJLoader.INSTANCE.addDomain(GlobalNames.Domain);
-        Item SPCmachine = Item.getItemFromBlock(SparkleColaMachineBlock.instance);
-        ModelLoader.setCustomModelResourceLocation(SPCmachine, 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.SPCmachine, "inventory"));
 
-        Item Dterminal = Item.getItemFromBlock(DesktopTerminal.instance);
-        ModelLoader.setCustomModelResourceLocation(Dterminal, 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.Terminal, "inventory"));
-
+        for (int i = 0; i < (GlobalBlockArray.blocks.length - 1); i++) {
+            ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(GlobalBlockArray.blocks[i]), 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalBlockArray.blocksNames[i], "inventory"));
+        }
 
         //ITEMS SECTION#########################################
 
@@ -84,8 +80,10 @@ public class ClientOnlyStartup {
     }
 
     public static void initClientOnly() {
-        Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(Item.getItemFromBlock(SparkleColaMachineBlock.instance), 0, new ModelResourceLocation(MODID + ":" + GlobalNames.SPCmachine));
-        Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(Item.getItemFromBlock(RadiationBlock.instance), 0, new ModelResourceLocation(MODID + ":" + GlobalNames.RadBlock));
+        for (int i = 0; i < (GlobalBlockArray.blocks.length - 1); i++) {
+            Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(Item.getItemFromBlock(GlobalBlockArray.blocks[i]), 0, new ModelResourceLocation(MODID + ":" + GlobalBlockArray.blocksNames[i]));
+
+        }
         RenderingRegistry.registerEntityRenderingHandler(EntityBullet.class, new RenderBulletEntity(Minecraft.getMinecraft().getRenderManager(), new ModelBullet(), 0.5));
 
     }

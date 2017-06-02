@@ -60,10 +60,27 @@ public class GlobalNames {
             Buckshot = "buckshot",
             RifleRound = "rifleround";
 
-    // Blocks
+    // Blocks -- Inventory -- World
     public static final String
-            SPCmachine = "sparkle_cola_machine",
+            SPCmachine = "sparkle_cola_machine";
+
+
+    // Blocks -- interract -- World
+    public static final String
+            Workbench_handmade = "workbench_handmade",
+            Workbench = "workbench_industrial",
+            ArmorBench_tier_one = "armorbench_tier_one";
+
+
+    // Blocks -- interract -- Stable
+
+    public static final String
             Terminal = "desktop_Terminal";
+
+
+    // Blocks -- Inventory -- Stable
+    public static final String
+            Locker = "locker";
 
     // Blocks - Stat dispencers
     public static final String
@@ -72,6 +89,7 @@ public class GlobalNames {
             FLMBlock = "flamer_block",
             MagicBuffer = "magic_dispencer",
             WirelessCharger = "wireless_charger";
+
 
     // Items
 

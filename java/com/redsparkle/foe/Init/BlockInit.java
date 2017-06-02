@@ -1,10 +1,9 @@
 package com.redsparkle.foe.Init;
 
-import com.redsparkle.foe.block.containers.SparkleColaMachineBlock;
 import com.redsparkle.foe.block.containers.TileEntitys.SparkleColaMachineTileEntity;
-import com.redsparkle.foe.block.effectDispenser.RadiationBlock;
 import com.redsparkle.foe.block.effectDispenser.TileEntitys.RadiationBlockTileEntity;
-import com.redsparkle.foe.block.interractable.DesktopTerminal;
+import com.redsparkle.foe.block.interractable.TileEntitys.*;
+import com.redsparkle.foe.utils.GlobalBlockArray;
 import com.redsparkle.foe.utils.GlobalNames;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
@@ -15,12 +14,7 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
  * Created by hoijima on 14.12.16.
  */
 public class BlockInit {
-    public static SparkleColaMachineBlock SPARKLE_COLA_MACHINE;
-    public static DesktopTerminal TERMINAL_DESK;
-    public static RadiationBlock RADIATION_BLOCK;
-    public static ItemBlock itemTERMINAL_DESK;
-    public static ItemBlock itemSparkleColaMachine;  // this holds the unique instance of the itemSparkleColaMachine corresponding to your block
-    public static ItemBlock itemRadiationBlock;  // this holds the unique instance of the itemRadiationBlock corresponding to your block
+
 
     public static void preInitCommon() {
         // each instance of your block should have two names:
@@ -37,32 +31,29 @@ public class BlockInit {
         //
 
 
-        Block SPARKLE_COLA_MACHINE = SparkleColaMachineBlock.instance;
-        GameRegistry.register(SPARKLE_COLA_MACHINE);
+        for (int i = 0; i < (GlobalBlockArray.blocks.length - 1); i++) {
 
-        Block TERMINAL_DESK = DesktopTerminal.instance;
-        GameRegistry.register(TERMINAL_DESK);
+            Block tempB = GlobalBlockArray.blocks[i];
+            tempB.setRegistryName(GlobalBlockArray.blocksNames[i]);
+            tempB.setUnlocalizedName(GlobalBlockArray.blocksNames[i]);
+            GameRegistry.register(tempB);
+            Item tempI = new ItemBlock(GlobalBlockArray.blocks[i]);
+            tempI.setUnlocalizedName(GlobalBlockArray.blocksNames[i]);
+            tempI.setRegistryName(GlobalBlockArray.blocksNames[i]);
+            GameRegistry.register(tempI);
+        }
 
-
-        Block RADIATION_BLOCK = RadiationBlock.instance;
-        RADIATION_BLOCK.setRegistryName(GlobalNames.RadBlock);
-        GameRegistry.register(RADIATION_BLOCK);
-
-        // We also need to create and register an ItemBlock for this block otherwise it won't appear in the inventory
-        Item itemSparkleColaMachine = new ItemBlock(SPARKLE_COLA_MACHINE);
-        itemSparkleColaMachine.setRegistryName(GlobalNames.SPCmachine);
-        GameRegistry.register(itemSparkleColaMachine);
-
-        Item itemTERMINAL_DESK = new ItemBlock(TERMINAL_DESK);
-        itemTERMINAL_DESK.setRegistryName(GlobalNames.Terminal);
-        GameRegistry.register(itemTERMINAL_DESK);
-
-        Item itemRadiationBlock = new ItemBlock(RADIATION_BLOCK);
-        itemRadiationBlock.setRegistryName(GlobalNames.RadBlock);
-        GameRegistry.register(itemRadiationBlock);
 
         GameRegistry.registerTileEntity(SparkleColaMachineTileEntity.class, GlobalNames.SPCmachine);
+        GameRegistry.registerTileEntity(DesktopTerminalTileEntity.class, GlobalNames.Terminal);
+        GameRegistry.registerTileEntity(TileEntity_ArmorBench_tier_one.class, GlobalNames.ArmorBench_tier_one);
+        GameRegistry.registerTileEntity(TileEntity_locker.class, GlobalNames.Locker);
+        GameRegistry.registerTileEntity(TileEntity_workbench.class, GlobalNames.Workbench);
+        GameRegistry.registerTileEntity(TileEntity_workbench_handmade.class, GlobalNames.Workbench_handmade);
+
         GameRegistry.registerTileEntity(RadiationBlockTileEntity.class, GlobalNames.RadBlock);
+
+
     }
 
     public static void InitCommon() {

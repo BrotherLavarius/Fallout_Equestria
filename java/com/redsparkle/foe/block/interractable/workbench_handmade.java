@@ -1,9 +1,9 @@
-package com.redsparkle.foe.block.containers;
+package com.redsparkle.foe.block.interractable;
 
-import com.redsparkle.foe.block.GeneralAllignBlockOneOTwo;
-import com.redsparkle.foe.block.containers.TileEntitys.SparkleColaMachineTileEntity;
+import com.redsparkle.foe.block.GeneralAllignBlockOneOone;
+import com.redsparkle.foe.block.interractable.TileEntitys.DesktopTerminalTileEntity;
+import com.redsparkle.foe.block.interractable.TileEntitys.TileEntity_workbench_handmade;
 import com.redsparkle.foe.creativeTabs.InitCreativeTabs;
-import com.redsparkle.foe.utils.GlobalNames;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -16,22 +16,24 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.property.IExtendedBlockState;
 import net.minecraftforge.common.property.Properties;
 
-import static com.redsparkle.foe.main.MODID;
-
 /**
  * Created by hoijima on 04.07.16.
  */
-public class SparkleColaMachineBlock extends GeneralAllignBlockOneOTwo {
-    public static final SparkleColaMachineBlock instance = new SparkleColaMachineBlock();
+public class workbench_handmade extends GeneralAllignBlockOneOone {
+    public static final workbench_handmade instance = new workbench_handmade();
 
-    public SparkleColaMachineBlock() {
+    public workbench_handmade() {
         super(Material.IRON);
-        this.setLightLevel(1);
-        this.setSoundType(SoundType.METAL);
-        this.setCreativeTab(InitCreativeTabs.Fallout_blocks);
-        this.setSoundType(SoundType.METAL);
-        this.setUnlocalizedName(MODID + ":" + GlobalNames.SPCmachine);
+        setLightLevel(0);
+        setSoundType(SoundType.METAL);
+        setCreativeTab(InitCreativeTabs.Fallout_blocks);
+        setSoundType(SoundType.METAL);
+
     }
+
+    /**
+     * Called after the block is set in the Chunk data, but before the Tile Entity is set
+     */
 
 
     public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack) {
@@ -40,14 +42,10 @@ public class SparkleColaMachineBlock extends GeneralAllignBlockOneOTwo {
         if (stack.hasDisplayName()) {
             TileEntity tileentity = worldIn.getTileEntity(pos);
 
-            if (tileentity instanceof SparkleColaMachineTileEntity) {
-                ((SparkleColaMachineTileEntity) tileentity).setCustomInventoryName(stack.getDisplayName());
+            if (tileentity instanceof DesktopTerminalTileEntity) {
+                ((TileEntity_workbench_handmade) tileentity).setCustomInventoryName(stack.getDisplayName());
             }
         }
-    }
-
-    public TileEntity createNewTileEntity(World worldIn, int meta) {
-        return new SparkleColaMachineTileEntity();
     }
 
     @Override
@@ -68,13 +66,12 @@ public class SparkleColaMachineBlock extends GeneralAllignBlockOneOTwo {
 
     @Override
     public IBlockState getExtendedState(IBlockState state, IBlockAccess world, BlockPos pos) {
-        if (world.getTileEntity(pos) != null && world.getTileEntity(pos) instanceof SparkleColaMachineTileEntity) {
-            SparkleColaMachineTileEntity te = (SparkleColaMachineTileEntity) world.getTileEntity(pos);
+        if (world.getTileEntity(pos) != null && world.getTileEntity(pos) instanceof TileEntity_workbench_handmade) {
+            TileEntity_workbench_handmade te = (TileEntity_workbench_handmade) world.getTileEntity(pos);
             return ((IExtendedBlockState) state).withProperty(Properties.AnimationProperty, te.state);
         }
         return state;
     }
-
 
 
 }

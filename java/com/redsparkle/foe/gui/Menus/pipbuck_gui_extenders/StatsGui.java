@@ -2,7 +2,6 @@ package com.redsparkle.foe.gui.Menus.pipbuck_gui_extenders;
 
 import com.redsparkle.foe.capa.level.LevelFactoryProvider;
 import com.redsparkle.foe.capa.skills.SkillsFactoryProvider;
-import com.redsparkle.foe.capa.spechial.SpechialFactoryProvider;
 import com.redsparkle.foe.main;
 import com.redsparkle.foe.network.ClientServerOneClass.MessageUpdateClientServerSkills;
 import com.redsparkle.foe.utils.Lvlutil;
@@ -22,6 +21,8 @@ import java.util.stream.IntStream;
 public class StatsGui extends GuiScreen {
 
     public Integer counter = 0;
+    public Boolean CommitShow = false;
+    public int startY = 15;
     GuiButtonExt BGplus = new GuiButtonExt(0,0,0,0,0, "+");
     GuiButtonExt SGPlus = new GuiButtonExt(1,0,0,0,0, "+");
     GuiButtonExt EWPlus = new GuiButtonExt(2,0,0,0,0, "+");
@@ -34,8 +35,6 @@ public class StatsGui extends GuiScreen {
     GuiButtonExt SCIPlus = new GuiButtonExt(9,0,0,0,0, "+");
     GuiButtonExt SNIKPLus = new GuiButtonExt(10,0,0,0,0, "+");
     GuiButtonExt BARTPLus = new GuiButtonExt(11,0,0,0,0, "+");
-
-
     GuiButtonExt BGminus = new GuiButtonExt(12,0,0,0,0, "-");
     GuiButtonExt SGminus = new GuiButtonExt(13,0,0,0,0, "-");
     GuiButtonExt EWminus = new GuiButtonExt(14,0,0,0,0, "-");
@@ -48,13 +47,9 @@ public class StatsGui extends GuiScreen {
     GuiButtonExt SCIminus = new GuiButtonExt(21,0,0,0,0, "-");
     GuiButtonExt SNIKminus = new GuiButtonExt(22,0,0,0,0, "-");
     GuiButtonExt BARTminus = new GuiButtonExt(23,0,0,0,0, "-");
-
     GuiButtonExt Commit = new GuiButtonExt(24,0,0,0,0, "Level up!");
-    public Boolean CommitShow = false;
-
     Integer[] buttonsIdsPlus = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11};
     Integer[] buttonsIdsMinus = {12, 13, 14, 15, 16, 17, 18,19,20 , 21, 22, 23};
-
     GuiButtonExt[] buttonsPLus = {
             BGplus,SGPlus,EWPlus,
             EXPLus,MWPLus,UNPlus,
@@ -69,11 +64,7 @@ public class StatsGui extends GuiScreen {
     };
     int[] temp = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
     Integer[] finished = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-
     Integer pointsAvailable =0 ;
-
-
-    public int startY = 15;
 
     @Override
     public void drawScreen(int mouseX, int mouseY, float partialTicks) {
@@ -199,9 +190,7 @@ public class StatsGui extends GuiScreen {
             this.buttonList.get(24).height = 21;
             this.buttonList.get(24).width = 80;
             this.buttonList.get(24).enabled = CommitShow;
-            if((pointsAvailable - IntStream.of(temp).sum()) == 0) {
-                CommitShow = true;
-            }else CommitShow = false;
+            CommitShow = (pointsAvailable - IntStream.of(temp).sum()) == 0;
         }
         GL11.glPopMatrix();
 

@@ -1,7 +1,8 @@
-package com.redsparkle.foe.block.containers;
+package com.redsparkle.foe.block.interractable;
 
-import com.redsparkle.foe.block.GeneralAllignBlockOneOTwo;
-import com.redsparkle.foe.block.containers.TileEntitys.SparkleColaMachineTileEntity;
+import com.redsparkle.foe.block.GeneralAllignBlockOneOone;
+import com.redsparkle.foe.block.interractable.TileEntitys.DesktopTerminalTileEntity;
+import com.redsparkle.foe.block.interractable.TileEntitys.TileEntity_ArmorBench_tier_one;
 import com.redsparkle.foe.creativeTabs.InitCreativeTabs;
 import com.redsparkle.foe.utils.GlobalNames;
 import net.minecraft.block.SoundType;
@@ -21,16 +22,16 @@ import static com.redsparkle.foe.main.MODID;
 /**
  * Created by hoijima on 04.07.16.
  */
-public class SparkleColaMachineBlock extends GeneralAllignBlockOneOTwo {
-    public static final SparkleColaMachineBlock instance = new SparkleColaMachineBlock();
+public class armor_bench_tier_one extends GeneralAllignBlockOneOone {
+    public static final armor_bench_tier_one instance = new armor_bench_tier_one();
 
-    public SparkleColaMachineBlock() {
+    public armor_bench_tier_one() {
         super(Material.IRON);
-        this.setLightLevel(1);
-        this.setSoundType(SoundType.METAL);
-        this.setCreativeTab(InitCreativeTabs.Fallout_blocks);
-        this.setSoundType(SoundType.METAL);
-        this.setUnlocalizedName(MODID + ":" + GlobalNames.SPCmachine);
+        setLightLevel(0);
+        setSoundType(SoundType.METAL);
+        setCreativeTab(InitCreativeTabs.Fallout_blocks);
+        setSoundType(SoundType.METAL);
+        setUnlocalizedName(MODID + ":" + GlobalNames.ArmorBench_tier_one);
     }
 
 
@@ -40,24 +41,10 @@ public class SparkleColaMachineBlock extends GeneralAllignBlockOneOTwo {
         if (stack.hasDisplayName()) {
             TileEntity tileentity = worldIn.getTileEntity(pos);
 
-            if (tileentity instanceof SparkleColaMachineTileEntity) {
-                ((SparkleColaMachineTileEntity) tileentity).setCustomInventoryName(stack.getDisplayName());
+            if (tileentity instanceof DesktopTerminalTileEntity) {
+                ((TileEntity_ArmorBench_tier_one) tileentity).setCustomInventoryName(stack.getDisplayName());
             }
         }
-    }
-
-    public TileEntity createNewTileEntity(World worldIn, int meta) {
-        return new SparkleColaMachineTileEntity();
-    }
-
-    @Override
-    public boolean isOpaqueCube(IBlockState state) {
-        return false;
-    }
-
-    @Override
-    public boolean isFullCube(IBlockState state) {
-        return false;
     }
 
 
@@ -68,13 +55,12 @@ public class SparkleColaMachineBlock extends GeneralAllignBlockOneOTwo {
 
     @Override
     public IBlockState getExtendedState(IBlockState state, IBlockAccess world, BlockPos pos) {
-        if (world.getTileEntity(pos) != null && world.getTileEntity(pos) instanceof SparkleColaMachineTileEntity) {
-            SparkleColaMachineTileEntity te = (SparkleColaMachineTileEntity) world.getTileEntity(pos);
+        if (world.getTileEntity(pos) != null && world.getTileEntity(pos) instanceof TileEntity_ArmorBench_tier_one) {
+            TileEntity_ArmorBench_tier_one te = (TileEntity_ArmorBench_tier_one) world.getTileEntity(pos);
             return ((IExtendedBlockState) state).withProperty(Properties.AnimationProperty, te.state);
         }
         return state;
     }
-
 
 
 }
