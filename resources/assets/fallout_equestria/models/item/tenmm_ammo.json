@@ -1,7 +1,7 @@
 {
   "parent": "builtin/generated",
   "textures": {
-    "layer0": "fallout_equestria:items/10mm_ammo"
+    "layer0": "fallout_equestria:items/ammo/10mm_ammo"
   },
   "display": {
     "thirdperson_righthand": {

@@ -1,5 +1,6 @@
 package com.redsparkle.foe.items.guns.bullets;
 
+import com.redsparkle.foe.creativeTabs.InitCreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -14,6 +15,7 @@ import java.util.List;
 public class TenMMbullet extends Item {
     public TenMMbullet() {
         this.setMaxStackSize(1);
+        this.setCreativeTab(InitCreativeTabs.Fallout_ammo);
     }
 
 

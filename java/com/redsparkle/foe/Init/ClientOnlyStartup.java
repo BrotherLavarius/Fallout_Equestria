@@ -4,10 +4,14 @@ import com.redsparkle.foe.block.containers.SparkleColaMachineBlock;
 import com.redsparkle.foe.block.effectDispenser.RadiationBlock;
 import com.redsparkle.foe.block.interractable.DesktopTerminal;
 import com.redsparkle.foe.creativeTabs.InitCreativeTabs;
-import com.redsparkle.foe.events.gui.EventHandlerOverlayPipBuck;
 import com.redsparkle.foe.events.character.EventPlayerRenders;
+import com.redsparkle.foe.events.gui.EventHandlerOverlayAEM;
+import com.redsparkle.foe.events.gui.EventHandlerOverlayPipBuck;
 import com.redsparkle.foe.events.gui.EventPlayerGuiHandler;
 import com.redsparkle.foe.gui.Overlays.PipBuckOverlay;
+import com.redsparkle.foe.items.guns.inits.bulletFiredGuns.EntityBullet;
+import com.redsparkle.foe.items.guns.inits.bulletFiredGuns.model.ModelBullet;
+import com.redsparkle.foe.items.guns.inits.bulletFiredGuns.render.RenderBulletEntity;
 import com.redsparkle.foe.utils.GlobalNames;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
@@ -16,6 +20,7 @@ import net.minecraft.item.Item;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.client.model.obj.OBJLoader;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.fml.client.registry.RenderingRegistry;
 
 import static com.redsparkle.foe.main.MODID;
 
@@ -48,7 +53,7 @@ public class ClientOnlyStartup {
         final int DEFAULT_ITEM_SUBTYPE = 0;
         ModelLoader.setCustomModelResourceLocation(ItemInit.pipbuck, DEFAULT_ITEM_SUBTYPE, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.PipbuckTT, "inventory"));
         ModelLoader.setCustomModelResourceLocation(ItemInit.lvlingCrystall, DEFAULT_ITEM_SUBTYPE, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.LevelingCrystall, "inventory"));
-
+        ModelLoader.setCustomModelResourceLocation(ItemInit.aem, DEFAULT_ITEM_SUBTYPE, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.AEM, "inventory"));
         //---------------------MEDS--------------------------
         ModelLoader.setCustomModelResourceLocation(ItemInit.radAway, DEFAULT_ITEM_SUBTYPE, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.RadAway, "inventory"));
         ModelLoader.setCustomModelResourceLocation(ItemInit.radx, DEFAULT_ITEM_SUBTYPE, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.RadX, "inventory"));
@@ -81,7 +86,7 @@ public class ClientOnlyStartup {
     public static void initClientOnly() {
         Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(Item.getItemFromBlock(SparkleColaMachineBlock.instance), 0, new ModelResourceLocation(MODID + ":" + GlobalNames.SPCmachine));
         Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(Item.getItemFromBlock(RadiationBlock.instance), 0, new ModelResourceLocation(MODID + ":" + GlobalNames.RadBlock));
-
+        RenderingRegistry.registerEntityRenderingHandler(EntityBullet.class, new RenderBulletEntity(Minecraft.getMinecraft().getRenderManager(), new ModelBullet(), 0.5));
 
     }
 
@@ -92,6 +97,8 @@ public class ClientOnlyStartup {
    * we only register this event handler on the client side.
    */
         MinecraftForge.EVENT_BUS.register(new EventHandlerOverlayPipBuck());
+        MinecraftForge.EVENT_BUS.register(new EventHandlerOverlayAEM());
+
         MinecraftForge.EVENT_BUS.register(new EventPlayerGuiHandler());
         MinecraftForge.EVENT_BUS.register(new EventPlayerRenders());
     }

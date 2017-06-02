@@ -12,9 +12,12 @@ import org.lwjgl.opengl.GL11;
 public class RenderBulletEntity extends Render<EntityBullet> {
     private static final ResourceLocation textures = new ResourceLocation(GlobalNames.Domain + ":textures/entities/BulletRender.png");
 
-    public RenderBulletEntity(RenderManager rendermanager) {
-        super(rendermanager);
-        this.shadowSize = 0.5F;
+    public RenderBulletEntity(RenderManager renderManager) {
+        super(renderManager);
+    }
+
+    public RenderBulletEntity(RenderManager renderManager, ModelBullet modelBullet, double v) {
+        super(renderManager);
     }
 
     @Override
@@ -22,6 +25,18 @@ public class RenderBulletEntity extends Render<EntityBullet> {
         return textures;
     }
 
+
+//    private static final ResourceLocation textures = new ResourceLocation(GlobalNames.Domain + ":textures/entities/BulletRender.png");
+//
+//    public RenderBulletEntity(RenderManager rendermanager, ModelBullet modelBullet, double v) {
+//        super(rendermanager);
+//    }
+//
+//    @Override
+//    protected ResourceLocation getEntityTexture(EntityBullet entity) {
+//        return textures;
+//    }
+//
     @Override
     public void doRender(EntityBullet entity, double d, double d1, double d2, float f, float f1) {
         if (entity.ticksExisted < 1) {

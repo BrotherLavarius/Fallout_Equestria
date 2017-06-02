@@ -1,7 +1,7 @@
 {
   "parent": "builtin/generated",
   "textures": {
-    "layer0": "fallout_equestria:items/RadX"
+    "layer0": "fallout_equestria:items/drugs/radx"
   },
   "display": {
     "thirdperson_righthand": {

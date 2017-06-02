@@ -1,7 +1,7 @@
 {
   "parent": "builtin/generated",
   "textures": {
-    "layer0": "fallout_equestria:items/battery"
+    "layer0": "fallout_equestria:items/ammo/battery"
   },
   "display": {
     "thirdperson_righthand": {

@@ -1,7 +1,7 @@
 {
   "parent": "builtin/generated",
   "textures": {
-    "layer0": "fallout_equestria:items/RadAway"
+    "layer0": "fallout_equestria:items/drugs/radaway"
   },
   "display": {
     "thirdperson_righthand": {

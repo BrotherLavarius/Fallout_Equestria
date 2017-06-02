@@ -2,7 +2,7 @@
   "forge_marker": 1,
   "defaults": {
     "textures": {},
-    "model": "fallout_equestria:laser_pistol.obj"
+    "model": "fallout_equestria:weapon/laser_pistol.obj"
   },
   "variants": {
     "normal": [

@@ -1,7 +1,7 @@
 {
   "parent": "builtin/generated",
   "textures": {
-    "layer0": "fallout_equestria:items/aem"
+    "layer0": "fallout_equestria:items/utility/aem"
   },
   "display": {
     "thirdperson_righthand": {

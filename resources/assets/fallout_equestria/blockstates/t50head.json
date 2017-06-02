@@ -2,7 +2,7 @@
   "forge_marker": 1,
   "defaults": {
     "textures": {},
-    "model": "fallout_equestria:t50head.obj"
+    "model": "fallout_equestria:armor/t50head.obj"
   },
   "variants": {
     "normal": [
@@ -66,22 +66,22 @@
           },
           "gui": {
             "translation": [
-              180,
+              0,
               0,
               0
             ],
             "rotation": [
               {
-                "y": 0
+                "y": 160
               },
               {
-                "x": 0
+                "x": -10
               },
               {
                 "z": 0
               }
             ],
-            "scale": 0.35
+            "scale": 0.75
           },
           "head": {
             "translation": [0.070,-0.1,-0.33],

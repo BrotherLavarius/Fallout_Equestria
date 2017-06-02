@@ -41,7 +41,11 @@ public abstract class CommonProxy {
         ItemInit.preInitCommon();
         // INIT Handler
         MinecraftForge.EVENT_BUS.register(new EventHandlerPre());
-        EntityRegistry.registerModEntity(new ResourceLocation(GlobalNames.Domain + ":entity/bullet"), EntityBullet.class, "Bullet", 650, main.instance, 20, 30, false);
+
+
+
+
+        //EntityRegistry.registerModEntity(new ResourceLocation(GlobalNames.Domain + ":entity/bullet"), EntityBullet.class, "Bullet", 650, main.instance, 20, 30, false);
         EntityRegistry.registerModEntity(new ResourceLocation(GlobalNames.Domain + ":entity/laser"), EntityBullet.class, "laser", 651, main.instance, 20, 30, false);
 
     }

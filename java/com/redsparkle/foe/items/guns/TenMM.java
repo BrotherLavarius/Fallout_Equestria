@@ -7,7 +7,10 @@ import com.redsparkle.foe.items.guns.inits.ItemFirearm;
 import com.redsparkle.foe.items.guns.inits.bulletFiredGuns.EntityBullet;
 import com.redsparkle.foe.utils.AmmunitionListing;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.projectile.EntityArrow;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemArrow;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.stats.StatList;
@@ -83,12 +86,20 @@ public class TenMM extends ItemFirearm {
             worldIn.playSound(playerIn, playerIn.getPosition(), SoundInit.tenMMShot, SoundCategory.HOSTILE, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
             if (!worldIn.isRemote) {
 
+
+
+
+                ItemArrow itemarrow = (ItemArrow)((ItemArrow)(itemstack.getItem() instanceof ItemArrow ? itemstack.getItem() : Items.ARROW));
+                EntityArrow entityarrow = itemarrow.createArrow(worldIn, itemstack, playerIn);
+                entityarrow.setAim(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 1.0F, 10F, 0F);
+                worldIn.spawnEntity(entityarrow);
+
                 //EntitySnowball entitysnowball = new EntitySnowball(worldIn, playerIn);
                 //entitysnowball.setHeadingFromThrower(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, 1.5F, 1.0F);
                 //worldIn.spawnEntity(entitysnowball);
-                EntityBullet entitybullet = new EntityBullet(worldIn, playerIn);
-                entitybullet.setHeadingFromThrower(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, 5.5F, 1.0F);
-                worldIn.spawnEntity(entitybullet);
+                //EntityBullet entitybullet = new EntityBullet(worldIn, playerIn);
+                //entitybullet.setHeadingFromThrower(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, 5.5F, 1.0F);
+                //worldIn.spawnEntity(entitybullet);
             }
 
         }
