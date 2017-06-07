@@ -94,11 +94,6 @@ public class GeneralAllignBlockOneOone extends Block {
         return BBhelper.caseOne(state);
     }
 
-    // ###########################################################3
-    @Override
-    public AxisAlignedBB getSelectedBoundingBox(IBlockState state, World worldIn, BlockPos pos) {
-        return BBhelper.caseOne(state);
-    }
 
 
     @Override

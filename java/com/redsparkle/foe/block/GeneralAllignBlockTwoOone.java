@@ -6,13 +6,13 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
-import net.minecraft.world.World;
 
 /**
  * Created by hoijima on 02.06.17.
  */
 public class GeneralAllignBlockTwoOone extends GeneralAllignBlockOneOone {
 
+    public static final AxisAlignedBB FULL_BLOCK_AABB = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 1.0D, 1.0D);
 
     public GeneralAllignBlockTwoOone(Material blockMaterialIn, MapColor blockMapColorIn) {
         super(blockMaterialIn, blockMapColorIn);
@@ -24,13 +24,8 @@ public class GeneralAllignBlockTwoOone extends GeneralAllignBlockOneOone {
 
     @Override
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
-        return BBhelper.caseTwo(state);
+        return BBhelper.caseTree(state);
     }
 
-    // ###########################################################3
-    @Override
-    public AxisAlignedBB getSelectedBoundingBox(IBlockState state, World worldIn, BlockPos pos) {
-        return BBhelper.caseTwo(state);
-    }
 
 }

@@ -1,6 +1,6 @@
 package com.redsparkle.foe.block.interractable;
 
-import com.redsparkle.foe.block.GeneralAllignBlockOneOone;
+import com.redsparkle.foe.block.GeneralAllignBlockOneOTwo;
 import com.redsparkle.foe.block.interractable.TileEntitys.DesktopTerminalTileEntity;
 import com.redsparkle.foe.block.interractable.TileEntitys.TileEntity_locker;
 import com.redsparkle.foe.creativeTabs.InitCreativeTabs;
@@ -19,7 +19,7 @@ import net.minecraftforge.common.property.Properties;
 /**
  * Created by hoijima on 04.07.16.
  */
-public class locker extends GeneralAllignBlockOneOone {
+public class locker extends GeneralAllignBlockOneOTwo {
     public static final locker instance = new locker();
 
     public locker() {

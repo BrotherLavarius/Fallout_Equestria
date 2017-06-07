@@ -75,7 +75,7 @@ public class TenMMClip extends Item {
          */
 
         worldIn.setActiveHand(playerIn);
-        return new ActionResult(EnumActionResult.SUCCESS, worldIn.getHeldItem(playerIn));
+        return new ActionResult<>(EnumActionResult.SUCCESS, worldIn.getHeldItem(playerIn));
     }
 
     public ItemStack onItemUseFinish(ItemStack stack, World worldIn, EntityLivingBase entityLiving) {

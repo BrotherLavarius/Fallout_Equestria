@@ -1,6 +1,6 @@
 package com.redsparkle.foe.block.containers;
 
-import com.redsparkle.foe.block.GeneralAllignBlockOneOTwo;
+import com.redsparkle.foe.block.GeneralAllignBlockTwoOTwo;
 import com.redsparkle.foe.block.containers.TileEntitys.SparkleColaMachineTileEntity;
 import com.redsparkle.foe.creativeTabs.InitCreativeTabs;
 import com.redsparkle.foe.utils.GlobalNames;
@@ -21,7 +21,7 @@ import static com.redsparkle.foe.main.MODID;
 /**
  * Created by hoijima on 04.07.16.
  */
-public class SparkleColaMachineBlock extends GeneralAllignBlockOneOTwo {
+public class SparkleColaMachineBlock extends GeneralAllignBlockTwoOTwo {
     public static final SparkleColaMachineBlock instance = new SparkleColaMachineBlock();
 
     public SparkleColaMachineBlock() {

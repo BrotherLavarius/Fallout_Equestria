@@ -62,7 +62,7 @@ public class RadX extends Item {
 
     public ActionResult<ItemStack> onItemRightClick(World itemStackIn, EntityPlayer worldIn, EnumHand playerIn) {
         worldIn.setActiveHand(playerIn);
-        return new ActionResult(EnumActionResult.SUCCESS, worldIn.getHeldItem(playerIn));
+        return new ActionResult<>(EnumActionResult.SUCCESS, worldIn.getHeldItem(playerIn));
     }
 
     /**

@@ -34,9 +34,45 @@ public class BBhelper {
     // 1x2x1
     public static AxisAlignedBB caseTwo(IBlockState state) {
         if (state.getValue(FACING).toString() == "south") {
+            bb = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 2.0D, 1.0D);
+        } else if (state.getValue(FACING).toString() == "north") {
+            bb = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 2.0D, 1.0D);
+        } else if (state.getValue(FACING).toString() == "east") {
+            bb = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 2.0D, 1.0D);
+        } else if (state.getValue(FACING).toString() == "west") {
+            bb = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 2.0D, 1.0D);
+        } else {
+            bb = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 2.0D, 1.0D);
+        }
+
+
+        return bb;
+    }
+
+    // 2x1x1
+    public static AxisAlignedBB caseTree(IBlockState state) {
+        if (state.getValue(FACING).toString() == "south") {
+            bb = new AxisAlignedBB(-1.0D, 0.0D, 0.0D, 1.0D, 1.0D, 1.0D);
+        } else if (state.getValue(FACING).toString() == "north") {
+            bb = new AxisAlignedBB(2.0D, 0.0D, 0.0D, 0.0D, 1.0D, 1.0D);
+        } else if (state.getValue(FACING).toString() == "east") {
+            bb = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 1.0D, 2.0D);
+        } else if (state.getValue(FACING).toString() == "west") {
+            bb = new AxisAlignedBB(0.0D, 0.0D, -1.0D, 1.0D, 1.0D, 1.0D);
+        } else {
+            bb = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 1.0D, 1.0D);
+        }
+
+
+        return bb;
+    }
+
+    // 2x2x1
+    public static AxisAlignedBB caseFour(IBlockState state) {
+        if (state.getValue(FACING).toString() == "south") {
             bb = new AxisAlignedBB(-1.0D, 0.0D, 0.0D, 1.0D, 2.0D, 1.0D);
         } else if (state.getValue(FACING).toString() == "north") {
-            bb = new AxisAlignedBB(2.5D, 0.0D, 0.0D, 0.0D, 2.0D, 1.0D);
+            bb = new AxisAlignedBB(2.0D, 0.0D, 0.0D, 0.0D, 2.0D, 1.0D);
         } else if (state.getValue(FACING).toString() == "east") {
             bb = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 2.0D, 2.0D);
         } else if (state.getValue(FACING).toString() == "west") {
@@ -49,39 +85,5 @@ public class BBhelper {
         return bb;
     }
 
-    // 2x1x1
-    public static AxisAlignedBB caseTree(IBlockState state) {
-        if (state.getValue(FACING).toString() == "south") {
-            bb = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 1.0D, 1.0D);
-        } else if (state.getValue(FACING).toString() == "north") {
-            bb = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 1.0D, 1.0D);
-        } else if (state.getValue(FACING).toString() == "east") {
-            bb = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 1.0D, 1.0D);
-        } else if (state.getValue(FACING).toString() == "west") {
-            bb = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 1.0D, 1.0D);
-        } else {
-            bb = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 1.0D, 1.0D);
-        }
 
-
-        return bb;
-    }
-
-    // 2x2x1
-    public static AxisAlignedBB caseFour(IBlockState state) {
-        if (state.getValue(FACING).toString() == "south") {
-            bb = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 1.0D, 1.0D);
-        } else if (state.getValue(FACING).toString() == "north") {
-            bb = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 1.0D, 1.0D);
-        } else if (state.getValue(FACING).toString() == "east") {
-            bb = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 1.0D, 1.0D);
-        } else if (state.getValue(FACING).toString() == "west") {
-            bb = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 1.0D, 1.0D);
-        } else {
-            bb = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 1.0D, 1.0D);
-        }
-
-
-        return bb;
-    }
 }

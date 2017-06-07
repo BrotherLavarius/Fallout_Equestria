@@ -1,6 +1,6 @@
 package com.redsparkle.foe.block.interractable;
 
-import com.redsparkle.foe.block.GeneralAllignBlockTwoOone;
+import com.redsparkle.foe.block.GeneralAllignBlockTwoOTwo;
 import com.redsparkle.foe.block.interractable.TileEntitys.DesktopTerminalTileEntity;
 import com.redsparkle.foe.block.interractable.TileEntitys.TileEntity_workbench;
 import com.redsparkle.foe.creativeTabs.InitCreativeTabs;
@@ -19,7 +19,7 @@ import net.minecraftforge.common.property.Properties;
 /**
  * Created by hoijima on 04.07.16.
  */
-public class workbench extends GeneralAllignBlockTwoOone {
+public class workbench extends GeneralAllignBlockTwoOTwo {
     public static final workbench instance = new workbench();
     public workbench() {
         super(Material.IRON);

@@ -51,7 +51,7 @@ public class LvlingCrystall extends Item {
         player.setActiveHand(playerIn);
         player.openGui(main.instance, 4, player.world, (int) player.posX, (int) player.posY, (int) player.posZ);
 
-        return new ActionResult(EnumActionResult.SUCCESS, player.getHeldItem(playerIn));
+        return new ActionResult<>(EnumActionResult.SUCCESS, player.getHeldItem(playerIn));
     }
 
 

@@ -25,12 +25,12 @@ import static net.minecraft.command.CommandBase.*;
 public class rpSkillCheck implements ICommand {
 
 
-    private final List aliases;
+    private final List<String> aliases;
 
     protected String fullEntityName;
 
     public rpSkillCheck() {
-        aliases = new ArrayList();
+        aliases = new ArrayList<String>();
         aliases.add("skilldice");
         aliases.add("Sdice");
         aliases.add("diceskill");
