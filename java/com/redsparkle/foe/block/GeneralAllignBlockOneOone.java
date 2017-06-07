@@ -80,27 +80,35 @@ public class GeneralAllignBlockOneOone extends Block {
     }
 
     @Override
+    public boolean isOpaqueCube(IBlockState state) {
+        return false;
+    }
+
+    @Override
+    public boolean isFullCube(IBlockState state) {
+        return false;
+    }
+
+    @Override
+    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
+        return BBhelper.caseOne(state);
+    }
+
+    // ###########################################################3
+    @Override
+    public AxisAlignedBB getSelectedBoundingBox(IBlockState state, World worldIn, BlockPos pos) {
+        return BBhelper.caseOne(state);
+    }
+
+
+    @Override
+    public boolean hasTileEntity(IBlockState state) {
+        return true;
+    }
+    @Override
     public BlockStateContainer createBlockState() {
         return new ExtendedBlockState(this, new IProperty[]{FACING}, new IUnlistedProperty[]{Properties.AnimationProperty});
     }
 
-    @Deprecated
-    public AxisAlignedBB getCollisionBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
-        if (state.getValue(FACING).toString() == "south") {
-            Fixed = FULL_BLOCK_AABB;
-        } else if (state.getValue(FACING).toString() == "north") {
-            Fixed = FULL_BLOCK_AABB;
-        } else if (state.getValue(FACING).toString() == "east") {
-            Fixed = FULL_BLOCK_AABB;
-        } else if (state.getValue(FACING).toString() == "west") {
-            Fixed = FULL_BLOCK_AABB;
-        } else {
-            Fixed = FULL_BLOCK_AABB;
-        }
-
-
-        return Fixed;
-
-    }
 
 }

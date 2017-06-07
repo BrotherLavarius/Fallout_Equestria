@@ -1,6 +1,6 @@
 package com.redsparkle.foe.block.interractable;
 
-import com.redsparkle.foe.block.GeneralAllignBlockOneOone;
+import com.redsparkle.foe.block.GeneralAllignBlockTwoOone;
 import com.redsparkle.foe.block.interractable.TileEntitys.DesktopTerminalTileEntity;
 import com.redsparkle.foe.block.interractable.TileEntitys.TileEntity_workbench;
 import com.redsparkle.foe.creativeTabs.InitCreativeTabs;
@@ -19,9 +19,8 @@ import net.minecraftforge.common.property.Properties;
 /**
  * Created by hoijima on 04.07.16.
  */
-public class workbench extends GeneralAllignBlockOneOone {
+public class workbench extends GeneralAllignBlockTwoOone {
     public static final workbench instance = new workbench();
-
     public workbench() {
         super(Material.IRON);
         setLightLevel(0);
@@ -44,11 +43,6 @@ public class workbench extends GeneralAllignBlockOneOone {
         }
     }
 
-
-    @Override
-    public boolean hasTileEntity(IBlockState state) {
-        return true;
-    }
 
     @Override
     public IBlockState getExtendedState(IBlockState state, IBlockAccess world, BlockPos pos) {

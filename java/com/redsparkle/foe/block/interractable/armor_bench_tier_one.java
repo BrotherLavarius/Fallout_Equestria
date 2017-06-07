@@ -1,6 +1,6 @@
 package com.redsparkle.foe.block.interractable;
 
-import com.redsparkle.foe.block.GeneralAllignBlockOneOone;
+import com.redsparkle.foe.block.GeneralAllignBlockTwoOone;
 import com.redsparkle.foe.block.interractable.TileEntitys.DesktopTerminalTileEntity;
 import com.redsparkle.foe.block.interractable.TileEntitys.TileEntity_ArmorBench_tier_one;
 import com.redsparkle.foe.creativeTabs.InitCreativeTabs;
@@ -22,7 +22,7 @@ import static com.redsparkle.foe.main.MODID;
 /**
  * Created by hoijima on 04.07.16.
  */
-public class armor_bench_tier_one extends GeneralAllignBlockOneOone {
+public class armor_bench_tier_one extends GeneralAllignBlockTwoOone {
     public static final armor_bench_tier_one instance = new armor_bench_tier_one();
 
     public armor_bench_tier_one() {

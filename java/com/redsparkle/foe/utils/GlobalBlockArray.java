@@ -10,13 +10,22 @@ import net.minecraft.block.Block;
  */
 public class GlobalBlockArray {
     public static final Block[] blocks = new Block[]{
+            // Blocks -- Inventory -- World
             SparkleColaMachineBlock.instance,
+            // Blocks -- interract -- World
             workbench.instance,
             workbench_handmade.instance,
             armor_bench_tier_one.instance,
+
+            // Blocks -- interract -- Stable
             DesktopTerminal.instance,
+
+            // Blocks -- Inventory -- Stable
             locker.instance,
-            RadiationBlock.instance};
+
+            // Blocks - Stat dispencers
+            RadiationBlock.instance
+    };
     public static final String[] blocksNames = new String[]{
             GlobalNames.SPCmachine,
             GlobalNames.Workbench,
@@ -26,5 +35,6 @@ public class GlobalBlockArray {
             GlobalNames.Locker,
             GlobalNames.RadBlock
     };
+
 
 }
