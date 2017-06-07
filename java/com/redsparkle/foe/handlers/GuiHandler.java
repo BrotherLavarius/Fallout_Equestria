@@ -1,5 +1,6 @@
 package com.redsparkle.foe.handlers;
 
+import com.redsparkle.foe.gui.Inventory_Crafting.Saddlebags;
 import com.redsparkle.foe.gui.Menus.PipBuckGui;
 import com.redsparkle.foe.gui.Menus.pipbuck_gui_extenders.DataGui;
 import com.redsparkle.foe.gui.Menus.pipbuck_gui_extenders.InventoryGui;
@@ -20,6 +21,7 @@ public class GuiHandler implements IGuiHandler {
     public static final int PIPBUCK_GUI_INVE = 2;
     public static final int PIPBUCK_GUI_DATA = 3;
     public static final int FIRTS_TIME_LVLUP = 4;
+    public static final int SADDLE_BAGS = 5;
 
 
     @Nullable
@@ -36,7 +38,11 @@ public class GuiHandler implements IGuiHandler {
         if (ID == PIPBUCK_GUI_INVE){return new InventoryGui();}
         if (ID == PIPBUCK_GUI_DATA){return new DataGui();}
         if (ID == FIRTS_TIME_LVLUP){return new StatsGuiFirstJoin();}
+        if (ID == SADDLE_BAGS) {
+            //return new Saddlebags(player, stats.getExtendedInventory());
+            return new Saddlebags(player);
 
+        }
         return null;
     }
 }

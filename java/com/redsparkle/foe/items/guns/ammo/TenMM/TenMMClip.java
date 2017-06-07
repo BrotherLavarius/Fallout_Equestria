@@ -49,6 +49,7 @@ public class TenMMClip extends Item {
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack stack, EntityPlayer playerIn, List<String> tooltip, boolean advanced) {
         tooltip.add("Ammo clip for TenMM pistol");
+        tooltip.add("AMMO LEFT:" + (stack.getMaxDamage() - (stack.getItemDamage() + 1)) + "/" + (stack.getMaxDamage() - 2));
     }
 
     public ActionResult<ItemStack> onItemRightClick(World itemStackIn, EntityPlayer worldIn, EnumHand playerIn) {
