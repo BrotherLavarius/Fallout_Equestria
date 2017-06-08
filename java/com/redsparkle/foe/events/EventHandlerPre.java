@@ -33,7 +33,6 @@ import static com.redsparkle.foe.capa.spechial.SpechialFactoryProvider.SPECHIAL_
 public class EventHandlerPre {
 
 
-
     @SubscribeEvent
     public void AttachCapability(AttachCapabilitiesEvent.Entity event) {
         //Attach it! The resource location MUST be unique it's recommended that you tag it with your modid and what the cap is.

@@ -10,6 +10,7 @@ import com.redsparkle.foe.items.guns.inits.bulletFiredGuns.EntityBullet;
 import com.redsparkle.foe.items.guns.inits.bulletFiredGuns.model.ModelBullet;
 import com.redsparkle.foe.items.guns.inits.bulletFiredGuns.render.RenderBulletEntity;
 import com.redsparkle.foe.utils.GlobalBlockArray;
+import com.redsparkle.foe.utils.GlobalItemArray;
 import com.redsparkle.foe.utils.GlobalNames;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
@@ -44,38 +45,10 @@ public class ClientOnlyStartup {
         }
 
         //ITEMS SECTION#########################################
-
-        //---------------------UTILITY--------------------------
-        final int DEFAULT_ITEM_SUBTYPE = 0;
-        ModelLoader.setCustomModelResourceLocation(ItemInit.pipbuck, DEFAULT_ITEM_SUBTYPE, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.PipbuckTT, "inventory"));
-        ModelLoader.setCustomModelResourceLocation(ItemInit.lvlingCrystall, DEFAULT_ITEM_SUBTYPE, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.LevelingCrystall, "inventory"));
-        ModelLoader.setCustomModelResourceLocation(ItemInit.aem, DEFAULT_ITEM_SUBTYPE, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.AEM, "inventory"));
-        //---------------------MEDS--------------------------
-        ModelLoader.setCustomModelResourceLocation(ItemInit.radAway, DEFAULT_ITEM_SUBTYPE, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.RadAway, "inventory"));
-        ModelLoader.setCustomModelResourceLocation(ItemInit.radx, DEFAULT_ITEM_SUBTYPE, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.RadX, "inventory"));
-
-        //---------------------AMMO--------------------------
-        ModelLoader.setCustomModelResourceLocation(ItemInit.tenMMAmmo, DEFAULT_ITEM_SUBTYPE, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.TenMMAmmo, "inventory"));
-        ModelLoader.setCustomModelResourceLocation(ItemInit.tenMMClip, DEFAULT_ITEM_SUBTYPE, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.TenMMClip, "inventory"));
-
-        ModelLoader.setCustomModelResourceLocation(ItemInit.battery, DEFAULT_ITEM_SUBTYPE, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.Battery, "inventory"));
-
-        //---------------------GUNS--------------------------
-        ModelLoader.setCustomModelResourceLocation(ItemInit.tenMM, 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.TenMM, "inventory"));
-        ModelLoader.setCustomModelResourceLocation(ItemInit.laserPistol, 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.LaserPistol, "inventory"));
-
-
-        //---------------------ARMOR--------------------------
-        ModelLoader.setCustomModelResourceLocation(ItemInit.t60head, 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.T60Head, "inventory"));
-        ModelLoader.setCustomModelResourceLocation(ItemInit.t60body, 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.T60Body, "inventory"));
-
-        ModelLoader.setCustomModelResourceLocation(ItemInit.t50head, 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.T50Head, "inventory"));
-        ModelLoader.setCustomModelResourceLocation(ItemInit.t50body, 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.T50Body, "inventory"));
-
-        ModelLoader.setCustomModelResourceLocation(ItemInit.t40head, 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.T40Head, "inventory"));
-        ModelLoader.setCustomModelResourceLocation(ItemInit.t40body, 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.T40Body, "inventory"));
-        //---------------------PLACEHOLDER--------------------
-        ModelLoader.setCustomModelResourceLocation(ItemInit.tenMMbullet, DEFAULT_ITEM_SUBTYPE, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.TenMMbullet, "inventory"));
+        for (int it = 0; it < (GlobalItemArray.items.length - 1); it++) {
+            final int DEFAULT_ITEM_SUBTYPE = 0;
+            ModelLoader.setCustomModelResourceLocation(GlobalItemArray.items[it], DEFAULT_ITEM_SUBTYPE, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalItemArray.ItemNames[it], "inventory"));
+        }
 
     }
 

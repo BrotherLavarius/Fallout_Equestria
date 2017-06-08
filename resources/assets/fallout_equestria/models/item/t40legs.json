@@ -1,7 +1,7 @@
 {
   "parent": "builtin/generated",
   "textures": {
-    "layer0": "fallout_equestria:items/utility/lvlcrystal"
+    "layer0": "fallout_equestria:items/placeholder"
   },
   "display": {
     "thirdperson_righthand": {
