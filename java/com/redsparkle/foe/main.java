@@ -1,6 +1,7 @@
 package com.redsparkle.foe;
 
 
+import com.redsparkle.foe.commands.rpSkillCheck;
 import com.redsparkle.foe.handlers.GuiHandler;
 import com.redsparkle.foe.network.ClientServerOneClass.MessageUpdateClientRads;
 import com.redsparkle.foe.network.ClientServerOneClass.MessageUpdateClientServerLevel;
@@ -13,6 +14,7 @@ import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import net.minecraftforge.fml.relauncher.Side;
@@ -79,6 +81,7 @@ public class main {
         simpleNetworkWrapper.registerMessage(MessageUpdateClientServerSPECHIAL.HandlerClient.class, MessageUpdateClientServerSPECHIAL.class, SPECHIAL_MESSAGE_ID_CLIENT, Side.CLIENT);
         simpleNetworkWrapper.registerMessage(MessageUpdateClientServerSPECHIAL.HandlerServer.class, MessageUpdateClientServerSPECHIAL.class, SPECHIAL_MESSAGE_ID_SERVER, Side.SERVER);
 
+
         System.out.println("S.P.E.C.H.I.A.L------CHECK");
 
 //
@@ -112,5 +115,11 @@ public class main {
         System.out.println("I-----------------------------------I");
         System.out.println("   Fallout pack fully initialized    ");
         System.out.println("I-----------------------------------I");
+    }
+
+    @Mod.EventHandler
+    public static void init(FMLServerStartingEvent event)
+    {
+        event.registerServerCommand(new rpSkillCheck());
     }
 }
