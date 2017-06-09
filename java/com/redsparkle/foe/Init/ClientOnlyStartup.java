@@ -33,6 +33,7 @@ public class ClientOnlyStartup {
         final CreativeTabs Fallout_ammo = InitCreativeTabs.Fallout_ammo;
         final CreativeTabs Fallout_blocks = InitCreativeTabs.Fallout_blocks;
         final CreativeTabs Fallout_guns = InitCreativeTabs.Fallout_guns;
+        final CreativeTabs Fallout_food = InitCreativeTabs.Fallout_Food;
         final CreativeTabs Fallout_meds = InitCreativeTabs.Fallout_meds;
         final CreativeTabs Fallout_stats_blocks = InitCreativeTabs.Fallout_stats_blocks;
         final CreativeTabs Fallout_stats_armor = InitCreativeTabs.Fallout_armor;

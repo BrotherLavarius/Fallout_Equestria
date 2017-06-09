@@ -1,6 +1,7 @@
 package com.redsparkle.foe.Init;
 
 import com.redsparkle.foe.items.armor.powered.*;
+import com.redsparkle.foe.items.food.old.Potato_Crisps;
 import com.redsparkle.foe.items.guns.LaserPistol;
 import com.redsparkle.foe.items.guns.TenMM;
 import com.redsparkle.foe.items.guns.ammo.LaserWeapons.Battery;
@@ -32,6 +33,8 @@ public class ItemInit {
     public static LvlingCrystall lvlingCrystall;
     public static AdvancedEnviropmentMonitor aem;
 
+    // FOOD
+    public static Potato_Crisps potato_crisps;
 
     // AMMO and CLIPS
     public static TenMMammo tenMMAmmo;
@@ -83,6 +86,10 @@ public class ItemInit {
         radx.setRegistryName(GlobalNames.RadX);
         GameRegistry.register(radx);
 
+        //----------------------FOOD-----------------
+        potato_crisps = (Potato_Crisps) (new Potato_Crisps().setUnlocalizedName(GlobalNames.potato_crisps));
+        potato_crisps.setRegistryName(GlobalNames.potato_crisps);
+        GameRegistry.register(potato_crisps);
         //----------------------AMMO-----------------
         tenMMAmmo = (TenMMammo) (new TenMMammo().setUnlocalizedName(GlobalNames.TenMMAmmo));
         tenMMAmmo.setRegistryName(GlobalNames.TenMMAmmo);

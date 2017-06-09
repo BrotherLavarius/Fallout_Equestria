@@ -18,6 +18,10 @@ public class GlobalNames {
             Creative_tab_Meds = "FOE_Meds",
             Creative_tab_Ammo = "FOE_Ammo",
             Creative_tab_Armor = "FOE_Armor";
+
+    // Food
+    public static final String
+            potato_crisps = "potato_crisps";
     // Meds
     public static final String
             Addictol = "addictol",

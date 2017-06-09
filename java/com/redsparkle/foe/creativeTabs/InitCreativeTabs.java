@@ -17,6 +17,12 @@ public class InitCreativeTabs {
             return new ItemStack(Item.getItemFromBlock(Blocks.COAL_BLOCK));
         }
     };
+    public static final CreativeTabs Fallout_Food = new CreativeTabs(GlobalNames.Creative_tab_Food) {
+        @Override
+        public ItemStack getTabIconItem() {
+            return new ItemStack(Items.APPLE);
+        }
+    };
     public static final CreativeTabs Fallout_meds = new CreativeTabs(GlobalNames.Creative_tab_Meds) {
         @Override
         public ItemStack getTabIconItem() {

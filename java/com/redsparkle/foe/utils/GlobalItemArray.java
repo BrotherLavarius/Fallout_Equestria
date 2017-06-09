@@ -15,6 +15,8 @@ public class GlobalItemArray {
             ItemInit.pipbuck,
             ItemInit.lvlingCrystall,
             ItemInit.aem,
+            //---------------------FOOD--------------------------
+            ItemInit.potato_crisps,
             //---------------------MEDS--------------------------
 
             ItemInit.radAway,
@@ -49,6 +51,8 @@ public class GlobalItemArray {
             GlobalNames.PipbuckTT,
             GlobalNames.LevelingCrystall,
             GlobalNames.AEM,
+            //---------------------FOOD--------------------------
+            GlobalNames.potato_crisps,
             //---------------------MEDS--------------------------
 
             GlobalNames.RadAway,

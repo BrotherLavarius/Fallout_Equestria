@@ -54,26 +54,6 @@ public class TenMMClip extends Item {
 
     public ActionResult<ItemStack> onItemRightClick(World itemStackIn, EntityPlayer worldIn, EnumHand playerIn) {
 
-        /*
-            -------------------THIS FOR INSTA LOADING------------
-                        Ill keep this here just because.
-
-                ItemStack stack = player.getHeldItem(hand);
-        if (stack.getItemDamage() <= MaxDamage ) {
-            ItemStack found = findItemOffBar(player);
-            if (found == ItemStack.EMPTY) {
-                return new ActionResult(EnumActionResult.FAIL, player.getHeldItem(hand));
-            }else if(stack.getItemDamage() <= 0){
-                return new ActionResult(EnumActionResult.FAIL, player.getHeldItem(hand));
-            } else {
-                found.shrink(1);
-                stack.setItemDamage(stack.getItemDamage() - 1);
-                return new ActionResult(EnumActionResult.SUCCESS, player.getHeldItem(hand));
-            }
-        }
-
-         */
-
         worldIn.setActiveHand(playerIn);
         return new ActionResult<>(EnumActionResult.SUCCESS, worldIn.getHeldItem(playerIn));
     }
