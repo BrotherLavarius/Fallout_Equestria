@@ -15,6 +15,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.client.config.GuiButtonExt;
 import org.lwjgl.opengl.GL11;
 
+import javax.sound.sampled.FloatControl;
 import java.io.IOException;
 
 /**
@@ -23,6 +24,7 @@ import java.io.IOException;
 public class PipBuckGui extends GuiScreen {
     final ResourceLocation pipbuck = new ResourceLocation(GlobalNames.Domain,
             "textures/gui/pipbuck_bg.png");
+    public FloatControl gain;
     public RadioPLayer radioPLayer;
     public int pip_buck_x = 0;
     public int pip_buck_y = 0;
@@ -72,6 +74,18 @@ public class PipBuckGui extends GuiScreen {
             0,
             0,
             0, "Radio STOP!");
+
+    GuiButtonExt RadioVolumeUp = new GuiButtonExt(6,
+            0,
+            0,
+            0,
+            0, "Volume +");
+
+    GuiButtonExt RadioVolumeDown = new GuiButtonExt(7,
+            0,
+            0,
+            0,
+            0, "Volume -");
 
     @Override
     public void drawScreen(int mouseX, int mouseY, float partialTicks) {
@@ -280,6 +294,39 @@ public class PipBuckGui extends GuiScreen {
                 this.buttonList.get(5).visible = RadioShow;
                 this.buttonList.get(5).enabled = RadioShow;
             }
+
+
+            //RADIO VOLUME UP
+            {
+                this.buttonList.get(6).xPosition = ScreenGrid.XCoordStart(
+                        this.width,
+                        2) + 290;
+                this.buttonList.get(6).yPosition = ScreenGrid.XCoordStart(
+                        this.height,
+                        2) + 105;
+
+                this.buttonList.get(6).height = 15;
+                this.buttonList.get(6).width = 60;
+                this.buttonList.get(6).visible = RadioShow;
+                this.buttonList.get(6).enabled = RadioShow;
+            }
+
+            //RADIO VOLUME DOWN
+            {
+                this.buttonList.get(7).xPosition = ScreenGrid.XCoordStart(
+                        this.width,
+                        2) + 290;
+                this.buttonList.get(7).yPosition = ScreenGrid.XCoordStart(
+                        this.height,
+                        2) + 85;
+
+                this.buttonList.get(7).height = 15;
+                this.buttonList.get(7).width = 60;
+                this.buttonList.get(7).visible = RadioShow;
+                this.buttonList.get(7).enabled = RadioShow;
+            }
+
+
         }
         GL11.glPopMatrix();
 
@@ -319,6 +366,9 @@ public class PipBuckGui extends GuiScreen {
         this.buttonList.add(this.LvlUp);
         this.buttonList.add(this.RadioButtonStart);
         this.buttonList.add(this.RadioButtonStop);
+        this.buttonList.add(this.RadioVolumeUp);
+        this.buttonList.add(this.RadioVolumeDown);
+
 
         super.initGui();
 
@@ -373,6 +423,7 @@ public class PipBuckGui extends GuiScreen {
             //String[] address = new String[]{"http://10.0.0.12:8100/rcr.ogg"};
             radioPLayer = new RadioPLayer("http://fallout-equestria.tk/radio");
 
+
         }
         if (button == this.RadioButtonStop) {
 
@@ -382,6 +433,26 @@ public class PipBuckGui extends GuiScreen {
                 radioPLayer.din.close();
             }
 
+        }
+        if (button == this.RadioVolumeUp) {
+
+            if (radioPLayer.player.isAlive()) {
+                gain = (FloatControl) radioPLayer.line.getControl(FloatControl.Type.MASTER_GAIN);
+
+                if (gain.getValue() < gain.getMaximum()) {
+                    gain.setValue(gain.getValue() + 1.0F);
+                }
+            }
+        }
+        if (button == this.RadioVolumeDown) {
+            if (radioPLayer.player.isAlive()) {
+
+                gain = (FloatControl) radioPLayer.line.getControl(FloatControl.Type.MASTER_GAIN);
+
+                if (gain.getValue() > gain.getMinimum()) {
+                    gain.setValue(gain.getValue() - 1.0F);
+                }
+            }
         }
 
         super.actionPerformed(button);
