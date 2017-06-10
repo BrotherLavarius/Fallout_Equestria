@@ -6,6 +6,7 @@ import com.redsparkle.foe.capa.spechial.SpechialFactoryProvider;
 import com.redsparkle.foe.main;
 import com.redsparkle.foe.utils.GlobalNames;
 import com.redsparkle.foe.utils.Lvlutil;
+import com.redsparkle.foe.utils.RadioPLayer;
 import com.redsparkle.foe.utils.ScreenGrid;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
@@ -20,10 +21,9 @@ import java.io.IOException;
  * Created by hoijima on 3/4/2017.
  */
 public class PipBuckGui extends GuiScreen {
-
     final ResourceLocation pipbuck = new ResourceLocation(GlobalNames.Domain,
             "textures/gui/pipbuck_bg.png");
-
+    public RadioPLayer radioPLayer;
     public int pip_buck_x = 0;
     public int pip_buck_y = 0;
 
@@ -32,7 +32,9 @@ public class PipBuckGui extends GuiScreen {
 
     public boolean StatsShowButton = false;
     public boolean InvShowButton = false;
-    public boolean DataShowButton = false;
+    public boolean DataShowButton = true;
+
+    public boolean RadioShow = false;
 
 
     GuiButtonExt Stats = new GuiButtonExt(0,
@@ -51,14 +53,25 @@ public class PipBuckGui extends GuiScreen {
             0,
             0,
             0,
-            0, "OFFLINE");
+            0, "DATA");
 
 
     GuiButtonExt LvlUp = new GuiButtonExt(3,
             0,
             0,
             0,
-            0,"Level Up");
+            0, "Level Up");
+
+    GuiButtonExt RadioButtonStart = new GuiButtonExt(4,
+            0,
+            0,
+            0,
+            0, "Radio START!");
+    GuiButtonExt RadioButtonStop = new GuiButtonExt(5,
+            0,
+            0,
+            0,
+            0, "Radio STOP!");
 
     @Override
     public void drawScreen(int mouseX, int mouseY, float partialTicks) {
@@ -75,19 +88,18 @@ public class PipBuckGui extends GuiScreen {
                 mc.player.getCapability(SpechialFactoryProvider.SPECHIAL_CAPABILITY, null).getAgility(),
                 mc.player.getCapability(SpechialFactoryProvider.SPECHIAL_CAPABILITY, null).getLuck()
         };
-        Integer[] playerParams ={
-                mc.player.getCapability(RadsFactoryProvider.RADIATION_CAPABILITY,null).getRadiation(),
+        Integer[] playerParams = {
+                mc.player.getCapability(RadsFactoryProvider.RADIATION_CAPABILITY, null).getRadiation(),
                 mc.player.getCapability(LevelFactoryProvider.LEVEL_CAPABILITY, null).getLevel(),
                 mc.player.getCapability(LevelFactoryProvider.LEVEL_CAPABILITY, null).getProgress()
 
         };
-        String[] playerParamsString ={
-                "RADS:","LVL:","XP Total:"
+        String[] playerParamsString = {
+                "RADS:", "LVL:", "XP Total:"
         };
 
 
-
-        this.zLevel=0;
+        this.zLevel = 0;
         this.drawDefaultBackground();
         GlStateManager.color(1, 1, 1, 1);
         GlStateManager.enableAlpha();
@@ -110,11 +122,9 @@ public class PipBuckGui extends GuiScreen {
 //                    140);
 
 
-
-
             {
-                if(StatsShow) {
-                    int startY=25;
+                if (StatsShow) {
+                    int startY = 25;
                     //GL11.glPushMatrix();
                     //GL11.glScaled(0.5f, 0.5f, 0);
                     for (int i = 0; i <= (skills.length - 1); i++) {
@@ -135,42 +145,42 @@ public class PipBuckGui extends GuiScreen {
                                         startY),
                                 8453920, true
                         );
-                        startY=startY+5;
+                        startY = startY + 5;
 
                     }
 
-                    int paramY =25;
-                    for (int o=0;o<=(playerParams.length-1);o++){
+                    int paramY = 25;
+                    for (int o = 0; o <= (playerParams.length - 1); o++) {
 
                         this.fontRendererObj.drawString(playerParamsString[o],
                                 ScreenGrid.XCoordStart(
                                         this.width,
-                                        2)+105,
+                                        2) + 105,
                                 ScreenGrid.YCoordStart(
                                         this.height,
                                         paramY),
                                 8453920, false
                         );
 
-                        this.fontRendererObj.drawString( Integer.toString(playerParams[o]),
+                        this.fontRendererObj.drawString(Integer.toString(playerParams[o]),
                                 ScreenGrid.XCoordStart(
                                         this.width,
-                                        2)+155,
+                                        2) + 155,
                                 ScreenGrid.YCoordStart(
                                         this.height,
                                         paramY),
                                 8453920, false
                         );
-                        paramY=paramY+4;
+                        paramY = paramY + 4;
                     }
 
 
                     this.fontRendererObj.drawString(Lvlutil.progress(
-                            playerParams[1],playerParams[2]
+                            playerParams[1], playerParams[2]
                             ),
                             ScreenGrid.XCoordStart(
                                     this.width,
-                                    2)+130,
+                                    2) + 130,
                             ScreenGrid.YCoordStart(
                                     this.height,
                                     40),
@@ -184,13 +194,6 @@ public class PipBuckGui extends GuiScreen {
                     //GL11.glPopMatrix();
                 }
             }
-
-
-
-
-
-
-
 
 
             //STATS BUTTON
@@ -246,9 +249,37 @@ public class PipBuckGui extends GuiScreen {
                 this.buttonList.get(3).height = 15;
                 this.buttonList.get(3).width = 66;
                 this.buttonList.get(3).visible = StatsShow;
-                this.buttonList.get(3).enabled = Lvlutil.canLvlup(playerParams[1],playerParams[2]);
+                this.buttonList.get(3).enabled = Lvlutil.canLvlup(playerParams[1], playerParams[2]);
             }
 
+            //RADIO START BUTTON
+            {
+                this.buttonList.get(4).xPosition = ScreenGrid.XCoordStart(
+                        this.width,
+                        2) + 215;
+                this.buttonList.get(4).yPosition = ScreenGrid.XCoordStart(
+                        this.height,
+                        2) + 105;
+
+                this.buttonList.get(4).height = 15;
+                this.buttonList.get(4).width = 70;
+                this.buttonList.get(4).visible = RadioShow;
+                this.buttonList.get(4).enabled = RadioShow;
+            }
+            //RADIO STOP BUTTON
+            {
+                this.buttonList.get(5).xPosition = ScreenGrid.XCoordStart(
+                        this.width,
+                        2) + 215;
+                this.buttonList.get(5).yPosition = ScreenGrid.XCoordStart(
+                        this.height,
+                        2) + 85;
+
+                this.buttonList.get(5).height = 15;
+                this.buttonList.get(5).width = 70;
+                this.buttonList.get(5).visible = RadioShow;
+                this.buttonList.get(5).enabled = RadioShow;
+            }
         }
         GL11.glPopMatrix();
 
@@ -286,6 +317,8 @@ public class PipBuckGui extends GuiScreen {
         this.buttonList.add(this.Inventory);
         this.buttonList.add(this.Data);
         this.buttonList.add(this.LvlUp);
+        this.buttonList.add(this.RadioButtonStart);
+        this.buttonList.add(this.RadioButtonStop);
 
         super.initGui();
 
@@ -300,9 +333,10 @@ public class PipBuckGui extends GuiScreen {
             DataShowButton = true;
             LvlUpShow = true;
             StatsShow = true;
+            RadioShow = false;
 
         }
-        if (button == this.LvlUp){
+        if (button == this.LvlUp) {
             this.mc.player.openGui(main.instance, 1, mc.world, (int) mc.player.posX, (int) mc.player.posY, (int) mc.player.posZ);
 
         }
@@ -312,8 +346,7 @@ public class PipBuckGui extends GuiScreen {
             DataShowButton = true;
 
 
-
-
+            RadioShow = false;
             LvlUpShow = false;
             StatsShow = false;
             //Main.packetHandler.sendToServer(...);
@@ -323,12 +356,11 @@ public class PipBuckGui extends GuiScreen {
         }
         if (button == this.Data) {
             StatsShowButton = true;
-            InvShowButton = true;
+            InvShowButton = false;
             DataShowButton = false;
 
 
-
-
+            RadioShow = true;
             LvlUpShow = false;
             StatsShow = false;
             //Main.packetHandler.sendToServer(...);
@@ -336,6 +368,24 @@ public class PipBuckGui extends GuiScreen {
 //            if (this.mc.currentScreen == null)
 //                this.mc.setIngameFocus();
         }
+        if (button == this.RadioButtonStart) {
+
+            //String[] address = new String[]{"http://10.0.0.12:8100/rcr.ogg"};
+            radioPLayer = new RadioPLayer("http://fallout-equestria.tk/radio");
+
+        }
+        if (button == this.RadioButtonStop) {
+
+            if (radioPLayer.player.isAlive()) {
+                radioPLayer.running = false;
+                radioPLayer.line.close();
+                radioPLayer.din.close();
+            }
+
+        }
+
         super.actionPerformed(button);
     }
+
+
 }
