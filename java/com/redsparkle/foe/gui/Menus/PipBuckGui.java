@@ -1,16 +1,15 @@
 package com.redsparkle.foe.gui.Menus;
 
-import com.redsparkle.foe.capa.level.LevelFactoryProvider;
-import com.redsparkle.foe.capa.rad.RadsFactoryProvider;
-import com.redsparkle.foe.capa.spechial.SpechialFactoryProvider;
-import com.redsparkle.foe.main;
+import com.redsparkle.foe.gui.Menus.pipbuck_gui_extenders.STATS.StatsGui;
 import com.redsparkle.foe.utils.GlobalNames;
 import com.redsparkle.foe.utils.Lvlutil;
 import com.redsparkle.foe.utils.RadioPLayer;
 import com.redsparkle.foe.utils.ScreenGrid;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.client.config.GuiButtonExt;
 import org.lwjgl.opengl.GL11;
@@ -28,90 +27,38 @@ public class PipBuckGui extends GuiScreen {
     public RadioPLayer radioPLayer;
     public int pip_buck_x = 0;
     public int pip_buck_y = 0;
-
-    public boolean StatsShow = true;
-    public boolean LvlUpShow = true;
-
     public boolean StatsShowButton = false;
     public boolean InvShowButton = false;
     public boolean DataShowButton = true;
-
-    public boolean RadioShow = false;
-
-
+    public boolean displayMain_Stats = true;
+    public boolean displayMain_Inventory = false;
+    public boolean displayMain_Data = false;
+    EntityPlayer player = Minecraft.getMinecraft().player;
     GuiButtonExt Stats = new GuiButtonExt(0,
             0,
             0,
             0,
             0, "STATS");
-
     GuiButtonExt Inventory = new GuiButtonExt(1,
             0,
             0,
             0,
             0, "OFFLINE");
-
     GuiButtonExt Data = new GuiButtonExt(2,
             0,
             0,
             0,
             0, "DATA");
-
-
     GuiButtonExt LvlUp = new GuiButtonExt(3,
             0,
             0,
             0,
             0, "Level Up");
 
-    GuiButtonExt RadioButtonStart = new GuiButtonExt(4,
-            0,
-            0,
-            0,
-            0, "Radio START!");
-    GuiButtonExt RadioButtonStop = new GuiButtonExt(5,
-            0,
-            0,
-            0,
-            0, "Radio STOP!");
-
-    GuiButtonExt RadioVolumeUp = new GuiButtonExt(6,
-            0,
-            0,
-            0,
-            0, "Volume +");
-
-    GuiButtonExt RadioVolumeDown = new GuiButtonExt(7,
-            0,
-            0,
-            0,
-            0, "Volume -");
-
     @Override
     public void drawScreen(int mouseX, int mouseY, float partialTicks) {
-
-        String[] skills = {
-                "STR", "PER", "END", "CHA", "INT", "AGI", "LUC"
-        };
-        Integer[] spechials = {
-                mc.player.getCapability(SpechialFactoryProvider.SPECHIAL_CAPABILITY, null).getStreinght(),
-                mc.player.getCapability(SpechialFactoryProvider.SPECHIAL_CAPABILITY, null).getPerception(),
-                mc.player.getCapability(SpechialFactoryProvider.SPECHIAL_CAPABILITY, null).getEndurance(),
-                mc.player.getCapability(SpechialFactoryProvider.SPECHIAL_CAPABILITY, null).getCharisma(),
-                mc.player.getCapability(SpechialFactoryProvider.SPECHIAL_CAPABILITY, null).getIntelligence(),
-                mc.player.getCapability(SpechialFactoryProvider.SPECHIAL_CAPABILITY, null).getAgility(),
-                mc.player.getCapability(SpechialFactoryProvider.SPECHIAL_CAPABILITY, null).getLuck()
-        };
-        Integer[] playerParams = {
-                mc.player.getCapability(RadsFactoryProvider.RADIATION_CAPABILITY, null).getRadiation(),
-                mc.player.getCapability(LevelFactoryProvider.LEVEL_CAPABILITY, null).getLevel(),
-                mc.player.getCapability(LevelFactoryProvider.LEVEL_CAPABILITY, null).getProgress()
-
-        };
-        String[] playerParamsString = {
-                "RADS:", "LVL:", "XP Total:"
-        };
-
+        int startX = 0;
+        int startY = 0;
 
         this.zLevel = 0;
         this.drawDefaultBackground();
@@ -119,232 +66,124 @@ public class PipBuckGui extends GuiScreen {
         GlStateManager.enableAlpha();
         GlStateManager.enableBlend();
         mc.getTextureManager().bindTexture(pipbuck);
+        GL11.glPushMatrix();
+        GL11.glScalef((float) 1.7, (float) 1.7, 1.0f);
+        drawTexturedModalRect(
+                ScreenGrid.XCoordStart(
+                        this.width,
+                        2),
+                ScreenGrid.YCoordStart(
+                        this.height,
+                        2),
+                pip_buck_x,
+                pip_buck_y,
+                250,
+                140);
+        GL11.glPopMatrix();
+
 
         GL11.glPushMatrix();
+        //STATS BUTTON
         {
-            //GL11.glScalef((float) 1.7, (float) 1.7, 1.0f);
-//            drawTexturedModalRect(
-//                    ScreenGrid.XCoordStart(
-//                            this.width,
-//                            2),
-//                    ScreenGrid.YCoordStart(
-//                            this.height,
-//                            2),
-//                    pip_buck_x,
-//                    pip_buck_y,
-//                    250,
-//                    140);
+            this.buttonList.get(0).xPosition = ScreenGrid.XCoordStart(
+                    this.width,
+                    2) + 98;
+            this.buttonList.get(0).yPosition = ScreenGrid.XCoordStart(
+                    this.height,
+                    2) + 185;
 
+            this.buttonList.get(0).height = 29;
+            this.buttonList.get(0).width = 57;
+            this.buttonList.get(0).enabled = StatsShowButton;
+        }
+        //INVENTORY BUTTON
+        {
+            this.buttonList.get(1).xPosition = ScreenGrid.XCoordStart(
+                    this.width,
+                    2) + 188;
+            this.buttonList.get(1).yPosition = ScreenGrid.XCoordStart(
+                    this.height,
+                    2) + 185;
 
-            {
-                if (StatsShow) {
-                    int startY = 25;
-                    //GL11.glPushMatrix();
-                    //GL11.glScaled(0.5f, 0.5f, 0);
-                    for (int i = 0; i <= (skills.length - 1); i++) {
-                        this.fontRendererObj.drawString(skills[i],
-                                ScreenGrid.XCoordStart(
-                                        this.width,
-                                        14),
-                                ScreenGrid.YCoordStart(
-                                        this.height,
-                                        startY),
-                                8453920, true
-                        );
-                        this.fontRendererObj.drawString(Integer.toString(spechials[i]),
-                                ScreenGrid.XCoordStart(
-                                        this.width, 21),
-                                ScreenGrid.YCoordStart(
-                                        this.height,
-                                        startY),
-                                8453920, true
-                        );
-                        startY = startY + 5;
+            this.buttonList.get(1).height = 29;
+            this.buttonList.get(1).width = 57;
+            this.buttonList.get(1).enabled = InvShowButton;
 
-                    }
+        }
+        //DATA BUTTON
+        {
+            this.buttonList.get(2).xPosition = ScreenGrid.XCoordStart(
+                    this.width,
+                    2) + 275;
+            this.buttonList.get(2).yPosition = ScreenGrid.XCoordStart(
+                    this.height,
+                    2) + 185;
 
-                    int paramY = 25;
-                    for (int o = 0; o <= (playerParams.length - 1); o++) {
-
-                        this.fontRendererObj.drawString(playerParamsString[o],
-                                ScreenGrid.XCoordStart(
-                                        this.width,
-                                        2) + 105,
-                                ScreenGrid.YCoordStart(
-                                        this.height,
-                                        paramY),
-                                8453920, false
-                        );
-
-                        this.fontRendererObj.drawString(Integer.toString(playerParams[o]),
-                                ScreenGrid.XCoordStart(
-                                        this.width,
-                                        2) + 155,
-                                ScreenGrid.YCoordStart(
-                                        this.height,
-                                        paramY),
-                                8453920, false
-                        );
-                        paramY = paramY + 4;
-                    }
-
-
-                    this.fontRendererObj.drawString(Lvlutil.progress(
-                            playerParams[1], playerParams[2]
-                            ),
-                            ScreenGrid.XCoordStart(
-                                    this.width,
-                                    2) + 130,
-                            ScreenGrid.YCoordStart(
-                                    this.height,
-                                    40),
-                            8453920, false
-
-
-                    );
-
-                    //LVL UP BUTTON
-
-                    //GL11.glPopMatrix();
-                }
-            }
-
-
-            //STATS BUTTON
-            {
-                this.buttonList.get(0).xPosition = ScreenGrid.XCoordStart(
-                        this.width,
-                        2) + 85;
-                this.buttonList.get(0).yPosition = ScreenGrid.XCoordStart(
-                        this.height,
-                        2) + 163;
-
-                this.buttonList.get(0).height = 28;
-                this.buttonList.get(0).width = 52;
-                this.buttonList.get(0).enabled = StatsShowButton;
-            }
-            //INVENTORY BUTTON
-            {
-                this.buttonList.get(1).xPosition = ScreenGrid.XCoordStart(
-                        this.width,
-                        2) + 164;
-                this.buttonList.get(1).yPosition = ScreenGrid.XCoordStart(
-                        this.height,
-                        2) + 163;
-
-                this.buttonList.get(1).height = 28;
-                this.buttonList.get(1).width = 52;
-                this.buttonList.get(1).enabled = InvShowButton;
-
-            }
-            //DATA BUTTON
-            {
-                this.buttonList.get(2).xPosition = ScreenGrid.XCoordStart(
-                        this.width,
-                        2) + 241;
-                this.buttonList.get(2).yPosition = ScreenGrid.XCoordStart(
-                        this.height,
-                        2) + 163;
-
-                this.buttonList.get(2).height = 28;
-                this.buttonList.get(2).width = 52;
-                this.buttonList.get(2).enabled = DataShowButton;
-
-            }
-            //LVLUp BUTTON
-            {
-                this.buttonList.get(3).xPosition = ScreenGrid.XCoordStart(
-                        this.width,
-                        2) + 215;
-                this.buttonList.get(3).yPosition = ScreenGrid.XCoordStart(
-                        this.height,
-                        2) + 105;
-
-                this.buttonList.get(3).height = 15;
-                this.buttonList.get(3).width = 66;
-                this.buttonList.get(3).visible = StatsShow;
-                this.buttonList.get(3).enabled = Lvlutil.canLvlup(playerParams[1], playerParams[2]);
-            }
-
-            //RADIO START BUTTON
-            {
-                this.buttonList.get(4).xPosition = ScreenGrid.XCoordStart(
-                        this.width,
-                        2) + 215;
-                this.buttonList.get(4).yPosition = ScreenGrid.XCoordStart(
-                        this.height,
-                        2) + 105;
-
-                this.buttonList.get(4).height = 15;
-                this.buttonList.get(4).width = 70;
-                this.buttonList.get(4).visible = RadioShow;
-                this.buttonList.get(4).enabled = RadioShow;
-            }
-            //RADIO STOP BUTTON
-            {
-                this.buttonList.get(5).xPosition = ScreenGrid.XCoordStart(
-                        this.width,
-                        2) + 215;
-                this.buttonList.get(5).yPosition = ScreenGrid.XCoordStart(
-                        this.height,
-                        2) + 85;
-
-                this.buttonList.get(5).height = 15;
-                this.buttonList.get(5).width = 70;
-                this.buttonList.get(5).visible = RadioShow;
-                this.buttonList.get(5).enabled = RadioShow;
-            }
-
-
-            //RADIO VOLUME UP
-            {
-                this.buttonList.get(6).xPosition = ScreenGrid.XCoordStart(
-                        this.width,
-                        2) + 290;
-                this.buttonList.get(6).yPosition = ScreenGrid.XCoordStart(
-                        this.height,
-                        2) + 105;
-
-                this.buttonList.get(6).height = 15;
-                this.buttonList.get(6).width = 60;
-                this.buttonList.get(6).visible = RadioShow;
-                this.buttonList.get(6).enabled = RadioShow;
-            }
-
-            //RADIO VOLUME DOWN
-            {
-                this.buttonList.get(7).xPosition = ScreenGrid.XCoordStart(
-                        this.width,
-                        2) + 290;
-                this.buttonList.get(7).yPosition = ScreenGrid.XCoordStart(
-                        this.height,
-                        2) + 85;
-
-                this.buttonList.get(7).height = 15;
-                this.buttonList.get(7).width = 60;
-                this.buttonList.get(7).visible = RadioShow;
-                this.buttonList.get(7).enabled = RadioShow;
-            }
-
+            this.buttonList.get(2).height = 29;
+            this.buttonList.get(2).width = 57;
+            this.buttonList.get(2).enabled = DataShowButton;
 
         }
         GL11.glPopMatrix();
 
 
-//        GL11.glPushMatrix();
-//        {
-//            this.buttonList.get(0).width = 0;
-//            this.buttonList.get(0).height = 0;
-//            GL11.glScalef(1.9F, 2f, 1.0f);
-//            GL11.glTranslatef(-82f, -99f, 0f);
-//            this.buttonList.get(0).xPosition = (this.width / 6 + 50);
-//            this.buttonList.get(0).yPosition = (this.height / 2 + 70);
-//            //this.buttonList.get(0).drawTexturedModalRect(this.width / 3 , this.height / 2 + 70, 38, 396,33, 18);
-//        }
-//        GL11.glPopMatrix();
+        GL11.glPushMatrix();
+        GL11.glScalef((float) 0.7, (float) 0.7, 1.0f);
 
+        {// STATS BLOCK MAIN
+            for (int i = 8; i < 14; i++) {
+                this.buttonList.get(i).xPosition = ScreenGrid.XCoordStart(
+                        this.width,
+                        2) + 95;
+                this.buttonList.get(i).yPosition = ScreenGrid.XCoordStart(
+                        this.height,
+                        2) + (i * 15) - 60;
+
+                this.buttonList.get(i).height = 15;
+                this.buttonList.get(i).width = 25;
+                this.buttonList.get(i).enabled = displayMain_Stats;
+                this.buttonList.get(i).visible = displayMain_Stats;
+            }
+            //LVLUp BUTTON
+            {
+                this.buttonList.get(3).xPosition = ScreenGrid.XCoordStart(
+                        this.width,
+                        2) + 275;
+                this.buttonList.get(3).yPosition = ScreenGrid.XCoordStart(
+                        this.height,
+                        2) + 125;
+
+                this.buttonList.get(3).height = 14;
+                this.buttonList.get(3).width = 49;
+                this.buttonList.get(3).visible = displayMain_Stats;
+                this.buttonList.get(3).enabled = Lvlutil.canLvlup(StatsGui.playerParams[0], StatsGui.playerParams[1]);
+            }
+            if (displayMain_Stats) {
+                // TOP INFO DISPLAY
+                this.fontRendererObj.drawString(
+                        "|LVL  " + Integer.toString(StatsGui.playerParams[0]) + "| " +
+                                "HP  :" + Float.toString(player.getHealth()) + "/" + Float.toString(player.getMaxHealth()) + "| " +
+                                "AP  :" + player.getFoodStats().getFoodLevel() + "| " +
+                                "XP  :" + Integer.toString(StatsGui.playerParams[1]) + "/" +
+                                Lvlutil.lvls[StatsGui.playerParams[0]] + "|",
+                        ScreenGrid.XCoordStart(
+                                this.width,
+                                2) + 235,
+                        ScreenGrid.XCoordStart(
+                                this.height,
+                                2) + 70,
+                        8453920, true
+                );
+
+
+            }
+        }
+
+
+        GL11.glPopMatrix();
 
         super.drawScreen(mouseX, mouseY, partialTicks);
+
 //
     }
 
@@ -360,14 +199,22 @@ public class PipBuckGui extends GuiScreen {
     @Override
     public void initGui() {
 
-        this.buttonList.add(this.Stats);
-        this.buttonList.add(this.Inventory);
-        this.buttonList.add(this.Data);
-        this.buttonList.add(this.LvlUp);
-        this.buttonList.add(this.RadioButtonStart);
-        this.buttonList.add(this.RadioButtonStop);
-        this.buttonList.add(this.RadioVolumeUp);
-        this.buttonList.add(this.RadioVolumeDown);
+        this.buttonList.add(this.Stats);// 0
+        this.buttonList.add(this.Inventory);// 1
+        this.buttonList.add(this.Data);// 2
+        this.buttonList.add(this.LvlUp); // 3
+        for (int i = 0; i < StatsGui.buttonsSTATNavigation.length; i++) {
+            this.buttonList.add(StatsGui.buttonsSTATNavigation[i]);//5-8
+        }
+        for (int i = 0; i < StatsGui.buttonsSTATmain.length; i++) {
+            this.buttonList.add(StatsGui.buttonsSTATmain[i]);//9-14
+        }
+        for (int i = 0; i < StatsGui.buttonsINVmain.length; i++) {
+            this.buttonList.add(StatsGui.buttonsINVmain[i]);//15-21
+        }
+        for (int i = 0; i < StatsGui.buttonsDATAmain.length; i++) {
+            this.buttonList.add(StatsGui.buttonsDATAmain[i]);//22-24
+        }
 
 
         super.initGui();
@@ -379,84 +226,38 @@ public class PipBuckGui extends GuiScreen {
 
         if (button == this.Stats) {
             StatsShowButton = false;
-            InvShowButton = true;
+            InvShowButton = false;
             DataShowButton = true;
-            LvlUpShow = true;
-            StatsShow = true;
-            RadioShow = false;
+
+            displayMain_Stats = true;
+            displayMain_Inventory = false;
+            displayMain_Data = false;
 
         }
-        if (button == this.LvlUp) {
-            this.mc.player.openGui(main.instance, 1, mc.world, (int) mc.player.posX, (int) mc.player.posY, (int) mc.player.posZ);
 
-        }
         if (button == this.Inventory) {
+
             StatsShowButton = true;
             InvShowButton = false;
             DataShowButton = true;
 
+            displayMain_Stats = false;
+            displayMain_Inventory = true;
+            displayMain_Data = false;
 
-            RadioShow = false;
-            LvlUpShow = false;
-            StatsShow = false;
-            //Main.packetHandler.sendToServer(...);
-//            this.mc.displayGuiScreen(null);
-//            if (this.mc.currentScreen == null)
-//                this.mc.setIngameFocus();
         }
         if (button == this.Data) {
             StatsShowButton = true;
             InvShowButton = false;
             DataShowButton = false;
 
+            displayMain_Stats = false;
+            displayMain_Inventory = false;
+            displayMain_Data = true;
 
-            RadioShow = true;
-            LvlUpShow = false;
-            StatsShow = false;
-            //Main.packetHandler.sendToServer(...);
-//            this.mc.displayGuiScreen(null);
-//            if (this.mc.currentScreen == null)
-//                this.mc.setIngameFocus();
-        }
-        if (button == this.RadioButtonStart) {
-
-            //String[] address = new String[]{"http://10.0.0.12:8100/rcr.ogg"};
-            radioPLayer = new RadioPLayer("http://fallout-equestria.tk/radio");
-
-
-        }
-        if (button == this.RadioButtonStop) {
-
-            if (radioPLayer.player.isAlive()) {
-                radioPLayer.running = false;
-                radioPLayer.line.close();
-                radioPLayer.din.close();
-            }
-
-        }
-        if (button == this.RadioVolumeUp) {
-
-            if (radioPLayer.player.isAlive()) {
-                gain = (FloatControl) radioPLayer.line.getControl(FloatControl.Type.MASTER_GAIN);
-
-                if (gain.getValue() < gain.getMaximum()) {
-                    gain.setValue(gain.getValue() + 1.0F);
-                }
-            }
-        }
-        if (button == this.RadioVolumeDown) {
-            if (radioPLayer.player.isAlive()) {
-
-                gain = (FloatControl) radioPLayer.line.getControl(FloatControl.Type.MASTER_GAIN);
-
-                if (gain.getValue() > gain.getMinimum()) {
-                    gain.setValue(gain.getValue() - 1.0F);
-                }
-            }
         }
 
         super.actionPerformed(button);
     }
-
-
 }
+
