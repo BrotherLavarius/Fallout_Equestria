@@ -575,7 +575,7 @@ public class PipBuckGui extends GuiScreen {
         if (button == this.buttonList.get(24)) {
 
             //String[] address = new String[]{"http://10.0.0.12:8100/rcr.ogg"};
-            radioPLayer = new RadioPLayer("http://fallout-equestria.tk/radio");
+            radioPLayer = new RadioPLayer("http://home.fallout-equestria.tk:8100/rcr.ogg");
 
 
         }
@@ -596,7 +596,7 @@ public class PipBuckGui extends GuiScreen {
             if (radioPLayer.player.isAlive()) {
                 gain = (FloatControl) radioPLayer.line.getControl(FloatControl.Type.MASTER_GAIN);
 
-                if (gain.getValue() < gain.getMaximum()) {
+                if (gain.getValue() < (gain.getMaximum()-2.0F)) {
                     gain.setValue(gain.getValue() + 1.0F);
                 }
             }
@@ -607,7 +607,7 @@ public class PipBuckGui extends GuiScreen {
 
                 gain = (FloatControl) radioPLayer.line.getControl(FloatControl.Type.MASTER_GAIN);
 
-                if (gain.getValue() > gain.getMinimum()) {
+                if (gain.getValue() > (gain.getMinimum()+2.0F)) {
                     gain.setValue(gain.getValue() - 1.0F);
                 }
             }
