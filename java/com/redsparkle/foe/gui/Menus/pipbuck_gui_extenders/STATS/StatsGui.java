@@ -2,8 +2,8 @@ package com.redsparkle.foe.gui.Menus.pipbuck_gui_extenders.STATS;
 
 import com.redsparkle.foe.capa.level.LevelFactoryProvider;
 import com.redsparkle.foe.capa.spechial.SpechialFactoryProvider;
+import com.redsparkle.foe.utils.gui.GuiButtonExtFallout;
 import net.minecraft.client.Minecraft;
-import net.minecraftforge.fml.client.config.GuiButtonExt;
 
 /**
  * Created by hoijima on 09.05.17.
@@ -12,121 +12,66 @@ public class StatsGui {
     public static String[] skills = {
             "STR", "PER", "END", "CHA", "INT", "AGI", "LUC"
     };
-    public static GuiButtonExt STATUS = new GuiButtonExt(5,
+    public static GuiButtonExtFallout STATUS = new GuiButtonExtFallout(5,
             0,
             0,
             0,
             0, "Status");
-    public static GuiButtonExt SPECHIAL = new GuiButtonExt(6,
+    public static GuiButtonExtFallout SPECIAL = new GuiButtonExtFallout(6,
             0,
             0,
             0,
-            0, "S.P.E.C.H.I.A.L");
-    public static GuiButtonExt SKILLS = new GuiButtonExt(7,
+            0, "SPECIAL");
+    public static GuiButtonExtFallout SKILLS = new GuiButtonExtFallout(7,
             0,
             0,
             0,
             0, "Skills");
-    public static GuiButtonExt PERKS = new GuiButtonExt(8,
+    public static GuiButtonExtFallout PERKS = new GuiButtonExtFallout(8,
             0,
             0,
             0,
             0, "Perks");
-    public static final GuiButtonExt[] buttonsSTATNavigation = new GuiButtonExt[]{
-            STATUS, SPECHIAL, SKILLS, PERKS
+    public static final GuiButtonExtFallout[] buttonsSTATNavigation = new GuiButtonExtFallout[]{
+            STATUS, SPECIAL, SKILLS, PERKS
 
     };
-    public static GuiButtonExt CND = new GuiButtonExt(10,
+    public static GuiButtonExtFallout CND = new GuiButtonExtFallout(10,
             0,
             0,
             0,
             0, "CND");
-    public static GuiButtonExt RAD = new GuiButtonExt(11,
+    public static GuiButtonExtFallout RAD = new GuiButtonExtFallout(11,
             0,
             0,
             0,
             0, "RAD");
-    public static GuiButtonExt EFF = new GuiButtonExt(12,
+    public static GuiButtonExtFallout EFF = new GuiButtonExtFallout(12,
             0,
             0,
             0,
             0, "EFF");
-    public static GuiButtonExt H2O = new GuiButtonExt(13,
+    public static GuiButtonExtFallout H2O = new GuiButtonExtFallout(13,
             0,
             0,
             0,
             0, "H2O");
-    public static GuiButtonExt FOD = new GuiButtonExt(14,
+    public static GuiButtonExtFallout FOD = new GuiButtonExtFallout(14,
             0,
             0,
             0,
             0, "FOD");
-    public static GuiButtonExt SLP = new GuiButtonExt(15,
+    public static GuiButtonExtFallout SLP = new GuiButtonExtFallout(15,
             0,
             0,
             0,
             0, "SLP");
-    public static final GuiButtonExt[] buttonsSTATmain = new GuiButtonExt[]{
+    public static final GuiButtonExtFallout[] buttonsSTATmain = new GuiButtonExtFallout[]{
             CND, RAD, EFF, H2O, FOD, SLP
 
     };
-    public static GuiButtonExt WEAPONS = new GuiButtonExt(20,
-            0,
-            0,
-            0,
-            0, "Weapons");
-    public static GuiButtonExt Apparel = new GuiButtonExt(21,
-            0,
-            0,
-            0,
-            0, "Apparel");
-    public static GuiButtonExt Aid = new GuiButtonExt(22,
-            0,
-            0,
-            0,
-            0, "Aid");
-    public static GuiButtonExt MiscInv = new GuiButtonExt(23,
-            0,
-            0,
-            0,
-            0, "Misc");
-    public static GuiButtonExt Ammo = new GuiButtonExt(24,
-            0,
-            0,
-            0,
-            0, "Ammo");
-    public static GuiButtonExt Mod = new GuiButtonExt(25,
-            0,
-            0,
-            0,
-            0, "Ammo");
-    public static GuiButtonExt Repair = new GuiButtonExt(26,
-            0,
-            0,
-            0,
-            0, "Repair");
-    public static final GuiButtonExt[] buttonsINVmain = new GuiButtonExt[]{
-            WEAPONS, Apparel, Aid, Ammo, MiscInv, Mod, Repair
 
-    };
-    public static GuiButtonExt World_Map = new GuiButtonExt(30,
-            0,
-            0,
-            0,
-            0, "World Map");
-    public static GuiButtonExt Misc = new GuiButtonExt(31,
-            0,
-            0,
-            0,
-            0, "Misc");
-    public static GuiButtonExt Radio = new GuiButtonExt(32,
-            0,
-            0,
-            0,
-            0, "Radio");
-    public static final GuiButtonExt[] buttonsDATAmain = new GuiButtonExt[]{
-            World_Map, Misc, Radio
-    };
+
     static Minecraft mc = Minecraft.getMinecraft();
     public static Integer[] spechials = {
             mc.player.getCapability(SpechialFactoryProvider.SPECHIAL_CAPABILITY, null).getStreinght(),

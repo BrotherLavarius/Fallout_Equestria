@@ -2,8 +2,8 @@ package com.redsparkle.foe.handlers;
 
 import com.redsparkle.foe.gui.Inventory_Crafting.Saddlebags;
 import com.redsparkle.foe.gui.Menus.PipBuckGui;
-import com.redsparkle.foe.gui.Menus.pipbuck_gui_extenders.DataGui;
-import com.redsparkle.foe.gui.Menus.pipbuck_gui_extenders.InventoryGui;
+import com.redsparkle.foe.gui.Menus.pipbuck_gui_extenders.DATA.DataGui;
+import com.redsparkle.foe.gui.Menus.pipbuck_gui_extenders.ITEMS.InventoryGui;
 import com.redsparkle.foe.gui.general.StatsGuiFirstJoin;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
