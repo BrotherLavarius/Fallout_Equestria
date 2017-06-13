@@ -41,7 +41,16 @@ public class DedicatedServerProxy extends CommonProxy {
             spechial.setIntelligence(message.Intelligence);
             spechial.setAgility(message.Agility);
             spechial.setLuck(message.Luck);
-            playerEntity.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(20D + (10*message.Endurance));
+
+
+//            ILevelCapability level = LevelFactoryProvider.instanceFor(playerEntity);
+//
+//            playerEntity.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(
+//                        20D +
+//                                (15*message.Streinght + (2 *message.Endurance) +
+//                                        level.getLevel()*(Math.round(message.Endurance/2)+2)
+//                                )
+//                );
             main.simpleNetworkWrapper.sendTo(new MessageUpdateClientServerSPECHIAL(spechial), playerEntity);
 
             /** DEBUG MESSAGE ENABLER

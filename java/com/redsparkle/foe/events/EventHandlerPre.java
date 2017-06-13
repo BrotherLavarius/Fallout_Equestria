@@ -12,6 +12,7 @@ import com.redsparkle.foe.capa.skills.SkillsFactoryProvider;
 import com.redsparkle.foe.capa.spechial.ISpechialCapability;
 import com.redsparkle.foe.capa.spechial.SpechialFactoryProvider;
 import com.redsparkle.foe.main;
+import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -122,7 +123,6 @@ public class EventHandlerPre {
     @SubscribeEvent
     public void onYOUDIEEED(LivingDeathEvent event){
 
-
     }
 
 
@@ -130,6 +130,7 @@ public class EventHandlerPre {
 
     private void updatePlayerSpechial(EntityPlayer player) {
         if (!player.world.isRemote) {
+            ILevelCapability level = player.getCapability(LEVEL_CAPABILITY, null);
             ISpechialCapability spe = player.getCapability(SpechialFactoryProvider.SPECHIAL_CAPABILITY,null);
             spe.setAgility(spe.getAgility());
             spe.setCharisma(spe.getCharisma());
@@ -138,6 +139,7 @@ public class EventHandlerPre {
             spe.setLuck(spe.getLuck());
             spe.setPerception(spe.getPerception());
             spe.setStreinght(spe.getStreinght());
+
             spe.updateClient(player);
         }
     }
