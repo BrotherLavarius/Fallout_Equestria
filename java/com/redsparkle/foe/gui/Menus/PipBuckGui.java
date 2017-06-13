@@ -4,6 +4,7 @@ import com.redsparkle.foe.Init.ItemInit;
 import com.redsparkle.foe.gui.Menus.pipbuck_gui_extenders.DATA.DataGui;
 import com.redsparkle.foe.gui.Menus.pipbuck_gui_extenders.ITEMS.InventoryGui;
 import com.redsparkle.foe.gui.Menus.pipbuck_gui_extenders.STATS.StatsGui;
+import com.redsparkle.foe.main;
 import com.redsparkle.foe.utils.GlobalNames;
 import com.redsparkle.foe.utils.Lvlutil;
 import com.redsparkle.foe.utils.RadioPLayer;
@@ -274,6 +275,54 @@ public class PipBuckGui extends GuiScreen {
                     }
                 }
                 //---------------------NAV BLOCK DATA-------------------END
+                //RADIO START BUTTON
+                {
+                    for(int radio=24; radio<26;radio++) {
+                        this.buttonList.get(radio).xPosition = ScreenGrid.XCoordStart(
+                                this.width,
+                                2) + 125;
+                        this.buttonList.get(radio).yPosition = ScreenGrid.XCoordStart(
+                                this.height,
+                                2) + (radio * 15) - 290;
+
+                        this.buttonList.get(radio).height = 15;
+                        this.buttonList.get(radio).width = 70;
+                        if (Data_Radio) {
+                            this.buttonList.get(radio).visible = true;
+                            this.buttonList.get(radio).enabled = true;
+                        } else {
+                            this.buttonList.get(radio).visible = false;
+                            this.buttonList.get(radio).enabled = false;
+                        }
+                    }
+                }
+                //RADIO STOP BUTTON
+
+
+
+                //RADIO VOLUME UP
+                {
+                    for(int vol=26;vol<= 27;vol++) {
+                        this.buttonList.get(vol).xPosition = ScreenGrid.XCoordStart(
+                                this.width,
+                                2) + 178;
+                        this.buttonList.get(vol).yPosition = ScreenGrid.XCoordStart(
+                                this.height,
+                                2) + (vol * 15) - 290;
+
+                        this.buttonList.get(vol).height = 15;
+                        this.buttonList.get(vol).width = 60;
+                        if (Data_Radio) {
+                            this.buttonList.get(vol).visible = true;
+                            this.buttonList.get(vol).enabled = true;
+                        } else {
+                            this.buttonList.get(vol).visible = false;
+                            this.buttonList.get(vol).enabled = false;
+                        }
+                    }
+                }
+
+
             }
         }
 
@@ -418,48 +467,120 @@ public class PipBuckGui extends GuiScreen {
                 Data_Radio = false;
             }
         }
+        //LvlUp button
+        if (button == this.buttonList.get(3)) {
+            this.mc.player.openGui(main.instance, 1, mc.world, (int) mc.player.posX, (int) mc.player.posY, (int) mc.player.posZ);
 
+        }
         //buttonsSTATNavigation 5-8
+        if (button == this.buttonList.get(4)) {
+            Stats_STATUS = true;
+            Stats_SPECHIAL = false;
+            Stats_SKILLS = false;
+            Stats_PERKS = false;
+        }
         if (button == this.buttonList.get(5)) {
+            Stats_STATUS = false;
+            Stats_SPECHIAL = true;
+            Stats_SKILLS = false;
+            Stats_PERKS = false;
         }
         if (button == this.buttonList.get(6)) {
+            Stats_STATUS = false;
+            Stats_SPECHIAL = false;
+            Stats_SKILLS = true;
+            Stats_PERKS = false;
         }
         if (button == this.buttonList.get(7)) {
-        }
-        if (button == this.buttonList.get(8)) {
+            Stats_STATUS = false;
+            Stats_SPECHIAL = false;
+            Stats_SKILLS = false;
+            Stats_PERKS = true;
         }
         //buttonsINVmain 15-21
+        if (button == this.buttonList.get(14)) {
+            Inventory_WEAPONS = true;
+            Inventory_Apparel = false;
+            Inventory_Aid = false;
+            Inventory_Ammo = false;
+            Inventory_MiscInv = false;
+        }
         if (button == this.buttonList.get(15)) {
+            Inventory_WEAPONS = false;
+            Inventory_Apparel = true;
+            Inventory_Aid = false;
+            Inventory_Ammo = false;
+            Inventory_MiscInv = false;
         }
         if (button == this.buttonList.get(16)) {
+            Inventory_WEAPONS = false;
+            Inventory_Apparel = false;
+            Inventory_Aid = true;
+            Inventory_Ammo = false;
+            Inventory_MiscInv = false;
         }
         if (button == this.buttonList.get(17)) {
+            Inventory_WEAPONS = false;
+            Inventory_Apparel = false;
+            Inventory_Aid = false;
+            Inventory_Ammo = true;
+            Inventory_MiscInv = false;
         }
         if (button == this.buttonList.get(18)) {
-        }
-        if (button == this.buttonList.get(19)) {
-        }
-        if (button == this.buttonList.get(20)) {
-        }
-        if (button == this.buttonList.get(21)) {
-        }
-        //buttonsDATAmain 22-24
-        if (button == this.buttonList.get(22)) {
-        }
-        if (button == this.buttonList.get(23)) {
-        }
-        if (button == this.buttonList.get(24)) {
+            Inventory_WEAPONS = false;
+            Inventory_Apparel = false;
+            Inventory_Aid = false;
+            Inventory_Ammo = false;
+            Inventory_MiscInv = true;
         }
 
-//RadioButtonStart 25-28
-        if (button == this.buttonList.get(25)) {
+        //MOD
+        if (button == this.buttonList.get(19)) {
+            Inventory_WEAPONS = false;
+            Inventory_Apparel = false;
+            Inventory_Aid = false;
+            Inventory_Ammo = false;
+            Inventory_MiscInv = false;
+        }
+        //Repair
+        if (button == this.buttonList.get(20)) {
+            Inventory_WEAPONS = false;
+            Inventory_Apparel = false;
+            Inventory_Aid = false;
+            Inventory_Ammo = false;
+            Inventory_MiscInv = false;
+        }
+
+
+        //buttonsDATAmain 21-23
+        if (button == this.buttonList.get(21)) {
+            Data_World_Map = true;
+            Data_Misc = false;
+            Data_Radio = false;
+        }
+        if (button == this.buttonList.get(22)) {
+            Data_World_Map = false;
+            Data_Misc = true;
+            Data_Radio = false;
+        }
+        if (button == this.buttonList.get(23)) {
+            Data_World_Map = false;
+            Data_Misc = false;
+            Data_Radio = true;
+
+        }
+
+        //RadioButtonStart 24-27
+        //Radio start
+        if (button == this.buttonList.get(24)) {
 
             //String[] address = new String[]{"http://10.0.0.12:8100/rcr.ogg"};
             radioPLayer = new RadioPLayer("http://fallout-equestria.tk/radio");
 
 
         }
-        if (button == this.buttonList.get(26)) {
+        //Radio stop
+        if (button == this.buttonList.get(25)) {
 
             if (radioPLayer.player.isAlive()) {
                 radioPLayer.running = false;
@@ -468,7 +589,9 @@ public class PipBuckGui extends GuiScreen {
             }
 
         }
-        if (button == this.buttonList.get(27)) {
+        //Vol up
+
+        if (button == this.buttonList.get(26)) {
 
             if (radioPLayer.player.isAlive()) {
                 gain = (FloatControl) radioPLayer.line.getControl(FloatControl.Type.MASTER_GAIN);
@@ -478,7 +601,8 @@ public class PipBuckGui extends GuiScreen {
                 }
             }
         }
-        if (button == this.buttonList.get(28)) {
+        //Vol down
+        if (button == this.buttonList.get(27)) {
             if (radioPLayer.player.isAlive()) {
 
                 gain = (FloatControl) radioPLayer.line.getControl(FloatControl.Type.MASTER_GAIN);

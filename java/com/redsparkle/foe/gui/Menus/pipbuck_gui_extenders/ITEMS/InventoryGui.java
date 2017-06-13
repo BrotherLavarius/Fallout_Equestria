@@ -1,47 +1,47 @@
 package com.redsparkle.foe.gui.Menus.pipbuck_gui_extenders.ITEMS;
 
-import net.minecraftforge.fml.client.config.GuiButtonExt;
+import com.redsparkle.foe.utils.gui.GuiButtonExtFallout;
 
 /**
  * Created by hoijima on 09.05.17.
  */
 public class InventoryGui {
-    public static GuiButtonExt WEAPONS = new GuiButtonExt(20,
+    public static GuiButtonExtFallout WEAPONS = new GuiButtonExtFallout(20,
             0,
             0,
             0,
             0, "Weapons");
-    public static GuiButtonExt Apparel = new GuiButtonExt(21,
+    public static GuiButtonExtFallout Apparel = new GuiButtonExtFallout(21,
             0,
             0,
             0,
             0, "Apparel");
-    public static GuiButtonExt Aid = new GuiButtonExt(22,
+    public static GuiButtonExtFallout Aid = new GuiButtonExtFallout(22,
             0,
             0,
             0,
             0, "Aid");
-    public static GuiButtonExt MiscInv = new GuiButtonExt(23,
+    public static GuiButtonExtFallout MiscInv = new GuiButtonExtFallout(23,
             0,
             0,
             0,
             0, "Misc");
-    public static GuiButtonExt Ammo = new GuiButtonExt(24,
+    public static GuiButtonExtFallout Ammo = new GuiButtonExtFallout(24,
             0,
             0,
             0,
             0, "Ammo");
-    public static GuiButtonExt Mod = new GuiButtonExt(25,
+    public static GuiButtonExtFallout Mod = new GuiButtonExtFallout(25,
             0,
             0,
             0,
             0, "Ammo");
-    public static GuiButtonExt Repair = new GuiButtonExt(26,
+    public static GuiButtonExtFallout Repair = new GuiButtonExtFallout(26,
             0,
             0,
             0,
             0, "Repair");
-    public static final GuiButtonExt[] buttonsINVmain = new GuiButtonExt[]{
+    public static final GuiButtonExtFallout[] buttonsINVmain = new GuiButtonExtFallout[]{
             WEAPONS, Apparel, Aid, Ammo, MiscInv, Mod, Repair
 
     };
