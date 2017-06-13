@@ -25,31 +25,44 @@ public class DataGui {
             World_Map, Misc, Radio
     };
 
-    public static GuiButtonExtFallout RadioButtonStart = new GuiButtonExtFallout(33,
+    public static GuiButtonExtFallout RadioWasteland = new GuiButtonExtFallout(33,
             0,
             0,
             0,
-            0, "Radio START!");
-    public static GuiButtonExtFallout RadioButtonStop = new GuiButtonExtFallout(34,
+            0, "Wasteland Radio");
+    public static GuiButtonExtFallout RadioManeStream = new GuiButtonExtFallout(34,
+            0,
+            0,
+            0,
+            0, "Mane Stream");
+    public static GuiButtonExtFallout RadioBrony = new GuiButtonExtFallout(335,
+            0,
+            0,
+            0,
+            0, "Radio Brony");
+    public static GuiButtonExtFallout RadioButtonStop = new GuiButtonExtFallout(36,
             0,
             0,
             0,
             0, "Radio STOP!");
 
-    public static GuiButtonExtFallout RadioVolumeUp = new GuiButtonExtFallout(35,
+    public static GuiButtonExtFallout RadioVolumeUp = new GuiButtonExtFallout(37,
             0,
             0,
             0,
             0, "Volume +");
 
-    public static GuiButtonExtFallout RadioVolumeDown = new GuiButtonExtFallout(36,
+    public static GuiButtonExtFallout RadioVolumeDown = new GuiButtonExtFallout(38,
             0,
             0,
             0,
             0, "Volume -");
 
     public static final GuiButtonExtFallout[] buttonsDATARadio = new GuiButtonExtFallout[]{
-            RadioButtonStart, RadioButtonStop, RadioVolumeUp, RadioVolumeDown
+
+            RadioWasteland,
+            RadioManeStream,
+            RadioBrony , RadioButtonStop, RadioVolumeUp, RadioVolumeDown
     };
 
 }

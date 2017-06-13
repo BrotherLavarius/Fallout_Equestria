@@ -1,9 +1,6 @@
 package com.redsparkle.foe.gui.Menus.pipbuck_gui_extenders.STATS;
 
-import com.redsparkle.foe.capa.level.LevelFactoryProvider;
-import com.redsparkle.foe.capa.spechial.SpechialFactoryProvider;
 import com.redsparkle.foe.utils.gui.GuiButtonExtFallout;
-import net.minecraft.client.Minecraft;
 
 /**
  * Created by hoijima on 09.05.17.
@@ -72,21 +69,7 @@ public class StatsGui {
     };
 
 
-    static Minecraft mc = Minecraft.getMinecraft();
-    public static Integer[] spechials = {
-            mc.player.getCapability(SpechialFactoryProvider.SPECHIAL_CAPABILITY, null).getStreinght(),
-            mc.player.getCapability(SpechialFactoryProvider.SPECHIAL_CAPABILITY, null).getPerception(),
-            mc.player.getCapability(SpechialFactoryProvider.SPECHIAL_CAPABILITY, null).getEndurance(),
-            mc.player.getCapability(SpechialFactoryProvider.SPECHIAL_CAPABILITY, null).getCharisma(),
-            mc.player.getCapability(SpechialFactoryProvider.SPECHIAL_CAPABILITY, null).getIntelligence(),
-            mc.player.getCapability(SpechialFactoryProvider.SPECHIAL_CAPABILITY, null).getAgility(),
-            mc.player.getCapability(SpechialFactoryProvider.SPECHIAL_CAPABILITY, null).getLuck()
-    };
-    public static Integer[] playerParams = {
-            mc.player.getCapability(LevelFactoryProvider.LEVEL_CAPABILITY, null).getLevel(),
-            mc.player.getCapability(LevelFactoryProvider.LEVEL_CAPABILITY, null).getProgress()
 
-    };
 
 
 }

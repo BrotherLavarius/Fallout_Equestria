@@ -1,6 +1,8 @@
 package com.redsparkle.foe.gui.Menus;
 
 import com.redsparkle.foe.Init.ItemInit;
+import com.redsparkle.foe.capa.level.LevelFactoryProvider;
+import com.redsparkle.foe.capa.spechial.SpechialFactoryProvider;
 import com.redsparkle.foe.gui.Menus.pipbuck_gui_extenders.DATA.DataGui;
 import com.redsparkle.foe.gui.Menus.pipbuck_gui_extenders.ITEMS.InventoryGui;
 import com.redsparkle.foe.gui.Menus.pipbuck_gui_extenders.STATS.StatsGui;
@@ -61,7 +63,8 @@ public class PipBuckGui extends GuiScreen {
     public boolean Data_Misc = false;
     public boolean Data_Radio = false;
 
-
+    public boolean Radio_isOff= true;
+    public boolean Radio_stopVisible= false;
 
 
     EntityPlayer player = Minecraft.getMinecraft().player;
@@ -88,6 +91,24 @@ public class PipBuckGui extends GuiScreen {
 
     @Override
     public void drawScreen(int mouseX, int mouseY, float partialTicks) {
+        Minecraft mc = Minecraft.getMinecraft();
+        Integer[] spechials = {
+                mc.player.getCapability(SpechialFactoryProvider.SPECHIAL_CAPABILITY, null).getStreinght(),
+                mc.player.getCapability(SpechialFactoryProvider.SPECHIAL_CAPABILITY, null).getPerception(),
+                mc.player.getCapability(SpechialFactoryProvider.SPECHIAL_CAPABILITY, null).getEndurance(),
+                mc.player.getCapability(SpechialFactoryProvider.SPECHIAL_CAPABILITY, null).getCharisma(),
+                mc.player.getCapability(SpechialFactoryProvider.SPECHIAL_CAPABILITY, null).getIntelligence(),
+                mc.player.getCapability(SpechialFactoryProvider.SPECHIAL_CAPABILITY, null).getAgility(),
+                mc.player.getCapability(SpechialFactoryProvider.SPECHIAL_CAPABILITY, null).getLuck()
+        };
+         Integer[] playerParams = {
+                mc.player.getCapability(LevelFactoryProvider.LEVEL_CAPABILITY, null).getLevel(),
+                mc.player.getCapability(LevelFactoryProvider.LEVEL_CAPABILITY, null).getProgress()
+
+        };
+
+
+
         int startX = 0;
         int startY = 0;
         Item pipbuckI = ItemInit.pipbuck;
@@ -198,56 +219,74 @@ public class PipBuckGui extends GuiScreen {
                 this.buttonList.get(3).width = 49;
                 if (Stats_STATUS) {
                     this.buttonList.get(3).visible = true;
-                    this.buttonList.get(3).enabled = Lvlutil.canLvlup(StatsGui.playerParams[0], StatsGui.playerParams[1]);
+                    this.buttonList.get(3).enabled = Lvlutil.canLvlup(playerParams[0], playerParams[1]);
                 } else {
                     this.buttonList.get(3).visible = false;
                     this.buttonList.get(3).enabled = false;
                 }
 
             }
-            if (Stats_STATUS) {
-                // TOP INFO DISPLAY
-                this.fontRendererObj.drawString(
-                        "|LVL  " + Integer.toString(StatsGui.playerParams[0]) + "| " +
-                                "HP  :" + Float.toString(player.getHealth()) + "/" + Float.toString(player.getMaxHealth()) + "| " +
-                                "AP  :" + player.getFoodStats().getFoodLevel() + "| " +
-                                "XP  :" + Integer.toString(StatsGui.playerParams[1]) + "/" +
-                                Lvlutil.lvls[StatsGui.playerParams[0]] + "|",
-                        ScreenGrid.XCoordStart(
-                                this.width,
-                                2) + 195,
-                        ScreenGrid.XCoordStart(
-                                this.height,
-                                2) + 70,
-                        15465844, true
-                );
+            {
+                if (Stats_STATUS) {
+                    // TOP INFO DISPLAY
+                    this.fontRendererObj.drawString(
+                            "|LVL  " + Integer.toString(playerParams[0]) + "| " +
+                                    "HP  :" + Float.toString(player.getHealth()) + "/" + Float.toString(player.getMaxHealth()) + "| " +
+                                    "AP  :" + player.getFoodStats().getFoodLevel() + "| " +
+                                    "XP  :" + Integer.toString(playerParams[1]) + "/" +
+                                    Lvlutil.lvls[playerParams[0]] + "|",
+                            ScreenGrid.XCoordStart(
+                                    this.width,
+                                    2) + 195,
+                            ScreenGrid.XCoordStart(
+                                    this.height,
+                                    2) + 70,
+                            15465844, true
+                    );
 
-                this.fontRendererObj.drawString(
-                        player.getDisplayNameString() + " - " + Integer.toString(StatsGui.playerParams[0]),
-                        ScreenGrid.XCoordStart(
-                                this.width,
-                                2) + 245,
-                        ScreenGrid.XCoordStart(
-                                this.height,
-                                2) + 90,
-                        15465844, true
-                );
+                    this.fontRendererObj.drawString(
+                            player.getDisplayNameString() + " - " + Integer.toString(playerParams[0]),
+                            ScreenGrid.XCoordStart(
+                                    this.width,
+                                    2) + 245,
+                            ScreenGrid.XCoordStart(
+                                    this.height,
+                                    2) + 90,
+                            15465844, true
+                    );
 
-                mc.getTextureManager().bindTexture(pipbuck);
-                GL11.glPushMatrix();
-                GL11.glScalef((float) 2, (float) 2, 1.0f);
-                drawTexturedModalRect(
-                        ScreenGrid.XCoordStart(
-                                this.width,
-                                2) + 125,
-                        ScreenGrid.YCoordStart(
-                                this.height,
-                                2) + 45,
-                        pip_buck_x + 135,
-                        pip_buck_y + 145,
-                        40,
-                        55);
-                GL11.glPopMatrix();
+                    mc.getTextureManager().bindTexture(pipbuck);
+                    GL11.glPushMatrix();
+                    GL11.glScalef((float) 2, (float) 2, 1.0f);
+                    drawTexturedModalRect(
+                            ScreenGrid.XCoordStart(
+                                    this.width,
+                                    2) + 125,
+                            ScreenGrid.YCoordStart(
+                                    this.height,
+                                    2) + 45,
+                            pip_buck_x + 135,
+                            pip_buck_y + 145,
+                            40,
+                            55);
+                    GL11.glPopMatrix();
+                }
+                if(Stats_SPECHIAL){
+                    for(int spechial=0; spechial < (StatsGui.skills.length-1);spechial++){
+                        this.fontRendererObj.drawString(
+                                StatsGui.skills[spechial] + " : " + Integer.toString(spechials[spechial]),
+                                ScreenGrid.XCoordStart(
+                                        this.width,
+                                        2) + 165,
+                                ScreenGrid.XCoordStart(
+                                        this.height,
+                                        2) + (spechial* 15)+ 85,
+                                15465844, true
+                        );
+                    }
+                }
+                if(Stats_SKILLS){}
+                if(Stats_PERKS){}
 
             }
 
@@ -275,40 +314,63 @@ public class PipBuckGui extends GuiScreen {
                     }
                 }
                 //---------------------NAV BLOCK DATA-------------------END
+
+                {// MAP
+                    if(Data_World_Map){
+                        //ItemMap map = new ItemMap(Items.FILLED_MAP);
+                        //ItemMap.setupNewMap();
+                    }
+
+                }
+
                 //RADIO START BUTTON
                 {
-                    for(int radio=24; radio<26;radio++) {
+                    for(int radio=24; radio<27;radio++) {
                         this.buttonList.get(radio).xPosition = ScreenGrid.XCoordStart(
                                 this.width,
-                                2) + 125;
+                                2) + 120;
                         this.buttonList.get(radio).yPosition = ScreenGrid.XCoordStart(
                                 this.height,
                                 2) + (radio * 15) - 290;
 
                         this.buttonList.get(radio).height = 15;
-                        this.buttonList.get(radio).width = 70;
+                        this.buttonList.get(radio).width = 85;
                         if (Data_Radio) {
                             this.buttonList.get(radio).visible = true;
-                            this.buttonList.get(radio).enabled = true;
+                            this.buttonList.get(radio).enabled = Radio_isOff;
                         } else {
                             this.buttonList.get(radio).visible = false;
-                            this.buttonList.get(radio).enabled = false;
+                            this.buttonList.get(radio).enabled = Radio_isOff;
                         }
                     }
+
+                        this.buttonList.get(27).xPosition = ScreenGrid.XCoordStart(
+                                this.width,
+                                2) + 125;
+                        this.buttonList.get(27).yPosition = ScreenGrid.XCoordStart(
+                                this.height,
+                                2) + (27 * 15) - 290;
+
+                        this.buttonList.get(27).height = 15;
+                        this.buttonList.get(27).width = 70;
+                        if (Data_Radio) {
+                            this.buttonList.get(27).visible = true;
+                            this.buttonList.get(27).enabled = Radio_stopVisible;
+                        } else {
+                            this.buttonList.get(27).visible = false;
+                            this.buttonList.get(27).enabled = Radio_stopVisible;
+                        }
+
                 }
-                //RADIO STOP BUTTON
-
-
-
-                //RADIO VOLUME UP
+                //RADIO VOLUME
                 {
-                    for(int vol=26;vol<= 27;vol++) {
+                    for(int vol=28;vol<= 29;vol++) {
                         this.buttonList.get(vol).xPosition = ScreenGrid.XCoordStart(
                                 this.width,
-                                2) + 178;
+                                2) + 245;
                         this.buttonList.get(vol).yPosition = ScreenGrid.XCoordStart(
                                 this.height,
-                                2) + (vol * 15) - 290;
+                                2) + (vol * 15) - 310;
 
                         this.buttonList.get(vol).height = 15;
                         this.buttonList.get(vol).width = 60;
@@ -333,6 +395,7 @@ public class PipBuckGui extends GuiScreen {
 
 //
     }
+
 
 
     /**
@@ -557,6 +620,8 @@ public class PipBuckGui extends GuiScreen {
             Data_World_Map = true;
             Data_Misc = false;
             Data_Radio = false;
+
+
         }
         if (button == this.buttonList.get(22)) {
             Data_World_Map = false;
@@ -573,14 +638,29 @@ public class PipBuckGui extends GuiScreen {
         //RadioButtonStart 24-27
         //Radio start
         if (button == this.buttonList.get(24)) {
-
-            //String[] address = new String[]{"http://10.0.0.12:8100/rcr.ogg"};
+            Radio_isOff= false;
+            Radio_stopVisible= true;
             radioPLayer = new RadioPLayer("http://home.fallout-equestria.tk:8100/rcr.ogg");
-
-
         }
-        //Radio stop
+        //Radio start
         if (button == this.buttonList.get(25)) {
+            Radio_isOff= false;
+            Radio_stopVisible= true;
+
+            radioPLayer = new RadioPLayer("http://192.99.131.205:8000/pvfm1.ogg");
+        }
+        //Radio start
+        if (button == this.buttonList.get(26)) {
+            Radio_isOff= false;
+            Radio_stopVisible= true;
+
+            radioPLayer = new RadioPLayer("http://62.210.138.34:8000/ogg");
+       }
+        //Radio stop
+        if (button == this.buttonList.get(27)) {
+            Radio_isOff= true;
+            Radio_stopVisible= false;
+
 
             if (radioPLayer.player.isAlive()) {
                 radioPLayer.running = false;
@@ -591,7 +671,7 @@ public class PipBuckGui extends GuiScreen {
         }
         //Vol up
 
-        if (button == this.buttonList.get(26)) {
+        if (button == this.buttonList.get(28)) {
 
             if (radioPLayer.player.isAlive()) {
                 gain = (FloatControl) radioPLayer.line.getControl(FloatControl.Type.MASTER_GAIN);
@@ -602,7 +682,7 @@ public class PipBuckGui extends GuiScreen {
             }
         }
         //Vol down
-        if (button == this.buttonList.get(27)) {
+        if (button == this.buttonList.get(29)) {
             if (radioPLayer.player.isAlive()) {
 
                 gain = (FloatControl) radioPLayer.line.getControl(FloatControl.Type.MASTER_GAIN);

@@ -21,8 +21,8 @@ package com.redsparkle.foe.utils.gui;
 
 import com.redsparkle.foe.utils.GlobalNames;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.GuiButton;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.client.config.GuiButtonExt;
 import net.minecraftforge.fml.client.config.GuiUtils;
 
 /**
@@ -35,7 +35,7 @@ import net.minecraftforge.fml.client.config.GuiUtils;
  *
  * @author bspkrs
  */
-public class GuiButtonExtFallout extends GuiButton {
+public class GuiButtonExtFallout extends GuiButtonExt {
     final ResourceLocation FalloutWidgets = new ResourceLocation(GlobalNames.Domain,
             "textures/gui/fallout_widgets.png");
 
