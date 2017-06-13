@@ -2,6 +2,7 @@ package com.redsparkle.foe.gui.Menus;
 
 import com.redsparkle.foe.Init.ItemInit;
 import com.redsparkle.foe.capa.level.LevelFactoryProvider;
+import com.redsparkle.foe.capa.skills.SkillsFactoryProvider;
 import com.redsparkle.foe.capa.spechial.SpechialFactoryProvider;
 import com.redsparkle.foe.gui.Menus.pipbuck_gui_extenders.DATA.DataGui;
 import com.redsparkle.foe.gui.Menus.pipbuck_gui_extenders.ITEMS.InventoryGui;
@@ -22,7 +23,9 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.client.GuiScrollingList;
 import org.lwjgl.opengl.GL11;
+import scala.tools.nsc.backend.icode.TypeKinds;
 
 import javax.sound.sampled.FloatControl;
 import java.io.IOException;
@@ -88,10 +91,25 @@ public class PipBuckGui extends GuiScreen {
             0,
             0,
             0, "Level Up");
-
+    public int playerStatusX =0;
+    public int playerStatusY =0;
     @Override
     public void drawScreen(int mouseX, int mouseY, float partialTicks) {
         Minecraft mc = Minecraft.getMinecraft();
+        Integer[] skills = {//0-11
+                mc.player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getBigGuns(),
+                mc.player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getSmallGuns(),
+                mc.player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getEnergyWeapons(),
+                mc.player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getExplosives(),
+                mc.player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getMeleeWeapons(),
+                mc.player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getUnarmed(),
+                mc.player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getMedicine(),
+                mc.player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getLockpick(),
+                mc.player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getRepair(),
+                mc.player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getScience(),
+                mc.player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getSneak(),
+                mc.player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getBarter()
+        };
         Integer[] spechials = {
                 mc.player.getCapability(SpechialFactoryProvider.SPECHIAL_CAPABILITY, null).getStreinght(),
                 mc.player.getCapability(SpechialFactoryProvider.SPECHIAL_CAPABILITY, null).getPerception(),
@@ -106,6 +124,7 @@ public class PipBuckGui extends GuiScreen {
                 mc.player.getCapability(LevelFactoryProvider.LEVEL_CAPABILITY, null).getProgress()
 
         };
+
 
 
 
@@ -231,7 +250,7 @@ public class PipBuckGui extends GuiScreen {
                     // TOP INFO DISPLAY
                     this.fontRendererObj.drawString(
                             "|LVL  " + Integer.toString(playerParams[0]) + "| " +
-                                    "HP  :" + Float.toString(player.getHealth()) + "/" + Float.toString(player.getMaxHealth()) + "| " +
+                                    "HP  :" + Integer.toString(Math.round(player.getHealth())) + "/" + Float.toString(player.getMaxHealth()) + "| " +
                                     "AP  :" + player.getFoodStats().getFoodLevel() + "| " +
                                     "XP  :" + Integer.toString(playerParams[1]) + "/" +
                                     Lvlutil.lvls[playerParams[0]] + "|",
@@ -255,6 +274,23 @@ public class PipBuckGui extends GuiScreen {
                             15465844, true
                     );
 
+
+                    if(Math.round(player.getHealth()) < (Math.round(player.getMaxHealth()/4))){
+                        playerStatusX= 137;
+                        playerStatusY= 200;
+
+                    }else if(Math.round(player.getHealth()) > (Math.round(player.getMaxHealth()/4)) && player.getHealth() < (Math.round(player.getMaxHealth()/3))){
+                        playerStatusX= 91;
+                        playerStatusY= 201;
+
+                    }else if(Math.round(player.getHealth()) > (Math.round(player.getMaxHealth()/3)) && player.getHealth() < (Math.round(player.getMaxHealth()/2))){
+                        playerStatusX= 135;
+                        playerStatusY= 145;
+                    }else if(player.getHealth() > (Math.round(player.getMaxHealth()/2)) && Math.round(player.getHealth()) <= Math.round(player.getMaxHealth())){
+                    playerStatusX= 88;
+                    playerStatusY= 145;
+                    }
+
                     mc.getTextureManager().bindTexture(pipbuck);
                     GL11.glPushMatrix();
                     GL11.glScalef((float) 2, (float) 2, 1.0f);
@@ -265,16 +301,17 @@ public class PipBuckGui extends GuiScreen {
                             ScreenGrid.YCoordStart(
                                     this.height,
                                     2) + 45,
-                            pip_buck_x + 135,
-                            pip_buck_y + 145,
+                            playerStatusX,
+                            playerStatusY,
+
                             40,
                             55);
                     GL11.glPopMatrix();
                 }
                 if(Stats_SPECHIAL){
-                    for(int spechial=0; spechial < (StatsGui.skills.length-1);spechial++){
+                    for(int spechial=0; spechial < (StatsGui.spechialName.length-1);spechial++){
                         this.fontRendererObj.drawString(
-                                StatsGui.skills[spechial] + " : " + Integer.toString(spechials[spechial]),
+                                StatsGui.spechialName[spechial] + " : " + Integer.toString(spechials[spechial]),
                                 ScreenGrid.XCoordStart(
                                         this.width,
                                         2) + 165,
@@ -285,7 +322,32 @@ public class PipBuckGui extends GuiScreen {
                         );
                     }
                 }
-                if(Stats_SKILLS){}
+                if(Stats_SKILLS){
+                    for(int skillsFR=0; skillsFR < 6;skillsFR++){
+                        this.fontRendererObj.drawString(
+                                StatsGui.skillsNames[skillsFR] + " : " + Integer.toString(skills[skillsFR]),
+                                ScreenGrid.XCoordStart(
+                                        this.width,
+                                        2) + 165,
+                                ScreenGrid.XCoordStart(
+                                        this.height,
+                                        2) + (skillsFR* 15)+ 85,
+                                15465844, true
+                        );
+                    }
+                    for(int skillsSR=0; skillsSR < 5;skillsSR++){
+                        this.fontRendererObj.drawString(
+                                StatsGui.skillsNames[skillsSR+6] + " : " + Integer.toString(skills[skillsSR+6]),
+                                ScreenGrid.XCoordStart(
+                                        this.width,
+                                        2) + 315,
+                                ScreenGrid.XCoordStart(
+                                        this.height,
+                                        2) + (skillsSR* 15)+ 85,
+                                15465844, true
+                        );
+                    }
+                }
                 if(Stats_PERKS){}
 
             }

@@ -16,6 +16,7 @@ import com.redsparkle.foe.network.MessageOpenGuiClient;
 import com.redsparkle.foe.network.MessageUpdateSLSServerReplyOnDemand;
 import com.redsparkle.foe.network.helpers.gunReload;
 import com.redsparkle.foe.utils.Lvlutil;
+import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
@@ -40,6 +41,7 @@ public class DedicatedServerProxy extends CommonProxy {
             spechial.setIntelligence(message.Intelligence);
             spechial.setAgility(message.Agility);
             spechial.setLuck(message.Luck);
+            playerEntity.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(20D + (10*message.Endurance));
             main.simpleNetworkWrapper.sendTo(new MessageUpdateClientServerSPECHIAL(spechial), playerEntity);
 
             /** DEBUG MESSAGE ENABLER

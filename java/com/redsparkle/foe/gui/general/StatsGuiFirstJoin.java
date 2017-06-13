@@ -7,7 +7,7 @@ import com.redsparkle.foe.utils.ScreenGrid;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.GlStateManager;
-import net.minecraftforge.fml.client.config.GuiButtonExt;
+import com.redsparkle.foe.utils.gui.GuiButtonExtFallout;
 import org.lwjgl.opengl.GL11;
 
 import java.io.IOException;
@@ -24,24 +24,24 @@ public class StatsGuiFirstJoin extends GuiScreen {
     public Integer counter = 0;
     public Boolean CommitShow = false;
     public int startY = 15;
-    GuiButtonExt STR_Plus = new GuiButtonExt(0,0,0,0,0, "+");
-    GuiButtonExt PER_Plus = new GuiButtonExt(1,0,0,0,0, "+");
-    GuiButtonExt END_Plus = new GuiButtonExt(2,0,0,0,0, "+");
-    GuiButtonExt CHA_Plus = new GuiButtonExt(3,0,0,0,0, "+");
-    GuiButtonExt INT_Plus = new GuiButtonExt(4,0,0,0,0, "+");
-    GuiButtonExt AGI_Plus = new GuiButtonExt(5,0,0,0,0, "+");
-    GuiButtonExt LUC_Plus = new GuiButtonExt(6,0,0,0,0, "+");
-    GuiButtonExt STR_Minus = new GuiButtonExt(7,0,0,0,0, "-");
-    GuiButtonExt PER_Minus = new GuiButtonExt(8,0,0,0,0, "-");
-    GuiButtonExt END_Minus = new GuiButtonExt(9,0,0,0,0, "-");
-    GuiButtonExt CHA_Minus = new GuiButtonExt(10,0,0,0,0, "-");
-    GuiButtonExt INT_Minus = new GuiButtonExt(11,0,0,0,0, "-");
-    GuiButtonExt AGI_Minus = new GuiButtonExt(12,0,0,0,0, "-");
-    GuiButtonExt LUC_Minus = new GuiButtonExt(13,0,0,0,0, "-");
-    GuiButtonExt Commit = new GuiButtonExt(14,0,0,0,0, "Start Playing!");
+    GuiButtonExtFallout STR_Plus = new GuiButtonExtFallout(0,0,0,0,0, "+");
+    GuiButtonExtFallout PER_Plus = new GuiButtonExtFallout(1,0,0,0,0, "+");
+    GuiButtonExtFallout END_Plus = new GuiButtonExtFallout(2,0,0,0,0, "+");
+    GuiButtonExtFallout CHA_Plus = new GuiButtonExtFallout(3,0,0,0,0, "+");
+    GuiButtonExtFallout INT_Plus = new GuiButtonExtFallout(4,0,0,0,0, "+");
+    GuiButtonExtFallout AGI_Plus = new GuiButtonExtFallout(5,0,0,0,0, "+");
+    GuiButtonExtFallout LUC_Plus = new GuiButtonExtFallout(6,0,0,0,0, "+");
+    GuiButtonExtFallout STR_Minus = new GuiButtonExtFallout(7,0,0,0,0, "-");
+    GuiButtonExtFallout PER_Minus = new GuiButtonExtFallout(8,0,0,0,0, "-");
+    GuiButtonExtFallout END_Minus = new GuiButtonExtFallout(9,0,0,0,0, "-");
+    GuiButtonExtFallout CHA_Minus = new GuiButtonExtFallout(10,0,0,0,0, "-");
+    GuiButtonExtFallout INT_Minus = new GuiButtonExtFallout(11,0,0,0,0, "-");
+    GuiButtonExtFallout AGI_Minus = new GuiButtonExtFallout(12,0,0,0,0, "-");
+    GuiButtonExtFallout LUC_Minus = new GuiButtonExtFallout(13,0,0,0,0, "-");
+    GuiButtonExtFallout Commit = new GuiButtonExtFallout(14,0,0,0,0, "Start Playing!");
     Integer[] buttonsIdsPlus = {0, 1, 2, 3, 4, 5, 6};
     Integer[] buttonsIdsMinus ={7, 8, 9, 10,11,12,13};
-    GuiButtonExt[] buttonsPLus = {
+    GuiButtonExtFallout[] buttonsPLus = {
             STR_Plus,
             PER_Plus,
             END_Plus,
@@ -50,7 +50,7 @@ public class StatsGuiFirstJoin extends GuiScreen {
             AGI_Plus,
             LUC_Plus
     };
-    GuiButtonExt[] buttonsMinus = {
+    GuiButtonExtFallout[] buttonsMinus = {
             STR_Minus,
             PER_Minus,
             END_Minus,
@@ -100,8 +100,8 @@ public class StatsGuiFirstJoin extends GuiScreen {
                                 2)+25,
                         ScreenGrid.YCoordStart(
                                 this.height,
-                                startY),
-                        8453920, true
+                                2)+ (i*15)+ 30,
+                        15435844, true
                 );
                 this.fontRendererObj.drawString(Integer.toString(
                         params[i]),
@@ -110,8 +110,8 @@ public class StatsGuiFirstJoin extends GuiScreen {
                                 2)+215,
                         ScreenGrid.YCoordStart(
                                 this.height,
-                                startY),
-                        8453920, true
+                                2)+(i*15)+ 30,
+                        15465844, true
                 );
                 this.fontRendererObj.drawString("+ " +Integer.toString(
                         temp[i]),
@@ -120,8 +120,8 @@ public class StatsGuiFirstJoin extends GuiScreen {
                                 2)+225,
                         ScreenGrid.YCoordStart(
                                 this.height,
-                                startY),
-                        8453920, true
+                                2)+(i*15)+ 30,
+                        15465844, true
                 );
 
                 this.fontRendererObj.drawString(Integer.toString(
@@ -131,8 +131,8 @@ public class StatsGuiFirstJoin extends GuiScreen {
                                 2)+275,
                         ScreenGrid.YCoordStart(
                                 this.height,
-                                startY),
-                        8453920, true
+                                2)+(i*15)+ 30,
+                        15465844, true
                 );
 
 
@@ -149,7 +149,7 @@ public class StatsGuiFirstJoin extends GuiScreen {
                     ScreenGrid.YCoordStart(
                             this.height,
                             2)+ 10,
-                    8453920, true
+                    15465844, true
             );
 
 
@@ -157,11 +157,11 @@ public class StatsGuiFirstJoin extends GuiScreen {
                 int startYButtons =36;
                 for (int o =0;o <= (buttonsIdsPlus.length-1);o++) {
                     this.buttonList.get(buttonsIdsPlus[o]).xPosition = ScreenGrid.XCoordStart(this.width,2) + 248;
-                    this.buttonList.get(buttonsIdsPlus[o]).yPosition = ScreenGrid.XCoordStart(this.height,2) + startYButtons;
+                    this.buttonList.get(buttonsIdsPlus[o]).yPosition = ScreenGrid.XCoordStart(this.height,2) + (o*15)+ 30;
                     this.buttonList.get(buttonsIdsPlus[o]).height = 12;
                     this.buttonList.get(buttonsIdsPlus[o]).width = 10;
                     this.buttonList.get(buttonsIdsMinus[o]).xPosition = ScreenGrid.XCoordStart(this.width,2) + 258;
-                    this.buttonList.get(buttonsIdsMinus[o]).yPosition = ScreenGrid.XCoordStart(this.height,2) + startYButtons;
+                    this.buttonList.get(buttonsIdsMinus[o]).yPosition = ScreenGrid.XCoordStart(this.height,2) + (o*15)+ 30;
                     this.buttonList.get(buttonsIdsMinus[o]).height = 10;
                     this.buttonList.get(buttonsIdsMinus[o]).width = 9;
 

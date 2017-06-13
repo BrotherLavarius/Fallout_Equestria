@@ -17,6 +17,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
+import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
@@ -118,7 +119,11 @@ public class EventHandlerPre {
         updatePlayerSkills(e.player);
         updatePlayerLevel(e.player);
     }
+    @SubscribeEvent
+    public void onYOUDIEEED(LivingDeathEvent event){
 
+
+    }
 
 
 

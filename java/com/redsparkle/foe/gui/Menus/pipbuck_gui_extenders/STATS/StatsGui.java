@@ -6,8 +6,23 @@ import com.redsparkle.foe.utils.gui.GuiButtonExtFallout;
  * Created by hoijima on 09.05.17.
  */
 public class StatsGui {
-    public static String[] skills = {
+    public static String[] spechialName = {
             "STR", "PER", "END", "CHA", "INT", "AGI", "LUC"
+    };
+    public static String[] skillsNames = {
+            "Big Guns:",
+            "Small Guns:",
+            "Energy Weapons:",
+            "Explosives:",
+            "MeleeWeapons:",
+            "Unarmed:",
+            "Medicine:",
+            "Lockpick:",
+            "Repair:",
+            "Science:",
+            "Sneak:",
+            "Barter:"
+
     };
     public static GuiButtonExtFallout STATUS = new GuiButtonExtFallout(5,
             0,
