@@ -11,6 +11,8 @@ import com.redsparkle.foe.capa.skills.ISkillsCapability;
 import com.redsparkle.foe.capa.skills.SkillsFactoryProvider;
 import com.redsparkle.foe.capa.spechial.ISpechialCapability;
 import com.redsparkle.foe.capa.spechial.SpechialFactoryProvider;
+import com.redsparkle.foe.capa.water.IWaterCapability;
+import com.redsparkle.foe.capa.water.WaterFactoryProvider;
 import com.redsparkle.foe.main;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -41,6 +43,7 @@ public class EventHandlerPre {
 
                 if (ent instanceof EntityPlayer){
                     e.addCapability(new ResourceLocation(main.MODID + ":Radiation_CAPABILITY"), new RadsFactoryProvider());
+                    e.addCapability(new ResourceLocation(main.MODID + ":Water_CAPABILITY"),new WaterFactoryProvider());
                     e.addCapability(new ResourceLocation(main.MODID + ":Spechial_CAPABILITY"), new SpechialFactoryProvider());
                     e.addCapability(new ResourceLocation(main.MODID + ":SKILLS_CAPABILITY"), new SkillsFactoryProvider());
                     e.addCapability(new ResourceLocation(main.MODID + ":LEVEL_CAPABILITY"), new LevelFactoryProvider());
@@ -63,6 +66,7 @@ public class EventHandlerPre {
     public void onPlayerTick(TickEvent.PlayerTickEvent e) {
         //if (e.phase != TickEvent.Phase.END) return;
         updatePlayerRads(e.player);
+        updatePlayerWater(e.player);
 
 
 
@@ -168,6 +172,13 @@ public class EventHandlerPre {
             IRadiationCapability rad = player.getCapability(RadsFactoryProvider.RADIATION_CAPABILITY, null);
             rad.setRadiation(rad.getRadiation());
             rad.updateClient(player);
+        }
+    }
+    private void updatePlayerWater(EntityPlayer player) {
+        if (!player.world.isRemote) {
+            IWaterCapability water = player.getCapability(WaterFactoryProvider.WATER_CAPABILITY, null);
+            water.setWater(water.getWater());
+            water.updateClient(player);
         }
     }
 

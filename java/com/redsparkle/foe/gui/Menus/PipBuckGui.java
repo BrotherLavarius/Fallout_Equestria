@@ -23,9 +23,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.fml.client.GuiScrollingList;
 import org.lwjgl.opengl.GL11;
-import scala.tools.nsc.backend.icode.TypeKinds;
 
 import javax.sound.sampled.FloatControl;
 import java.io.IOException;

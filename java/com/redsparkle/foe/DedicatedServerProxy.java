@@ -6,17 +6,19 @@ import com.redsparkle.foe.capa.skills.ISkillsCapability;
 import com.redsparkle.foe.capa.skills.SkillsFactoryProvider;
 import com.redsparkle.foe.capa.spechial.ISpechialCapability;
 import com.redsparkle.foe.capa.spechial.SpechialFactoryProvider;
+import com.redsparkle.foe.capa.water.IWaterCapability;
+import com.redsparkle.foe.capa.water.WaterFactoryProvider;
 import com.redsparkle.foe.items.guns.LaserPistol;
 import com.redsparkle.foe.items.guns.TenMM;
 import com.redsparkle.foe.network.ClientServerOneClass.MessageUpdateClientServerLevel;
 import com.redsparkle.foe.network.ClientServerOneClass.MessageUpdateClientServerSPECHIAL;
 import com.redsparkle.foe.network.ClientServerOneClass.MessageUpdateClientServerSkills;
+import com.redsparkle.foe.network.ClientServerOneClass.MessageUpdateClientWater;
 import com.redsparkle.foe.network.MessageFireToClientServer;
 import com.redsparkle.foe.network.MessageOpenGuiClient;
 import com.redsparkle.foe.network.MessageUpdateSLSServerReplyOnDemand;
 import com.redsparkle.foe.network.helpers.gunReload;
 import com.redsparkle.foe.utils.Lvlutil;
-import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
@@ -193,6 +195,16 @@ public class DedicatedServerProxy extends CommonProxy {
     public static void handleFireMessage(MessageFireToClientServer message) {
     }
 
+    public static void handleWaterMessage(MessageUpdateClientWater message, EntityPlayerMP playerMP) {
+        IWaterCapability water = WaterFactoryProvider.instanceFor(playerMP);
+        water.setWater(message.water);
+
+        /** DEBUG MESSAGE ENABLER
+         * System.out.println("Client: "+message.radiation);
+         */
+
+
+    }
     /**
      * Run before anything else. Read your config, create blocks, items, etc, and register them with the GameRegistry
      */
@@ -230,6 +242,7 @@ public class DedicatedServerProxy extends CommonProxy {
     public boolean isDedicatedServer() {
         return true;
     }
+
 
 
 

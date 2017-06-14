@@ -3,10 +3,7 @@ package com.redsparkle.foe;
 
 import com.redsparkle.foe.commands.rpSkillCheck;
 import com.redsparkle.foe.handlers.GuiHandler;
-import com.redsparkle.foe.network.ClientServerOneClass.MessageUpdateClientRads;
-import com.redsparkle.foe.network.ClientServerOneClass.MessageUpdateClientServerLevel;
-import com.redsparkle.foe.network.ClientServerOneClass.MessageUpdateClientServerSPECHIAL;
-import com.redsparkle.foe.network.ClientServerOneClass.MessageUpdateClientServerSkills;
+import com.redsparkle.foe.network.ClientServerOneClass.*;
 import com.redsparkle.foe.network.*;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
@@ -37,6 +34,8 @@ public class main {
     public static final byte LVLUP_MESSAGE_ID_CLIENT = 107;
     public static final byte FIRTSTIME_MESSAGE_ID_CLIENT = 108;
     public static final byte FIRTSTIME_MESSAGE_ID_SERVER = 109;
+
+    public static final byte WATER_CAPABILITY_MESSAGE_ID_CLIENT = 110;
 
     public static final byte FIRE_MESSAGE_ID_CLIENT = 101;
     public static final byte FIRE_MESSAGE_ID_SERVER = 102;
@@ -75,6 +74,11 @@ public class main {
         simpleNetworkWrapper = NetworkRegistry.INSTANCE.newSimpleChannel("FOE Network Channel");
         simpleNetworkWrapper.registerMessage(MessageUpdateClientRads.Handler.class, MessageUpdateClientRads.class, RAIATION_CAPABILITY_MESSAGE_ID_CLIENT, Side.CLIENT);
         System.out.println("RADS------CHECK");
+
+        simpleNetworkWrapper.registerMessage(MessageUpdateClientWater.HandlerClient.class, MessageUpdateClientWater.class, WATER_CAPABILITY_MESSAGE_ID_CLIENT, Side.CLIENT);
+        System.out.println("WATER------CHECK");
+
+
         simpleNetworkWrapper.registerMessage(MessageGunReload.HandlerServer.class, MessageGunReload.class, RELOAD_MESSAGE_ID_SERVER, Side.SERVER);
         simpleNetworkWrapper.registerMessage(MessageGunReloadReply.HandlerClient.class, MessageGunReloadReply.class, RELOAD_MESSAGE_ID_CLIENT, Side.CLIENT);
         System.out.println("WEAPON RELOADS------CHECK");

@@ -10,12 +10,11 @@ import com.redsparkle.foe.capa.skills.ISkillsCapability;
 import com.redsparkle.foe.capa.skills.SkillsFactoryProvider;
 import com.redsparkle.foe.capa.spechial.ISpechialCapability;
 import com.redsparkle.foe.capa.spechial.SpechialFactoryProvider;
+import com.redsparkle.foe.capa.water.IWaterCapability;
+import com.redsparkle.foe.capa.water.WaterFactoryProvider;
 import com.redsparkle.foe.keys.KeyInputHandler;
 import com.redsparkle.foe.keys.keyHandler;
-import com.redsparkle.foe.network.ClientServerOneClass.MessageUpdateClientRads;
-import com.redsparkle.foe.network.ClientServerOneClass.MessageUpdateClientServerLevel;
-import com.redsparkle.foe.network.ClientServerOneClass.MessageUpdateClientServerSPECHIAL;
-import com.redsparkle.foe.network.ClientServerOneClass.MessageUpdateClientServerSkills;
+import com.redsparkle.foe.network.ClientServerOneClass.*;
 import com.redsparkle.foe.network.MessageFireToClientServer;
 import com.redsparkle.foe.network.MessageGunReloadReply;
 import com.redsparkle.foe.network.MessageOpenGuiClient;
@@ -143,6 +142,18 @@ public class ClientOnlyProxy extends CommonProxy {
 
     //TODO: finish this class
     public static void handleFireMessage(MessageFireToClientServer message) {
+    }
+
+    public static void handleWaterMessage(MessageUpdateClientWater message) {
+        Minecraft.getMinecraft().addScheduledTask(() -> {
+            EntityPlayer player = Minecraft.getMinecraft().player;
+            IWaterCapability water = WaterFactoryProvider.instanceFor(player);
+            water.setWater(message.water);
+            /** DEBUG MESSAGE ENABLER
+             * System.out.println("Client: "+message.radiation);
+             */
+
+        });
     }
 
     public void preInit() {
