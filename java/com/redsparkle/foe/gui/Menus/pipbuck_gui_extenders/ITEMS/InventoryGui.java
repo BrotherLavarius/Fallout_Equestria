@@ -35,7 +35,7 @@ public class InventoryGui {
             0,
             0,
             0,
-            0, "Ammo");
+            0, "Mod");
     public static GuiButtonExtFallout Repair = new GuiButtonExtFallout(26,
             0,
             0,

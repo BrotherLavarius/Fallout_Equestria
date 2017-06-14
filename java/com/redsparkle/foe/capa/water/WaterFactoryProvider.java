@@ -20,19 +20,20 @@ public class WaterFactoryProvider implements IWaterCapability, ICapabilitySerial
     public static Capability<IWaterCapability> WATER_CAPABILITY = null;
 
     private boolean dirty = true;
-    private Integer basicWater, waterLevel, prevWaterLevel, waterTimer, FortificationValue;
+    private Integer basicWater, waterLevel, prevWaterLevel, waterTimer, FortificationValue,maxWaterLevel;
 
 
     public WaterFactoryProvider() {
-        this(0, 0, 0, 0, 0);
+        this(0, 0, 0, 0, 0,100);
     }
 
-    public WaterFactoryProvider(Integer basicWater, Integer waterLevel, Integer prevWaterLevel, Integer waterTimer, Integer FortificationValue) {
+    public WaterFactoryProvider(Integer basicWater, Integer waterLevel, Integer prevWaterLevel, Integer waterTimer, Integer FortificationValue,Integer maxWaterLevel) {
         this.basicWater = basicWater;
         this.waterLevel = waterLevel;
         this.prevWaterLevel = prevWaterLevel;
         this.waterTimer = waterTimer;
         this.FortificationValue = FortificationValue;
+        this.maxWaterLevel = maxWaterLevel;
 
     }
 
@@ -44,13 +45,24 @@ public class WaterFactoryProvider implements IWaterCapability, ICapabilitySerial
         return waterLevel + basicWater;
     }
 
+
     public Integer addWater(Integer addWaterLevel) {
-        return waterLevel = (waterLevel + addWaterLevel + basicWater);
+        if ((waterLevel + addWaterLevel) > 100) {
+            return 100;
+        }else{
+            return waterLevel = (waterLevel + addWaterLevel + basicWater);
+        }
     }
 
     public Integer removeWater(Integer removeWaterLevel) {
         return waterLevel = (waterLevel - removeWaterLevel + basicWater);
     }
+
+    @Override
+    public Integer maxWater(Integer maxWaterLevel) {
+        return maxWaterLevel;
+    }
+
 
     public Integer setWater(Integer newWaterLevel) {
 

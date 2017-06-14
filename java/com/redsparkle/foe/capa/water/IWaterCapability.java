@@ -14,6 +14,8 @@ public interface IWaterCapability {
 
     Integer removeWater(Integer removeWaterLevel);
 
+    Integer maxWater(Integer maxWaterLevel);
+
     Integer getWater();
 
     Integer setWater(Integer newWaterLevel);

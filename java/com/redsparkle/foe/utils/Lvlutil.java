@@ -53,60 +53,60 @@ public class Lvlutil {
             "[|||||||===]",
             "[||||||||==]",
             "[|||||||||=]",
-            "[====MAX===]"
+            "[====MAX===]",
+            "[===ERROR==]"
     };
-    public static String progress(int playerLvl, Integer playerProgress){
+    public static String progress(int MaxNum, Integer playerProgress){
 
-
-        if( playerLvl < 60 ) {
+        String answer="";
             //< 10%
-            if ((float) playerProgress < (float) (lvls[playerLvl] * 0.1)) {
-                return prorgress[0];
+            if ((float) playerProgress < (float) (MaxNum * 0.1)) {
+                answer=prorgress[0];
             } else
                 // =>10% <20%
-                if ((float) playerProgress >= (float) (lvls[playerLvl] * 0.1) && (float) playerProgress <= (float) (lvls[playerLvl] * 0.2)) {
-                    return prorgress[1];
+                if ((float) playerProgress >= (float) (MaxNum * 0.1) && (float) playerProgress <= (float) (MaxNum * 0.2)) {
+                    answer=prorgress[1];
                 } else
                     // =>20% <30%
-                    if ((float) playerProgress >= (float) (lvls[playerLvl] * 0.2) && (float) playerProgress <= (float) (lvls[playerLvl] * 0.3)) {
-                        return prorgress[2];
+                    if ((float) playerProgress >= (float) (MaxNum * 0.2) && (float) playerProgress <= (float) (MaxNum * 0.3)) {
+                        answer=prorgress[2];
                     } else
                         // =>30% <40%
-                        if ((float) playerProgress >= (float) (lvls[playerLvl] * 0.3) && (float) playerProgress <= (float) (lvls[playerLvl] * 0.4)) {
-                            return prorgress[3];
+                        if ((float) playerProgress >= (float) (MaxNum * 0.3) && (float) playerProgress <= (float) (MaxNum * 0.4)) {
+                            answer=prorgress[3];
                         } else
                             // =>40% <50%
-                            if ((float) playerProgress >= (float) (lvls[playerLvl] * 0.4) && (float) playerProgress <= (float) (lvls[playerLvl] * 0.5)) {
-                                return prorgress[4];
+                            if ((float) playerProgress >= (float) (MaxNum * 0.4) && (float) playerProgress <= (float) (MaxNum * 0.5)) {
+                                answer=prorgress[4];
                             } else
                                 // =>50% <60%
-                                if ((float) playerProgress >= (float) (lvls[playerLvl] * 0.5) && (float) playerProgress <= (float) (lvls[playerLvl] * 0.6)) {
-                                    return prorgress[5];
+                                if ((float) playerProgress >= (float) (MaxNum * 0.5) && (float) playerProgress <= (float) (MaxNum * 0.6)) {
+                                    answer=prorgress[5];
                                 } else
                                     // =>60% <70%
-                                    if ((float) playerProgress >= (float) (lvls[playerLvl] * 0.6) && (float) playerProgress <= (float) (lvls[playerLvl] * 0.7)) {
-                                        return prorgress[6];
+                                    if ((float) playerProgress >= (float) (MaxNum * 0.6) && (float) playerProgress <= (float) (MaxNum * 0.7)) {
+                                        answer=prorgress[6];
                                     } else
                                         // =>70% <80%
-                                        if ((float) playerProgress >= (float) (lvls[playerLvl] * 0.7) && (float) playerProgress <= (float) (lvls[playerLvl] * 0.8)) {
-                                            return prorgress[7];
+                                        if ((float) playerProgress >= (float) (MaxNum * 0.7) && (float) playerProgress <= (float) (MaxNum * 0.8)) {
+                                            answer=prorgress[7];
                                         } else
                                             // =>80% <90%
-                                            if ((float) playerProgress >= (float) (lvls[playerLvl] * 0.8) && (float) playerProgress <= (float) (lvls[playerLvl] * 0.9)) {
-                                                return prorgress[8];
+                                            if ((float) playerProgress >= (float) (MaxNum * 0.8) && (float) playerProgress <= (float) (MaxNum * 0.9)) {
+                                                answer=prorgress[8];
                                             } else
                                                 // =>90% <100%
-                                                if ((float) playerProgress >= (float) (lvls[playerLvl] * 0.9) && (float) playerProgress < (float) (lvls[playerLvl])) {
-                                                    return prorgress[9];
+                                                if ((float) playerProgress >= (float) (MaxNum * 0.9) && (float) playerProgress < (float) (MaxNum)) {
+                                                    answer=prorgress[9];
                                                 } else
                                                     // =100%
-                                                    if ((float) playerProgress >= (float) (lvls[playerLvl] * 0.9) && (float) playerProgress < (float) (lvls[playerLvl])) {
-                                                        return prorgress[9];
+                                                    if ((float) playerProgress == (float) (MaxNum)) {
+                                                        answer=prorgress[10];
                                                     }
-        }else {
-            return prorgress[10];
-        }
-        return prorgress[0];
+                                                    else{answer = prorgress[11];};
+                                                    
+                                                    
+        return answer;
     }
 
     public static Boolean canLvlup(Integer currentLvl,Integer currentProgress){

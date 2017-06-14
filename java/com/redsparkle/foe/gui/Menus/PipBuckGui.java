@@ -2,8 +2,10 @@ package com.redsparkle.foe.gui.Menus;
 
 import com.redsparkle.foe.Init.ItemInit;
 import com.redsparkle.foe.capa.level.LevelFactoryProvider;
+import com.redsparkle.foe.capa.rad.RadsFactoryProvider;
 import com.redsparkle.foe.capa.skills.SkillsFactoryProvider;
 import com.redsparkle.foe.capa.spechial.SpechialFactoryProvider;
+import com.redsparkle.foe.capa.water.WaterFactoryProvider;
 import com.redsparkle.foe.gui.Menus.pipbuck_gui_extenders.DATA.DataGui;
 import com.redsparkle.foe.gui.Menus.pipbuck_gui_extenders.ITEMS.InventoryGui;
 import com.redsparkle.foe.gui.Menus.pipbuck_gui_extenders.STATS.StatsGui;
@@ -122,7 +124,11 @@ public class PipBuckGui extends GuiScreen {
                 mc.player.getCapability(LevelFactoryProvider.LEVEL_CAPABILITY, null).getProgress()
 
         };
+        Integer[] player_RAD_WATER = {
+                mc.player.getCapability(RadsFactoryProvider.RADIATION_CAPABILITY, null).getRadiation(),
+                mc.player.getCapability(WaterFactoryProvider.WATER_CAPABILITY, null).getWater()
 
+        };
 
 
 
@@ -272,6 +278,27 @@ public class PipBuckGui extends GuiScreen {
                             15465844, true
                     );
 
+                    this.fontRendererObj.drawString(
+                            "Water lvl:" + Integer.toString(player_RAD_WATER[1]),
+                            ScreenGrid.XCoordStart(
+                                    this.width,
+                                    2) + 145,
+                            ScreenGrid.XCoordStart(
+                                    this.height,
+                                    2) + 100,
+                            15465844, true
+                    );
+                    this.fontRendererObj.drawString(
+                            Lvlutil.progress(100,player_RAD_WATER[1]) ,
+                            ScreenGrid.XCoordStart(
+                                    this.width,
+                                    2) + 145,
+                            ScreenGrid.XCoordStart(
+                                    this.height,
+                                    2) + 110,
+                            15465844, true
+                    );
+
 
                     if(Math.round(player.getHealth()) < (Math.round(player.getMaxHealth()/4))){
                         playerStatusX= 137;
@@ -349,6 +376,28 @@ public class PipBuckGui extends GuiScreen {
                 if(Stats_PERKS){}
 
             }
+
+            //---------------------NAV BLOCK INV-------------------START
+            for (int inv = 14; inv < 19; inv++) {
+                this.buttonList.get(inv).xPosition = ScreenGrid.XCoordStart(
+                        this.width,
+                        2) + (inv * 46) - 545;
+                this.buttonList.get(inv).yPosition = ScreenGrid.XCoordStart(
+                        this.height,
+                        2) + 145;
+
+                this.buttonList.get(inv).height = 15;
+                this.buttonList.get(inv).width = 48;
+                if (Inv_Nav) {
+                    this.buttonList.get(inv).enabled = true;
+                    this.buttonList.get(inv).visible = true;
+                } else {
+                    this.buttonList.get(inv).enabled = false;
+                    this.buttonList.get(inv).visible = false;
+                }
+            }
+            //---------------------NAV BLOCK INV-------------------END
+
 
             if (InvShowButton) {
 
