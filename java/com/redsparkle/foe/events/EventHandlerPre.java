@@ -12,10 +12,10 @@ import com.redsparkle.foe.capa.skills.SkillsFactoryProvider;
 import com.redsparkle.foe.capa.spechial.ISpechialCapability;
 import com.redsparkle.foe.capa.spechial.SpechialFactoryProvider;
 import com.redsparkle.foe.main;
-import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
+import net.minecraft.item.*;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
@@ -24,9 +24,6 @@ import net.minecraftforge.fml.common.gameevent.PlayerEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 
 import static com.redsparkle.foe.capa.level.LevelFactoryProvider.LEVEL_CAPABILITY;
-import static com.redsparkle.foe.capa.rad.RadsFactoryProvider.RADIATION_CAPABILITY;
-import static com.redsparkle.foe.capa.skills.SkillsFactoryProvider.SKILLS_CAPABILITY;
-import static com.redsparkle.foe.capa.spechial.SpechialFactoryProvider.SPECHIAL_CAPABILITY;
 
 
 /**
@@ -36,28 +33,31 @@ public class EventHandlerPre {
 
 
     @SubscribeEvent
-    public void AttachCapability(AttachCapabilitiesEvent.Entity event) {
-        //Attach it! The resource location MUST be unique it's recommended that you tag it with your modid and what the cap is.
-        if (!event.getEntity().hasCapability(RADIATION_CAPABILITY, null)) {
-            event.addCapability(new ResourceLocation(main.MODID + ":Radiation_CAPABILITY"), new RadsFactoryProvider());
-        }
-        if (!event.getEntity().hasCapability(SPECHIAL_CAPABILITY, null)) {
-            event.addCapability(new ResourceLocation(main.MODID + ":Spechial_CAPABILITY"), new SpechialFactoryProvider());
-        }
+    public void onAddCapabilitiesEntity(AttachCapabilitiesEvent<Entity> e) {
 
-        if (!event.getEntity().hasCapability(SKILLS_CAPABILITY, null)) {
-            event.addCapability(new ResourceLocation(main.MODID + ":SKILLS_CAPABILITY"), new SkillsFactoryProvider());
-        }
+            if (canHaveAttributes(e.getObject()))
+            {
+                EntityLivingBase ent = (EntityLivingBase) e.getObject();
 
-        if (!event.getEntity().hasCapability(LEVEL_CAPABILITY, null)) {
-            event.addCapability(new ResourceLocation(main.MODID + ":LEVEL_CAPABILITY"), new LevelFactoryProvider());
-        }
-
-        if (!event.getEntity().hasCapability(FTJFactoryProvider.FTJ_CAPABILITY, null)) {
-            event.addCapability(new ResourceLocation(main.MODID + ":FTJ_CAPABILITY"), new FTJFactoryProvider());
+                if (ent instanceof EntityPlayer){
+                    e.addCapability(new ResourceLocation(main.MODID + ":Radiation_CAPABILITY"), new RadsFactoryProvider());
+                    e.addCapability(new ResourceLocation(main.MODID + ":Spechial_CAPABILITY"), new SpechialFactoryProvider());
+                    e.addCapability(new ResourceLocation(main.MODID + ":SKILLS_CAPABILITY"), new SkillsFactoryProvider());
+                    e.addCapability(new ResourceLocation(main.MODID + ":LEVEL_CAPABILITY"), new LevelFactoryProvider());
+                    e.addCapability(new ResourceLocation(main.MODID + ":FTJ_CAPABILITY"), new FTJFactoryProvider());
+                }
         }
 
     }
+    @SubscribeEvent
+    public void onAddCapabilitiesItemStack(AttachCapabilitiesEvent<Item> e)
+    {
+        if (canHaveAttributes(e.getObject()))
+        {
+        }
+    }
+
+
 
     @SubscribeEvent
     public void onPlayerTick(TickEvent.PlayerTickEvent e) {
@@ -178,6 +178,22 @@ public class EventHandlerPre {
             level.setProgress(level.getProgress());
             level.updateClient(player);
         }
+    }
+
+
+    public static boolean canHaveAttributes(Entity entity)
+    {
+        if (entity instanceof EntityLivingBase)
+            return true;
+        return false;
+    }
+
+    public static boolean canHaveAttributes(Item item)
+    {
+        if ((item instanceof ItemTool || item instanceof ItemSword || item instanceof ItemBow
+                || item instanceof ItemArmor || item instanceof ItemShield))
+            return true;
+        return false;
     }
 
     private void onUpdate(TickEvent.WorldTickEvent event) {
