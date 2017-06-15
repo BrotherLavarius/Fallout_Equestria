@@ -24,6 +24,7 @@ public interface IWaterCapability {
 
     void updateClient(EntityPlayer player);
 
-    void timedRemoveRad(EntityPlayer player, TickEvent.Phase phase, Integer startCycle, Integer Cycles, Integer FortificationValue);
+    void timedRemoveWater(EntityPlayer player, TickEvent.Phase phase, Integer startCycle, Integer Cycles, Integer FortificationValue);
 
+    void timedRemoveWater(Integer startCycle, Integer Cycles, Integer FortificationValue);
 }

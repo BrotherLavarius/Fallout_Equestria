@@ -72,18 +72,25 @@ public class WaterFactoryProvider implements IWaterCapability, ICapabilitySerial
     public void update(EntityPlayer player, World world, TickEvent.Phase phase) {
         if (phase == TickEvent.Phase.START) {
             waterTimer = 0;
-            if (waterTimer++ >= 5000) {
+            if (waterTimer++ >= 500000) {
                 waterLevel -= 1;
             } else waterTimer++;
         }
     }
 
-    public void timedRemoveRad(EntityPlayer player, TickEvent.Phase phase, Integer startCycle, Integer Cycles, Integer FortificationValue) {
+    public void timedRemoveWater(EntityPlayer player, TickEvent.Phase phase, Integer startCycle, Integer Cycles, Integer FortificationValue) {
 
         if (phase == TickEvent.Phase.START) {
             for (Integer cycle = startCycle; cycle < Cycles; ++cycle) {
                 waterLevel -= FortificationValue;
             }
+        }
+    }
+
+    @Override
+    public void timedRemoveWater(Integer startCycle, Integer Cycles, Integer FortificationValue) {
+        for(int i = startCycle;i < Cycles;i++){
+            waterLevel=waterLevel-FortificationValue;
         }
     }
 
