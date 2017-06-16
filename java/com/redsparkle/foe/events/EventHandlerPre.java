@@ -3,6 +3,7 @@ package com.redsparkle.foe.events;
 
 import com.redsparkle.foe.Init.ItemInit;
 import com.redsparkle.foe.capa.FirtsTimeJoin.FTJFactoryProvider;
+import com.redsparkle.foe.capa.FirtsTimeJoin.IFTJCapability;
 import com.redsparkle.foe.capa.level.ILevelCapability;
 import com.redsparkle.foe.capa.level.LevelFactoryProvider;
 import com.redsparkle.foe.capa.rad.IRadiationCapability;
@@ -14,6 +15,7 @@ import com.redsparkle.foe.capa.spechial.SpechialFactoryProvider;
 import com.redsparkle.foe.capa.water.IWaterCapability;
 import com.redsparkle.foe.capa.water.WaterFactoryProvider;
 import com.redsparkle.foe.main;
+import com.redsparkle.foe.utils.PlayerParamsSetup;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -21,11 +23,13 @@ import net.minecraft.item.*;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
+import net.minecraftforge.event.entity.living.LivingSpawnEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.fml.common.gameevent.PlayerEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 
 import static com.redsparkle.foe.capa.level.LevelFactoryProvider.LEVEL_CAPABILITY;
+import static net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerLoggedInEvent;
+import static net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerLoggedOutEvent;
 
 
 /**
@@ -33,6 +37,19 @@ import static com.redsparkle.foe.capa.level.LevelFactoryProvider.LEVEL_CAPABILIT
  */
 public class EventHandlerPre {
 
+
+    public static boolean canHaveAttributes(Entity entity) {
+        if (entity instanceof EntityLivingBase)
+            return true;
+        return false;
+    }
+
+    public static boolean canHaveAttributes(Item item) {
+        if ((item instanceof ItemTool || item instanceof ItemSword || item instanceof ItemBow
+                || item instanceof ItemArmor || item instanceof ItemShield))
+            return true;
+        return false;
+    }
 
     @SubscribeEvent
     public void onAddCapabilitiesEntity(AttachCapabilitiesEvent<Entity> e) {
@@ -52,6 +69,7 @@ public class EventHandlerPre {
         }
 
     }
+
     @SubscribeEvent
     public void onAddCapabilitiesItemStack(AttachCapabilitiesEvent<Item> e)
     {
@@ -59,8 +77,6 @@ public class EventHandlerPre {
         {
         }
     }
-
-
 
     @SubscribeEvent
     public void onPlayerTick(TickEvent.PlayerTickEvent e) {
@@ -81,12 +97,13 @@ public class EventHandlerPre {
                                     (e.player.getCapability(LEVEL_CAPABILITY,null).getProgress() -
                                     e.player.experienceTotal));
                 }
-            System.out.println("RUnning Update");
+            //System.out.println("RUnning Update");
 
         }
     }
+
     @SubscribeEvent
-    public void onJoin(PlayerEvent.PlayerLoggedInEvent e){
+    public void onJoin(PlayerLoggedInEvent e) {
         if(e.player.getCapability(FTJFactoryProvider.FTJ_CAPABILITY,null).getFTJ())
         {
 
@@ -109,6 +126,7 @@ public class EventHandlerPre {
             e.player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).setBarter(10);
 
             e.player.getCapability(FTJFactoryProvider.FTJ_CAPABILITY,null).setFTJ(false);
+
         }
 
         updatePlayerSpechial(e.player);
@@ -116,22 +134,92 @@ public class EventHandlerPre {
         updatePlayerLevel(e.player);
 
 
-        
+
     }
 
     @SubscribeEvent
-    public void onExit(PlayerEvent.PlayerLoggedOutEvent e){
+    public void onExit(PlayerLoggedOutEvent e) {
         updatePlayerSpechial(e.player);
         updatePlayerSkills(e.player);
         updatePlayerLevel(e.player);
     }
+
     @SubscribeEvent
     public void onYOUDIEEED(LivingDeathEvent event){
 
     }
 
+    @SubscribeEvent
+    public void onRespawned(LivingSpawnEvent event) {
+        if (event.getEntityLiving() instanceof EntityPlayer) {
+            EntityPlayer player = (EntityPlayer) event.getEntityLiving();
+            System.out.println(player.getDisplayNameString() + "is updating hist healt due to his death");
+            updatePlayerSpechial(player);
+        }
+    }
+
+    @SubscribeEvent
+    public void onPlayerCloning(net.minecraftforge.event.entity.player.PlayerEvent.Clone event) {
+        if (event.isWasDeath()) {
+            if (event.getOriginal().hasCapability(LevelFactoryProvider.LEVEL_CAPABILITY, null)) {
+                System.out.println("Returning what was lost to " + event.getOriginal().getDisplayNameString());
+                ILevelCapability originalLvl = event.getOriginal().getCapability(LevelFactoryProvider.LEVEL_CAPABILITY, null);
+                ILevelCapability newPLayerLvl = event.getEntityPlayer().getCapability(LevelFactoryProvider.LEVEL_CAPABILITY, null);
 
 
+                newPLayerLvl.setLevel(originalLvl.getLevel());
+                newPLayerLvl.setLevel(originalLvl.getProgress());
+            }
+            if (event.getOriginal().hasCapability(SpechialFactoryProvider.SPECHIAL_CAPABILITY, null)) {
+                ISpechialCapability originalSpecial = event.getOriginal().getCapability(SpechialFactoryProvider.SPECHIAL_CAPABILITY, null);
+                ISpechialCapability newPlayerSpecial = event.getEntityPlayer().getCapability(SpechialFactoryProvider.SPECHIAL_CAPABILITY, null);
+
+                newPlayerSpecial.setAgility(originalSpecial.getAgility());
+                newPlayerSpecial.setCharisma(originalSpecial.getCharisma());
+                newPlayerSpecial.setEndurance(originalSpecial.getEndurance());
+                newPlayerSpecial.setIntelligence(originalSpecial.getIntelligence());
+                newPlayerSpecial.setLuck(originalSpecial.getLuck());
+                newPlayerSpecial.setPerception(originalSpecial.getPerception());
+                newPlayerSpecial.setStreinght(originalSpecial.getStreinght());
+            }
+            if (event.getOriginal().hasCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null)) {
+
+                ISkillsCapability originalSkills = event.getOriginal().getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null);
+                ISkillsCapability newSkills = event.getEntityPlayer().getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null);
+
+                newSkills.setBigGuns(originalSkills.getBigGuns());
+                newSkills.setSmallGuns(originalSkills.getSmallGuns());
+                newSkills.setEnergyWeapons(originalSkills.getEnergyWeapons());
+                newSkills.setExplosives(originalSkills.getExplosives());
+                newSkills.setMeleeWeapons(originalSkills.getMeleeWeapons());
+                newSkills.setUnarmed(originalSkills.getUnarmed());
+                newSkills.setMedicine(originalSkills.getMedicine());
+                newSkills.setLockpick(originalSkills.getLockpick());
+                newSkills.setRepair(originalSkills.getRepair());
+                newSkills.setScience(originalSkills.getScience());
+                newSkills.setSneak(originalSkills.getSneak());
+                newSkills.setBarter(originalSkills.getBarter());
+            }
+            if (event.getOriginal().hasCapability(FTJFactoryProvider.FTJ_CAPABILITY, null)) {
+
+                IFTJCapability ftjO = event.getOriginal().getCapability(FTJFactoryProvider.FTJ_CAPABILITY, null);
+                IFTJCapability ftjN = event.getEntityPlayer().getCapability(FTJFactoryProvider.FTJ_CAPABILITY, null);
+
+                ftjN.setFTJ(ftjO.getFTJ());
+            }
+            if (event.getEntityPlayer().hasCapability(WaterFactoryProvider.WATER_CAPABILITY, null)) {
+                event.getEntityPlayer().getCapability(WaterFactoryProvider.WATER_CAPABILITY, null).setWater(100);
+            }
+
+            PlayerParamsSetup.normalizer(event.getEntityPlayer());
+
+
+            updatePlayerSpechial(event.getEntityPlayer());
+            updatePlayerSkills(event.getEntityPlayer());
+            updatePlayerLevel(event.getEntityPlayer());
+        }
+
+    }
 
     private void updatePlayerSpechial(EntityPlayer player) {
         if (!player.world.isRemote) {
@@ -148,6 +236,7 @@ public class EventHandlerPre {
             spe.updateClient(player);
         }
     }
+
     private void updatePlayerSkills(EntityPlayer player) {
         if (!player.world.isRemote) {
             ISkillsCapability skill = player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY,null);
@@ -175,7 +264,8 @@ public class EventHandlerPre {
             rad.updateClient(player);
         }
     }
-    private void updatePlayerWater(EntityPlayer player) {
+
+    public void updatePlayerWater(EntityPlayer player) {
         if (!player.world.isRemote) {
             IWaterCapability water = player.getCapability(WaterFactoryProvider.WATER_CAPABILITY, null);
             water.setWater(water.getWater());
@@ -183,29 +273,13 @@ public class EventHandlerPre {
         }
     }
 
-    private void updatePlayerLevel(EntityPlayer player) {
+    public void updatePlayerLevel(EntityPlayer player) {
         if (!player.world.isRemote) {
             ILevelCapability level = player.getCapability(LEVEL_CAPABILITY, null);
             level.setLevel(level.getLevel());
             level.setProgress(level.getProgress());
             level.updateClient(player);
         }
-    }
-
-
-    public static boolean canHaveAttributes(Entity entity)
-    {
-        if (entity instanceof EntityLivingBase)
-            return true;
-        return false;
-    }
-
-    public static boolean canHaveAttributes(Item item)
-    {
-        if ((item instanceof ItemTool || item instanceof ItemSword || item instanceof ItemBow
-                || item instanceof ItemArmor || item instanceof ItemShield))
-            return true;
-        return false;
     }
 
     private void onUpdate(TickEvent.WorldTickEvent event) {

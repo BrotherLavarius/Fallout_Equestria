@@ -68,8 +68,8 @@ public class PipBuckGui extends GuiScreen {
 
     public boolean Radio_isOff= true;
     public boolean Radio_stopVisible= false;
-
-
+    public int playerStatusX = 0;
+    public int playerStatusY = 0;
     EntityPlayer player = Minecraft.getMinecraft().player;
     GuiButtonExtFallout_pipbuck Stats = new GuiButtonExtFallout_pipbuck(0,
             0,
@@ -91,45 +91,43 @@ public class PipBuckGui extends GuiScreen {
             0,
             0,
             0, "Level Up");
-    public int playerStatusX =0;
-    public int playerStatusY =0;
+    Minecraft mc = Minecraft.getMinecraft();
+    public Integer[] skills = {//0-11
+            mc.player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getBigGuns(),
+            mc.player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getSmallGuns(),
+            mc.player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getEnergyWeapons(),
+            mc.player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getExplosives(),
+            mc.player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getMeleeWeapons(),
+            mc.player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getUnarmed(),
+            mc.player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getMedicine(),
+            mc.player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getLockpick(),
+            mc.player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getRepair(),
+            mc.player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getScience(),
+            mc.player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getSneak(),
+            mc.player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getBarter()
+    };
+    public Integer[] spechials = {
+            mc.player.getCapability(SpechialFactoryProvider.SPECHIAL_CAPABILITY, null).getStreinght(),
+            mc.player.getCapability(SpechialFactoryProvider.SPECHIAL_CAPABILITY, null).getPerception(),
+            mc.player.getCapability(SpechialFactoryProvider.SPECHIAL_CAPABILITY, null).getEndurance(),
+            mc.player.getCapability(SpechialFactoryProvider.SPECHIAL_CAPABILITY, null).getCharisma(),
+            mc.player.getCapability(SpechialFactoryProvider.SPECHIAL_CAPABILITY, null).getIntelligence(),
+            mc.player.getCapability(SpechialFactoryProvider.SPECHIAL_CAPABILITY, null).getAgility(),
+            mc.player.getCapability(SpechialFactoryProvider.SPECHIAL_CAPABILITY, null).getLuck()
+    };
+    public Integer[] playerParams = {
+            mc.player.getCapability(LevelFactoryProvider.LEVEL_CAPABILITY, null).getLevel(),
+            mc.player.getCapability(LevelFactoryProvider.LEVEL_CAPABILITY, null).getProgress()
+
+    };
+    public Integer[] player_RAD_WATER = {
+            mc.player.getCapability(RadsFactoryProvider.RADIATION_CAPABILITY, null).getRadiation(),
+            mc.player.getCapability(WaterFactoryProvider.WATER_CAPABILITY, null).getWater()
+
+    };
+
     @Override
     public void drawScreen(int mouseX, int mouseY, float partialTicks) {
-        Minecraft mc = Minecraft.getMinecraft();
-        Integer[] skills = {//0-11
-                mc.player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getBigGuns(),
-                mc.player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getSmallGuns(),
-                mc.player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getEnergyWeapons(),
-                mc.player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getExplosives(),
-                mc.player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getMeleeWeapons(),
-                mc.player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getUnarmed(),
-                mc.player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getMedicine(),
-                mc.player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getLockpick(),
-                mc.player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getRepair(),
-                mc.player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getScience(),
-                mc.player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getSneak(),
-                mc.player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getBarter()
-        };
-        Integer[] spechials = {
-                mc.player.getCapability(SpechialFactoryProvider.SPECHIAL_CAPABILITY, null).getStreinght(),
-                mc.player.getCapability(SpechialFactoryProvider.SPECHIAL_CAPABILITY, null).getPerception(),
-                mc.player.getCapability(SpechialFactoryProvider.SPECHIAL_CAPABILITY, null).getEndurance(),
-                mc.player.getCapability(SpechialFactoryProvider.SPECHIAL_CAPABILITY, null).getCharisma(),
-                mc.player.getCapability(SpechialFactoryProvider.SPECHIAL_CAPABILITY, null).getIntelligence(),
-                mc.player.getCapability(SpechialFactoryProvider.SPECHIAL_CAPABILITY, null).getAgility(),
-                mc.player.getCapability(SpechialFactoryProvider.SPECHIAL_CAPABILITY, null).getLuck()
-        };
-         Integer[] playerParams = {
-                mc.player.getCapability(LevelFactoryProvider.LEVEL_CAPABILITY, null).getLevel(),
-                mc.player.getCapability(LevelFactoryProvider.LEVEL_CAPABILITY, null).getProgress()
-
-        };
-        Integer[] player_RAD_WATER = {
-                mc.player.getCapability(RadsFactoryProvider.RADIATION_CAPABILITY, null).getRadiation(),
-                mc.player.getCapability(WaterFactoryProvider.WATER_CAPABILITY, null).getWater()
-
-        };
-
 
 
         int startX = 0;
