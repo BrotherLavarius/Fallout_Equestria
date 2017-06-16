@@ -52,63 +52,9 @@ public class SpechialFactoryProvider implements ISpechialCapability, ICapability
             prevAgilityLevel; // prev before changing
 
     private Integer
-            basicLuck, //constant 0 to init
-            LuckLevel, // real level
-            prevLuckLevel; // prev before changing
+            LuckLevel; // real level
 
     public SpechialFactoryProvider() {
-        this(0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0);
-    }
-
-    public SpechialFactoryProvider(Integer basicStreinght, Integer StreinghtLevel, Integer prevStreinghtLevel,
-                                   Integer basicPerception, Integer PerceptionLevel, Integer prevPerceptionLevel,
-                                   Integer basicEndurance, Integer EnduranceLevel, Integer prevEnduranceLevel,
-                                   Integer basicCharisma, Integer CharismaLevel, Integer prevCharismaLevel,
-                                   Integer basicIntelligence, Integer IntelligenceLevel, Integer prevIntelligenceLevel,
-                                   Integer basicAgility, Integer AgilityLevel, Integer prevAgilityLevel,
-                                   Integer basicLuck, Integer LuckLevel, Integer prevLuckLevel) {
-        this.basicStreinght = basicStreinght;
-        this.StreinghtLevel = StreinghtLevel;
-        this.prevStreinghtLevel = prevStreinghtLevel;
-        this.basicPerception = basicPerception;
-        this.PerceptionLevel = PerceptionLevel;
-        this.prevPerceptionLevel = prevPerceptionLevel;
-        this.basicEndurance = basicEndurance;
-        this.EnduranceLevel = EnduranceLevel;
-        this.prevEnduranceLevel = prevEnduranceLevel;
-        this.basicCharisma = basicCharisma;
-        this.CharismaLevel = CharismaLevel;
-        this.prevCharismaLevel = prevCharismaLevel;
-        this.basicIntelligence = basicIntelligence;
-        this.IntelligenceLevel = IntelligenceLevel;
-        this.prevIntelligenceLevel = prevIntelligenceLevel;
-        this.basicAgility = basicAgility;
-        this.AgilityLevel = AgilityLevel;
-        this.prevAgilityLevel = prevAgilityLevel;
-        this.basicLuck = basicLuck;
-        this.LuckLevel = LuckLevel;
-        this.prevLuckLevel = prevLuckLevel;
-
     }
 
     public static ISpechialCapability instanceFor(EntityPlayer player) {
@@ -119,168 +65,115 @@ public class SpechialFactoryProvider implements ISpechialCapability, ICapability
     ##################################
     */
     
-    public Integer addStreinght(Integer addStreinght) {
-        return StreinghtLevel + basicStreinght;
-    }
-
-    
-    public Integer removeStreinght(Integer removeStreinght) {
-        return StreinghtLevel = (StreinghtLevel - removeStreinght + basicStreinght);
-
-    }
 
     
     public Integer setStreinght(Integer newStreinghtLevel) {
-        return StreinghtLevel = (basicStreinght + newStreinghtLevel);
+        return StreinghtLevel = newStreinghtLevel;
     }
 
     
     public Integer getStreinght() {
-        return StreinghtLevel + basicStreinght;
+        return StreinghtLevel;
     }
 
     /*
     ##################################
     */
     
-    public Integer addPerception(Integer addPerception) {
-        return PerceptionLevel + basicPerception;
-    }
 
-    
-    public Integer removePerception(Integer removePerception) {
-        return PerceptionLevel = (PerceptionLevel - removePerception + basicPerception);
-
-    }
-
-    
     public Integer setPerception(Integer newPerceptionLevel) {
-        return PerceptionLevel = (basicPerception + newPerceptionLevel);
+        return PerceptionLevel = newPerceptionLevel;
     }
 
     
     public Integer getPerception() {
-        return PerceptionLevel + basicPerception;
+        return PerceptionLevel;
     }
 
     /*
     ##################################
     */
     
-    public Integer addEndurance(Integer addEndurance) {
-        return EnduranceLevel + basicEndurance;
-    }
-
-    
-    public Integer removeEndurance(Integer removeEndurance) {
-        return EnduranceLevel = (EnduranceLevel - removeEndurance + basicEndurance);
-
-    }
 
     
     public Integer setEndurance(Integer newEnduranceLevel) {
-        return EnduranceLevel = (basicEndurance + newEnduranceLevel);
+        return EnduranceLevel = newEnduranceLevel;
     }
 
     
     public Integer getEndurance() {
-        return EnduranceLevel + basicEndurance;
+        return EnduranceLevel;
     }
 
     /*
     ##################################
     */
     
-    public Integer addCharisma(Integer addCharisma) {
-        return CharismaLevel + basicCharisma;
-    }
-
-    
-    public Integer removeCharisma(Integer removeCharisma) {
-        return CharismaLevel = (CharismaLevel - removeCharisma + basicCharisma);
-
-    }
 
     
     public Integer setCharisma(Integer newCharismaLevel) {
-        return CharismaLevel = (basicCharisma + newCharismaLevel);
+        return CharismaLevel = newCharismaLevel;
     }
 
     
     public Integer getCharisma() {
-        return CharismaLevel + basicCharisma;
+        return CharismaLevel;
     }
 
     /*
     ##################################
     */
-    
-    public Integer addIntelligence(Integer addIntelligence) {
-        return IntelligenceLevel + basicIntelligence;
-    }
 
-    
-    public Integer removeIntelligence(Integer removeIntelligence) {
-        return IntelligenceLevel = (IntelligenceLevel - removeIntelligence + basicIntelligence);
-
-    }
 
     
     public Integer setIntelligence(Integer newIntelligenceLevel) {
-        return IntelligenceLevel = (basicIntelligence + newIntelligenceLevel);
+        return IntelligenceLevel = newIntelligenceLevel;
     }
 
     
     public Integer getIntelligence() {
-        return IntelligenceLevel + basicIntelligence;
+        return IntelligenceLevel;
     }
 
     /*
     ##################################
     */
-    
-    public Integer addAgility(Integer addAgility) {
-        return AgilityLevel + basicAgility;
-    }
-
-    
-    public Integer removeAgility(Integer removeAgility) {
-        return AgilityLevel = (AgilityLevel - removeAgility + basicAgility);
-
-    }
 
     
     public Integer setAgility(Integer newAgilityLevel) {
-        return AgilityLevel = (basicAgility + newAgilityLevel);
+        return AgilityLevel = newAgilityLevel;
     }
 
     
     public Integer getAgility() {
-        return AgilityLevel + basicAgility;
+        return AgilityLevel;
     }
 
     /*
     ##################################
     */
     
-    public Integer addLuck(Integer addLuck) {
-        return LuckLevel + basicLuck;
-    }
 
-    
-    public Integer removeLuck(Integer removeLuck) {
-        return LuckLevel = (LuckLevel - removeLuck + basicLuck);
-
-    }
 
     
     public Integer setLuck(Integer newLuckLevel) {
-        return LuckLevel = (basicLuck + newLuckLevel);
+        return LuckLevel = newLuckLevel;
     }
 
     
     public Integer getLuck() {
-        return LuckLevel + basicLuck;
+        return LuckLevel;
+    }
+
+    @Override
+    public void setAll(Integer all) {
+        setStreinght(all);
+        setPerception(all);
+        setEndurance(all);
+        setCharisma(all);
+        setIntelligence(all);
+        setAgility(all);
+        setLuck(all);
     }
 
     /*

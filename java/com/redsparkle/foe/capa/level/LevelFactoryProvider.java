@@ -18,23 +18,11 @@ public class LevelFactoryProvider implements ILevelCapability, ICapabilitySerial
     public static Capability<ILevelCapability> LEVEL_CAPABILITY = null;
 
     private boolean dirty = true;
-    private Integer basicLevel, LevelLevel, prevLevelLevel,Level;
-    private Integer basicProgress, LevelProgress, prevLevelProgress,Progress;
+    private Integer Level;
+    private Integer Progress;
 
 
     public LevelFactoryProvider() {
-        this(0, 0, 0, 0, 0, 0, 0);
-    }
-
-    public LevelFactoryProvider(Integer basicLevel, Integer Level, Integer prevLevelLevel,Integer basicProgress,Integer LevelProgress,Integer prevLevelProgress,Integer Progress ){
-        this.basicLevel = basicLevel;
-        this.Level = Level;
-        this.prevLevelLevel = prevLevelLevel;
-        this.basicProgress= basicProgress;
-        this.LevelProgress= LevelProgress;
-        this.prevLevelProgress= prevLevelProgress;
-        this.Progress = Progress;
-
     }
 
     public static ILevelCapability instanceFor(EntityPlayer player) {
@@ -42,38 +30,38 @@ public class LevelFactoryProvider implements ILevelCapability, ICapabilitySerial
     }
 
     public Integer getLevel() {
-        return Level + basicLevel;
+        return Level;
     }
 
     public Integer addLevel(Integer addLevelLevel) {
-        return Level = (LevelLevel + addLevelLevel + basicLevel);
+        return Level = (Level + addLevelLevel);
     }
 
     public Integer removeLevel(Integer removeLevelLevel) {
-        return Level = (LevelLevel - removeLevelLevel + basicLevel);
+        return Level = (Level - removeLevelLevel);
     }
 
     public Integer setLevel(Integer newLevelLevel) {
 
-        return Level = (basicLevel + newLevelLevel);
+        return Level = newLevelLevel;
     }
 
 
     public Integer getProgress() {
-        return Progress + basicProgress;
+        return Progress;
     }
 
     public Integer addProgress(Integer addProgressProgress) {
-        return Progress = (Progress + addProgressProgress + basicProgress);
+        return Progress = (Progress + addProgressProgress);
     }
 
     public Integer removeProgress(Integer removeProgressProgress) {
-        return Progress = (Progress - removeProgressProgress + basicProgress);
+        return Progress = (Progress - removeProgressProgress);
     }
 
     public Integer setProgress(Integer newProgressProgress) {
 
-        return Progress = (basicProgress + newProgressProgress);
+        return Progress = newProgressProgress;
     }
     
     
@@ -84,10 +72,6 @@ public class LevelFactoryProvider implements ILevelCapability, ICapabilitySerial
 
     public void set(NBTTagCompound nbt) {
         deserializeNBT(nbt);
-    }
-
-    public boolean hasChanged() {
-        return this.prevLevelLevel != this.Level;
     }
 
     public boolean hasCapability(Capability<?> capability, EnumFacing facing) {

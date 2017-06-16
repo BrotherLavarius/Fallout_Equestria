@@ -72,43 +72,8 @@ public class SkillsFactoryProvider implements ISkillsCapability, ICapabilitySeri
 
 
     public SkillsFactoryProvider() {
-        this(0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0);
     }
+
 
     public SkillsFactoryProvider(Integer basicBigGuns,
                                  Integer BigGunsLevel,
@@ -180,51 +145,129 @@ public class SkillsFactoryProvider implements ISkillsCapability, ICapabilitySeri
 
     /* ################################## */
 
-    public Integer setBigGuns(Integer newBigGunsLevel) {return BigGunsLevel=(basicBigGuns+newBigGunsLevel);}
-    public Integer getBigGuns() {return BigGunsLevel+basicBigGuns;}
+    public Integer setBigGuns(Integer newBigGunsLevel) {
+        return BigGunsLevel = newBigGunsLevel;
+    }
 
-    public Integer setSmallGuns(Integer newSmallGunsLevel) {return SmallGunsLevel=(basicSmallGuns+newSmallGunsLevel);}
-    public Integer getSmallGuns() {return SmallGunsLevel+basicSmallGuns;}
+    public Integer getBigGuns() {
+        return BigGunsLevel;
+    }
+
+    public Integer setSmallGuns(Integer newSmallGunsLevel) {
+        return SmallGunsLevel = newSmallGunsLevel;
+    }
+
+    public Integer getSmallGuns() {
+        return SmallGunsLevel;
+    }
     /* ################################## */
 
-    public Integer setEnergyWeapons(Integer newEnergyWeaponsLevel) {return EnergyWeaponsLevel=(basicEnergyWeapons+newEnergyWeaponsLevel);}
-    public Integer getEnergyWeapons() {return EnergyWeaponsLevel+basicEnergyWeapons;}
+    public Integer setEnergyWeapons(Integer newEnergyWeaponsLevel) {
+        return EnergyWeaponsLevel = newEnergyWeaponsLevel;
+    }
+
+    public Integer getEnergyWeapons() {
+        return EnergyWeaponsLevel;
+    }
     /* ################################## */
 
-    public Integer setExplosives(Integer newExplosivesLevel) {return ExplosivesLevel=(basicExplosives+newExplosivesLevel);}
-    public Integer getExplosives() {return ExplosivesLevel+basicExplosives;}
+    public Integer setExplosives(Integer newExplosivesLevel) {
+        return ExplosivesLevel = newExplosivesLevel;
+    }
+
+    public Integer getExplosives() {
+        return ExplosivesLevel;
+    }
     /* ################################## */
 
-    public Integer setMeleeWeapons(Integer newMeleeWeaponsLevel) {return MeleeWeaponsLevel=(basicMeleeWeapons+newMeleeWeaponsLevel);}
-    public Integer getMeleeWeapons() {return MeleeWeaponsLevel+basicMeleeWeapons;}
+    public Integer setMeleeWeapons(Integer newMeleeWeaponsLevel) {
+        return MeleeWeaponsLevel = newMeleeWeaponsLevel;
+    }
+
+    public Integer getMeleeWeapons() {
+        return MeleeWeaponsLevel;
+    }
     /* ################################## */
 
-    public Integer setUnarmed(Integer newUnarmedLevel) {return UnarmedLevel=(basicUnarmed+newUnarmedLevel);}
-    public Integer getUnarmed() {return UnarmedLevel+basicUnarmed;}
+    public Integer setUnarmed(Integer newUnarmedLevel) {
+        return UnarmedLevel = +newUnarmedLevel;
+    }
+
+    public Integer getUnarmed() {
+        return UnarmedLevel;
+    }
     /* ################################## */
 
-    public Integer setMedicine(Integer newMedicineLevel) {return MedicineLevel=(basicMedicine+newMedicineLevel);}
-    public Integer getMedicine() {return MedicineLevel+basicMedicine;}
+    public Integer setMedicine(Integer newMedicineLevel) {
+        return MedicineLevel = newMedicineLevel;
+    }
+
+    public Integer getMedicine() {
+        return MedicineLevel;
+    }
     /* ################################## */
 
-    public Integer setLockpick(Integer newLockpickLevel) {return LockpickLevel=(basicLockpick+newLockpickLevel);}
-    public Integer getLockpick() {return LockpickLevel+basicLockpick;}
+    public Integer setLockpick(Integer newLockpickLevel) {
+        return LockpickLevel = newLockpickLevel;
+    }
+
+    public Integer getLockpick() {
+        return LockpickLevel;
+    }
     /* ################################## */
 
-    public Integer setRepair(Integer newRepairLevel) {return RepairLevel=(basicRepair+newRepairLevel);}
-    public Integer getRepair() {return RepairLevel+basicRepair;}
+    public Integer setRepair(Integer newRepairLevel) {
+        return RepairLevel = newRepairLevel;
+    }
+
+    public Integer getRepair() {
+        return RepairLevel;
+    }
     /* ################################## */
 
-    public Integer setScience(Integer newScienceLevel) {return ScienceLevel=(basicScience+newScienceLevel);}
-    public Integer getScience() {return ScienceLevel+basicScience;}
+    public Integer setScience(Integer newScienceLevel) {
+        return ScienceLevel = newScienceLevel;
+    }
+
+    public Integer getScience() {
+        return ScienceLevel;
+    }
     /* ################################## */
 
-    public Integer setSneak(Integer newSneakLevel) {return SneakLevel=(basicSneak+newSneakLevel);}
-    public Integer getSneak() {return SneakLevel+basicSneak;}
+    public Integer setSneak(Integer newSneakLevel) {
+        return SneakLevel = newSneakLevel;
+    }
+
+    public Integer getSneak() {
+        return SneakLevel;
+    }
     /* ################################## */
 
-    public Integer setBarter(Integer newBarterLevel) {return BarterLevel=(basicBarter+newBarterLevel);}
-    public Integer getBarter() {return BarterLevel+basicBarter;}
+    public Integer setBarter(Integer newBarterLevel) {
+        return BarterLevel = newBarterLevel;
+    }
+
+    public Integer getBarter() {
+        return BarterLevel;
+    }
+
+    @Override
+    public void setAll(Integer all) {
+        setBigGuns(all);
+        setSmallGuns(all);
+        setEnergyWeapons(all);
+        setExplosives(all);
+        setMeleeWeapons(all);
+        setUnarmed(all);
+        setMedicine(all);
+        setLockpick(all);
+        setRepair(all);
+        setScience(all);
+        setSneak(all);
+        setBarter(all);
+
+
+    }
     /* ################################## */
     
     public void update(EntityPlayer player, World world, TickEvent.Phase phase) {

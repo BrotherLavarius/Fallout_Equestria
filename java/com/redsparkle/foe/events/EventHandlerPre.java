@@ -106,25 +106,19 @@ public class EventHandlerPre {
     public void onJoin(PlayerLoggedInEvent e) {
         if(e.player.getCapability(FTJFactoryProvider.FTJ_CAPABILITY,null).getFTJ())
         {
-
+            ISkillsCapability skills = e.player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null);
+            ILevelCapability lvl = e.player.getCapability(LEVEL_CAPABILITY, null);
+            ISpechialCapability spe = e.player.getCapability(SpechialFactoryProvider.SPECHIAL_CAPABILITY, null);
             Item lvliningCrystal = ItemInit.lvlingCrystall;
             ItemStack lvlingcrystallS = new ItemStack(lvliningCrystal);
             lvlingcrystallS.setCount(1);
             e.player.inventory.addItemStackToInventory(lvlingcrystallS);
             e.player.getCapability(WaterFactoryProvider.WATER_CAPABILITY,null).setWater(100);
-            e.player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).setBigGuns(10);
-            e.player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).setSmallGuns(10);
-            e.player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).setEnergyWeapons(10);
-            e.player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).setExplosives(10);
-            e.player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).setMeleeWeapons(10);
-            e.player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).setUnarmed(10);
-            e.player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).setMedicine(10);
-            e.player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).setLockpick(10);
-            e.player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).setRepair(10);
-            e.player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).setScience(10);
-            e.player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).setSneak(10);
-            e.player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).setBarter(10);
 
+            lvl.setLevel(0);
+            lvl.setProgress(0);
+            skills.setAll(10);
+            spe.setAll(0);
             e.player.getCapability(FTJFactoryProvider.FTJ_CAPABILITY,null).setFTJ(false);
 
         }

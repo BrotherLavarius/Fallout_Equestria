@@ -57,7 +57,7 @@ public abstract class CommonProxy {
         System.out.println("STARTING BOOTING CAPABILITY SYSTEM");
         CapabilityManager.INSTANCE.register(IRadiationCapability.class, new RadsFactoryStorage(), RadsFactoryProvider::new);
         System.out.println("RADS--------------CHECK!");
-        CapabilityManager.INSTANCE.register(ISpechialCapability.class, new SpechialFactoryStorage(), SpechialFactoryProvider::new);
+        CapabilityManager.INSTANCE.register(ISpechialCapability.class, new SpechialFactoryStorage(), () -> new SpechialFactoryProvider());
         System.out.println("S.P.E.C.H.I.A.L--------------CHECK!");
         CapabilityManager.INSTANCE.register(ISkillsCapability.class, new SkillsFactoryStorage(), SkillsFactoryProvider::new);
         System.out.println("SKILLS--------------CHECK!");
