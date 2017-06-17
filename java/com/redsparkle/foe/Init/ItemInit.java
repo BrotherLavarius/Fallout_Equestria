@@ -8,8 +8,8 @@ import com.redsparkle.foe.items.guns.ammo.LaserWeapons.Battery;
 import com.redsparkle.foe.items.guns.ammo.TenMM.TenMMClip;
 import com.redsparkle.foe.items.guns.ammo.TenMM.TenMMammo;
 import com.redsparkle.foe.items.guns.bullets.TenMMbullet;
-import com.redsparkle.foe.items.meds.RadAway;
-import com.redsparkle.foe.items.meds.RadX;
+import com.redsparkle.foe.items.meds.*;
+import com.redsparkle.foe.items.meds.HealPotions.*;
 import com.redsparkle.foe.items.utility.AdvancedEnviropmentMonitor;
 import com.redsparkle.foe.items.utility.LvlingCrystall;
 import com.redsparkle.foe.items.utility.PipBuck;
@@ -27,6 +27,10 @@ public class ItemInit {
     public static RadX radx;
     public static RadAway radAway;
 
+    public static RedHealPotion redHealPotion;
+    public static WhiteHealpotion whiteHealpotion;
+    public static PurpleHealPotion purpleHealPotion;
+    public static DarkHealPotion darkHealPotion;
 
     // UTILITY
     public static PipBuck pipbuck;
@@ -90,6 +94,25 @@ public class ItemInit {
         radx = (RadX) (new RadX().setUnlocalizedName(GlobalNames.RadX));
         radx.setRegistryName(GlobalNames.RadX);
         GameRegistry.register(radx);
+
+
+
+
+        redHealPotion = (RedHealPotion) (new RedHealPotion().setUnlocalizedName(GlobalNames.redHealPotion));
+        redHealPotion.setRegistryName(GlobalNames.redHealPotion);
+        GameRegistry.register(redHealPotion);
+
+        whiteHealpotion = (WhiteHealpotion) (new WhiteHealpotion().setUnlocalizedName(GlobalNames.whiteHealpotion));
+        whiteHealpotion.setRegistryName(GlobalNames.whiteHealpotion);
+        GameRegistry.register(whiteHealpotion);
+
+        purpleHealPotion = (PurpleHealPotion) (new PurpleHealPotion().setUnlocalizedName(GlobalNames.purpleHealPotion));
+        purpleHealPotion.setRegistryName(GlobalNames.purpleHealPotion);
+        GameRegistry.register(purpleHealPotion);
+
+        darkHealPotion = (DarkHealPotion) (new DarkHealPotion().setUnlocalizedName(GlobalNames.darkHealPotion));
+        darkHealPotion.setRegistryName(GlobalNames.darkHealPotion);
+        GameRegistry.register(darkHealPotion);
 
         //----------------------FOOD-----------------
         potato_crisps = (Potato_Crisps) (new Potato_Crisps().setUnlocalizedName(GlobalNames.potato_crisps));

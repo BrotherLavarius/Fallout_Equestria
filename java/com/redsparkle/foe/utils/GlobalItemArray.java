@@ -26,6 +26,11 @@ public class GlobalItemArray {
 
             ItemInit.radAway,
             ItemInit.radx,
+
+            ItemInit.redHealPotion,
+            ItemInit.whiteHealpotion,
+            ItemInit.purpleHealPotion,
+            ItemInit.darkHealPotion,
             //---------------------AMMO--------------------------
 
             ItemInit.tenMMAmmo,
@@ -67,6 +72,10 @@ public class GlobalItemArray {
 
             GlobalNames.RadAway,
             GlobalNames.RadX,
+            GlobalNames.redHealPotion,
+            GlobalNames.whiteHealpotion,
+            GlobalNames.purpleHealPotion,
+            GlobalNames.darkHealPotion,
             //---------------------AMMO--------------------------
             GlobalNames.TenMMAmmo,
             GlobalNames.TenMMClip,

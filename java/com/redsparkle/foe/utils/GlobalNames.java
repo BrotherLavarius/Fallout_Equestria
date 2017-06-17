@@ -42,10 +42,13 @@ public class GlobalNames {
             Mentals = "mentals",
             OrangeMentats = "orangementats",
             PartyTimeMentals = "partyTimementals",
-            DarkHealPotion = "dark_heal_potion",
-            PurpleHealPotion = "purple_heal_potion",
-            RedHealPotion = "red_heal_potion",
-            WhiteHealpotion = "white_heal_ppotion";
+            darkHealPotion = "dark_heal_potion",
+            purpleHealPotion = "purple_heal_potion",
+            redHealPotion = "red_heal_potion",
+            whiteHealpotion = "white_heal_potion";
+
+
+
 
     // Guns
     public static final String
