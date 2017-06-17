@@ -47,7 +47,7 @@ public class DedicatedServerProxy extends CommonProxy {
             spechial.setAgility(message.Agility);
             spechial.setLuck(message.Luck);
 
-        PlayerParamsSetup.normalizer(playerEntity);
+            PlayerParamsSetup.normalizer(playerEntity);
 
             main.simpleNetworkWrapper.sendTo(new MessageUpdateClientServerSPECHIAL(spechial), playerEntity);
 
@@ -117,6 +117,7 @@ public class DedicatedServerProxy extends CommonProxy {
         main.simpleNetworkWrapper.sendTo(new MessageUpdateSLSServerReplyOnDemand(
                 player.getCapability(LevelFactoryProvider.LEVEL_CAPABILITY,null).getLevel(),
                 player.getCapability(LevelFactoryProvider.LEVEL_CAPABILITY,null).getProgress()
+
         ),player);
     }
 

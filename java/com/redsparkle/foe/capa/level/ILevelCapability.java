@@ -8,21 +8,21 @@ import net.minecraft.entity.player.EntityPlayer;
 public interface ILevelCapability {
 
 
-    Integer addLevel(Integer addLevelLevel);
+    Integer addLevel(Integer addLevel);
 
-    Integer removeLevel(Integer removeLevelLevel);
+    Integer removeLevel(Integer removeLevel);
 
     Integer getLevel();
 
-    Integer setLevel(Integer newLevelLevel);
+    Integer setLevel(Integer newLevel);
 
-    Integer addProgress(Integer addProgressProgress);
+    Integer addProgress(Integer addProgress);
 
-    Integer removeProgress(Integer removeProgressProgress);
+    Integer removeProgress(Integer removeProgress);
 
     Integer getProgress();
 
-    Integer setProgress(Integer newProgressProgress);
+    Integer setProgress(Integer newProgress);
 
     void updateClient(EntityPlayer player);
 

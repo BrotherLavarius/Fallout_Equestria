@@ -25,6 +25,7 @@ import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingSpawnEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.gameevent.PlayerEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 
 import static com.redsparkle.foe.capa.level.LevelFactoryProvider.LEVEL_CAPABILITY;
@@ -138,33 +139,32 @@ public class EventHandlerPre {
         updatePlayerLevel(e.player);
     }
 
-    @SubscribeEvent
-    public void onYOUDIEEED(LivingDeathEvent event){
+     @SubscribeEvent
+    public void onRespawned(PlayerEvent.PlayerRespawnEvent event) {
 
-    }
+            EntityPlayer player = event.player;
 
-    @SubscribeEvent
-    public void onRespawned(LivingSpawnEvent event) {
-        if (event.getEntityLiving() instanceof EntityPlayer) {
-            EntityPlayer player = (EntityPlayer) event.getEntityLiving();
-            System.out.println(player.getDisplayNameString() + "is updating hist healt due to his death");
             updatePlayerSpechial(player);
-        }
+            updatePlayerSkills(player);
+            updatePlayerLevel(player);
+            updatePlayerWater(player);
+            updatePlayerRads(player);
+
     }
 
     @SubscribeEvent
     public void onPlayerCloning(net.minecraftforge.event.entity.player.PlayerEvent.Clone event) {
         if (event.isWasDeath()) {
-            if (event.getOriginal().hasCapability(LevelFactoryProvider.LEVEL_CAPABILITY, null)) {
-                System.out.println("Returning what was lost to " + event.getOriginal().getDisplayNameString());
+
+            if (event.getEntityPlayer().hasCapability(LevelFactoryProvider.LEVEL_CAPABILITY, null)) {
                 ILevelCapability originalLvl = event.getOriginal().getCapability(LevelFactoryProvider.LEVEL_CAPABILITY, null);
                 ILevelCapability newPLayerLvl = event.getEntityPlayer().getCapability(LevelFactoryProvider.LEVEL_CAPABILITY, null);
 
 
                 newPLayerLvl.setLevel(originalLvl.getLevel());
-                newPLayerLvl.setLevel(originalLvl.getProgress());
+                newPLayerLvl.setProgress(originalLvl.getProgress());
             }
-            if (event.getOriginal().hasCapability(SpechialFactoryProvider.SPECHIAL_CAPABILITY, null)) {
+            if (event.getEntityPlayer().hasCapability(SpechialFactoryProvider.SPECHIAL_CAPABILITY, null)) {
                 ISpechialCapability originalSpecial = event.getOriginal().getCapability(SpechialFactoryProvider.SPECHIAL_CAPABILITY, null);
                 ISpechialCapability newPlayerSpecial = event.getEntityPlayer().getCapability(SpechialFactoryProvider.SPECHIAL_CAPABILITY, null);
 
@@ -176,7 +176,7 @@ public class EventHandlerPre {
                 newPlayerSpecial.setPerception(originalSpecial.getPerception());
                 newPlayerSpecial.setStreinght(originalSpecial.getStreinght());
             }
-            if (event.getOriginal().hasCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null)) {
+            if (event.getEntityPlayer().hasCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null)) {
 
                 ISkillsCapability originalSkills = event.getOriginal().getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null);
                 ISkillsCapability newSkills = event.getEntityPlayer().getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null);
@@ -194,7 +194,7 @@ public class EventHandlerPre {
                 newSkills.setSneak(originalSkills.getSneak());
                 newSkills.setBarter(originalSkills.getBarter());
             }
-            if (event.getOriginal().hasCapability(FTJFactoryProvider.FTJ_CAPABILITY, null)) {
+            if (event.getEntityPlayer().hasCapability(FTJFactoryProvider.FTJ_CAPABILITY, null)) {
 
                 IFTJCapability ftjO = event.getOriginal().getCapability(FTJFactoryProvider.FTJ_CAPABILITY, null);
                 IFTJCapability ftjN = event.getEntityPlayer().getCapability(FTJFactoryProvider.FTJ_CAPABILITY, null);
@@ -207,10 +207,6 @@ public class EventHandlerPre {
 
             PlayerParamsSetup.normalizer(event.getEntityPlayer());
 
-
-            updatePlayerSpechial(event.getEntityPlayer());
-            updatePlayerSkills(event.getEntityPlayer());
-            updatePlayerLevel(event.getEntityPlayer());
         }
 
     }
