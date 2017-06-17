@@ -3,6 +3,9 @@ package com.redsparkle.foe.keys;
 import com.redsparkle.foe.Init.ItemInit;
 import com.redsparkle.foe.gui.Menus.PipBuckGui;
 import com.redsparkle.foe.main;
+import com.redsparkle.foe.network.ClientServerOneClass.MessageUpdateClientServerLevel;
+import com.redsparkle.foe.network.ClientServerOneClass.MessageUpdateClientServerSPECHIAL;
+import com.redsparkle.foe.network.ClientServerOneClass.MessageUpdateClientServerSkills;
 import com.redsparkle.foe.network.MessageGunReload;
 import com.redsparkle.foe.network.MessageUpdateSLSClientOnDemand;
 import net.minecraft.client.Minecraft;
@@ -29,6 +32,8 @@ public class KeyInputHandler {
 
                 if(mc.player.inventory.hasItemStack(new ItemStack(ItemInit.pipbuck))) {
                     main.simpleNetworkWrapper.sendToServer(new MessageUpdateSLSClientOnDemand());
+
+
                     player.openGui(main.instance, 0, mc.world, (int) mc.player.posX, (int) mc.player.posY, (int) mc.player.posZ);
                     activated = true;
                 }

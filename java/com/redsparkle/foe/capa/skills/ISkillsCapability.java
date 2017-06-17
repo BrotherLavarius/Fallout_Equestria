@@ -58,6 +58,7 @@ public interface ISkillsCapability {
     Integer getBarter();
 
 
+    void setAll(Integer All);
     void update(EntityPlayer player, World world, TickEvent.Phase phase);
 
     void updateClient(EntityPlayer player);

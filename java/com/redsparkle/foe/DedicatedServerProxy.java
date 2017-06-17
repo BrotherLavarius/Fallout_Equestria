@@ -8,6 +8,7 @@ import com.redsparkle.foe.capa.spechial.ISpechialCapability;
 import com.redsparkle.foe.capa.spechial.SpechialFactoryProvider;
 import com.redsparkle.foe.capa.water.IWaterCapability;
 import com.redsparkle.foe.capa.water.WaterFactoryProvider;
+import com.redsparkle.foe.events.ServerSIdeONly.EventHandlerServerSidePre;
 import com.redsparkle.foe.items.guns.LaserPistol;
 import com.redsparkle.foe.items.guns.TenMM;
 import com.redsparkle.foe.network.ClientServerOneClass.MessageUpdateClientServerLevel;
@@ -25,6 +26,7 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumHand;
 import net.minecraft.world.WorldServer;
+import net.minecraftforge.common.MinecraftForge;
 
 import static com.redsparkle.foe.capa.level.LevelFactoryProvider.LEVEL_CAPABILITY;
 
@@ -45,7 +47,7 @@ public class DedicatedServerProxy extends CommonProxy {
             spechial.setAgility(message.Agility);
             spechial.setLuck(message.Luck);
 
-        PlayerParamsSetup.normalizer(playerEntity);
+            PlayerParamsSetup.normalizer(playerEntity);
 
             main.simpleNetworkWrapper.sendTo(new MessageUpdateClientServerSPECHIAL(spechial), playerEntity);
 
@@ -115,6 +117,7 @@ public class DedicatedServerProxy extends CommonProxy {
         main.simpleNetworkWrapper.sendTo(new MessageUpdateSLSServerReplyOnDemand(
                 player.getCapability(LevelFactoryProvider.LEVEL_CAPABILITY,null).getLevel(),
                 player.getCapability(LevelFactoryProvider.LEVEL_CAPABILITY,null).getProgress()
+
         ),player);
     }
 
@@ -203,8 +206,9 @@ public class DedicatedServerProxy extends CommonProxy {
      * Run before anything else. Read your config, create blocks, items, etc, and register them with the GameRegistry
      */
     public void preInit() {
-
+        MinecraftForge.EVENT_BUS.register(new EventHandlerServerSidePre());
         super.preInit();
+
 
     }
 

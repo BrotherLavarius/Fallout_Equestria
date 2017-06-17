@@ -10,10 +10,8 @@ import com.redsparkle.foe.gui.Menus.pipbuck_gui_extenders.DATA.DataGui;
 import com.redsparkle.foe.gui.Menus.pipbuck_gui_extenders.ITEMS.InventoryGui;
 import com.redsparkle.foe.gui.Menus.pipbuck_gui_extenders.STATS.StatsGui;
 import com.redsparkle.foe.main;
-import com.redsparkle.foe.utils.GlobalNames;
-import com.redsparkle.foe.utils.Lvlutil;
-import com.redsparkle.foe.utils.RadioPLayer;
-import com.redsparkle.foe.utils.ScreenGrid;
+import com.redsparkle.foe.network.ClientServerOneClass.*;
+import com.redsparkle.foe.utils.*;
 import com.redsparkle.foe.utils.gui.GuiButtonExtFallout;
 import com.redsparkle.foe.utils.gui.GuiButtonExtFallout_pipbuck;
 import net.minecraft.client.Minecraft;
@@ -92,42 +90,16 @@ public class PipBuckGui extends GuiScreen {
             0,
             0, "Level Up");
     Minecraft mc = Minecraft.getMinecraft();
-    public Integer[] skills = {//0-11
-            mc.player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getBigGuns(),
-            mc.player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getSmallGuns(),
-            mc.player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getEnergyWeapons(),
-            mc.player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getExplosives(),
-            mc.player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getMeleeWeapons(),
-            mc.player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getUnarmed(),
-            mc.player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getMedicine(),
-            mc.player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getLockpick(),
-            mc.player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getRepair(),
-            mc.player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getScience(),
-            mc.player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getSneak(),
-            mc.player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getBarter()
-    };
-    public Integer[] spechials = {
-            mc.player.getCapability(SpechialFactoryProvider.SPECHIAL_CAPABILITY, null).getStreinght(),
-            mc.player.getCapability(SpechialFactoryProvider.SPECHIAL_CAPABILITY, null).getPerception(),
-            mc.player.getCapability(SpechialFactoryProvider.SPECHIAL_CAPABILITY, null).getEndurance(),
-            mc.player.getCapability(SpechialFactoryProvider.SPECHIAL_CAPABILITY, null).getCharisma(),
-            mc.player.getCapability(SpechialFactoryProvider.SPECHIAL_CAPABILITY, null).getIntelligence(),
-            mc.player.getCapability(SpechialFactoryProvider.SPECHIAL_CAPABILITY, null).getAgility(),
-            mc.player.getCapability(SpechialFactoryProvider.SPECHIAL_CAPABILITY, null).getLuck()
-    };
-    public Integer[] playerParams = {
-            mc.player.getCapability(LevelFactoryProvider.LEVEL_CAPABILITY, null).getLevel(),
-            mc.player.getCapability(LevelFactoryProvider.LEVEL_CAPABILITY, null).getProgress()
-
-    };
-    public Integer[] player_RAD_WATER = {
-            mc.player.getCapability(RadsFactoryProvider.RADIATION_CAPABILITY, null).getRadiation(),
-            mc.player.getCapability(WaterFactoryProvider.WATER_CAPABILITY, null).getWater()
-
-    };
-
     @Override
     public void drawScreen(int mouseX, int mouseY, float partialTicks) {
+
+
+
+        Integer[] skills = PlayerStatsRequester.skills(mc.player);
+        Integer[] spechials = PlayerStatsRequester.spechials(mc.player);
+        Integer[] playerParams = PlayerStatsRequester.lvl(mc.player);
+        Integer[] player_RAD_WATER = PlayerStatsRequester.additionalStats(mc.player);
+
 
 
         int startX = 0;
@@ -240,7 +212,12 @@ public class PipBuckGui extends GuiScreen {
                 this.buttonList.get(3).width = 49;
                 if (Stats_STATUS) {
                     this.buttonList.get(3).visible = true;
-                    this.buttonList.get(3).enabled = Lvlutil.canLvlup(playerParams[0], playerParams[1]);
+                    try{
+                        this.buttonList.get(3).enabled = Lvlutil.canLvlup(playerParams[0], playerParams[1]);
+                    }catch(NullPointerException npe){
+                        npe.printStackTrace();
+                    }
+
                 } else {
                     this.buttonList.get(3).visible = false;
                     this.buttonList.get(3).enabled = false;
