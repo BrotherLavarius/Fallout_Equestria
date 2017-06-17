@@ -1,7 +1,7 @@
 package com.redsparkle.foe.Init;
 
 import com.redsparkle.foe.items.armor.powered.*;
-import com.redsparkle.foe.items.food.old.Potato_Crisps;
+import com.redsparkle.foe.items.food.old.*;
 import com.redsparkle.foe.items.guns.LaserPistol;
 import com.redsparkle.foe.items.guns.TenMM;
 import com.redsparkle.foe.items.guns.ammo.LaserWeapons.Battery;
@@ -35,6 +35,11 @@ public class ItemInit {
 
     // FOOD
     public static Potato_Crisps potato_crisps;
+    public static Blamko_MacCheese blamko_macCheese;
+    public static Dandy_Boy_Apples dandy_boy_apples;
+    public static GumDrops gumDrops;
+    public static Sugar_Bombs sugar_bombs;
+    public static Fancy_mare_Snack_Cakes fancy_mare_snack_cakes;
 
     // AMMO and CLIPS
     public static TenMMammo tenMMAmmo;
@@ -90,6 +95,28 @@ public class ItemInit {
         potato_crisps = (Potato_Crisps) (new Potato_Crisps().setUnlocalizedName(GlobalNames.potato_crisps));
         potato_crisps.setRegistryName(GlobalNames.potato_crisps);
         GameRegistry.register(potato_crisps);
+
+
+        blamko_macCheese = (Blamko_MacCheese) (new Blamko_MacCheese().setUnlocalizedName(GlobalNames.blamko_macCheese));
+        blamko_macCheese.setRegistryName(GlobalNames.blamko_macCheese);
+        GameRegistry.register(blamko_macCheese);
+
+        dandy_boy_apples = (Dandy_Boy_Apples) (new Dandy_Boy_Apples().setUnlocalizedName(GlobalNames.dandy_boy_apples));
+        dandy_boy_apples.setRegistryName(GlobalNames.dandy_boy_apples);
+        GameRegistry.register(dandy_boy_apples);
+
+        gumDrops = (GumDrops) (new GumDrops().setUnlocalizedName(GlobalNames.gumDrops));
+        gumDrops.setRegistryName(GlobalNames.gumDrops);
+        GameRegistry.register(gumDrops);
+
+        sugar_bombs = (Sugar_Bombs) (new Sugar_Bombs().setUnlocalizedName(GlobalNames.sugar_bombs));
+        sugar_bombs.setRegistryName(GlobalNames.sugar_bombs);
+        GameRegistry.register(sugar_bombs);
+
+        fancy_mare_snack_cakes = (Fancy_mare_Snack_Cakes) (new Fancy_mare_Snack_Cakes().setUnlocalizedName(GlobalNames.Fancy_mare_Snack_Cakes));
+        fancy_mare_snack_cakes.setRegistryName(GlobalNames.Fancy_mare_Snack_Cakes);
+        GameRegistry.register(fancy_mare_snack_cakes);
+
         //----------------------AMMO-----------------
         tenMMAmmo = (TenMMammo) (new TenMMammo().setUnlocalizedName(GlobalNames.TenMMAmmo));
         tenMMAmmo.setRegistryName(GlobalNames.TenMMAmmo);

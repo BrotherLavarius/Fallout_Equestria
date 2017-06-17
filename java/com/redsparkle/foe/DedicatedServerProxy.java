@@ -21,6 +21,7 @@ import com.redsparkle.foe.network.MessageUpdateSLSServerReplyOnDemand;
 import com.redsparkle.foe.network.helpers.gunReload;
 import com.redsparkle.foe.utils.Lvlutil;
 import com.redsparkle.foe.utils.PlayerParamsSetup;
+import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
@@ -57,7 +58,9 @@ public class DedicatedServerProxy extends CommonProxy {
 
     }
     public static void handleSkillsMessage(MessageUpdateClientServerSkills message, EntityPlayerMP playerEntity) {
+
             ISkillsCapability skills = SkillsFactoryProvider.instanceFor(playerEntity);
+
             skills.setBigGuns(message.BigGuns);
             skills.setSmallGuns(message.SmallGuns);
             skills.setEnergyWeapons(message.EnergyWeapons);
@@ -70,9 +73,14 @@ public class DedicatedServerProxy extends CommonProxy {
             skills.setScience(message.Science);
             skills.setSneak(message.Sneak);
             skills.setBarter(message.Barter);
-            /** DEBUG MESSAGE ENABLER
-             * System.out.println("Client: "+message.radiation);
-             */
+
+
+
+
+
+        /** DEBUG MESSAGE ENABLER
+         * System.out.println("Client: "+message.radiation);
+         */
 
     }
 
@@ -134,6 +142,7 @@ public class DedicatedServerProxy extends CommonProxy {
     public static void handleSkillsLVLUPMessage(MessageUpdateClientServerSkills message, EntityPlayerMP player) {
             ISkillsCapability skills = SkillsFactoryProvider.instanceFor(player);
             ILevelCapability level = LevelFactoryProvider.instanceFor(player);
+            ISpechialCapability spechial = SpechialFactoryProvider.instanceFor(player);
             int summ = (
                     message.BigGuns+
                     message.SmallGuns+
@@ -186,6 +195,11 @@ public class DedicatedServerProxy extends CommonProxy {
                 level.updateClient(player);
 
             }
+        player.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(
+                    20D + (15 * spechial.getStreinght() + (2 * spechial.getEndurance()) + level.getLevel() * (Math.round(spechial.getEndurance() / 2) + 2))
+            );
+
+        player.heal(player.getMaxHealth());
 
     }
 

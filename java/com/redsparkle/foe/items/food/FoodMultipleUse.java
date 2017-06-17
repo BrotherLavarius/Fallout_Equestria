@@ -62,6 +62,12 @@ public abstract class FoodMultipleUse extends Item {
         {
             worldIn.playSound((EntityPlayer)null, entityplayer.posX, entityplayer.posY, entityplayer.posZ, SoundEvents.ENTITY_PLAYER_BURP, SoundCategory.PLAYERS, 0.5F, worldIn.rand.nextFloat() * 0.1F + 0.9F);
         }
+        if(stack.getCount() > 1){
+            ItemStack excessStack =  new ItemStack(stack.getItem());
+            excessStack.setCount(stack.getCount() - 1);
+            entityplayer.inventory.addItemStackToInventory(excessStack);
+            stack.setCount(1);
+        }
         stack.setItemDamage(stack.getItemDamage() +1 );
         int food = entityplayer.getFoodStats().getFoodLevel();
         entityplayer.getFoodStats().setFoodLevel(food + this.foodToAdd);

@@ -149,6 +149,7 @@ public class EventHandlerPre {
             updatePlayerLevel(player);
             updatePlayerWater(player);
             updatePlayerRads(player);
+            PlayerParamsSetup.normalizer(player);
 
     }
 

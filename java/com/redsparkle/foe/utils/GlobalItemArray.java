@@ -16,7 +16,12 @@ public class GlobalItemArray {
             ItemInit.lvlingCrystall,
             ItemInit.aem,
             //---------------------FOOD--------------------------
+            ItemInit.blamko_macCheese,
+            ItemInit.dandy_boy_apples,
+            ItemInit.fancy_mare_snack_cakes,
+            ItemInit.gumDrops,
             ItemInit.potato_crisps,
+            ItemInit.sugar_bombs,
             //---------------------MEDS--------------------------
 
             ItemInit.radAway,
@@ -52,7 +57,12 @@ public class GlobalItemArray {
             GlobalNames.LevelingCrystall,
             GlobalNames.AEM,
             //---------------------FOOD--------------------------
+            GlobalNames.blamko_macCheese,
+            GlobalNames.dandy_boy_apples,
+            GlobalNames.Fancy_mare_Snack_Cakes,
+            GlobalNames.gumDrops,
             GlobalNames.potato_crisps,
+            GlobalNames.sugar_bombs,
             //---------------------MEDS--------------------------
 
             GlobalNames.RadAway,

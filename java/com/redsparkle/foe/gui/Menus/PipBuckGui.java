@@ -68,6 +68,7 @@ public class PipBuckGui extends GuiScreen {
     public boolean Radio_stopVisible= false;
     public int playerStatusX = 0;
     public int playerStatusY = 0;
+
     EntityPlayer player = Minecraft.getMinecraft().player;
     GuiButtonExtFallout_pipbuck Stats = new GuiButtonExtFallout_pipbuck(0,
             0,

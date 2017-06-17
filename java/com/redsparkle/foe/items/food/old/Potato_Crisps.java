@@ -10,9 +10,9 @@ public class Potato_Crisps extends FoodMultipleUse{
 
     public int foodLvl = 0;
 
-    public int NUMBER_OF_BOXES = 1;
+    public int NUMBER_OF_BOXES = 3;
     public int MaxDamage = 4;
-    public int foodToAdd = 10;
+    public int foodToAdd = 1;
 
     public Potato_Crisps(){
         this.setMaxStackSize(NUMBER_OF_BOXES);
