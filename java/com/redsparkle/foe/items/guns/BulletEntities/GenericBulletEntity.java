@@ -1,10 +1,12 @@
 package com.redsparkle.foe.items.guns.BulletEntities;
 
+import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IProjectile;
 import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
@@ -14,13 +16,20 @@ import net.minecraftforge.fml.relauncher.SideOnly;
  * Created by hoijima on 18.06.17.
  */
 public abstract class GenericBulletEntity extends Entity implements IProjectile {
-    private int ticksInGround;
     private int xTile;
     private int yTile;
     private int zTile;
+    private Block inTile;
+    private int inData;
+    protected boolean inGround;
+    protected int timeInGround;
+    /** Seems to be some sort of timer for animating an arrow. */
+    public int arrowShake;
+    /** The owner of this arrow. */
+    public Entity shootingEntity;
+    private int ticksInGround;
+    private int ticksInAir;
     private double damage;
-
-
     public int damageln;
 
     public GenericBulletEntity(World worldIn)
@@ -33,6 +42,7 @@ public abstract class GenericBulletEntity extends Entity implements IProjectile 
         this.setSize(0.5F, 0.5F);
     }
     public GenericBulletEntity(World worldIn, EntityLivingBase shooter) {
+
         super(worldIn);
     }
 
@@ -49,27 +59,24 @@ public abstract class GenericBulletEntity extends Entity implements IProjectile 
      * @param compound
      */
     @Override
-    protected void readEntityFromNBT(NBTTagCompound compound) {
-
+    protected void readEntityFromNBT(NBTTagCompound compound)
+    {
     }
-
     /**
      * (abstract) Protected helper method to write subclass entity data to NBT.
      *
      * @param compound
      */
+
     @Override
     protected void writeEntityToNBT(NBTTagCompound compound) {
-
     }
+
+
     /**
      * Whether the arrow has a stream of critical hit particles flying behind it.
      */
-    public boolean getIsCritical()
-    {
-        return false;
-    }
-    /**
+   /**
      * Similar to setArrowHeading, it's point the throwable entity to a x, y, z direction.
      *
      * @param x
