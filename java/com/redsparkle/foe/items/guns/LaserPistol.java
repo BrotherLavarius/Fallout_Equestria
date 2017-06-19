@@ -4,13 +4,15 @@ import com.redsparkle.foe.Init.SoundInit;
 import com.redsparkle.foe.creativeTabs.InitCreativeTabs;
 import com.redsparkle.foe.items.guns.ammo.LaserWeapons.Battery;
 import com.redsparkle.foe.items.guns.inits.ItemFirearm;
-import com.redsparkle.foe.items.guns.inits.laserFired.EntityLaser;
 import com.redsparkle.foe.utils.AmmunitionListing;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.*;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.EnumActionResult;
+import net.minecraft.util.EnumHand;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 
@@ -23,14 +25,12 @@ public class LaserPistol extends ItemFirearm {
     public boolean isGun;
     public int clipRounds = 31;
     public Integer[] invArray = {0, 1, 2, 3, 4, 5, 6, 7, 8};
-    public Class<? extends EntityLaser> laserClass;
 
 
     public LaserPistol() {
         this.setMaxStackSize(1);
         this.setMaxDamage(clipRounds);
         this.setCreativeTab(InitCreativeTabs.Fallout_guns);
-        this.laserClass = EntityLaser.class;
         isGun = true;
     }
 
@@ -75,10 +75,10 @@ public class LaserPistol extends ItemFirearm {
                 }
 
 
-                EntityLaser entitylaser = new EntityLaser(worldIn, playerIn);
-                worldIn.spawnParticle(EnumParticleTypes.REDSTONE, playerIn.getPosition().getX(), playerIn.getPosition().getY() + 2, playerIn.getPosition().getZ(), 0.0D, 0.1D, 0.0D, 1);
-                entitylaser.setHeadingFromThrower(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, -1.0F, 4.5F, 1.0F);
-                worldIn.spawnEntity(entitylaser);
+//                EntityLaser entitylaser = new EntityLaser(worldIn, playerIn);
+//                worldIn.spawnParticle(EnumParticleTypes.REDSTONE, playerIn.getPosition().getX(), playerIn.getPosition().getY() + 2, playerIn.getPosition().getZ(), 0.0D, 0.1D, 0.0D, 1);
+//                entitylaser.setHeadingFromThrower(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, -1.0F, 4.5F, 1.0F);
+//                worldIn.spawnEntity(entitylaser);
                 itemstack.setItemDamage(itemstack.getItemDamage() + 1);
                 playerIn.cameraYaw = -0.1F;
 
@@ -88,10 +88,10 @@ public class LaserPistol extends ItemFirearm {
 
         } else {
 
-            worldIn.playSound(playerIn, playerIn.getPosition(), SoundInit.laserPShot3, SoundCategory.PLAYERS, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
-            EntityLaser entitylaser = new EntityLaser(worldIn, playerIn);
-            entitylaser.setHeadingFromThrower(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, -1.0F, 4.5F, 1.0F);
-            worldIn.spawnEntity(entitylaser);
+//            worldIn.playSound(playerIn, playerIn.getPosition(), SoundInit.laserPShot3, SoundCategory.PLAYERS, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
+//            EntityLaser entitylaser = new EntityLaser(worldIn, playerIn);
+//            entitylaser.setHeadingFromThrower(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, -1.0F, 4.5F, 1.0F);
+//            worldIn.spawnEntity(entitylaser);
 
         }
         return new ActionResult<>(EnumActionResult.PASS, itemstack);

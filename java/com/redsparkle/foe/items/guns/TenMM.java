@@ -3,14 +3,11 @@ package com.redsparkle.foe.items.guns;
 import com.redsparkle.foe.Init.SoundInit;
 import com.redsparkle.foe.creativeTabs.InitCreativeTabs;
 import com.redsparkle.foe.items.guns.ammo.TenMM.TenMMClip;
+import com.redsparkle.foe.items.guns.inits.EntityBullet;
 import com.redsparkle.foe.items.guns.inits.ItemFirearm;
-import com.redsparkle.foe.items.guns.inits.bulletFiredGuns.EntityBullet;
 import com.redsparkle.foe.utils.AmmunitionListing;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.projectile.EntityArrow;
-import net.minecraft.init.Items;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemArrow;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.stats.StatList;
@@ -29,7 +26,6 @@ public class TenMM extends ItemFirearm {
     public int damage = 15;
     public int clipRounds = 13;
     public Integer[] invArray = {0, 1, 2, 3, 4, 5, 6, 7, 8};
-    public Class<? extends EntityBullet> bulletClass;
 
 
     public SoundEvent outOfammo = SoundInit.tenMMOOA;
@@ -41,7 +37,6 @@ public class TenMM extends ItemFirearm {
         this.setMaxStackSize(1);
         this.setMaxDamage(clipRounds);
         this.setCreativeTab(InitCreativeTabs.Fallout_guns);
-        this.bulletClass = EntityBullet.class;
         isGun = true;
     }
 
@@ -72,12 +67,12 @@ public class TenMM extends ItemFirearm {
 
             } else {
 
-                worldIn.playSound(playerIn, playerIn.getPosition(), SoundInit.tenMMShot, SoundCategory.HOSTILE, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
-                EntityBullet entitybullet = new EntityBullet(worldIn, playerIn);
-                entitybullet.setHeadingFromThrower(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, 5.5F, 1.0F);
-                worldIn.spawnEntity(entitybullet);
-                itemstack.setItemDamage(itemstack.getItemDamage() + 1);
-                playerIn.cameraYaw = -0.1F;
+//                worldIn.playSound(playerIn, playerIn.getPosition(), SoundInit.tenMMShot, SoundCategory.HOSTILE, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
+//                BulletEntity entitybullet = new BulletEntity(worldIn, playerIn);
+//                entitybullet.setHeadingFromThrower(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, 5.5F, 1.0F);
+//                worldIn.spawnEntity(entitybullet);
+//                itemstack.setItemDamage(itemstack.getItemDamage() + 1);
+//                playerIn.cameraYaw = -0.1F;
                 return new ActionResult<>(EnumActionResult.SUCCESS, itemstack);
             }
 
@@ -87,17 +82,19 @@ public class TenMM extends ItemFirearm {
             if (!worldIn.isRemote) {
 
 
-                ItemArrow itemarrow = (ItemArrow) (itemstack.getItem() instanceof ItemArrow ? itemstack.getItem() : Items.ARROW);
-                EntityArrow entityarrow = itemarrow.createArrow(worldIn, itemstack, playerIn);
-                entityarrow.setAim(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 1.0F, 10F, 0F);
-                worldIn.spawnEntity(entityarrow);
+//                ItemArrow itemarrow = (ItemArrow) (itemstack.getItem() instanceof ItemArrow ? itemstack.getItem() : Items.ARROW);
+//                EntityArrow entityarrow = itemarrow.createArrow(worldIn, itemstack, playerIn);
+//                entityarrow.setAim(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 1.0F, 10F, 0F);
+//                worldIn.spawnEntity(entityarrow);
+
 
                 //EntitySnowball entitysnowball = new EntitySnowball(worldIn, playerIn);
                 //entitysnowball.setHeadingFromThrower(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, 1.5F, 1.0F);
                 //worldIn.spawnEntity(entitysnowball);
-                //EntityBullet entitybullet = new EntityBullet(worldIn, playerIn);
-                //entitybullet.setHeadingFromThrower(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, 5.5F, 1.0F);
-                //worldIn.spawnEntity(entitybullet);
+
+                EntityBullet entitybullet = new EntityBullet(worldIn, playerIn);
+                entitybullet.setHeadingFromThrower(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, 5.5F, 1.0F);
+                worldIn.spawnEntity(entitybullet);
             }
 
         }

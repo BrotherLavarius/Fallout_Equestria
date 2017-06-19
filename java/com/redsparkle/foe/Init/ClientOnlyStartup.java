@@ -6,9 +6,8 @@ import com.redsparkle.foe.events.gui.EventHandlerOverlayAEM;
 import com.redsparkle.foe.events.gui.EventHandlerOverlayPipBuck;
 import com.redsparkle.foe.events.gui.EventPlayerGuiHandler;
 import com.redsparkle.foe.gui.Overlays.PipBuckOverlay;
-import com.redsparkle.foe.items.guns.inits.bulletFiredGuns.EntityBullet;
-import com.redsparkle.foe.items.guns.inits.bulletFiredGuns.model.ModelBullet;
-import com.redsparkle.foe.items.guns.inits.bulletFiredGuns.render.RenderBulletEntity;
+import com.redsparkle.foe.items.guns.inits.EntityBullet;
+import com.redsparkle.foe.items.guns.inits.RenderBullet;
 import com.redsparkle.foe.utils.GlobalBlockArray;
 import com.redsparkle.foe.utils.GlobalItemArray;
 import com.redsparkle.foe.utils.GlobalNames;
@@ -58,7 +57,7 @@ public class ClientOnlyStartup {
             Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(Item.getItemFromBlock(GlobalBlockArray.blocks[i]), 0, new ModelResourceLocation(MODID + ":" + GlobalBlockArray.blocksNames[i]));
 
         }
-        RenderingRegistry.registerEntityRenderingHandler(EntityBullet.class, new RenderBulletEntity(Minecraft.getMinecraft().getRenderManager(), new ModelBullet(), 0.5));
+        RenderingRegistry.registerEntityRenderingHandler(EntityBullet.class, RenderBullet::new);
 
     }
 
