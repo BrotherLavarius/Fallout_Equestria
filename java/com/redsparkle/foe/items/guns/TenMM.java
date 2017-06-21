@@ -26,6 +26,7 @@ public class TenMM extends ItemFirearm {
     public int damage = 15;
     public int clipRounds = 13;
     public Integer[] invArray = {0, 1, 2, 3, 4, 5, 6, 7, 8};
+    public EntityBullet entitybullet ;
 
 
     public SoundEvent outOfammo = SoundInit.tenMMOOA;
@@ -92,8 +93,9 @@ public class TenMM extends ItemFirearm {
                 //entitysnowball.setHeadingFromThrower(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, 1.5F, 1.0F);
                 //worldIn.spawnEntity(entitysnowball);
 
-                EntityBullet entitybullet = new EntityBullet(worldIn, playerIn);
-                entitybullet.setHeadingFromThrower(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, 5.5F, 1.0F);
+                entitybullet = new EntityBullet(worldIn, playerIn);
+                entitybullet.setHeadingFromThrower(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 1.0F, 5.5F, 1.0F);
+
                 worldIn.spawnEntity(entitybullet);
             }
 
