@@ -89,13 +89,13 @@ public class TenMM extends ItemFirearm {
 //                worldIn.spawnEntity(entityarrow);
 
 
-                //EntitySnowball entitysnowball = new EntitySnowball(worldIn, playerIn);
-                //entitysnowball.setHeadingFromThrower(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, 1.5F, 1.0F);
-                //worldIn.spawnEntity(entitysnowball);
+//                EntitySnowball entitysnowball = new EntitySnowball(worldIn, playerIn);
+//                entitysnowball.setHeadingFromThrower(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, 15F, 0F);
+//                worldIn.spawnEntity(entitysnowball);
 
                 entitybullet = new EntityBullet(worldIn, playerIn);
-                entitybullet.setHeadingFromThrower(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 1.0F, 5.5F, 1.0F);
-
+                entitybullet.setHeadingFromThrower(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, 1.5F, 1.0F);
+                entitybullet.setRenderYawOffset(1.0F);
                 worldIn.spawnEntity(entitybullet);
             }
 

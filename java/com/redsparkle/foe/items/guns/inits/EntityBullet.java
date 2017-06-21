@@ -2,62 +2,62 @@ package com.redsparkle.foe.items.guns.inits;
 
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.projectile.EntityThrowable;
-import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
 /**
  * Created by hoijima on 19.06.17.
  */
+//https://emxtutorials.wordpress.com/creating-a-gun/
 public class EntityBullet extends EntityThrowable {
-    public int damage = 15;
+    public static final float explosionPower = 0.75F;
+    public static final int empRadius = 4;
 
-    public EntityBullet(World worldIn) {
-        super(worldIn);
+    public EntityBullet(World world) {
+        super(world);
     }
 
-
-    public EntityBullet(World worldIn, EntityLivingBase livingBaseIn) {
-        super(worldIn, livingBaseIn);
+    public EntityBullet(World world, EntityLivingBase entity) {
+        super(world, entity);
     }
 
-    public EntityBullet(World worldIn, double x, double y, double z) {
-        super(worldIn, x, y, z);
+    private void explode() {
+        int bx = (int) posX;
+        int by = (int) posY;
+        int bz = (int) posZ;
+        world.createExplosion(this, posX, posY, posZ, 0.75F, true);
+        world.spawnParticle(EnumParticleTypes.getByName("dragonbreath"), posX, posY, posZ, 0, 0, 0);
+        //world.spawnParticle(EnumParticleTypes.getByName("largesmoke"), posX, posY, posZ, posX, posY, posZ);
+
+        setDead();
     }
 
-
-    @SideOnly(Side.CLIENT)
-    public void handleStatusUpdate(byte id) {
-        if (id == 3) {
-            for (int i = 0; i < 8; ++i) {
-                this.world.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, this.posX, this.posY, this.posZ, 0.0D, 0.0D, 0.0D);
-            }
-        }
-    }
-
-    /**
-     * Called when this EntityThrowable hits a block or entity.
-     */
-
-    protected void onImpact(RayTraceResult result) {
-        if (result.entityHit != null) {
-            int i = damage;
-
-
-            result.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, this.getThrower()), (float) i);
+    @Override
+    public void onUpdate() {
+        super.onUpdate();
+        if (ticksExisted > 20) {
+            explode();
         }
 
-        if (!this.world.isRemote) {
-            this.world.setEntityState(this, (byte) 3);
-            this.setDead();
-        }
+//        for (int i = 0; i < 10; i++)
+//        {
+//            double x = (double)(rand.nextInt(10) - 5) / 8.0D;
+//            double y = (double)(rand.nextInt(10) - 5) / 8.0D;
+//            double z = (double)(rand.nextInt(10) - 5) / 8.0D;
+//            //world.spawnParticle(EnumParticleTypes.getByName("reddust"), posX, posY, posZ, posX, posY, posZ);
+//        }
     }
 
     @Override
     protected float getGravityVelocity() {
-        return 0F;
+        return 0.005F;
     }
+
+    @Override
+    protected void onImpact(RayTraceResult rayTraceResult) {
+        explode();
+    }
+
+
 }

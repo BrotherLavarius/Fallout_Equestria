@@ -39,6 +39,7 @@ public class ClientOnlyStartup {
         final CreativeTabs Fallout_stats_armor = InitCreativeTabs.Fallout_armor;
         //final CreativeTabs Fallout_Util = InitCreativeTabs.Fallout_Utils;
         SoundInit.registerSounds();
+
         OBJLoader.INSTANCE.addDomain(GlobalNames.Domain);
 
         for (int i = 0; i < (GlobalBlockArray.blocks.length - 1); i++) {
