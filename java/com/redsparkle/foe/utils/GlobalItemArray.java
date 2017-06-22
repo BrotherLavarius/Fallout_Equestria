@@ -51,10 +51,10 @@ public class GlobalItemArray {
             ItemInit.t60legs,
             ItemInit.t50legs,
             ItemInit.t40legs,
+            ItemInit.itb
 
             //---------------------PLACEHOLDER--------------------
 
-            ItemInit.tenMMbullet
     };
     public static final String[] ItemNames = new String[]{
             //---------------------UTILITY--------------------------
@@ -96,8 +96,7 @@ public class GlobalItemArray {
             GlobalNames.T50Legs,
             GlobalNames.T40Legs,
             //---------------------PLACEHOLDER--------------------
-
-            GlobalNames.TenMMbullet
+            "bullet"
     };
 
 }

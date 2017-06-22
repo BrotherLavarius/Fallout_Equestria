@@ -20,7 +20,7 @@ import com.redsparkle.foe.capa.spechial.SpechialFactoryProvider;
 import com.redsparkle.foe.capa.spechial.SpechialFactoryStorage;
 import com.redsparkle.foe.events.EventHandlerInit;
 import com.redsparkle.foe.events.EventHandlerPre;
-import com.redsparkle.foe.items.guns.inits.bulletFiredGuns.EntityBullet;
+import com.redsparkle.foe.items.guns.inits.EntityBullet;
 import com.redsparkle.foe.utils.GlobalNames;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
@@ -42,12 +42,10 @@ public abstract class CommonProxy {
         // INIT Handler
         MinecraftForge.EVENT_BUS.register(new EventHandlerPre());
 
-
-
+        EntityRegistry.registerModEntity(new ResourceLocation(GlobalNames.Domain + ":entity/bullet"), EntityBullet.class, "Bullet", 0, main.instance, 64, 10, true);
 
         //EntityRegistry.registerModEntity(new ResourceLocation(GlobalNames.Domain + ":entity/bullet"), EntityBullet.class, "Bullet", 650, main.instance, 20, 30, false);
-        EntityRegistry.registerModEntity(new ResourceLocation(GlobalNames.Domain + ":entity/laser"), EntityBullet.class, "laser", 651, main.instance, 20, 30, false);
-
+        //EntityRegistry.registerModEntity(new ResourceLocation(GlobalNames.Domain + ":entity/bullet"), EntityBullet.class, "bullet", 651, main.instance, 20, 30, true);
     }
 
     public void init() {

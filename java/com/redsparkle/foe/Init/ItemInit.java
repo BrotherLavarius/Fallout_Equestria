@@ -7,9 +7,13 @@ import com.redsparkle.foe.items.guns.TenMM;
 import com.redsparkle.foe.items.guns.ammo.LaserWeapons.Battery;
 import com.redsparkle.foe.items.guns.ammo.TenMM.TenMMClip;
 import com.redsparkle.foe.items.guns.ammo.TenMM.TenMMammo;
-import com.redsparkle.foe.items.guns.bullets.TenMMbullet;
-import com.redsparkle.foe.items.meds.*;
-import com.redsparkle.foe.items.meds.HealPotions.*;
+import com.redsparkle.foe.items.guns.inits.itembullet;
+import com.redsparkle.foe.items.meds.HealPotions.DarkHealPotion;
+import com.redsparkle.foe.items.meds.HealPotions.PurpleHealPotion;
+import com.redsparkle.foe.items.meds.HealPotions.RedHealPotion;
+import com.redsparkle.foe.items.meds.HealPotions.WhiteHealpotion;
+import com.redsparkle.foe.items.meds.RadAway;
+import com.redsparkle.foe.items.meds.RadX;
 import com.redsparkle.foe.items.utility.AdvancedEnviropmentMonitor;
 import com.redsparkle.foe.items.utility.LvlingCrystall;
 import com.redsparkle.foe.items.utility.PipBuck;
@@ -56,8 +60,8 @@ public class ItemInit {
     public static LaserPistol laserPistol;
 
     // PLACEHOLDER
-    public static TenMMbullet tenMMbullet;
 
+    public static itembullet itb;
     //ARMOR
     public static t40head t40head;
     public static t40body t40body;
@@ -219,10 +223,9 @@ public class ItemInit {
         GameRegistry.register(t60legs);
 
         //----------------------PLACEHOLDER--------------------
-
-        tenMMbullet = (TenMMbullet) (new TenMMbullet().setUnlocalizedName(GlobalNames.TenMMbullet));
-        tenMMbullet.setRegistryName(GlobalNames.TenMMbullet);
-        GameRegistry.register(tenMMbullet);
+        itb = (itembullet) (new itembullet().setUnlocalizedName("bullet"));
+        itb.setRegistryName("bullet");
+        GameRegistry.register(itb);
     }
 
     public static void InitCommon() {
