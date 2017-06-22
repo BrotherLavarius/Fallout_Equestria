@@ -9,7 +9,10 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.stats.StatList;
-import net.minecraft.util.*;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.EnumActionResult;
+import net.minecraft.util.EnumHand;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 
@@ -48,7 +51,6 @@ public class TenMM extends ItemFirearm {
     public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand hand) {
         ItemStack itemstack = playerIn.getHeldItem(hand);
         this.bullet = new EntityBullet(worldIn, playerIn);
-        this.effect = EnumParticleTypes.SMOKE_NORMAL;
 
         if (!playerIn.capabilities.isCreativeMode) {
             if (itemstack.getItemDamage() >= 12) {
@@ -62,9 +64,8 @@ public class TenMM extends ItemFirearm {
 
                 worldIn.playSound(playerIn, playerIn.getPosition(), SoundInit.tenMMShot, SoundCategory.HOSTILE, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
 
-                if (!worldIn.isRemote) {
                     worldIn.spawnEntity(bullet(worldIn, playerIn));
-                }
+
 
                 itemstack.setItemDamage(itemstack.getItemDamage() + 1);
                 playerIn.cameraYaw = -0.1F;
@@ -74,9 +75,7 @@ public class TenMM extends ItemFirearm {
 
         } else {
             worldIn.playSound(playerIn, playerIn.getPosition(), SoundInit.tenMMShot, SoundCategory.HOSTILE, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
-            if (!worldIn.isRemote) {
                 worldIn.spawnEntity(bullet(worldIn, playerIn));
-            }
 
 
             playerIn.cameraYaw = -0.1F;

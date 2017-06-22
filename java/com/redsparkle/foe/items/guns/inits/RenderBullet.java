@@ -2,7 +2,6 @@ package com.redsparkle.foe.items.guns.inits;
 
 import com.redsparkle.foe.utils.GlobalNames;
 import net.minecraft.client.model.ModelBase;
-import net.minecraft.client.model.ModelPig;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.Entity;
@@ -16,13 +15,13 @@ import javax.annotation.Nullable;
  */
 public class RenderBullet extends Render {
 
-    private static final ResourceLocation textures = new ResourceLocation(GlobalNames.Domain + ":textures/entities/BulletRender.png");
+    private static final ResourceLocation textures = new ResourceLocation(GlobalNames.Domain + ":textures/entities/bulletrender.png");
     private ModelBase model;
 
     public RenderBullet(RenderManager renderManager, ModelBullet modelBullet, double v) {
         super(renderManager);
         //model = modelBullet;
-        model = new ModelPig();
+        model = new ModelBullet();
 
     }
 

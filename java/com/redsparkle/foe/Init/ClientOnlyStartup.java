@@ -38,6 +38,7 @@ public class ClientOnlyStartup {
         final CreativeTabs Fallout_stats_armor = InitCreativeTabs.Fallout_armor;
         //final CreativeTabs Fallout_Util = InitCreativeTabs.Fallout_Utils;
         SoundInit.registerSounds();
+        RenderingRegistry.registerEntityRenderingHandler(EntityBullet.class, new RenderFactoryBullet(Minecraft.getMinecraft().getRenderManager()));
 
         OBJLoader.INSTANCE.addDomain(GlobalNames.Domain);
 
@@ -58,7 +59,7 @@ public class ClientOnlyStartup {
             Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(Item.getItemFromBlock(GlobalBlockArray.blocks[i]), 0, new ModelResourceLocation(MODID + ":" + GlobalBlockArray.blocksNames[i]));
 
         }
-        RenderingRegistry.registerEntityRenderingHandler(EntityBullet.class, new RenderFactoryBullet());
+        RenderingRegistry.registerEntityRenderingHandler(EntityBullet.class, new RenderFactoryBullet(Minecraft.getMinecraft().getRenderManager()));
 
 
     }
