@@ -1,5 +1,6 @@
-package com.redsparkle.foe.items.guns.inits;
+package com.redsparkle.foe.items.guns.bulletFired;
 
+import com.redsparkle.foe.items.guns.bulletFired.models.ModelBullet;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraftforge.fml.client.registry.IRenderFactory;

@@ -6,8 +6,10 @@ import com.redsparkle.foe.events.gui.EventHandlerOverlayAEM;
 import com.redsparkle.foe.events.gui.EventHandlerOverlayPipBuck;
 import com.redsparkle.foe.events.gui.EventPlayerGuiHandler;
 import com.redsparkle.foe.gui.Overlays.PipBuckOverlay;
-import com.redsparkle.foe.items.guns.inits.EntityBullet;
-import com.redsparkle.foe.items.guns.inits.RenderFactoryBullet;
+import com.redsparkle.foe.items.guns.LaserFired.EntityLaser;
+import com.redsparkle.foe.items.guns.LaserFired.RenderFactoryLaser;
+import com.redsparkle.foe.items.guns.bulletFired.EntityBullet;
+import com.redsparkle.foe.items.guns.bulletFired.RenderFactoryBullet;
 import com.redsparkle.foe.utils.GlobalBlockArray;
 import com.redsparkle.foe.utils.GlobalItemArray;
 import com.redsparkle.foe.utils.GlobalNames;
@@ -39,6 +41,7 @@ public class ClientOnlyStartup {
         //final CreativeTabs Fallout_Util = InitCreativeTabs.Fallout_Utils;
         SoundInit.registerSounds();
         RenderingRegistry.registerEntityRenderingHandler(EntityBullet.class, new RenderFactoryBullet(Minecraft.getMinecraft().getRenderManager()));
+        RenderingRegistry.registerEntityRenderingHandler(EntityLaser.class, new RenderFactoryLaser(Minecraft.getMinecraft().getRenderManager()));
 
         OBJLoader.INSTANCE.addDomain(GlobalNames.Domain);
 
@@ -59,7 +62,7 @@ public class ClientOnlyStartup {
             Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(Item.getItemFromBlock(GlobalBlockArray.blocks[i]), 0, new ModelResourceLocation(MODID + ":" + GlobalBlockArray.blocksNames[i]));
 
         }
-        RenderingRegistry.registerEntityRenderingHandler(EntityBullet.class, new RenderFactoryBullet(Minecraft.getMinecraft().getRenderManager()));
+
 
 
     }

@@ -1,4 +1,4 @@
-package com.redsparkle.foe.items.guns.inits;
+package com.redsparkle.foe.items.guns.LaserFired;
 
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.projectile.EntityThrowable;
@@ -11,22 +11,19 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 /**
- * Created by hoijima on 19.06.17.
+ * Created by hoijima on 22.06.17.
  */
-//https://emxtutorials.wordpress.com/creating-a-gun/
-public class EntityBullet extends EntityThrowable {
+public class EntityLaser extends EntityThrowable {
     public float damage;
     public EnumParticleTypes effect;
 
-    public EntityBullet(World world) {
+    public EntityLaser(World world) {
         super(world);
     }
 
-    public EntityBullet(World world, EntityLivingBase entity) {
+    public EntityLaser(World world, EntityLivingBase entity) {
         super(world, entity);
     }
-
-
 
 
     @Override
@@ -50,7 +47,10 @@ public class EntityBullet extends EntityThrowable {
 //                effect = EnumParticleTypes.SMOKE_NORMAL;
 //                world.spawnParticle(effect, posX, posY, posZ, x, y, z);
             } else {
-                world.spawnParticle(effect, posX, posY, posZ, x, y, z);
+                world.spawnParticle(EnumParticleTypes.valueOf("restone"), posX, posY, posZ, x, y, z);
+//                world.spawnParticle(EnumParticleTypes.REDSTONE, posX, posY, posZ, x, y, z);
+//                world.spawnParticle(EnumParticleTypes.REDSTONE, posX, posY, posZ, x, y, z);
+
             }
 
         }
@@ -61,7 +61,7 @@ public class EntityBullet extends EntityThrowable {
     public void handleStatusUpdate(byte p_handleStatusUpdate_1_) {
         if (p_handleStatusUpdate_1_ == 3) {
             for (int lvt_2_1_ = 0; lvt_2_1_ < 8; ++lvt_2_1_) {
-                this.world.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, this.posX, this.posY, this.posZ, 0.0D, 0.0D, 0.0D, new int[0]);
+                this.world.spawnParticle(EnumParticleTypes.REDSTONE, this.posX, this.posY, this.posZ, 0.0D, 0.0D, 0.0D, new int[0]);
             }
         }
 
@@ -94,4 +94,5 @@ public class EntityBullet extends EntityThrowable {
         this.effect = eff;
     }
 }
+
 

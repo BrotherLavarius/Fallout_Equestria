@@ -1,9 +1,11 @@
 package com.redsparkle.foe.items.guns;
 
 import com.redsparkle.foe.Init.SoundInit;
+import com.redsparkle.foe.capa.skills.SkillsFactoryProvider;
 import com.redsparkle.foe.creativeTabs.InitCreativeTabs;
+import com.redsparkle.foe.items.guns.LaserFired.EntityLaser;
 import com.redsparkle.foe.items.guns.ammo.LaserWeapons.Battery;
-import com.redsparkle.foe.items.guns.inits.EntityBullet;
+import com.redsparkle.foe.items.guns.bulletFired.EntityBullet;
 import com.redsparkle.foe.items.guns.inits.ItemFirearm;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -11,6 +13,10 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.*;
 import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
+import java.util.List;
 
 /**
  * Created by hoijima on 20.01.17.
@@ -44,8 +50,8 @@ public class LaserPistol extends ItemFirearm {
     @Override
     public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand hand) {
         ItemStack itemstack = playerIn.getHeldItem(hand);
-        this.bullet = new EntityBullet(worldIn, playerIn);
-        this.effect = EnumParticleTypes.FIREWORKS_SPARK;
+        this.laser = new EntityLaser(worldIn, playerIn);
+        this.damage = 20 + playerIn.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY,null).getEnergyWeapons();
 
         if (!playerIn.capabilities.isCreativeMode) {
             if (itemstack.getItemDamage() >= 30) {
@@ -71,14 +77,14 @@ public class LaserPistol extends ItemFirearm {
                 }
 
 
-                worldIn.spawnEntity(bullet(worldIn, playerIn));
+                worldIn.spawnEntity(laser(worldIn, playerIn));
                 itemstack.setItemDamage(itemstack.getItemDamage() + 1);
                 playerIn.cameraYaw = -0.1F;
                 return new ActionResult<>(EnumActionResult.PASS, itemstack);
             }
         } else {
             worldIn.playSound(playerIn, playerIn.getPosition(), SoundInit.laserPShot3, SoundCategory.PLAYERS, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
-            worldIn.spawnEntity(bullet(worldIn, playerIn));
+            worldIn.spawnEntity(laser(worldIn, playerIn));
         }
         return new ActionResult<>(EnumActionResult.PASS, itemstack);
     }
@@ -89,6 +95,15 @@ public class LaserPistol extends ItemFirearm {
 
         return stack.getItem() instanceof Battery;
     }
+    /**
+     * allows items to add custom lines of information to the mouseover description
+     */
+    @SideOnly(Side.CLIENT)
+    public void addInformation(ItemStack stack, EntityPlayer playerIn, List<String> tooltip, boolean advanced) {
+        tooltip.add("Laser pistol");
+        tooltip.add("Clip size: " + (clipRounds-1));
+        tooltip.add("Damage: " + damage);
 
+    }
 
 }

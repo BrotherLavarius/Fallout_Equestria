@@ -1,9 +1,10 @@
 package com.redsparkle.foe.items.guns;
 
 import com.redsparkle.foe.Init.SoundInit;
+import com.redsparkle.foe.capa.skills.SkillsFactoryProvider;
 import com.redsparkle.foe.creativeTabs.InitCreativeTabs;
 import com.redsparkle.foe.items.guns.ammo.TenMM.TenMMClip;
-import com.redsparkle.foe.items.guns.inits.EntityBullet;
+import com.redsparkle.foe.items.guns.bulletFired.EntityBullet;
 import com.redsparkle.foe.items.guns.inits.ItemFirearm;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -15,6 +16,10 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
+import java.util.List;
 
 /**
  * Created by NENYN on 1/5/2017.
@@ -30,7 +35,6 @@ public class TenMM extends ItemFirearm {
         this.setMaxDamage(clipRounds);
         this.setCreativeTab(InitCreativeTabs.Fallout_guns);
         isGun = true;
-        this.damage = 15;
 
 
     }
@@ -51,6 +55,7 @@ public class TenMM extends ItemFirearm {
     public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand hand) {
         ItemStack itemstack = playerIn.getHeldItem(hand);
         this.bullet = new EntityBullet(worldIn, playerIn);
+        this.damage = 10 + playerIn.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY,null).getSmallGuns();
 
         if (!playerIn.capabilities.isCreativeMode) {
             if (itemstack.getItemDamage() >= 12) {
@@ -89,7 +94,16 @@ public class TenMM extends ItemFirearm {
     public boolean isAmmo(ItemStack stack) {
         return stack.getItem() instanceof TenMMClip;
     }
+    /**
+     * allows items to add custom lines of information to the mouseover description
+     */
+    @SideOnly(Side.CLIENT)
+    public void addInformation(ItemStack stack, EntityPlayer playerIn, List<String> tooltip, boolean advanced) {
+        tooltip.add("10 MM pistol");
+        tooltip.add("Clip size: " + (clipRounds-2));
+        tooltip.add("Damage: " + damage);
 
+    }
 
 }
 

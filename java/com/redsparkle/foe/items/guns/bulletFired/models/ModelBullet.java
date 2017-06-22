@@ -1,4 +1,4 @@
-package com.redsparkle.foe.items.guns.inits;
+package com.redsparkle.foe.items.guns.bulletFired.models;
 
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;

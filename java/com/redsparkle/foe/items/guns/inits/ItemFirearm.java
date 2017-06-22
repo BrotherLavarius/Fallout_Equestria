@@ -1,6 +1,8 @@
 package com.redsparkle.foe.items.guns.inits;
 
 import com.redsparkle.foe.creativeTabs.InitCreativeTabs;
+import com.redsparkle.foe.items.guns.LaserFired.EntityLaser;
+import com.redsparkle.foe.items.guns.bulletFired.EntityBullet;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -17,6 +19,7 @@ public abstract class ItemFirearm extends Item {
     public int damage;
     public int clipRounds;
     public EntityBullet bullet;
+    public EntityLaser laser;
     public EnumParticleTypes effect;
     public Integer[] invArray = {0, 1, 2, 3, 4, 5, 6, 7, 8};
 
@@ -42,6 +45,15 @@ public abstract class ItemFirearm extends Item {
         }
         return ItemStack.EMPTY;
     }
+
+    public Entity laser(World worldIn, EntityPlayer playerIn) {
+        laser.setHeadingFromThrower(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, 5.5F, 1.0F);
+        laser.setEffect(effect);
+        laser.setRenderYawOffset(5F);
+        laser.setDamage(damage);
+        return laser;
+    }
+
 
     public Entity bullet(World worldIn, EntityPlayer playerIn) {
         bullet.setHeadingFromThrower(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, 5.5F, 1.0F);
