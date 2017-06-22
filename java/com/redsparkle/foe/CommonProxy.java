@@ -20,7 +20,8 @@ import com.redsparkle.foe.capa.spechial.SpechialFactoryProvider;
 import com.redsparkle.foe.capa.spechial.SpechialFactoryStorage;
 import com.redsparkle.foe.events.EventHandlerInit;
 import com.redsparkle.foe.events.EventHandlerPre;
-import com.redsparkle.foe.items.guns.LaserFired.EntityLaser;
+import com.redsparkle.foe.items.guns.flametrower.EntityFlame;
+import com.redsparkle.foe.items.guns.laserFired.EntityLaser;
 import com.redsparkle.foe.items.guns.bulletFired.EntityBullet;
 import com.redsparkle.foe.utils.GlobalNames;
 import net.minecraft.entity.player.EntityPlayer;
@@ -45,6 +46,7 @@ public abstract class CommonProxy {
 
         EntityRegistry.registerModEntity(new ResourceLocation(GlobalNames.Domain + ":entity/bullet"), EntityBullet.class, "Bullet", 0, main.instance, 64, 10, true);
         EntityRegistry.registerModEntity(new ResourceLocation(GlobalNames.Domain + ":entity/laser"), EntityLaser.class, "laser", 1, main.instance, 64, 10, true);
+        EntityRegistry.registerModEntity(new ResourceLocation(GlobalNames.Domain + ":entity/Flame"), EntityFlame.class, "laser", 2, main.instance, 64, 10, true);
 
         //EntityRegistry.registerModEntity(new ResourceLocation(GlobalNames.Domain + ":entity/bullet"), EntityBullet.class, "Bullet", 650, main.instance, 20, 30, false);
         //EntityRegistry.registerModEntity(new ResourceLocation(GlobalNames.Domain + ":entity/bullet"), EntityBullet.class, "bullet", 651, main.instance, 20, 30, true);

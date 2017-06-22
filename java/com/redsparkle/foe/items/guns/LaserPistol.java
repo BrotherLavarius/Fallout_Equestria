@@ -3,9 +3,9 @@ package com.redsparkle.foe.items.guns;
 import com.redsparkle.foe.Init.SoundInit;
 import com.redsparkle.foe.capa.skills.SkillsFactoryProvider;
 import com.redsparkle.foe.creativeTabs.InitCreativeTabs;
-import com.redsparkle.foe.items.guns.LaserFired.EntityLaser;
+import com.redsparkle.foe.items.guns.flametrower.EntityFlame;
+import com.redsparkle.foe.items.guns.laserFired.EntityLaser;
 import com.redsparkle.foe.items.guns.ammo.LaserWeapons.Battery;
-import com.redsparkle.foe.items.guns.bulletFired.EntityBullet;
 import com.redsparkle.foe.items.guns.inits.ItemFirearm;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -85,6 +85,7 @@ public class LaserPistol extends ItemFirearm {
         } else {
             worldIn.playSound(playerIn, playerIn.getPosition(), SoundInit.laserPShot3, SoundCategory.PLAYERS, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
             worldIn.spawnEntity(laser(worldIn, playerIn));
+
         }
         return new ActionResult<>(EnumActionResult.PASS, itemstack);
     }

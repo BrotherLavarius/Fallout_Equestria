@@ -1,4 +1,4 @@
-package com.redsparkle.foe.items.guns.LaserFired;
+package com.redsparkle.foe.items.guns.laserFired;
 
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.projectile.EntityThrowable;
@@ -40,18 +40,14 @@ public class EntityLaser extends EntityThrowable {
             setDead();
         }
         for (int i = 0; i < 25; i++) {
-            double x = (double) (rand.nextInt(10) - 5) / 8.0D;
-            double y = (double) (rand.nextInt(10) - 5) / 8.0D;
-            double z = (double) (rand.nextInt(10) - 5) / 8.0D;
-            if (effect == null) {
-//                effect = EnumParticleTypes.SMOKE_NORMAL;
-//                world.spawnParticle(effect, posX, posY, posZ, x, y, z);
-            } else {
-                world.spawnParticle(EnumParticleTypes.valueOf("restone"), posX, posY, posZ, x, y, z);
-//                world.spawnParticle(EnumParticleTypes.REDSTONE, posX, posY, posZ, x, y, z);
-//                world.spawnParticle(EnumParticleTypes.REDSTONE, posX, posY, posZ, x, y, z);
+            double x = (double) (rand.nextInt(3) - 5) / 8.0D;
+            double y = (double) (rand.nextInt(3) - 5) / 8.0D;
+            double z = (double) (rand.nextInt(3) - 5) / 8.0D;
 
-            }
+                world.spawnParticle(EnumParticleTypes.REDSTONE, posX, posY, posZ, 1, 0, 0);
+            world.spawnParticle(EnumParticleTypes.REDSTONE, posX, posY, posZ, 1, 0, 0);
+            world.spawnParticle(EnumParticleTypes.REDSTONE, posX, posY, posZ, 1, 0, 0);
+
 
         }
 

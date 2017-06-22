@@ -1,8 +1,6 @@
-package com.redsparkle.foe.items.guns.LaserFired;
+package com.redsparkle.foe.items.guns.laserFired;
 
-import com.redsparkle.foe.items.guns.LaserFired.models.ModelLaser;
-import com.redsparkle.foe.items.guns.bulletFired.RenderBullet;
-import com.redsparkle.foe.items.guns.bulletFired.models.ModelBullet;
+import com.redsparkle.foe.items.guns.laserFired.models.ModelLaser;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraftforge.fml.client.registry.IRenderFactory;

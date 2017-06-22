@@ -1,4 +1,4 @@
-package com.redsparkle.foe.items.guns.LaserFired.models;
+package com.redsparkle.foe.items.guns.laserFired.models;
 
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
