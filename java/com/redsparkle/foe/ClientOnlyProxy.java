@@ -31,6 +31,7 @@ import net.minecraftforge.fml.relauncher.Side;
 /**
  * Created by hoijima on 14.12.16.
  */
+@SuppressWarnings("ALL")
 public class ClientOnlyProxy extends CommonProxy {
 
     public static Minecraft mc = Minecraft.getMinecraft();

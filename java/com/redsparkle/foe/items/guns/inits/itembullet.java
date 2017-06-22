@@ -17,15 +17,6 @@ public class itembullet extends Item {
         this.setMaxStackSize(1);
         this.setCreativeTab(InitCreativeTabs.Fallout_ammo);
     }
-
-
-
-    //public EntityProjectile createBullet(World worldIn, ItemStack stack, EntityLivingBase shooter)
-    //{
-    //   EntityProjectile entityProjectile = new EntityBullet(worldIn, shooter);
-    //    return entityProjectile;
-    //}
-
     /**
      * allows items to add custom lines of information to the mouseover description
      */

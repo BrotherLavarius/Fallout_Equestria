@@ -2,6 +2,7 @@ package com.redsparkle.foe.items.guns.inits;
 
 import com.redsparkle.foe.utils.GlobalNames;
 import net.minecraft.client.model.ModelBase;
+import net.minecraft.client.model.ModelPig;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.Entity;
@@ -20,7 +21,8 @@ public class RenderBullet extends Render {
 
     public RenderBullet(RenderManager renderManager, ModelBullet modelBullet, double v) {
         super(renderManager);
-        model = new ModelBullet();
+        //model = modelBullet;
+        model = new ModelPig();
 
     }
 

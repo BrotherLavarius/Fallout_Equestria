@@ -5,9 +5,7 @@ import com.redsparkle.foe.creativeTabs.InitCreativeTabs;
 import com.redsparkle.foe.items.guns.ammo.TenMM.TenMMClip;
 import com.redsparkle.foe.items.guns.inits.EntityBullet;
 import com.redsparkle.foe.items.guns.inits.ItemFirearm;
-import com.redsparkle.foe.utils.AmmunitionListing;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.stats.StatList;
@@ -20,18 +18,8 @@ import net.minecraftforge.common.capabilities.ICapabilityProvider;
  */
 public class TenMM extends ItemFirearm {
 
-
-    public static Item ammoItem = AmmunitionListing.TenMMClip;
     public boolean isGun;
-    public int damage = 15;
     public int clipRounds = 13;
-    public Integer[] invArray = {0, 1, 2, 3, 4, 5, 6, 7, 8};
-    public EntityBullet entitybullet ;
-
-
-    public SoundEvent outOfammo = SoundInit.tenMMOOA;
-    public SoundEvent reload = SoundInit.tenMMReload;
-    public SoundEvent shoot = SoundInit.tenMMShot;
 
 
     public TenMM() {
@@ -39,6 +27,9 @@ public class TenMM extends ItemFirearm {
         this.setMaxDamage(clipRounds);
         this.setCreativeTab(InitCreativeTabs.Fallout_guns);
         isGun = true;
+        this.damage = 15;
+
+
     }
 
     @Override
@@ -56,7 +47,8 @@ public class TenMM extends ItemFirearm {
     @Override
     public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand hand) {
         ItemStack itemstack = playerIn.getHeldItem(hand);
-
+        this.bullet = new EntityBullet(worldIn, playerIn);
+        this.effect = EnumParticleTypes.SMOKE_NORMAL;
 
         if (!playerIn.capabilities.isCreativeMode) {
             if (itemstack.getItemDamage() >= 12) {
@@ -68,12 +60,14 @@ public class TenMM extends ItemFirearm {
 
             } else {
 
-//                worldIn.playSound(playerIn, playerIn.getPosition(), SoundInit.tenMMShot, SoundCategory.HOSTILE, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
-//                BulletEntity entitybullet = new BulletEntity(worldIn, playerIn);
-//                entitybullet.setHeadingFromThrower(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, 5.5F, 1.0F);
-//                worldIn.spawnEntity(entitybullet);
-//                itemstack.setItemDamage(itemstack.getItemDamage() + 1);
-//                playerIn.cameraYaw = -0.1F;
+                worldIn.playSound(playerIn, playerIn.getPosition(), SoundInit.tenMMShot, SoundCategory.HOSTILE, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
+
+                if (!worldIn.isRemote) {
+                    worldIn.spawnEntity(bullet(worldIn, playerIn));
+                }
+
+                itemstack.setItemDamage(itemstack.getItemDamage() + 1);
+                playerIn.cameraYaw = -0.1F;
                 return new ActionResult<>(EnumActionResult.SUCCESS, itemstack);
             }
 
@@ -81,46 +75,18 @@ public class TenMM extends ItemFirearm {
         } else {
             worldIn.playSound(playerIn, playerIn.getPosition(), SoundInit.tenMMShot, SoundCategory.HOSTILE, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
             if (!worldIn.isRemote) {
-
-
-//                ItemArrow itemarrow = (ItemArrow) (itemstack.getItem() instanceof ItemArrow ? itemstack.getItem() : Items.ARROW);
-//                EntityArrow entityarrow = itemarrow.createArrow(worldIn, itemstack, playerIn);
-//                entityarrow.setAim(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 1.0F, 10F, 0F);
-//                worldIn.spawnEntity(entityarrow);
-
-
-//                EntitySnowball entitysnowball = new EntitySnowball(worldIn, playerIn);
-//                entitysnowball.setHeadingFromThrower(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, 15F, 0F);
-//                worldIn.spawnEntity(entitysnowball);
-
-                entitybullet = new EntityBullet(worldIn, playerIn);
-                entitybullet.setHeadingFromThrower(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, 1.5F, 1.0F);
-                entitybullet.setRenderYawOffset(1.0F);
-                worldIn.spawnEntity(entitybullet);
+                worldIn.spawnEntity(bullet(worldIn, playerIn));
             }
 
+
+            playerIn.cameraYaw = -0.1F;
         }
         playerIn.addStat(StatList.getObjectUseStats(this));
         return new ActionResult<>(EnumActionResult.SUCCESS, itemstack);
     }
 
 
-    public ItemStack findAmmo(EntityPlayer player) {
-        for (int i = 0; i < invArray.length; ++i) {
-            ItemStack itemstack = player.inventory.getStackInSlot(i);
-
-            if (this.isAmmo(itemstack)) {
-                if (itemstack.getItemDamage() >= 12) {
-                    return ItemStack.EMPTY;
-                } else {
-                    return itemstack;
-                }
-            }
-            // }
-        }
-        return ItemStack.EMPTY;
-    }
-
+    @Override
     public boolean isAmmo(ItemStack stack) {
         return stack.getItem() instanceof TenMMClip;
     }
