@@ -86,8 +86,7 @@ public class LaserPistol extends ItemFirearm {
             }
         } else {
             worldIn.playSound(playerIn, playerIn.getPosition(), SoundInit.laserPShot3, SoundCategory.PLAYERS, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
-            //worldIn.spawnEntity(laser(worldIn, playerIn));
-            worldIn.spawnEntity(flame(worldIn, playerIn));
+            worldIn.spawnEntity(laser(worldIn, playerIn));
         }
         return new ActionResult<>(EnumActionResult.PASS, itemstack);
     }
