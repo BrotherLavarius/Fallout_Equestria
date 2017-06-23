@@ -36,10 +36,14 @@ public class GlobalItemArray {
             ItemInit.tenMMAmmo,
             ItemInit.tenMMClip,
             ItemInit.battery,
+            ItemInit.fourTenMMammo,
+            ItemInit.fourTenMMClip,
             //---------------------GUNS--------------------------
 
             ItemInit.tenMM,
             ItemInit.laserPistol,
+            ItemInit.fourTenMM,
+
             //---------------------ARMOR--------------------------
 
             ItemInit.t60head,
@@ -80,10 +84,13 @@ public class GlobalItemArray {
             GlobalNames.TenMMAmmo,
             GlobalNames.TenMMClip,
             GlobalNames.Battery,
+            GlobalNames.FourTenMMAmmo,
+            GlobalNames.FourTenMMClip,
             //---------------------GUNS--------------------------
 
             GlobalNames.TenMM,
             GlobalNames.LaserPistol,
+            GlobalNames.FourTenMM,
             //---------------------ARMOR--------------------------
 
             GlobalNames.T60Head,

@@ -3,14 +3,16 @@ package com.redsparkle.foe.items.guns;
 import com.redsparkle.foe.Init.SoundInit;
 import com.redsparkle.foe.capa.skills.SkillsFactoryProvider;
 import com.redsparkle.foe.creativeTabs.InitCreativeTabs;
-import com.redsparkle.foe.items.guns.flametrower.EntityFlame;
-import com.redsparkle.foe.items.guns.laserFired.EntityLaser;
 import com.redsparkle.foe.items.guns.ammo.LaserWeapons.Battery;
 import com.redsparkle.foe.items.guns.inits.ItemFirearm;
+import com.redsparkle.foe.items.guns.laserFired.EntityLaser;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.*;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.EnumActionResult;
+import net.minecraft.util.EnumHand;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.fml.relauncher.Side;
@@ -84,8 +86,8 @@ public class LaserPistol extends ItemFirearm {
             }
         } else {
             worldIn.playSound(playerIn, playerIn.getPosition(), SoundInit.laserPShot3, SoundCategory.PLAYERS, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
-            worldIn.spawnEntity(laser(worldIn, playerIn));
-
+            //worldIn.spawnEntity(laser(worldIn, playerIn));
+            worldIn.spawnEntity(flame(worldIn, playerIn));
         }
         return new ActionResult<>(EnumActionResult.PASS, itemstack);
     }

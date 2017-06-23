@@ -1,10 +1,12 @@
 package com.redsparkle.foe.network.helpers;
 
 import com.redsparkle.foe.Init.ItemInit;
+import com.redsparkle.foe.items.guns.ammo.FourTenMM.FourTenMMClip;
 import com.redsparkle.foe.items.guns.ammo.LaserWeapons.Battery;
 import com.redsparkle.foe.items.guns.ammo.TenMM.TenMMClip;
 import com.redsparkle.foe.main;
 import com.redsparkle.foe.network.MessageGunReloadReply;
+import com.redsparkle.foe.utils.GlobalWeaponsStats;
 import com.redsparkle.foe.utils.InventoryManager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -20,7 +22,7 @@ public class gunReload {
 
     public static void TenMM(WorldServer mainThread, ItemStack heldItem, EntityPlayerMP player) {
         mainThread.addScheduledTask(() -> {
-            if (heldItem.getItemDamage() <= 12) {
+            if (heldItem.getItemDamage() <= (GlobalWeaponsStats.TenMMclipRounds - 1)) {
                 if (findAmmo(player, "TenMM") != ItemStack.EMPTY) {
                     Item clip = ItemInit.tenMMClip;
                     ItemStack clipstack = new ItemStack(clip);
@@ -37,12 +39,11 @@ public class gunReload {
                     } else {
                         emptyClipStack.setItemDamage(heldItem.getItemDamage());
                     }
-                    heldItem.setItemDamage(13);
+                    heldItem.setItemDamage(GlobalWeaponsStats.TenMMclipRounds);
                     player.inventory.setInventorySlotContents(InventoryManager.FindEmpty(player), emptyClipStack);
                     main.simpleNetworkWrapper.sendTo(new MessageGunReloadReply(1), player);
-                    //CommonProxy.sendSound(0,player);
                 }
-            } else if (heldItem.getItemDamage() == 13) {
+            } else if (heldItem.getItemDamage() == GlobalWeaponsStats.TenMMclipRounds) {
                 if (findAmmo(player, "TenMM") != ItemStack.EMPTY) {
                     heldItem.setItemDamage(findAmmo(player, "TenMM").getItemDamage());
                     findAmmo(player, "TenMM").shrink(1);
@@ -66,7 +67,6 @@ public class gunReload {
                     return itemstack;
                 }
             }
-            // }
         }
         return ItemStack.EMPTY;
     }
@@ -77,6 +77,9 @@ public class gunReload {
         }
         if (ammo == "LaserPistol") {
             return stack.getItem() instanceof Battery;
+        }
+        if (ammo == "FourTenMM") {
+            return stack.getItem() instanceof FourTenMMClip;
         }
         return false;
 
@@ -115,6 +118,41 @@ public class gunReload {
                 }
             }
         });
+    }
+
+    public static void FourTenMM(WorldServer mainThread, ItemStack heldItem, EntityPlayerMP player) {
+        mainThread.addScheduledTask(() -> {
+            if (heldItem.getItemDamage() <= (GlobalWeaponsStats.FourclipRounds - 1)) {
+                if (findAmmo(player, "FourTenMM") != ItemStack.EMPTY) {
+                    Item clip = ItemInit.fourTenMMClip;
+                    ItemStack clipstack = new ItemStack(clip);
+                    clipstack.setItemDamage(heldItem.getItemDamage());
+                    heldItem.setItemDamage(findAmmo(player, "FourTenMM").getItemDamage());
+                    findAmmo(player, "FourTenMM").shrink(1);
+                    player.inventory.setInventorySlotContents(InventoryManager.FindEmpty(player), clipstack);
+                    main.simpleNetworkWrapper.sendTo(new MessageGunReloadReply(0), player);
+                } else {
+                    Item emptyclip = ItemInit.fourTenMMClip;
+                    ItemStack emptyClipStack = new ItemStack(emptyclip);
+                    if (heldItem.getItemDamage() == 0) {
+                        emptyClipStack.setItemDamage(1);
+                    } else {
+                        emptyClipStack.setItemDamage(heldItem.getItemDamage());
+                    }
+                    heldItem.setItemDamage(GlobalWeaponsStats.FourclipRounds);
+                    player.inventory.setInventorySlotContents(InventoryManager.FindEmpty(player), emptyClipStack);
+                    main.simpleNetworkWrapper.sendTo(new MessageGunReloadReply(1), player);
+                }
+            } else if (heldItem.getItemDamage() == GlobalWeaponsStats.FourclipRounds) {
+                if (findAmmo(player, "FourTenMM") != ItemStack.EMPTY) {
+                    heldItem.setItemDamage(findAmmo(player, "FourTenMM").getItemDamage());
+                    findAmmo(player, "FourTenMM").shrink(1);
+                    main.simpleNetworkWrapper.sendTo(new MessageGunReloadReply(0), player);
+
+                }
+            }
+        });
+
     }
 }
 

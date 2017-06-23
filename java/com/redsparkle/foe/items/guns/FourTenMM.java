@@ -25,13 +25,13 @@ import java.util.List;
 /**
  * Created by NENYN on 1/5/2017.
  */
-public class TenMM extends ItemFirearm {
+public class FourTenMM extends ItemFirearm {
 
     public boolean isGun;
-    public int clipRounds = GlobalWeaponsStats.TenMMclipRounds;
+    public int clipRounds = GlobalWeaponsStats.FourclipRounds;
 
 
-    public TenMM() {
+    public FourTenMM() {
         this.setMaxStackSize(1);
         this.setMaxDamage(clipRounds);
         this.setCreativeTab(InitCreativeTabs.Fallout_guns);
@@ -56,10 +56,10 @@ public class TenMM extends ItemFirearm {
     public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand hand) {
         ItemStack itemstack = playerIn.getHeldItem(hand);
         this.bullet = new EntityBullet(worldIn, playerIn);
-        this.damage = GlobalWeaponsStats.TenMMDamage + playerIn.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getSmallGuns();
+        this.damage = GlobalWeaponsStats.FourDamage + playerIn.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getSmallGuns();
 
         if (!playerIn.capabilities.isCreativeMode) {
-            if (itemstack.getItemDamage() >= 12) {
+            if (itemstack.getItemDamage() >= 9) {
                 if (findAmmo(playerIn) == ItemStack.EMPTY) {
                     // ---------------_EMPTY CLIP
                     worldIn.playSound(playerIn, playerIn.getPosition(), SoundInit.tenMMOOA, SoundCategory.HOSTILE, 0.5F, 0.4F);
@@ -70,7 +70,7 @@ public class TenMM extends ItemFirearm {
 
                 worldIn.playSound(playerIn, playerIn.getPosition(), SoundInit.tenMMShot, SoundCategory.HOSTILE, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
 
-                    worldIn.spawnEntity(bullet(worldIn, playerIn));
+                worldIn.spawnEntity(bullet(worldIn, playerIn));
 
 
                 itemstack.setItemDamage(itemstack.getItemDamage() + 1);
@@ -81,7 +81,7 @@ public class TenMM extends ItemFirearm {
 
         } else {
             worldIn.playSound(playerIn, playerIn.getPosition(), SoundInit.tenMMShot, SoundCategory.HOSTILE, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
-                worldIn.spawnEntity(bullet(worldIn, playerIn));
+            worldIn.spawnEntity(bullet(worldIn, playerIn));
 
 
             playerIn.cameraYaw = -0.1F;
@@ -95,13 +95,14 @@ public class TenMM extends ItemFirearm {
     public boolean isAmmo(ItemStack stack) {
         return stack.getItem() instanceof TenMMClip;
     }
+
     /**
      * allows items to add custom lines of information to the mouseover description
      */
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack stack, EntityPlayer playerIn, List<String> tooltip, boolean advanced) {
-        tooltip.add("10 MM pistol");
-        tooltip.add("Clip size: " + (clipRounds-2));
+        tooltip.add("14 MM pistol");
+        tooltip.add("Clip size: " + (clipRounds - 2));
         tooltip.add("Damage: " + damage);
 
     }

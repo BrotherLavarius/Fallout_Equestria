@@ -54,6 +54,7 @@ public class GlobalNames {
     public static final String
             TenMM = "tenmm_pistol",
             LaserPistol = "laser_pistol",
+            FourTenMM = "four_tenmm_pistol",
             nineMM = "9mm_Pistol";
     // Food
 
@@ -61,7 +62,8 @@ public class GlobalNames {
     public static final String
             TenMMAmmo = "tenmm_ammo",
             TenMMClip = "tenmm_clip",
-
+            FourTenMMAmmo = "four_tenmm_ammo",
+            FourTenMMClip = "four_tenmm_clip",
     Battery = "battery";
 
 

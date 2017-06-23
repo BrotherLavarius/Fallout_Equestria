@@ -1,4 +1,4 @@
-package com.redsparkle.foe.items.guns.ammo.TenMM;
+package com.redsparkle.foe.items.guns.ammo.FourTenMM;
 
 import com.redsparkle.foe.Init.ItemInit;
 import com.redsparkle.foe.creativeTabs.InitCreativeTabs;
@@ -20,12 +20,12 @@ import java.util.List;
 /**
  * Created by NENYN on 1/2/2017.
  */
-public class TenMMClip extends Item {
+public class FourTenMMClip extends Item {
 
     public Item ammo = ItemInit.tenMMAmmo;
-    public int MaxDamage = 13;
+    public int MaxDamage = 10;
 
-    public TenMMClip() {
+    public FourTenMMClip() {
         final int NUMBER_OF_BOXES = 1;
         this.setMaxStackSize(NUMBER_OF_BOXES);
         this.setCreativeTab(InitCreativeTabs.Fallout_ammo);   // the item will appear on the Miscellaneous tab in creative
@@ -50,7 +50,7 @@ public class TenMMClip extends Item {
 
     public ItemStack onItemUseFinish(ItemStack stack, World worldIn, EntityLivingBase entityLiving) {
         EntityPlayer playerIn = (EntityPlayer) entityLiving;
-        ItemStack Istack = ItemClipHelpers.TenMMClipStackHelper(stack, worldIn, playerIn, MaxDamage);
+        ItemStack Istack = ItemClipHelpers.FourTenMMClipStackHelper(stack, worldIn, playerIn, MaxDamage);
         return Istack;
 
     }

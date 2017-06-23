@@ -2,8 +2,11 @@ package com.redsparkle.foe.Init;
 
 import com.redsparkle.foe.items.armor.powered.*;
 import com.redsparkle.foe.items.food.old.*;
+import com.redsparkle.foe.items.guns.FourTenMM;
 import com.redsparkle.foe.items.guns.LaserPistol;
 import com.redsparkle.foe.items.guns.TenMM;
+import com.redsparkle.foe.items.guns.ammo.FourTenMM.FourTenMMClip;
+import com.redsparkle.foe.items.guns.ammo.FourTenMM.FourTenMMammo;
 import com.redsparkle.foe.items.guns.ammo.LaserWeapons.Battery;
 import com.redsparkle.foe.items.guns.ammo.TenMM.TenMMClip;
 import com.redsparkle.foe.items.guns.ammo.TenMM.TenMMammo;
@@ -53,10 +56,14 @@ public class ItemInit {
     public static TenMMammo tenMMAmmo;
     public static TenMMClip tenMMClip;
 
+    public static FourTenMMammo fourTenMMammo;
+    public static FourTenMMClip fourTenMMClip;
     public static Battery battery;
 
     // GUNS
     public static TenMM tenMM;
+    public static FourTenMM fourTenMM;
+
     public static LaserPistol laserPistol;
 
     // PLACEHOLDER
@@ -157,6 +164,13 @@ public class ItemInit {
         battery.setRegistryName(GlobalNames.Battery);
         GameRegistry.register(battery);
 
+        fourTenMMammo = (FourTenMMammo) (new FourTenMMammo().setUnlocalizedName(GlobalNames.FourTenMMAmmo));
+        fourTenMMammo.setRegistryName(GlobalNames.FourTenMMAmmo);
+        GameRegistry.register(fourTenMMammo);
+
+        fourTenMMClip = (FourTenMMClip) (new FourTenMMClip().setUnlocalizedName(GlobalNames.FourTenMMClip));
+        fourTenMMClip.setRegistryName(GlobalNames.FourTenMMClip);
+        GameRegistry.register(fourTenMMClip);
 
         //----------------------GUNS--------------------
 
@@ -167,6 +181,10 @@ public class ItemInit {
         laserPistol = (LaserPistol) (new LaserPistol().setUnlocalizedName(GlobalNames.LaserPistol));
         laserPistol.setRegistryName(GlobalNames.LaserPistol);
         GameRegistry.register(laserPistol);
+
+        fourTenMM = (FourTenMM) (new FourTenMM().setUnlocalizedName(GlobalNames.FourTenMM));
+        fourTenMM.setRegistryName(GlobalNames.FourTenMM);
+        GameRegistry.register(fourTenMM);
 
         //----------------------UTILITY-----------------
         pipbuck = (PipBuck) (new PipBuck().setUnlocalizedName(GlobalNames.PipbuckTT));
