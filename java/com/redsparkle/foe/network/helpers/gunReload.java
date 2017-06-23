@@ -1,11 +1,11 @@
 package com.redsparkle.foe.network.helpers;
 
-import com.redsparkle.foe.Init.ItemInit;
 import com.redsparkle.foe.items.guns.ammo.FourTenMM.FourTenMMClip;
 import com.redsparkle.foe.items.guns.ammo.LaserWeapons.Battery;
 import com.redsparkle.foe.items.guns.ammo.TenMM.TenMMClip;
 import com.redsparkle.foe.main;
 import com.redsparkle.foe.network.MessageGunReloadReply;
+import com.redsparkle.foe.utils.GlobalItemArray_For_init;
 import com.redsparkle.foe.utils.GlobalWeaponsStats;
 import com.redsparkle.foe.utils.InventoryManager;
 import net.minecraft.entity.player.EntityPlayer;
@@ -24,7 +24,7 @@ public class gunReload {
         mainThread.addScheduledTask(() -> {
             if (heldItem.getItemDamage() <= (GlobalWeaponsStats.TenMMclipRounds - 1)) {
                 if (findAmmo(player, "TenMM") != ItemStack.EMPTY) {
-                    Item clip = ItemInit.tenMMClip;
+                    Item clip = GlobalItemArray_For_init.tenMMClip;
                     ItemStack clipstack = new ItemStack(clip);
                     clipstack.setItemDamage(heldItem.getItemDamage());
                     heldItem.setItemDamage(findAmmo(player, "TenMM").getItemDamage());
@@ -32,7 +32,7 @@ public class gunReload {
                     player.inventory.setInventorySlotContents(InventoryManager.FindEmpty(player), clipstack);
                     main.simpleNetworkWrapper.sendTo(new MessageGunReloadReply(0), player);
                 } else {
-                    Item emptyclip = ItemInit.tenMMClip;
+                    Item emptyclip = GlobalItemArray_For_init.tenMMClip;
                     ItemStack emptyClipStack = new ItemStack(emptyclip);
                     if (heldItem.getItemDamage() == 0) {
                         emptyClipStack.setItemDamage(1);
@@ -89,7 +89,7 @@ public class gunReload {
         mainThread.addScheduledTask(() -> {
             if (heldItem.getItemDamage() <= 30) {
                 if (findAmmo(player, "LaserPistol") != ItemStack.EMPTY) {
-                    Item clip = ItemInit.battery;
+                    Item clip = GlobalItemArray_For_init.battery;
                     ItemStack clipstack = new ItemStack(clip);
                     clipstack.setItemDamage(heldItem.getItemDamage());
                     heldItem.setItemDamage(findAmmo(player, "LaserPistol").getItemDamage());
@@ -97,7 +97,7 @@ public class gunReload {
                     player.inventory.setInventorySlotContents(InventoryManager.FindEmpty(player), clipstack);
                     main.simpleNetworkWrapper.sendTo(new MessageGunReloadReply(2), player);
                 } else {
-                    Item emptyclip = ItemInit.battery;
+                    Item emptyclip = GlobalItemArray_For_init.battery;
                     ItemStack emptyClipStack = new ItemStack(emptyclip);
                     if (heldItem.getItemDamage() == 0) {
                         emptyClipStack.setItemDamage(1);
@@ -124,7 +124,7 @@ public class gunReload {
         mainThread.addScheduledTask(() -> {
             if (heldItem.getItemDamage() <= (GlobalWeaponsStats.FourclipRounds - 1)) {
                 if (findAmmo(player, "FourTenMM") != ItemStack.EMPTY) {
-                    Item clip = ItemInit.fourTenMMClip;
+                    Item clip = GlobalItemArray_For_init.fourTenMMClip;
                     ItemStack clipstack = new ItemStack(clip);
                     clipstack.setItemDamage(heldItem.getItemDamage());
                     heldItem.setItemDamage(findAmmo(player, "FourTenMM").getItemDamage());
@@ -132,7 +132,7 @@ public class gunReload {
                     player.inventory.setInventorySlotContents(InventoryManager.FindEmpty(player), clipstack);
                     main.simpleNetworkWrapper.sendTo(new MessageGunReloadReply(0), player);
                 } else {
-                    Item emptyclip = ItemInit.fourTenMMClip;
+                    Item emptyclip = GlobalItemArray_For_init.fourTenMMClip;
                     ItemStack emptyClipStack = new ItemStack(emptyclip);
                     if (heldItem.getItemDamage() == 0) {
                         emptyClipStack.setItemDamage(1);

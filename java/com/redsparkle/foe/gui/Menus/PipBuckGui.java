@@ -1,16 +1,9 @@
 package com.redsparkle.foe.gui.Menus;
 
-import com.redsparkle.foe.Init.ItemInit;
-import com.redsparkle.foe.capa.level.LevelFactoryProvider;
-import com.redsparkle.foe.capa.rad.RadsFactoryProvider;
-import com.redsparkle.foe.capa.skills.SkillsFactoryProvider;
-import com.redsparkle.foe.capa.spechial.SpechialFactoryProvider;
-import com.redsparkle.foe.capa.water.WaterFactoryProvider;
 import com.redsparkle.foe.gui.Menus.pipbuck_gui_extenders.DATA.DataGui;
 import com.redsparkle.foe.gui.Menus.pipbuck_gui_extenders.ITEMS.InventoryGui;
 import com.redsparkle.foe.gui.Menus.pipbuck_gui_extenders.STATS.StatsGui;
 import com.redsparkle.foe.main;
-import com.redsparkle.foe.network.ClientServerOneClass.*;
 import com.redsparkle.foe.utils.*;
 import com.redsparkle.foe.utils.gui.GuiButtonExtFallout;
 import com.redsparkle.foe.utils.gui.GuiButtonExtFallout_pipbuck;
@@ -105,7 +98,7 @@ public class PipBuckGui extends GuiScreen {
 
         int startX = 0;
         int startY = 0;
-        Item pipbuckI = ItemInit.pipbuck;
+        Item pipbuckI = GlobalItemArray_For_init.pipbuck;
         ItemStack pipbuckStack = new ItemStack(pipbuckI);
         mc.getItemRenderer().renderItem(player, pipbuckStack, ItemCameraTransforms.TransformType.GUI);
         this.zLevel = 0;

@@ -1,8 +1,8 @@
 package com.redsparkle.foe.items.guns.ammo.TenMM;
 
-import com.redsparkle.foe.Init.ItemInit;
 import com.redsparkle.foe.creativeTabs.InitCreativeTabs;
 import com.redsparkle.foe.items.guns.inits.ItemClipHelpers;
+import com.redsparkle.foe.utils.GlobalItemArray_For_init;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumAction;
@@ -22,7 +22,7 @@ import java.util.List;
  */
 public class TenMMClip extends Item {
 
-    public Item ammo = ItemInit.tenMMAmmo;
+    public Item ammo = GlobalItemArray_For_init.tenMMAmmo;
     public int MaxDamage = 13;
 
     public TenMMClip() {

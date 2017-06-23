@@ -1,6 +1,5 @@
 package com.redsparkle.foe.utils;
 
-import com.redsparkle.foe.Init.ItemInit;
 import net.minecraft.item.Item;
 
 /**
@@ -9,6 +8,6 @@ import net.minecraft.item.Item;
 public class AmmunitionListing {
 
     public static final Item
-            TenMMClip = (Item) ItemInit.tenMMClip,
-            Battery = (Item) ItemInit.battery;
+            TenMMClip = (Item) GlobalItemArray_For_init.tenMMClip,
+            Battery = (Item) GlobalItemArray_For_init.battery;
 }

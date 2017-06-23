@@ -1,7 +1,7 @@
 package com.redsparkle.foe.events.gui;
 
-import com.redsparkle.foe.Init.ItemInit;
 import com.redsparkle.foe.gui.Overlays.RadsOverlay;
+import com.redsparkle.foe.utils.GlobalItemArray_For_init;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -25,7 +25,7 @@ public class EventHandlerOverlayAEM {
             final int LAST_HOTBAR_SLOT_PLUS_ONE = FIRST_HOTBAR_SLOT + InventoryPlayer.getHotbarSize();
             for (int i = FIRST_HOTBAR_SLOT; i < LAST_HOTBAR_SLOT_PLUS_ONE; ++i) {
                 ItemStack slotItemStack = entityPlayerSP.inventory.getStackInSlot(i);
-                if (slotItemStack != null && slotItemStack.getItem() == ItemInit.aem &&!(slotItemStack.getItem() == ItemInit.pipbuck)) {
+                if (slotItemStack != null && slotItemStack.getItem() == GlobalItemArray_For_init.aem && !(slotItemStack.getItem() == GlobalItemArray_For_init.pipbuck)) {
                     foundInHotbar = true;
                     break;
                 }

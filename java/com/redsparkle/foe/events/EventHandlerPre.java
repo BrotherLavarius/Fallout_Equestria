@@ -1,7 +1,6 @@
 package com.redsparkle.foe.events;
 
 
-import com.redsparkle.foe.Init.ItemInit;
 import com.redsparkle.foe.capa.FirtsTimeJoin.FTJFactoryProvider;
 import com.redsparkle.foe.capa.FirtsTimeJoin.IFTJCapability;
 import com.redsparkle.foe.capa.level.ILevelCapability;
@@ -15,6 +14,7 @@ import com.redsparkle.foe.capa.spechial.SpechialFactoryProvider;
 import com.redsparkle.foe.capa.water.IWaterCapability;
 import com.redsparkle.foe.capa.water.WaterFactoryProvider;
 import com.redsparkle.foe.main;
+import com.redsparkle.foe.utils.GlobalItemArray_For_init;
 import com.redsparkle.foe.utils.PlayerParamsSetup;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -22,8 +22,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.*;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
-import net.minecraftforge.event.entity.living.LivingDeathEvent;
-import net.minecraftforge.event.entity.living.LivingSpawnEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
@@ -110,7 +108,7 @@ public class EventHandlerPre {
             ISkillsCapability skills = e.player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null);
             ILevelCapability lvl = e.player.getCapability(LEVEL_CAPABILITY, null);
             ISpechialCapability spe = e.player.getCapability(SpechialFactoryProvider.SPECHIAL_CAPABILITY, null);
-            Item lvliningCrystal = ItemInit.lvlingCrystall;
+            Item lvliningCrystal = GlobalItemArray_For_init.lvlingCrystall;
             ItemStack lvlingcrystallS = new ItemStack(lvliningCrystal);
             lvlingcrystallS.setCount(1);
             e.player.inventory.addItemStackToInventory(lvlingcrystallS);

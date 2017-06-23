@@ -6,13 +6,14 @@ import com.redsparkle.foe.events.gui.EventHandlerOverlayAEM;
 import com.redsparkle.foe.events.gui.EventHandlerOverlayPipBuck;
 import com.redsparkle.foe.events.gui.EventPlayerGuiHandler;
 import com.redsparkle.foe.gui.Overlays.PipBuckOverlay;
+import com.redsparkle.foe.items.guns.bulletFired.EntityBullet;
+import com.redsparkle.foe.items.guns.bulletFired.RenderFactoryBullet;
 import com.redsparkle.foe.items.guns.flametrower.EntityFlame;
 import com.redsparkle.foe.items.guns.laserFired.EntityLaser;
 import com.redsparkle.foe.items.guns.laserFired.RenderFactoryLaser;
-import com.redsparkle.foe.items.guns.bulletFired.EntityBullet;
-import com.redsparkle.foe.items.guns.bulletFired.RenderFactoryBullet;
 import com.redsparkle.foe.utils.GlobalBlockArray;
-import com.redsparkle.foe.utils.GlobalItemArray;
+import com.redsparkle.foe.utils.GlobalItemArray_For_init;
+import com.redsparkle.foe.utils.GlobalItemModelsInitArray;
 import com.redsparkle.foe.utils.GlobalNames;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
@@ -52,9 +53,19 @@ public class ClientOnlyStartup {
         }
 
         //ITEMS SECTION#########################################
-        for (int it = 0; it < (GlobalItemArray.items.length - 1); it++) {
+        for (int it = 0; it <= (GlobalItemArray_For_init.AllInit.length - 1); it++) {
             final int DEFAULT_ITEM_SUBTYPE = 0;
-            ModelLoader.setCustomModelResourceLocation(GlobalItemArray.items[it], DEFAULT_ITEM_SUBTYPE, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalItemArray.ItemNames[it], "inventory"));
+            if (GlobalItemArray_For_init.AllInit[it] != null) {
+                ModelLoader.setCustomModelResourceLocation(GlobalItemArray_For_init.AllInit[it], DEFAULT_ITEM_SUBTYPE, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalItemArray_For_init.ItemNames[it], "inventory"));
+            }
+        }
+
+
+        for (int ar = 0; ar <= (GlobalItemModelsInitArray.AllInit.length - 1); ar++) {
+            final int DEFAULT_ITEM_SUBTYPE = 0;
+            if (GlobalItemModelsInitArray.AllInit[ar] != null) {
+                ModelLoader.setCustomModelResourceLocation(GlobalItemModelsInitArray.AllInit[ar], DEFAULT_ITEM_SUBTYPE, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalItemModelsInitArray.ItemNames[ar], "inventory"));
+            }
         }
 
     }
