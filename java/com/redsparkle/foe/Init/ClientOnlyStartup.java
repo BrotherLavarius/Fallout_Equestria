@@ -43,6 +43,10 @@ public class ClientOnlyStartup {
         final CreativeTabs Fallout_stats_armor = InitCreativeTabs.Fallout_armor;
         //final CreativeTabs Fallout_Util = InitCreativeTabs.Fallout_Utils;
         SoundInit.registerSounds();
+        RenderingRegistry.registerEntityRenderingHandler(EntityBullet.class, new RenderFactoryBullet(Minecraft.getMinecraft().getRenderManager()));
+        RenderingRegistry.registerEntityRenderingHandler(EntityLaser.class, new RenderFactoryLaser(Minecraft.getMinecraft().getRenderManager()));
+        RenderingRegistry.registerEntityRenderingHandler(EntityFlame.class, new RenderFactoryBullet(Minecraft.getMinecraft().getRenderManager()));
+
         RenderingRegistry.registerEntityRenderingHandler(Pellet.class,  new RenderFactoryBullet(Minecraft.getMinecraft().getRenderManager()));
         RenderingRegistry.registerEntityRenderingHandler(Pellet_one.class, new RenderFactoryBullet(Minecraft.getMinecraft().getRenderManager()));
         RenderingRegistry.registerEntityRenderingHandler(Pellet_two.class, new RenderFactoryBullet(Minecraft.getMinecraft().getRenderManager()));
@@ -51,8 +55,6 @@ public class ClientOnlyStartup {
         RenderingRegistry.registerEntityRenderingHandler(Pellet_four.class,new RenderFactoryBullet(Minecraft.getMinecraft().getRenderManager()));
         RenderingRegistry.registerEntityRenderingHandler(Pellet_five.class,new RenderFactoryBullet(Minecraft.getMinecraft().getRenderManager()));
         RenderingRegistry.registerEntityRenderingHandler(Pellet_six.class, new RenderFactoryBullet(Minecraft.getMinecraft().getRenderManager()));
-
-
 
         OBJLoader.INSTANCE.addDomain(GlobalNames.Domain);
 

@@ -15,7 +15,6 @@ import java.util.List;
 public class itembullet extends Item {
     public itembullet() {
         this.setMaxStackSize(1);
-        this.setCreativeTab(InitCreativeTabs.Fallout_ammo);
     }
     /**
      * allows items to add custom lines of information to the mouseover description

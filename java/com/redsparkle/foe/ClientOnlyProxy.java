@@ -106,18 +106,68 @@ public class ClientOnlyProxy extends CommonProxy {
             System.out.println("Sound int: " + message.soundname);
             EntityPlayer player = Minecraft.getMinecraft().player;
             World world = Minecraft.getMinecraft().world;
+//-------------------------------------------------------------
             if (message.soundname == 0) {
-                world.playSound(player, player.getPosition(), SoundInit.tenMMClipOut, SoundCategory.HOSTILE, 1.0F, 1.0F);
-                world.playSound(player, player.getPosition(), SoundInit.tenMMClipIn, SoundCategory.HOSTILE, 1.0F, 1.0F);
-                world.playSound(player, player.getPosition(), SoundInit.tenMMReload, SoundCategory.HOSTILE, 1.0F, 1.0F);
+                //10 mm reload
+                world.playSound(player, player.getPosition(), SoundInit.guns[2], SoundCategory.HOSTILE, 1.0F, 1.0F);
             } else if (message.soundname == 1) {
-                world.playSound(player, player.getPosition(), SoundInit.tenMMClipOut, SoundCategory.HOSTILE, 1.0F, 1.0F);
-            } else if (message.soundname == 2) {
-                world.playSound(player, player.getPosition(), SoundInit.laserPBoltOpen, SoundCategory.HOSTILE, 1.0F, 1.0F);
-                world.playSound(player, player.getPosition(), SoundInit.laserPBoltMagIn, SoundCategory.HOSTILE, 1.0F, 1.0F);
-                world.playSound(player, player.getPosition(), SoundInit.laserPBoltClose, SoundCategory.HOSTILE, 1.0F, 1.0F);
+                //10 mm clip_out
+                world.playSound(player, player.getPosition(), SoundInit.guns[23] ,SoundCategory.HOSTILE, 1.0F, 1.0F);
+            }
+//-------------------------------------------------------------
+            else if (message.soundname == 2) {
+                // 14mm reload
+                world.playSound(player, player.getPosition(), SoundInit.guns[5], SoundCategory.HOSTILE, 1.0F, 1.0F);
+
             } else if (message.soundname == 3) {
-                world.playSound(player, player.getPosition(), SoundInit.laserPBoltOpen, SoundCategory.HOSTILE, 1.0F, 1.0F);
+                // 14mm clip_out
+                world.playSound(player, player.getPosition(), SoundInit.guns[24] , SoundCategory.HOSTILE, 1.0F, 1.0F);
+
+            }
+//-------------------------------------------------------------
+            else if (message.soundname == 4) {
+                // db_shotgun reload
+                world.playSound(player, player.getPosition(), SoundInit.guns[7], SoundCategory.HOSTILE, 1.0F, 1.0F);
+
+            } else if (message.soundname == 5) {
+                // db_shotgun clip_out
+                world.playSound(player, player.getPosition(), SoundInit.guns[25] , SoundCategory.HOSTILE, 1.0F, 1.0F);
+
+            }
+//-------------------------------------------------------------
+            else if (message.soundname == 6) {
+                // flaregun reload
+                world.playSound(player, player.getPosition(), SoundInit.guns[11], SoundCategory.HOSTILE, 1.0F, 1.0F);
+
+            } else if (message.soundname == 7) {
+                // flaregun clip_out
+                world.playSound(player, player.getPosition(), SoundInit.guns[26] , SoundCategory.HOSTILE, 1.0F, 1.0F);
+
+            }
+//-------------------------------------------------------------
+            else if (message.soundname == 8) {
+                // laser reload
+                world.playSound(player, player.getPosition(), SoundInit.guns[20], SoundCategory.HOSTILE, 1.0F, 1.0F);
+
+            } else if (message.soundname == 9) {
+                // laser clip_out
+                world.playSound(player, player.getPosition(), SoundInit.guns[27] , SoundCategory.HOSTILE, 1.0F, 1.0F);
+
+            }
+//-------------------------------------------------------------
+            else if (message.soundname == 10) {
+                // plasma reload
+                world.playSound(player, player.getPosition(), SoundInit.guns[14], SoundCategory.HOSTILE, 1.0F, 1.0F);
+
+            } else if (message.soundname == 11) {
+                // plasma clip_out
+                world.playSound(player, player.getPosition(), SoundInit.guns[28] , SoundCategory.HOSTILE, 1.0F, 1.0F);
+
+            }
+//-------------------------------------------------------------
+            else if (message.soundname == 12) {
+                // flamer reload
+                world.playSound(player, player.getPosition(), SoundInit.guns[16], SoundCategory.HOSTILE, 1.0F, 1.0F);
 
             }
 

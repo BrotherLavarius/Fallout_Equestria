@@ -11,6 +11,7 @@ import com.redsparkle.foe.capa.water.WaterFactoryProvider;
 import com.redsparkle.foe.events.ServerSIdeONly.EventHandlerServerSidePre;
 import com.redsparkle.foe.items.guns.FourTenMM;
 import com.redsparkle.foe.items.guns.LaserPistol;
+import com.redsparkle.foe.items.guns.SB_shoutgun;
 import com.redsparkle.foe.items.guns.TenMM;
 import com.redsparkle.foe.network.ClientServerOneClass.MessageUpdateClientServerLevel;
 import com.redsparkle.foe.network.ClientServerOneClass.MessageUpdateClientServerSPECHIAL;
@@ -102,11 +103,12 @@ public class DedicatedServerProxy extends CommonProxy {
         if (heldItem != null) { //&& heldItem.getTagCompound().getBoolean("isgun")
             if (heldItem.getItem() instanceof TenMM) {
                 gunReload.TenMM(mainThread, heldItem, player);
-
             } else if (heldItem.getItem() instanceof LaserPistol) {
                 gunReload.LaserPistol(mainThread, heldItem, player);
             } else if (heldItem.getItem() instanceof FourTenMM) {
                 gunReload.FourTenMM(mainThread, heldItem, player);
+            } else if (heldItem.getItem() instanceof SB_shoutgun){
+                gunReload.Shotgun(mainThread, heldItem, player);
             }
 
 

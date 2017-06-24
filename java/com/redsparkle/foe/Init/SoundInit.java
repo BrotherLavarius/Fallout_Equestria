@@ -1,6 +1,7 @@
 package com.redsparkle.foe.Init;
 
 import com.redsparkle.foe.main;
+import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
@@ -9,46 +10,130 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
  * Created by hoijima on 14.12.16.
  */
 public class SoundInit {
-    public static SoundEvent LowEntensityRad;
-    public static SoundEvent MediumEntensityRad;
-    public static SoundEvent HighEntensityRad;
-    public static SoundEvent Enervation;
-    public static SoundEvent tenMMShot;
-    public static SoundEvent tenMMOOA;
-    public static SoundEvent tenMMReload;
-    public static SoundEvent tenMMClipLoad;
-    public static SoundEvent tenMMClipIn;
-    public static SoundEvent tenMMClipOut;
+    public static SoundEvent lowentensity_rad;
+    public static SoundEvent mediumentensity_rad;
+    public static SoundEvent highentensity_rad;
+    public static SoundEvent enervation;
 
-    public static SoundEvent laserPShot1;
-    public static SoundEvent laserPShot2;
-    public static SoundEvent laserPShot3;
-    public static SoundEvent laserPBoltClose;
-    public static SoundEvent laserPBoltOpen;
-    public static SoundEvent laserPBoltMagIn;
-    public static SoundEvent laserPEmpty;
+
+    public static SoundEvent tenmm_shot;
+    public static SoundEvent tenmm_dry;
+    public static SoundEvent tenmm_reload;
+
+    public static SoundEvent four_tenmm_shot;
+    public static SoundEvent four_tenmm_dry;
+    public static SoundEvent four_tenmm_reload;
+
+    public static SoundEvent db_shotgun_shot;
+    public static SoundEvent db_shotgun_reload;
+    public static SoundEvent db_shotgun_dry;
+
+    public static SoundEvent flaregun_shot;
+    public static SoundEvent flaregun_dry;
+    public static SoundEvent flaregun_reload;
+
+    public static SoundEvent plasma_shot;
+    public static SoundEvent plasma_dry;
+    public static SoundEvent plasma_reload;
+
+    public static SoundEvent flamer_shot;
+    public static SoundEvent flamer_reload;
+
+    public static SoundEvent laser_fire_var_One;
+    public static SoundEvent laser_fire_var_Two;
+    public static SoundEvent laser_fire_var_Tree;
+    public static SoundEvent laser_reload;
+    public static SoundEvent laser_dry;
+
+    public static SoundEvent clip_load;
+
+    public static SoundEvent tenmm_clip_out;
+    public static SoundEvent four_tenmm_clip_out;
+    public static SoundEvent db_shotgun_clip_out;
+    public static SoundEvent flaregun_clip_out;
+    public static SoundEvent laser_clip_out;
+    public static SoundEvent plasma_clip_out;
+
+
+
+
+    public static SoundEvent[] guns = new SoundEvent[]{
+            tenmm_shot,                         //	0
+            tenmm_dry,                          //	1
+            tenmm_reload,                       //	2
+            four_tenmm_shot  ,                  //	3
+            four_tenmm_dry   ,                  //	4
+            four_tenmm_reload,                  //	5
+            db_shotgun_shot  ,                  //	6
+            db_shotgun_reload,                  //	7
+            db_shotgun_dry   ,                  //	8
+            flaregun_shot    ,                  //	9
+            flaregun_dry,                       //	10
+            flaregun_reload,                    //	11
+            plasma_shot,                        //	12
+            plasma_dry,                         //	13
+            plasma_reload,                      //	14
+            flamer_shot,                        //	15
+            flamer_reload,                      //	16
+            laser_fire_var_One,                 //	17
+            laser_fire_var_Two,                 //	18
+            laser_fire_var_Tree,                //	19
+            laser_reload,                       //	20
+            laser_dry,                          //	21
+            clip_load,                          //  22
+
+            tenmm_clip_out,                     //  23
+            four_tenmm_clip_out,                //  24
+            db_shotgun_clip_out,                //  25
+            flaregun_clip_out,                  //  26
+            laser_clip_out,                     //  27
+            plasma_clip_out                     //  28
+    };
+
+    public static String[] gunsS = new String[]{
+            "tenmm_shot",                         //	0
+            "tenmm_dry",                          //	1
+            "tenmm_reload",                       //	2
+            "four_tenmm_shot",                  //	3
+            "four_tenmm_dry",                  //	4
+            "four_tenmm_reload",                  //	5
+            "db_shotgun_shot",                  //	6
+            "db_shotgun_reload",                  //	7
+            "db_shotgun_dry",                  //	8
+            "flaregun_shot",                  //	9
+            "flaregun_dry",                       //	10
+            "flaregun_reload",                    //	11
+            "plasma_shot",                        //	12
+            "plasma_dry",                         //	13
+            "plasma_reload",                      //	14
+            "flamer_shot",                        //	15
+            "flamer_reload",                      //	16
+            "laser_fire_var_One",                 //	17
+            "laser_fire_var_Two",                 //	18
+            "laser_fire_var_Tree",                //	19
+            "laser_reload",                       //	20
+            "laser_dry",                          //	21
+            "clip_load",                          //  22
+            "tenmm_clip_out",                     //  23
+            "four_tenmm_clip_out",                //  24
+            "db_shotgun_clip_out",                //  25
+            "flaregun_clip_out",                  //  26
+            "laser_clip_out",                     //  27
+            "plasma_clip_out"                     //  28
+    };
+    
+
 
     public static void registerSounds() {
-        LowEntensityRad = registerSound("LowEntensityRad");
-        MediumEntensityRad = registerSound("MediumEntensityRad");
-        HighEntensityRad = registerSound("HighEntensityRad");
-        Enervation = registerSound("Enervation");
+        lowentensity_rad = registerSound("LowEntensityRad");
+        mediumentensity_rad = registerSound("MediumEntensityRad");
+        highentensity_rad= registerSound("HighEntensityRad");
+        enervation = registerSound("Enervation");
 
 
-        tenMMShot = registerSound("tenMMShot");
-        tenMMReload = registerSound("tenMMReload");
-        tenMMOOA = registerSound("tenMMOutOfAmmo");
-        tenMMClipLoad = registerSound("tenMMClipLoad");
-        tenMMClipIn = registerSound("tenMMClipIn");
-        tenMMClipOut = registerSound("tenMMClipOut");
-
-        laserPShot1 = registerSound("laserPShot1");
-        laserPShot2 = registerSound("laserPShot2");
-        laserPShot3 = registerSound("laserPShot3");
-        laserPBoltClose = registerSound("laserPBoltClose");
-        laserPBoltOpen = registerSound("laserPBoltOpen");
-        laserPBoltMagIn = registerSound("laserPBoltMagIn");
-        laserPEmpty = registerSound("laserPEmpty");
+        for(int i=0;i < (guns.length-1 );i++){
+            guns[i] = registerSound(gunsS[i]);
+        }
 
 
     }
@@ -62,5 +147,36 @@ public class SoundInit {
     private static SoundEvent registerSound(String soundName) {
         final ResourceLocation soundID = new ResourceLocation(main.MODID, soundName);
         return GameRegistry.register(new SoundEvent(soundID).setRegistryName(soundID));
+    }
+    public enum sounds {
+        tenmm_shot(),
+        tenmm_dry(),
+        tenmm_reload(),
+        four_tenmm_shot()  ,
+        four_tenmm_dry()   ,
+        four_tenmm_reload(),
+        db_shotgun_shot()  ,
+        db_shotgun_reload(),
+        db_shotgun_dry()   ,
+        flaregun_shot()    ,
+        flaregun_dry(),
+        flaregun_reload(),
+        plasma_shot(),
+        plasma_dry(),
+        plasma_reload(),
+        flamer_shot(),
+        flamer_reload(),
+        laser_fire_var_One(),
+        laser_fire_var_Two(),
+        laser_fire_var_Tree(),
+        laser_reload(),
+        laser_dry(),
+        clip_load(),
+        tenmm_clip_out(),
+        four_tenmm_clip_out(),
+        db_shotgun_clip_out(),
+        flaregun_clip_out(),
+        laser_clip_out(),
+        plasma_clip_out(),
     }
 }

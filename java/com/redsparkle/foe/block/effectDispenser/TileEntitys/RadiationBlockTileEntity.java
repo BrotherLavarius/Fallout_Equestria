@@ -50,7 +50,7 @@ public class RadiationBlockTileEntity extends TileEntity implements ITickable {
                 entityplayer.getCapability(RadsFactoryProvider.RADIATION_CAPABILITY, null).addRadiation(3);
                 entityplayer.getCapability(RadsFactoryProvider.RADIATION_CAPABILITY, null).update(entityplayer, getWorld(), TickEvent.Phase.END);
                 entityplayer.getCapability(RadsFactoryProvider.RADIATION_CAPABILITY, null).updateClient(entityplayer);
-                entityplayer.world.playSound(null, k, l, i1, SoundInit.HighEntensityRad, SoundCategory.PLAYERS, 2.0F, 1.0F);
+                entityplayer.world.playSound(null, k, l, i1, SoundInit.highentensity_rad, SoundCategory.PLAYERS, 2.0F, 1.0F);
             }
         }
 
@@ -63,7 +63,7 @@ public class RadiationBlockTileEntity extends TileEntity implements ITickable {
                 entityplayer.getCapability(RadsFactoryProvider.RADIATION_CAPABILITY, null).addRadiation(2);
                 entityplayer.getCapability(RadsFactoryProvider.RADIATION_CAPABILITY, null).update(entityplayer, getWorld(), TickEvent.Phase.END);
                 entityplayer.getCapability(RadsFactoryProvider.RADIATION_CAPABILITY, null).updateClient(entityplayer);
-                entityplayer.world.playSound(null, k, l, i1, SoundInit.MediumEntensityRad, SoundCategory.PLAYERS, 2.0F, 1.0F);
+                entityplayer.world.playSound(null, k, l, i1, SoundInit.mediumentensity_rad, SoundCategory.PLAYERS, 2.0F, 1.0F);
             }
 
         }
@@ -76,7 +76,7 @@ public class RadiationBlockTileEntity extends TileEntity implements ITickable {
                 entityplayer.getCapability(RadsFactoryProvider.RADIATION_CAPABILITY, null).addRadiation(1);
                 entityplayer.getCapability(RadsFactoryProvider.RADIATION_CAPABILITY, null).update(entityplayer, getWorld(), TickEvent.Phase.END);
                 entityplayer.getCapability(RadsFactoryProvider.RADIATION_CAPABILITY, null).updateClient(entityplayer);
-                entityplayer.world.playSound(null, k, l, i1, SoundInit.LowEntensityRad, SoundCategory.PLAYERS, 2.0F, 1.0F);
+                entityplayer.world.playSound(null, k, l, i1, SoundInit.lowentensity_rad, SoundCategory.PLAYERS, 2.0F, 1.0F);
             }
         }
 

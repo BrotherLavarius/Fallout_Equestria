@@ -34,7 +34,7 @@ public class SB_shoutgun extends ItemFirearm {
 
     public SB_shoutgun() {
         this.setMaxStackSize(1);
-        this.setMaxDamage(clipRounds);
+        this.setMaxDamage(2);
         this.setCreativeTab(InitCreativeTabs.Fallout_guns);
         isGun = true;
 
@@ -59,16 +59,16 @@ public class SB_shoutgun extends ItemFirearm {
         this.damage = GlobalWeaponsStats.db_shoutgunDamage + playerIn.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getBigGuns();
 
         if (!playerIn.capabilities.isCreativeMode) {
-            if (itemstack.getItemDamage() >= 12) {
+            if (itemstack.getItemDamage() == (2)) {
                 if (findAmmo(playerIn) == ItemStack.EMPTY) {
                     // ---------------_EMPTY CLIP
-                    worldIn.playSound(playerIn, playerIn.getPosition(), SoundInit.tenMMOOA, SoundCategory.HOSTILE, 0.5F, 0.4F);
+                    worldIn.playSound(playerIn, playerIn.getPosition(), SoundInit.guns[8], SoundCategory.HOSTILE, 0.5F, 0.4F);
                     return new ActionResult<>(EnumActionResult.FAIL, itemstack);
                 }
 
             } else {
 
-                worldIn.playSound(playerIn, playerIn.getPosition(), SoundInit.tenMMShot, SoundCategory.HOSTILE, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
+                worldIn.playSound(playerIn, playerIn.getPosition(), SoundInit.guns[6], SoundCategory.HOSTILE, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
 
                 for(int i=0;i <= (pellet(worldIn,playerIn).length-1);i++){
                     worldIn.spawnEntity(pellet(worldIn,playerIn)[i]);
@@ -82,7 +82,7 @@ public class SB_shoutgun extends ItemFirearm {
 
 
         } else {
-            worldIn.playSound(playerIn, playerIn.getPosition(), SoundInit.tenMMShot, SoundCategory.HOSTILE, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
+            worldIn.playSound(playerIn, playerIn.getPosition(), SoundInit.guns[6], SoundCategory.HOSTILE, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
 
             for(int i=0;i <= (pellet(worldIn,playerIn).length-1);i++){
                 worldIn.spawnEntity(pellet(worldIn,playerIn)[i]);
@@ -105,9 +105,10 @@ public class SB_shoutgun extends ItemFirearm {
      */
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack stack, EntityPlayer playerIn, List<String> tooltip, boolean advanced) {
-        tooltip.add("10 MM pistol");
-        tooltip.add("Clip size: " + (clipRounds-2));
-        tooltip.add("Damage: " + damage);
+        tooltip.add("Shotgun");
+        tooltip.add("Clip size: " + clipRounds);
+        tooltip.add("Base Damage: " + GlobalWeaponsStats.db_shoutgunDamage+"*6");
+        tooltip.add("Your Damage: " + damage+"*6");
 
     }
 

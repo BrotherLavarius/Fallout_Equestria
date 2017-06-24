@@ -102,9 +102,9 @@ public class GlobalItemArray_For_init {
 
             //---------------------UTILITY--------------------------
 
-            pipbuck,
-            lvlingCrystall,
-            aem,
+            pipbuck,                                    //0
+            lvlingCrystall,//1
+            aem,//2
             //--------------FOOD--------------------------
             blamko_macCheese,
             dandy_boy_apples,
@@ -114,8 +114,8 @@ public class GlobalItemArray_For_init {
             sugar_bombs,
             //--------------MEDS--------------------------
 
-            radAway,
-            radx,
+            radAway,//9
+            radx,//10
 
             redHealPotion,
             whiteHealpotion,
@@ -123,12 +123,12 @@ public class GlobalItemArray_For_init {
             darkHealPotion,
             //--------------AMMO--------------------------
 
-            tenMMAmmo,
-            tenMMClip,
-            battery,
-            fourTenMMammo,
-            fourTenMMClip,
-            sShell,
+            tenMMAmmo,//15
+            tenMMClip,//16
+            battery,//17
+            fourTenMMammo,//18
+            fourTenMMClip,//19
+            sShell,//20
             //--------------GUNS--------------------------
 
             tenMM,

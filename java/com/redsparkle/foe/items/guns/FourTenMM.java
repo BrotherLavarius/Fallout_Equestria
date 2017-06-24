@@ -59,16 +59,16 @@ public class FourTenMM extends ItemFirearm {
         this.damage = GlobalWeaponsStats.FourDamage + playerIn.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getSmallGuns();
 
         if (!playerIn.capabilities.isCreativeMode) {
-            if (itemstack.getItemDamage() >= 9) {
+            if (itemstack.getItemDamage() >= (GlobalWeaponsStats.FourclipRounds-1)) {
                 if (findAmmo(playerIn) == ItemStack.EMPTY) {
                     // ---------------_EMPTY CLIP
-                    worldIn.playSound(playerIn, playerIn.getPosition(), SoundInit.tenMMOOA, SoundCategory.HOSTILE, 0.5F, 0.4F);
+                    worldIn.playSound(playerIn, playerIn.getPosition(), SoundInit.guns[4], SoundCategory.HOSTILE, 1F, 0.4F);
                     return new ActionResult<>(EnumActionResult.FAIL, itemstack);
                 }
 
             } else {
 
-                worldIn.playSound(playerIn, playerIn.getPosition(), SoundInit.tenMMShot, SoundCategory.HOSTILE, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
+                worldIn.playSound(playerIn, playerIn.getPosition(), SoundInit.guns[3], SoundCategory.HOSTILE, 15F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
 
                 worldIn.spawnEntity(bullet(worldIn, playerIn));
 
@@ -80,7 +80,7 @@ public class FourTenMM extends ItemFirearm {
 
 
         } else {
-            worldIn.playSound(playerIn, playerIn.getPosition(), SoundInit.tenMMShot, SoundCategory.HOSTILE, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
+            worldIn.playSound(playerIn, playerIn.getPosition(), SoundInit.guns[3], SoundCategory.HOSTILE, 15F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
             worldIn.spawnEntity(bullet(worldIn, playerIn));
 
 
@@ -103,7 +103,8 @@ public class FourTenMM extends ItemFirearm {
     public void addInformation(ItemStack stack, EntityPlayer playerIn, List<String> tooltip, boolean advanced) {
         tooltip.add("14 MM pistol");
         tooltip.add("Clip size: " + (clipRounds - 2));
-        tooltip.add("Damage: " + damage);
+        tooltip.add("Base Damage: " + GlobalWeaponsStats.FourDamage);
+        tooltip.add("Your Damage: " + damage);
 
     }
 

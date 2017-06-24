@@ -57,10 +57,10 @@ public class LaserPistol extends ItemFirearm {
         this.damage = GlobalWeaponsStats.LaserDamage + playerIn.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY,null).getEnergyWeapons();
 
         if (!playerIn.capabilities.isCreativeMode) {
-            if (itemstack.getItemDamage() >= 30) {
+            if (itemstack.getItemDamage() >= (GlobalWeaponsStats.LaserBatterRounds-1)) {
                 if (findAmmo(playerIn) == ItemStack.EMPTY) {
                     // ---------------_EMPTY CLIP
-                    worldIn.playSound(playerIn, playerIn.getPosition(), SoundInit.laserPEmpty, SoundCategory.HOSTILE, 0.5F, 0.4F);
+                    worldIn.playSound(playerIn, playerIn.getPosition(), SoundInit.guns[21], SoundCategory.HOSTILE, 0.5F, 0.4F);
                     return new ActionResult<>(EnumActionResult.FAIL, itemstack);
                 }
 
@@ -69,13 +69,13 @@ public class LaserPistol extends ItemFirearm {
                 int num = (int) Math.random() * 100 % 3;
                 switch (num) {
                     case 0:
-                        worldIn.playSound(playerIn, playerIn.getPosition(), SoundInit.laserPShot1, SoundCategory.PLAYERS, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
+                        worldIn.playSound(playerIn, playerIn.getPosition(), SoundInit.guns[17], SoundCategory.PLAYERS, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
                         break;
                     case 1:
-                        worldIn.playSound(playerIn, playerIn.getPosition(), SoundInit.laserPShot2, SoundCategory.PLAYERS, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
+                        worldIn.playSound(playerIn, playerIn.getPosition(), SoundInit.guns[18], SoundCategory.PLAYERS, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
                         break;
                     case 2:
-                        worldIn.playSound(playerIn, playerIn.getPosition(), SoundInit.laserPShot3, SoundCategory.PLAYERS, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
+                        worldIn.playSound(playerIn, playerIn.getPosition(), SoundInit.guns[19], SoundCategory.PLAYERS, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
                         break;
                 }
 
@@ -86,7 +86,7 @@ public class LaserPistol extends ItemFirearm {
                 return new ActionResult<>(EnumActionResult.PASS, itemstack);
             }
         } else {
-            worldIn.playSound(playerIn, playerIn.getPosition(), SoundInit.laserPShot3, SoundCategory.PLAYERS, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
+            worldIn.playSound(playerIn, playerIn.getPosition(), SoundInit.guns[19], SoundCategory.PLAYERS, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
             worldIn.spawnEntity(laser(worldIn, playerIn));
         }
         return new ActionResult<>(EnumActionResult.PASS, itemstack);
@@ -105,7 +105,9 @@ public class LaserPistol extends ItemFirearm {
     public void addInformation(ItemStack stack, EntityPlayer playerIn, List<String> tooltip, boolean advanced) {
         tooltip.add("Laser pistol");
         tooltip.add("Clip size: " + (clipRounds-1));
-        tooltip.add("Damage: " + damage);
+        tooltip.add("Base Damage: " + GlobalWeaponsStats.LaserDamage);
+        tooltip.add("Your Damage: " + damage);
+
 
     }
 
