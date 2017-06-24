@@ -87,7 +87,7 @@ public class gunReload {
 
     public static void LaserPistol(WorldServer mainThread, ItemStack heldItem, EntityPlayerMP player) {
         mainThread.addScheduledTask(() -> {
-            if (heldItem.getItemDamage() <= 30) {
+            if (heldItem.getItemDamage() <= (GlobalWeaponsStats.FourclipRounds-1)) {
                 if (findAmmo(player, "LaserPistol") != ItemStack.EMPTY) {
                     Item clip = GlobalItemArray_For_init.battery;
                     ItemStack clipstack = new ItemStack(clip);
@@ -104,12 +104,12 @@ public class gunReload {
                     } else {
                         emptyClipStack.setItemDamage(heldItem.getItemDamage());
                     }
-                    heldItem.setItemDamage(31);
+                    heldItem.setItemDamage(GlobalWeaponsStats.FourclipRounds);
                     player.inventory.setInventorySlotContents(InventoryManager.FindEmpty(player), emptyClipStack);
                     main.simpleNetworkWrapper.sendTo(new MessageGunReloadReply(3), player);
 
                 }
-            } else if (heldItem.getItemDamage() == 31) {
+            } else if (heldItem.getItemDamage() == GlobalWeaponsStats.FourclipRounds) {
                 if (findAmmo(player, "LaserPistol") != ItemStack.EMPTY) {
                     heldItem.setItemDamage(findAmmo(player, "LaserPistol").getItemDamage());
                     findAmmo(player, "LaserPistol").shrink(1);

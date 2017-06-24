@@ -4,6 +4,7 @@ import com.redsparkle.foe.creativeTabs.InitCreativeTabs;
 import com.redsparkle.foe.items.guns.flametrower.EntityFlame;
 import com.redsparkle.foe.items.guns.laserFired.EntityLaser;
 import com.redsparkle.foe.items.guns.bulletFired.EntityBullet;
+import com.redsparkle.foe.items.guns.spreadPellet_shotgun.*;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -70,6 +71,15 @@ public abstract class ItemFirearm extends Item {
         return flame;
     }
 
+    public Entity[] pellet(World worldIn, EntityPlayer playerIn) {
+        Pellet[] pellets = new Pellet[]{new Pellet_one(worldIn,playerIn),new Pellet_two(worldIn,playerIn),new Pellet_tree(worldIn,playerIn), new Pellet_four(worldIn,playerIn),new Pellet_five(worldIn,playerIn), new Pellet_six(worldIn,playerIn)};
+        for(int i =0; i <=(pellets.length-1);i++){
+            pellets[i].setHeadingFromThrower(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, 4.5F, 15.5F);
+            pellets[i].setRenderYawOffset(10F);
+            pellets[i].setDamage(damage);
+        }
+        return pellets;
+    }
 
     public boolean isAmmo(ItemStack stack) {
 

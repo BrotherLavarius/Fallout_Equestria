@@ -55,7 +55,7 @@ public class GlobalNames {
             TenMM = "tenmm_pistol",
             LaserPistol = "laser_pistol",
             FourTenMM = "four_tenmm_pistol",
-            nineMM = "9mm_Pistol";
+            db_shoutgun = "db_shotgun";
     // Food
 
     // AMMO
@@ -64,7 +64,8 @@ public class GlobalNames {
             TenMMClip = "tenmm_clip",
             FourTenMMAmmo = "four_tenmm_ammo",
             FourTenMMClip = "four_tenmm_clip",
-    Battery = "battery";
+            Battery = "battery",
+            shell = "shell";
 
 
     // PLACEHOLDERS

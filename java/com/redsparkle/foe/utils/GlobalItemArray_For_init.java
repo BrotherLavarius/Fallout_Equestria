@@ -3,12 +3,14 @@ package com.redsparkle.foe.utils;
 import com.redsparkle.foe.items.food.old.*;
 import com.redsparkle.foe.items.guns.FourTenMM;
 import com.redsparkle.foe.items.guns.LaserPistol;
+import com.redsparkle.foe.items.guns.SB_shoutgun;
 import com.redsparkle.foe.items.guns.TenMM;
 import com.redsparkle.foe.items.guns.ammo.FourTenMM.FourTenMMClip;
 import com.redsparkle.foe.items.guns.ammo.FourTenMM.FourTenMMammo;
 import com.redsparkle.foe.items.guns.ammo.LaserWeapons.Battery;
 import com.redsparkle.foe.items.guns.ammo.TenMM.TenMMClip;
 import com.redsparkle.foe.items.guns.ammo.TenMM.TenMMammo;
+import com.redsparkle.foe.items.guns.ammo.shell.SShell;
 import com.redsparkle.foe.items.guns.inits.itembullet;
 import com.redsparkle.foe.items.meds.HealPotions.DarkHealPotion;
 import com.redsparkle.foe.items.meds.HealPotions.PurpleHealPotion;
@@ -53,12 +55,13 @@ public class GlobalItemArray_For_init {
             GlobalNames.Battery,
             GlobalNames.FourTenMMAmmo,
             GlobalNames.FourTenMMClip,
+            GlobalNames.shell,
             //---------------------GUNS--------------------------
 
             GlobalNames.TenMM,
             GlobalNames.LaserPistol,
             GlobalNames.FourTenMM,
-            //---------------------ARMOR--------------------------
+            GlobalNames.db_shoutgun,
 
             //---------------------PLACEHOLDER--------------------
             "bullet"
@@ -87,12 +90,13 @@ public class GlobalItemArray_For_init {
     public static FourTenMMammo fourTenMMammo;
     public static FourTenMMClip fourTenMMClip;
     public static Battery battery;
+    public static SShell sShell;
     // GUNS
     public static TenMM tenMM;
     public static FourTenMM fourTenMM;
-
-    // PLACEHOLDER
     public static LaserPistol laserPistol;
+    public static SB_shoutgun sb_shoutgun;
+    // PLACEHOLDER
     public static itembullet itb;
     public static final Item[] AllInit = new Item[]{
 
@@ -124,13 +128,13 @@ public class GlobalItemArray_For_init {
             battery,
             fourTenMMammo,
             fourTenMMClip,
+            sShell,
             //--------------GUNS--------------------------
 
             tenMM,
             laserPistol,
             fourTenMM,
-
-            //--------------ARMOR--------------------------
+            sb_shoutgun,
 
             //--------------PLACEHOLDER--------------------
             itb
@@ -163,10 +167,12 @@ public class GlobalItemArray_For_init {
             new Battery(),
             new FourTenMMammo(),
             new FourTenMMClip(),
+            new SShell(),
 
             new TenMM(),
             new LaserPistol(),
             new FourTenMM(),
+            new SB_shoutgun(),
 
             new itembullet()
     };

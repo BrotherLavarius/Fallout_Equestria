@@ -14,4 +14,12 @@ public class GlobalWeaponsStats {
     public static int
             TenMMclipRounds = 13,
             TenMMDamage = 7;
+
+    public static int
+            LaserBatterRounds = 13,
+            LaserDamage = 7;
+
+    public static int
+            db_shoutgunRounds = 4,
+            db_shoutgunDamage = 1;
 }

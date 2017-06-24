@@ -23,6 +23,7 @@ import com.redsparkle.foe.events.EventHandlerPre;
 import com.redsparkle.foe.items.guns.flametrower.EntityFlame;
 import com.redsparkle.foe.items.guns.laserFired.EntityLaser;
 import com.redsparkle.foe.items.guns.bulletFired.EntityBullet;
+import com.redsparkle.foe.items.guns.spreadPellet_shotgun.*;
 import com.redsparkle.foe.utils.GlobalNames;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
@@ -48,8 +49,18 @@ public abstract class CommonProxy {
         EntityRegistry.registerModEntity(new ResourceLocation(GlobalNames.Domain + ":entity/laser"), EntityLaser.class, "laser", 1, main.instance, 64, 10, true);
         EntityRegistry.registerModEntity(new ResourceLocation(GlobalNames.Domain + ":entity/Flame"), EntityFlame.class, "laser", 2, main.instance, 64, 10, true);
 
-        //EntityRegistry.registerModEntity(new ResourceLocation(GlobalNames.Domain + ":entity/bullet"), EntityBullet.class, "Bullet", 650, main.instance, 20, 30, false);
-        //EntityRegistry.registerModEntity(new ResourceLocation(GlobalNames.Domain + ":entity/bullet"), EntityBullet.class, "bullet", 651, main.instance, 20, 30, true);
+
+        EntityRegistry.registerModEntity(new ResourceLocation(GlobalNames.Domain + ":entity/Pellet"),      Pellet.class,  "Pellet", 3, main.instance, 64, 10, true);
+        EntityRegistry.registerModEntity(new ResourceLocation(GlobalNames.Domain + ":entity/Pellet_one"),  Pellet_one.class,  "Pellet_one", 4, main.instance, 64, 10, true);
+        EntityRegistry.registerModEntity(new ResourceLocation(GlobalNames.Domain + ":entity/Pellet_two"),  Pellet_two.class,  "Pellet_two", 5, main.instance, 64, 10, true);
+        EntityRegistry.registerModEntity(new ResourceLocation(GlobalNames.Domain + ":entity/Pellet_tree"), Pellet_tree.class, "Pellet_tree", 6, main.instance, 64, 10, true);
+        EntityRegistry.registerModEntity(new ResourceLocation(GlobalNames.Domain + ":entity/Pellet_four"), Pellet_four.class, "Pellet_four", 7, main.instance, 64, 10, true);
+        EntityRegistry.registerModEntity(new ResourceLocation(GlobalNames.Domain + ":entity/Pellet_five"), Pellet_five.class, "Pellet_five", 8, main.instance, 64, 10, true);
+        EntityRegistry.registerModEntity(new ResourceLocation(GlobalNames.Domain + ":entity/Pellet_six"),  Pellet_six.class,  "Pellet_six", 9, main.instance, 64, 10, true);
+
+
+
+
     }
 
     public void init() {

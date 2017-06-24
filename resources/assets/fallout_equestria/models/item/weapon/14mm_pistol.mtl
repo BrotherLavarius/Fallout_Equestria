@@ -21,60 +21,38 @@ Ni 1.000000
 d 1.000000
 illum 2
 
-newmtl Leather
-Ns 96.078431
-Ka 1.000000 1.000000 1.000000
-Kd 0.219608 0.163137 0.125490
-Ks 0.164706 0.164706 0.164706
-Ke 0.000000 0.000000 0.000000
-Ni 1.000000
-d 1.000000
-illum 2
-map_Kd fallout_equestria:gun/14mm_textures/Leather.jpg
-
-newmtl Metal
-Ns 96.078431
-Ka 1.000000 1.000000 1.000000
-Kd 0.263529 0.263529 0.263529
-Ks 0.164706 0.164706 0.164706
-Ke 0.000000 0.000000 0.000000
-Ni 1.000000
-d 1.000000
-illum 2
-map_Kd fallout_equestria:gun/14mm_textures/Metal.jpg
-
 newmtl _1
 Ns 96.078431
 Ka 1.000000 1.000000 1.000000
-Kd 0.090980 0.112941 0.122353
+Kd 0.370196 0.376471 0.379608
 Ks 0.164706 0.164706 0.164706
 Ke 0.000000 0.000000 0.000000
 Ni 1.000000
 d 1.000000
 illum 2
-map_Kd fallout_equestria:gun/14mm_textures/_1.jpg
+map_Kd fallout_equestria:gun/14mm_textures/_1
 
 newmtl _2
 Ns 96.078431
 Ka 1.000000 1.000000 1.000000
-Kd 0.470588 0.470588 0.470588
+Kd 0.279216 0.279216 0.279216
 Ks 0.164706 0.164706 0.164706
 Ke 0.000000 0.000000 0.000000
 Ni 1.000000
 d 1.000000
 illum 2
-map_Kd fallout_equestria:gun/14mm_textures/_2.jpg
+map_Kd fallout_equestria:gun/14mm_textures/_2
 
 newmtl _3
 Ns 96.078431
 Ka 1.000000 1.000000 1.000000
-Kd 0.119216 0.119216 0.119216
+Kd 0.181961 0.181961 0.181961
 Ks 0.164706 0.164706 0.164706
 Ke 0.000000 0.000000 0.000000
 Ni 1.000000
 d 1.000000
 illum 2
-map_Kd fallout_equestria:gun/14mm_textures/_3.jpg
+map_Kd fallout_equestria:gun/14mm_textures/_3
 
 newmtl _4
 Ns 96.078431
@@ -85,4 +63,26 @@ Ke 0.000000 0.000000 0.000000
 Ni 1.000000
 d 1.000000
 illum 2
-map_Kd fallout_equestria:gun/14mm_textures/_4.jpg
+map_Kd fallout_equestria:gun/14mm_textures/_4
+
+newmtl leather
+Ns 96.078431
+Ka 1.000000 1.000000 1.000000
+Kd 0.222745 0.163137 0.131765
+Ks 0.164706 0.164706 0.164706
+Ke 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd fallout_equestria:gun/14mm_textures/leather
+
+newmtl metal
+Ns 96.078431
+Ka 1.000000 1.000000 1.000000
+Kd 0.213333 0.213333 0.213333
+Ks 0.164706 0.164706 0.164706
+Ke 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd fallout_equestria:gun/14mm_textures/metal

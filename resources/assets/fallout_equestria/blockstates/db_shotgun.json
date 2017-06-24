@@ -1,0 +1,128 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "textures": {},
+    "model": "fallout_equestria:weapon/db_shotgun.obj"
+  },
+  "variants": {
+    "normal": [
+      {
+        "transform": {
+          "rotation": [
+            {
+              "y": 0
+            },
+            {
+              "x": 0
+            },
+            {
+              "z": 5
+            }
+          ]
+        },
+        "scale": 0.05
+      }
+    ],
+    "inventory": [
+      {
+        "transform": {
+          "thirdperson_righthand": {
+            "translation": [
+              0,
+              0,
+              0
+            ],
+            "rotation": [
+              {
+                "y": 0
+              },
+              {
+                "x": 0
+              },
+              {
+                "z": 0
+              }
+            ],
+            "scale": 0.00
+          },
+          "ground": {
+            "translation": [
+              0,
+              0,
+              0
+            ],
+            "rotation": [
+              {
+                "y": 0
+              },
+              {
+                "x": 0
+              },
+              {
+                "z": 0
+              }
+            ],
+            "scale": 0.05
+          },
+          "gui": {
+            "translation": [
+              -0.9,
+              -0.4,
+              0
+            ],
+            "rotation": [
+              {
+                "y": 25
+              },
+              {
+                "x": 6
+              },
+              {
+                "z": 13
+              }
+            ],
+            "scale": 0.15
+          },
+          "head": {
+            "translation": [
+              0.15,
+              0.19,
+              -1
+            ],
+            "rotation": [
+              {
+                "y": 180
+              },
+              {
+                "x": 180
+              },
+              {
+                "z": 0
+              }
+            ],
+            "scale": 0.075
+          },
+          "firstperson_righthand": {
+            "translation": [
+              -2,
+              -2.5,
+              -3
+            ],
+            "rotation": [
+              {
+                "y": 5
+              },
+              {
+                "x": -3
+              },
+              {
+                "z": -1
+              }
+            ],
+            "scale": 0.5
+          }
+        }
+      }
+    ]
+  }
+}
