@@ -1,10 +1,8 @@
 package com.redsparkle.foe.utils;
 
 import com.redsparkle.foe.items.food.old.*;
-import com.redsparkle.foe.items.guns.FourTenMM;
-import com.redsparkle.foe.items.guns.LaserPistol;
-import com.redsparkle.foe.items.guns.SB_shoutgun;
-import com.redsparkle.foe.items.guns.TenMM;
+import com.redsparkle.foe.items.guns.*;
+import com.redsparkle.foe.items.guns.ammo.FlareShell.FlareShell;
 import com.redsparkle.foe.items.guns.ammo.FourTenMM.FourTenMMClip;
 import com.redsparkle.foe.items.guns.ammo.FourTenMM.FourTenMMammo;
 import com.redsparkle.foe.items.guns.ammo.LaserWeapons.Battery;
@@ -64,7 +62,11 @@ public class GlobalItemArray_For_init {
             GlobalNames.db_shoutgun,
 
             //---------------------PLACEHOLDER--------------------
-            "bullet"
+            "bullet",
+            //---------------------AMMO--------------------------
+            GlobalNames.flare,
+            //---------------------GUNS--------------------------
+            GlobalNames.flare_gun
     };
     // MEDS
     public static RadX radx;
@@ -91,11 +93,14 @@ public class GlobalItemArray_For_init {
     public static FourTenMMClip fourTenMMClip;
     public static Battery battery;
     public static SShell sShell;
+    public static FlareShell flare;
     // GUNS
     public static TenMM tenMM;
     public static FourTenMM fourTenMM;
     public static LaserPistol laserPistol;
     public static SB_shoutgun sb_shoutgun;
+    public static FlareGun flareGun;
+
     // PLACEHOLDER
     public static itembullet itb;
     public static final Item[] AllInit = new Item[]{
@@ -131,15 +136,17 @@ public class GlobalItemArray_For_init {
             sShell,//20
             //--------------GUNS--------------------------
 
-            tenMM,
-            laserPistol,
-            fourTenMM,
-            sb_shoutgun,
+            tenMM,//21
+            laserPistol,//22
+            fourTenMM,//23
+            sb_shoutgun,//24
 
             //--------------PLACEHOLDER--------------------
-            itb
-
-
+            itb,//25
+            //--------------AMMO--------------------------
+            flare,//26
+            //--------------GUNS--------------------------
+            flareGun//27
     };
     public static Item[] obj = new Item[]{
             new PipBuck(),
@@ -174,7 +181,9 @@ public class GlobalItemArray_For_init {
             new FourTenMM(),
             new SB_shoutgun(),
 
-            new itembullet()
+            new itembullet(),
+            new FlareShell(),
+            new FlareGun()
     };
 
 }

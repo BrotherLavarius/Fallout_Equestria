@@ -9,10 +9,7 @@ import com.redsparkle.foe.capa.spechial.SpechialFactoryProvider;
 import com.redsparkle.foe.capa.water.IWaterCapability;
 import com.redsparkle.foe.capa.water.WaterFactoryProvider;
 import com.redsparkle.foe.events.ServerSIdeONly.EventHandlerServerSidePre;
-import com.redsparkle.foe.items.guns.FourTenMM;
-import com.redsparkle.foe.items.guns.LaserPistol;
-import com.redsparkle.foe.items.guns.SB_shoutgun;
-import com.redsparkle.foe.items.guns.TenMM;
+import com.redsparkle.foe.items.guns.*;
 import com.redsparkle.foe.network.ClientServerOneClass.MessageUpdateClientServerLevel;
 import com.redsparkle.foe.network.ClientServerOneClass.MessageUpdateClientServerSPECHIAL;
 import com.redsparkle.foe.network.ClientServerOneClass.MessageUpdateClientServerSkills;
@@ -109,6 +106,8 @@ public class DedicatedServerProxy extends CommonProxy {
                 gunReload.FourTenMM(mainThread, heldItem, player);
             } else if (heldItem.getItem() instanceof SB_shoutgun){
                 gunReload.Shotgun(mainThread, heldItem, player);
+            }else if (heldItem.getItem() instanceof FlareGun){
+                gunReload.FlareGun(mainThread, heldItem, player);
             }
 
 

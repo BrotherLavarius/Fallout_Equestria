@@ -218,7 +218,7 @@
   "laser_clip_out": {
     "category": "player",
     "sounds": [
-      "fallout_equestria:guns/laser/mag_out"
+      "fallout_equestria:guns/laserpistol/mag_out"
     ],
     "subtitle": "laser_clip_out"
   },
@@ -243,7 +243,7 @@
   "mediumentensity_rad": {
     "category": "player",
     "sounds": [
-      "fallout_equestria:mediumentensityrad"
+      "fallout_equestria:mediumentensity_rad"
     ],
     "subtitle": "mediumentensity_rad"
   },

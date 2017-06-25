@@ -1,10 +1,11 @@
 package com.redsparkle.foe.items.guns.inits;
 
 import com.redsparkle.foe.creativeTabs.InitCreativeTabs;
-import com.redsparkle.foe.items.guns.flametrower.EntityFlame;
-import com.redsparkle.foe.items.guns.laserFired.EntityLaser;
-import com.redsparkle.foe.items.guns.bulletFired.EntityBullet;
-import com.redsparkle.foe.items.guns.spreadPellet_shotgun.*;
+import com.redsparkle.foe.items.guns.entitys.flametrower.EntityFlame;
+import com.redsparkle.foe.items.guns.entitys.flare.EntityFlare;
+import com.redsparkle.foe.items.guns.entitys.laserFired.EntityLaser;
+import com.redsparkle.foe.items.guns.entitys.bulletFired.EntityBullet;
+import com.redsparkle.foe.items.guns.entitys.spreadPellet_shotgun.*;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -20,9 +21,6 @@ public abstract class ItemFirearm extends Item {
     public Object ammoItem;
     public int damage;
     public int clipRounds;
-    public EntityBullet bullet;
-    public EntityLaser laser;
-    public EntityFlame flame;
     public EnumParticleTypes effect;
     public Integer[] invArray = {0, 1, 2, 3, 4, 5, 6, 7, 8};
 
@@ -50,6 +48,7 @@ public abstract class ItemFirearm extends Item {
     }
 
     public Entity laser(World worldIn, EntityPlayer playerIn) {
+        EntityLaser laser = new EntityLaser(worldIn, playerIn);
         laser.setHeadingFromThrower(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, 4.5F, 0.5F);
         laser.setEffect(effect);
         laser.setRenderYawOffset(5F);
@@ -59,6 +58,7 @@ public abstract class ItemFirearm extends Item {
 
 
     public Entity bullet(World worldIn, EntityPlayer playerIn) {
+        EntityBullet bullet = new EntityBullet(worldIn, playerIn);
         bullet.setHeadingFromThrower(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, 4.5F, 1.5F);
         bullet.setEffect(effect);
         bullet.setRenderYawOffset(5F);
@@ -66,6 +66,7 @@ public abstract class ItemFirearm extends Item {
         return bullet;
     }
     public Entity flame(World worldIn, EntityPlayer playerIn) {
+        EntityFlame flame = new EntityFlame(worldIn,playerIn);
         flame.setHeadingFromThrower(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, 0.5F, 3.0F);
         flame.setDamage(damage);
         return flame;
@@ -79,6 +80,12 @@ public abstract class ItemFirearm extends Item {
             pellets[i].setDamage(damage);
         }
         return pellets;
+    }
+    public Entity flare(World worldIn, EntityPlayer playerIn) {
+        EntityFlare flare = new EntityFlare(worldIn,playerIn);
+        flare.setHeadingFromThrower(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, 0.5F, 3.0F);
+        flare.setDamage(damage);
+        return flare;
     }
 
     public boolean isAmmo(ItemStack stack) {

@@ -4,9 +4,7 @@ import com.redsparkle.foe.Init.SoundInit;
 import com.redsparkle.foe.capa.skills.SkillsFactoryProvider;
 import com.redsparkle.foe.creativeTabs.InitCreativeTabs;
 import com.redsparkle.foe.items.guns.ammo.TenMM.TenMMClip;
-import com.redsparkle.foe.items.guns.bulletFired.EntityBullet;
 import com.redsparkle.foe.items.guns.inits.ItemFirearm;
-import com.redsparkle.foe.items.guns.spreadPellet_shotgun.Pellet;
 import com.redsparkle.foe.utils.GlobalWeaponsStats;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -87,8 +85,6 @@ public class SB_shoutgun extends ItemFirearm {
             for(int i=0;i <= (pellet(worldIn,playerIn).length-1);i++){
                 worldIn.spawnEntity(pellet(worldIn,playerIn)[i]);
             }
-
-
             playerIn.cameraYaw = 3.9F;
         }
         playerIn.addStat(StatList.getObjectUseStats(this));

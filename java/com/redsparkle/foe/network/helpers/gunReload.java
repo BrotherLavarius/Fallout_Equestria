@@ -1,5 +1,6 @@
 package com.redsparkle.foe.network.helpers;
 
+import com.redsparkle.foe.items.guns.ammo.FlareShell.FlareShell;
 import com.redsparkle.foe.items.guns.ammo.FourTenMM.FourTenMMClip;
 import com.redsparkle.foe.items.guns.ammo.LaserWeapons.Battery;
 import com.redsparkle.foe.items.guns.ammo.TenMM.TenMMClip;
@@ -49,6 +50,9 @@ public class gunReload {
         }
         if (ammo == "Shotgun") {
             return stack.getItem() instanceof SShell;
+        }
+        if (ammo == "FlareGun") {
+            return stack.getItem() instanceof FlareShell;
         }
         return false;
 
@@ -173,6 +177,24 @@ public class gunReload {
                     heldItem.setItemDamage(heldItem.getItemDamage() -1);
                     findAmmo(player, "Shotgun").shrink(1);
                     main.simpleNetworkWrapper.sendTo(new MessageGunReloadReply(5), player);
+                }
+            }
+        });
+    }
+
+    public static void FlareGun(WorldServer mainThread, ItemStack heldItem, EntityPlayerMP player) {
+        mainThread.addScheduledTask(() -> {
+            if (heldItem.getItemDamage() == 0) {
+                    Item removeFlare = GlobalItemArray_For_init.AllInit[26];
+                    ItemStack flareStack = new ItemStack(removeFlare);
+                    heldItem.setItemDamage(1);
+                    player.inventory.setInventorySlotContents(InventoryManager.FindEmpty(player), flareStack);
+                    main.simpleNetworkWrapper.sendTo(new MessageGunReloadReply(7), player);
+            } else if (heldItem.getItemDamage() == 1) {
+                if (findAmmo(player, "FlareGun") != ItemStack.EMPTY) {
+                    heldItem.setItemDamage(heldItem.getItemDamage() -1);
+                    findAmmo(player, "FlareGun").shrink(1);
+                    main.simpleNetworkWrapper.sendTo(new MessageGunReloadReply(6), player);
                 }
             }
         });
