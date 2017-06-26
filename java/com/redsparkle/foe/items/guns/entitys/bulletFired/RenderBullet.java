@@ -17,7 +17,6 @@ import javax.annotation.Nullable;
 public class RenderBullet extends Render {
 
     private static final ResourceLocation textures = new ResourceLocation(GlobalNames.Domain + ":textures/entities/bulletrender.png");
-    private ModelBase model;
 
     public RenderBullet(RenderManager renderManager) {
         super(renderManager);
@@ -26,12 +25,13 @@ public class RenderBullet extends Render {
 
     @Override
     public void doRender(Entity entity, double x, double y, double z, float yaw, float partialTick) {
-        this.model = new ModelBullet();
+        ModelBase model;
+        model = new ModelBullet();
         GL11.glPushMatrix();
         this.bindEntityTexture(entity);
         bindTexture(textures);
         GL11.glTranslated(x, y - 1.25D, z);
-        this.model.render(entity, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0625F);
+        model.render(entity, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0625F);
         GL11.glPopMatrix();
 
     }

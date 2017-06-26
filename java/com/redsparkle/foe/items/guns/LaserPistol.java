@@ -72,14 +72,19 @@ public class LaserPistol extends ItemFirearm {
                         worldIn.playSound(playerIn, playerIn.getPosition(), SoundInit.guns[19], SoundCategory.PLAYERS, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
                         break;
                 }
-                worldIn.spawnEntity(laser(worldIn, playerIn));
+                if (worldIn.isRemote) {
+                    laser(worldIn, playerIn);
+                }
+
                 itemstack.setItemDamage(itemstack.getItemDamage() + 1);
                 playerIn.cameraYaw = -0.1F;
                 return new ActionResult<>(EnumActionResult.PASS, itemstack);
             }
         } else {
             worldIn.playSound(playerIn, playerIn.getPosition(), SoundInit.guns[19], SoundCategory.PLAYERS, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
-            worldIn.spawnEntity(laser(worldIn, playerIn));
+            if (worldIn.isRemote) {
+                laser(worldIn, playerIn);
+            }
         }
         return new ActionResult<>(EnumActionResult.PASS, itemstack);
     }

@@ -50,7 +50,6 @@ public class TenMM extends ItemFirearm {
         return super.initCapabilities(stack, nbt);
     }
 
-
     @Override
     public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand hand) {
         ItemStack itemstack = playerIn.getHeldItem(hand);
@@ -63,32 +62,25 @@ public class TenMM extends ItemFirearm {
                     worldIn.playSound(playerIn, playerIn.getPosition(), SoundInit.guns[1], SoundCategory.HOSTILE, 0.5F, 0.4F);
                     return new ActionResult<>(EnumActionResult.FAIL, itemstack);
                 }
-
             } else {
-
                 worldIn.playSound(playerIn, playerIn.getPosition(), SoundInit.guns[0], SoundCategory.HOSTILE, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
-
-                worldIn.spawnEntity(bullet(worldIn, playerIn));
-
-
+                if (worldIn.isRemote) {
+                    bullet(worldIn, playerIn);
+                }
                 itemstack.setItemDamage(itemstack.getItemDamage() + 1);
                 playerIn.cameraYaw = -0.1F;
                 return new ActionResult<>(EnumActionResult.SUCCESS, itemstack);
             }
-
-
         } else {
             worldIn.playSound(playerIn, playerIn.getPosition(), SoundInit.guns[0], SoundCategory.HOSTILE, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
-                worldIn.spawnEntity(bullet(worldIn, playerIn));
-
-
+            if (worldIn.isRemote) {
+                bullet(worldIn, playerIn);
+            }
             playerIn.cameraYaw = -0.1F;
-
         }
         playerIn.addStat(StatList.getObjectUseStats(this));
         return new ActionResult<>(EnumActionResult.SUCCESS, itemstack);
     }
-
 
     @Override
     public boolean isAmmo(ItemStack stack) {

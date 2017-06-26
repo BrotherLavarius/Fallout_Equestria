@@ -1,14 +1,11 @@
 package com.redsparkle.foe.items.guns;
 
 import com.redsparkle.foe.Init.SoundInit;
-import com.redsparkle.foe.capa.skills.SkillsFactoryProvider;
 import com.redsparkle.foe.creativeTabs.InitCreativeTabs;
 import com.redsparkle.foe.items.guns.ammo.FlareShell.FlareShell;
-import com.redsparkle.foe.items.guns.ammo.TenMM.TenMMClip;
 import com.redsparkle.foe.items.guns.entitys.flare.EntityFlare;
 import com.redsparkle.foe.items.guns.inits.ItemFirearm;
 import com.redsparkle.foe.utils.GlobalWeaponsStats;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -69,15 +66,18 @@ public class FlareGun extends ItemFirearm {
                 }
             } else {
                 worldIn.playSound(playerIn, playerIn.getPosition(), SoundInit.guns[9], SoundCategory.HOSTILE, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
-                flare(worldIn,playerIn);
+                if (worldIn.isRemote) {
+                    flare(worldIn, playerIn);
+                }
                 itemstack.setItemDamage(itemstack.getItemDamage() + 1);
                 return new ActionResult<>(EnumActionResult.SUCCESS, itemstack);
             }
         } else {
             worldIn.playSound(playerIn, playerIn.getPosition(), SoundInit.guns[9], SoundCategory.HOSTILE, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
-            flare(worldIn,playerIn);
-            playerIn.addStat(StatList.getObjectUseStats(this));
-            return new ActionResult<>(EnumActionResult.SUCCESS, itemstack);
+            if (worldIn.isRemote) {
+                flare(worldIn, playerIn);
+            }
+
         }
         playerIn.addStat(StatList.getObjectUseStats(this));
         return new ActionResult<>(EnumActionResult.SUCCESS, itemstack);
@@ -100,5 +100,11 @@ public class FlareGun extends ItemFirearm {
 
     }
 
+    public void flare(World worldIn, EntityPlayer playerIn) {
+        EntityFlare flare = new EntityFlare(worldIn, playerIn);
+        flare.setHeadingFromThrower(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, 1F, 3.0F);
+        flare.setDamage(damage);
+        worldIn.spawnEntity(flare);
+    }
 }
 
