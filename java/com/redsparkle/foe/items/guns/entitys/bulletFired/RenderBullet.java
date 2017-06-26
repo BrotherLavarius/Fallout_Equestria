@@ -19,16 +19,14 @@ public class RenderBullet extends Render {
     private static final ResourceLocation textures = new ResourceLocation(GlobalNames.Domain + ":textures/entities/bulletrender.png");
     private ModelBase model;
 
-    public RenderBullet(RenderManager renderManager, ModelBullet modelBullet, double v) {
+    public RenderBullet(RenderManager renderManager) {
         super(renderManager);
-        this.model = modelBullet;
-
     }
 
 
     @Override
     public void doRender(Entity entity, double x, double y, double z, float yaw, float partialTick) {
-
+        this.model = new ModelBullet();
         GL11.glPushMatrix();
         this.bindEntityTexture(entity);
         bindTexture(textures);

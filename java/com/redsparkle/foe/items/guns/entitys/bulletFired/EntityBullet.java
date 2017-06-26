@@ -22,6 +22,11 @@ public class EntityBullet extends EntityThrowable {
         super(world);
     }
 
+    public EntityBullet(World worldIn, double x, double y, double z)
+    {
+        this(worldIn);
+        this.setPosition(x, y, z);
+    }
     public EntityBullet(World world, EntityLivingBase entity) {
         super(world, entity);
     }
@@ -32,13 +37,6 @@ public class EntityBullet extends EntityThrowable {
     @Override
     public void onUpdate() {
         super.onUpdate();
-        if (this.prevRotationPitch == 0.0F && this.prevRotationYaw == 0.0F) {
-            float lvt_1_1_ = MathHelper.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ);
-            this.rotationYaw = (float) (MathHelper.atan2(this.motionX, this.motionZ) * 57.2957763671875D);
-            this.rotationPitch = (float) (MathHelper.atan2(this.motionY, (double) lvt_1_1_) * 57.2957763671875D);
-            this.prevRotationYaw = this.rotationYaw;
-            this.prevRotationPitch = this.rotationPitch;
-        }
         if (ticksExisted > 30) {
             setDead();
         }

@@ -81,11 +81,11 @@ public abstract class ItemFirearm extends Item {
         }
         return pellets;
     }
-    public Entity flare(World worldIn, EntityPlayer playerIn) {
+    public void flare(World worldIn, EntityPlayer playerIn) {
         EntityFlare flare = new EntityFlare(worldIn,playerIn);
         flare.setHeadingFromThrower(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, 0.5F, 3.0F);
         flare.setDamage(damage);
-        return flare;
+        worldIn.spawnEntity(flare);
     }
 
     public boolean isAmmo(ItemStack stack) {

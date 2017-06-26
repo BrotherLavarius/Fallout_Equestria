@@ -69,13 +69,15 @@ public class FlareGun extends ItemFirearm {
                 }
             } else {
                 worldIn.playSound(playerIn, playerIn.getPosition(), SoundInit.guns[9], SoundCategory.HOSTILE, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
-                worldIn.spawnEntity(flare(worldIn,playerIn));
+                flare(worldIn,playerIn);
                 itemstack.setItemDamage(itemstack.getItemDamage() + 1);
                 return new ActionResult<>(EnumActionResult.SUCCESS, itemstack);
             }
         } else {
             worldIn.playSound(playerIn, playerIn.getPosition(), SoundInit.guns[9], SoundCategory.HOSTILE, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
-            worldIn.spawnEntity(flare(worldIn,playerIn));
+            flare(worldIn,playerIn);
+            playerIn.addStat(StatList.getObjectUseStats(this));
+            return new ActionResult<>(EnumActionResult.SUCCESS, itemstack);
         }
         playerIn.addStat(StatList.getObjectUseStats(this));
         return new ActionResult<>(EnumActionResult.SUCCESS, itemstack);

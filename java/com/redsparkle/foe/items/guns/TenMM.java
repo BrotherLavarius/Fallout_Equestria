@@ -83,6 +83,7 @@ public class TenMM extends ItemFirearm {
 
 
             playerIn.cameraYaw = -0.1F;
+
         }
         playerIn.addStat(StatList.getObjectUseStats(this));
         return new ActionResult<>(EnumActionResult.SUCCESS, itemstack);
