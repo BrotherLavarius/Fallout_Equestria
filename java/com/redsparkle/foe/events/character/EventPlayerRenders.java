@@ -1,11 +1,13 @@
 package com.redsparkle.foe.events.character;
 
+import com.redsparkle.foe.items.guns.inits.ItemFirearm;
 import com.redsparkle.foe.playerrenderers.ArmorLayerRender;
 import com.redsparkle.foe.playerrenderers.GunRender;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.client.event.RenderPlayerEvent;
+import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 /**
@@ -28,6 +30,13 @@ public class EventPlayerRenders {
         }
     }
 
+    @SubscribeEvent(receiveCanceled = true)
+    public void renderPlayerRightClick(PlayerInteractEvent.RightClickEmpty event) {
+        if (event.getItemStack().getItem() instanceof ItemFirearm) {
+            //event.getEntityPlayer().swingProgressInt = 0;
+        }
+
+    }
 //    @SubscribeEvent(receiveCanceled = true)
 //    public void onWeaponCarry(RenderPlayerEvent.Pre event) {
 //        if (event.getEntity() instanceof EntityPlayer && !done) {

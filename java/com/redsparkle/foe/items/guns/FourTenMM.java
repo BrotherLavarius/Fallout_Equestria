@@ -4,7 +4,6 @@ import com.redsparkle.foe.Init.SoundInit;
 import com.redsparkle.foe.capa.skills.SkillsFactoryProvider;
 import com.redsparkle.foe.creativeTabs.InitCreativeTabs;
 import com.redsparkle.foe.items.guns.ammo.TenMM.TenMMClip;
-import com.redsparkle.foe.items.guns.bulletFired.EntityBullet;
 import com.redsparkle.foe.items.guns.inits.ItemFirearm;
 import com.redsparkle.foe.utils.GlobalWeaponsStats;
 import net.minecraft.entity.player.EntityPlayer;
@@ -55,7 +54,6 @@ public class FourTenMM extends ItemFirearm {
     @Override
     public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand hand) {
         ItemStack itemstack = playerIn.getHeldItem(hand);
-        this.bullet = new EntityBullet(worldIn, playerIn);
         this.damage = GlobalWeaponsStats.FourDamage + playerIn.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getSmallGuns();
 
         if (!playerIn.capabilities.isCreativeMode) {
@@ -65,32 +63,25 @@ public class FourTenMM extends ItemFirearm {
                     worldIn.playSound(playerIn, playerIn.getPosition(), SoundInit.guns[4], SoundCategory.HOSTILE, 1F, 0.4F);
                     return new ActionResult<>(EnumActionResult.FAIL, itemstack);
                 }
-
             } else {
-
                 worldIn.playSound(playerIn, playerIn.getPosition(), SoundInit.guns[3], SoundCategory.HOSTILE, 15F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
-
-                worldIn.spawnEntity(bullet(worldIn, playerIn));
-
-
+                if (worldIn.isRemote) {
+                    bullet(worldIn, playerIn);
+                }
                 itemstack.setItemDamage(itemstack.getItemDamage() + 1);
                 playerIn.cameraYaw = -0.1F;
                 return new ActionResult<>(EnumActionResult.SUCCESS, itemstack);
             }
-
-
         } else {
             worldIn.playSound(playerIn, playerIn.getPosition(), SoundInit.guns[3], SoundCategory.HOSTILE, 15F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
-            worldIn.spawnEntity(bullet(worldIn, playerIn));
-
-
+            if (worldIn.isRemote) {
+                bullet(worldIn, playerIn);
+            }
             playerIn.cameraYaw = -0.1F;
         }
         playerIn.addStat(StatList.getObjectUseStats(this));
         return new ActionResult<>(EnumActionResult.SUCCESS, itemstack);
     }
-
-
     @Override
     public boolean isAmmo(ItemStack stack) {
         return stack.getItem() instanceof TenMMClip;

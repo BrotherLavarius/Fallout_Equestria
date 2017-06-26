@@ -1,9 +1,9 @@
 package com.redsparkle.foe.items.guns;
 
 import com.redsparkle.foe.Init.SoundInit;
-import com.redsparkle.foe.capa.skills.SkillsFactoryProvider;
 import com.redsparkle.foe.creativeTabs.InitCreativeTabs;
-import com.redsparkle.foe.items.guns.ammo.TenMM.TenMMClip;
+import com.redsparkle.foe.items.guns.ammo.FlareShell.FlareShell;
+import com.redsparkle.foe.items.guns.entitys.flare.EntityFlare;
 import com.redsparkle.foe.items.guns.inits.ItemFirearm;
 import com.redsparkle.foe.utils.GlobalWeaponsStats;
 import net.minecraft.entity.player.EntityPlayer;
@@ -22,15 +22,16 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import java.util.List;
 
 /**
- * Created by NENYN on 1/5/2017.
+ * Created by hoijima on 24.06.17.
  */
-public class TenMM extends ItemFirearm {
+public class FlareGun extends ItemFirearm {
 
     public boolean isGun;
-    public int clipRounds = GlobalWeaponsStats.TenMMclipRounds;
+    public int clipRounds = GlobalWeaponsStats.flaregun_Rounds;
+    public EntityPlayer playerIn;
+    public World worldIn;
 
-
-    public TenMM() {
+    public FlareGun() {
         this.setMaxStackSize(1);
         this.setMaxDamage(clipRounds);
         this.setCreativeTab(InitCreativeTabs.Fallout_guns);
@@ -50,33 +51,33 @@ public class TenMM extends ItemFirearm {
         return super.initCapabilities(stack, nbt);
     }
 
+
     @Override
     public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand hand) {
         ItemStack itemstack = playerIn.getHeldItem(hand);
-        this.damage = GlobalWeaponsStats.TenMMDamage + playerIn.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getSmallGuns();
+        this.damage = GlobalWeaponsStats.flaregun_Damage;
 
         if (!playerIn.capabilities.isCreativeMode) {
-            if (itemstack.getItemDamage() >= (GlobalWeaponsStats.TenMMclipRounds-1)) {
+            if (itemstack.getItemDamage() == (clipRounds)) {
                 if (findAmmo(playerIn) == ItemStack.EMPTY) {
                     // ---------------_EMPTY CLIP
-                    worldIn.playSound(playerIn, playerIn.getPosition(), SoundInit.guns[1], SoundCategory.HOSTILE, 0.5F, 0.4F);
+                    worldIn.playSound(playerIn, playerIn.getPosition(), SoundInit.guns[10], SoundCategory.HOSTILE, 0.5F, 0.4F);
                     return new ActionResult<>(EnumActionResult.FAIL, itemstack);
                 }
             } else {
-                worldIn.playSound(playerIn, playerIn.getPosition(), SoundInit.guns[0], SoundCategory.HOSTILE, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
+                worldIn.playSound(playerIn, playerIn.getPosition(), SoundInit.guns[9], SoundCategory.HOSTILE, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
                 if (worldIn.isRemote) {
-                    bullet(worldIn, playerIn);
+                    flare(worldIn, playerIn);
                 }
                 itemstack.setItemDamage(itemstack.getItemDamage() + 1);
-                playerIn.cameraYaw = -0.1F;
                 return new ActionResult<>(EnumActionResult.SUCCESS, itemstack);
             }
         } else {
-            worldIn.playSound(playerIn, playerIn.getPosition(), SoundInit.guns[0], SoundCategory.HOSTILE, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
+            worldIn.playSound(playerIn, playerIn.getPosition(), SoundInit.guns[9], SoundCategory.HOSTILE, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
             if (worldIn.isRemote) {
-                bullet(worldIn, playerIn);
+                flare(worldIn, playerIn);
             }
-            playerIn.cameraYaw = -0.1F;
+
         }
         playerIn.addStat(StatList.getObjectUseStats(this));
         return new ActionResult<>(EnumActionResult.SUCCESS, itemstack);
@@ -84,23 +85,26 @@ public class TenMM extends ItemFirearm {
 
     @Override
     public boolean isAmmo(ItemStack stack) {
-        return stack.getItem() instanceof TenMMClip;
+
+        return stack.getItem() instanceof FlareShell;
     }
     /**
      * allows items to add custom lines of information to the mouseover description
      */
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack stack, EntityPlayer playerIn, List<String> tooltip, boolean advanced) {
-        tooltip.add("10 MM pistol");
-        tooltip.add("Clip size: " + (clipRounds-2));
-        tooltip.add("Base Damage: " + GlobalWeaponsStats.TenMMDamage);
-        tooltip.add("Your Damage: " + damage);
+        tooltip.add("Flare Gun");
+        tooltip.add("Clip size: " + clipRounds);
+        tooltip.add("Damage: " + GlobalWeaponsStats.flaregun_Damage);
+
 
     }
 
+    public void flare(World worldIn, EntityPlayer playerIn) {
+        EntityFlare flare = new EntityFlare(worldIn, playerIn);
+        flare.setHeadingFromThrower(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, 1F, 3.0F);
+        flare.setDamage(damage);
+        worldIn.spawnEntity(flare);
+    }
 }
-
-
-
-
 

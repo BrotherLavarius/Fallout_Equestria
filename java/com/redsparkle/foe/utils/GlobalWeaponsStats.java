@@ -22,4 +22,7 @@ public class GlobalWeaponsStats {
     public static int
             db_shoutgunRounds = 2,
             db_shoutgunDamage = 1;
+    public static int
+            flaregun_Rounds = 1,
+            flaregun_Damage = 1;
 }

@@ -20,10 +20,11 @@ import com.redsparkle.foe.capa.spechial.SpechialFactoryProvider;
 import com.redsparkle.foe.capa.spechial.SpechialFactoryStorage;
 import com.redsparkle.foe.events.EventHandlerInit;
 import com.redsparkle.foe.events.EventHandlerPre;
-import com.redsparkle.foe.items.guns.flametrower.EntityFlame;
-import com.redsparkle.foe.items.guns.laserFired.EntityLaser;
-import com.redsparkle.foe.items.guns.bulletFired.EntityBullet;
-import com.redsparkle.foe.items.guns.spreadPellet_shotgun.*;
+import com.redsparkle.foe.items.guns.entitys.bulletFired.EntityBullet;
+import com.redsparkle.foe.items.guns.entitys.flare.EntityFlare;
+import com.redsparkle.foe.items.guns.entitys.flametrower.EntityFlame;
+import com.redsparkle.foe.items.guns.entitys.laserFired.EntityLaser;
+import com.redsparkle.foe.items.guns.entitys.spreadPellet_shotgun.*;
 import com.redsparkle.foe.utils.GlobalNames;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
@@ -57,6 +58,8 @@ public abstract class CommonProxy {
         EntityRegistry.registerModEntity(new ResourceLocation(GlobalNames.Domain + ":entity/Pellet_four"), Pellet_four.class, "Pellet_four", 7, main.instance, 64, 10, true);
         EntityRegistry.registerModEntity(new ResourceLocation(GlobalNames.Domain + ":entity/Pellet_five"), Pellet_five.class, "Pellet_five", 8, main.instance, 64, 10, true);
         EntityRegistry.registerModEntity(new ResourceLocation(GlobalNames.Domain + ":entity/Pellet_six"),  Pellet_six.class,  "Pellet_six", 9, main.instance, 64, 10, true);
+
+        EntityRegistry.registerModEntity(new ResourceLocation(GlobalNames.Domain + ":entity/Flare"), EntityFlare.class, "Flare", 10, main.instance, 64, 10, true);
 
 
 

@@ -6,12 +6,13 @@ import com.redsparkle.foe.events.gui.EventHandlerOverlayAEM;
 import com.redsparkle.foe.events.gui.EventHandlerOverlayPipBuck;
 import com.redsparkle.foe.events.gui.EventPlayerGuiHandler;
 import com.redsparkle.foe.gui.Overlays.PipBuckOverlay;
-import com.redsparkle.foe.items.guns.bulletFired.EntityBullet;
-import com.redsparkle.foe.items.guns.bulletFired.RenderFactoryBullet;
-import com.redsparkle.foe.items.guns.flametrower.EntityFlame;
-import com.redsparkle.foe.items.guns.laserFired.EntityLaser;
-import com.redsparkle.foe.items.guns.laserFired.RenderFactoryLaser;
-import com.redsparkle.foe.items.guns.spreadPellet_shotgun.*;
+import com.redsparkle.foe.items.guns.entitys.bulletFired.EntityBullet;
+import com.redsparkle.foe.items.guns.entitys.bulletFired.RenderFactoryBullet;
+import com.redsparkle.foe.items.guns.entitys.flare.EntityFlare;
+import com.redsparkle.foe.items.guns.entitys.flametrower.EntityFlame;
+import com.redsparkle.foe.items.guns.entitys.laserFired.EntityLaser;
+import com.redsparkle.foe.items.guns.entitys.laserFired.RenderFactoryLaser;
+import com.redsparkle.foe.items.guns.entitys.spreadPellet_shotgun.*;
 import com.redsparkle.foe.utils.GlobalBlockArray;
 import com.redsparkle.foe.utils.GlobalItemArray_For_init;
 import com.redsparkle.foe.utils.GlobalItemModelsInitArray;
@@ -50,11 +51,12 @@ public class ClientOnlyStartup {
         RenderingRegistry.registerEntityRenderingHandler(Pellet.class,  new RenderFactoryBullet(Minecraft.getMinecraft().getRenderManager()));
         RenderingRegistry.registerEntityRenderingHandler(Pellet_one.class, new RenderFactoryBullet(Minecraft.getMinecraft().getRenderManager()));
         RenderingRegistry.registerEntityRenderingHandler(Pellet_two.class, new RenderFactoryBullet(Minecraft.getMinecraft().getRenderManager()));
-
         RenderingRegistry.registerEntityRenderingHandler(Pellet_tree.class,new RenderFactoryBullet(Minecraft.getMinecraft().getRenderManager()));
         RenderingRegistry.registerEntityRenderingHandler(Pellet_four.class,new RenderFactoryBullet(Minecraft.getMinecraft().getRenderManager()));
         RenderingRegistry.registerEntityRenderingHandler(Pellet_five.class,new RenderFactoryBullet(Minecraft.getMinecraft().getRenderManager()));
         RenderingRegistry.registerEntityRenderingHandler(Pellet_six.class, new RenderFactoryBullet(Minecraft.getMinecraft().getRenderManager()));
+
+        RenderingRegistry.registerEntityRenderingHandler(EntityFlare.class, new RenderFactoryBullet(Minecraft.getMinecraft().getRenderManager()));
 
         OBJLoader.INSTANCE.addDomain(GlobalNames.Domain);
 

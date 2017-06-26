@@ -5,7 +5,6 @@ import com.redsparkle.foe.capa.skills.SkillsFactoryProvider;
 import com.redsparkle.foe.creativeTabs.InitCreativeTabs;
 import com.redsparkle.foe.items.guns.ammo.LaserWeapons.Battery;
 import com.redsparkle.foe.items.guns.inits.ItemFirearm;
-import com.redsparkle.foe.items.guns.laserFired.EntityLaser;
 import com.redsparkle.foe.utils.GlobalWeaponsStats;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -45,7 +44,6 @@ public class LaserPistol extends ItemFirearm {
             tag.setBoolean("isgun", isGun);
             stack.setTagCompound(tag);
         }
-
         return super.initCapabilities(stack, nbt);
     }
 
@@ -53,9 +51,7 @@ public class LaserPistol extends ItemFirearm {
     @Override
     public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand hand) {
         ItemStack itemstack = playerIn.getHeldItem(hand);
-        this.laser = new EntityLaser(worldIn, playerIn);
         this.damage = GlobalWeaponsStats.LaserDamage + playerIn.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY,null).getEnergyWeapons();
-
         if (!playerIn.capabilities.isCreativeMode) {
             if (itemstack.getItemDamage() >= (GlobalWeaponsStats.LaserBatterRounds-1)) {
                 if (findAmmo(playerIn) == ItemStack.EMPTY) {
@@ -63,9 +59,7 @@ public class LaserPistol extends ItemFirearm {
                     worldIn.playSound(playerIn, playerIn.getPosition(), SoundInit.guns[21], SoundCategory.HOSTILE, 0.5F, 0.4F);
                     return new ActionResult<>(EnumActionResult.FAIL, itemstack);
                 }
-
             } else {
-
                 int num = (int) Math.random() * 100 % 3;
                 switch (num) {
                     case 0:
@@ -78,16 +72,19 @@ public class LaserPistol extends ItemFirearm {
                         worldIn.playSound(playerIn, playerIn.getPosition(), SoundInit.guns[19], SoundCategory.PLAYERS, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
                         break;
                 }
+                if (worldIn.isRemote) {
+                    laser(worldIn, playerIn);
+                }
 
-
-                worldIn.spawnEntity(laser(worldIn, playerIn));
                 itemstack.setItemDamage(itemstack.getItemDamage() + 1);
                 playerIn.cameraYaw = -0.1F;
                 return new ActionResult<>(EnumActionResult.PASS, itemstack);
             }
         } else {
             worldIn.playSound(playerIn, playerIn.getPosition(), SoundInit.guns[19], SoundCategory.PLAYERS, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
-            worldIn.spawnEntity(laser(worldIn, playerIn));
+            if (worldIn.isRemote) {
+                laser(worldIn, playerIn);
+            }
         }
         return new ActionResult<>(EnumActionResult.PASS, itemstack);
     }
