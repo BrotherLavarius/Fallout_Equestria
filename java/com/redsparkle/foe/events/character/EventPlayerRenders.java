@@ -21,7 +21,6 @@ public class EventPlayerRenders {
 
     @SubscribeEvent
     public void onRenderEntity(RenderPlayerEvent.Pre event) {
-
         if (event.getEntity() instanceof EntityPlayer && !done) {
             EntityPlayer player = (EntityPlayer) event.getEntity();
             event.getRenderer().addLayer(new GunRender(event.getRenderer().getRenderManager().getSkinMap().get(player)));
