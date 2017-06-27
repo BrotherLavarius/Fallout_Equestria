@@ -58,4 +58,18 @@ public class InventoryManager {
 
 
     }
+
+    public static ItemStack AddItemToExistingStack(EntityPlayer player, ItemStack stack) {
+        //TODO: kick the Case's to player main inv, not the hotbar
+        for (int i = 0; i <= player.inventory.getSizeInventory(); i++) {
+            ItemStack itemstack = player.inventory.getStackInSlot(i);
+            if (itemstack.getItem() == stack.getItem() && itemstack.getCount() <= stack.getItem().getItemStackLimit()) {
+                return itemstack;
+            }
+        }
+
+        return ItemStack.EMPTY;
+    }
+
+
 }

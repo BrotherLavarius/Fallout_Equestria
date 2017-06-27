@@ -1,4 +1,4 @@
-package com.redsparkle.foe.items.guns.ammo.TenMM;
+package com.redsparkle.foe.items.guns.ammo.FourTenMM;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -11,8 +11,8 @@ import java.util.List;
 /**
  * Created by NENYN on 1/12/2017.
  */
-public class TenMMbulletCase extends Item {
-    public TenMMbulletCase() {
+public class FourTenMMbulletCase extends Item {
+    public FourTenMMbulletCase() {
         this.setMaxStackSize(64);
     }
 
@@ -21,6 +21,6 @@ public class TenMMbulletCase extends Item {
      */
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack stack, EntityPlayer playerIn, List<String> tooltip, boolean advanced) {
-        tooltip.add("Case from 10mm bullet");
+        tooltip.add("Case from a 14mm bullet");
     }
 }

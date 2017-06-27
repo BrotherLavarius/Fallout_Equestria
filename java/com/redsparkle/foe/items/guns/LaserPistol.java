@@ -72,7 +72,7 @@ public class LaserPistol extends ItemFirearm {
                         worldIn.playSound(playerIn, playerIn.getPosition(), SoundInit.guns[19], SoundCategory.PLAYERS, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
                         break;
                 }
-                if (worldIn.isRemote) {
+                if (!worldIn.isRemote) {
                     laser(worldIn, playerIn);
                 }
 
@@ -82,7 +82,7 @@ public class LaserPistol extends ItemFirearm {
             }
         } else {
             worldIn.playSound(playerIn, playerIn.getPosition(), SoundInit.guns[19], SoundCategory.PLAYERS, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
-            if (worldIn.isRemote) {
+            if (!worldIn.isRemote) {
                 laser(worldIn, playerIn);
             }
         }

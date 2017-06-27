@@ -5,8 +5,10 @@ import com.redsparkle.foe.capa.skills.SkillsFactoryProvider;
 import com.redsparkle.foe.creativeTabs.InitCreativeTabs;
 import com.redsparkle.foe.items.guns.ammo.TenMM.TenMMClip;
 import com.redsparkle.foe.items.guns.inits.ItemFirearm;
+import com.redsparkle.foe.utils.GlobalItemArray_For_init;
 import com.redsparkle.foe.utils.GlobalWeaponsStats;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.stats.StatList;
@@ -28,7 +30,7 @@ public class TenMM extends ItemFirearm {
 
     public boolean isGun;
     public int clipRounds = GlobalWeaponsStats.TenMMclipRounds;
-
+    public Item casing;
 
     public TenMM() {
         this.setMaxStackSize(1);
@@ -53,6 +55,9 @@ public class TenMM extends ItemFirearm {
     @Override
     public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand hand) {
         ItemStack itemstack = playerIn.getHeldItem(hand);
+        casing = GlobalItemArray_For_init.AllInit[28];
+        ItemStack caseStack = new ItemStack(casing);
+
         this.damage = GlobalWeaponsStats.TenMMDamage + playerIn.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getSmallGuns();
 
         if (!playerIn.capabilities.isCreativeMode) {
@@ -64,19 +69,23 @@ public class TenMM extends ItemFirearm {
                 }
             } else {
                 worldIn.playSound(playerIn, playerIn.getPosition(), SoundInit.guns[0], SoundCategory.HOSTILE, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
-                if (worldIn.isRemote) {
+                if (!worldIn.isRemote) {
                     bullet(worldIn, playerIn);
                 }
                 itemstack.setItemDamage(itemstack.getItemDamage() + 1);
                 playerIn.cameraYaw = -0.1F;
+                AddCase(playerIn, caseStack);
                 return new ActionResult<>(EnumActionResult.SUCCESS, itemstack);
             }
         } else {
             worldIn.playSound(playerIn, playerIn.getPosition(), SoundInit.guns[0], SoundCategory.HOSTILE, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
-            if (worldIn.isRemote) {
+            if (!worldIn.isRemote) {
                 bullet(worldIn, playerIn);
             }
+            AddCase(playerIn, caseStack);
             playerIn.cameraYaw = -0.1F;
+
+
         }
         playerIn.addStat(StatList.getObjectUseStats(this));
         return new ActionResult<>(EnumActionResult.SUCCESS, itemstack);

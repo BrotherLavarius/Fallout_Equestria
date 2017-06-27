@@ -5,9 +5,11 @@ import com.redsparkle.foe.items.guns.*;
 import com.redsparkle.foe.items.guns.ammo.FlareShell.FlareShell;
 import com.redsparkle.foe.items.guns.ammo.FourTenMM.FourTenMMClip;
 import com.redsparkle.foe.items.guns.ammo.FourTenMM.FourTenMMammo;
+import com.redsparkle.foe.items.guns.ammo.FourTenMM.FourTenMMbulletCase;
 import com.redsparkle.foe.items.guns.ammo.LaserWeapons.Battery;
 import com.redsparkle.foe.items.guns.ammo.TenMM.TenMMClip;
 import com.redsparkle.foe.items.guns.ammo.TenMM.TenMMammo;
+import com.redsparkle.foe.items.guns.ammo.TenMM.TenMMbulletCase;
 import com.redsparkle.foe.items.guns.ammo.shell.SShell;
 import com.redsparkle.foe.items.guns.inits.itembullet;
 import com.redsparkle.foe.items.meds.HealPotions.DarkHealPotion;
@@ -66,7 +68,10 @@ public class GlobalItemArray_For_init {
             //---------------------AMMO--------------------------
             GlobalNames.flare,
             //---------------------GUNS--------------------------
-            GlobalNames.flare_gun
+            GlobalNames.flare_gun,
+
+            GlobalNames.TenMMCase,
+            GlobalNames.FourTenMMCase
     };
     // MEDS
     public static RadX radx;
@@ -94,6 +99,8 @@ public class GlobalItemArray_For_init {
     public static Battery battery;
     public static SShell sShell;
     public static FlareShell flare;
+    public static TenMMbulletCase tenMMbulletCase;
+    public static FourTenMMbulletCase fourTenMMbulletCase;
     // GUNS
     public static TenMM tenMM;
     public static FourTenMM fourTenMM;
@@ -111,21 +118,21 @@ public class GlobalItemArray_For_init {
             lvlingCrystall,//1
             aem,//2
             //--------------FOOD--------------------------
-            blamko_macCheese,
-            dandy_boy_apples,
-            fancy_mare_snack_cakes,
-            gumDrops,
-            potato_crisps,
-            sugar_bombs,
+            blamko_macCheese,//3
+            dandy_boy_apples,//4
+            fancy_mare_snack_cakes,//5
+            gumDrops,//6
+            potato_crisps,//7
+            sugar_bombs,//8
             //--------------MEDS--------------------------
 
             radAway,//9
             radx,//10
 
-            redHealPotion,
-            whiteHealpotion,
-            purpleHealPotion,
-            darkHealPotion,
+            redHealPotion,//11
+            whiteHealpotion,//12
+            purpleHealPotion,//13
+            darkHealPotion,//14
             //--------------AMMO--------------------------
 
             tenMMAmmo,//15
@@ -146,7 +153,11 @@ public class GlobalItemArray_For_init {
             //--------------AMMO--------------------------
             flare,//26
             //--------------GUNS--------------------------
-            flareGun//27
+            flareGun,//27
+
+
+            tenMMbulletCase,//28
+            fourTenMMbulletCase//29
     };
     public static Item[] obj = new Item[]{
             new PipBuck(),
@@ -183,7 +194,10 @@ public class GlobalItemArray_For_init {
 
             new itembullet(),
             new FlareShell(),
-            new FlareGun()
+            new FlareGun(),
+
+            new TenMMbulletCase(),
+            new FourTenMMbulletCase()
     };
 
 }

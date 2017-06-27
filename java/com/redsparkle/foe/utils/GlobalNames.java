@@ -67,8 +67,10 @@ public class GlobalNames {
             FourTenMMClip = "four_tenmm_clip",
             Battery = "battery",
             shell = "shell",
-            flare = "flare";
+            flare = "flare",
 
+    TenMMCase = "ten_mm_case",
+            FourTenMMCase = "four_ten_mm_case";
     // PLACEHOLDERS
 
     public static final String

@@ -5,6 +5,7 @@ import com.redsparkle.foe.items.guns.entitys.bulletFired.EntityBullet;
 import com.redsparkle.foe.items.guns.entitys.flametrower.EntityFlame;
 import com.redsparkle.foe.items.guns.entitys.laserFired.EntityLaser;
 import com.redsparkle.foe.items.guns.entitys.spreadPellet_shotgun.*;
+import com.redsparkle.foe.utils.InventoryManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -88,4 +89,12 @@ public abstract class ItemFirearm extends Item {
         return false;
     }
 
+    public void AddCase(EntityPlayer playerIn, ItemStack casing) {
+        if (InventoryManager.AddItemToExistingStack(playerIn, casing) != ItemStack.EMPTY) {
+            InventoryManager.AddItemToExistingStack(playerIn, casing).grow(1);
+        } else {
+            playerIn.inventory.addItemStackToInventory(casing);
+        }
+
+    }
 }
