@@ -38,16 +38,12 @@ public class EventHandlerPre {
 
 
     public static boolean canHaveAttributes(Entity entity) {
-        if (entity instanceof EntityLivingBase)
-            return true;
-        return false;
+        return entity instanceof EntityLivingBase;
     }
 
     public static boolean canHaveAttributes(Item item) {
-        if ((item instanceof ItemTool || item instanceof ItemSword || item instanceof ItemBow
-                || item instanceof ItemArmor || item instanceof ItemShield))
-            return true;
-        return false;
+        return (item instanceof ItemTool || item instanceof ItemSword || item instanceof ItemBow
+                || item instanceof ItemArmor || item instanceof ItemShield);
     }
 
     @SubscribeEvent
@@ -108,7 +104,7 @@ public class EventHandlerPre {
             ISkillsCapability skills = e.player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null);
             ILevelCapability lvl = e.player.getCapability(LEVEL_CAPABILITY, null);
             ISpechialCapability spe = e.player.getCapability(SpechialFactoryProvider.SPECHIAL_CAPABILITY, null);
-            Item lvliningCrystal = GlobalItemArray_For_init.lvlingCrystall;
+            Item lvliningCrystal = GlobalItemArray_For_init.AllInit[1];
             ItemStack lvlingcrystallS = new ItemStack(lvliningCrystal);
             lvlingcrystallS.setCount(1);
             e.player.inventory.addItemStackToInventory(lvlingcrystallS);

@@ -27,7 +27,7 @@ public class KeyInputHandler {
         }
         if (keyHandler.pipbuck.isPressed() ) {
 
-            if (mc.player.inventory.hasItemStack(new ItemStack(GlobalItemArray_For_init.pipbuck))) {
+            if (mc.player.inventory.hasItemStack(new ItemStack(GlobalItemArray_For_init.AllInit[0]))) {
                     main.simpleNetworkWrapper.sendToServer(new MessageUpdateSLSClientOnDemand());
 
 

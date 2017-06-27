@@ -8,6 +8,6 @@ import net.minecraft.item.Item;
 public class AmmunitionListing {
 
     public static final Item
-            TenMMClip = (Item) GlobalItemArray_For_init.tenMMClip,
-            Battery = (Item) GlobalItemArray_For_init.battery;
+            TenMMClip = (Item) GlobalItemArray_For_init.AllInit[16],
+            Battery = (Item) GlobalItemArray_For_init.AllInit[17];
 }

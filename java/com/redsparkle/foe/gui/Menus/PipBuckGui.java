@@ -98,7 +98,7 @@ public class PipBuckGui extends GuiScreen {
 
         int startX = 0;
         int startY = 0;
-        Item pipbuckI = GlobalItemArray_For_init.pipbuck;
+        Item pipbuckI = GlobalItemArray_For_init.AllInit[0];
         ItemStack pipbuckStack = new ItemStack(pipbuckI);
         mc.getItemRenderer().renderItem(player, pipbuckStack, ItemCameraTransforms.TransformType.GUI);
         this.zLevel = 0;

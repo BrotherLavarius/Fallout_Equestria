@@ -25,7 +25,7 @@ public class EventHandlerOverlayAEM {
             final int LAST_HOTBAR_SLOT_PLUS_ONE = FIRST_HOTBAR_SLOT + InventoryPlayer.getHotbarSize();
             for (int i = FIRST_HOTBAR_SLOT; i < LAST_HOTBAR_SLOT_PLUS_ONE; ++i) {
                 ItemStack slotItemStack = entityPlayerSP.inventory.getStackInSlot(i);
-                if (slotItemStack != null && slotItemStack.getItem() == GlobalItemArray_For_init.aem && !(slotItemStack.getItem() == GlobalItemArray_For_init.pipbuck)) {
+                if (slotItemStack != null && slotItemStack.getItem() == GlobalItemArray_For_init.AllInit[2] && !(slotItemStack.getItem() == GlobalItemArray_For_init.AllInit[0])) {
                     foundInHotbar = true;
                     break;
                 }
