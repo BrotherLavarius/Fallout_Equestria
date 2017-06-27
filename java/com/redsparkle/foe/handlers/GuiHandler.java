@@ -38,8 +38,7 @@ public class GuiHandler implements IGuiHandler {
         if (ID == PIPBUCK_GUI_DATA){return new DataGui();}
         if (ID == FIRTS_TIME_LVLUP){return new StatsGuiFirstJoin();}
         if (ID == SADDLE_BAGS) {
-            //return new Saddlebags(player, stats.getExtendedInventory());
-            //return new Saddlebags(player);
+//TODO:add init methods
 
         }
         return null;
