@@ -1,4 +1,4 @@
-package com.redsparkle.foe.items.armor.powered.init;
+package com.redsparkle.foe.items.helpers.armor;
 
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;

@@ -1,4 +1,4 @@
-package com.redsparkle.foe.items.armor.powered.init;
+package com.redsparkle.foe.items.helpers.armor;
 
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemArmor;

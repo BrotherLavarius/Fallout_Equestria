@@ -1,6 +1,6 @@
 package com.redsparkle.foe.events.character;
 
-import com.redsparkle.foe.items.guns.inits.ItemFirearm;
+import com.redsparkle.foe.items.helpers.Item_Instances.Item_Firearm;
 import com.redsparkle.foe.playerrenderers.ArmorLayerRender;
 import com.redsparkle.foe.playerrenderers.GunRender;
 import net.minecraft.client.Minecraft;
@@ -31,7 +31,7 @@ public class EventPlayerRenders {
 
     @SubscribeEvent(receiveCanceled = true)
     public void renderPlayerRightClick(PlayerInteractEvent.RightClickEmpty event) {
-        if (event.getItemStack().getItem() instanceof ItemFirearm) {
+        if (event.getItemStack().getItem() instanceof Item_Firearm) {
             //event.getEntityPlayer().swingProgressInt = 0;
         }
 
@@ -40,7 +40,7 @@ public class EventPlayerRenders {
 //    public void onWeaponCarry(RenderPlayerEvent.Pre event) {
 //        if (event.getEntity() instanceof EntityPlayer && !done) {
 //            EntityPlayer player = (EntityPlayer) event.getEntity();
-//            if (player.getHeldItemMainhand().getItem() instanceof ItemFirearm) {
+//            if (player.getHeldItemMainhand().getItem() instanceof Item_Firearm) {
 //
 //            }
 //        }

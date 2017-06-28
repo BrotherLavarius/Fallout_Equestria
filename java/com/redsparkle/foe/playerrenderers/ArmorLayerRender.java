@@ -1,7 +1,7 @@
 package com.redsparkle.foe.playerrenderers;
 
-import com.redsparkle.foe.items.armor.powered.init.ItemBody;
-import com.redsparkle.foe.items.armor.powered.init.ItemHelmet;
+import com.redsparkle.foe.items.helpers.armor.ItemBody;
+import com.redsparkle.foe.items.helpers.armor.ItemHelmet;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms;

@@ -4,7 +4,7 @@ import com.redsparkle.foe.Init.SoundInit;
 import com.redsparkle.foe.capa.skills.SkillsFactoryProvider;
 import com.redsparkle.foe.creativeTabs.InitCreativeTabs;
 import com.redsparkle.foe.items.guns.ammo.TenMM.TenMMClip;
-import com.redsparkle.foe.items.guns.inits.ItemFirearm;
+import com.redsparkle.foe.items.helpers.Item_Instances.Item_Firearm;
 import com.redsparkle.foe.utils.GlobalWeaponsStats;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -24,7 +24,7 @@ import java.util.List;
 /**
  * Created by hoijima on 24.06.17.
  */
-public class SB_shoutgun extends ItemFirearm {
+public class SB_shoutgun extends Item_Firearm {
 
     public boolean isGun;
     public int clipRounds = GlobalWeaponsStats.db_shoutgunRounds;

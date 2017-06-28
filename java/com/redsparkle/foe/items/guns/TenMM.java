@@ -4,7 +4,7 @@ import com.redsparkle.foe.Init.SoundInit;
 import com.redsparkle.foe.capa.skills.SkillsFactoryProvider;
 import com.redsparkle.foe.creativeTabs.InitCreativeTabs;
 import com.redsparkle.foe.items.guns.ammo.TenMM.TenMMClip;
-import com.redsparkle.foe.items.guns.inits.ItemFirearm;
+import com.redsparkle.foe.items.helpers.Item_Instances.Item_Firearm;
 import com.redsparkle.foe.utils.GlobalItemArray_For_init;
 import com.redsparkle.foe.utils.GlobalWeaponsStats;
 import net.minecraft.entity.player.EntityPlayer;
@@ -26,7 +26,7 @@ import java.util.List;
 /**
  * Created by NENYN on 1/5/2017.
  */
-public class TenMM extends ItemFirearm {
+public class TenMM extends Item_Firearm {
 
     public boolean isGun;
     public int clipRounds = GlobalWeaponsStats.TenMMclipRounds;

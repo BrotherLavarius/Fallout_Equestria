@@ -1,4 +1,4 @@
-package com.redsparkle.foe.items.saddlebags_init;
+package com.redsparkle.foe.items.helpers.Item_Instances;
 
 import net.minecraft.item.Item;
 

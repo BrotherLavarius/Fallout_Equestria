@@ -11,15 +11,15 @@ import com.redsparkle.foe.items.guns.ammo.TenMM.TenMMClip;
 import com.redsparkle.foe.items.guns.ammo.TenMM.TenMMammo;
 import com.redsparkle.foe.items.guns.ammo.TenMM.TenMMbulletCase;
 import com.redsparkle.foe.items.guns.ammo.shell.SShell;
-import com.redsparkle.foe.items.guns.inits.itembullet;
+import com.redsparkle.foe.items.helpers.Item_Instances.Item_bullet;
 import com.redsparkle.foe.items.meds.HealPotions.DarkHealPotion;
 import com.redsparkle.foe.items.meds.HealPotions.PurpleHealPotion;
 import com.redsparkle.foe.items.meds.HealPotions.RedHealPotion;
 import com.redsparkle.foe.items.meds.HealPotions.WhiteHealpotion;
 import com.redsparkle.foe.items.meds.RadAway;
 import com.redsparkle.foe.items.meds.RadX;
+import com.redsparkle.foe.items.misc_one_Time_use.LvlingCrystall;
 import com.redsparkle.foe.items.utility.AdvancedEnviropmentMonitor;
-import com.redsparkle.foe.items.utility.LvlingCrystall;
 import com.redsparkle.foe.items.utility.PipBuck;
 import net.minecraft.item.Item;
 
@@ -27,6 +27,7 @@ import net.minecraft.item.Item;
  * Created by hoijima on 23.06.17.
  */
 public class GlobalItemArray_For_init {
+
 
 
     public static final String[] ItemNames = new String[]{
@@ -109,7 +110,7 @@ public class GlobalItemArray_For_init {
     public static FlareGun flareGun;
 
     // PLACEHOLDER
-    public static itembullet itb;
+    public static Item_bullet itb;
     public static final Item[] AllInit = new Item[]{
 
             //---------------------UTILITY--------------------------
@@ -192,7 +193,7 @@ public class GlobalItemArray_For_init {
             new FourTenMM(),
             new SB_shoutgun(),
 
-            new itembullet(),
+            new Item_bullet(),
             new FlareShell(),
             new FlareGun(),
 
@@ -200,5 +201,7 @@ public class GlobalItemArray_For_init {
             new FourTenMMbulletCase()
     };
 
+
 }
+
 

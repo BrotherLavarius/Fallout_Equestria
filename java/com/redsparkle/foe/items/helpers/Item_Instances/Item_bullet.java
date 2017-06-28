@@ -1,6 +1,5 @@
-package com.redsparkle.foe.items.guns.inits;
+package com.redsparkle.foe.items.helpers.Item_Instances;
 
-import com.redsparkle.foe.creativeTabs.InitCreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -12,8 +11,8 @@ import java.util.List;
 /**
  * Created by hoijima on 19.06.17.
  */
-public class itembullet extends Item {
-    public itembullet() {
+public class Item_bullet extends Item {
+    public Item_bullet() {
         this.setMaxStackSize(1);
     }
     /**

@@ -1,4 +1,4 @@
-package com.redsparkle.foe.items.guns.inits;
+package com.redsparkle.foe.items.helpers.guns;
 
 import com.redsparkle.foe.Init.SoundInit;
 import com.redsparkle.foe.items.guns.ammo.FourTenMM.FourTenMMammo;

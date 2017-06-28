@@ -95,7 +95,7 @@ public class ItemInit {
         GameRegistry.register(t60legs);
 
 //        //----------------------PLACEHOLDER--------------------
-//        itb = (itembullet) (new itembullet().setUnlocalizedName("bullet"));
+//        itb = (Item_bullet) (new Item_bullet().setUnlocalizedName("bullet"));
 //        itb.setRegistryName("bullet");
 //        GameRegistry.register(itb);
     }

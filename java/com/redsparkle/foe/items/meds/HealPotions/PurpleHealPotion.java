@@ -1,12 +1,12 @@
 package com.redsparkle.foe.items.meds.HealPotions;
 
 import com.redsparkle.foe.creativeTabs.InitCreativeTabs;
-import com.redsparkle.foe.items.meds.initClasses.medsPotion;
+import com.redsparkle.foe.items.helpers.meds.meds_Potion;
 
 /**
  * Created by hoijima desu on 29.07.16 desu.
  */
-public class PurpleHealPotion extends medsPotion {
+public class PurpleHealPotion extends meds_Potion {
     public int NUMBER_OF_BOXES = 10 ;
     public int MaxDamage =15;
     public float HealMoment =10;

@@ -1,6 +1,6 @@
 package com.redsparkle.foe.playerrenderers;
 
-import com.redsparkle.foe.items.guns.inits.ItemFirearm;
+import com.redsparkle.foe.items.helpers.Item_Instances.Item_Firearm;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
@@ -35,7 +35,7 @@ public class GunRender implements LayerRenderer<EntityLivingBase> {
         Minecraft minecraft = Minecraft.getMinecraft();
 
 
-        if (itemstack != null && item instanceof ItemFirearm) {
+        if (itemstack != null && item instanceof Item_Firearm) {
             GlStateManager.pushMatrix();
             if (MathHelper.wrapDegrees(entitylivingbaseIn.getPitchYaw().y) >= 0.0F) {
                 yawCorrector = MathHelper.wrapDegrees(entitylivingbaseIn.getPitchYaw().y);

@@ -22,18 +22,6 @@ public class rpSkillCheck extends CommandBase {
 
 
     private final List<String> aliases;
-
-    protected String fullEntityName;
-
-    public rpSkillCheck() {
-        aliases = new ArrayList<String>();
-        aliases.add("skilldice");
-        aliases.add("Sdice");
-        aliases.add("diceskill");
-        aliases.add("ds");
-    }
-
-
     public String[] skills = new String[]{
             "STR",
             "PER",
@@ -43,6 +31,16 @@ public class rpSkillCheck extends CommandBase {
             "AGI",
             "LUC"
     };
+    protected String fullEntityName;
+
+
+    public rpSkillCheck() {
+        aliases = new ArrayList<String>();
+        aliases.add("skilldice");
+        aliases.add("Sdice");
+        aliases.add("diceskill");
+        aliases.add("ds");
+    }
 
     @Override
     public String getName() {
@@ -96,9 +94,9 @@ public class rpSkillCheck extends CommandBase {
             ITextComponent youRule = new TextComponentString(" skill is higher than yours");
             ITextComponent samelvl = new TextComponentString(" skill is the same as yours");
 
-            youSuck.getStyle().setColor(TextFormatting.RED).setItalic(Boolean.valueOf(true));
-            youRule.getStyle().setColor(TextFormatting.GREEN).setItalic(Boolean.valueOf(true));
-            samelvl.getStyle().setColor(TextFormatting.GRAY).setItalic(Boolean.valueOf(true));
+            youSuck.getStyle().setColor(TextFormatting.RED).setItalic(Boolean.TRUE);
+            youRule.getStyle().setColor(TextFormatting.GREEN).setItalic(Boolean.TRUE);
+            samelvl.getStyle().setColor(TextFormatting.GRAY).setItalic(Boolean.TRUE);
 
 
             for(int i=0;i <= (skills.length -1);i++){

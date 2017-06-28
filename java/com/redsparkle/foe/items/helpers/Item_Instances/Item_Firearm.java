@@ -1,4 +1,4 @@
-package com.redsparkle.foe.items.guns.inits;
+package com.redsparkle.foe.items.helpers.Item_Instances;
 
 import com.redsparkle.foe.creativeTabs.InitCreativeTabs;
 import com.redsparkle.foe.items.guns.entitys.bulletFired.EntityBullet;
@@ -16,7 +16,7 @@ import net.minecraft.world.World;
 /**
  * Created by NENYN on 1/21/2017.
  */
-public abstract class ItemFirearm extends Item {
+public abstract class Item_Firearm extends Item {
 
     public Object ammoItem;
     public int damage;
@@ -25,7 +25,7 @@ public abstract class ItemFirearm extends Item {
     public EnumParticleTypes effect;
     public Integer[] invArray = {0, 1, 2, 3, 4, 5, 6, 7, 8};
 
-    public ItemFirearm() {
+    public Item_Firearm() {
         this.clipRounds = 32;
         this.setCreativeTab(InitCreativeTabs.Fallout_guns);
         this.setMaxStackSize(1);

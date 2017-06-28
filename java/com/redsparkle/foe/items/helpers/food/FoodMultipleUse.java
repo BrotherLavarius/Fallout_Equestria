@@ -1,17 +1,13 @@
-package com.redsparkle.foe.items.meds.initClasses;
+package com.redsparkle.foe.items.helpers.food;
 
 import com.redsparkle.foe.creativeTabs.InitCreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
-import net.minecraft.init.PotionTypes;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.EnumAction;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.potion.Potion;
-import net.minecraft.potion.PotionEffect;
-import net.minecraft.potion.PotionType;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
@@ -23,30 +19,22 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import java.util.List;
 
 /**
- * Created by hoijima on 17.06.17.
+ * Created by hoijima on 09.06.17.
  */
-public abstract class medsPotion extends Item {
+public abstract class FoodMultipleUse extends Item {
+
+    public int foodLvl;
     public int NUMBER_OF_BOXES ;
     public int MaxDamage ;
-    public float HealMomentln ;
-    public float HealMoment ;
-    public String potionId;
-    public int durationIn;
-    public int amplifierIn;
-    public String potion;
-    public int duration;
-    public int amplifier;
+    public int foodToAdd ;
 
 
-    public medsPotion() {
+    public FoodMultipleUse() {
 
         this.setMaxStackSize(NUMBER_OF_BOXES);
-        this.setCreativeTab(InitCreativeTabs.Fallout_meds);   // the item will appear on the Miscellaneous tab in creative
+        this.setCreativeTab(InitCreativeTabs.Fallout_Food);   // the item will appear on the Miscellaneous tab in creative
         this.setMaxDamage(MaxDamage);
-        this.potion=potionId;
-        this.duration=durationIn;
-        this.amplifier=amplifierIn;
-        this.HealMoment=HealMomentln;
+        this.foodLvl = foodToAdd;
     }
 
 
@@ -56,11 +44,15 @@ public abstract class medsPotion extends Item {
      */
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack stack, EntityPlayer playerIn, List<String> tooltip, boolean advanced) {
-        tooltip.add("");
+        tooltip.add("Food left:" + (stack.getMaxDamage() - stack.getItemDamage()  + "/" + stack.getMaxDamage()));
     }
 
     public ActionResult<ItemStack> onItemRightClick(World itemStackIn, EntityPlayer worldIn, EnumHand playerIn) {
         worldIn.setActiveHand(playerIn);
+
+        if (worldIn.getFoodStats().getFoodLevel() == 20){
+            return new ActionResult<>(EnumActionResult.FAIL, worldIn.getHeldItem(playerIn));
+        }
         return new ActionResult<>(EnumActionResult.SUCCESS, worldIn.getHeldItem(playerIn));
     }
 
@@ -68,7 +60,7 @@ public abstract class medsPotion extends Item {
         EntityPlayer entityplayer = (EntityPlayer)entityLiving;
         if (entityLiving instanceof EntityPlayer)
         {
-            worldIn.playSound((EntityPlayer)null, entityplayer.posX, entityplayer.posY, entityplayer.posZ, SoundEvents.ENTITY_GENERIC_DRINK, SoundCategory.PLAYERS, 0.5F, worldIn.rand.nextFloat() * 0.1F + 0.9F);
+            worldIn.playSound(null, entityplayer.posX, entityplayer.posY, entityplayer.posZ, SoundEvents.ENTITY_PLAYER_BURP, SoundCategory.PLAYERS, 0.5F, worldIn.rand.nextFloat() * 0.1F + 0.9F);
         }
         if(stack.getCount() > 1){
             ItemStack excessStack =  new ItemStack(stack.getItem());
@@ -76,17 +68,20 @@ public abstract class medsPotion extends Item {
             entityplayer.inventory.addItemStackToInventory(excessStack);
             stack.setCount(1);
         }
-        entityplayer.heal(this.HealMoment);
-        entityplayer.addPotionEffect(new PotionEffect(Potion.getPotionFromResourceLocation(this.potion), this.duration, this.amplifier));
-        Item air = Items.AIR;
-        ItemStack airS = new ItemStack(air);
-        return airS;
+        stack.setItemDamage(stack.getItemDamage() +1 );
+        int food = entityplayer.getFoodStats().getFoodLevel();
+        entityplayer.getFoodStats().setFoodLevel(food + this.foodToAdd);
+        if(stack.getItemDamage() == stack.getMaxDamage() || stack.getItemDamage() > stack.getMaxDamage()){
+            Item air = Items.AIR;
+            ItemStack airS = new ItemStack(air);
+            return airS;
+        }else {return stack;}
 
 
     }
 
     public EnumAction getItemUseAction(ItemStack stack) {
-        return EnumAction.DRINK;
+        return EnumAction.EAT;
     }
 
     public int getMaxItemUseDuration(ItemStack stack) {

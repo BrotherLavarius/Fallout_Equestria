@@ -39,7 +39,7 @@ public class KeyInputHandler {
 
         }
         if (keyHandler.testButton.isPressed() ) {
-            //player.openGui(main.instance, 4, mc.world, (int) mc.player.posX, (int) mc.player.posY, (int) mc.player.posZ);
+            player.openGui(main.instance, 5, mc.world, (int) mc.player.posX, (int) mc.player.posY, (int) mc.player.posZ);
         }
         if (keyHandler.saddlebags.isPressed()) {
 

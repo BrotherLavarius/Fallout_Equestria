@@ -1,4 +1,4 @@
-package com.redsparkle.foe.items.utility;
+package com.redsparkle.foe.items.misc_one_Time_use;
 
 import com.redsparkle.foe.creativeTabs.InitCreativeTabs;
 import com.redsparkle.foe.main;

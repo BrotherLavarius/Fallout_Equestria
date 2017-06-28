@@ -1,5 +1,7 @@
 package com.redsparkle.foe.handlers;
 
+import com.redsparkle.foe.gui.Inventory_Crafting.CONTAINER_AdditionalInventory;
+import com.redsparkle.foe.gui.Inventory_Crafting.GUI_AdditionalInventory;
 import com.redsparkle.foe.gui.Menus.PipBuckGui;
 import com.redsparkle.foe.gui.Menus.pipbuck_gui_extenders.DATA.DataGui;
 import com.redsparkle.foe.gui.Menus.pipbuck_gui_extenders.ITEMS.InventoryGui;
@@ -20,7 +22,7 @@ public class GuiHandler implements IGuiHandler {
     public static final int PIPBUCK_GUI_INVE = 2;
     public static final int PIPBUCK_GUI_DATA = 3;
     public static final int FIRTS_TIME_LVLUP = 4;
-    public static final int SADDLE_BAGS = 5;
+    public static final int ADV_Inv = 5;
 
 
     @Nullable
@@ -37,9 +39,8 @@ public class GuiHandler implements IGuiHandler {
         if (ID == PIPBUCK_GUI_INVE){return new InventoryGui();}
         if (ID == PIPBUCK_GUI_DATA){return new DataGui();}
         if (ID == FIRTS_TIME_LVLUP){return new StatsGuiFirstJoin();}
-        if (ID == SADDLE_BAGS) {
-//TODO:add init methods
-
+        if (ID == ADV_Inv) {
+            return new GUI_AdditionalInventory(new CONTAINER_AdditionalInventory(player.inventory, player));
         }
         return null;
     }

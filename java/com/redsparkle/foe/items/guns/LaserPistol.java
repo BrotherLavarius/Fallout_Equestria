@@ -4,7 +4,7 @@ import com.redsparkle.foe.Init.SoundInit;
 import com.redsparkle.foe.capa.skills.SkillsFactoryProvider;
 import com.redsparkle.foe.creativeTabs.InitCreativeTabs;
 import com.redsparkle.foe.items.guns.ammo.LaserWeapons.Battery;
-import com.redsparkle.foe.items.guns.inits.ItemFirearm;
+import com.redsparkle.foe.items.helpers.Item_Instances.Item_Firearm;
 import com.redsparkle.foe.utils.GlobalWeaponsStats;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -23,7 +23,7 @@ import java.util.List;
 /**
  * Created by hoijima on 20.01.17.
  */
-public class LaserPistol extends ItemFirearm {
+public class LaserPistol extends Item_Firearm {
 
     public boolean isGun;
     public int clipRounds = GlobalWeaponsStats.LaserBatterRounds;

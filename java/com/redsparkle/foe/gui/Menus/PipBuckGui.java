@@ -20,6 +20,7 @@ import org.lwjgl.opengl.GL11;
 
 import javax.sound.sampled.FloatControl;
 import java.io.IOException;
+import java.util.Collections;
 
 /**
  * Created by hoijima on 3/4/2017.
@@ -491,21 +492,12 @@ public class PipBuckGui extends GuiScreen {
         this.buttonList.add(this.Inventory);// 1
         this.buttonList.add(this.Data);// 2
         this.buttonList.add(this.LvlUp); // 3
-        for (int i = 0; i < StatsGui.buttonsSTATNavigation.length; i++) {
-            this.buttonList.add(StatsGui.buttonsSTATNavigation[i]);//5-8
-        }
-        for (int i = 0; i < StatsGui.buttonsSTATmain.length; i++) {
-            this.buttonList.add(StatsGui.buttonsSTATmain[i]);//9-14
-        }
-        for (int i = 0; i < InventoryGui.buttonsINVmain.length; i++) {
-            this.buttonList.add(InventoryGui.buttonsINVmain[i]);//15-21
-        }
-        for (int i = 0; i < DataGui.buttonsDATAmain.length; i++) {
-            this.buttonList.add(DataGui.buttonsDATAmain[i]);//22-24
-        }
-        for (int i = 0; i < DataGui.buttonsDATARadio.length; i++) {
-            this.buttonList.add(DataGui.buttonsDATARadio[i]);//25-28
-        }
+
+        Collections.addAll(this.buttonList, StatsGui.buttonsSTATNavigation);
+        Collections.addAll(this.buttonList, StatsGui.buttonsSTATmain);
+        Collections.addAll(this.buttonList, InventoryGui.buttonsINVmain);
+        Collections.addAll(this.buttonList, DataGui.buttonsDATAmain);
+        Collections.addAll(this.buttonList, DataGui.buttonsDATARadio);
 
         super.initGui();
 
