@@ -2,6 +2,7 @@ package com.redsparkle.foe.handlers;
 
 import com.redsparkle.foe.gui.Inventory_Crafting.CONTAINER_AdditionalInventory;
 import com.redsparkle.foe.gui.Inventory_Crafting.GUI_AdditionalInventory;
+import com.redsparkle.foe.gui.Inventory_Crafting.init.Inventory_init;
 import com.redsparkle.foe.gui.Menus.PipBuckGui;
 import com.redsparkle.foe.gui.Menus.pipbuck_gui_extenders.DATA.DataGui;
 import com.redsparkle.foe.gui.Menus.pipbuck_gui_extenders.ITEMS.InventoryGui;
@@ -40,7 +41,7 @@ public class GuiHandler implements IGuiHandler {
         if (ID == PIPBUCK_GUI_DATA){return new DataGui();}
         if (ID == FIRTS_TIME_LVLUP){return new StatsGuiFirstJoin();}
         if (ID == ADV_Inv) {
-            return new GUI_AdditionalInventory(new CONTAINER_AdditionalInventory(player.inventory, player));
+            return new GUI_AdditionalInventory(new CONTAINER_AdditionalInventory(player,player.inventory,new Inventory_init()));
         }
         return null;
     }
