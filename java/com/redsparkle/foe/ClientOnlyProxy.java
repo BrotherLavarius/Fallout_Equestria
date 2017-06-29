@@ -1,5 +1,7 @@
 package com.redsparkle.foe;
 
+import com.lothrazar.powerinventory.ModInv;
+import com.lothrazar.powerinventory.util.UtilPlayerInventoryFilestorage;
 import com.redsparkle.foe.Init.ClientOnlyStartup;
 import com.redsparkle.foe.Init.SoundInit;
 import com.redsparkle.foe.capa.level.ILevelCapability;
@@ -15,17 +17,20 @@ import com.redsparkle.foe.capa.water.WaterFactoryProvider;
 import com.redsparkle.foe.keys.KeyInputHandler;
 import com.redsparkle.foe.keys.keyHandler;
 import com.redsparkle.foe.network.ClientServerOneClass.*;
+import com.redsparkle.foe.network.Inventory.MessageSync_Adv_Inventory;
 import com.redsparkle.foe.network.MessageFireToClientServer;
 import com.redsparkle.foe.network.MessageGunReloadReply;
 import com.redsparkle.foe.network.MessageOpenGuiClient;
 import com.redsparkle.foe.network.MessageUpdateSLSServerReplyOnDemand;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import net.minecraftforge.fml.relauncher.Side;
 
 /**
@@ -35,6 +40,7 @@ import net.minecraftforge.fml.relauncher.Side;
 public class ClientOnlyProxy extends CommonProxy {
 
     public static Minecraft mc = Minecraft.getMinecraft();
+    public static World world = mc.world;
     public static void handleRadMessage(MessageUpdateClientRads message) {
         Minecraft.getMinecraft().addScheduledTask(() -> {
             EntityPlayer player = Minecraft.getMinecraft().player;
@@ -204,6 +210,18 @@ public class ClientOnlyProxy extends CommonProxy {
              * System.out.println("Client: "+message.radiation);
              */
 
+        });
+    }
+    public static void handle_Sync_Adv_Inv(MessageSync_Adv_Inventory message, MessageContext ctx) {
+        Minecraft.getMinecraft().addScheduledTask(() -> {
+            if (world == null)
+                return;
+            Entity p = world.getEntityByID(message.playerId);
+            if (p != null && p instanceof EntityPlayer) {
+                EntityPlayer player = (EntityPlayer) p;
+                UtilPlayerInventoryFilestorage.setPlayerInventoryStack(player, message.slot, message.itemStack);
+                }
+            return;
         });
     }
 

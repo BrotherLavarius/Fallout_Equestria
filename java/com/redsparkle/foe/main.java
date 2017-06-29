@@ -1,10 +1,12 @@
 package com.redsparkle.foe;
 
 
+import com.lothrazar.powerinventory.net.PacketSyncExtendedInventory;
 import com.redsparkle.foe.commands.rpSkillCheck;
 import com.redsparkle.foe.handlers.GuiHandler;
 import com.redsparkle.foe.network.ClientServerOneClass.*;
 import com.redsparkle.foe.network.*;
+import com.redsparkle.foe.network.Inventory.MessageSync_Adv_Inventory;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
@@ -34,11 +36,12 @@ public class main {
     public static final byte LVLUP_MESSAGE_ID_CLIENT = 107;
     public static final byte FIRTSTIME_MESSAGE_ID_CLIENT = 108;
     public static final byte FIRTSTIME_MESSAGE_ID_SERVER = 109;
-
     public static final byte WATER_CAPABILITY_MESSAGE_ID_CLIENT = 110;
 
-    public static final byte FIRE_MESSAGE_ID_CLIENT = 101;
-    public static final byte FIRE_MESSAGE_ID_SERVER = 102;
+    public static final byte FIRE_MESSAGE_ID_CLIENT = 111;
+    public static final byte FIRE_MESSAGE_ID_SERVER = 112;
+
+    public static final byte SYNC_INV_CLIENTS = 113;
 
     public static SimpleNetworkWrapper simpleNetworkWrapper;    // used to transmit your network messages
     @Mod.Instance(main.MODID)
@@ -89,8 +92,8 @@ public class main {
         System.out.println("S.P.E.C.H.I.A.L------CHECK");
 
 //
-//  simpleNetworkWrapper.registerMessage(MessageFireToClientServer.HandlerClient.class,MessageFireToClientServer.class,FIRE_MESSAGE_ID_CLIENT,Side.CLIENT);
-//        simpleNetworkWrapper.registerMessage(MessageFireToClientServer.HandlerServer.class,MessageFireToClientServer.class,FIRE_MESSAGE_ID_SERVER,Side.SERVER);
+//          simpleNetworkWrapper.registerMessage(MessageFireToClientServer.HandlerClient.class,MessageFireToClientServer.class,FIRE_MESSAGE_ID_CLIENT,Side.CLIENT);
+//          simpleNetworkWrapper.registerMessage(MessageFireToClientServer.HandlerServer.class,MessageFireToClientServer.class,FIRE_MESSAGE_ID_SERVER,Side.SERVER);
 
         simpleNetworkWrapper.registerMessage(MessageUpdateClientServerSkills.HandlerClient.class, MessageUpdateClientServerSkills.class, SKILLS_MESSAGE_ID_CLIENT, Side.CLIENT);
         simpleNetworkWrapper.registerMessage(MessageUpdateClientServerSkills.HandlerServer.class, MessageUpdateClientServerSkills.class, SKILLS_MESSAGE_ID_SERVER, Side.SERVER);
@@ -109,6 +112,10 @@ public class main {
         simpleNetworkWrapper.registerMessage(MessageOpenGuiClient.HandlerClient.class,MessageOpenGuiClient.class,FIRTSTIME_MESSAGE_ID_CLIENT,Side.SERVER);
         simpleNetworkWrapper.registerMessage(MessageOpenGuiClient.HandleServer.class, MessageOpenGuiClient.class, FIRTSTIME_MESSAGE_ID_SERVER, Side.CLIENT);
         System.out.println("GUI TRIGGERS ------CHECK");
+
+
+
+        simpleNetworkWrapper.registerMessage(MessageSync_Adv_Inventory.HandlerClient.class, MessageSync_Adv_Inventory.class, SYNC_INV_CLIENTS, Side.CLIENT);
         System.out.println("FINISHED BOOTING NETWORK MESSAGES");
     }
 

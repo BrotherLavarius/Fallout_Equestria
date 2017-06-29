@@ -28,6 +28,7 @@ import com.redsparkle.foe.items.guns.entitys.spreadPellet_shotgun.*;
 import com.redsparkle.foe.utils.GlobalNames;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.capabilities.CapabilityManager;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
@@ -105,4 +106,8 @@ public abstract class CommonProxy {
     abstract public boolean isDedicatedServer();
 
 
+    public World getClientWorld() {
+        // TODO Auto-generated method stub
+        return null;
+    }
 }
