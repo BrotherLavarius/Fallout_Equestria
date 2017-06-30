@@ -1,12 +1,10 @@
 package com.redsparkle.foe.gui.Inventory_Crafting;
 
-import com.lothrazar.powerinventory.inventory.ContainerOverpowered;
 import com.redsparkle.foe.utils.GlobalNames;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.inventory.Container;
 import net.minecraft.util.ResourceLocation;
 
 /**
@@ -16,8 +14,8 @@ public class GUI_AdditionalInventory extends GuiContainer {
 
     //TODO: finish this class
     private static ResourceLocation GUI_TEXTURE;
-    private CONTAINER_AdditionalInventory container;
     final EntityPlayer thePlayer;
+    private CONTAINER_AdditionalInventory container;
 
 
     public GUI_AdditionalInventory(EntityPlayer player, InventoryPlayer inventoryPlayer) {
@@ -25,6 +23,7 @@ public class GUI_AdditionalInventory extends GuiContainer {
         super(new CONTAINER_AdditionalInventory(player, inventoryPlayer));
         container = (CONTAINER_AdditionalInventory) this.inventorySlots;
         thePlayer = player;
+        GUI_TEXTURE = new ResourceLocation(GlobalNames.Domain + ":textures/gui/ainv.png");
     }
 
     @Override

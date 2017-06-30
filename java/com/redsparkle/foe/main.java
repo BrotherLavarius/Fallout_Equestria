@@ -1,12 +1,11 @@
 package com.redsparkle.foe;
 
 
-import com.lothrazar.powerinventory.net.PacketSyncExtendedInventory;
 import com.redsparkle.foe.commands.rpSkillCheck;
 import com.redsparkle.foe.handlers.GuiHandler;
 import com.redsparkle.foe.network.ClientServerOneClass.*;
-import com.redsparkle.foe.network.*;
 import com.redsparkle.foe.network.Inventory.MessageSync_Adv_Inventory;
+import com.redsparkle.foe.network.*;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
@@ -58,6 +57,11 @@ public class main {
 
     public static String prependModID(String name) {
         return MODID + ":" + name;
+    }
+
+    @Mod.EventHandler
+    public static void init(FMLServerStartingEvent event) {
+        event.registerServerCommand(new rpSkillCheck());
     }
 
     @Mod.EventHandler
@@ -126,11 +130,5 @@ public class main {
         System.out.println("I-----------------------------------I");
         System.out.println("   Fallout pack fully initialized    ");
         System.out.println("I-----------------------------------I");
-    }
-
-    @Mod.EventHandler
-    public static void init(FMLServerStartingEvent event)
-    {
-        event.registerServerCommand(new rpSkillCheck());
     }
 }

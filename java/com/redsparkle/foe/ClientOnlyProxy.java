@@ -1,7 +1,6 @@
 package com.redsparkle.foe;
 
-import com.lothrazar.powerinventory.ModInv;
-import com.lothrazar.powerinventory.util.UtilPlayerInventoryFilestorage;
+
 import com.redsparkle.foe.Init.ClientOnlyStartup;
 import com.redsparkle.foe.Init.SoundInit;
 import com.redsparkle.foe.capa.level.ILevelCapability;
@@ -22,6 +21,7 @@ import com.redsparkle.foe.network.MessageFireToClientServer;
 import com.redsparkle.foe.network.MessageGunReloadReply;
 import com.redsparkle.foe.network.MessageOpenGuiClient;
 import com.redsparkle.foe.network.MessageUpdateSLSServerReplyOnDemand;
+import com.redsparkle.foe.utils.UtilPlayerInventoryFilestorage;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.entity.Entity;

@@ -1,8 +1,7 @@
 package com.redsparkle.foe.network.Inventory;
 
-import com.lothrazar.powerinventory.util.UtilPlayerInventoryFilestorage;
 import com.redsparkle.foe.ClientOnlyProxy;
-import com.redsparkle.foe.network.MessageOpenGuiClient;
+import com.redsparkle.foe.utils.UtilPlayerInventoryFilestorage;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;

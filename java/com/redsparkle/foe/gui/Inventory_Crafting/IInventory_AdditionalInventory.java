@@ -1,10 +1,6 @@
 package com.redsparkle.foe.gui.Inventory_Crafting;
 
-import com.lothrazar.powerinventory.Const;
-import com.lothrazar.powerinventory.ModInv;
-import com.lothrazar.powerinventory.config.ModConfig;
-import com.lothrazar.powerinventory.net.PacketSyncExtendedInventory;
-import com.lothrazar.powerinventory.proxy.CommonProxy;
+
 import com.redsparkle.foe.main;
 import com.redsparkle.foe.network.Inventory.MessageSync_Adv_Inventory;
 import com.redsparkle.foe.utils.Constants;
@@ -23,10 +19,9 @@ import java.lang.ref.WeakReference;
  */
 public class IInventory_AdditionalInventory implements IInventory {
     public static int INV_SIZE;
-    public NonNullList<ItemStack> inventory;
     private final String tagName = "foe_tag";
     private final String tagSlot = "Slot";
-
+    public NonNullList<ItemStack> inventory;
     public ItemStack pipbuckStack = ItemStack.EMPTY;
 
     public ItemStack device_stack_one   = ItemStack.EMPTY;
@@ -45,6 +40,7 @@ public class IInventory_AdditionalInventory implements IInventory {
     public ItemStack ammo_stack_four    = ItemStack.EMPTY;
 
     public ItemStack[] stacks = new ItemStack[]{
+            pipbuckStack,
             device_stack_one,
             device_stack_two,
             device_stack_tree,
