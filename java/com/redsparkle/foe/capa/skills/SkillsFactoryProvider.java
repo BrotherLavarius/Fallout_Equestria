@@ -190,7 +190,7 @@ public class SkillsFactoryProvider implements ISkillsCapability, ICapabilitySeri
     /* ################################## */
 
     public Integer setUnarmed(Integer newUnarmedLevel) {
-        return UnarmedLevel = +newUnarmedLevel;
+        return UnarmedLevel = newUnarmedLevel;
     }
 
     public Integer getUnarmed() {

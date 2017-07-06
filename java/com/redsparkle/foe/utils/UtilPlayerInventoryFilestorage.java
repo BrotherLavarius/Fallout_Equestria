@@ -24,8 +24,8 @@ import java.util.HashSet;
  * so i was able to use parts of that to make this
  * **/
 public class UtilPlayerInventoryFilestorage {
-    public static final String EXT = "opi";
-    public static final String EXTBK = "opibk";
+    public static final String EXT = "foe";
+    public static final String EXTBK = "foebk";
     public static HashSet<Integer> playerEntityIds = new HashSet<Integer>();
     private static HashMap<String, IInventory_AdditionalInventory> playerItems = new HashMap<String, IInventory_AdditionalInventory>();
 

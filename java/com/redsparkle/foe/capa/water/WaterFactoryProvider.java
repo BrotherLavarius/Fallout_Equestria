@@ -116,13 +116,13 @@ public class WaterFactoryProvider implements IWaterCapability, ICapabilitySerial
 
     public NBTTagCompound serializeNBT() {
         NBTTagCompound nbt = new NBTTagCompound();
-        nbt.setInteger("rads", waterLevel);
+        nbt.setInteger("water", waterLevel);
         return nbt;
     }
 
     @Override
     public void deserializeNBT(NBTTagCompound nbt) {
-        setWater(nbt.getInteger("rads"));
+        setWater(nbt.getInteger("water"));
     }
 
     public void updateClient(EntityPlayer player) {

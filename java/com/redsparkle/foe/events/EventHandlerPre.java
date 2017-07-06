@@ -16,15 +16,18 @@ import com.redsparkle.foe.capa.water.WaterFactoryProvider;
 import com.redsparkle.foe.main;
 import com.redsparkle.foe.utils.GlobalItemArray_For_init;
 import com.redsparkle.foe.utils.PlayerParamsSetup;
+import com.redsparkle.foe.utils.UtilPlayerInventoryFilestorage;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.*;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
+import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
+import net.minecraftforge.fml.relauncher.Side;
 
 import static com.redsparkle.foe.capa.level.LevelFactoryProvider.LEVEL_CAPABILITY;
 import static net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerLoggedInEvent;
@@ -36,7 +39,6 @@ import static net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerLoggedOu
  */
 public class EventHandlerPre {
 
-
     public static boolean canHaveAttributes(Entity entity) {
         return entity instanceof EntityLivingBase;
     }
@@ -44,6 +46,36 @@ public class EventHandlerPre {
     public static boolean canHaveAttributes(Item item) {
         return (item instanceof ItemTool || item instanceof ItemSword || item instanceof ItemBow
                 || item instanceof ItemArmor || item instanceof ItemShield);
+    }
+
+    @SubscribeEvent
+    public void playerLoggedInEvent(PlayerLoggedInEvent event) {
+        Side side = FMLCommonHandler.instance().getEffectiveSide();
+        if (side == Side.SERVER) {
+            UtilPlayerInventoryFilestorage.playerEntityIds.add(event.player.getEntityId());
+        }
+    }
+
+    @SubscribeEvent
+    public void playerTick(net.minecraftforge.event.entity.player.PlayerEvent.LivingUpdateEvent event) {
+        // player events
+        if (event.getEntity() instanceof EntityPlayer) {
+            EntityPlayer player = (EntityPlayer) event.getEntity();
+            if (!UtilPlayerInventoryFilestorage.playerEntityIds.isEmpty() && UtilPlayerInventoryFilestorage.playerEntityIds.contains(player.getEntityId())) {
+                UtilPlayerInventoryFilestorage.syncItems(player);
+                UtilPlayerInventoryFilestorage.playerEntityIds.remove(player.getEntityId());
+            }
+        }
+    }
+
+    @SubscribeEvent
+    public void playerLoad(net.minecraftforge.event.entity.player.PlayerEvent.LoadFromFile event) {
+        UtilPlayerInventoryFilestorage.playerSetupOnLoad(event);
+    }
+
+    @SubscribeEvent
+    public void playerSave(net.minecraftforge.event.entity.player.PlayerEvent.SaveToFile event) {
+        UtilPlayerInventoryFilestorage.savePlayerItems(event.getEntityPlayer(), UtilPlayerInventoryFilestorage.getPlayerFile(UtilPlayerInventoryFilestorage.EXT, event.getPlayerDirectory(), event.getEntityPlayer()), UtilPlayerInventoryFilestorage.getPlayerFile(UtilPlayerInventoryFilestorage.EXTBK, event.getPlayerDirectory(), event.getEntityPlayer()));
     }
 
     @SubscribeEvent

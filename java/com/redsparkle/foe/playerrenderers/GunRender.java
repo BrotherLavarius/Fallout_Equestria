@@ -19,8 +19,6 @@ import static java.lang.Math.abs;
  */
 public class GunRender implements LayerRenderer<EntityLivingBase> {
     private final RenderPlayer playerRenderer;
-    private Float yawCorrector = 0F;
-    private Float rotationPitch = 0F;
 
     public GunRender(RenderPlayer playerRendererIn) {
 
@@ -34,6 +32,8 @@ public class GunRender implements LayerRenderer<EntityLivingBase> {
         Item item = itemstack.getItem();
         Minecraft minecraft = Minecraft.getMinecraft();
 
+        Float yawCorrector = 0F;
+        Float rotationPitch = 0F;
 
         if (itemstack != null && item instanceof Item_Firearm) {
             GlStateManager.pushMatrix();

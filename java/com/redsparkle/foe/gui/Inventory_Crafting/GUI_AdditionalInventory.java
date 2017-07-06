@@ -20,7 +20,7 @@ public class GUI_AdditionalInventory extends GuiContainer {
 
     public GUI_AdditionalInventory(EntityPlayer player, InventoryPlayer inventoryPlayer) {
         // the player.inventory gets passed in here
-        super(new CONTAINER_AdditionalInventory(player, inventoryPlayer));
+        super(new CONTAINER_AdditionalInventory(inventoryPlayer, player));
         container = (CONTAINER_AdditionalInventory) this.inventorySlots;
         thePlayer = player;
         GUI_TEXTURE = new ResourceLocation(GlobalNames.Domain + ":textures/gui/ainv.png");
