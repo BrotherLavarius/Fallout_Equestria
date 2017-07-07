@@ -1,12 +1,12 @@
 package com.redsparkle.foe.gui.Menus;
 
+import com.redsparkle.api.utils.*;
+import com.redsparkle.api.utils.gui.GuiButtonExtFallout;
+import com.redsparkle.api.utils.gui.GuiButtonExtFallout_pipbuck;
 import com.redsparkle.foe.gui.Menus.pipbuck_gui_extenders.DATA.DataGui;
 import com.redsparkle.foe.gui.Menus.pipbuck_gui_extenders.ITEMS.InventoryGui;
 import com.redsparkle.foe.gui.Menus.pipbuck_gui_extenders.STATS.StatsGui;
 import com.redsparkle.foe.main;
-import com.redsparkle.foe.utils.*;
-import com.redsparkle.foe.utils.gui.GuiButtonExtFallout;
-import com.redsparkle.foe.utils.gui.GuiButtonExtFallout_pipbuck;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;

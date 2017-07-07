@@ -1,8 +1,8 @@
 package com.redsparkle.foe.block.effectDispenser.TileEntitys;
 
 
+import com.redsparkle.api.capa.rad.RadsFactoryProvider;
 import com.redsparkle.foe.Init.SoundInit;
-import com.redsparkle.foe.capa.rad.RadsFactoryProvider;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ITickable;

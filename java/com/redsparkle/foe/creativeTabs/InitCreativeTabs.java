@@ -1,6 +1,6 @@
 package com.redsparkle.foe.creativeTabs;
 
-import com.redsparkle.foe.utils.GlobalNames;
+import com.redsparkle.api.utils.GlobalNames;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;

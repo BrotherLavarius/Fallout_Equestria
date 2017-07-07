@@ -1,35 +1,33 @@
 package com.redsparkle.foe.events;
 
 
-import com.redsparkle.foe.capa.FirtsTimeJoin.FTJFactoryProvider;
-import com.redsparkle.foe.capa.FirtsTimeJoin.IFTJCapability;
-import com.redsparkle.foe.capa.level.ILevelCapability;
-import com.redsparkle.foe.capa.level.LevelFactoryProvider;
-import com.redsparkle.foe.capa.rad.IRadiationCapability;
-import com.redsparkle.foe.capa.rad.RadsFactoryProvider;
-import com.redsparkle.foe.capa.skills.ISkillsCapability;
-import com.redsparkle.foe.capa.skills.SkillsFactoryProvider;
-import com.redsparkle.foe.capa.spechial.ISpechialCapability;
-import com.redsparkle.foe.capa.spechial.SpechialFactoryProvider;
-import com.redsparkle.foe.capa.water.IWaterCapability;
-import com.redsparkle.foe.capa.water.WaterFactoryProvider;
+import com.redsparkle.api.capa.FirtsTimeJoin.FTJFactoryProvider;
+import com.redsparkle.api.capa.FirtsTimeJoin.IFTJCapability;
+import com.redsparkle.api.capa.StatsCapa.StatsCapabilityProvider;
+import com.redsparkle.api.capa.level.ILevelCapability;
+import com.redsparkle.api.capa.level.LevelFactoryProvider;
+import com.redsparkle.api.capa.rad.IRadiationCapability;
+import com.redsparkle.api.capa.rad.RadsFactoryProvider;
+import com.redsparkle.api.capa.skills.ISkillsCapability;
+import com.redsparkle.api.capa.skills.SkillsFactoryProvider;
+import com.redsparkle.api.capa.spechial.ISpechialCapability;
+import com.redsparkle.api.capa.spechial.SpechialFactoryProvider;
+import com.redsparkle.api.capa.water.IWaterCapability;
+import com.redsparkle.api.capa.water.WaterFactoryProvider;
+import com.redsparkle.api.utils.GlobalItemArray_For_init;
+import com.redsparkle.api.utils.PlayerParamsSetup;
 import com.redsparkle.foe.main;
-import com.redsparkle.foe.utils.GlobalItemArray_For_init;
-import com.redsparkle.foe.utils.PlayerParamsSetup;
-import com.redsparkle.foe.utils.UtilPlayerInventoryFilestorage;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.*;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
-import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
-import net.minecraftforge.fml.relauncher.Side;
 
-import static com.redsparkle.foe.capa.level.LevelFactoryProvider.LEVEL_CAPABILITY;
+import static com.redsparkle.api.capa.level.LevelFactoryProvider.LEVEL_CAPABILITY;
 import static net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerLoggedInEvent;
 import static net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerLoggedOutEvent;
 
@@ -48,52 +46,25 @@ public class EventHandlerPre {
                 || item instanceof ItemArmor || item instanceof ItemShield);
     }
 
-    @SubscribeEvent
-    public void playerLoggedInEvent(PlayerLoggedInEvent event) {
-        Side side = FMLCommonHandler.instance().getEffectiveSide();
-        if (side == Side.SERVER) {
-            UtilPlayerInventoryFilestorage.playerEntityIds.add(event.player.getEntityId());
-        }
-    }
 
     @SubscribeEvent
-    public void playerTick(net.minecraftforge.event.entity.player.PlayerEvent.LivingUpdateEvent event) {
-        // player events
-        if (event.getEntity() instanceof EntityPlayer) {
-            EntityPlayer player = (EntityPlayer) event.getEntity();
-            if (!UtilPlayerInventoryFilestorage.playerEntityIds.isEmpty() && UtilPlayerInventoryFilestorage.playerEntityIds.contains(player.getEntityId())) {
-                UtilPlayerInventoryFilestorage.syncItems(player);
-                UtilPlayerInventoryFilestorage.playerEntityIds.remove(player.getEntityId());
-            }
-        }
-    }
+    public void onAddCapabilitiesEntity(AttachCapabilitiesEvent<Entity> event) {
 
-    @SubscribeEvent
-    public void playerLoad(net.minecraftforge.event.entity.player.PlayerEvent.LoadFromFile event) {
-        UtilPlayerInventoryFilestorage.playerSetupOnLoad(event);
-    }
-
-    @SubscribeEvent
-    public void playerSave(net.minecraftforge.event.entity.player.PlayerEvent.SaveToFile event) {
-        UtilPlayerInventoryFilestorage.savePlayerItems(event.getEntityPlayer(), UtilPlayerInventoryFilestorage.getPlayerFile(UtilPlayerInventoryFilestorage.EXT, event.getPlayerDirectory(), event.getEntityPlayer()), UtilPlayerInventoryFilestorage.getPlayerFile(UtilPlayerInventoryFilestorage.EXTBK, event.getPlayerDirectory(), event.getEntityPlayer()));
-    }
-
-    @SubscribeEvent
-    public void onAddCapabilitiesEntity(AttachCapabilitiesEvent<Entity> e) {
-
-            if (canHaveAttributes(e.getObject()))
+        if (canHaveAttributes(event.getObject()))
             {
-                EntityLivingBase ent = (EntityLivingBase) e.getObject();
+                EntityLivingBase ent = (EntityLivingBase) event.getObject();
 
                 if (ent instanceof EntityPlayer){
-                    e.addCapability(new ResourceLocation(main.MODID + ":Radiation_CAPABILITY"), new RadsFactoryProvider());
-                    e.addCapability(new ResourceLocation(main.MODID + ":Water_CAPABILITY"),new WaterFactoryProvider());
-                    e.addCapability(new ResourceLocation(main.MODID + ":Spechial_CAPABILITY"), new SpechialFactoryProvider());
-                    e.addCapability(new ResourceLocation(main.MODID + ":SKILLS_CAPABILITY"), new SkillsFactoryProvider());
-                    e.addCapability(new ResourceLocation(main.MODID + ":LEVEL_CAPABILITY"), new LevelFactoryProvider());
-                    e.addCapability(new ResourceLocation(main.MODID + ":FTJ_CAPABILITY"), new FTJFactoryProvider());
+                    event.addCapability(new ResourceLocation(main.MODID + ":Stats_CAPABILITY"), new StatsCapabilityProvider());
+                    event.addCapability(new ResourceLocation(main.MODID + ":Radiation_CAPABILITY"), new RadsFactoryProvider());
+                    event.addCapability(new ResourceLocation(main.MODID + ":Water_CAPABILITY"), new WaterFactoryProvider());
+                    event.addCapability(new ResourceLocation(main.MODID + ":Spechial_CAPABILITY"), new SpechialFactoryProvider());
+                    event.addCapability(new ResourceLocation(main.MODID + ":SKILLS_CAPABILITY"), new SkillsFactoryProvider());
+                    event.addCapability(new ResourceLocation(main.MODID + ":LEVEL_CAPABILITY"), new LevelFactoryProvider());
+                    event.addCapability(new ResourceLocation(main.MODID + ":FTJ_CAPABILITY"), new FTJFactoryProvider());
                 }
         }
+
 
     }
 

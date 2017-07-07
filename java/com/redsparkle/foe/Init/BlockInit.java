@@ -1,10 +1,10 @@
 package com.redsparkle.foe.Init;
 
+import com.redsparkle.api.utils.GlobalBlockArray;
+import com.redsparkle.api.utils.GlobalNames;
 import com.redsparkle.foe.block.containers.TileEntitys.SparkleColaMachineTileEntity;
 import com.redsparkle.foe.block.effectDispenser.TileEntitys.RadiationBlockTileEntity;
 import com.redsparkle.foe.block.interractable.TileEntitys.*;
-import com.redsparkle.foe.utils.GlobalBlockArray;
-import com.redsparkle.foe.utils.GlobalNames;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;

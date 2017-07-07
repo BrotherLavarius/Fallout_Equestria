@@ -1,12 +1,12 @@
 package com.redsparkle.foe.items.guns;
 
+import com.redsparkle.api.capa.skills.SkillsFactoryProvider;
+import com.redsparkle.api.items.helpers.Item_Instances.Item_Firearm;
+import com.redsparkle.api.utils.GlobalItemArray_For_init;
+import com.redsparkle.api.utils.GlobalWeaponsStats;
 import com.redsparkle.foe.Init.SoundInit;
-import com.redsparkle.foe.capa.skills.SkillsFactoryProvider;
 import com.redsparkle.foe.creativeTabs.InitCreativeTabs;
 import com.redsparkle.foe.items.guns.ammo.TenMM.TenMMClip;
-import com.redsparkle.foe.items.helpers.Item_Instances.Item_Firearm;
-import com.redsparkle.foe.utils.GlobalItemArray_For_init;
-import com.redsparkle.foe.utils.GlobalWeaponsStats;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;

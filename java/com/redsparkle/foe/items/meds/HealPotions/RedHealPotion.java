@@ -1,7 +1,7 @@
 package com.redsparkle.foe.items.meds.HealPotions;
 
+import com.redsparkle.api.items.helpers.meds.meds_Potion;
 import com.redsparkle.foe.creativeTabs.InitCreativeTabs;
-import com.redsparkle.foe.items.helpers.meds.meds_Potion;
 
 /**
  * Created by hoijima desu on 29.07.16 desu.

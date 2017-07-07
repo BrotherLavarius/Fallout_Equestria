@@ -1,13 +1,13 @@
 package com.redsparkle.foe.gui.general;
 
-import com.redsparkle.foe.capa.spechial.SpechialFactoryProvider;
+import com.redsparkle.api.capa.spechial.SpechialFactoryProvider;
+import com.redsparkle.api.utils.ScreenGrid;
+import com.redsparkle.api.utils.gui.GuiButtonExtFallout;
 import com.redsparkle.foe.main;
 import com.redsparkle.foe.network.ClientServerOneClass.MessageUpdateClientServerSPECHIAL;
-import com.redsparkle.foe.utils.ScreenGrid;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.GlStateManager;
-import com.redsparkle.foe.utils.gui.GuiButtonExtFallout;
 import org.lwjgl.opengl.GL11;
 
 import java.io.IOException;

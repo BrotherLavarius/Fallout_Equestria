@@ -1,6 +1,6 @@
 package com.redsparkle.foe.block.interractable;
 
-import com.redsparkle.foe.block.GeneralAllignBlockTwoOTwo;
+import com.redsparkle.api.block.GeneralAllignBlockTwoOTwo;
 import com.redsparkle.foe.block.interractable.TileEntitys.DesktopTerminalTileEntity;
 import com.redsparkle.foe.block.interractable.TileEntitys.TileEntity_workbench_handmade;
 import com.redsparkle.foe.creativeTabs.InitCreativeTabs;

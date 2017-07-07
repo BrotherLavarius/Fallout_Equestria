@@ -1,5 +1,9 @@
 package com.redsparkle.foe.Init;
 
+import com.redsparkle.api.utils.GlobalBlockArray;
+import com.redsparkle.api.utils.GlobalItemArray_For_init;
+import com.redsparkle.api.utils.GlobalItemModelsInitArray;
+import com.redsparkle.api.utils.GlobalNames;
 import com.redsparkle.foe.creativeTabs.InitCreativeTabs;
 import com.redsparkle.foe.events.character.EventPlayerRenders;
 import com.redsparkle.foe.events.gui.EventHandlerOverlayAEM;
@@ -8,15 +12,11 @@ import com.redsparkle.foe.events.gui.EventPlayerGuiHandler;
 import com.redsparkle.foe.gui.Overlays.PipBuckOverlay;
 import com.redsparkle.foe.items.guns.entitys.bulletFired.EntityBullet;
 import com.redsparkle.foe.items.guns.entitys.bulletFired.RenderFactoryBullet;
-import com.redsparkle.foe.items.guns.entitys.flare.EntityFlare;
 import com.redsparkle.foe.items.guns.entitys.flametrower.EntityFlame;
+import com.redsparkle.foe.items.guns.entitys.flare.EntityFlare;
 import com.redsparkle.foe.items.guns.entitys.laserFired.EntityLaser;
 import com.redsparkle.foe.items.guns.entitys.laserFired.RenderFactoryLaser;
 import com.redsparkle.foe.items.guns.entitys.spreadPellet_shotgun.*;
-import com.redsparkle.foe.utils.GlobalBlockArray;
-import com.redsparkle.foe.utils.GlobalItemArray_For_init;
-import com.redsparkle.foe.utils.GlobalItemModelsInitArray;
-import com.redsparkle.foe.utils.GlobalNames;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.creativetab.CreativeTabs;

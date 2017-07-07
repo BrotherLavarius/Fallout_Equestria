@@ -1,10 +1,11 @@
 package com.redsparkle.foe.gui.Inventory_Crafting;
 
-import com.redsparkle.foe.utils.GlobalNames;
+import com.redsparkle.api.utils.GlobalNames;
+import com.redsparkle.foe.containers.CONTAINER_AdditionalInventory;
+import com.redsparkle.foe.inventory.Additional_Inventory;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
 
 /**
@@ -13,17 +14,14 @@ import net.minecraft.util.ResourceLocation;
 public class GUI_AdditionalInventory extends GuiContainer {
 
     //TODO: finish this class
-    private static ResourceLocation GUI_TEXTURE;
-    final EntityPlayer thePlayer;
-    private CONTAINER_AdditionalInventory container;
+    private static ResourceLocation GUI_TEXTURE = new ResourceLocation(GlobalNames.Domain + ":textures/gui/ainv.png");
 
 
-    public GUI_AdditionalInventory(EntityPlayer player, InventoryPlayer inventoryPlayer) {
+    public GUI_AdditionalInventory(EntityPlayer player, Additional_Inventory additional_inventory) {
         // the player.inventory gets passed in here
-        super(new CONTAINER_AdditionalInventory(inventoryPlayer, player));
-        container = (CONTAINER_AdditionalInventory) this.inventorySlots;
-        thePlayer = player;
-        GUI_TEXTURE = new ResourceLocation(GlobalNames.Domain + ":textures/gui/ainv.png");
+        super(new CONTAINER_AdditionalInventory(player, additional_inventory));
+
+
     }
 
     @Override

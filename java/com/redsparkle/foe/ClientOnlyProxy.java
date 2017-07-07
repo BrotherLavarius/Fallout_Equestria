@@ -1,36 +1,32 @@
 package com.redsparkle.foe;
 
 
+import com.redsparkle.api.capa.level.ILevelCapability;
+import com.redsparkle.api.capa.level.LevelFactoryProvider;
+import com.redsparkle.api.capa.rad.IRadiationCapability;
+import com.redsparkle.api.capa.rad.RadsFactoryProvider;
+import com.redsparkle.api.capa.skills.ISkillsCapability;
+import com.redsparkle.api.capa.skills.SkillsFactoryProvider;
+import com.redsparkle.api.capa.spechial.ISpechialCapability;
+import com.redsparkle.api.capa.spechial.SpechialFactoryProvider;
+import com.redsparkle.api.capa.water.IWaterCapability;
+import com.redsparkle.api.capa.water.WaterFactoryProvider;
 import com.redsparkle.foe.Init.ClientOnlyStartup;
 import com.redsparkle.foe.Init.SoundInit;
-import com.redsparkle.foe.capa.level.ILevelCapability;
-import com.redsparkle.foe.capa.level.LevelFactoryProvider;
-import com.redsparkle.foe.capa.rad.IRadiationCapability;
-import com.redsparkle.foe.capa.rad.RadsFactoryProvider;
-import com.redsparkle.foe.capa.skills.ISkillsCapability;
-import com.redsparkle.foe.capa.skills.SkillsFactoryProvider;
-import com.redsparkle.foe.capa.spechial.ISpechialCapability;
-import com.redsparkle.foe.capa.spechial.SpechialFactoryProvider;
-import com.redsparkle.foe.capa.water.IWaterCapability;
-import com.redsparkle.foe.capa.water.WaterFactoryProvider;
 import com.redsparkle.foe.keys.KeyInputHandler;
 import com.redsparkle.foe.keys.keyHandler;
 import com.redsparkle.foe.network.ClientServerOneClass.*;
-import com.redsparkle.foe.network.Inventory.MessageSync_Adv_Inventory;
 import com.redsparkle.foe.network.MessageFireToClientServer;
 import com.redsparkle.foe.network.MessageGunReloadReply;
 import com.redsparkle.foe.network.MessageOpenGuiClient;
 import com.redsparkle.foe.network.MessageUpdateSLSServerReplyOnDemand;
-import com.redsparkle.foe.utils.UtilPlayerInventoryFilestorage;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import net.minecraftforge.fml.relauncher.Side;
 
 /**
@@ -212,18 +208,7 @@ public class ClientOnlyProxy extends CommonProxy {
 
         });
     }
-    public static void handle_Sync_Adv_Inv(MessageSync_Adv_Inventory message, MessageContext ctx) {
-        Minecraft.getMinecraft().addScheduledTask(() -> {
-            if (world == null)
-                return;
-            Entity p = world.getEntityByID(message.playerId);
-            if (p != null && p instanceof EntityPlayer) {
-                EntityPlayer player = (EntityPlayer) p;
-                UtilPlayerInventoryFilestorage.setPlayerInventoryStack(player, message.slot, message.itemStack);
-                }
-            return;
-        });
-    }
+
 
     public void preInit() {
         super.preInit();

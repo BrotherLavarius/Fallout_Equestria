@@ -1,9 +1,9 @@
 package com.redsparkle.foe.items.guns.ammo.FourTenMM;
 
+import com.redsparkle.api.items.helpers.guns.ItemClipHelpers;
+import com.redsparkle.api.utils.GlobalItemArray_For_init;
+import com.redsparkle.api.utils.GlobalWeaponsStats;
 import com.redsparkle.foe.creativeTabs.InitCreativeTabs;
-import com.redsparkle.foe.items.helpers.guns.ItemClipHelpers;
-import com.redsparkle.foe.utils.GlobalItemArray_For_init;
-import com.redsparkle.foe.utils.GlobalWeaponsStats;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumAction;

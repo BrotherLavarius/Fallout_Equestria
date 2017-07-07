@@ -1,13 +1,15 @@
 package com.redsparkle.foe;
 
-import com.redsparkle.foe.capa.level.ILevelCapability;
-import com.redsparkle.foe.capa.level.LevelFactoryProvider;
-import com.redsparkle.foe.capa.skills.ISkillsCapability;
-import com.redsparkle.foe.capa.skills.SkillsFactoryProvider;
-import com.redsparkle.foe.capa.spechial.ISpechialCapability;
-import com.redsparkle.foe.capa.spechial.SpechialFactoryProvider;
-import com.redsparkle.foe.capa.water.IWaterCapability;
-import com.redsparkle.foe.capa.water.WaterFactoryProvider;
+import com.redsparkle.api.capa.level.ILevelCapability;
+import com.redsparkle.api.capa.level.LevelFactoryProvider;
+import com.redsparkle.api.capa.skills.ISkillsCapability;
+import com.redsparkle.api.capa.skills.SkillsFactoryProvider;
+import com.redsparkle.api.capa.spechial.ISpechialCapability;
+import com.redsparkle.api.capa.spechial.SpechialFactoryProvider;
+import com.redsparkle.api.capa.water.IWaterCapability;
+import com.redsparkle.api.capa.water.WaterFactoryProvider;
+import com.redsparkle.api.utils.Lvlutil;
+import com.redsparkle.api.utils.PlayerParamsSetup;
 import com.redsparkle.foe.events.ServerSIdeONly.EventHandlerServerSidePre;
 import com.redsparkle.foe.items.guns.*;
 import com.redsparkle.foe.network.ClientServerOneClass.MessageUpdateClientServerLevel;
@@ -18,8 +20,6 @@ import com.redsparkle.foe.network.MessageFireToClientServer;
 import com.redsparkle.foe.network.MessageOpenGuiClient;
 import com.redsparkle.foe.network.MessageUpdateSLSServerReplyOnDemand;
 import com.redsparkle.foe.network.helpers.gunReload;
-import com.redsparkle.foe.utils.Lvlutil;
-import com.redsparkle.foe.utils.PlayerParamsSetup;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -28,7 +28,7 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.world.WorldServer;
 import net.minecraftforge.common.MinecraftForge;
 
-import static com.redsparkle.foe.capa.level.LevelFactoryProvider.LEVEL_CAPABILITY;
+import static com.redsparkle.api.capa.level.LevelFactoryProvider.LEVEL_CAPABILITY;
 
 /**
  * DedicatedServerProxy is used to set up the mod and start it running on dedicated servers.  It contains all the code that should run on the

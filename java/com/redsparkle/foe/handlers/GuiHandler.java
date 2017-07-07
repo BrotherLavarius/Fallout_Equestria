@@ -1,13 +1,14 @@
 package com.redsparkle.foe.handlers;
 
-import com.redsparkle.foe.gui.Inventory_Crafting.CONTAINER_AdditionalInventory;
-import com.redsparkle.foe.gui.Inventory_Crafting.GUI_AdditionalInventory;
+import com.redsparkle.api.utils.PlayerUtil;
 import com.redsparkle.foe.gui.Menus.PipBuckGui;
 import com.redsparkle.foe.gui.Menus.pipbuck_gui_extenders.DATA.DataGui;
 import com.redsparkle.foe.gui.Menus.pipbuck_gui_extenders.ITEMS.InventoryGui;
 import com.redsparkle.foe.gui.general.LvlUpGui;
 import com.redsparkle.foe.gui.general.StatsGuiFirstJoin;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.IGuiHandler;
 
@@ -29,8 +30,16 @@ public class GuiHandler implements IGuiHandler {
     @Override
     public Object getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
 
+        EntityPlayerMP playerBase = PlayerUtil.getPlayerBaseServerFromPlayer(player, false);
+
+        if (playerBase == null) {
+            player.sendMessage(new TextComponentString("FOE player instance null server-side. This is a bug."));
+            return null;
+        }
+
+
         if (ID == ADV_Inv) {
-            return new CONTAINER_AdditionalInventory(player.inventory, player);
+            //return new CONTAINER_AdditionalInventory(player,);
         }
         return null;
     }
@@ -44,7 +53,7 @@ public class GuiHandler implements IGuiHandler {
         if (ID == PIPBUCK_GUI_DATA){return new DataGui();}
         if (ID == FIRTS_TIME_LVLUP){return new StatsGuiFirstJoin();}
         if (ID == ADV_Inv) {
-            return new GUI_AdditionalInventory(player,player.inventory);
+            ///return new GUI_AdditionalInventory(player,);
         }
         return null;
     }

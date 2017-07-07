@@ -1,8 +1,8 @@
 package com.redsparkle.foe.network.ClientServerOneClass;
 
+import com.redsparkle.api.capa.spechial.ISpechialCapability;
 import com.redsparkle.foe.ClientOnlyProxy;
 import com.redsparkle.foe.DedicatedServerProxy;
-import com.redsparkle.foe.capa.spechial.ISpechialCapability;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;

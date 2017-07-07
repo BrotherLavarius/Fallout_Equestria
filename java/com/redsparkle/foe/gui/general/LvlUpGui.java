@@ -1,12 +1,12 @@
 package com.redsparkle.foe.gui.general;
 
-import com.redsparkle.foe.capa.level.LevelFactoryProvider;
-import com.redsparkle.foe.capa.skills.SkillsFactoryProvider;
+import com.redsparkle.api.capa.level.LevelFactoryProvider;
+import com.redsparkle.api.capa.skills.SkillsFactoryProvider;
+import com.redsparkle.api.utils.Lvlutil;
+import com.redsparkle.api.utils.ScreenGrid;
+import com.redsparkle.api.utils.gui.GuiButtonExtFallout;
 import com.redsparkle.foe.main;
 import com.redsparkle.foe.network.ClientServerOneClass.MessageUpdateClientServerSkills;
-import com.redsparkle.foe.utils.Lvlutil;
-import com.redsparkle.foe.utils.ScreenGrid;
-import com.redsparkle.foe.utils.gui.GuiButtonExtFallout;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.GlStateManager;

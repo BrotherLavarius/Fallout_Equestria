@@ -1,6 +1,6 @@
 package com.redsparkle.foe.gui.Menus;
 
-import com.redsparkle.foe.utils.GlobalNames;
+import com.redsparkle.api.utils.GlobalNames;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;

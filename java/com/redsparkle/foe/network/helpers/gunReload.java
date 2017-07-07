@@ -1,5 +1,8 @@
 package com.redsparkle.foe.network.helpers;
 
+import com.redsparkle.api.utils.GlobalItemArray_For_init;
+import com.redsparkle.api.utils.GlobalWeaponsStats;
+import com.redsparkle.api.utils.InventoryManager;
 import com.redsparkle.foe.items.guns.ammo.FlareShell.FlareShell;
 import com.redsparkle.foe.items.guns.ammo.FourTenMM.FourTenMMClip;
 import com.redsparkle.foe.items.guns.ammo.LaserWeapons.Battery;
@@ -7,9 +10,6 @@ import com.redsparkle.foe.items.guns.ammo.TenMM.TenMMClip;
 import com.redsparkle.foe.items.guns.ammo.shell.SShell;
 import com.redsparkle.foe.main;
 import com.redsparkle.foe.network.MessageGunReloadReply;
-import com.redsparkle.foe.utils.GlobalItemArray_For_init;
-import com.redsparkle.foe.utils.GlobalWeaponsStats;
-import com.redsparkle.foe.utils.InventoryManager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.Item;

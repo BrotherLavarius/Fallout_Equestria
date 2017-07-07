@@ -1,6 +1,6 @@
 package com.redsparkle.foe.playerrenderers;
 
-import com.redsparkle.foe.items.helpers.Item_Instances.Item_Firearm;
+import com.redsparkle.api.items.helpers.Item_Instances.Item_Firearm;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms;

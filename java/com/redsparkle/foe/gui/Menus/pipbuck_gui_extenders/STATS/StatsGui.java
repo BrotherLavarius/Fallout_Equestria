@@ -1,6 +1,6 @@
 package com.redsparkle.foe.gui.Menus.pipbuck_gui_extenders.STATS;
 
-import com.redsparkle.foe.utils.gui.GuiButtonExtFallout;
+import com.redsparkle.api.utils.gui.GuiButtonExtFallout;
 
 /**
  * Created by hoijima on 09.05.17.

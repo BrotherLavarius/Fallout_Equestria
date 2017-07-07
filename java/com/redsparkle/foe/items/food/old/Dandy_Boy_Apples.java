@@ -1,7 +1,7 @@
 package com.redsparkle.foe.items.food.old;
 
+import com.redsparkle.api.items.helpers.food.FoodMultipleUse;
 import com.redsparkle.foe.creativeTabs.InitCreativeTabs;
-import com.redsparkle.foe.items.helpers.food.FoodMultipleUse;
 
 /**
  * Created by hoijima on 09.06.17.

@@ -4,7 +4,6 @@ package com.redsparkle.foe;
 import com.redsparkle.foe.commands.rpSkillCheck;
 import com.redsparkle.foe.handlers.GuiHandler;
 import com.redsparkle.foe.network.ClientServerOneClass.*;
-import com.redsparkle.foe.network.Inventory.MessageSync_Adv_Inventory;
 import com.redsparkle.foe.network.*;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
@@ -119,7 +118,6 @@ public class main {
 
 
 
-        simpleNetworkWrapper.registerMessage(MessageSync_Adv_Inventory.HandlerClient.class, MessageSync_Adv_Inventory.class, SYNC_INV_CLIENTS, Side.CLIENT);
         System.out.println("FINISHED BOOTING NETWORK MESSAGES");
     }
 

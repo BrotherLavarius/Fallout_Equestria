@@ -1,9 +1,9 @@
 package com.redsparkle.foe.Init;
 
+import com.redsparkle.api.utils.Armor_material;
+import com.redsparkle.api.utils.GlobalItemArray_For_init;
+import com.redsparkle.api.utils.GlobalNames;
 import com.redsparkle.foe.items.armor.powered.*;
-import com.redsparkle.foe.utils.Armor_material;
-import com.redsparkle.foe.utils.GlobalItemArray_For_init;
-import com.redsparkle.foe.utils.GlobalNames;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 

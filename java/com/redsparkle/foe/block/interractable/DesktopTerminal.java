@@ -1,6 +1,6 @@
 package com.redsparkle.foe.block.interractable;
 
-import com.redsparkle.foe.block.GeneralAllignBlockOneOone;
+import com.redsparkle.api.block.GeneralAllignBlockOneOone;
 import com.redsparkle.foe.block.interractable.TileEntitys.DesktopTerminalTileEntity;
 import com.redsparkle.foe.creativeTabs.InitCreativeTabs;
 import net.minecraft.block.SoundType;

@@ -1,7 +1,7 @@
 package com.redsparkle.foe.block.interractable.TileEntitys;
 
-import com.redsparkle.foe.block.TileEntityDefault;
-import com.redsparkle.foe.utils.GlobalNames;
+import com.redsparkle.api.block.TileEntityDefault;
+import com.redsparkle.api.utils.GlobalNames;
 
 /**
  * Created by hoijima on 09.07.16.
