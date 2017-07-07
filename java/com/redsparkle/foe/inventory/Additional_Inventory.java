@@ -119,23 +119,6 @@ public class Additional_Inventory implements IInvenotoryFOE {
         }
     }
 
-    // Backwards compatibility for old inventory
-    public void readFromNBTOld(NBTTagList par1NBTTagList) {
-        this.stacks = NonNullList.withSize(12, ItemStack.EMPTY);
-
-        for (int i = 0; i < par1NBTTagList.tagCount(); ++i) {
-            final NBTTagCompound nbttagcompound = par1NBTTagList.getCompoundTagAt(i);
-            final int j = nbttagcompound.getByte("Slot") & 255;
-            final ItemStack itemstack = new ItemStack(nbttagcompound);
-
-            if (!itemstack.isEmpty()) {
-                if (j >= 200 && j < this.stacks.size() + 200 - 1) {
-                    this.stacks.set(j - 200, itemstack);
-                }
-            }
-        }
-    }
-
     public void readFromNBT(NBTTagList tagList) {
         this.stacks = NonNullList.withSize(12, ItemStack.EMPTY);
 
