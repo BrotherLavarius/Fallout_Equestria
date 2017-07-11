@@ -3,9 +3,9 @@ package com.redsparkle.foe;
 import com.redsparkle.api.capa.FirtsTimeJoin.FTJFactoryProvider;
 import com.redsparkle.api.capa.FirtsTimeJoin.FTJFactoryStorage;
 import com.redsparkle.api.capa.FirtsTimeJoin.IFTJCapability;
-import com.redsparkle.api.capa.StatsCapa.IStatsCapability;
-import com.redsparkle.api.capa.StatsCapa.StatsCapabilityProvider;
-import com.redsparkle.api.capa.StatsCapa.StatsFactoryStorage;
+import com.redsparkle.api.capa.StatsCapa.AddInvCapabilityProvider;
+import com.redsparkle.api.capa.StatsCapa.AddInvFactoryStorage;
+import com.redsparkle.api.capa.StatsCapa.IAddInvCapability;
 import com.redsparkle.api.capa.level.ILevelCapability;
 import com.redsparkle.api.capa.level.LevelFactoryProvider;
 import com.redsparkle.api.capa.level.LevelFactoryStorage;
@@ -90,7 +90,7 @@ public abstract class CommonProxy {
         System.out.println("FTJ--------------CHECK!");
 
         CapabilityManager.INSTANCE.register(IWaterCapability.class, new WaterFactoryStorage(), WaterFactoryProvider::new);
-        CapabilityManager.INSTANCE.register(IStatsCapability.class, new StatsFactoryStorage(), StatsCapabilityProvider::new);
+        CapabilityManager.INSTANCE.register(IAddInvCapability.class, new AddInvFactoryStorage(), AddInvCapabilityProvider::new);
         System.out.println("FINISHED BOOTING CAPABILITY SYSTEM");
         MinecraftForge.EVENT_BUS.register(new EventHandlerInit());
     }

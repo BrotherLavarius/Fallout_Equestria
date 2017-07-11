@@ -1,7 +1,7 @@
 package com.redsparkle.foe.containers;
 
 import com.redsparkle.foe.containers.Slots.*;
-import com.redsparkle.foe.inventory.Additional_Inventory;
+import com.redsparkle.foe.inventory.AddInv_impl;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
@@ -14,11 +14,11 @@ import net.minecraft.item.ItemStack;
  */
 public class CONTAINER_AdditionalInventory extends Container {
 
-    public Additional_Inventory additional_inventory;
+    public AddInv_impl additional_inventory;
     public InventoryPlayer inventoryPlayer;
     private final int numRows;
     //TODO: FInish this class
-    public CONTAINER_AdditionalInventory(EntityPlayer thePlayer, Additional_Inventory additional_inventory) {
+    public CONTAINER_AdditionalInventory(EntityPlayer thePlayer, AddInv_impl additional_inventory) {
         this.inventoryPlayer = thePlayer.inventory;
         this.additional_inventory = additional_inventory;
         numRows = inventoryPlayer.getSizeInventory() / 9;
@@ -54,10 +54,11 @@ public class CONTAINER_AdditionalInventory extends Container {
             this.addSlotToContainer(new SlotDevice(additional_inventory, 4, 6, 62));
             this.addSlotToContainer(new SlotHarness(additional_inventory, 5, 123, 50));
             this.addSlotToContainer(new SlotGun(additional_inventory, 6, 152, 15));
-            this.addSlotToContainer(new SlotAmmo(additional_inventory, 7, 113, 6));
-            this.addSlotToContainer(new SlotAmmo(additional_inventory, 8, 132, 6));
-            this.addSlotToContainer(new SlotAmmo(additional_inventory, 9, 113, 25));
-            this.addSlotToContainer(new SlotAmmo(additional_inventory, 10, 132, 25));
+            this.addSlotToContainer(new SlotGun(additional_inventory, 7, 103, 15));
+            this.addSlotToContainer(new SlotAmmo(additional_inventory, 8, 113, 6));
+            this.addSlotToContainer(new SlotAmmo(additional_inventory, 9, 132, 6));
+            this.addSlotToContainer(new SlotAmmo(additional_inventory, 10, 113, 25));
+            this.addSlotToContainer(new SlotAmmo(additional_inventory, 11, 132, 25));
 
     }
 

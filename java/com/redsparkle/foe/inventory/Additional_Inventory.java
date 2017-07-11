@@ -4,8 +4,6 @@ import com.redsparkle.api.inventory.IInvenotoryFOE;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.text.ITextComponent;
 
@@ -14,7 +12,7 @@ import javax.annotation.Nonnull;
 /**
  * Created by hoijima on 07.07.17.
  */
-public class Additional_Inventory implements IInvenotoryFOE {
+public class Additional_Inventory extends AddInv_impl implements IInvenotoryFOE {
     public NonNullList<ItemStack> stacks = NonNullList.withSize(12, ItemStack.EMPTY);
 
     @Override
@@ -119,34 +117,7 @@ public class Additional_Inventory implements IInvenotoryFOE {
         }
     }
 
-    public void readFromNBT(NBTTagList tagList) {
-        this.stacks = NonNullList.withSize(12, ItemStack.EMPTY);
 
-        for (int i = 0; i < tagList.tagCount(); ++i) {
-            final NBTTagCompound nbttagcompound = tagList.getCompoundTagAt(i);
-            final int j = nbttagcompound.getByte("Slot") & 255;
-            final ItemStack itemstack = new ItemStack(nbttagcompound);
-
-            if (!itemstack.isEmpty()) {
-                this.stacks.set(j, itemstack);
-            }
-        }
-    }
-
-    public NBTTagList writeToNBT(NBTTagList tagList) {
-        NBTTagCompound nbttagcompound;
-
-        for (int i = 0; i < this.stacks.size(); ++i) {
-            if (!this.stacks.get(i).isEmpty()) {
-                nbttagcompound = new NBTTagCompound();
-                nbttagcompound.setByte("Slot", (byte) i);
-                this.stacks.get(i).writeToNBT(nbttagcompound);
-                tagList.appendTag(nbttagcompound);
-            }
-        }
-
-        return tagList;
-    }
 
     @Override
     public void copyInventory(IInvenotoryFOE par1InventoryPlayer) {

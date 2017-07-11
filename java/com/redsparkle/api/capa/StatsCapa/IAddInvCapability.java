@@ -1,15 +1,16 @@
 package com.redsparkle.api.capa.StatsCapa;
 
+import com.redsparkle.foe.inventory.AddInv_impl;
 import com.redsparkle.foe.inventory.Additional_Inventory;
 import net.minecraft.item.ItemStack;
 
 /**
  * Created by hoijima on 07.07.17.
  */
-public interface IStatsCapability {
+public interface IAddInvCapability {
 
 
-    Additional_Inventory getAdditional_Inventory();
+    AddInv_impl getAdditional_Inventory();
 
     void setAdditional_Inventory(Additional_Inventory additional_inventory);
 
@@ -60,54 +61,5 @@ public interface IStatsCapability {
     ItemStack getHarnessSlot();
 
     void setHarnessSlot(ItemStack harnessSlot);
-
-    ItemStack getLastDeviceSlot1();
-
-    ////////////////////////
-    void setLastDeviceSlot1(ItemStack lastdeviceSlot1);
-
-    ItemStack getLastDeviceSlot2();
-
-    void setLastDeviceSlot2(ItemStack lastdeviceSlot2);
-
-    ItemStack getLastDeviceSlot3();
-
-    void setLastDeviceSlot3(ItemStack lastdeviceSlot3);
-
-    ItemStack getLastDeviceSlot4();
-
-    void setLastDeviceSlot4(ItemStack lastdeviceSlot4);
-
-    ItemStack getLastPipBuckSlot();
-
-    void setLastPipBuckSlot(ItemStack lastpipBuckSlot);
-
-    ItemStack getLastAmmoSlot1();
-
-    void setLastAmmoSlot1(ItemStack lastammoSlot1);
-
-    ItemStack getLastAmmoSlot2();
-
-    void setLastAmmoSlot2(ItemStack lastammoSlot2);
-
-    ItemStack getLastAmmoSlot3();
-
-    void setLastAmmoSlot3(ItemStack lastammoSlot3);
-
-    ItemStack getLastAmmoSlot4();
-
-    void setLastAmmoSlot4(ItemStack lastammoSlot4);
-
-    ItemStack getLastGunSlot1();
-
-    void setLastGunSlot1(ItemStack lastgunSlot1);
-
-    ItemStack getLastGunSlot2();
-
-    void setLastGunSlot2(ItemStack lastgunSlot2);
-
-    ItemStack getLastHarnessSlot();
-
-    void setLastHarnessSlot(ItemStack lastharnessSlot);
 
 }

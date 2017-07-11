@@ -1,15 +1,12 @@
 package com.redsparkle.foe.events.gui;
 
-import com.redsparkle.api.capa.StatsCapa.IStatsCapability;
-import com.redsparkle.api.capa.StatsCapa.StatsCapabilityProvider;
+import com.redsparkle.api.capa.StatsCapa.AddInvCapabilityProvider;
 import com.redsparkle.api.utils.GlobalItemArray_For_init;
 import com.redsparkle.foe.gui.Overlays.APBar;
 import com.redsparkle.foe.gui.Overlays.PipBuckOverlay;
 import com.redsparkle.foe.gui.Overlays.RadsOverlay;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
-import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.item.ItemStack;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
@@ -57,7 +54,7 @@ public class EventHandlerOverlayPipBuck {
 //                    break;
 //                }
 //            }
-            if (entityPlayerSP.getCapability(StatsCapabilityProvider.STATS_CAPA,null).getLastPipBuckSlot().getItem() == GlobalItemArray_For_init.AllInit[0]){
+            if (entityPlayerSP.getCapability(AddInvCapabilityProvider.STATS_CAPA,null).getPipBuckSlot().getItem() == GlobalItemArray_For_init.AllInit[0]){
                 foundInHotbar = true;
             }
 
