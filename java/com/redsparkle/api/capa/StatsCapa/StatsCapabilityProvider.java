@@ -415,9 +415,6 @@ public class StatsCapabilityProvider implements IStatsCapability, ICapabilitySer
     @Override
     public void deserializeNBT(NBTTagCompound nbt) {
         try {
-            NBTTagList nbttaglist = nbt.getTagList("Inventory", 10);
-            this.additional_inventory.readFromNBTOld(nbttaglist);
-
             if (nbt.hasKey("AdditionalInventoryFOE")) {
                 this.additional_inventory.readFromNBT(nbt.getTagList("AdditionalInventoryFOE", 10));
             }

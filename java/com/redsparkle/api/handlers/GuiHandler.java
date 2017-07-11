@@ -1,11 +1,16 @@
-package com.redsparkle.foe.handlers;
+package com.redsparkle.api.handlers;
 
+import com.redsparkle.api.capa.StatsCapa.StatsCapabilityProvider;
+import com.redsparkle.api.capa.StatsCapa.StatsFactoryStorage;
 import com.redsparkle.api.utils.PlayerUtil;
+import com.redsparkle.foe.containers.CONTAINER_AdditionalInventory;
+import com.redsparkle.foe.gui.Inventory_Crafting.GUI_AdditionalInventory;
 import com.redsparkle.foe.gui.Menus.PipBuckGui;
 import com.redsparkle.foe.gui.Menus.pipbuck_gui_extenders.DATA.DataGui;
 import com.redsparkle.foe.gui.Menus.pipbuck_gui_extenders.ITEMS.InventoryGui;
 import com.redsparkle.foe.gui.general.LvlUpGui;
 import com.redsparkle.foe.gui.general.StatsGuiFirstJoin;
+import com.sun.org.glassfish.external.probe.provider.StatsProvider;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.util.text.TextComponentString;
@@ -39,7 +44,7 @@ public class GuiHandler implements IGuiHandler {
 
 
         if (ID == ADV_Inv) {
-            //return new CONTAINER_AdditionalInventory(player,);
+            return new CONTAINER_AdditionalInventory(player,player.getCapability(StatsCapabilityProvider.STATS_CAPA,null).getAdditional_Inventory());
         }
         return null;
     }
@@ -53,7 +58,7 @@ public class GuiHandler implements IGuiHandler {
         if (ID == PIPBUCK_GUI_DATA){return new DataGui();}
         if (ID == FIRTS_TIME_LVLUP){return new StatsGuiFirstJoin();}
         if (ID == ADV_Inv) {
-            ///return new GUI_AdditionalInventory(player,);
+            return new GUI_AdditionalInventory(player,player.getCapability(StatsCapabilityProvider.STATS_CAPA,null).getAdditional_Inventory());
         }
         return null;
     }

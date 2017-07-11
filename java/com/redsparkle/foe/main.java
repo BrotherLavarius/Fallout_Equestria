@@ -2,7 +2,7 @@ package com.redsparkle.foe;
 
 
 import com.redsparkle.foe.commands.rpSkillCheck;
-import com.redsparkle.foe.handlers.GuiHandler;
+import com.redsparkle.api.handlers.GuiHandler;
 import com.redsparkle.foe.network.ClientServerOneClass.*;
 import com.redsparkle.foe.network.*;
 import net.minecraftforge.common.MinecraftForge;

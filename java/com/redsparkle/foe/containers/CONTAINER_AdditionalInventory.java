@@ -5,6 +5,7 @@ import com.redsparkle.foe.inventory.Additional_Inventory;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
+import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 
@@ -15,45 +16,48 @@ public class CONTAINER_AdditionalInventory extends Container {
 
     public Additional_Inventory additional_inventory;
     public InventoryPlayer inventoryPlayer;
-
+    private final int numRows;
     //TODO: FInish this class
     public CONTAINER_AdditionalInventory(EntityPlayer thePlayer, Additional_Inventory additional_inventory) {
         this.inventoryPlayer = thePlayer.inventory;
         this.additional_inventory = additional_inventory;
+        numRows = inventoryPlayer.getSizeInventory() / 9;
+        int i = (numRows - 4) * 18;
 
-        int i;
-        int j;
-
-        for (i = 0; i < 3; ++i) {
-            for (j = 0; j < 9; ++j) {
-                this.addSlotToContainer(new Slot(thePlayer.inventory, j + i * 9 + 9, 8 + j * 18, 84 + i * 18));
+        for (int l = 0; l < 3; ++l)
+        {
+            for (int j1 = 0; j1 < 9; ++j1)
+            {
+                this.addSlotToContainer(new Slot(inventoryPlayer, j1 + l * 9 + 9, 8 + j1 * 18, 84 + l * 18 + i));
             }
         }
 
-        for (i = 0; i < 9; ++i) {
-            this.addSlotToContainer(new Slot(thePlayer.inventory, i, 8 + i * 18, 142));
+        for (int i1 = 0; i1 < 9; ++i1)
+        {
+            this.addSlotToContainer(new Slot(inventoryPlayer, i1, 8 + i1 * 18, 142 + i));
         }
+
+
 
         /*
          * SLOTS:
          *
-         * Additional inventory 140-151 ........ 0  - 8
+         * Additional inventory 0-12 ........ 0  - 8
          * Player Inventory     9-35 .. 9  - 35
          * Player Hotbar        0-8 ... 36 - 44
          */
 
-        this.addSlotToContainer(new SlotPipBuck(additional_inventory, 140, 27, 4));
-        this.addSlotToContainer(new SlotDevice(additional_inventory, 141, 6, 5));
-        this.addSlotToContainer(new SlotDevice(additional_inventory, 142, 6, 24));
-        this.addSlotToContainer(new SlotDevice(additional_inventory, 143, 6, 43));
-        this.addSlotToContainer(new SlotDevice(additional_inventory, 144, 6, 62));
-        this.addSlotToContainer(new SlotHarness(additional_inventory, 145, 123, 50));
-        this.addSlotToContainer(new SlotGun(additional_inventory, 146, 152, 15));
-        this.addSlotToContainer(new SlotAmmo(additional_inventory, 147, 113, 6));
-        this.addSlotToContainer(new SlotAmmo(additional_inventory, 148, 132, 6));
-        this.addSlotToContainer(new SlotAmmo(additional_inventory, 149, 113, 25));
-        this.addSlotToContainer(new SlotAmmo(additional_inventory, 150, 132, 25));
-
+            this.addSlotToContainer(new SlotPipBuck(additional_inventory,0, 27, 4));
+            this.addSlotToContainer(new SlotDevice(additional_inventory, 1, 6, 5));
+            this.addSlotToContainer(new SlotDevice(additional_inventory, 2, 6, 24));
+            this.addSlotToContainer(new SlotDevice(additional_inventory, 3, 6, 43));
+            this.addSlotToContainer(new SlotDevice(additional_inventory, 4, 6, 62));
+            this.addSlotToContainer(new SlotHarness(additional_inventory, 5, 123, 50));
+            this.addSlotToContainer(new SlotGun(additional_inventory, 6, 152, 15));
+            this.addSlotToContainer(new SlotAmmo(additional_inventory, 7, 113, 6));
+            this.addSlotToContainer(new SlotAmmo(additional_inventory, 8, 132, 6));
+            this.addSlotToContainer(new SlotAmmo(additional_inventory, 9, 113, 25));
+            this.addSlotToContainer(new SlotAmmo(additional_inventory, 10, 132, 25));
 
     }
 
@@ -77,7 +81,7 @@ public class CONTAINER_AdditionalInventory extends Container {
                 }
             } else {
                 boolean flag = false;
-                for (int j = 140; j < 151; j++) {
+                for (int j = 0; j < 13; j++) {
                     if ((this.inventorySlots.get(j)).isItemValid(stack)) {
                         if (!this.mergeOneItem(stack, j, j + 1, false)) {
                             return ItemStack.EMPTY;
@@ -139,5 +143,12 @@ public class CONTAINER_AdditionalInventory extends Container {
         }
 
         return flag1;
+    }
+    /**
+     * Return this chest container's lower chest inventory.
+     */
+    public IInventory getLowerChestInventory()
+    {
+        return this.additional_inventory;
     }
 }

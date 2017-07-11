@@ -68,7 +68,7 @@ public class Additional_Inventory implements IInvenotoryFOE {
 
     @Override
     public String getName() {
-        return "Fallout Equestria additional inventory";
+        return "AdditionalInventoryFOE";
     }
 
     @Override

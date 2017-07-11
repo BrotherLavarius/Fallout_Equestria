@@ -1,5 +1,7 @@
 package com.redsparkle.foe.events.gui;
 
+import com.redsparkle.api.capa.StatsCapa.IStatsCapability;
+import com.redsparkle.api.capa.StatsCapa.StatsCapabilityProvider;
 import com.redsparkle.api.utils.GlobalItemArray_For_init;
 import com.redsparkle.foe.gui.Overlays.APBar;
 import com.redsparkle.foe.gui.Overlays.PipBuckOverlay;
@@ -46,14 +48,17 @@ public class EventHandlerOverlayPipBuck {
         if (!entityPlayerSP.isCreative()) {
             // look for the ItemHUDactivator in the hotbar.  If not present, return without changing the HUD.
             boolean foundInHotbar = false;
-            final int FIRST_HOTBAR_SLOT = 0;
-            final int LAST_HOTBAR_SLOT_PLUS_ONE = FIRST_HOTBAR_SLOT + InventoryPlayer.getHotbarSize();
-            for (int i = FIRST_HOTBAR_SLOT; i < LAST_HOTBAR_SLOT_PLUS_ONE; ++i) {
-                ItemStack slotItemStack = entityPlayerSP.inventory.getStackInSlot(i);
-                if (slotItemStack != null && slotItemStack.getItem() == GlobalItemArray_For_init.AllInit[0]) {
-                    foundInHotbar = true;
-                    break;
-                }
+//            final int FIRST_HOTBAR_SLOT = 0;
+//            final int LAST_HOTBAR_SLOT_PLUS_ONE = FIRST_HOTBAR_SLOT + InventoryPlayer.getHotbarSize();
+//            for (int i = FIRST_HOTBAR_SLOT; i < LAST_HOTBAR_SLOT_PLUS_ONE; ++i) {
+//                ItemStack slotItemStack = entityPlayerSP.inventory.getStackInSlot(i);
+//                if (slotItemStack != null && slotItemStack.getItem() == GlobalItemArray_For_init.AllInit[0]) {
+//                    foundInHotbar = true;
+//                    break;
+//                }
+//            }
+            if (entityPlayerSP.getCapability(StatsCapabilityProvider.STATS_CAPA,null).getLastPipBuckSlot().getItem() == GlobalItemArray_For_init.AllInit[0]){
+                foundInHotbar = true;
             }
 
         if (!foundInHotbar) return;
