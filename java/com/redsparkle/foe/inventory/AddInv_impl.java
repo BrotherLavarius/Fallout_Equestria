@@ -18,11 +18,11 @@ public class AddInv_impl implements IInventory {
 
     //TODO: FIX THIS FUCKING CLASS, IT'S GARBAGE, AND REMOVE THE LINE BELOW, IT"S ALSO GARBAGE!
 
-    public NonNullList<ItemStack> stacks = NonNullList.withSize(12, ItemStack.EMPTY);
     private String customName = "container.Additional_Inventory";
     private IAddInvCapability stats;
     private AddInv_impl addInv_impl;
-
+    public static final int INV_SIZE = 12;
+    private ItemStack[] stacks = new ItemStack[INV_SIZE];
     @Override
     public int getSizeInventory() {
         return 12;
@@ -37,7 +37,7 @@ public class AddInv_impl implements IInventory {
     public ItemStack getStackInSlot(int index) {
         if (index < 0 || index >= this.getSizeInventory())
             return null;
-        return this.stacks.get(index);
+        return this.stacks[index];
     }
 
     @Override
@@ -70,7 +70,9 @@ public class AddInv_impl implements IInventory {
 
     @Override
     public ItemStack removeStackFromSlot(int index) {
-        return stacks.set(index,ItemStack.EMPTY);
+        this.stacks[index] = ItemStack.EMPTY;
+        return stacks[index];
+
     }
 
     @Override
@@ -84,7 +86,8 @@ public class AddInv_impl implements IInventory {
         if (stack != null && stack.getCount() == 0)
             stack = null;
 
-        this.stacks.set(index,stack);
+        this.stacks[index] = stack;
+
         this.markDirty();
     }
 
@@ -195,34 +198,5 @@ public class AddInv_impl implements IInventory {
             return new TextComponentString(this.getName());
         }
         return new TextComponentString("something_gone_wrong");
-    }
-
-    public void readFromNBT(NBTTagList tagList) {
-        this.stacks = NonNullList.withSize(12, ItemStack.EMPTY);
-
-        for (int i = 0; i < tagList.tagCount(); ++i) {
-            final NBTTagCompound nbttagcompound = tagList.getCompoundTagAt(i);
-            final int j = nbttagcompound.getByte("Slot") & 255;
-            final ItemStack itemstack = new ItemStack(nbttagcompound);
-
-            if (!itemstack.isEmpty()) {
-                this.stacks.set(j, itemstack);
-            }
-        }
-    }
-
-    public NBTTagList writeToNBT(NBTTagList tagList) {
-        NBTTagCompound nbttagcompound;
-
-        for (int i = 0; i < this.stacks.size(); ++i) {
-            if (!this.stacks.get(i).isEmpty()) {
-                nbttagcompound = new NBTTagCompound();
-                nbttagcompound.setByte("Slot", (byte) i);
-                this.stacks.get(i).writeToNBT(nbttagcompound);
-                tagList.appendTag(nbttagcompound);
-            }
-        }
-
-        return tagList;
     }
 }

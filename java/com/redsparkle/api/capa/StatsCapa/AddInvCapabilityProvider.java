@@ -1,7 +1,6 @@
 package com.redsparkle.api.capa.StatsCapa;
 
 import com.redsparkle.foe.inventory.AddInv_impl;
-import com.redsparkle.foe.inventory.Additional_Inventory;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -92,7 +91,7 @@ public class AddInvCapabilityProvider implements IAddInvCapability, ICapabilityS
     }
 
     @Override
-    public void setAdditional_Inventory(Additional_Inventory additional_inventory) {
+    public void setAdditional_Inventory(AddInv_impl additional_inventory) {
         this.additional_inventory = additional_inventory;
     }
 
@@ -261,7 +260,8 @@ public class AddInvCapabilityProvider implements IAddInvCapability, ICapabilityS
         for(int i=0;i <12;i++) {
         ItemStack item = null;
         NBTTagCompound tag =nbt.getCompoundTag("Slot"+i);
-            if(i==0){item.deserializeNBT(tag);}
+            if(i==0){item.deserializeNBT(tag)
+            item.de;}
             if(i==1){item.deserializeNBT(tag);}
             if(i==2){item.deserializeNBT(tag);}
             if(i==3){item.deserializeNBT(tag);}
