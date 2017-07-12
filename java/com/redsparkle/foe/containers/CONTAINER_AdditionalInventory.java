@@ -5,7 +5,6 @@ import com.redsparkle.foe.inventory.AddInv_impl;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
-import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 
@@ -14,9 +13,9 @@ import net.minecraft.item.ItemStack;
  */
 public class CONTAINER_AdditionalInventory extends Container {
 
+    private final int numRows;
     public AddInv_impl additional_inventory;
     public InventoryPlayer inventoryPlayer;
-    private final int numRows;
     //TODO: FInish this class
     public CONTAINER_AdditionalInventory(EntityPlayer thePlayer, AddInv_impl additional_inventory) {
         this.inventoryPlayer = thePlayer.inventory;
@@ -145,11 +144,5 @@ public class CONTAINER_AdditionalInventory extends Container {
 
         return flag1;
     }
-    /**
-     * Return this chest container's lower chest inventory.
-     */
-    public IInventory getLowerChestInventory()
-    {
-        return this.additional_inventory;
-    }
+
 }

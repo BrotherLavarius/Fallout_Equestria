@@ -11,7 +11,6 @@ import com.redsparkle.foe.gui.general.LvlUpGui;
 import com.redsparkle.foe.gui.general.StatsGuiFirstJoin;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.IGuiHandler;
 
@@ -34,11 +33,6 @@ public class GuiHandler implements IGuiHandler {
     public Object getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
 
         EntityPlayerMP playerBase = PlayerUtil.getPlayerBaseServerFromPlayer(player, false);
-
-        if (playerBase == null) {
-            player.sendMessage(new TextComponentString("FOE player instance null server-side. This is a bug."));
-            return null;
-        }
 
 
         if (ID == ADV_Inv) {

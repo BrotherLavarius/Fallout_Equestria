@@ -109,18 +109,18 @@ public class PipBuckGui extends GuiScreen {
         GlStateManager.enableBlend();
         mc.getTextureManager().bindTexture(pipbuck);
         GL11.glPushMatrix();
-        GL11.glScalef((float) 1.7, (float) 1.7, 1.0f);
+        GL11.glScalef((float) 2.9, (float) 2.9, (float) 2.9);
         drawTexturedModalRect(
                 ScreenGrid.XCoordStart(
                         this.width,
-                        2),
+                        2) - 3,
                 ScreenGrid.YCoordStart(
                         this.height,
-                        2),
+                        2) - 2,
                 pip_buck_x,
                 pip_buck_y,
-                250,
-                140);
+                119,
+                80);
         GL11.glPopMatrix();
 
 
@@ -282,8 +282,8 @@ public class PipBuckGui extends GuiScreen {
                         playerStatusX= 135;
                         playerStatusY= 145;
                     }else if(player.getHealth() > (Math.round(player.getMaxHealth()/2)) && Math.round(player.getHealth()) <= Math.round(player.getMaxHealth())){
-                    playerStatusX= 88;
-                    playerStatusY= 145;
+                        playerStatusX = 88;
+                        playerStatusY = 145;
                     }
 
                     mc.getTextureManager().bindTexture(pipbuck);

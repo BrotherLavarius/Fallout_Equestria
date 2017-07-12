@@ -2,6 +2,7 @@ package com.redsparkle.api.capa.StatsCapa;
 
 import com.redsparkle.foe.inventory.AddInv_impl;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
@@ -258,21 +259,49 @@ public class AddInvCapabilityProvider implements IAddInvCapability, ICapabilityS
     public void deserializeNBT(NBTTagCompound nbt) {
 
         for(int i=0;i <12;i++) {
-        ItemStack item = null;
-        NBTTagCompound tag =nbt.getCompoundTag("Slot"+i);
-            if(i==0){item.deserializeNBT(tag)
-            item.de;}
-            if(i==1){item.deserializeNBT(tag);}
-            if(i==2){item.deserializeNBT(tag);}
-            if(i==3){item.deserializeNBT(tag);}
-            if(i==4){item.deserializeNBT(tag);}
-            if(i==5){item.deserializeNBT(tag);}
-            if(i==6){item.deserializeNBT(tag);}
-            if(i==7){item.deserializeNBT(tag);}
-            if(i==8){item.deserializeNBT(tag);}
-            if(i==9){item.deserializeNBT(tag);}
-            if(i==10){item.deserializeNBT(tag);}
-            if(i==11){item.deserializeNBT(tag);}
+            ItemStack stack = null;
+            Item item = null;
+            NBTTagCompound tag = nbt.getCompoundTag("Slot" + i);
+            item = Item.getByNameOrId(tag.getString("id"));
+            stack = new ItemStack(item);
+            stack.setCount(tag.getByte("Count"));
+            stack.setItemDamage(tag.getShort("Damage"));
+            if (i == 0) {
+                setPipBuckSlot(stack);
+            }
+            if (i == 1) {
+                setDeviceSlot1(stack);
+            }
+            if (i == 2) {
+                setDeviceSlot2(stack);
+            }
+            if (i == 3) {
+                setDeviceSlot3(stack);
+            }
+            if (i == 4) {
+                setDeviceSlot4(stack);
+            }
+            if (i == 5) {
+                setHarnessSlot(stack);
+            }
+            if (i == 6) {
+                setGunSlot1(stack);
+            }
+            if (i == 7) {
+                setGunSlot1(stack);
+            }
+            if (i == 8) {
+                setAmmoSlot1(stack);
+            }
+            if (i == 9) {
+                setAmmoSlot2(stack);
+            }
+            if (i == 10) {
+                setAmmoSlot3(stack);
+            }
+            if (i == 11) {
+                setAmmoSlot4(stack);
+            }
 
         }
     }

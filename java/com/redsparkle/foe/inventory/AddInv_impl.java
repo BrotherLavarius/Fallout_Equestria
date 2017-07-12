@@ -5,9 +5,6 @@ import com.redsparkle.api.capa.StatsCapa.IAddInvCapability;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTTagList;
-import net.minecraft.util.NonNullList;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentString;
 
@@ -16,12 +13,11 @@ import net.minecraft.util.text.TextComponentString;
  */
 public class AddInv_impl implements IInventory {
 
-    //TODO: FIX THIS FUCKING CLASS, IT'S GARBAGE, AND REMOVE THE LINE BELOW, IT"S ALSO GARBAGE!
 
+    public static final int INV_SIZE = 12;
     private String customName = "container.Additional_Inventory";
     private IAddInvCapability stats;
     private AddInv_impl addInv_impl;
-    public static final int INV_SIZE = 12;
     private ItemStack[] stacks = new ItemStack[INV_SIZE];
     @Override
     public int getSizeInventory() {
@@ -110,27 +106,31 @@ public class AddInv_impl implements IInventory {
     // The next two methods openInventory and closeInventory are not needed in most cases so we leave them empty.
     @Override
     public void openInventory(EntityPlayer player) {
-        this.stats = player.getCapability(AddInvCapabilityProvider.STATS_CAPA,null);
-        this.addInv_impl = stats.getAdditional_Inventory();
+        try {
+            this.stats = player.getCapability(AddInvCapabilityProvider.STATS_CAPA, null);
+            this.addInv_impl = stats.getAdditional_Inventory();
 
-        ItemStack[] slots= new ItemStack[]{
-                stats.getPipBuckSlot(),
-                stats.getDeviceSlot1(),
-                stats.getDeviceSlot2(),
-                stats.getDeviceSlot3(),
-                stats.getDeviceSlot4(),
-                stats.getHarnessSlot(),
-                stats.getGunSlot1(),
-                stats.getGunSlot2(),
-                stats.getAmmoSlot1(),
-                stats.getAmmoSlot2(),
-                stats.getAmmoSlot3(),
-                stats.getAmmoSlot4()
-        };
-        for(int i=0;i < slots.length;i++){
-            this.addInv_impl.setInventorySlotContents(i,slots[i]);
+            ItemStack[] slots = new ItemStack[]{
+                    stats.getPipBuckSlot(),
+                    stats.getDeviceSlot1(),
+                    stats.getDeviceSlot2(),
+                    stats.getDeviceSlot3(),
+                    stats.getDeviceSlot4(),
+                    stats.getHarnessSlot(),
+                    stats.getGunSlot1(),
+                    stats.getGunSlot2(),
+                    stats.getAmmoSlot1(),
+                    stats.getAmmoSlot2(),
+                    stats.getAmmoSlot3(),
+                    stats.getAmmoSlot4()
+            };
+            for (int i = 0; i < slots.length; i++) {
+                this.addInv_impl.setInventorySlotContents(i, slots[i]);
+            }
+            addInv_impl.openInventory(player);
+        } catch (NullPointerException e) {
+            e.printStackTrace();
         }
-        addInv_impl.openInventory(player);
     }
 
     @Override

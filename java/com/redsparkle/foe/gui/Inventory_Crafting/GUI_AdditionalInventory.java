@@ -18,7 +18,7 @@ public class GUI_AdditionalInventory extends GuiContainer {
 
 
     public GUI_AdditionalInventory(EntityPlayer player, AddInv_impl additional_inventory) {
-        // the player.inventory gets passed in here
+        // the player.inventory gets passed in heretry
         super(new CONTAINER_AdditionalInventory(player, additional_inventory));
 
 
