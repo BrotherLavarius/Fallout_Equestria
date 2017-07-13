@@ -1,5 +1,7 @@
 package com.redsparkle.foe.containers;
 
+import com.redsparkle.api.capa.StatsCapa.AddInvCapabilityProvider;
+import com.redsparkle.api.capa.StatsCapa.IAddInvCapability;
 import com.redsparkle.foe.containers.Slots.*;
 import com.redsparkle.foe.inventory.AddInv_impl;
 import net.minecraft.entity.player.EntityPlayer;
@@ -16,10 +18,13 @@ public class CONTAINER_AdditionalInventory extends Container {
     private final int numRows;
     public AddInv_impl additional_inventory;
     public InventoryPlayer inventoryPlayer;
+    private IAddInvCapability stats;
+
     //TODO: FInish this class
-    public CONTAINER_AdditionalInventory(EntityPlayer thePlayer, AddInv_impl additional_inventory) {
-        this.inventoryPlayer = thePlayer.inventory;
-        this.additional_inventory = additional_inventory;
+    public CONTAINER_AdditionalInventory(EntityPlayer thePlayer) {
+        inventoryPlayer = thePlayer.inventory;
+        additional_inventory = new AddInv_impl();
+        stats = thePlayer.getCapability(AddInvCapabilityProvider.STATS_CAPA, null);
         numRows = inventoryPlayer.getSizeInventory() / 9;
         int i = (numRows - 4) * 18;
 
@@ -59,6 +64,7 @@ public class CONTAINER_AdditionalInventory extends Container {
             this.addSlotToContainer(new SlotAmmo(additional_inventory, 10, 113, 25));
             this.addSlotToContainer(new SlotAmmo(additional_inventory, 11, 132, 25));
 
+        onContainerOpen();
     }
 
     public boolean canInteractWith(EntityPlayer var1) {
@@ -145,4 +151,80 @@ public class CONTAINER_AdditionalInventory extends Container {
         return flag1;
     }
 
+    @Override
+    public void onContainerClosed(EntityPlayer playerIn) {
+        super.onContainerClosed(playerIn);
+
+
+        for (int i = 0; i < 12; i++) {
+            if (i == 0) {
+                stats.setPipBuckSlot(additional_inventory.getStackInSlot(i));
+            }
+            if (i == 1) {
+                stats.setDeviceSlot1(additional_inventory.getStackInSlot(i));
+            }
+            if (i == 2) {
+                stats.setDeviceSlot2(additional_inventory.getStackInSlot(i));
+            }
+            if (i == 3) {
+                stats.setDeviceSlot3(additional_inventory.getStackInSlot(i));
+            }
+            if (i == 4) {
+                stats.setDeviceSlot4(additional_inventory.getStackInSlot(i));
+            }
+            if (i == 5) {
+                stats.setHarnessSlot(additional_inventory.getStackInSlot(i));
+            }
+            if (i == 6) {
+                stats.setGunSlot1(additional_inventory.getStackInSlot(i));
+            }
+            if (i == 7) {
+                stats.setGunSlot2(additional_inventory.getStackInSlot(i));
+            }
+            if (i == 8) {
+                stats.setAmmoSlot1(additional_inventory.getStackInSlot(i));
+            }
+            if (i == 9) {
+                stats.setAmmoSlot2(additional_inventory.getStackInSlot(i));
+            }
+            if (i == 10) {
+                stats.setAmmoSlot2(additional_inventory.getStackInSlot(i));
+            }
+            if (i == 11) {
+                stats.setAmmoSlot3(additional_inventory.getStackInSlot(i));
+            }
+        }
+    }
+
+    public void onContainerOpen() {
+        try {
+            ItemStack[] slots = new ItemStack[]{
+                    stats.getPipBuckSlot(),
+                    stats.getDeviceSlot1(),
+                    stats.getDeviceSlot2(),
+                    stats.getDeviceSlot3(),
+                    stats.getDeviceSlot4(),
+                    stats.getHarnessSlot(),
+                    stats.getGunSlot1(),
+                    stats.getGunSlot2(),
+                    stats.getAmmoSlot1(),
+                    stats.getAmmoSlot2(),
+                    stats.getAmmoSlot3(),
+                    stats.getAmmoSlot4()
+            };
+            for (int i = 0; i < 12; i++) {
+                i = i;
+                ItemStack item = slots[i];
+                if (item == null) {
+                    System.out.println("SLOT: " + i + " got null");
+                    item = ItemStack.EMPTY;
+                }//TODO: this returns null for some fucking reason
+                additional_inventory.setInventorySlotContents(i, item);
+            }
+
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+        }
+
+    }
 }

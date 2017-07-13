@@ -2,7 +2,6 @@ package com.redsparkle.foe.gui.Inventory_Crafting;
 
 import com.redsparkle.api.utils.GlobalNames;
 import com.redsparkle.foe.containers.CONTAINER_AdditionalInventory;
-import com.redsparkle.foe.inventory.AddInv_impl;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.player.EntityPlayer;
@@ -17,9 +16,9 @@ public class GUI_AdditionalInventory extends GuiContainer {
     private static ResourceLocation GUI_TEXTURE = new ResourceLocation(GlobalNames.Domain + ":textures/gui/ainv.png");
 
 
-    public GUI_AdditionalInventory(EntityPlayer player, AddInv_impl additional_inventory) {
+    public GUI_AdditionalInventory(EntityPlayer player) {
         // the player.inventory gets passed in heretry
-        super(new CONTAINER_AdditionalInventory(player, additional_inventory));
+        super(new CONTAINER_AdditionalInventory(player));
 
 
     }

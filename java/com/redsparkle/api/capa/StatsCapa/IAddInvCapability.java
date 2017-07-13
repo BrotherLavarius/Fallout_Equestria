@@ -1,6 +1,5 @@
 package com.redsparkle.api.capa.StatsCapa;
 
-import com.redsparkle.foe.inventory.AddInv_impl;
 import net.minecraft.item.ItemStack;
 
 /**
@@ -9,9 +8,7 @@ import net.minecraft.item.ItemStack;
 public interface IAddInvCapability {
 
 
-    AddInv_impl getAdditional_Inventory();
-
-    void setAdditional_Inventory(AddInv_impl additional_inventory);
+    void newPLayerInit();
 
     ItemStack getDeviceSlot1();
 

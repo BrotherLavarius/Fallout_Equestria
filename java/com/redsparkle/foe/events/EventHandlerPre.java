@@ -4,6 +4,7 @@ package com.redsparkle.foe.events;
 import com.redsparkle.api.capa.FirtsTimeJoin.FTJFactoryProvider;
 import com.redsparkle.api.capa.FirtsTimeJoin.IFTJCapability;
 import com.redsparkle.api.capa.StatsCapa.AddInvCapabilityProvider;
+import com.redsparkle.api.capa.StatsCapa.IAddInvCapability;
 import com.redsparkle.api.capa.level.ILevelCapability;
 import com.redsparkle.api.capa.level.LevelFactoryProvider;
 import com.redsparkle.api.capa.rad.IRadiationCapability;
@@ -107,16 +108,17 @@ public class EventHandlerPre {
             ISkillsCapability skills = e.player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null);
             ILevelCapability lvl = e.player.getCapability(LEVEL_CAPABILITY, null);
             ISpechialCapability spe = e.player.getCapability(SpechialFactoryProvider.SPECHIAL_CAPABILITY, null);
+            IAddInvCapability adv = e.player.getCapability(AddInvCapabilityProvider.STATS_CAPA, null);
             Item lvliningCrystal = GlobalItemArray_For_init.AllInit[1];
             ItemStack lvlingcrystallS = new ItemStack(lvliningCrystal);
             lvlingcrystallS.setCount(1);
             e.player.inventory.addItemStackToInventory(lvlingcrystallS);
             e.player.getCapability(WaterFactoryProvider.WATER_CAPABILITY,null).setWater(100);
 
-            lvl.setLevel(0);
-            lvl.setProgress(0);
+            lvl.initNewplayer();
             skills.setAll(10);
             spe.setAll(0);
+            adv.newPLayerInit();
             e.player.getCapability(FTJFactoryProvider.FTJ_CAPABILITY,null).setFTJ(false);
 
         }

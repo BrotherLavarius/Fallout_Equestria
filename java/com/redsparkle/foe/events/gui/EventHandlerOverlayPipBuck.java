@@ -1,7 +1,5 @@
 package com.redsparkle.foe.events.gui;
 
-import com.redsparkle.api.capa.StatsCapa.AddInvCapabilityProvider;
-import com.redsparkle.api.utils.GlobalItemArray_For_init;
 import com.redsparkle.foe.gui.Overlays.APBar;
 import com.redsparkle.foe.gui.Overlays.PipBuckOverlay;
 import com.redsparkle.foe.gui.Overlays.RadsOverlay;
@@ -54,9 +52,9 @@ public class EventHandlerOverlayPipBuck {
 //                    break;
 //                }
 //            }
-            if (entityPlayerSP.getCapability(AddInvCapabilityProvider.STATS_CAPA,null).getPipBuckSlot().getItem() == GlobalItemArray_For_init.AllInit[0]){
-                foundInHotbar = true;
-            }
+//            if (entityPlayerSP.getCapability(AddInvCapabilityProvider.STATS_CAPA,null).getPipBuckSlot().getItem() == GlobalItemArray_For_init.AllInit[0]){
+//                foundInHotbar = true;
+//            }
 
         if (!foundInHotbar) return;
         }

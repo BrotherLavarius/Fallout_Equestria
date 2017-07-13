@@ -17,7 +17,7 @@ public class AddInvCapabilityProvider implements IAddInvCapability, ICapabilityS
 
     @CapabilityInject(IAddInvCapability.class)
     public static Capability<IAddInvCapability> STATS_CAPA = null;
-    public AddInv_impl additional_inventory = new AddInv_impl();
+    public AddInv_impl additional_inventory;
     public ItemStack DeviceSlot1,
             DeviceSlot2,
             DeviceSlot3,
@@ -33,51 +33,8 @@ public class AddInvCapabilityProvider implements IAddInvCapability, ICapabilityS
 
     private boolean dirty = true;
 
+
     public AddInvCapabilityProvider() {
-        this(
-                ItemStack.EMPTY,
-                ItemStack.EMPTY,
-                ItemStack.EMPTY,
-                ItemStack.EMPTY,
-                ItemStack.EMPTY,
-                ItemStack.EMPTY,
-                ItemStack.EMPTY,
-                ItemStack.EMPTY,
-                ItemStack.EMPTY,
-                ItemStack.EMPTY,
-                ItemStack.EMPTY,
-                ItemStack.EMPTY
-);
-    }
-
-    public AddInvCapabilityProvider(
-            ItemStack DeviceSlot1,
-            ItemStack DeviceSlot2,
-            ItemStack DeviceSlot3,
-            ItemStack DeviceSlot4,
-            ItemStack PipBuckSlot,
-            ItemStack AmmoSlot1,
-            ItemStack AmmoSlot2,
-            ItemStack AmmoSlot3,
-            ItemStack AmmoSlot4,
-            ItemStack GunSlot1,
-            ItemStack GunSlot2,
-            ItemStack HarnessSlot
-) {
-
-        this.DeviceSlot1 = DeviceSlot1;
-        this.DeviceSlot2 = DeviceSlot2;
-        this.DeviceSlot3 = DeviceSlot3;
-        this.DeviceSlot4 = DeviceSlot4;
-        this.PipBuckSlot = PipBuckSlot;
-        this.AmmoSlot1 = AmmoSlot1;
-        this.AmmoSlot2 = AmmoSlot2;
-        this.AmmoSlot3 = AmmoSlot3;
-        this.AmmoSlot4 = AmmoSlot4;
-        this.GunSlot1 = GunSlot1;
-        this.GunSlot2 = GunSlot2;
-        this.HarnessSlot = HarnessSlot;
-
     }
 
 
@@ -85,16 +42,24 @@ public class AddInvCapabilityProvider implements IAddInvCapability, ICapabilityS
         return player.getCapability(STATS_CAPA, null);
     }
 
-
     @Override
-    public AddInv_impl getAdditional_Inventory() {
-        return additional_inventory;
+    public void newPLayerInit() {
+        this.DeviceSlot1 = ItemStack.EMPTY;
+        this.DeviceSlot2 = ItemStack.EMPTY;
+        this.DeviceSlot3 = ItemStack.EMPTY;
+        this.DeviceSlot4 = ItemStack.EMPTY;
+        this.PipBuckSlot = ItemStack.EMPTY;
+        this.AmmoSlot1 = ItemStack.EMPTY;
+        this.AmmoSlot2 = ItemStack.EMPTY;
+        this.AmmoSlot3 = ItemStack.EMPTY;
+        this.AmmoSlot4 = ItemStack.EMPTY;
+        this.GunSlot1 = ItemStack.EMPTY;
+        this.GunSlot2 = ItemStack.EMPTY;
+        this.HarnessSlot = ItemStack.EMPTY;
+        this.additional_inventory = new AddInv_impl();
     }
 
-    @Override
-    public void setAdditional_Inventory(AddInv_impl additional_inventory) {
-        this.additional_inventory = additional_inventory;
-    }
+
 
     @Override
     public ItemStack getDeviceSlot1() {
@@ -123,7 +88,7 @@ public class AddInvCapabilityProvider implements IAddInvCapability, ICapabilityS
 
     @Override
     public void setDeviceSlot3(ItemStack deviceSlot3) {
-        this.DeviceSlot1 = deviceSlot3;
+        this.DeviceSlot3 = deviceSlot3;
     }
 
     @Override
@@ -173,7 +138,7 @@ public class AddInvCapabilityProvider implements IAddInvCapability, ICapabilityS
 
     @Override
     public void setAmmoSlot3(ItemStack ammoSlot3) {
-        this.AmmoSlot1 = ammoSlot3;
+        this.AmmoSlot3 = ammoSlot3;
     }
 
     @Override
@@ -259,9 +224,9 @@ public class AddInvCapabilityProvider implements IAddInvCapability, ICapabilityS
     public void deserializeNBT(NBTTagCompound nbt) {
 
         for(int i=0;i <12;i++) {
-            ItemStack stack = null;
-            Item item = null;
-            NBTTagCompound tag = nbt.getCompoundTag("Slot" + i);
+            ItemStack stack;
+            Item item;
+            NBTTagCompound tag = nbt.getCompoundTag("Slot_" + i);
             item = Item.getByNameOrId(tag.getString("id"));
             stack = new ItemStack(item);
             stack.setCount(tag.getByte("Count"));

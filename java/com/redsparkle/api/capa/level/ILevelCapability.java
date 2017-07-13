@@ -12,6 +12,8 @@ public interface ILevelCapability {
 
     Integer removeLevel(Integer removeLevel);
 
+    void initNewplayer();
+
     Integer getLevel();
 
     Integer setLevel(Integer newLevel);

@@ -1,6 +1,5 @@
 package com.redsparkle.api.handlers;
 
-import com.redsparkle.api.capa.StatsCapa.AddInvCapabilityProvider;
 import com.redsparkle.api.utils.PlayerUtil;
 import com.redsparkle.foe.containers.CONTAINER_AdditionalInventory;
 import com.redsparkle.foe.gui.Inventory_Crafting.GUI_AdditionalInventory;
@@ -36,7 +35,7 @@ public class GuiHandler implements IGuiHandler {
 
 
         if (ID == ADV_Inv) {
-            return new CONTAINER_AdditionalInventory(player,player.getCapability(AddInvCapabilityProvider.STATS_CAPA,null).getAdditional_Inventory());
+            return new CONTAINER_AdditionalInventory(playerBase);
         }
         return null;
     }
@@ -50,7 +49,7 @@ public class GuiHandler implements IGuiHandler {
         if (ID == PIPBUCK_GUI_DATA){return new DataGui();}
         if (ID == FIRTS_TIME_LVLUP){return new StatsGuiFirstJoin();}
         if (ID == ADV_Inv) {
-            return new GUI_AdditionalInventory(player,player.getCapability(AddInvCapabilityProvider.STATS_CAPA,null).getAdditional_Inventory());
+            return new GUI_AdditionalInventory(player);
         }
         return null;
     }

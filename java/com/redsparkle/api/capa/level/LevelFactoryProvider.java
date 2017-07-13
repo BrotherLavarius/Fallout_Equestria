@@ -29,6 +29,11 @@ public class LevelFactoryProvider implements ILevelCapability, ICapabilitySerial
         return player.getCapability(LEVEL_CAPABILITY, null);
     }
 
+    @Override
+    public void initNewplayer() {
+        setLevel(0);
+        setProgress(0);
+    }
     public Integer getLevel() {
         return Level;
     }
