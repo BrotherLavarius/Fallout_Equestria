@@ -219,21 +219,22 @@ public class DedicatedServerProxy extends CommonProxy {
 
 
     }
-    public static void handleAdvInv(EntityPlayerMP playerMP) {
+
+    public static void handleAdvInv(MessageAdvInvSync message, EntityPlayerMP playerMP) {
         IAddInvCapability iAdvInv = playerMP.getCapability(AddInvCapabilityProvider.STATS_CAPA,null);
         String[] id = new String[]{
-                iAdvInv.getPipBuckSlot().getUnlocalizedName(),
-                iAdvInv.getDeviceSlot1().getUnlocalizedName(),
-                iAdvInv.getDeviceSlot2().getUnlocalizedName(),
-                iAdvInv.getDeviceSlot3().getUnlocalizedName(),
-                iAdvInv.getDeviceSlot4().getUnlocalizedName(),
-                iAdvInv.getHarnessSlot().getUnlocalizedName(),
-                iAdvInv.getGunSlot1().getUnlocalizedName(),
-                iAdvInv.getGunSlot2().getUnlocalizedName(),
-                iAdvInv.getAmmoSlot1().getUnlocalizedName(),
-                iAdvInv.getAmmoSlot2().getUnlocalizedName(),
-                iAdvInv.getAmmoSlot3().getUnlocalizedName(),
-                iAdvInv.getAmmoSlot4().getUnlocalizedName()
+                iAdvInv.getPipBuckSlot().getDisplayName(),
+                iAdvInv.getDeviceSlot1().getDisplayName(),
+                iAdvInv.getDeviceSlot2().getDisplayName(),
+                iAdvInv.getDeviceSlot3().getDisplayName(),
+                iAdvInv.getDeviceSlot4().getDisplayName(),
+                iAdvInv.getHarnessSlot().getDisplayName(),
+                iAdvInv.getGunSlot1().getDisplayName(),
+                iAdvInv.getGunSlot2().getDisplayName(),
+                iAdvInv.getAmmoSlot1().getDisplayName(),
+                iAdvInv.getAmmoSlot2().getDisplayName(),
+                iAdvInv.getAmmoSlot3().getDisplayName(),
+                iAdvInv.getAmmoSlot4().getDisplayName()
         };
         int[] count = new int[]{
                 iAdvInv.getPipBuckSlot().getCount(),
@@ -263,7 +264,7 @@ public class DedicatedServerProxy extends CommonProxy {
                 iAdvInv.getAmmoSlot3().getItemDamage(),
                 iAdvInv.getAmmoSlot4().getItemDamage()
         };
-        main.simpleNetworkWrapper.sendTo(new MessageAdvInvSync(id,count,damage),playerMP);
+        main.simpleNetworkWrapper.sendTo(new MessageAdvInvToClientSync(id, count, damage), playerMP);
     }
     /**
      * Run before anything else. Read your config, create blocks, items, etc, and register them with the GameRegistry

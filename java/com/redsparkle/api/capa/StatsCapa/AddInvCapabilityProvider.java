@@ -1,6 +1,5 @@
 package com.redsparkle.api.capa.StatsCapa;
 
-import com.redsparkle.foe.inventory.AddInv_impl;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -17,7 +16,6 @@ public class AddInvCapabilityProvider implements IAddInvCapability, ICapabilityS
 
     @CapabilityInject(IAddInvCapability.class)
     public static Capability<IAddInvCapability> STATS_CAPA = null;
-    public AddInv_impl additional_inventory;
     public ItemStack DeviceSlot1,
             DeviceSlot2,
             DeviceSlot3,
@@ -30,9 +28,6 @@ public class AddInvCapabilityProvider implements IAddInvCapability, ICapabilityS
             GunSlot1,
             GunSlot2,
             HarnessSlot;
-
-    private boolean dirty = true;
-
 
     public AddInvCapabilityProvider() {
     }
@@ -56,8 +51,8 @@ public class AddInvCapabilityProvider implements IAddInvCapability, ICapabilityS
         this.GunSlot1 = ItemStack.EMPTY;
         this.GunSlot2 = ItemStack.EMPTY;
         this.HarnessSlot = ItemStack.EMPTY;
-        this.additional_inventory = new AddInv_impl();
     }
+
 
 
 
@@ -68,7 +63,7 @@ public class AddInvCapabilityProvider implements IAddInvCapability, ICapabilityS
 
     @Override
     public void setDeviceSlot1(ItemStack deviceSlot1) {
-        this.DeviceSlot1 = deviceSlot1;
+        DeviceSlot1 = deviceSlot1;
     }
 
     @Override
@@ -78,7 +73,7 @@ public class AddInvCapabilityProvider implements IAddInvCapability, ICapabilityS
 
     @Override
     public void setDeviceSlot2(ItemStack deviceSlot2) {
-        this.DeviceSlot2 = deviceSlot2;
+        DeviceSlot2 = deviceSlot2;
     }
 
     @Override
@@ -88,7 +83,7 @@ public class AddInvCapabilityProvider implements IAddInvCapability, ICapabilityS
 
     @Override
     public void setDeviceSlot3(ItemStack deviceSlot3) {
-        this.DeviceSlot3 = deviceSlot3;
+        DeviceSlot3 = deviceSlot3;
     }
 
     @Override
@@ -98,7 +93,7 @@ public class AddInvCapabilityProvider implements IAddInvCapability, ICapabilityS
 
     @Override
     public void setDeviceSlot4(ItemStack deviceSlot4) {
-        this.DeviceSlot4 = deviceSlot4;
+        DeviceSlot4 = deviceSlot4;
     }
 
     @Override
@@ -108,7 +103,7 @@ public class AddInvCapabilityProvider implements IAddInvCapability, ICapabilityS
 
     @Override
     public void setPipBuckSlot(ItemStack pipBuckSlot) {
-        this.PipBuckSlot = pipBuckSlot;
+        PipBuckSlot = pipBuckSlot;
     }
 
     @Override
@@ -118,7 +113,7 @@ public class AddInvCapabilityProvider implements IAddInvCapability, ICapabilityS
 
     @Override
     public void setAmmoSlot1(ItemStack ammoSlot1) {
-        this.AmmoSlot1 = ammoSlot1;
+        AmmoSlot1 = ammoSlot1;
     }
 
     @Override
@@ -128,7 +123,7 @@ public class AddInvCapabilityProvider implements IAddInvCapability, ICapabilityS
 
     @Override
     public void setAmmoSlot2(ItemStack ammoSlot2) {
-        this.AmmoSlot2 = ammoSlot2;
+        AmmoSlot2 = ammoSlot2;
     }
 
     @Override
@@ -138,7 +133,7 @@ public class AddInvCapabilityProvider implements IAddInvCapability, ICapabilityS
 
     @Override
     public void setAmmoSlot3(ItemStack ammoSlot3) {
-        this.AmmoSlot3 = ammoSlot3;
+        AmmoSlot3 = ammoSlot3;
     }
 
     @Override
@@ -148,7 +143,7 @@ public class AddInvCapabilityProvider implements IAddInvCapability, ICapabilityS
 
     @Override
     public void setAmmoSlot4(ItemStack ammoSlot4) {
-        this.AmmoSlot4 = ammoSlot4;
+        AmmoSlot4 = ammoSlot4;
     }
 
     @Override
@@ -158,7 +153,7 @@ public class AddInvCapabilityProvider implements IAddInvCapability, ICapabilityS
 
     @Override
     public void setGunSlot1(ItemStack gunSlot1) {
-        this.GunSlot1 = gunSlot1;
+        GunSlot1 = gunSlot1;
     }
 
     @Override
@@ -168,7 +163,7 @@ public class AddInvCapabilityProvider implements IAddInvCapability, ICapabilityS
 
     @Override
     public void setGunSlot2(ItemStack gunSlot2) {
-        this.GunSlot2 = gunSlot2;
+        GunSlot2 = gunSlot2;
     }
 
     @Override
@@ -178,7 +173,7 @@ public class AddInvCapabilityProvider implements IAddInvCapability, ICapabilityS
 
     @Override
     public void setHarnessSlot(ItemStack harnessSlot) {
-        this.HarnessSlot = harnessSlot;
+        HarnessSlot = harnessSlot;
     }
 
 
@@ -195,28 +190,96 @@ public class AddInvCapabilityProvider implements IAddInvCapability, ICapabilityS
 
     @Override
     public NBTTagCompound serializeNBT() {
-        ItemStack[] stackArray = new ItemStack[]{
-                getPipBuckSlot(),
-                getDeviceSlot1(),
-                getDeviceSlot2(),
-                getDeviceSlot3(),
-                getDeviceSlot4(),
-                getHarnessSlot(),
-                getGunSlot1(),
-                getGunSlot2(),
-                getAmmoSlot1(),
-                getAmmoSlot2(),
-                getAmmoSlot3(),
-                getAmmoSlot4()
-        };
+        int i = 0;
 
         NBTTagCompound nbt = new NBTTagCompound();
         NBTTagCompound tags = new NBTTagCompound();
 
-        for(int i=0;i <12;i++){
-            nbt.setTag("Slot_"+i,tags);
-            stackArray[i].writeToNBT(tags);
+        ItemStack buf = ItemStack.EMPTY;
+        nbt.setTag("Slot_" + i, tags);
+        if (getPipBuckSlot() == null) {
+            buf.writeToNBT(tags);
+        } else {
+            getPipBuckSlot().writeToNBT(tags);
         }
+
+        nbt.setTag("Slot_" + i++, tags);
+        if (getDeviceSlot1() == null) {
+            buf.writeToNBT(tags);
+        } else {
+            getDeviceSlot1().writeToNBT(tags);
+        }
+
+        nbt.setTag("Slot_" + i++, tags);
+        if (getDeviceSlot2() == null) {
+            buf.writeToNBT(tags);
+        } else {
+            getDeviceSlot2().writeToNBT(tags);
+        }
+
+        nbt.setTag("Slot_" + i++, tags);
+        if (getDeviceSlot3() == null) {
+            buf.writeToNBT(tags);
+        } else {
+            getDeviceSlot3().writeToNBT(tags);
+        }
+
+        nbt.setTag("Slot_" + i++, tags);
+        if (getDeviceSlot4() == null) {
+            buf.writeToNBT(tags);
+        } else {
+            getDeviceSlot4().writeToNBT(tags);
+        }
+
+        nbt.setTag("Slot_" + i++, tags);
+        if (getHarnessSlot() == null) {
+            buf.writeToNBT(tags);
+        } else {
+            getHarnessSlot().writeToNBT(tags);
+        }
+
+        nbt.setTag("Slot_" + i++, tags);
+        if (getGunSlot1() == null) {
+            buf.writeToNBT(tags);
+        } else {
+            getGunSlot1().writeToNBT(tags);
+        }
+
+        nbt.setTag("Slot_" + i++, tags);
+        if (getGunSlot2() == null) {
+            buf.writeToNBT(tags);
+        } else {
+            getGunSlot2().writeToNBT(tags);
+        }
+
+        nbt.setTag("Slot_" + i++, tags);
+        if (getAmmoSlot1() == null) {
+            buf.writeToNBT(tags);
+        } else {
+            getAmmoSlot1().writeToNBT(tags);
+        }
+
+        nbt.setTag("Slot_" + i++, tags);
+        if (getAmmoSlot2() == null) {
+            buf.writeToNBT(tags);
+        } else {
+            getAmmoSlot2().writeToNBT(tags);
+        }
+
+        nbt.setTag("Slot_" + i++, tags);
+        if (getAmmoSlot3() == null) {
+            buf.writeToNBT(tags);
+        } else {
+            getAmmoSlot3().writeToNBT(tags);
+        }
+
+        nbt.setTag("Slot_" + i++, tags);
+        if (getAmmoSlot4() == null) {
+            buf.writeToNBT(tags);
+        } else {
+            getAmmoSlot4().writeToNBT(tags);
+        }
+
         return nbt;
     }
 
@@ -253,7 +316,7 @@ public class AddInvCapabilityProvider implements IAddInvCapability, ICapabilityS
                 setGunSlot1(stack);
             }
             if (i == 7) {
-                setGunSlot1(stack);
+                setGunSlot2(stack);
             }
             if (i == 8) {
                 setAmmoSlot1(stack);

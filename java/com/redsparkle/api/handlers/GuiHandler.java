@@ -8,6 +8,8 @@ import com.redsparkle.foe.gui.Menus.pipbuck_gui_extenders.DATA.DataGui;
 import com.redsparkle.foe.gui.Menus.pipbuck_gui_extenders.ITEMS.InventoryGui;
 import com.redsparkle.foe.gui.general.LvlUpGui;
 import com.redsparkle.foe.gui.general.StatsGuiFirstJoin;
+import com.redsparkle.foe.main;
+import com.redsparkle.foe.network.ClientServerOneClass.MessageAdvInvSync;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.world.World;
@@ -49,7 +51,9 @@ public class GuiHandler implements IGuiHandler {
         if (ID == PIPBUCK_GUI_DATA){return new DataGui();}
         if (ID == FIRTS_TIME_LVLUP){return new StatsGuiFirstJoin();}
         if (ID == ADV_Inv) {
-            return new GUI_AdditionalInventory(player);
+            main.simpleNetworkWrapper.sendToServer(new MessageAdvInvSync());
+            GUI_AdditionalInventory mew = new GUI_AdditionalInventory(player);
+            return mew;
         }
         return null;
     }

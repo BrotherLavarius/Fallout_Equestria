@@ -1,8 +1,8 @@
 package com.redsparkle.foe;
 
 
-import com.redsparkle.foe.commands.rpSkillCheck;
 import com.redsparkle.api.handlers.GuiHandler;
+import com.redsparkle.foe.commands.rpSkillCheck;
 import com.redsparkle.foe.network.ClientServerOneClass.*;
 import com.redsparkle.foe.network.*;
 import net.minecraftforge.common.MinecraftForge;
@@ -108,17 +108,17 @@ public class main {
 
         simpleNetworkWrapper.registerMessage(MessageUpdateClientServerLevel.HandlerClient.class, MessageUpdateClientServerLevel.class, LEVEL_MESSAGE_ID_CLIENT, Side.CLIENT);
         simpleNetworkWrapper.registerMessage(MessageUpdateClientServerLevel.HandlerServer.class, MessageUpdateClientServerLevel.class, LEVEL_MESSAGE_ID_SERVER, Side.SERVER);
-        simpleNetworkWrapper.registerMessage(MessageUpdateSLSClientOnDemand.serverSideHandler.class, MessageUpdateSLSClientOnDemand.class, LEVEL_ONDEMAND_MESSAGE_ID_CLIENT, Side.SERVER);
         simpleNetworkWrapper.registerMessage(MessageUpdateSLSServerReplyOnDemand.HandlerClient.class, MessageUpdateSLSServerReplyOnDemand.class, LEVEL_ONDEMAND_MESSAGE_ID_SERVER, Side.CLIENT);
+        simpleNetworkWrapper.registerMessage(MessageUpdateSLSClientOnDemand.serverSideHandler.class, MessageUpdateSLSClientOnDemand.class, LEVEL_ONDEMAND_MESSAGE_ID_CLIENT, Side.SERVER);
 
 
         System.out.println("LEVELS------CHECK");
 
-        simpleNetworkWrapper.registerMessage(MessageOpenGuiClient.HandlerClient.class,MessageOpenGuiClient.class,FIRTSTIME_MESSAGE_ID_CLIENT,Side.SERVER);
-        simpleNetworkWrapper.registerMessage(MessageOpenGuiClient.HandleServer.class, MessageOpenGuiClient.class, FIRTSTIME_MESSAGE_ID_SERVER, Side.CLIENT);
+        simpleNetworkWrapper.registerMessage(MessageOpenGuiClient.HandlerClient.class, MessageOpenGuiClient.class, FIRTSTIME_MESSAGE_ID_CLIENT, Side.CLIENT);
+        simpleNetworkWrapper.registerMessage(MessageOpenGuiClient.HandleServer.class, MessageOpenGuiClient.class, FIRTSTIME_MESSAGE_ID_SERVER, Side.SERVER);
         System.out.println("GUI TRIGGERS ------CHECK");
 
-        simpleNetworkWrapper.registerMessage(MessageAdvInvSync.HandlerClient.class,MessageAdvInvSync.class,SYNC_INV_CLIENTS,Side.CLIENT);
+        simpleNetworkWrapper.registerMessage(MessageAdvInvToClientSync.HandlerClient.class, MessageAdvInvToClientSync.class, SYNC_INV_CLIENTS, Side.CLIENT);
         simpleNetworkWrapper.registerMessage(MessageAdvInvSync.HandlerServer.class,MessageAdvInvSync.class,SYNC_INV_SERVER,Side.SERVER);
 
         System.out.println("FINISHED BOOTING NETWORK MESSAGES");

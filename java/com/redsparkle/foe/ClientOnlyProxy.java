@@ -26,6 +26,8 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
@@ -211,14 +213,57 @@ public class ClientOnlyProxy extends CommonProxy {
 
         });
     }
-    public static void handleAdvInv(MessageAdvInvSync message, MessageContext ctx) {
+
+    public static void handleAdvInv(MessageAdvInvToClientSync message, MessageContext ctx) {
         Minecraft.getMinecraft().addScheduledTask(() -> {
             EntityPlayer player = Minecraft.getMinecraft().player;
-            IAddInvCapability water = AddInvCapabilityProvider.instanceFor(player);
-            //TODO:finish this.
-            message.item_id;
-            message.item_count;
-            message.item_damage;
+            IAddInvCapability adv = AddInvCapabilityProvider.instanceFor(player);
+
+            for (int i = 0; i < 12; i++) {
+                Item item = null;
+                item = item.getByNameOrId(message.item_id[i]);
+                ItemStack stack = new ItemStack(item);
+                stack.setCount(message.item_count[i]);
+                stack.setItemDamage(message.item_damage[i]);
+
+                if (i == 0) {
+                    adv.setPipBuckSlot(stack);
+                }
+                if (i == 1) {
+                    adv.setDeviceSlot1(stack);
+                }
+                if (i == 2) {
+                    adv.setDeviceSlot2(stack);
+                }
+                if (i == 3) {
+                    adv.setDeviceSlot3(stack);
+                }
+                if (i == 4) {
+                    adv.setDeviceSlot4(stack);
+                }
+                if (i == 5) {
+                    adv.setHarnessSlot(stack);
+                }
+                if (i == 6) {
+                    adv.setGunSlot1(stack);
+                }
+                if (i == 7) {
+                    adv.setGunSlot2(stack);
+                }
+                if (i == 8) {
+                    adv.setAmmoSlot1(stack);
+                }
+                if (i == 9) {
+                    adv.setAmmoSlot2(stack);
+                }
+                if (i == 10) {
+                    adv.setAmmoSlot2(stack);
+                }
+                if (i == 11) {
+                    adv.setAmmoSlot3(stack);
+                }
+            }
+
 
         });
     }
