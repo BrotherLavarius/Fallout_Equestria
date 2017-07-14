@@ -1,6 +1,8 @@
 package com.redsparkle.foe;
 
 
+import com.redsparkle.api.capa.StatsCapa.AddInvCapabilityProvider;
+import com.redsparkle.api.capa.StatsCapa.IAddInvCapability;
 import com.redsparkle.api.capa.level.ILevelCapability;
 import com.redsparkle.api.capa.level.LevelFactoryProvider;
 import com.redsparkle.api.capa.rad.IRadiationCapability;
@@ -27,6 +29,7 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import net.minecraftforge.fml.relauncher.Side;
 
 /**
@@ -208,7 +211,17 @@ public class ClientOnlyProxy extends CommonProxy {
 
         });
     }
+    public static void handleAdvInv(MessageAdvInvSync message, MessageContext ctx) {
+        Minecraft.getMinecraft().addScheduledTask(() -> {
+            EntityPlayer player = Minecraft.getMinecraft().player;
+            IAddInvCapability water = AddInvCapabilityProvider.instanceFor(player);
+            //TODO:finish this.
+            message.item_id;
+            message.item_count;
+            message.item_damage;
 
+        });
+    }
 
     public void preInit() {
         super.preInit();

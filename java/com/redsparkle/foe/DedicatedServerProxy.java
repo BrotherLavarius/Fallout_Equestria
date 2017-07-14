@@ -1,5 +1,7 @@
 package com.redsparkle.foe;
 
+import com.redsparkle.api.capa.StatsCapa.AddInvCapabilityProvider;
+import com.redsparkle.api.capa.StatsCapa.IAddInvCapability;
 import com.redsparkle.api.capa.level.ILevelCapability;
 import com.redsparkle.api.capa.level.LevelFactoryProvider;
 import com.redsparkle.api.capa.skills.ISkillsCapability;
@@ -12,10 +14,7 @@ import com.redsparkle.api.utils.Lvlutil;
 import com.redsparkle.api.utils.PlayerParamsSetup;
 import com.redsparkle.foe.events.ServerSIdeONly.EventHandlerServerSidePre;
 import com.redsparkle.foe.items.guns.*;
-import com.redsparkle.foe.network.ClientServerOneClass.MessageUpdateClientServerLevel;
-import com.redsparkle.foe.network.ClientServerOneClass.MessageUpdateClientServerSPECHIAL;
-import com.redsparkle.foe.network.ClientServerOneClass.MessageUpdateClientServerSkills;
-import com.redsparkle.foe.network.ClientServerOneClass.MessageUpdateClientWater;
+import com.redsparkle.foe.network.ClientServerOneClass.*;
 import com.redsparkle.foe.network.MessageFireToClientServer;
 import com.redsparkle.foe.network.MessageOpenGuiClient;
 import com.redsparkle.foe.network.MessageUpdateSLSServerReplyOnDemand;
@@ -220,6 +219,52 @@ public class DedicatedServerProxy extends CommonProxy {
 
 
     }
+    public static void handleAdvInv(EntityPlayerMP playerMP) {
+        IAddInvCapability iAdvInv = playerMP.getCapability(AddInvCapabilityProvider.STATS_CAPA,null);
+        String[] id = new String[]{
+                iAdvInv.getPipBuckSlot().getUnlocalizedName(),
+                iAdvInv.getDeviceSlot1().getUnlocalizedName(),
+                iAdvInv.getDeviceSlot2().getUnlocalizedName(),
+                iAdvInv.getDeviceSlot3().getUnlocalizedName(),
+                iAdvInv.getDeviceSlot4().getUnlocalizedName(),
+                iAdvInv.getHarnessSlot().getUnlocalizedName(),
+                iAdvInv.getGunSlot1().getUnlocalizedName(),
+                iAdvInv.getGunSlot2().getUnlocalizedName(),
+                iAdvInv.getAmmoSlot1().getUnlocalizedName(),
+                iAdvInv.getAmmoSlot2().getUnlocalizedName(),
+                iAdvInv.getAmmoSlot3().getUnlocalizedName(),
+                iAdvInv.getAmmoSlot4().getUnlocalizedName()
+        };
+        int[] count = new int[]{
+                iAdvInv.getPipBuckSlot().getCount(),
+                iAdvInv.getDeviceSlot1().getCount(),
+                iAdvInv.getDeviceSlot2().getCount(),
+                iAdvInv.getDeviceSlot3().getCount(),
+                iAdvInv.getDeviceSlot4().getCount(),
+                iAdvInv.getHarnessSlot().getCount(),
+                iAdvInv.getGunSlot1().getCount(),
+                iAdvInv.getGunSlot2().getCount(),
+                iAdvInv.getAmmoSlot1().getCount(),
+                iAdvInv.getAmmoSlot2().getCount(),
+                iAdvInv.getAmmoSlot3().getCount(),
+                iAdvInv.getAmmoSlot4().getCount()
+        };
+        int[] damage = new int[]{
+                iAdvInv.getPipBuckSlot().getItemDamage(),
+                iAdvInv.getDeviceSlot1().getItemDamage(),
+                iAdvInv.getDeviceSlot2().getItemDamage(),
+                iAdvInv.getDeviceSlot3().getItemDamage(),
+                iAdvInv.getDeviceSlot4().getItemDamage(),
+                iAdvInv.getHarnessSlot().getItemDamage(),
+                iAdvInv.getGunSlot1().getItemDamage(),
+                iAdvInv.getGunSlot2().getItemDamage(),
+                iAdvInv.getAmmoSlot1().getItemDamage(),
+                iAdvInv.getAmmoSlot2().getItemDamage(),
+                iAdvInv.getAmmoSlot3().getItemDamage(),
+                iAdvInv.getAmmoSlot4().getItemDamage()
+        };
+        main.simpleNetworkWrapper.sendTo(new MessageAdvInvSync(id,count,damage),playerMP);
+    }
     /**
      * Run before anything else. Read your config, create blocks, items, etc, and register them with the GameRegistry
      */
@@ -258,7 +303,6 @@ public class DedicatedServerProxy extends CommonProxy {
     public boolean isDedicatedServer() {
         return true;
     }
-
 
 
 

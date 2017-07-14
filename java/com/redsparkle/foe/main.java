@@ -40,6 +40,8 @@ public class main {
     public static final byte FIRE_MESSAGE_ID_SERVER = 112;
 
     public static final byte SYNC_INV_CLIENTS = 113;
+    public static final byte SYNC_INV_SERVER = 114;
+
 
     public static SimpleNetworkWrapper simpleNetworkWrapper;    // used to transmit your network messages
     @Mod.Instance(main.MODID)
@@ -116,7 +118,8 @@ public class main {
         simpleNetworkWrapper.registerMessage(MessageOpenGuiClient.HandleServer.class, MessageOpenGuiClient.class, FIRTSTIME_MESSAGE_ID_SERVER, Side.CLIENT);
         System.out.println("GUI TRIGGERS ------CHECK");
 
-
+        simpleNetworkWrapper.registerMessage(MessageAdvInvSync.HandlerClient.class,MessageAdvInvSync.class,SYNC_INV_CLIENTS,Side.CLIENT);
+        simpleNetworkWrapper.registerMessage(MessageAdvInvSync.HandlerServer.class,MessageAdvInvSync.class,SYNC_INV_SERVER,Side.SERVER);
 
         System.out.println("FINISHED BOOTING NETWORK MESSAGES");
     }
