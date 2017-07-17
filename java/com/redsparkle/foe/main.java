@@ -41,6 +41,7 @@ public class main {
 
     public static final byte SYNC_INV_CLIENTS = 113;
     public static final byte SYNC_INV_SERVER = 114;
+    public static final byte SYNC_INV_SERVER_FROM_CLIENT = 115;
 
 
     public static SimpleNetworkWrapper simpleNetworkWrapper;    // used to transmit your network messages
@@ -120,7 +121,7 @@ public class main {
 
         simpleNetworkWrapper.registerMessage(MessageAdvInvToClientSync.HandlerClient.class, MessageAdvInvToClientSync.class, SYNC_INV_CLIENTS, Side.CLIENT);
         simpleNetworkWrapper.registerMessage(MessageAdvInvSync.HandlerServer.class,MessageAdvInvSync.class,SYNC_INV_SERVER,Side.SERVER);
-
+        simpleNetworkWrapper.registerMessage(MessageAdvInvToServerSync.HandlerServer.class,MessageAdvInvToServerSync.class,SYNC_INV_SERVER_FROM_CLIENT,Side.SERVER);
         System.out.println("FINISHED BOOTING NETWORK MESSAGES");
     }
 

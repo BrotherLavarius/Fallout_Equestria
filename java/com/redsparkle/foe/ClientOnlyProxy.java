@@ -15,6 +15,7 @@ import com.redsparkle.api.capa.water.IWaterCapability;
 import com.redsparkle.api.capa.water.WaterFactoryProvider;
 import com.redsparkle.foe.Init.ClientOnlyStartup;
 import com.redsparkle.foe.Init.SoundInit;
+import com.redsparkle.foe.gui.Inventory_Crafting.GUI_AdditionalInventory;
 import com.redsparkle.foe.keys.KeyInputHandler;
 import com.redsparkle.foe.keys.keyHandler;
 import com.redsparkle.foe.network.ClientServerOneClass.*;
@@ -257,14 +258,14 @@ public class ClientOnlyProxy extends CommonProxy {
                     adv.setAmmoSlot2(stack);
                 }
                 if (i == 10) {
-                    adv.setAmmoSlot2(stack);
+                    adv.setAmmoSlot3(stack);
                 }
                 if (i == 11) {
-                    adv.setAmmoSlot3(stack);
+                    adv.setAmmoSlot4(stack);
                 }
             }
 
-
+            player.openGui(main.instance, 5, mc.world, (int) mc.player.posX, (int) mc.player.posY, (int) mc.player.posZ);
         });
     }
 

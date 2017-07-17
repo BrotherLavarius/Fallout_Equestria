@@ -22,6 +22,7 @@ import com.redsparkle.foe.network.helpers.gunReload;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumHand;
 import net.minecraft.world.WorldServer;
@@ -265,6 +266,56 @@ public class DedicatedServerProxy extends CommonProxy {
                 iAdvInv.getAmmoSlot4().getItemDamage()
         };
         main.simpleNetworkWrapper.sendTo(new MessageAdvInvToClientSync(id, count, damage), playerMP);
+    }
+    @SuppressWarnings("Duplicates")
+    public static void handleAdvInvFromCLient(MessageAdvInvToServerSync message, EntityPlayerMP playerMP) {
+        IAddInvCapability adv = AddInvCapabilityProvider.instanceFor(playerMP);
+
+        for (int i = 0; i < 12; i++) {
+            Item item = null;
+            item = item.getByNameOrId(message.item_id[i]);
+            ItemStack stack = new ItemStack(item);
+            stack.setCount(message.item_count[i]);
+            stack.setItemDamage(message.item_damage[i]);
+
+            if (i == 0) {
+                adv.setPipBuckSlot(stack);
+            }
+            if (i == 1) {
+                adv.setDeviceSlot1(stack);
+            }
+            if (i == 2) {
+                adv.setDeviceSlot2(stack);
+            }
+            if (i == 3) {
+                adv.setDeviceSlot3(stack);
+            }
+            if (i == 4) {
+                adv.setDeviceSlot4(stack);
+            }
+            if (i == 5) {
+                adv.setHarnessSlot(stack);
+            }
+            if (i == 6) {
+                adv.setGunSlot1(stack);
+            }
+            if (i == 7) {
+                adv.setGunSlot2(stack);
+            }
+            if (i == 8) {
+                adv.setAmmoSlot1(stack);
+            }
+            if (i == 9) {
+                adv.setAmmoSlot2(stack);
+            }
+            if (i == 10) {
+                adv.setAmmoSlot3(stack);
+            }
+            if (i == 11) {
+                adv.setAmmoSlot4(stack);
+            }
+
+    }
     }
     /**
      * Run before anything else. Read your config, create blocks, items, etc, and register them with the GameRegistry

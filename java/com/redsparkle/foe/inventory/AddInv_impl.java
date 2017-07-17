@@ -15,7 +15,7 @@ public class AddInv_impl implements IInventory {
     public int INV_SIZE = 11;
     public ItemStack[] inventory = new ItemStack[INV_SIZE];
     public String customName;
-
+    public IAddInvCapability stats;
     @Override
     public int getSizeInventory() {
         return INV_SIZE;
@@ -29,7 +29,7 @@ public class AddInv_impl implements IInventory {
     @Override
     public ItemStack getStackInSlot(int index) {
         if (index < 0 || index >= this.getSizeInventory())
-            return null;
+        {return ItemStack.EMPTY;}
         return this.inventory[index];
     }
 
@@ -102,7 +102,7 @@ public class AddInv_impl implements IInventory {
 
     @Override
     public void openInventory(EntityPlayer player) {
-        IAddInvCapability stats = player.getCapability(AddInvCapabilityProvider.STATS_CAPA, null);
+        this.stats = player.getCapability(AddInvCapabilityProvider.STATS_CAPA, null);
 
         for (int g = 0; g <= this.getSizeInventory(); g++) {
             this.setInventorySlotContents(g, ItemStack.EMPTY);
@@ -138,7 +138,6 @@ public class AddInv_impl implements IInventory {
 
     @Override
     public void closeInventory(EntityPlayer player) {
-        IAddInvCapability stats = player.getCapability(AddInvCapabilityProvider.STATS_CAPA, null);
         for (int i = 0; i < 12; i++) {
             if (i == 0) {
                 stats.setPipBuckSlot(this.getStackInSlot(i));

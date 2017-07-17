@@ -50,11 +50,7 @@ public class GuiHandler implements IGuiHandler {
         if (ID == PIPBUCK_GUI_INVE){return new InventoryGui();}
         if (ID == PIPBUCK_GUI_DATA){return new DataGui();}
         if (ID == FIRTS_TIME_LVLUP){return new StatsGuiFirstJoin();}
-        if (ID == ADV_Inv) {
-            main.simpleNetworkWrapper.sendToServer(new MessageAdvInvSync());
-            GUI_AdditionalInventory mew = new GUI_AdditionalInventory(player);
-            return mew;
-        }
+        if (ID == ADV_Inv) {return new GUI_AdditionalInventory(player);}
         return null;
     }
 }
