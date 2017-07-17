@@ -1,6 +1,5 @@
 package com.redsparkle.api.handlers;
 
-import com.redsparkle.api.utils.PlayerUtil;
 import com.redsparkle.foe.containers.CONTAINER_AdditionalInventory;
 import com.redsparkle.foe.gui.Inventory_Crafting.GUI_AdditionalInventory;
 import com.redsparkle.foe.gui.Menus.PipBuckGui;
@@ -8,10 +7,7 @@ import com.redsparkle.foe.gui.Menus.pipbuck_gui_extenders.DATA.DataGui;
 import com.redsparkle.foe.gui.Menus.pipbuck_gui_extenders.ITEMS.InventoryGui;
 import com.redsparkle.foe.gui.general.LvlUpGui;
 import com.redsparkle.foe.gui.general.StatsGuiFirstJoin;
-import com.redsparkle.foe.main;
-import com.redsparkle.foe.network.ClientServerOneClass.MessageAdvInvSync;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.IGuiHandler;
 
@@ -33,11 +29,8 @@ public class GuiHandler implements IGuiHandler {
     @Override
     public Object getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
 
-        EntityPlayerMP playerBase = PlayerUtil.getPlayerBaseServerFromPlayer(player, false);
-
-
         if (ID == ADV_Inv) {
-            return new CONTAINER_AdditionalInventory(playerBase);
+            return new CONTAINER_AdditionalInventory(player);
         }
         return null;
     }

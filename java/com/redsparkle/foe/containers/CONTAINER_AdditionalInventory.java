@@ -22,9 +22,10 @@ public class CONTAINER_AdditionalInventory extends Container {
 
     //TODO: FInish this class
     public CONTAINER_AdditionalInventory(EntityPlayer thePlayer) {
-        inventoryPlayer = thePlayer.inventory;
-        additional_inventory = new AddInv_impl();
         stats = thePlayer.getCapability(AddInvCapabilityProvider.STATS_CAPA, null);
+        inventoryPlayer = thePlayer.inventory;
+        additional_inventory = stats.getInventory();
+        stats.updateClient(thePlayer);
         additional_inventory.openInventory(thePlayer);
         numRows = inventoryPlayer.getSizeInventory() / 9;
 

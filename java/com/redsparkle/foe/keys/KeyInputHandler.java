@@ -3,7 +3,6 @@ package com.redsparkle.foe.keys;
 import com.redsparkle.api.utils.GlobalItemArray_For_init;
 import com.redsparkle.foe.gui.Menus.PipBuckGui;
 import com.redsparkle.foe.main;
-import com.redsparkle.foe.network.ClientServerOneClass.MessageAdvInvSync;
 import com.redsparkle.foe.network.MessageGunReload;
 import com.redsparkle.foe.network.MessageUpdateSLSClientOnDemand;
 import net.minecraft.client.Minecraft;
@@ -40,7 +39,7 @@ public class KeyInputHandler {
 
         }
         if (keyHandler.testButton.isPressed() ) {
-            main.simpleNetworkWrapper.sendToServer(new MessageAdvInvSync());
+            player.openGui(main.instance, 5, mc.world, (int) mc.player.posX, (int) mc.player.posY, (int) mc.player.posZ);
 
         }
         if (keyHandler.saddlebags.isPressed()) {

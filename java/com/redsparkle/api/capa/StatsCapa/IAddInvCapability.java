@@ -1,5 +1,7 @@
 package com.redsparkle.api.capa.StatsCapa;
 
+import com.redsparkle.foe.inventory.AddInv_impl;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 
 /**
@@ -9,6 +11,8 @@ public interface IAddInvCapability {
 
 
     void newPLayerInit();
+
+    AddInv_impl getInventory();
 
     ItemStack getDeviceSlot1();
 
@@ -58,4 +62,7 @@ public interface IAddInvCapability {
 
     void setHarnessSlot(ItemStack harnessSlot);
 
+    void updateClient(EntityPlayer player);
+
+    void updateServer(EntityPlayer player);
 }

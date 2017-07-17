@@ -1,6 +1,10 @@
 package com.redsparkle.api.capa.StatsCapa;
 
+import com.redsparkle.foe.inventory.AddInv_impl;
+import com.redsparkle.foe.main;
+import com.redsparkle.foe.network.ClientServerOneClass.MessageAdvInvToClientSync;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -28,6 +32,7 @@ public class AddInvCapabilityProvider implements IAddInvCapability, ICapabilityS
             GunSlot1,
             GunSlot2,
             HarnessSlot;
+    private boolean dirty = true;
 
     public AddInvCapabilityProvider() {
     }
@@ -54,7 +59,33 @@ public class AddInvCapabilityProvider implements IAddInvCapability, ICapabilityS
     }
 
 
+    @Override
+    public AddInv_impl getInventory() {
+        AddInv_impl inventory = new AddInv_impl();
 
+        if (DeviceSlot1 == null) {
+            newPLayerInit();
+        }
+
+        inventory.setInventorySlotContents(0, getPipBuckSlot());
+        inventory.setInventorySlotContents(1, getDeviceSlot1());
+        inventory.setInventorySlotContents(2, getDeviceSlot2());
+        inventory.setInventorySlotContents(3, getDeviceSlot3());
+        inventory.setInventorySlotContents(4, getDeviceSlot4());
+        inventory.setInventorySlotContents(5, getHarnessSlot());
+        inventory.setInventorySlotContents(6, getGunSlot1());
+        inventory.setInventorySlotContents(7, getGunSlot2());
+        inventory.setInventorySlotContents(8, getAmmoSlot1());
+        inventory.setInventorySlotContents(9, getAmmoSlot2());
+        inventory.setInventorySlotContents(10, getAmmoSlot3());
+        inventory.setInventorySlotContents(11, getAmmoSlot4());
+
+        if (DeviceSlot1 == null) {
+            newPLayerInit();
+        }
+
+        return inventory;
+    }
 
     @Override
     public ItemStack getDeviceSlot1() {
@@ -176,7 +207,20 @@ public class AddInvCapabilityProvider implements IAddInvCapability, ICapabilityS
         HarnessSlot = harnessSlot;
     }
 
+    @Override
+    public void updateClient(EntityPlayer player) {
+        if (!player.getEntityWorld().isRemote) {
+            if (dirty) main.simpleNetworkWrapper.sendTo(new MessageAdvInvToClientSync(this), (EntityPlayerMP) player);
+        }
+    }
 
+    @Override
+    public void updateServer(EntityPlayer player) {
+        if (!player.getEntityWorld().isRemote) {
+            if (dirty)
+                main.simpleNetworkWrapper.sendToServer(new MessageAdvInvToClientSync(this), (EntityPlayerMP) player);
+        }
+    }
 
 
     public NBTTagCompound get() {

@@ -1,11 +1,7 @@
 package com.redsparkle.foe.gui.Inventory_Crafting;
 
-import com.redsparkle.api.capa.StatsCapa.AddInvCapabilityProvider;
-import com.redsparkle.api.capa.StatsCapa.IAddInvCapability;
 import com.redsparkle.api.utils.GlobalNames;
 import com.redsparkle.foe.containers.CONTAINER_AdditionalInventory;
-import com.redsparkle.foe.main;
-import com.redsparkle.foe.network.ClientServerOneClass.MessageAdvInvToServerSync;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.player.EntityPlayer;
@@ -21,7 +17,6 @@ public class GUI_AdditionalInventory extends GuiContainer {
 
 
     public GUI_AdditionalInventory(EntityPlayer player) {
-        // the player.inventory gets passed in heretry
         super(new CONTAINER_AdditionalInventory(player));
 
 
@@ -29,8 +24,7 @@ public class GUI_AdditionalInventory extends GuiContainer {
 
     @Override
     protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
-        //this.fontRendererObj.drawString(new TextComponentTranslation("container.", new Object[0]).getUnformattedText(), 8, 6, 4210752);
-        //this.fontRendererObj.drawString(new TextComponentTranslation("container.inventory", new Object[0]).getUnformattedText(), 8, this.ySize - 96 + 2, 4210752);
+
     }
 
     @Override
@@ -50,7 +44,7 @@ public class GUI_AdditionalInventory extends GuiContainer {
         if (this.mc.player != null)
         {
             System.out.println("GUI CLOSED!");
-            main.simpleNetworkWrapper.sendToServer(new MessageAdvInvToServerSync(mc.player));
+            //main.simpleNetworkWrapper.sendToServer(new MessageAdvInvToServerSync(mc.player));
             this.inventorySlots.onContainerClosed(this.mc.player);
         }
     }
