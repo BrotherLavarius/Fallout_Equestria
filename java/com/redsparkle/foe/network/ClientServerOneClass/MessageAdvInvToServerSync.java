@@ -8,6 +8,7 @@ import io.netty.buffer.ByteBuf;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.network.ByteBufUtils;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
@@ -19,7 +20,7 @@ import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 public class MessageAdvInvToServerSync implements IMessage {
 
 
-
+    public ItemStack[] itemArray = new ItemStack[12];
     public String[] item_id = new String[12];
     public int[] item_count = new int[12];
     public int[] item_damage = new int[12];
@@ -72,6 +73,31 @@ public class MessageAdvInvToServerSync implements IMessage {
                 iAdvInv.getAmmoSlot4().getItemDamage()
         };
 
+    }
+
+    public MessageAdvInvToServerSync(AddInvCapabilityProvider adv) {
+            this.itemArray = new ItemStack[]{
+                    adv.getPipBuckSlot(),
+                    adv.getDeviceSlot1(),
+                    adv.getDeviceSlot2(),
+                    adv.getDeviceSlot3(),
+                    adv.getDeviceSlot4(),
+                    adv.getHarnessSlot(),
+                    adv.getGunSlot1(),
+                    adv.getGunSlot2(),
+                    adv.getAmmoSlot1(),
+                    adv.getAmmoSlot2(),
+                    adv.getAmmoSlot3(),
+                    adv.getAmmoSlot4()
+            };
+
+            for (int i = 0; i < 12; i++) {
+
+                this.item_id[i] = itemArray[i].getUnlocalizedName();
+                this.item_count[i] = itemArray[i].getCount();
+                this.item_damage[i] = itemArray[i].getItemDamage();
+
+        }
     }
 
 //TODO: we need to send indexing data about leght of thebytebuder

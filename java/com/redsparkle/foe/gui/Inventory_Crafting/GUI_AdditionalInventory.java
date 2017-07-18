@@ -1,5 +1,7 @@
 package com.redsparkle.foe.gui.Inventory_Crafting;
 
+import com.redsparkle.api.capa.StatsCapa.AddInvCapabilityProvider;
+import com.redsparkle.api.capa.StatsCapa.IAddInvCapability;
 import com.redsparkle.api.utils.GlobalNames;
 import com.redsparkle.foe.containers.CONTAINER_AdditionalInventory;
 import net.minecraft.client.gui.inventory.GuiContainer;
@@ -44,7 +46,7 @@ public class GUI_AdditionalInventory extends GuiContainer {
         if (this.mc.player != null)
         {
             System.out.println("GUI CLOSED!");
-            //main.simpleNetworkWrapper.sendToServer(new MessageAdvInvToServerSync(mc.player));
+            this.mc.player.getCapability(AddInvCapabilityProvider.STATS_CAPA,null).updateServer(this.mc.player);
             this.inventorySlots.onContainerClosed(this.mc.player);
         }
     }

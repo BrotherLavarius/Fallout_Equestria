@@ -22,9 +22,9 @@ public class CONTAINER_AdditionalInventory extends Container {
 
     //TODO: FInish this class
     public CONTAINER_AdditionalInventory(EntityPlayer thePlayer) {
-        stats = thePlayer.getCapability(AddInvCapabilityProvider.STATS_CAPA, null);
-        inventoryPlayer = thePlayer.inventory;
-        additional_inventory = stats.getInventory();
+        this.stats = thePlayer.getCapability(AddInvCapabilityProvider.STATS_CAPA, null);
+        this.inventoryPlayer = thePlayer.inventory;
+        this.additional_inventory = stats.getInventory();
         stats.updateClient(thePlayer);
         additional_inventory.openInventory(thePlayer);
         numRows = inventoryPlayer.getSizeInventory() / 9;
@@ -156,8 +156,8 @@ public class CONTAINER_AdditionalInventory extends Container {
     @Override
     public void onContainerClosed(EntityPlayer playerIn) {
         super.onContainerClosed(playerIn);
-
-        additional_inventory.closeInventory(playerIn);
+        //this.stats.updateServer(playerIn);
+        this.additional_inventory.closeInventory(playerIn);
     }
 
 }

@@ -3,6 +3,7 @@ package com.redsparkle.api.capa.StatsCapa;
 import com.redsparkle.foe.inventory.AddInv_impl;
 import com.redsparkle.foe.main;
 import com.redsparkle.foe.network.ClientServerOneClass.MessageAdvInvToClientSync;
+import com.redsparkle.foe.network.ClientServerOneClass.MessageAdvInvToServerSync;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.Item;
@@ -216,9 +217,10 @@ public class AddInvCapabilityProvider implements IAddInvCapability, ICapabilityS
 
     @Override
     public void updateServer(EntityPlayer player) {
-        if (!player.getEntityWorld().isRemote) {
+       if (!player.getEntityWorld().isRemote) {
+
             if (dirty)
-                main.simpleNetworkWrapper.sendToServer(new MessageAdvInvToClientSync(this), (EntityPlayerMP) player);
+                main.simpleNetworkWrapper.sendToServer(new MessageAdvInvToServerSync(this));
         }
     }
 
