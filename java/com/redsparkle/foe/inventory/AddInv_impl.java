@@ -1,5 +1,6 @@
 package com.redsparkle.foe.inventory;
 
+import com.redsparkle.api.items.helpers.Item_Instances.*;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.ItemStackHelper;
@@ -95,7 +96,10 @@ public class AddInv_impl implements IInventory {
 
     @Override
     public boolean isItemValidForSlot(int i, ItemStack itemstack) {
-        return false;
+        return itemstack.getItem() instanceof Item_pipbuck || itemstack.getItem() instanceof Item_Utility ||
+                itemstack.getItem() instanceof Item_SaggleBagGun || itemstack.getItem() instanceof Item_Saddlebag_harness ||
+                itemstack.getItem() instanceof Item_SaddleBagAmmo;
+
     }
 
     @Override

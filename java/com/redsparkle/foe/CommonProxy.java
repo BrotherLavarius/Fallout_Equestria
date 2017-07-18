@@ -3,9 +3,9 @@ package com.redsparkle.foe;
 import com.redsparkle.api.capa.FirtsTimeJoin.FTJFactoryProvider;
 import com.redsparkle.api.capa.FirtsTimeJoin.FTJFactoryStorage;
 import com.redsparkle.api.capa.FirtsTimeJoin.IFTJCapability;
-import com.redsparkle.api.capa.StatsCapa.AddInvCapabilityProvider;
-import com.redsparkle.api.capa.StatsCapa.AddInvFactoryStorage;
-import com.redsparkle.api.capa.StatsCapa.IAddInvCapability;
+import com.redsparkle.api.capa.Inventory.IAdvInventory;
+import com.redsparkle.api.capa.Inventory.IAdvProvider;
+import com.redsparkle.api.capa.Inventory.IAdvStorage;
 import com.redsparkle.api.capa.level.ILevelCapability;
 import com.redsparkle.api.capa.level.LevelFactoryProvider;
 import com.redsparkle.api.capa.level.LevelFactoryStorage;
@@ -21,6 +21,7 @@ import com.redsparkle.api.capa.spechial.SpechialFactoryStorage;
 import com.redsparkle.api.capa.water.IWaterCapability;
 import com.redsparkle.api.capa.water.WaterFactoryProvider;
 import com.redsparkle.api.capa.water.WaterFactoryStorage;
+import com.redsparkle.api.handlers.GuiHandler;
 import com.redsparkle.api.utils.GlobalNames;
 import com.redsparkle.foe.Init.BlockInit;
 import com.redsparkle.foe.Init.ItemInit;
@@ -37,6 +38,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.capabilities.CapabilityManager;
+import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
 
 /**
@@ -77,6 +79,9 @@ public abstract class CommonProxy {
         StartUpCommon.InitCommon();
         BlockInit.InitCommon();
         ItemInit.InitCommon();
+        NetworkRegistry.INSTANCE.registerGuiHandler(main.instance, new GuiHandler());
+
+
         System.out.println("STARTING BOOTING CAPABILITY SYSTEM");
         CapabilityManager.INSTANCE.register(IRadiationCapability.class, new RadsFactoryStorage(), RadsFactoryProvider::new);
         System.out.println("RADS--------------CHECK!");
@@ -90,7 +95,9 @@ public abstract class CommonProxy {
         System.out.println("FTJ--------------CHECK!");
 
         CapabilityManager.INSTANCE.register(IWaterCapability.class, new WaterFactoryStorage(), WaterFactoryProvider::new);
-        CapabilityManager.INSTANCE.register(IAddInvCapability.class, new AddInvFactoryStorage(), AddInvCapabilityProvider::new);
+        CapabilityManager.INSTANCE.register(IAdvInventory.class, new IAdvStorage(), IAdvProvider::new);
+
+
         System.out.println("FINISHED BOOTING CAPABILITY SYSTEM");
         MinecraftForge.EVENT_BUS.register(new EventHandlerInit());
     }

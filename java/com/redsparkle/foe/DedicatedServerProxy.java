@@ -1,7 +1,7 @@
 package com.redsparkle.foe;
 
-import com.redsparkle.api.capa.StatsCapa.AddInvCapabilityProvider;
-import com.redsparkle.api.capa.StatsCapa.IAddInvCapability;
+import com.redsparkle.api.capa.Inventory.IAdvInventory;
+import com.redsparkle.api.capa.Inventory.IAdvProvider;
 import com.redsparkle.api.capa.level.ILevelCapability;
 import com.redsparkle.api.capa.level.LevelFactoryProvider;
 import com.redsparkle.api.capa.skills.ISkillsCapability;
@@ -221,102 +221,20 @@ public class DedicatedServerProxy extends CommonProxy {
 
     }
 
-    public static void handleAdvInv(MessageAdvInvSync message, EntityPlayerMP playerMP) {
-        IAddInvCapability iAdvInv = playerMP.getCapability(AddInvCapabilityProvider.STATS_CAPA,null);
-        String[] id = new String[]{
-                iAdvInv.getPipBuckSlot().getDisplayName(),
-                iAdvInv.getDeviceSlot1().getDisplayName(),
-                iAdvInv.getDeviceSlot2().getDisplayName(),
-                iAdvInv.getDeviceSlot3().getDisplayName(),
-                iAdvInv.getDeviceSlot4().getDisplayName(),
-                iAdvInv.getHarnessSlot().getDisplayName(),
-                iAdvInv.getGunSlot1().getDisplayName(),
-                iAdvInv.getGunSlot2().getDisplayName(),
-                iAdvInv.getAmmoSlot1().getDisplayName(),
-                iAdvInv.getAmmoSlot2().getDisplayName(),
-                iAdvInv.getAmmoSlot3().getDisplayName(),
-                iAdvInv.getAmmoSlot4().getDisplayName()
-        };
-        int[] count = new int[]{
-                iAdvInv.getPipBuckSlot().getCount(),
-                iAdvInv.getDeviceSlot1().getCount(),
-                iAdvInv.getDeviceSlot2().getCount(),
-                iAdvInv.getDeviceSlot3().getCount(),
-                iAdvInv.getDeviceSlot4().getCount(),
-                iAdvInv.getHarnessSlot().getCount(),
-                iAdvInv.getGunSlot1().getCount(),
-                iAdvInv.getGunSlot2().getCount(),
-                iAdvInv.getAmmoSlot1().getCount(),
-                iAdvInv.getAmmoSlot2().getCount(),
-                iAdvInv.getAmmoSlot3().getCount(),
-                iAdvInv.getAmmoSlot4().getCount()
-        };
-        int[] damage = new int[]{
-                iAdvInv.getPipBuckSlot().getItemDamage(),
-                iAdvInv.getDeviceSlot1().getItemDamage(),
-                iAdvInv.getDeviceSlot2().getItemDamage(),
-                iAdvInv.getDeviceSlot3().getItemDamage(),
-                iAdvInv.getDeviceSlot4().getItemDamage(),
-                iAdvInv.getHarnessSlot().getItemDamage(),
-                iAdvInv.getGunSlot1().getItemDamage(),
-                iAdvInv.getGunSlot2().getItemDamage(),
-                iAdvInv.getAmmoSlot1().getItemDamage(),
-                iAdvInv.getAmmoSlot2().getItemDamage(),
-                iAdvInv.getAmmoSlot3().getItemDamage(),
-                iAdvInv.getAmmoSlot4().getItemDamage()
-        };
-        main.simpleNetworkWrapper.sendTo(new MessageAdvInvToClientSync(id, count, damage), playerMP);
-    }
-    @SuppressWarnings("Duplicates")
-    public static void handleAdvInvFromCLient(MessageAdvInvToServerSync message, EntityPlayerMP playerMP) {
-        IAddInvCapability adv = AddInvCapabilityProvider.instanceFor(playerMP);
+    public static void handleAdv(MessageAdvInv message, EntityPlayerMP playerMP) {
 
+        IAdvInventory advInventory = IAdvProvider.instanceFor(playerMP);
         for (int i = 0; i < 12; i++) {
             Item item = null;
-            item = item.getByNameOrId(message.item_id[i]);
+            Item.getByNameOrId(message.item_id[i]);
             ItemStack stack = new ItemStack(item);
             stack.setCount(message.item_count[i]);
             stack.setItemDamage(message.item_damage[i]);
-
-            if (i == 0) {
-                adv.setPipBuckSlot(stack);
-            }
-            if (i == 1) {
-                adv.setDeviceSlot1(stack);
-            }
-            if (i == 2) {
-                adv.setDeviceSlot2(stack);
-            }
-            if (i == 3) {
-                adv.setDeviceSlot3(stack);
-            }
-            if (i == 4) {
-                adv.setDeviceSlot4(stack);
-            }
-            if (i == 5) {
-                adv.setHarnessSlot(stack);
-            }
-            if (i == 6) {
-                adv.setGunSlot1(stack);
-            }
-            if (i == 7) {
-                adv.setGunSlot2(stack);
-            }
-            if (i == 8) {
-                adv.setAmmoSlot1(stack);
-            }
-            if (i == 9) {
-                adv.setAmmoSlot2(stack);
-            }
-            if (i == 10) {
-                adv.setAmmoSlot3(stack);
-            }
-            if (i == 11) {
-                adv.setAmmoSlot4(stack);
-            }
-
+            advInventory.insertItem(i, stack, false);
+        }
+        main.simpleNetworkWrapper.sendTo(new MessageAdvInv(advInventory), playerMP);
     }
-    }
+
     /**
      * Run before anything else. Read your config, create blocks, items, etc, and register them with the GameRegistry
      */
@@ -355,7 +273,4 @@ public class DedicatedServerProxy extends CommonProxy {
     public boolean isDedicatedServer() {
         return true;
     }
-
-
-
 }

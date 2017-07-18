@@ -1,7 +1,6 @@
 package com.redsparkle.foe;
 
 
-import com.redsparkle.api.handlers.GuiHandler;
 import com.redsparkle.foe.commands.rpSkillCheck;
 import com.redsparkle.foe.network.ClientServerOneClass.*;
 import com.redsparkle.foe.network.*;
@@ -77,7 +76,6 @@ public class main {
         MinecraftForge.EVENT_BUS.register(main.instance);
 
         proxy.init();
-        NetworkRegistry.INSTANCE.registerGuiHandler(main.instance, new GuiHandler());
 
         System.out.println("STARTING BOOTING NETWORK MESSAGES");
         simpleNetworkWrapper = NetworkRegistry.INSTANCE.newSimpleChannel("FOE Network Channel");
@@ -119,9 +117,8 @@ public class main {
         simpleNetworkWrapper.registerMessage(MessageOpenGuiClient.HandleServer.class, MessageOpenGuiClient.class, FIRTSTIME_MESSAGE_ID_SERVER, Side.SERVER);
         System.out.println("GUI TRIGGERS ------CHECK");
 
-        simpleNetworkWrapper.registerMessage(MessageAdvInvToClientSync.HandlerClient.class, MessageAdvInvToClientSync.class, SYNC_INV_CLIENTS, Side.CLIENT);
-        simpleNetworkWrapper.registerMessage(MessageAdvInvSync.HandlerServer.class,MessageAdvInvSync.class,SYNC_INV_SERVER,Side.SERVER);
-        simpleNetworkWrapper.registerMessage(MessageAdvInvToServerSync.HandlerServer.class,MessageAdvInvToServerSync.class,SYNC_INV_SERVER_FROM_CLIENT,Side.SERVER);
+        simpleNetworkWrapper.registerMessage(MessageAdvInv.HandlerClient.class, MessageAdvInv.class, SYNC_INV_CLIENTS, Side.CLIENT);
+        simpleNetworkWrapper.registerMessage(MessageAdvInv.HandlerServer.class, MessageAdvInv.class, SYNC_INV_SERVER, Side.SERVER);
         System.out.println("FINISHED BOOTING NETWORK MESSAGES");
     }
 

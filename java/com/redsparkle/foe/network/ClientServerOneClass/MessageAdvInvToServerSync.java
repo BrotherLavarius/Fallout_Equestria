@@ -1,18 +1,9 @@
 package com.redsparkle.foe.network.ClientServerOneClass;
 
-import com.redsparkle.api.capa.StatsCapa.AddInvCapabilityProvider;
-import com.redsparkle.api.capa.StatsCapa.IAddInvCapability;
-import com.redsparkle.foe.ClientOnlyProxy;
-import com.redsparkle.foe.DedicatedServerProxy;
 import io.netty.buffer.ByteBuf;
-import net.minecraft.client.entity.EntityPlayerSP;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.network.ByteBufUtils;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
-import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
-import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 
 /**
  * Created by hoijima on 14.07.17.
@@ -25,80 +16,80 @@ public class MessageAdvInvToServerSync implements IMessage {
     public int[] item_count = new int[12];
     public int[] item_damage = new int[12];
     public int index;
-    public IAddInvCapability iAdvInv;
-    public MessageAdvInvToServerSync() {}
-
-    public MessageAdvInvToServerSync(EntityPlayer player) {
-        this.iAdvInv = player.getCapability(AddInvCapabilityProvider.STATS_CAPA,null);
-        this.item_id = new String[]{
-                iAdvInv.getPipBuckSlot().getDisplayName(),
-                iAdvInv.getDeviceSlot1().getDisplayName(),
-                iAdvInv.getDeviceSlot2().getDisplayName(),
-                iAdvInv.getDeviceSlot3().getDisplayName(),
-                iAdvInv.getDeviceSlot4().getDisplayName(),
-                iAdvInv.getHarnessSlot().getDisplayName(),
-                iAdvInv.getGunSlot1().getDisplayName(),
-                iAdvInv.getGunSlot2().getDisplayName(),
-                iAdvInv.getAmmoSlot1().getDisplayName(),
-                iAdvInv.getAmmoSlot2().getDisplayName(),
-                iAdvInv.getAmmoSlot3().getDisplayName(),
-                iAdvInv.getAmmoSlot4().getDisplayName()
-        };
-        this.item_count = new int[]{
-                iAdvInv.getPipBuckSlot().getCount(),
-                iAdvInv.getDeviceSlot1().getCount(),
-                iAdvInv.getDeviceSlot2().getCount(),
-                iAdvInv.getDeviceSlot3().getCount(),
-                iAdvInv.getDeviceSlot4().getCount(),
-                iAdvInv.getHarnessSlot().getCount(),
-                iAdvInv.getGunSlot1().getCount(),
-                iAdvInv.getGunSlot2().getCount(),
-                iAdvInv.getAmmoSlot1().getCount(),
-                iAdvInv.getAmmoSlot2().getCount(),
-                iAdvInv.getAmmoSlot3().getCount(),
-                iAdvInv.getAmmoSlot4().getCount()
-        };
-        this.item_damage = new int[]{
-                iAdvInv.getPipBuckSlot().getItemDamage(),
-                iAdvInv.getDeviceSlot1().getItemDamage(),
-                iAdvInv.getDeviceSlot2().getItemDamage(),
-                iAdvInv.getDeviceSlot3().getItemDamage(),
-                iAdvInv.getDeviceSlot4().getItemDamage(),
-                iAdvInv.getHarnessSlot().getItemDamage(),
-                iAdvInv.getGunSlot1().getItemDamage(),
-                iAdvInv.getGunSlot2().getItemDamage(),
-                iAdvInv.getAmmoSlot1().getItemDamage(),
-                iAdvInv.getAmmoSlot2().getItemDamage(),
-                iAdvInv.getAmmoSlot3().getItemDamage(),
-                iAdvInv.getAmmoSlot4().getItemDamage()
-        };
-
-    }
-
-    public MessageAdvInvToServerSync(AddInvCapabilityProvider adv) {
-            this.itemArray = new ItemStack[]{
-                    adv.getPipBuckSlot(),
-                    adv.getDeviceSlot1(),
-                    adv.getDeviceSlot2(),
-                    adv.getDeviceSlot3(),
-                    adv.getDeviceSlot4(),
-                    adv.getHarnessSlot(),
-                    adv.getGunSlot1(),
-                    adv.getGunSlot2(),
-                    adv.getAmmoSlot1(),
-                    adv.getAmmoSlot2(),
-                    adv.getAmmoSlot3(),
-                    adv.getAmmoSlot4()
-            };
-
-            for (int i = 0; i < 12; i++) {
-
-                this.item_id[i] = itemArray[i].getUnlocalizedName();
-                this.item_count[i] = itemArray[i].getCount();
-                this.item_damage[i] = itemArray[i].getItemDamage();
-
-        }
-    }
+//    public IAddInvCapability iAdvInv;
+//    public MessageAdvInvToServerSync() {}
+//
+//    public MessageAdvInvToServerSync(EntityPlayer player) {
+//        this.iAdvInv = player.getCapability(AddInvCapabilityProvider.STATS_CAPA,null);
+//        this.item_id = new String[]{
+//                iAdvInv.getPipBuckSlot().getDisplayName(),
+//                iAdvInv.getDeviceSlot1().getDisplayName(),
+//                iAdvInv.getDeviceSlot2().getDisplayName(),
+//                iAdvInv.getDeviceSlot3().getDisplayName(),
+//                iAdvInv.getDeviceSlot4().getDisplayName(),
+//                iAdvInv.getHarnessSlot().getDisplayName(),
+//                iAdvInv.getGunSlot1().getDisplayName(),
+//                iAdvInv.getGunSlot2().getDisplayName(),
+//                iAdvInv.getAmmoSlot1().getDisplayName(),
+//                iAdvInv.getAmmoSlot2().getDisplayName(),
+//                iAdvInv.getAmmoSlot3().getDisplayName(),
+//                iAdvInv.getAmmoSlot4().getDisplayName()
+//        };
+//        this.item_count = new int[]{
+//                iAdvInv.getPipBuckSlot().getCount(),
+//                iAdvInv.getDeviceSlot1().getCount(),
+//                iAdvInv.getDeviceSlot2().getCount(),
+//                iAdvInv.getDeviceSlot3().getCount(),
+//                iAdvInv.getDeviceSlot4().getCount(),
+//                iAdvInv.getHarnessSlot().getCount(),
+//                iAdvInv.getGunSlot1().getCount(),
+//                iAdvInv.getGunSlot2().getCount(),
+//                iAdvInv.getAmmoSlot1().getCount(),
+//                iAdvInv.getAmmoSlot2().getCount(),
+//                iAdvInv.getAmmoSlot3().getCount(),
+//                iAdvInv.getAmmoSlot4().getCount()
+//        };
+//        this.item_damage = new int[]{
+//                iAdvInv.getPipBuckSlot().getItemDamage(),
+//                iAdvInv.getDeviceSlot1().getItemDamage(),
+//                iAdvInv.getDeviceSlot2().getItemDamage(),
+//                iAdvInv.getDeviceSlot3().getItemDamage(),
+//                iAdvInv.getDeviceSlot4().getItemDamage(),
+//                iAdvInv.getHarnessSlot().getItemDamage(),
+//                iAdvInv.getGunSlot1().getItemDamage(),
+//                iAdvInv.getGunSlot2().getItemDamage(),
+//                iAdvInv.getAmmoSlot1().getItemDamage(),
+//                iAdvInv.getAmmoSlot2().getItemDamage(),
+//                iAdvInv.getAmmoSlot3().getItemDamage(),
+//                iAdvInv.getAmmoSlot4().getItemDamage()
+//        };
+//
+//    }
+//
+//    public MessageAdvInvToServerSync(AddInvCapabilityProvider adv) {
+//            this.itemArray = new ItemStack[]{
+//                    adv.getPipBuckSlot(),
+//                    adv.getDeviceSlot1(),
+//                    adv.getDeviceSlot2(),
+//                    adv.getDeviceSlot3(),
+//                    adv.getDeviceSlot4(),
+//                    adv.getHarnessSlot(),
+//                    adv.getGunSlot1(),
+//                    adv.getGunSlot2(),
+//                    adv.getAmmoSlot1(),
+//                    adv.getAmmoSlot2(),
+//                    adv.getAmmoSlot3(),
+//                    adv.getAmmoSlot4()
+//            };
+//
+//            for (int i = 0; i < 12; i++) {
+//
+//                this.item_id[i] = itemArray[i].getUnlocalizedName();
+//                this.item_count[i] = itemArray[i].getCount();
+//                this.item_damage[i] = itemArray[i].getItemDamage();
+//
+//        }
+//    }
 
 //TODO: we need to send indexing data about leght of thebytebuder
 
@@ -135,14 +126,14 @@ public class MessageAdvInvToServerSync implements IMessage {
     }
 
 
-    public static class HandlerServer implements IMessageHandler<MessageAdvInvToServerSync, IMessage> {
-
-        @Override
-        public IMessage onMessage(MessageAdvInvToServerSync message, MessageContext ctx) {
-            EntityPlayerMP playerMP = ctx.getServerHandler().playerEntity;
-
-            DedicatedServerProxy.handleAdvInvFromCLient(message, playerMP);
-            return null;
-        }
-    }
+//    public static class HandlerServer implements IMessageHandler<MessageAdvInvToServerSync, IMessage> {
+//
+//        @Override
+//        public IMessage onMessage(MessageAdvInvToServerSync message, MessageContext ctx) {
+//            EntityPlayerMP playerMP = ctx.getServerHandler().playerEntity;
+//
+//            DedicatedServerProxy.handleAdvInvFromCLient(message, playerMP);
+//            return null;
+//        }
+//    }
 }

@@ -1,9 +1,11 @@
 package com.redsparkle.foe.containers;
 
-import com.redsparkle.api.capa.StatsCapa.AddInvCapabilityProvider;
-import com.redsparkle.api.capa.StatsCapa.IAddInvCapability;
+import com.redsparkle.api.capa.Inventory.IAdvInventory;
+import com.redsparkle.api.capa.Inventory.IAdvProvider;
 import com.redsparkle.foe.containers.Slots.*;
 import com.redsparkle.foe.inventory.AddInv_impl;
+import com.redsparkle.foe.main;
+import com.redsparkle.foe.network.ClientServerOneClass.MessageAdvInv;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
@@ -16,17 +18,26 @@ import net.minecraft.item.ItemStack;
 public class CONTAINER_AdditionalInventory extends Container {
 
     private final int numRows;
+    private final int HOTBAR_SLOT_COUNT = 9;
+    private final int PLAYER_INVENTORY_ROW_COUNT = 3;
+    private final int PLAYER_INVENTORY_COLUMN_COUNT = 9;
+    private final int PLAYER_INVENTORY_SLOT_COUNT = PLAYER_INVENTORY_COLUMN_COUNT * PLAYER_INVENTORY_ROW_COUNT;
+    private final int VANILLA_SLOT_COUNT = HOTBAR_SLOT_COUNT + PLAYER_INVENTORY_SLOT_COUNT;
+    private final int VANILLA_FIRST_SLOT_INDEX = 0;
+    private final int ADV_INVENTORY_FIRST_SLOT_INDEX = VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT;
+    private final int ADV_INVENTORY_SLOT_COUNT = 11;
     public AddInv_impl additional_inventory;
     public InventoryPlayer inventoryPlayer;
-    public IAddInvCapability stats;
+    public IAdvInventory adv_inv;
+
 
     //TODO: FInish this class
-    public CONTAINER_AdditionalInventory(EntityPlayer thePlayer) {
-        this.stats = thePlayer.getCapability(AddInvCapabilityProvider.STATS_CAPA, null);
-        this.inventoryPlayer = thePlayer.inventory;
-        this.additional_inventory = stats.getInventory();
-        stats.updateClient(thePlayer);
-        additional_inventory.openInventory(thePlayer);
+    public CONTAINER_AdditionalInventory(EntityPlayer player) {
+        this.adv_inv = player.getCapability(IAdvProvider.Adv_Inv, null);
+        this.inventoryPlayer = player.inventory;
+        this.additional_inventory = new AddInv_impl();
+
+        additional_inventory.openInventory(player);
         numRows = inventoryPlayer.getSizeInventory() / 9;
 
         int i = (numRows - 4) * 18;
@@ -66,7 +77,9 @@ public class CONTAINER_AdditionalInventory extends Container {
             this.addSlotToContainer(new SlotAmmo(additional_inventory, 9, 132, 6));
             this.addSlotToContainer(new SlotAmmo(additional_inventory, 10, 113, 25));
             this.addSlotToContainer(new SlotAmmo(additional_inventory, 11, 132, 25));
-
+        for (int g = 0; g <= ADV_INVENTORY_SLOT_COUNT; g++) {
+            additional_inventory.setInventorySlotContents(g, adv_inv.getStackInSlot(g));
+        }
     }
 
     public boolean canInteractWith(EntityPlayer var1) {
@@ -75,89 +88,51 @@ public class CONTAINER_AdditionalInventory extends Container {
 
 
     @Override
-    public ItemStack transferStackInSlot(EntityPlayer par1EntityPlayer, int par1) {
-        ItemStack var2 = ItemStack.EMPTY;
-        final Slot slot = this.inventorySlots.get(par1);
+    public ItemStack transferStackInSlot(EntityPlayer player, int sourceSlotIndex) {
+        Slot sourceSlot = inventorySlots.get(sourceSlotIndex);
+        if (sourceSlot == null || !sourceSlot.getHasStack()) return ItemStack.EMPTY;  //EMPTY_ITEM
+        ItemStack sourceStack = sourceSlot.getStack();
+        ItemStack copyOfSourceStack = sourceStack.copy();
 
-        if (slot != null && slot.getHasStack()) {
-            final ItemStack stack = slot.getStack();
-            var2 = stack.copy();
-
-            if (par1 >= 36) {
-                if (!this.mergeItemStack(stack, 0, 36, true)) {
-                    return ItemStack.EMPTY;
-                }
-            } else {
-                boolean flag = false;
-                for (int j = 0; j < 13; j++) {
-                    if ((this.inventorySlots.get(j)).isItemValid(stack)) {
-                        if (!this.mergeOneItem(stack, j, j + 1, false)) {
-                            return ItemStack.EMPTY;
-                        }
-                        flag = true;
-                        break;
-                    }
-                }
-
-
-                if (!flag) {
-                    if (par1 < 27) {
-                        if (!this.mergeItemStack(stack, 27, 36, false)) {
-                            return ItemStack.EMPTY;
-                        }
-                    } else if (!this.mergeItemStack(stack, 0, 27, false)) {
-                        return ItemStack.EMPTY;
-                    }
-                }
+        // Check if the slot clicked is one of the vanilla container slots
+        if (sourceSlotIndex >= VANILLA_FIRST_SLOT_INDEX && sourceSlotIndex < VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT) {
+            // This is a vanilla container slot so merge the stack into the tile inventory
+            if (!mergeItemStack(sourceStack, ADV_INVENTORY_FIRST_SLOT_INDEX, ADV_INVENTORY_FIRST_SLOT_INDEX + ADV_INVENTORY_SLOT_COUNT, false)) {
+                return ItemStack.EMPTY;  // EMPTY_ITEM
             }
-
-            if (stack.getCount() == 0) {
-                slot.putStack(ItemStack.EMPTY);
-            } else {
-                slot.onSlotChanged();
+        } else if (sourceSlotIndex >= ADV_INVENTORY_FIRST_SLOT_INDEX && sourceSlotIndex < ADV_INVENTORY_FIRST_SLOT_INDEX + ADV_INVENTORY_SLOT_COUNT) {
+            // This is a TE slot so merge the stack into the players inventory
+            if (!mergeItemStack(sourceStack, VANILLA_FIRST_SLOT_INDEX, VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT, false)) {
+                return ItemStack.EMPTY;   // EMPTY_ITEM
             }
-
-            if (stack.getCount() == var2.getCount()) {
-                return ItemStack.EMPTY;
-            }
-
-            slot.onTake(par1EntityPlayer, stack);
+        } else {
+            System.err.print("Invalid slotIndex:" + sourceSlotIndex);
+            return ItemStack.EMPTY;   // EMPTY_ITEM
         }
 
-        return var2;
-    }
-
-
-    protected boolean mergeOneItem(ItemStack par1ItemStack, int par2, int par3, boolean par4) {
-        boolean flag1 = false;
-        if (par1ItemStack.getCount() > 0) {
-            Slot slot;
-            ItemStack slotStack;
-
-            for (int k = par2; k < par3; k++) {
-                slot = this.inventorySlots.get(k);
-                slotStack = slot.getStack();
-
-                if (slotStack.isEmpty()) {
-                    ItemStack stackOneItem = par1ItemStack.copy();
-                    stackOneItem.setCount(1);
-                    par1ItemStack.shrink(1);
-                    slot.putStack(stackOneItem);
-                    slot.onSlotChanged();
-                    flag1 = true;
-                    break;
-                }
-            }
+        // If stack size == 0 (the entire stack was moved) set slot contents to null
+        if (sourceStack.getCount() == 0) {  // getStackSize
+            sourceSlot.putStack(ItemStack.EMPTY);  // EMPTY_ITEM
+        } else {
+            sourceSlot.onSlotChanged();
         }
 
-        return flag1;
+        sourceSlot.onTake(player, sourceStack);  //onPickupFromSlot()
+        return copyOfSourceStack;
+
     }
+
 
     @Override
     public void onContainerClosed(EntityPlayer playerIn) {
         super.onContainerClosed(playerIn);
-        //this.stats.updateServer(playerIn);
+        for (int i = 0; i <= ADV_INVENTORY_SLOT_COUNT; i++) {
+            adv_inv.insertItem(i, additional_inventory.getStackInSlot(i), false);
+        }
+        main.simpleNetworkWrapper.sendToServer(new MessageAdvInv(adv_inv));
+
         this.additional_inventory.closeInventory(playerIn);
+
     }
 
 }

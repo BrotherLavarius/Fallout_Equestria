@@ -19,7 +19,7 @@ public class SlotDevice extends Slot {
 
     @Override
     public int getSlotStackLimit() {
-        return 1;
+        return 65;
     }
     @Override
     public boolean isItemValid(ItemStack stack) {

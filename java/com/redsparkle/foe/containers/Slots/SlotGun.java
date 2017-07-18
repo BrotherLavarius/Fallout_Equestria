@@ -39,7 +39,7 @@ public class SlotGun extends Slot {
     }
     @Override
     public int getSlotStackLimit() {
-        return 1;
+        return 64;
     }
     @Override
     public boolean isItemValid(ItemStack stack) {
