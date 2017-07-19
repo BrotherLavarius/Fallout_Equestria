@@ -223,10 +223,10 @@ public class ClientOnlyProxy extends CommonProxy {
             IAdvInventory advInventory = IAdvProvider.instanceFor(player);
             for (int i = 0; i < 12; i++) {
                 Item item = null;
-                item.getByNameOrId(message.item_id[i]);
+                item.getByNameOrId(message.item_id.get(i));
                 ItemStack stack = new ItemStack(item);
-                stack.setCount(message.item_count[i]);
-                stack.setItemDamage(message.item_damage[i]);
+                stack.setCount(message.item_count.get(i));
+                stack.setItemDamage(message.item_damage.get(i));
                 advInventory.insertItem(i, stack, false);
             }
 

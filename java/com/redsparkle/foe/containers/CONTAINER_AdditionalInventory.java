@@ -39,6 +39,21 @@ public class CONTAINER_AdditionalInventory extends Container {
         additional_inventory.openInventory(player);
         numRows = inventoryPlayer.getSizeInventory() / 9;
 
+        this.addSlotToContainer(new SlotPipBuck(additional_inventory, 0, 27, 4));
+        this.addSlotToContainer(new SlotDevice(additional_inventory, 1, 6, 5));
+        this.addSlotToContainer(new SlotDevice(additional_inventory, 2, 6, 24));
+        this.addSlotToContainer(new SlotDevice(additional_inventory, 3, 6, 43));
+        this.addSlotToContainer(new SlotDevice(additional_inventory, 4, 6, 62));
+        this.addSlotToContainer(new SlotHarness(additional_inventory, 5, 123, 50));
+        this.addSlotToContainer(new SlotGun(additional_inventory, 6, 152, 15));
+        this.addSlotToContainer(new SlotGun(additional_inventory, 7, 103, 15));
+        this.addSlotToContainer(new SlotAmmo(additional_inventory, 8, 113, 6));
+        this.addSlotToContainer(new SlotAmmo(additional_inventory, 9, 132, 6));
+        this.addSlotToContainer(new SlotAmmo(additional_inventory, 10, 113, 25));
+        this.addSlotToContainer(new SlotAmmo(additional_inventory, 11, 132, 25));
+
+
+
         int i = (numRows - 4) * 18;
 
         for (int l = 0; l < 3; ++l) {
@@ -61,21 +76,9 @@ public class CONTAINER_AdditionalInventory extends Container {
          * Player Hotbar        0-8 ... 36 - 44
          */
 
-        this.addSlotToContainer(new SlotPipBuck(additional_inventory, 0, 27, 4));
-        this.addSlotToContainer(new SlotDevice(additional_inventory, 1, 6, 5));
-        this.addSlotToContainer(new SlotDevice(additional_inventory, 2, 6, 24));
-        this.addSlotToContainer(new SlotDevice(additional_inventory, 3, 6, 43));
-        this.addSlotToContainer(new SlotDevice(additional_inventory, 4, 6, 62));
-        this.addSlotToContainer(new SlotHarness(additional_inventory, 5, 123, 50));
-        this.addSlotToContainer(new SlotGun(additional_inventory, 6, 152, 15));
-        this.addSlotToContainer(new SlotGun(additional_inventory, 7, 103, 15));
-        this.addSlotToContainer(new SlotAmmo(additional_inventory, 8, 113, 6));
-        this.addSlotToContainer(new SlotAmmo(additional_inventory, 9, 132, 6));
-        this.addSlotToContainer(new SlotAmmo(additional_inventory, 10, 113, 25));
-        this.addSlotToContainer(new SlotAmmo(additional_inventory, 11, 132, 25));
 
         for (int g = 0; g < 12; g++) {
-            additional_inventory.setInventorySlotContents(g, adv_inv.getStackInSlot(g));
+            this.additional_inventory.setInventorySlotContents(g, adv_inv.getStackInSlot(g));
         }
     }
 

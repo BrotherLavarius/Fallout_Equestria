@@ -12,18 +12,15 @@ import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * Created by hoijima on 18.07.17.
  */
 public class MessageAdvInv implements IMessage {
 
-    public List<ItemStack> itemArray = new ArrayList<ItemStack>();
-    public String[] item_id = new String[12];
-    public int[] item_count = new int[12];
-    public int[] item_damage = new int[12];
+    public NonNullList<ItemStack> itemArray = NonNullList.withSize(12, ItemStack.EMPTY);
+    public NonNullList<String> item_id = NonNullList.withSize(12, "item.air");
+    public NonNullList<Integer> item_count = NonNullList.withSize(12, 0);
+    public NonNullList<Integer> item_damage = NonNullList.withSize(12, 0);
     public boolean sync;
 
     public IAdvInventory advInventory;
@@ -37,9 +34,9 @@ public class MessageAdvInv implements IMessage {
         this.sync = sync;
         if (sync) {
             for (int i = 0; i < 12; i++) {
-                item_id[i] = addinv.getStackInSlot(i).getUnlocalizedName();
-                item_count[i] = addinv.getStackInSlot(i).getCount();
-                item_count[i] = addinv.getStackInSlot(i).getItemDamage();
+                item_id.set(i, addinv.getStackInSlot(i).getUnlocalizedName());
+                item_count.set(i, addinv.getStackInSlot(i).getCount());
+                item_damage.set(i, addinv.getStackInSlot(i).getItemDamage());
             }
         }
     }
@@ -48,9 +45,9 @@ public class MessageAdvInv implements IMessage {
         this.sync = sync;
         if (sync) {
             for (int i = 0; i < 12; i++) {
-                item_id[i] = stacks.get(i).getUnlocalizedName();
-                item_count[i] = stacks.get(i).getCount();
-                item_count[i] = stacks.get(i).getItemDamage();
+                item_id.set(i, stacks.get(i).getUnlocalizedName());
+                item_count.set(i, stacks.get(i).getCount());
+                item_damage.set(i, stacks.get(i).getItemDamage());
             }
         }
     }
@@ -59,7 +56,7 @@ public class MessageAdvInv implements IMessage {
     @Override
     public void toBytes(ByteBuf buf) {
         for (int i = 0; i < 12; i++) {
-            String message = new String(item_id[i] + "," + item_count[i] + "," + item_damage[i]);
+            String message = new String(item_id.get(i) + "," + item_count.get(i) + "," + item_damage.get(i));
             ByteBufUtils.writeUTF8String(buf, message);
 
         }
@@ -77,12 +74,12 @@ public class MessageAdvInv implements IMessage {
 
             String recivedmessage = ByteBufUtils.readUTF8String(buf);
             String[] parts = recivedmessage.split(",");
-            item_id[i] = parts[0];
-            item_count[i] = Integer.parseInt(parts[1]);
-            item_damage[i] = Integer.parseInt(parts[2]);
+            item_id.set(i, parts[0]);
+            item_count.set(i, Integer.parseInt(parts[1]));
+            item_damage.set(i, Integer.parseInt(parts[2]));
 
         }
-        this.sync = buf.readBoolean();
+        sync = buf.readBoolean();
     }
 
     public static class HandlerClient implements IMessageHandler<MessageAdvInv, IMessage> {

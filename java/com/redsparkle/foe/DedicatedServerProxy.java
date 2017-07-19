@@ -29,9 +29,6 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.world.WorldServer;
 import net.minecraftforge.common.MinecraftForge;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import static com.redsparkle.api.capa.level.LevelFactoryProvider.LEVEL_CAPABILITY;
 
 /**
@@ -230,10 +227,10 @@ public class DedicatedServerProxy extends CommonProxy {
         IAdvInventory advInventory = IAdvProvider.instanceFor(playerMP);
         for (int i = 0; i < 12; i++) {
             Item item = null;
-            item = ItemCatalog.Request(message.item_id[i]);
+            item = ItemCatalog.Request(message.item_id.get(i));
             ItemStack stack = new ItemStack(item);
-            stack.setCount(message.item_count[i]);
-            stack.setItemDamage(message.item_damage[i]);
+            stack.setCount(message.item_count.get(i));
+            stack.setItemDamage(message.item_damage.get(i));
             advInventory.insertItem(i,stack,false);
         }
 
@@ -242,7 +239,7 @@ public class DedicatedServerProxy extends CommonProxy {
 
     public static void handleAdv_requestSync(EntityPlayerMP playerMP) {
         IAdvInventory advInventory = IAdvProvider.instanceFor(playerMP);
-        main.simpleNetworkWrapper.sendTo(new MessageAdvInv(advInventory, true), playerMP);
+        advInventory.updateClient(playerMP);
     }
 
     /**
