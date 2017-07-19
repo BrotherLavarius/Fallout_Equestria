@@ -10,6 +10,7 @@ import com.redsparkle.api.capa.spechial.ISpechialCapability;
 import com.redsparkle.api.capa.spechial.SpechialFactoryProvider;
 import com.redsparkle.api.capa.water.IWaterCapability;
 import com.redsparkle.api.capa.water.WaterFactoryProvider;
+import com.redsparkle.api.utils.ItemCatalog;
 import com.redsparkle.api.utils.Lvlutil;
 import com.redsparkle.api.utils.PlayerParamsSetup;
 import com.redsparkle.foe.events.ServerSIdeONly.EventHandlerServerSidePre;
@@ -226,18 +227,17 @@ public class DedicatedServerProxy extends CommonProxy {
     }
 
     public static void handleAdv(MessageAdvInv message, EntityPlayerMP playerMP) {
-        List<ItemStack> itemArray = new ArrayList<ItemStack>();
         IAdvInventory advInventory = IAdvProvider.instanceFor(playerMP);
         for (int i = 0; i < 12; i++) {
             Item item = null;
-            Item.getByNameOrId(message.item_id[i]);
+            item = ItemCatalog.Request(message.item_id[i]);
             ItemStack stack = new ItemStack(item);
             stack.setCount(message.item_count[i]);
             stack.setItemDamage(message.item_damage[i]);
-            itemArray.add(stack);
+            advInventory.insertItem(i,stack,false);
         }
-        //TODO: dosent work because fucking static
-        advInventory.inserProcesser(itemArray, playerMP);
+
+        advInventory.inserProcesser(message.item_id,message.item_count,message.item_damage, playerMP);
     }
 
     public static void handleAdv_requestSync(EntityPlayerMP playerMP) {
