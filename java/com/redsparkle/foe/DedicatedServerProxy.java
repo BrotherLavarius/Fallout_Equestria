@@ -222,7 +222,6 @@ public class DedicatedServerProxy extends CommonProxy {
     }
 
     public static void handleAdv(MessageAdvInv message, EntityPlayerMP playerMP) {
-
         IAdvInventory advInventory = IAdvProvider.instanceFor(playerMP);
         for (int i = 0; i < 12; i++) {
             Item item = null;

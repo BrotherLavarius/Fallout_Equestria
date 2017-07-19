@@ -25,10 +25,6 @@ public interface ISkillsCapability {
     Integer getEnergyWeapons();
 
 
-    Integer setExplosives(Integer newExplosives);
-
-    Integer getExplosives();
-
 
     Integer setMeleeWeapons(Integer newMeleeWeapons);
 
@@ -40,34 +36,48 @@ public interface ISkillsCapability {
     Integer getUnarmed();
 
 
-    Integer setMedicine(Integer newMedicine);
-
-    Integer getMedicine();
-
-
     Integer setLockpick(Integer newLockpick);
 
     Integer getLockpick();
 
+//    Integer setMagic(Integer newMagic);
+//    Integer getMagic();
+//
+//    Integer setMelee(Integer newMelee);
+//    Integer getMelee();
+//
+//    Integer setGuns(Integer newGuns);
+//    Integer getGuns();
+//
+//    Integer setEnergy_Weapons(Integer newEnergy_Weapons);
+//    Integer getEnergy_Weapons();
+//
+//    Integer setSaddlebag_guns(Integer newSaddlebag_guns);
+//    Integer getSaddlebag_guns();
+
+    Integer setExplosives(Integer newExplosives);
+    Integer getExplosives();
 
     Integer setRepair(Integer newRepair);
-
     Integer getRepair();
 
+    Integer setMedicine(Integer newMedicine);
+    Integer getMedicine();
 
     Integer setScience(Integer newScience);
-
     Integer getScience();
 
-
     Integer setSneak(Integer newSneak);
-
     Integer getSneak();
 
-
     Integer setBarter(Integer newBarter);
-
     Integer getBarter();
+
+//    Integer setSurvival(Integer newSurvival);
+//    Integer getSurvival();
+
+
+
 
 
     void setAll(Integer All);

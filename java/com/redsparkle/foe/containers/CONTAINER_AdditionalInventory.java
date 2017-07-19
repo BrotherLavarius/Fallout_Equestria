@@ -36,7 +36,7 @@ public class CONTAINER_AdditionalInventory extends Container {
         this.adv_inv = player.getCapability(IAdvProvider.Adv_Inv, null);
         this.inventoryPlayer = player.inventory;
         this.additional_inventory = new AddInv_impl();
-
+        additional_inventory.SetCapa(adv_inv);
         additional_inventory.openInventory(player);
         numRows = inventoryPlayer.getSizeInventory() / 9;
 
@@ -77,9 +77,7 @@ public class CONTAINER_AdditionalInventory extends Container {
             this.addSlotToContainer(new SlotAmmo(additional_inventory, 9, 132, 6));
             this.addSlotToContainer(new SlotAmmo(additional_inventory, 10, 113, 25));
             this.addSlotToContainer(new SlotAmmo(additional_inventory, 11, 132, 25));
-        for (int g = 0; g <= ADV_INVENTORY_SLOT_COUNT; g++) {
-            additional_inventory.setInventorySlotContents(g, adv_inv.getStackInSlot(g));
-        }
+
     }
 
     public boolean canInteractWith(EntityPlayer var1) {
@@ -126,10 +124,7 @@ public class CONTAINER_AdditionalInventory extends Container {
     @Override
     public void onContainerClosed(EntityPlayer playerIn) {
         super.onContainerClosed(playerIn);
-        for (int i = 0; i <= ADV_INVENTORY_SLOT_COUNT; i++) {
-            adv_inv.insertItem(i, additional_inventory.getStackInSlot(i), false);
-        }
-        main.simpleNetworkWrapper.sendToServer(new MessageAdvInv(adv_inv));
+
 
         this.additional_inventory.closeInventory(playerIn);
 
