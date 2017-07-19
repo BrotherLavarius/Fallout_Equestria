@@ -29,7 +29,6 @@ import net.minecraft.item.Item;
 public class GlobalItemArray_For_init {
 
 
-
     public static final String[] ItemNames = new String[]{
             //---------------------UTILITY--------------------------
             GlobalNames.PipbuckTT,

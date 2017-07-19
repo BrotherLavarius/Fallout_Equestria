@@ -19,28 +19,27 @@ import java.util.stream.IntStream;
 @SuppressWarnings("Duplicates")
 public class StatsGuiFirstJoin extends GuiScreen {
 
-    
-    
+
     public Integer counter = 0;
     public Boolean CommitShow = false;
     public int startY = 15;
-    GuiButtonExtFallout STR_Plus = new GuiButtonExtFallout(0,0,0,0,0, "+");
-    GuiButtonExtFallout PER_Plus = new GuiButtonExtFallout(1,0,0,0,0, "+");
-    GuiButtonExtFallout END_Plus = new GuiButtonExtFallout(2,0,0,0,0, "+");
-    GuiButtonExtFallout CHA_Plus = new GuiButtonExtFallout(3,0,0,0,0, "+");
-    GuiButtonExtFallout INT_Plus = new GuiButtonExtFallout(4,0,0,0,0, "+");
-    GuiButtonExtFallout AGI_Plus = new GuiButtonExtFallout(5,0,0,0,0, "+");
-    GuiButtonExtFallout LUC_Plus = new GuiButtonExtFallout(6,0,0,0,0, "+");
-    GuiButtonExtFallout STR_Minus = new GuiButtonExtFallout(7,0,0,0,0, "-");
-    GuiButtonExtFallout PER_Minus = new GuiButtonExtFallout(8,0,0,0,0, "-");
-    GuiButtonExtFallout END_Minus = new GuiButtonExtFallout(9,0,0,0,0, "-");
-    GuiButtonExtFallout CHA_Minus = new GuiButtonExtFallout(10,0,0,0,0, "-");
-    GuiButtonExtFallout INT_Minus = new GuiButtonExtFallout(11,0,0,0,0, "-");
-    GuiButtonExtFallout AGI_Minus = new GuiButtonExtFallout(12,0,0,0,0, "-");
-    GuiButtonExtFallout LUC_Minus = new GuiButtonExtFallout(13,0,0,0,0, "-");
-    GuiButtonExtFallout Commit = new GuiButtonExtFallout(14,0,0,0,0, "Start Playing!");
+    GuiButtonExtFallout STR_Plus = new GuiButtonExtFallout(0, 0, 0, 0, 0, "+");
+    GuiButtonExtFallout PER_Plus = new GuiButtonExtFallout(1, 0, 0, 0, 0, "+");
+    GuiButtonExtFallout END_Plus = new GuiButtonExtFallout(2, 0, 0, 0, 0, "+");
+    GuiButtonExtFallout CHA_Plus = new GuiButtonExtFallout(3, 0, 0, 0, 0, "+");
+    GuiButtonExtFallout INT_Plus = new GuiButtonExtFallout(4, 0, 0, 0, 0, "+");
+    GuiButtonExtFallout AGI_Plus = new GuiButtonExtFallout(5, 0, 0, 0, 0, "+");
+    GuiButtonExtFallout LUC_Plus = new GuiButtonExtFallout(6, 0, 0, 0, 0, "+");
+    GuiButtonExtFallout STR_Minus = new GuiButtonExtFallout(7, 0, 0, 0, 0, "-");
+    GuiButtonExtFallout PER_Minus = new GuiButtonExtFallout(8, 0, 0, 0, 0, "-");
+    GuiButtonExtFallout END_Minus = new GuiButtonExtFallout(9, 0, 0, 0, 0, "-");
+    GuiButtonExtFallout CHA_Minus = new GuiButtonExtFallout(10, 0, 0, 0, 0, "-");
+    GuiButtonExtFallout INT_Minus = new GuiButtonExtFallout(11, 0, 0, 0, 0, "-");
+    GuiButtonExtFallout AGI_Minus = new GuiButtonExtFallout(12, 0, 0, 0, 0, "-");
+    GuiButtonExtFallout LUC_Minus = new GuiButtonExtFallout(13, 0, 0, 0, 0, "-");
+    GuiButtonExtFallout Commit = new GuiButtonExtFallout(14, 0, 0, 0, 0, "Start Playing!");
     Integer[] buttonsIdsPlus = {0, 1, 2, 3, 4, 5, 6};
-    Integer[] buttonsIdsMinus ={7, 8, 9, 10,11,12,13};
+    Integer[] buttonsIdsMinus = {7, 8, 9, 10, 11, 12, 13};
     GuiButtonExtFallout[] buttonsPLus = {
             STR_Plus,
             PER_Plus,
@@ -61,7 +60,7 @@ public class StatsGuiFirstJoin extends GuiScreen {
     };
     int[] temp = {0, 0, 0, 0, 0, 0, 0};
     int[] finished = {0, 0, 0, 0, 0, 0, 0};
-    Integer pointsAvailable =0 ;
+    Integer pointsAvailable = 0;
 
     @Override
     public void drawScreen(int mouseX, int mouseY, float partialTicks) {
@@ -91,86 +90,85 @@ public class StatsGuiFirstJoin extends GuiScreen {
                 " Luck :        "
 
         };
-        GL11.glPushMatrix();{
-                GL11.glScalef((float) 1.0, (float) 1.0, 1.0f);
+        GL11.glPushMatrix();
+        {
+            GL11.glScalef((float) 1.0, (float) 1.0, 1.0f);
             for (int i = 0; i <= (params.length - 1); i++) {
                 this.fontRendererObj.drawString(names[i],
                         ScreenGrid.XCoordStart(
                                 this.width,
-                                2)+25,
+                                2) + 25,
                         ScreenGrid.YCoordStart(
                                 this.height,
-                                2)+ (i*15)+ 30,
+                                2) + (i * 15) + 30,
                         15435844, true
                 );
                 this.fontRendererObj.drawString(Integer.toString(
                         params[i]),
                         ScreenGrid.XCoordStart(
                                 this.width,
-                                2)+215,
+                                2) + 215,
                         ScreenGrid.YCoordStart(
                                 this.height,
-                                2)+(i*15)+ 30,
+                                2) + (i * 15) + 30,
                         15465844, true
                 );
-                this.fontRendererObj.drawString("+ " +Integer.toString(
+                this.fontRendererObj.drawString("+ " + Integer.toString(
                         temp[i]),
                         ScreenGrid.XCoordStart(
                                 this.width,
-                                2)+225,
+                                2) + 225,
                         ScreenGrid.YCoordStart(
                                 this.height,
-                                2)+(i*15)+ 30,
+                                2) + (i * 15) + 30,
                         15465844, true
                 );
 
                 this.fontRendererObj.drawString(Integer.toString(
-                        finished[i] =temp[i]+params[i] ),
+                        finished[i] = temp[i] + params[i]),
                         ScreenGrid.XCoordStart(
                                 this.width,
-                                2)+275,
+                                2) + 275,
                         ScreenGrid.YCoordStart(
                                 this.height,
-                                2)+(i*15)+ 30,
+                                2) + (i * 15) + 30,
                         15465844, true
                 );
-
-
 
 
                 startY = startY + 4;
             }
             pointsAvailable = 30;
 
-            this.fontRendererObj.drawString("Points available: " +Integer.toString(pointsAvailable - IntStream.of(temp).sum()),
+            this.fontRendererObj.drawString("Points available: " + Integer.toString(pointsAvailable - IntStream.of(temp).sum()),
                     ScreenGrid.XCoordStart(
                             this.width,
-                            2)+30,
+                            2) + 30,
                     ScreenGrid.YCoordStart(
                             this.height,
-                            2)+ 10,
+                            2) + 10,
                     15465844, true
             );
 
 
             {
-                int startYButtons =36;
-                for (int o =0;o <= (buttonsIdsPlus.length-1);o++) {
-                    this.buttonList.get(buttonsIdsPlus[o]).xPosition = ScreenGrid.XCoordStart(this.width,2) + 248;
-                    this.buttonList.get(buttonsIdsPlus[o]).yPosition = ScreenGrid.XCoordStart(this.height,2) + (o*15)+ 30;
+                int startYButtons = 36;
+                for (int o = 0; o <= (buttonsIdsPlus.length - 1); o++) {
+                    this.buttonList.get(buttonsIdsPlus[o]).xPosition = ScreenGrid.XCoordStart(this.width, 2) + 248;
+                    this.buttonList.get(buttonsIdsPlus[o]).yPosition = ScreenGrid.XCoordStart(this.height, 2) + (o * 15) + 30;
                     this.buttonList.get(buttonsIdsPlus[o]).height = 12;
                     this.buttonList.get(buttonsIdsPlus[o]).width = 10;
-                    this.buttonList.get(buttonsIdsMinus[o]).xPosition = ScreenGrid.XCoordStart(this.width,2) + 258;
-                    this.buttonList.get(buttonsIdsMinus[o]).yPosition = ScreenGrid.XCoordStart(this.height,2) + (o*15)+ 30;
+                    this.buttonList.get(buttonsIdsMinus[o]).xPosition = ScreenGrid.XCoordStart(this.width, 2) + 258;
+                    this.buttonList.get(buttonsIdsMinus[o]).yPosition = ScreenGrid.XCoordStart(this.height, 2) + (o * 15) + 30;
                     this.buttonList.get(buttonsIdsMinus[o]).height = 10;
                     this.buttonList.get(buttonsIdsMinus[o]).width = 9;
 
-                    startYButtons=startYButtons+13;
+                    startYButtons = startYButtons + 13;
                 }
 
             }
-            this.buttonList.get(14).xPosition = ScreenGrid.XCoordStart(this.width,55);
-            this.buttonList.get(14).yPosition = ScreenGrid.XCoordStart(this.height,75);
+            this.buttonList.get(14).xPosition = ScreenGrid.XCoordStart(this.width, 55);
+            this.buttonList.get(14).yPosition = ScreenGrid.XCoordStart(this.height, 75);
             this.buttonList.get(14).height = 21;
             this.buttonList.get(14).width = 80;
             this.buttonList.get(14).enabled = CommitShow;
@@ -189,10 +187,10 @@ public class StatsGuiFirstJoin extends GuiScreen {
     @Override
     public void initGui() {
 
-        for (int i =0;i <= (buttonsPLus.length-1);i++) {
+        for (int i = 0; i <= (buttonsPLus.length - 1); i++) {
             this.buttonList.add(buttonsPLus[i]);
         }
-        for (int i =0;i <= (buttonsMinus.length-1);i++) {
+        for (int i = 0; i <= (buttonsMinus.length - 1); i++) {
             this.buttonList.add(buttonsMinus[i]);
         }
         this.buttonList.add(Commit);
@@ -202,12 +200,12 @@ public class StatsGuiFirstJoin extends GuiScreen {
 
     @Override
     protected void actionPerformed(GuiButton button) throws IOException {
-        for(int i =0;i <= (temp.length-1);i++){
+        for (int i = 0; i <= (temp.length - 1); i++) {
             counter = IntStream.of(temp).sum();
-            if(pointsAvailable > 0 ){
-                if(pointsAvailable != counter ) {
+            if (pointsAvailable > 0) {
+                if (pointsAvailable != counter) {
                     if (button == buttonsPLus[i]) {
-                        if (temp[i] <=9) {
+                        if (temp[i] <= 9) {
                             temp[i] = temp[i] + 1;
                         }
                     }
@@ -219,7 +217,7 @@ public class StatsGuiFirstJoin extends GuiScreen {
                 }
             }
         }
-        if (button == this.Commit){
+        if (button == this.Commit) {
             if (IntStream.of(finished).sum() == 30) {
                 main.simpleNetworkWrapper.sendToServer(new MessageUpdateClientServerSPECHIAL(finished));
                 for (int i = 0; i <= (finished.length - 1); i++) {

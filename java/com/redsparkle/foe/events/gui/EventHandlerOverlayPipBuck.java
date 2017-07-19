@@ -56,11 +56,11 @@ public class EventHandlerOverlayPipBuck {
 //                foundInHotbar = true;
 //            }
 
-        if (!foundInHotbar) return;
+            if (!foundInHotbar) return;
         }
         switch (event.getType()) {
             case HEALTH:
-                new PipBuckOverlay(Minecraft.getMinecraft(),event.getResolution().getScaledWidth(),event.getResolution().getScaledHeight());
+                new PipBuckOverlay(Minecraft.getMinecraft(), event.getResolution().getScaledWidth(), event.getResolution().getScaledHeight());
                 //statusBarRenderer.renderStatusBar(event.getResolution().getScaledWidth(), event.getResolution().getScaledHeight());        /* Call a helper method so that this method stays organized */
                 new RadsOverlay(Minecraft.getMinecraft());
                 new APBar(Minecraft.getMinecraft());

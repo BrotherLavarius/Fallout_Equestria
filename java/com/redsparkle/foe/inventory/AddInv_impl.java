@@ -2,8 +2,6 @@ package com.redsparkle.foe.inventory;
 
 import com.redsparkle.api.capa.Inventory.IAdvInventory;
 import com.redsparkle.api.items.helpers.Item_Instances.*;
-import com.redsparkle.foe.main;
-import com.redsparkle.foe.network.ClientServerOneClass.MessageAdvInv;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.ItemStackHelper;
@@ -20,6 +18,7 @@ public class AddInv_impl implements IInventory {
 
     public NonNullList<ItemStack> stacks = NonNullList.withSize(12, ItemStack.EMPTY);
     public IAdvInventory adv_inv;
+
     @Override
     public boolean isEmpty() {
         for (ItemStack itemstack : this.stacks) {
@@ -35,7 +34,6 @@ public class AddInv_impl implements IInventory {
     public int getSizeInventory() {
         return this.stacks.size();
     }
-
 
 
     @Override
@@ -99,7 +97,7 @@ public class AddInv_impl implements IInventory {
         for (int i = 0; i < 12; i++) {
             adv_inv.insertItem(i, this.getStackInSlot(i), false);
         }
-        main.simpleNetworkWrapper.sendToServer(new MessageAdvInv(adv_inv));
+        // main.simpleNetworkWrapper.sendToServer(new MessageAdvInv(adv_inv));
     }
 
     @Override

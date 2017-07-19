@@ -61,7 +61,7 @@ public class TenMM extends Item_Firearm {
         this.damage = GlobalWeaponsStats.TenMMDamage + playerIn.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getSmallGuns();
 
         if (!playerIn.capabilities.isCreativeMode) {
-            if (itemstack.getItemDamage() >= (GlobalWeaponsStats.TenMMclipRounds-1)) {
+            if (itemstack.getItemDamage() >= (GlobalWeaponsStats.TenMMclipRounds - 1)) {
                 if (findAmmo(playerIn) == ItemStack.EMPTY) {
                     // ---------------_EMPTY CLIP
                     worldIn.playSound(playerIn, playerIn.getPosition(), SoundInit.guns[1], SoundCategory.HOSTILE, 0.5F, 0.4F);
@@ -95,13 +95,14 @@ public class TenMM extends Item_Firearm {
     public boolean isAmmo(ItemStack stack) {
         return stack.getItem() instanceof TenMMClip;
     }
+
     /**
      * allows items to add custom lines of information to the mouseover description
      */
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack stack, EntityPlayer playerIn, List<String> tooltip, boolean advanced) {
         tooltip.add("10 MM pistol");
-        tooltip.add("Clip size: " + (clipRounds-2));
+        tooltip.add("Clip size: " + (clipRounds - 2));
         tooltip.add("Base Damage: " + GlobalWeaponsStats.TenMMDamage);
         tooltip.add("Your Damage: " + damage);
 

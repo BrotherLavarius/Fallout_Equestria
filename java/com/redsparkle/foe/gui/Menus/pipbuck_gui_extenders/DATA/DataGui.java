@@ -62,7 +62,7 @@ public class DataGui {
 
             RadioWasteland,
             RadioManeStream,
-            RadioBrony , RadioButtonStop, RadioVolumeUp, RadioVolumeDown
+            RadioBrony, RadioButtonStop, RadioVolumeUp, RadioVolumeDown
     };
 
 }

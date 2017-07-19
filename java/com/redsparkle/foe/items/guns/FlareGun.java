@@ -88,6 +88,7 @@ public class FlareGun extends Item_Firearm {
 
         return stack.getItem() instanceof FlareShell;
     }
+
     /**
      * allows items to add custom lines of information to the mouseover description
      */

@@ -40,6 +40,7 @@ public class MessageUpdateClientWater implements IMessage {
             return null;
         }
     }
+
     public static class HandlerServer implements IMessageHandler<MessageUpdateClientWater, IMessage> {
 
         @Override

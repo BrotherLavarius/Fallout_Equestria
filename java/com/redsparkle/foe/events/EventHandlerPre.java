@@ -50,29 +50,26 @@ public class EventHandlerPre {
     @SubscribeEvent
     public void onAddCapabilitiesEntity(AttachCapabilitiesEvent<Entity> event) {
 
-        if (canHaveAttributes(event.getObject()))
-            {
-                EntityLivingBase ent = (EntityLivingBase) event.getObject();
+        if (canHaveAttributes(event.getObject())) {
+            EntityLivingBase ent = (EntityLivingBase) event.getObject();
 
-                if (ent instanceof EntityPlayer){
-                    event.addCapability(new ResourceLocation(main.MODID + ":radiation_capability"), new RadsFactoryProvider());
-                    event.addCapability(new ResourceLocation(main.MODID + ":water_capability"), new WaterFactoryProvider());
-                    event.addCapability(new ResourceLocation(main.MODID + ":spechial_capability"), new SpechialFactoryProvider());
-                    event.addCapability(new ResourceLocation(main.MODID + ":skills_capability"), new SkillsFactoryProvider());
-                    event.addCapability(new ResourceLocation(main.MODID + ":level_capability"), new LevelFactoryProvider());
-                    event.addCapability(new ResourceLocation(main.MODID + ":ftj_capability"), new FTJFactoryProvider());
-                    event.addCapability(new ResourceLocation(main.MODID + ":adv_inv_capability"), new IAdvProvider());
-                }
+            if (ent instanceof EntityPlayer) {
+                event.addCapability(new ResourceLocation(main.MODID + ":radiation_capability"), new RadsFactoryProvider());
+                event.addCapability(new ResourceLocation(main.MODID + ":water_capability"), new WaterFactoryProvider());
+                event.addCapability(new ResourceLocation(main.MODID + ":spechial_capability"), new SpechialFactoryProvider());
+                event.addCapability(new ResourceLocation(main.MODID + ":skills_capability"), new SkillsFactoryProvider());
+                event.addCapability(new ResourceLocation(main.MODID + ":level_capability"), new LevelFactoryProvider());
+                event.addCapability(new ResourceLocation(main.MODID + ":ftj_capability"), new FTJFactoryProvider());
+                event.addCapability(new ResourceLocation(main.MODID + ":adv_inv_capability"), new IAdvProvider());
+            }
         }
 
 
     }
 
     @SubscribeEvent
-    public void onAddCapabilitiesItemStack(AttachCapabilitiesEvent<Item> e)
-    {
-        if (canHaveAttributes(e.getObject()))
-        {
+    public void onAddCapabilitiesItemStack(AttachCapabilitiesEvent<Item> e) {
+        if (canHaveAttributes(e.getObject())) {
         }
     }
 
@@ -83,18 +80,16 @@ public class EventHandlerPre {
         updatePlayerWater(e.player);
 
 
-
         //TODO: THIS IS UNSAFE, LIKE TOTALLY UNSAFE, WE NEED TO PERFORMANCE THE SHIT OUT OF THIS
-        if(e.player.getEntityWorld().getTotalWorldTime() % 15000 == 0){
-            if (e.player.getCapability(LEVEL_CAPABILITY,null).getProgress() < e.player.experienceTotal){
-                e.player.getCapability(LEVEL_CAPABILITY,null).setProgress(e.player.experienceTotal);
-            } else
-                if (e.player.getCapability(LEVEL_CAPABILITY,null).getProgress() > e.player.experienceTotal){
-                    e.player.getCapability(LEVEL_CAPABILITY,null).setProgress(
-                            e.player.getCapability(LEVEL_CAPABILITY,null).getProgress() +
-                                    (e.player.getCapability(LEVEL_CAPABILITY,null).getProgress() -
-                                    e.player.experienceTotal));
-                }
+        if (e.player.getEntityWorld().getTotalWorldTime() % 15000 == 0) {
+            if (e.player.getCapability(LEVEL_CAPABILITY, null).getProgress() < e.player.experienceTotal) {
+                e.player.getCapability(LEVEL_CAPABILITY, null).setProgress(e.player.experienceTotal);
+            } else if (e.player.getCapability(LEVEL_CAPABILITY, null).getProgress() > e.player.experienceTotal) {
+                e.player.getCapability(LEVEL_CAPABILITY, null).setProgress(
+                        e.player.getCapability(LEVEL_CAPABILITY, null).getProgress() +
+                                (e.player.getCapability(LEVEL_CAPABILITY, null).getProgress() -
+                                        e.player.experienceTotal));
+            }
             //System.out.println("RUnning Update");
 
         }
@@ -102,8 +97,7 @@ public class EventHandlerPre {
 
     @SubscribeEvent
     public void onJoin(PlayerLoggedInEvent e) {
-        if(e.player.getCapability(FTJFactoryProvider.FTJ_CAPABILITY,null).getFTJ())
-        {
+        if (e.player.getCapability(FTJFactoryProvider.FTJ_CAPABILITY, null).getFTJ()) {
             ISkillsCapability skills = e.player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null);
             ILevelCapability lvl = e.player.getCapability(LEVEL_CAPABILITY, null);
             ISpechialCapability spe = e.player.getCapability(SpechialFactoryProvider.SPECHIAL_CAPABILITY, null);
@@ -111,19 +105,18 @@ public class EventHandlerPre {
             ItemStack lvlingcrystallS = new ItemStack(lvliningCrystal);
             lvlingcrystallS.setCount(1);
             e.player.inventory.addItemStackToInventory(lvlingcrystallS);
-            e.player.getCapability(WaterFactoryProvider.WATER_CAPABILITY,null).setWater(100);
+            e.player.getCapability(WaterFactoryProvider.WATER_CAPABILITY, null).setWater(100);
 
             lvl.initNewplayer();
             skills.setAll(10);
             spe.setAll(0);
-            e.player.getCapability(FTJFactoryProvider.FTJ_CAPABILITY,null).setFTJ(false);
+            e.player.getCapability(FTJFactoryProvider.FTJ_CAPABILITY, null).setFTJ(false);
 
         }
 
         updatePlayerSpechial(e.player);
         updatePlayerSkills(e.player);
         updatePlayerLevel(e.player);
-
 
 
     }
@@ -135,17 +128,17 @@ public class EventHandlerPre {
         updatePlayerLevel(e.player);
     }
 
-     @SubscribeEvent
+    @SubscribeEvent
     public void onRespawned(PlayerEvent.PlayerRespawnEvent event) {
 
-            EntityPlayer player = event.player;
+        EntityPlayer player = event.player;
 
-            updatePlayerSpechial(player);
-            updatePlayerSkills(player);
-            updatePlayerLevel(player);
-            updatePlayerWater(player);
-            updatePlayerRads(player);
-            PlayerParamsSetup.normalizer(player);
+        updatePlayerSpechial(player);
+        updatePlayerSkills(player);
+        updatePlayerLevel(player);
+        updatePlayerWater(player);
+        updatePlayerRads(player);
+        PlayerParamsSetup.normalizer(player);
 
     }
 
@@ -211,7 +204,7 @@ public class EventHandlerPre {
     private void updatePlayerSpechial(EntityPlayer player) {
         if (!player.world.isRemote) {
             ILevelCapability level = player.getCapability(LEVEL_CAPABILITY, null);
-            ISpechialCapability spe = player.getCapability(SpechialFactoryProvider.SPECHIAL_CAPABILITY,null);
+            ISpechialCapability spe = player.getCapability(SpechialFactoryProvider.SPECHIAL_CAPABILITY, null);
             spe.setAgility(spe.getAgility());
             spe.setCharisma(spe.getCharisma());
             spe.setEndurance(spe.getEndurance());
@@ -226,7 +219,7 @@ public class EventHandlerPre {
 
     private void updatePlayerSkills(EntityPlayer player) {
         if (!player.world.isRemote) {
-            ISkillsCapability skill = player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY,null);
+            ISkillsCapability skill = player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null);
             skill.setBigGuns(skill.getBigGuns());
             skill.setSmallGuns(skill.getSmallGuns());
             skill.setEnergyWeapons(skill.getEnergyWeapons());

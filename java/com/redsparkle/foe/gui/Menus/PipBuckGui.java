@@ -58,8 +58,8 @@ public class PipBuckGui extends GuiScreen {
     public boolean Data_Misc = false;
     public boolean Data_Radio = false;
 
-    public boolean Radio_isOff= true;
-    public boolean Radio_stopVisible= false;
+    public boolean Radio_isOff = true;
+    public boolean Radio_stopVisible = false;
     public int playerStatusX = 0;
     public int playerStatusY = 0;
 
@@ -85,16 +85,15 @@ public class PipBuckGui extends GuiScreen {
             0,
             0, "Level Up");
     Minecraft mc = Minecraft.getMinecraft();
+
     @Override
     public void drawScreen(int mouseX, int mouseY, float partialTicks) {
-
 
 
         Integer[] skills = PlayerStatsRequester.skills(mc.player);
         Integer[] spechials = PlayerStatsRequester.spechials(mc.player);
         Integer[] playerParams = PlayerStatsRequester.lvl(mc.player);
         Integer[] player_RAD_WATER = PlayerStatsRequester.additionalStats(mc.player);
-
 
 
         int startX = 0;
@@ -207,9 +206,9 @@ public class PipBuckGui extends GuiScreen {
                 this.buttonList.get(3).width = 49;
                 if (Stats_STATUS) {
                     this.buttonList.get(3).visible = true;
-                    try{
+                    try {
                         this.buttonList.get(3).enabled = Lvlutil.canLvlup(playerParams[0], playerParams[1]);
-                    }catch(NullPointerException npe){
+                    } catch (NullPointerException npe) {
                         npe.printStackTrace();
                     }
 
@@ -259,7 +258,7 @@ public class PipBuckGui extends GuiScreen {
                             15465844, true
                     );
                     this.fontRendererObj.drawString(
-                            Lvlutil.progress(100,player_RAD_WATER[1]) ,
+                            Lvlutil.progress(100, player_RAD_WATER[1]),
                             ScreenGrid.XCoordStart(
                                     this.width,
                                     2) + 145,
@@ -270,18 +269,18 @@ public class PipBuckGui extends GuiScreen {
                     );
 
 
-                    if(Math.round(player.getHealth()) < (Math.round(player.getMaxHealth()/4))){
-                        playerStatusX= 137;
-                        playerStatusY= 200;
+                    if (Math.round(player.getHealth()) < (Math.round(player.getMaxHealth() / 4))) {
+                        playerStatusX = 137;
+                        playerStatusY = 200;
 
-                    }else if(Math.round(player.getHealth()) > (Math.round(player.getMaxHealth()/4)) && player.getHealth() < (Math.round(player.getMaxHealth()/3))){
-                        playerStatusX= 91;
-                        playerStatusY= 201;
+                    } else if (Math.round(player.getHealth()) > (Math.round(player.getMaxHealth() / 4)) && player.getHealth() < (Math.round(player.getMaxHealth() / 3))) {
+                        playerStatusX = 91;
+                        playerStatusY = 201;
 
-                    }else if(Math.round(player.getHealth()) > (Math.round(player.getMaxHealth()/3)) && player.getHealth() < (Math.round(player.getMaxHealth()/2))){
-                        playerStatusX= 135;
-                        playerStatusY= 145;
-                    }else if(player.getHealth() > (Math.round(player.getMaxHealth()/2)) && Math.round(player.getHealth()) <= Math.round(player.getMaxHealth())){
+                    } else if (Math.round(player.getHealth()) > (Math.round(player.getMaxHealth() / 3)) && player.getHealth() < (Math.round(player.getMaxHealth() / 2))) {
+                        playerStatusX = 135;
+                        playerStatusY = 145;
+                    } else if (player.getHealth() > (Math.round(player.getMaxHealth() / 2)) && Math.round(player.getHealth()) <= Math.round(player.getMaxHealth())) {
                         playerStatusX = 88;
                         playerStatusY = 145;
                     }
@@ -303,8 +302,8 @@ public class PipBuckGui extends GuiScreen {
                             55);
                     GL11.glPopMatrix();
                 }
-                if(Stats_SPECHIAL){
-                    for(int spechial=0; spechial < (StatsGui.spechialName.length-1);spechial++){
+                if (Stats_SPECHIAL) {
+                    for (int spechial = 0; spechial < (StatsGui.spechialName.length - 1); spechial++) {
                         this.fontRendererObj.drawString(
                                 StatsGui.spechialName[spechial] + " : " + Integer.toString(spechials[spechial]),
                                 ScreenGrid.XCoordStart(
@@ -312,13 +311,13 @@ public class PipBuckGui extends GuiScreen {
                                         2) + 165,
                                 ScreenGrid.XCoordStart(
                                         this.height,
-                                        2) + (spechial* 15)+ 85,
+                                        2) + (spechial * 15) + 85,
                                 15465844, true
                         );
                     }
                 }
-                if(Stats_SKILLS){
-                    for(int skillsFR=0; skillsFR < 6;skillsFR++){
+                if (Stats_SKILLS) {
+                    for (int skillsFR = 0; skillsFR < 6; skillsFR++) {
                         this.fontRendererObj.drawString(
                                 StatsGui.skillsNames[skillsFR] + " : " + Integer.toString(skills[skillsFR]),
                                 ScreenGrid.XCoordStart(
@@ -326,24 +325,25 @@ public class PipBuckGui extends GuiScreen {
                                         2) + 165,
                                 ScreenGrid.XCoordStart(
                                         this.height,
-                                        2) + (skillsFR* 15)+ 85,
+                                        2) + (skillsFR * 15) + 85,
                                 15465844, true
                         );
                     }
-                    for(int skillsSR=0; skillsSR < 5;skillsSR++){
+                    for (int skillsSR = 0; skillsSR < 5; skillsSR++) {
                         this.fontRendererObj.drawString(
-                                StatsGui.skillsNames[skillsSR+6] + " : " + Integer.toString(skills[skillsSR+6]),
+                                StatsGui.skillsNames[skillsSR + 6] + " : " + Integer.toString(skills[skillsSR + 6]),
                                 ScreenGrid.XCoordStart(
                                         this.width,
                                         2) + 315,
                                 ScreenGrid.XCoordStart(
                                         this.height,
-                                        2) + (skillsSR* 15)+ 85,
+                                        2) + (skillsSR * 15) + 85,
                                 15465844, true
                         );
                     }
                 }
-                if(Stats_PERKS){}
+                if (Stats_PERKS) {
+                }
 
             }
 
@@ -395,7 +395,7 @@ public class PipBuckGui extends GuiScreen {
                 //---------------------NAV BLOCK DATA-------------------END
 
                 {// MAP
-                    if(Data_World_Map){
+                    if (Data_World_Map) {
                         //ItemMap map = new ItemMap(Items.FILLED_MAP);
                         //ItemMap.setupNewMap();
                     }
@@ -404,7 +404,7 @@ public class PipBuckGui extends GuiScreen {
 
                 //RADIO START BUTTON
                 {
-                    for(int radio=24; radio<27;radio++) {
+                    for (int radio = 24; radio < 27; radio++) {
                         this.buttonList.get(radio).xPosition = ScreenGrid.XCoordStart(
                                 this.width,
                                 2) + 120;
@@ -423,27 +423,27 @@ public class PipBuckGui extends GuiScreen {
                         }
                     }
 
-                        this.buttonList.get(27).xPosition = ScreenGrid.XCoordStart(
-                                this.width,
-                                2) + 125;
-                        this.buttonList.get(27).yPosition = ScreenGrid.XCoordStart(
-                                this.height,
-                                2) + (27 * 15) - 290;
+                    this.buttonList.get(27).xPosition = ScreenGrid.XCoordStart(
+                            this.width,
+                            2) + 125;
+                    this.buttonList.get(27).yPosition = ScreenGrid.XCoordStart(
+                            this.height,
+                            2) + (27 * 15) - 290;
 
-                        this.buttonList.get(27).height = 15;
-                        this.buttonList.get(27).width = 70;
-                        if (Data_Radio) {
-                            this.buttonList.get(27).visible = true;
-                            this.buttonList.get(27).enabled = Radio_stopVisible;
-                        } else {
-                            this.buttonList.get(27).visible = false;
-                            this.buttonList.get(27).enabled = Radio_stopVisible;
-                        }
+                    this.buttonList.get(27).height = 15;
+                    this.buttonList.get(27).width = 70;
+                    if (Data_Radio) {
+                        this.buttonList.get(27).visible = true;
+                        this.buttonList.get(27).enabled = Radio_stopVisible;
+                    } else {
+                        this.buttonList.get(27).visible = false;
+                        this.buttonList.get(27).enabled = Radio_stopVisible;
+                    }
 
                 }
                 //RADIO VOLUME
                 {
-                    for(int vol=28;vol<= 29;vol++) {
+                    for (int vol = 28; vol <= 29; vol++) {
                         this.buttonList.get(vol).xPosition = ScreenGrid.XCoordStart(
                                 this.width,
                                 2) + 245;
@@ -474,7 +474,6 @@ public class PipBuckGui extends GuiScreen {
 
 //
     }
-
 
 
     /**
@@ -708,28 +707,28 @@ public class PipBuckGui extends GuiScreen {
         //RadioButtonStart 24-27
         //Radio start
         if (button == this.buttonList.get(24)) {
-            Radio_isOff= false;
-            Radio_stopVisible= true;
+            Radio_isOff = false;
+            Radio_stopVisible = true;
             radioPLayer = new RadioPLayer("http://home.fallout-equestria.tk:8100/rcr.ogg");
         }
         //Radio start
         if (button == this.buttonList.get(25)) {
-            Radio_isOff= false;
-            Radio_stopVisible= true;
+            Radio_isOff = false;
+            Radio_stopVisible = true;
 
             radioPLayer = new RadioPLayer("http://192.99.131.205:8000/pvfm1.ogg");
         }
         //Radio start
         if (button == this.buttonList.get(26)) {
-            Radio_isOff= false;
-            Radio_stopVisible= true;
+            Radio_isOff = false;
+            Radio_stopVisible = true;
 
             radioPLayer = new RadioPLayer("http://62.210.138.34:8000/ogg");
-       }
+        }
         //Radio stop
         if (button == this.buttonList.get(27)) {
-            Radio_isOff= true;
-            Radio_stopVisible= false;
+            Radio_isOff = true;
+            Radio_stopVisible = false;
 
 
             if (radioPLayer.player.isAlive()) {
@@ -746,7 +745,7 @@ public class PipBuckGui extends GuiScreen {
             if (radioPLayer.player.isAlive()) {
                 gain = (FloatControl) radioPLayer.line.getControl(FloatControl.Type.MASTER_GAIN);
 
-                if (gain.getValue() < (gain.getMaximum()-2.0F)) {
+                if (gain.getValue() < (gain.getMaximum() - 2.0F)) {
                     gain.setValue(gain.getValue() + 1.0F);
                 }
             }
@@ -757,13 +756,11 @@ public class PipBuckGui extends GuiScreen {
 
                 gain = (FloatControl) radioPLayer.line.getControl(FloatControl.Type.MASTER_GAIN);
 
-                if (gain.getValue() > (gain.getMinimum()+2.0F)) {
+                if (gain.getValue() > (gain.getMinimum() + 2.0F)) {
                     gain.setValue(gain.getValue() - 1.0F);
                 }
             }
         }
-
-
 
 
         super.actionPerformed(button);

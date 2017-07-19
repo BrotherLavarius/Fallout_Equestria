@@ -44,7 +44,7 @@ public class EntityLaser extends EntityThrowable {
             double y = (double) (rand.nextInt(3) - 5) / 8.0D;
             double z = (double) (rand.nextInt(3) - 5) / 8.0D;
 
-                world.spawnParticle(EnumParticleTypes.REDSTONE, posX, posY, posZ, 1, 0, 0);
+            world.spawnParticle(EnumParticleTypes.REDSTONE, posX, posY, posZ, 1, 0, 0);
             world.spawnParticle(EnumParticleTypes.REDSTONE, posX, posY, posZ, 1, 0, 0);
             world.spawnParticle(EnumParticleTypes.REDSTONE, posX, posY, posZ, 1, 0, 0);
 
@@ -57,11 +57,12 @@ public class EntityLaser extends EntityThrowable {
     public void handleStatusUpdate(byte p_handleStatusUpdate_1_) {
         if (p_handleStatusUpdate_1_ == 3) {
             for (int lvt_2_1_ = 0; lvt_2_1_ < 8; ++lvt_2_1_) {
-                this.world.spawnParticle(EnumParticleTypes.REDSTONE, this.posX, this.posY, this.posZ, 0.0D, 0.0D, 0.0D, new int[0]);
+                this.world.spawnParticle(EnumParticleTypes.REDSTONE, this.posX, this.posY, this.posZ, 0.0D, 0.0D, 0.0D);
             }
         }
 
     }
+
     @Override
     protected float getGravityVelocity() {
         return 0.005F;
@@ -70,7 +71,7 @@ public class EntityLaser extends EntityThrowable {
     @Override
     protected void onImpact(RayTraceResult rayTraceResult) {
         if (rayTraceResult.entityHit != null) {
-            rayTraceResult.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, this.getThrower()), (float) damage);
+            rayTraceResult.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, this.getThrower()), damage);
             this.setDead();
         }
 

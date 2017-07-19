@@ -15,13 +15,14 @@ import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 public class MessageFireToClientServer implements IMessage {
     public Integer GunID;
 
-    public MessageFireToClientServer(){
+    public MessageFireToClientServer() {
 
     }
 
-    public MessageFireToClientServer(Integer gunid){
+    public MessageFireToClientServer(Integer gunid) {
         this.GunID = gunid;
     }
+
     @Override
     public void fromBytes(ByteBuf buf) {
         GunID = buf.readInt();

@@ -19,18 +19,18 @@ public class Constants {
     public static final int COLS_VANILLA = 9;
     public static final int V_INVO_SIZE = ROWS_VANILLA * COLS_VANILLA; // 36
 
-    public static final int Slot_pipb =140;
-    public static final int Slot_dev1 =141;
-    public static final int Slot_dev2 =142;
-    public static final int Slot_dev3 =143;
-    public static final int Slot_dev4 =144;
-    public static final int Slot_harn =145;
-    public static final int Slot_gun1 =146;
-    public static final int Slot_gun2 =147;
-    public static final int Slot_amm1 =148;
-    public static final int Slot_amm2 =149;
-    public static final int Slot_amm3 =150;
-    public static final int Slot_amm4 =151;
+    public static final int Slot_pipb = 140;
+    public static final int Slot_dev1 = 141;
+    public static final int Slot_dev2 = 142;
+    public static final int Slot_dev3 = 143;
+    public static final int Slot_dev4 = 144;
+    public static final int Slot_harn = 145;
+    public static final int Slot_gun1 = 146;
+    public static final int Slot_gun2 = 147;
+    public static final int Slot_amm1 = 148;
+    public static final int Slot_amm2 = 149;
+    public static final int Slot_amm3 = 150;
+    public static final int Slot_amm4 = 151;
     public static final String RESOURCE_PREFIX = main.MODID + ":";
     /**
      * The armour equipment slots.

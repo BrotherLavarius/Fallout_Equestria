@@ -22,11 +22,11 @@ public class GlobalNames {
     // Food
     public static final String
             potato_crisps = "potato_crisps",
-            blamko_macCheese ="blamko_maccheese",
-            dandy_boy_apples="dandy_boy_apples",
-            gumDrops="gumdrops",
-            sugar_bombs="sugar_bombs",
-            Fancy_mare_Snack_Cakes="fancy_mare_snack_cakes";
+            blamko_macCheese = "blamko_maccheese",
+            dandy_boy_apples = "dandy_boy_apples",
+            gumDrops = "gumdrops",
+            sugar_bombs = "sugar_bombs",
+            Fancy_mare_Snack_Cakes = "fancy_mare_snack_cakes";
     // Meds
     public static final String
             Addictol = "addictol",
@@ -46,8 +46,6 @@ public class GlobalNames {
             purpleHealPotion = "purple_heal_potion",
             redHealPotion = "red_heal_potion",
             whiteHealpotion = "white_heal_potion";
-
-
 
 
     // Guns

@@ -57,6 +57,7 @@ public class gunReload {
         return false;
 
     }
+
     public static void TenMM(WorldServer mainThread, ItemStack heldItem, EntityPlayerMP player) {
         mainThread.addScheduledTask(() -> {
             if (heldItem.getItemDamage() <= (GlobalWeaponsStats.TenMMclipRounds - 1)) {
@@ -163,7 +164,6 @@ public class gunReload {
     }
 
 
-
     public static void Shotgun(WorldServer mainThread, ItemStack heldItem, EntityPlayerMP player) {
         mainThread.addScheduledTask(() -> {
             if (heldItem.getItemDamage() == GlobalWeaponsStats.db_shoutgunRounds) {
@@ -172,9 +172,9 @@ public class gunReload {
                     findAmmo(player, "Shotgun").shrink(2);
                     main.simpleNetworkWrapper.sendTo(new MessageGunReloadReply(4), player);
                 }
-            } else if (heldItem.getItemDamage() == GlobalWeaponsStats.db_shoutgunRounds-1) {
+            } else if (heldItem.getItemDamage() == GlobalWeaponsStats.db_shoutgunRounds - 1) {
                 if (findAmmo(player, "Shotgun") != ItemStack.EMPTY) {
-                    heldItem.setItemDamage(heldItem.getItemDamage() -1);
+                    heldItem.setItemDamage(heldItem.getItemDamage() - 1);
                     findAmmo(player, "Shotgun").shrink(1);
                     main.simpleNetworkWrapper.sendTo(new MessageGunReloadReply(5), player);
                 }
@@ -185,14 +185,14 @@ public class gunReload {
     public static void FlareGun(WorldServer mainThread, ItemStack heldItem, EntityPlayerMP player) {
         mainThread.addScheduledTask(() -> {
             if (heldItem.getItemDamage() == 0) {
-                    Item removeFlare = GlobalItemArray_For_init.AllInit[26];
-                    ItemStack flareStack = new ItemStack(removeFlare);
-                    heldItem.setItemDamage(1);
-                    player.inventory.setInventorySlotContents(InventoryManager.FindEmpty(player), flareStack);
-                    main.simpleNetworkWrapper.sendTo(new MessageGunReloadReply(7), player);
+                Item removeFlare = GlobalItemArray_For_init.AllInit[26];
+                ItemStack flareStack = new ItemStack(removeFlare);
+                heldItem.setItemDamage(1);
+                player.inventory.setInventorySlotContents(InventoryManager.FindEmpty(player), flareStack);
+                main.simpleNetworkWrapper.sendTo(new MessageGunReloadReply(7), player);
             } else if (heldItem.getItemDamage() == 1) {
                 if (findAmmo(player, "FlareGun") != ItemStack.EMPTY) {
-                    heldItem.setItemDamage(heldItem.getItemDamage() -1);
+                    heldItem.setItemDamage(heldItem.getItemDamage() - 1);
                     findAmmo(player, "FlareGun").shrink(1);
                     main.simpleNetworkWrapper.sendTo(new MessageGunReloadReply(6), player);
                 }

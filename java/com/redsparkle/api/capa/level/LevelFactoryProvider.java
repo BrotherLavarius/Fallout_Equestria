@@ -34,6 +34,7 @@ public class LevelFactoryProvider implements ILevelCapability, ICapabilitySerial
         setLevel(0);
         setProgress(0);
     }
+
     public Integer getLevel() {
         return Level;
     }

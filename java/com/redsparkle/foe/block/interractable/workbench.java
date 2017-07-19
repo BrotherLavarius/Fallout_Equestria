@@ -21,6 +21,7 @@ import net.minecraftforge.common.property.Properties;
  */
 public class workbench extends GeneralAllignBlockTwoOTwo {
     public static final workbench instance = new workbench();
+
     public workbench() {
         super(Material.IRON);
         setLightLevel(0);

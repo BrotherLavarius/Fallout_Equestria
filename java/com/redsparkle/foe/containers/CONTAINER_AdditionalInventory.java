@@ -3,12 +3,12 @@ package com.redsparkle.foe.containers;
 import com.redsparkle.api.capa.Inventory.IAdvInventory;
 import com.redsparkle.api.capa.Inventory.IAdvProvider;
 import com.redsparkle.foe.containers.Slots.*;
-import com.redsparkle.foe.inventory.AddInv_impl;
 import com.redsparkle.foe.main;
 import com.redsparkle.foe.network.ClientServerOneClass.MessageAdvInv;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
+import net.minecraft.inventory.InventoryBasic;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 
@@ -26,7 +26,7 @@ public class CONTAINER_AdditionalInventory extends Container {
     private final int VANILLA_FIRST_SLOT_INDEX = 0;
     private final int ADV_INVENTORY_FIRST_SLOT_INDEX = VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT;
     private final int ADV_INVENTORY_SLOT_COUNT = 11;
-    public AddInv_impl additional_inventory;
+    public InventoryBasic additional_inventory;
     public InventoryPlayer inventoryPlayer;
     public IAdvInventory adv_inv;
 
@@ -35,23 +35,19 @@ public class CONTAINER_AdditionalInventory extends Container {
     public CONTAINER_AdditionalInventory(EntityPlayer player) {
         this.adv_inv = player.getCapability(IAdvProvider.Adv_Inv, null);
         this.inventoryPlayer = player.inventory;
-        this.additional_inventory = new AddInv_impl();
-        additional_inventory.SetCapa(adv_inv);
+        this.additional_inventory = new InventoryBasic("FOE additional inventory", false, 12);
         additional_inventory.openInventory(player);
         numRows = inventoryPlayer.getSizeInventory() / 9;
 
         int i = (numRows - 4) * 18;
 
-        for (int l = 0; l < 3; ++l)
-        {
-            for (int j1 = 0; j1 < 9; ++j1)
-            {
+        for (int l = 0; l < 3; ++l) {
+            for (int j1 = 0; j1 < 9; ++j1) {
                 this.addSlotToContainer(new Slot(inventoryPlayer, j1 + l * 9 + 9, 8 + j1 * 18, 84 + l * 18 + i));
             }
         }
 
-        for (int i1 = 0; i1 < 9; ++i1)
-        {
+        for (int i1 = 0; i1 < 9; ++i1) {
             this.addSlotToContainer(new Slot(inventoryPlayer, i1, 8 + i1 * 18, 142 + i));
         }
 
@@ -65,19 +61,22 @@ public class CONTAINER_AdditionalInventory extends Container {
          * Player Hotbar        0-8 ... 36 - 44
          */
 
-            this.addSlotToContainer(new SlotPipBuck(additional_inventory,0, 27, 4));
-            this.addSlotToContainer(new SlotDevice(additional_inventory, 1, 6, 5));
-            this.addSlotToContainer(new SlotDevice(additional_inventory, 2, 6, 24));
-            this.addSlotToContainer(new SlotDevice(additional_inventory, 3, 6, 43));
-            this.addSlotToContainer(new SlotDevice(additional_inventory, 4, 6, 62));
-            this.addSlotToContainer(new SlotHarness(additional_inventory, 5, 123, 50));
-            this.addSlotToContainer(new SlotGun(additional_inventory, 6, 152, 15));
-            this.addSlotToContainer(new SlotGun(additional_inventory, 7, 103, 15));
-            this.addSlotToContainer(new SlotAmmo(additional_inventory, 8, 113, 6));
-            this.addSlotToContainer(new SlotAmmo(additional_inventory, 9, 132, 6));
-            this.addSlotToContainer(new SlotAmmo(additional_inventory, 10, 113, 25));
-            this.addSlotToContainer(new SlotAmmo(additional_inventory, 11, 132, 25));
+        this.addSlotToContainer(new SlotPipBuck(additional_inventory, 0, 27, 4));
+        this.addSlotToContainer(new SlotDevice(additional_inventory, 1, 6, 5));
+        this.addSlotToContainer(new SlotDevice(additional_inventory, 2, 6, 24));
+        this.addSlotToContainer(new SlotDevice(additional_inventory, 3, 6, 43));
+        this.addSlotToContainer(new SlotDevice(additional_inventory, 4, 6, 62));
+        this.addSlotToContainer(new SlotHarness(additional_inventory, 5, 123, 50));
+        this.addSlotToContainer(new SlotGun(additional_inventory, 6, 152, 15));
+        this.addSlotToContainer(new SlotGun(additional_inventory, 7, 103, 15));
+        this.addSlotToContainer(new SlotAmmo(additional_inventory, 8, 113, 6));
+        this.addSlotToContainer(new SlotAmmo(additional_inventory, 9, 132, 6));
+        this.addSlotToContainer(new SlotAmmo(additional_inventory, 10, 113, 25));
+        this.addSlotToContainer(new SlotAmmo(additional_inventory, 11, 132, 25));
 
+        for (int g = 0; g < 12; g++) {
+            additional_inventory.setInventorySlotContents(g, adv_inv.getStackInSlot(g));
+        }
     }
 
     public boolean canInteractWith(EntityPlayer var1) {
@@ -124,9 +123,11 @@ public class CONTAINER_AdditionalInventory extends Container {
     @Override
     public void onContainerClosed(EntityPlayer playerIn) {
         super.onContainerClosed(playerIn);
-
-
         this.additional_inventory.closeInventory(playerIn);
+        for (int g = 0; g < 12; g++) {
+            adv_inv.insertItem(g, additional_inventory.getStackInSlot(g), false);
+        }
+        main.simpleNetworkWrapper.sendToServer(new MessageAdvInv(adv_inv, true));
 
     }
 

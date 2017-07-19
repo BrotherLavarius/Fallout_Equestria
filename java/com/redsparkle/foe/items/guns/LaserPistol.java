@@ -51,9 +51,9 @@ public class LaserPistol extends Item_Firearm {
     @Override
     public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand hand) {
         ItemStack itemstack = playerIn.getHeldItem(hand);
-        this.damage = GlobalWeaponsStats.LaserDamage + playerIn.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY,null).getEnergyWeapons();
+        this.damage = GlobalWeaponsStats.LaserDamage + playerIn.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getEnergyWeapons();
         if (!playerIn.capabilities.isCreativeMode) {
-            if (itemstack.getItemDamage() >= (GlobalWeaponsStats.LaserBatterRounds-1)) {
+            if (itemstack.getItemDamage() >= (GlobalWeaponsStats.LaserBatterRounds - 1)) {
                 if (findAmmo(playerIn) == ItemStack.EMPTY) {
                     // ---------------_EMPTY CLIP
                     worldIn.playSound(playerIn, playerIn.getPosition(), SoundInit.guns[21], SoundCategory.HOSTILE, 0.5F, 0.4F);
@@ -95,13 +95,14 @@ public class LaserPistol extends Item_Firearm {
 
         return stack.getItem() instanceof Battery;
     }
+
     /**
      * allows items to add custom lines of information to the mouseover description
      */
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack stack, EntityPlayer playerIn, List<String> tooltip, boolean advanced) {
         tooltip.add("Laser pistol");
-        tooltip.add("Clip size: " + (clipRounds-1));
+        tooltip.add("Clip size: " + (clipRounds - 1));
         tooltip.add("Base Damage: " + GlobalWeaponsStats.LaserDamage);
         tooltip.add("Your Damage: " + damage);
 

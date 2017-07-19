@@ -60,17 +60,15 @@ public abstract class CommonProxy {
         EntityRegistry.registerModEntity(new ResourceLocation(GlobalNames.Domain + ":entity/Flame"), EntityFlame.class, "Flame", 2, main.instance, 64, 10, true);
 
 
-        EntityRegistry.registerModEntity(new ResourceLocation(GlobalNames.Domain + ":entity/Pellet"),      Pellet.class,  "Pellet", 3, main.instance, 64, 10, true);
-        EntityRegistry.registerModEntity(new ResourceLocation(GlobalNames.Domain + ":entity/Pellet_one"),  Pellet_one.class,  "Pellet_one", 4, main.instance, 64, 10, true);
-        EntityRegistry.registerModEntity(new ResourceLocation(GlobalNames.Domain + ":entity/Pellet_two"),  Pellet_two.class,  "Pellet_two", 5, main.instance, 64, 10, true);
+        EntityRegistry.registerModEntity(new ResourceLocation(GlobalNames.Domain + ":entity/Pellet"), Pellet.class, "Pellet", 3, main.instance, 64, 10, true);
+        EntityRegistry.registerModEntity(new ResourceLocation(GlobalNames.Domain + ":entity/Pellet_one"), Pellet_one.class, "Pellet_one", 4, main.instance, 64, 10, true);
+        EntityRegistry.registerModEntity(new ResourceLocation(GlobalNames.Domain + ":entity/Pellet_two"), Pellet_two.class, "Pellet_two", 5, main.instance, 64, 10, true);
         EntityRegistry.registerModEntity(new ResourceLocation(GlobalNames.Domain + ":entity/Pellet_tree"), Pellet_tree.class, "Pellet_tree", 6, main.instance, 64, 10, true);
         EntityRegistry.registerModEntity(new ResourceLocation(GlobalNames.Domain + ":entity/Pellet_four"), Pellet_four.class, "Pellet_four", 7, main.instance, 64, 10, true);
         EntityRegistry.registerModEntity(new ResourceLocation(GlobalNames.Domain + ":entity/Pellet_five"), Pellet_five.class, "Pellet_five", 8, main.instance, 64, 10, true);
-        EntityRegistry.registerModEntity(new ResourceLocation(GlobalNames.Domain + ":entity/Pellet_six"),  Pellet_six.class,  "Pellet_six", 9, main.instance, 64, 10, true);
+        EntityRegistry.registerModEntity(new ResourceLocation(GlobalNames.Domain + ":entity/Pellet_six"), Pellet_six.class, "Pellet_six", 9, main.instance, 64, 10, true);
 
         EntityRegistry.registerModEntity(new ResourceLocation(GlobalNames.Domain + ":entity/Flare"), EntityFlare.class, "Flare", 10, main.instance, 64, 10, true);
-
-
 
 
     }
@@ -91,7 +89,7 @@ public abstract class CommonProxy {
         System.out.println("SKILLS--------------CHECK!");
         CapabilityManager.INSTANCE.register(ILevelCapability.class, new LevelFactoryStorage(), LevelFactoryProvider::new);
         System.out.println("LEVELS--------------CHECK!");
-        CapabilityManager.INSTANCE.register(IFTJCapability.class,new FTJFactoryStorage(), FTJFactoryProvider::new);
+        CapabilityManager.INSTANCE.register(IFTJCapability.class, new FTJFactoryStorage(), FTJFactoryProvider::new);
         System.out.println("FTJ--------------CHECK!");
 
         CapabilityManager.INSTANCE.register(IWaterCapability.class, new WaterFactoryStorage(), WaterFactoryProvider::new);

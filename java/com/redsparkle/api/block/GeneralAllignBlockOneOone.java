@@ -95,11 +95,11 @@ public class GeneralAllignBlockOneOone extends Block {
     }
 
 
-
     @Override
     public boolean hasTileEntity(IBlockState state) {
         return true;
     }
+
     @Override
     public BlockStateContainer createBlockState() {
         return new ExtendedBlockState(this, new IProperty[]{FACING}, new IUnlistedProperty[]{Properties.AnimationProperty});

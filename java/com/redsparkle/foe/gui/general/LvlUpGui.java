@@ -23,48 +23,48 @@ public class LvlUpGui extends GuiScreen {
     public Integer counter = 0;
     public Boolean CommitShow = false;
     public int startY = 15;
-    GuiButtonExtFallout BGplus = new GuiButtonExtFallout(0,0,0,0,0, "+");
-    GuiButtonExtFallout SGPlus = new GuiButtonExtFallout(1,0,0,0,0, "+");
-    GuiButtonExtFallout EWPlus = new GuiButtonExtFallout(2,0,0,0,0, "+");
-    GuiButtonExtFallout EXPLus = new GuiButtonExtFallout(3,0,0,0,0, "+");
-    GuiButtonExtFallout MWPLus = new GuiButtonExtFallout(4,0,0,0,0, "+");
-    GuiButtonExtFallout UNPlus = new GuiButtonExtFallout(5,0,0,0,0, "+");
-    GuiButtonExtFallout MEDPLus = new GuiButtonExtFallout(6,0,0,0,0, "+");
-    GuiButtonExtFallout LOCKPLus = new GuiButtonExtFallout(7,0,0,0,0, "+");
-    GuiButtonExtFallout REPPLus = new GuiButtonExtFallout(8,0,0,0,0, "+");
-    GuiButtonExtFallout SCIPlus = new GuiButtonExtFallout(9,0,0,0,0, "+");
-    GuiButtonExtFallout SNIKPLus = new GuiButtonExtFallout(10,0,0,0,0, "+");
-    GuiButtonExtFallout BARTPLus = new GuiButtonExtFallout(11,0,0,0,0, "+");
-    GuiButtonExtFallout BGminus = new GuiButtonExtFallout(12,0,0,0,0, "-");
-    GuiButtonExtFallout SGminus = new GuiButtonExtFallout(13,0,0,0,0, "-");
-    GuiButtonExtFallout EWminus = new GuiButtonExtFallout(14,0,0,0,0, "-");
-    GuiButtonExtFallout EXminus = new GuiButtonExtFallout(15,0,0,0,0, "-");
-    GuiButtonExtFallout MWminus = new GuiButtonExtFallout(16,0,0,0,0, "-");
-    GuiButtonExtFallout UNminus = new GuiButtonExtFallout(17,0,0,0,0, "-");
-    GuiButtonExtFallout MEDminus = new GuiButtonExtFallout(18,0,0,0,0, "-");
-    GuiButtonExtFallout LOCKminus = new GuiButtonExtFallout(19,0,0,0,0, "-");
-    GuiButtonExtFallout REPminus = new GuiButtonExtFallout(20,0,0,0,0, "-");
-    GuiButtonExtFallout SCIminus = new GuiButtonExtFallout(21,0,0,0,0, "-");
-    GuiButtonExtFallout SNIKminus = new GuiButtonExtFallout(22,0,0,0,0, "-");
-    GuiButtonExtFallout BARTminus = new GuiButtonExtFallout(23,0,0,0,0, "-");
-    GuiButtonExtFallout Commit = new GuiButtonExtFallout(24,0,0,0,0, "Level up!");
+    GuiButtonExtFallout BGplus = new GuiButtonExtFallout(0, 0, 0, 0, 0, "+");
+    GuiButtonExtFallout SGPlus = new GuiButtonExtFallout(1, 0, 0, 0, 0, "+");
+    GuiButtonExtFallout EWPlus = new GuiButtonExtFallout(2, 0, 0, 0, 0, "+");
+    GuiButtonExtFallout EXPLus = new GuiButtonExtFallout(3, 0, 0, 0, 0, "+");
+    GuiButtonExtFallout MWPLus = new GuiButtonExtFallout(4, 0, 0, 0, 0, "+");
+    GuiButtonExtFallout UNPlus = new GuiButtonExtFallout(5, 0, 0, 0, 0, "+");
+    GuiButtonExtFallout MEDPLus = new GuiButtonExtFallout(6, 0, 0, 0, 0, "+");
+    GuiButtonExtFallout LOCKPLus = new GuiButtonExtFallout(7, 0, 0, 0, 0, "+");
+    GuiButtonExtFallout REPPLus = new GuiButtonExtFallout(8, 0, 0, 0, 0, "+");
+    GuiButtonExtFallout SCIPlus = new GuiButtonExtFallout(9, 0, 0, 0, 0, "+");
+    GuiButtonExtFallout SNIKPLus = new GuiButtonExtFallout(10, 0, 0, 0, 0, "+");
+    GuiButtonExtFallout BARTPLus = new GuiButtonExtFallout(11, 0, 0, 0, 0, "+");
+    GuiButtonExtFallout BGminus = new GuiButtonExtFallout(12, 0, 0, 0, 0, "-");
+    GuiButtonExtFallout SGminus = new GuiButtonExtFallout(13, 0, 0, 0, 0, "-");
+    GuiButtonExtFallout EWminus = new GuiButtonExtFallout(14, 0, 0, 0, 0, "-");
+    GuiButtonExtFallout EXminus = new GuiButtonExtFallout(15, 0, 0, 0, 0, "-");
+    GuiButtonExtFallout MWminus = new GuiButtonExtFallout(16, 0, 0, 0, 0, "-");
+    GuiButtonExtFallout UNminus = new GuiButtonExtFallout(17, 0, 0, 0, 0, "-");
+    GuiButtonExtFallout MEDminus = new GuiButtonExtFallout(18, 0, 0, 0, 0, "-");
+    GuiButtonExtFallout LOCKminus = new GuiButtonExtFallout(19, 0, 0, 0, 0, "-");
+    GuiButtonExtFallout REPminus = new GuiButtonExtFallout(20, 0, 0, 0, 0, "-");
+    GuiButtonExtFallout SCIminus = new GuiButtonExtFallout(21, 0, 0, 0, 0, "-");
+    GuiButtonExtFallout SNIKminus = new GuiButtonExtFallout(22, 0, 0, 0, 0, "-");
+    GuiButtonExtFallout BARTminus = new GuiButtonExtFallout(23, 0, 0, 0, 0, "-");
+    GuiButtonExtFallout Commit = new GuiButtonExtFallout(24, 0, 0, 0, 0, "Level up!");
     Integer[] buttonsIdsPlus = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11};
-    Integer[] buttonsIdsMinus = {12, 13, 14, 15, 16, 17, 18,19,20 , 21, 22, 23};
+    Integer[] buttonsIdsMinus = {12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23};
     GuiButtonExtFallout[] buttonsPLus = {
-            BGplus,SGPlus,EWPlus,
-            EXPLus,MWPLus,UNPlus,
-            MEDPLus,LOCKPLus,REPPLus,
-            SCIPlus,SNIKPLus,BARTPLus
+            BGplus, SGPlus, EWPlus,
+            EXPLus, MWPLus, UNPlus,
+            MEDPLus, LOCKPLus, REPPLus,
+            SCIPlus, SNIKPLus, BARTPLus
     };
     GuiButtonExtFallout[] buttonsMinus = {
-            BGminus,SGminus,EWminus,
-            EXminus,MWminus,UNminus,
-            MEDminus,LOCKminus,REPminus,
-            SCIminus,SNIKminus,BARTminus
+            BGminus, SGminus, EWminus,
+            EXminus, MWminus, UNminus,
+            MEDminus, LOCKminus, REPminus,
+            SCIminus, SNIKminus, BARTminus
     };
     int[] temp = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
     Integer[] finished = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-    Integer pointsAvailable =0 ;
+    Integer pointsAvailable = 0;
 
     @Override
     public void drawScreen(int mouseX, int mouseY, float partialTicks) {
@@ -104,89 +104,88 @@ public class LvlUpGui extends GuiScreen {
                 "Barter:"
 
         };
-        GL11.glPushMatrix();{
+        GL11.glPushMatrix();
+        {
             GL11.glScalef((float) 1.0, (float) 1.0, 1.0f);
             for (int i = 0; i <= (params.length - 1); i++) {
                 this.fontRendererObj.drawString(names[i],
                         ScreenGrid.XCoordStart(
                                 this.width,
-                                2)+25,
+                                2) + 25,
                         ScreenGrid.YCoordStart(
                                 this.height,
-                                2)+ (i*15)+ 30,
+                                2) + (i * 15) + 30,
                         8453920, true
                 );
                 this.fontRendererObj.drawString(Integer.toString(
                         params[i]),
                         ScreenGrid.XCoordStart(
                                 this.width,
-                                2)+215,
+                                2) + 215,
                         ScreenGrid.YCoordStart(
                                 this.height,
-                                2)+(i*15)+ 30,
+                                2) + (i * 15) + 30,
                         8453920, true
                 );
-                this.fontRendererObj.drawString("+ " +Integer.toString(
+                this.fontRendererObj.drawString("+ " + Integer.toString(
                         temp[i]),
                         ScreenGrid.XCoordStart(
                                 this.width,
-                                2)+225,
+                                2) + 225,
                         ScreenGrid.YCoordStart(
                                 this.height,
-                                2)+(i*15)+ 30,
+                                2) + (i * 15) + 30,
                         8453920, true
                 );
 
                 this.fontRendererObj.drawString(Integer.toString(
-                        finished[i] =temp[i]+params[i] ),
+                        finished[i] = temp[i] + params[i]),
                         ScreenGrid.XCoordStart(
                                 this.width,
-                                2)+275,
+                                2) + 275,
                         ScreenGrid.YCoordStart(
                                 this.height,
-                                2)+(i*15)+ 30,
+                                2) + (i * 15) + 30,
                         8453920, true
                 );
-
-
 
 
                 startY = startY + 4;
             }
             pointsAvailable = Lvlutil.ponitsAvailable(
-                    mc.player.getCapability(LevelFactoryProvider.LEVEL_CAPABILITY,null).getLevel(),
-                    mc.player.getCapability(LevelFactoryProvider.LEVEL_CAPABILITY,null).getProgress()
+                    mc.player.getCapability(LevelFactoryProvider.LEVEL_CAPABILITY, null).getLevel(),
+                    mc.player.getCapability(LevelFactoryProvider.LEVEL_CAPABILITY, null).getProgress()
             );
-            this.fontRendererObj.drawString("Points available: " +Integer.toString(pointsAvailable - IntStream.of(temp).sum()),
+            this.fontRendererObj.drawString("Points available: " + Integer.toString(pointsAvailable - IntStream.of(temp).sum()),
                     ScreenGrid.XCoordStart(
                             this.width,
-                            2)+30,
+                            2) + 30,
                     ScreenGrid.YCoordStart(
                             this.height,
-                            2)+ 10,
+                            2) + 10,
                     8453920, true
             );
 
 
             {
-                int startYButtons =36;
-                for (int o =0;o <= (buttonsIdsPlus.length-1);o++) {
-                    this.buttonList.get(buttonsIdsPlus[o]).xPosition = ScreenGrid.XCoordStart(this.width,2) + 248;
-                    this.buttonList.get(buttonsIdsPlus[o]).yPosition = ScreenGrid.XCoordStart(this.height,2) + (o*15)+ 30;
+                int startYButtons = 36;
+                for (int o = 0; o <= (buttonsIdsPlus.length - 1); o++) {
+                    this.buttonList.get(buttonsIdsPlus[o]).xPosition = ScreenGrid.XCoordStart(this.width, 2) + 248;
+                    this.buttonList.get(buttonsIdsPlus[o]).yPosition = ScreenGrid.XCoordStart(this.height, 2) + (o * 15) + 30;
                     this.buttonList.get(buttonsIdsPlus[o]).height = 12;
                     this.buttonList.get(buttonsIdsPlus[o]).width = 10;
 
-                    this.buttonList.get(buttonsIdsMinus[o]).xPosition = ScreenGrid.XCoordStart(this.width,2) + 258;
-                    this.buttonList.get(buttonsIdsMinus[o]).yPosition = ScreenGrid.XCoordStart(this.height,2) + (o*15)+ 30;
+                    this.buttonList.get(buttonsIdsMinus[o]).xPosition = ScreenGrid.XCoordStart(this.width, 2) + 258;
+                    this.buttonList.get(buttonsIdsMinus[o]).yPosition = ScreenGrid.XCoordStart(this.height, 2) + (o * 15) + 30;
                     this.buttonList.get(buttonsIdsMinus[o]).height = 10;
                     this.buttonList.get(buttonsIdsMinus[o]).width = 9;
 
-                    startYButtons=startYButtons+13;
+                    startYButtons = startYButtons + 13;
                 }
 
             }
-            this.buttonList.get(24).xPosition = ScreenGrid.XCoordStart(this.width,55);
-            this.buttonList.get(24).yPosition = ScreenGrid.XCoordStart(this.height,75);
+            this.buttonList.get(24).xPosition = ScreenGrid.XCoordStart(this.width, 55);
+            this.buttonList.get(24).yPosition = ScreenGrid.XCoordStart(this.height, 75);
             this.buttonList.get(24).height = 21;
             this.buttonList.get(24).width = 80;
             this.buttonList.get(24).enabled = CommitShow;
@@ -205,10 +204,10 @@ public class LvlUpGui extends GuiScreen {
     @Override
     public void initGui() {
 
-        for (int i =0;i <= (buttonsPLus.length-1);i++) {
+        for (int i = 0; i <= (buttonsPLus.length - 1); i++) {
             this.buttonList.add(buttonsPLus[i]);
         }
-        for (int i =0;i <= (buttonsMinus.length-1);i++) {
+        for (int i = 0; i <= (buttonsMinus.length - 1); i++) {
             this.buttonList.add(buttonsMinus[i]);
         }
         this.buttonList.add(Commit);
@@ -218,10 +217,10 @@ public class LvlUpGui extends GuiScreen {
 
     @Override
     protected void actionPerformed(GuiButton button) throws IOException {
-        for(int i =0;i <= (temp.length-1);i++){
+        for (int i = 0; i <= (temp.length - 1); i++) {
             counter = IntStream.of(temp).sum();
-            if(pointsAvailable > 0 ){
-                if(pointsAvailable != counter) {
+            if (pointsAvailable > 0) {
+                if (pointsAvailable != counter) {
                     if (button == buttonsPLus[i]) {
                         temp[i] = temp[i] + 1;
                     }
@@ -233,11 +232,11 @@ public class LvlUpGui extends GuiScreen {
                 }
             }
         }
-        if (button == this.Commit){
+        if (button == this.Commit) {
             main.simpleNetworkWrapper.sendToServer(new MessageUpdateClientServerSkills(finished));
-            for (int i=0;i<=(finished.length-1);i++){
-                finished[i]=0;
-                temp[i]=0;
+            for (int i = 0; i <= (finished.length - 1); i++) {
+                finished[i] = 0;
+                temp[i] = 0;
                 this.mc.displayGuiScreen(null);
             }
 

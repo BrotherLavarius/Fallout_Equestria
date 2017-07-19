@@ -60,52 +60,53 @@ public class MessageUpdateClientServerSkills implements IMessage {
 
     public MessageUpdateClientServerSkills(ISkillsCapability skills) {
 
-        this.BigGuns=skills.getBigGuns();
-        this.SmallGuns=skills.getSmallGuns();
-        this.EnergyWeapons=skills.getEnergyWeapons();
-        this.Explosives=skills.getExplosives();
-        this.MeleeWeapons=skills.getMeleeWeapons();
-        this.Unarmed=skills.getUnarmed();
-        this.Medicine=skills.getMedicine();
-        this.Lockpick=skills.getLockpick();
-        this.Repair=skills.getRepair();
-        this.Science=skills.getScience();
-        this.Sneak=skills.getSneak();
-        this.Barter=skills.getBarter();
+        this.BigGuns = skills.getBigGuns();
+        this.SmallGuns = skills.getSmallGuns();
+        this.EnergyWeapons = skills.getEnergyWeapons();
+        this.Explosives = skills.getExplosives();
+        this.MeleeWeapons = skills.getMeleeWeapons();
+        this.Unarmed = skills.getUnarmed();
+        this.Medicine = skills.getMedicine();
+        this.Lockpick = skills.getLockpick();
+        this.Repair = skills.getRepair();
+        this.Science = skills.getScience();
+        this.Sneak = skills.getSneak();
+        this.Barter = skills.getBarter();
 
 
     }
+
     public MessageUpdateClientServerSkills(Integer[] Skills) {
-        this.BigGuns=Skills[0];
-        this.SmallGuns=Skills[1];
-        this.EnergyWeapons=Skills[2];
-        this.Explosives=Skills[3];
-        this.MeleeWeapons=Skills[4];
-        this.Unarmed=Skills[5];
-        this.Medicine=Skills[6];
-        this.Lockpick=Skills[7];
-        this.Repair=Skills[8];
-        this.Science=Skills[9];
-        this.Sneak=Skills[10];
-        this.Barter=Skills[11];
+        this.BigGuns = Skills[0];
+        this.SmallGuns = Skills[1];
+        this.EnergyWeapons = Skills[2];
+        this.Explosives = Skills[3];
+        this.MeleeWeapons = Skills[4];
+        this.Unarmed = Skills[5];
+        this.Medicine = Skills[6];
+        this.Lockpick = Skills[7];
+        this.Repair = Skills[8];
+        this.Science = Skills[9];
+        this.Sneak = Skills[10];
+        this.Barter = Skills[11];
 
 
     }
 
     @Override
     public void fromBytes(ByteBuf buf) {
-        BigGuns= buf.readInt();
-        SmallGuns= buf.readInt();
-        EnergyWeapons= buf.readInt();
-        Explosives= buf.readInt();
-        MeleeWeapons= buf.readInt();
-        Unarmed= buf.readInt();
-        Medicine= buf.readInt();
-        Lockpick= buf.readInt();
-        Repair= buf.readInt();
-        Science= buf.readInt();
-        Sneak= buf.readInt();
-        Barter= buf.readInt();
+        BigGuns = buf.readInt();
+        SmallGuns = buf.readInt();
+        EnergyWeapons = buf.readInt();
+        Explosives = buf.readInt();
+        MeleeWeapons = buf.readInt();
+        Unarmed = buf.readInt();
+        Medicine = buf.readInt();
+        Lockpick = buf.readInt();
+        Repair = buf.readInt();
+        Science = buf.readInt();
+        Sneak = buf.readInt();
+        Barter = buf.readInt();
 
     }
 
@@ -147,6 +148,7 @@ public class MessageUpdateClientServerSkills implements IMessage {
         }
 
     }
+
     public static class ServerOnLVLUP implements IMessageHandler<MessageUpdateClientServerSkills, IMessage> {
 
         @Override

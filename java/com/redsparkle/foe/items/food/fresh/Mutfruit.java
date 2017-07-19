@@ -5,7 +5,7 @@ import net.minecraft.item.ItemFood;
 /**
  * Created by hoijima on 09.06.17.
  */
-public class Mutfruit extends ItemFood{
+public class Mutfruit extends ItemFood {
     public Mutfruit(int amount, float saturation, boolean isWolfFood) {
         super(amount, saturation, isWolfFood);
     }

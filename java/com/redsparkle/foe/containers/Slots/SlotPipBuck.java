@@ -10,11 +10,11 @@ import net.minecraft.item.ItemStack;
  */
 public class SlotPipBuck extends Slot {
 
-    public SlotPipBuck(IInventory inventoryIn, int index, int xPosition, int yPosition)
-    {
-        super(inventoryIn,index,xPosition,yPosition);
+    public SlotPipBuck(IInventory inventoryIn, int index, int xPosition, int yPosition) {
+        super(inventoryIn, index, xPosition, yPosition);
 
     }
+
     @Override
     public int getSlotStackLimit() {
         return 64;

@@ -4,7 +4,6 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.projectile.EntityThrowable;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumParticleTypes;
-import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
@@ -22,16 +21,14 @@ public class EntityBullet extends EntityThrowable {
         super(world);
     }
 
-    public EntityBullet(World worldIn, double x, double y, double z)
-    {
+    public EntityBullet(World worldIn, double x, double y, double z) {
         this(worldIn);
         this.setPosition(x, y, z);
     }
+
     public EntityBullet(World world, EntityLivingBase entity) {
         super(world, entity);
     }
-
-
 
 
     @Override
@@ -59,11 +56,12 @@ public class EntityBullet extends EntityThrowable {
     public void handleStatusUpdate(byte p_handleStatusUpdate_1_) {
         if (p_handleStatusUpdate_1_ == 3) {
             for (int lvt_2_1_ = 0; lvt_2_1_ < 8; ++lvt_2_1_) {
-                this.world.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, this.posX, this.posY, this.posZ, 0.0D, 0.0D, 0.0D, new int[0]);
+                this.world.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, this.posX, this.posY, this.posZ, 0.0D, 0.0D, 0.0D);
             }
         }
 
     }
+
     @Override
     protected float getGravityVelocity() {
         return 0.005F;
@@ -72,7 +70,7 @@ public class EntityBullet extends EntityThrowable {
     @Override
     protected void onImpact(RayTraceResult rayTraceResult) {
         if (rayTraceResult.entityHit != null) {
-            rayTraceResult.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, this.getThrower()), (float) damage);
+            rayTraceResult.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, this.getThrower()), damage);
             this.setDead();
         }
 

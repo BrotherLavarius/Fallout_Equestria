@@ -51,8 +51,6 @@ public class ItemInit {
         }
 
 
-
-
         //----------------------ARMOR-------------------
 
         t40head = (t40head) (new t40head(Armor_material.T40_ARMOR, 0, EntityEquipmentSlot.HEAD).setUnlocalizedName(GlobalNames.T40Head));

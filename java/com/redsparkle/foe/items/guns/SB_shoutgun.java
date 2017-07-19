@@ -90,6 +90,7 @@ public class SB_shoutgun extends Item_Firearm {
     public boolean isAmmo(ItemStack stack) {
         return stack.getItem() instanceof TenMMClip;
     }
+
     /**
      * allows items to add custom lines of information to the mouseover description
      */
@@ -97,8 +98,8 @@ public class SB_shoutgun extends Item_Firearm {
     public void addInformation(ItemStack stack, EntityPlayer playerIn, List<String> tooltip, boolean advanced) {
         tooltip.add("Shotgun");
         tooltip.add("Clip size: " + clipRounds);
-        tooltip.add("Base Damage: " + GlobalWeaponsStats.db_shoutgunDamage+"*6");
-        tooltip.add("Your Damage: " + damage+"*6");
+        tooltip.add("Base Damage: " + GlobalWeaponsStats.db_shoutgunDamage + "*6");
+        tooltip.add("Your Damage: " + damage + "*6");
 
     }
 

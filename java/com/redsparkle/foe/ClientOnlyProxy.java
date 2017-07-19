@@ -41,6 +41,7 @@ public class ClientOnlyProxy extends CommonProxy {
 
     public static Minecraft mc = Minecraft.getMinecraft();
     public static World world = mc.world;
+
     public static void handleRadMessage(MessageUpdateClientRads message) {
         Minecraft.getMinecraft().addScheduledTask(() -> {
             EntityPlayer player = Minecraft.getMinecraft().player;
@@ -70,6 +71,7 @@ public class ClientOnlyProxy extends CommonProxy {
 
         });
     }
+
     public static void handleSkillsMessage(MessageUpdateClientServerSkills message) {
         Minecraft.getMinecraft().addScheduledTask(() -> {
             EntityPlayer player = Minecraft.getMinecraft().player;
@@ -118,7 +120,7 @@ public class ClientOnlyProxy extends CommonProxy {
                 world.playSound(player, player.getPosition(), SoundInit.guns[2], SoundCategory.HOSTILE, 1.0F, 1.0F);
             } else if (message.soundname == 1) {
                 //10 mm clip_out
-                world.playSound(player, player.getPosition(), SoundInit.guns[23] ,SoundCategory.HOSTILE, 1.0F, 1.0F);
+                world.playSound(player, player.getPosition(), SoundInit.guns[23], SoundCategory.HOSTILE, 1.0F, 1.0F);
             }
 //-------------------------------------------------------------
             else if (message.soundname == 2) {
@@ -127,7 +129,7 @@ public class ClientOnlyProxy extends CommonProxy {
 
             } else if (message.soundname == 3) {
                 // 14mm clip_out
-                world.playSound(player, player.getPosition(), SoundInit.guns[24] , SoundCategory.HOSTILE, 1.0F, 1.0F);
+                world.playSound(player, player.getPosition(), SoundInit.guns[24], SoundCategory.HOSTILE, 1.0F, 1.0F);
 
             }
 //-------------------------------------------------------------
@@ -137,7 +139,7 @@ public class ClientOnlyProxy extends CommonProxy {
 
             } else if (message.soundname == 5) {
                 // db_shotgun clip_out
-                world.playSound(player, player.getPosition(), SoundInit.guns[25] , SoundCategory.HOSTILE, 1.0F, 1.0F);
+                world.playSound(player, player.getPosition(), SoundInit.guns[25], SoundCategory.HOSTILE, 1.0F, 1.0F);
 
             }
 //-------------------------------------------------------------
@@ -147,7 +149,7 @@ public class ClientOnlyProxy extends CommonProxy {
 
             } else if (message.soundname == 7) {
                 // flaregun clip_out
-                world.playSound(player, player.getPosition(), SoundInit.guns[26] , SoundCategory.HOSTILE, 1.0F, 1.0F);
+                world.playSound(player, player.getPosition(), SoundInit.guns[26], SoundCategory.HOSTILE, 1.0F, 1.0F);
 
             }
 //-------------------------------------------------------------
@@ -157,7 +159,7 @@ public class ClientOnlyProxy extends CommonProxy {
 
             } else if (message.soundname == 9) {
                 // laser clip_out
-                world.playSound(player, player.getPosition(), SoundInit.guns[27] , SoundCategory.HOSTILE, 1.0F, 1.0F);
+                world.playSound(player, player.getPosition(), SoundInit.guns[27], SoundCategory.HOSTILE, 1.0F, 1.0F);
 
             }
 //-------------------------------------------------------------
@@ -167,7 +169,7 @@ public class ClientOnlyProxy extends CommonProxy {
 
             } else if (message.soundname == 11) {
                 // plasma clip_out
-                world.playSound(player, player.getPosition(), SoundInit.guns[28] , SoundCategory.HOSTILE, 1.0F, 1.0F);
+                world.playSound(player, player.getPosition(), SoundInit.guns[28], SoundCategory.HOSTILE, 1.0F, 1.0F);
 
             }
 //-------------------------------------------------------------
@@ -180,17 +182,19 @@ public class ClientOnlyProxy extends CommonProxy {
 
         });
     }
+
     public static void handleLevelMessageOnDemand(MessageUpdateSLSServerReplyOnDemand message) {
         Minecraft.getMinecraft().addScheduledTask(() -> {
             EntityPlayer player = Minecraft.getMinecraft().player;
             ILevelCapability level = LevelFactoryProvider.instanceFor(player);
-            player.getCapability(LevelFactoryProvider.LEVEL_CAPABILITY,null).setLevel(message.Level);
-            player.getCapability(LevelFactoryProvider.LEVEL_CAPABILITY,null).setProgress(message.Progress);
+            player.getCapability(LevelFactoryProvider.LEVEL_CAPABILITY, null).setLevel(message.Level);
+            player.getCapability(LevelFactoryProvider.LEVEL_CAPABILITY, null).setProgress(message.Progress);
             level.setLevel(message.Level);
             level.setProgress(message.Progress);
-            System.out.println("player progress: "+player.getCapability(LevelFactoryProvider.LEVEL_CAPABILITY,null).getProgress() );
+            System.out.println("player progress: " + player.getCapability(LevelFactoryProvider.LEVEL_CAPABILITY, null).getProgress());
         });
     }
+
     public static void handleOpenGui(MessageOpenGuiClient message) {
         Minecraft.getMinecraft().addScheduledTask(() -> {
             mc.player.openGui(main.instance, message.ID, mc.world, (int) mc.player.posX, (int) mc.player.posY, (int) mc.player.posZ);
@@ -265,7 +269,6 @@ public class ClientOnlyProxy extends CommonProxy {
     public boolean isDedicatedServer() {
         return false;
     }
-
 
 
 }

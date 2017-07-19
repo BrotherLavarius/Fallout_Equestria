@@ -12,7 +12,7 @@ import net.minecraft.entity.player.EntityPlayer;
  */
 public class PlayerStatsRequester {
 
-    public static Integer[] skills(EntityPlayer player){
+    public static Integer[] skills(EntityPlayer player) {
 
         Integer[] skills = new Integer[]{//0-11
                 player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getBigGuns(),
@@ -28,26 +28,25 @@ public class PlayerStatsRequester {
                 player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getSneak(),
                 player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getBarter()
         };
-        
-        
-        
+
+
         return skills;
     }
 
-    public static Integer[] lvl(EntityPlayer player){
+    public static Integer[] lvl(EntityPlayer player) {
 
         Integer[] playerParams = new Integer[]{
                 player.getCapability(LevelFactoryProvider.LEVEL_CAPABILITY, null).getLevel(),
                 player.getCapability(LevelFactoryProvider.LEVEL_CAPABILITY, null).getProgress()
-            
+
 
         };
 
 
-
         return playerParams;
     }
-    public static Integer[] spechials(EntityPlayer player){
+
+    public static Integer[] spechials(EntityPlayer player) {
 
         Integer[] spechials = {
                 player.getCapability(SpechialFactoryProvider.SPECHIAL_CAPABILITY, null).getStreinght(),
@@ -60,12 +59,11 @@ public class PlayerStatsRequester {
         };
 
 
-
         return spechials;
     }
 
 
-    public static Integer[] additionalStats(EntityPlayer player){
+    public static Integer[] additionalStats(EntityPlayer player) {
 
         Integer[] player_RAD_WATER = new Integer[]{
                 player.getCapability(RadsFactoryProvider.RADIATION_CAPABILITY, null).getRadiation(),

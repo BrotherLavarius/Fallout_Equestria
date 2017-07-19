@@ -23,17 +23,16 @@ public class MessageUpdateClientServerLevel implements IMessage {
 
     public MessageUpdateClientServerLevel(ILevelCapability level) {
 
-        this.Level=level.getLevel();
-        this.Progress=level.getProgress();
-
+        this.Level = level.getLevel();
+        this.Progress = level.getProgress();
 
 
     }
 
     @Override
     public void fromBytes(ByteBuf buf) {
-        Level= buf.readInt();
-        Progress= buf.readInt();
+        Level = buf.readInt();
+        Progress = buf.readInt();
 
 
     }

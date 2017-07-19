@@ -26,7 +26,6 @@ public class DesktopTerminal extends GeneralAllignBlockOneOone {
     }
 
 
-
     @Override
     public boolean isOpaqueCube(IBlockState state) {
         return false;
@@ -51,9 +50,6 @@ public class DesktopTerminal extends GeneralAllignBlockOneOone {
         }
         return state;
     }
-
-
-
 
 
 }

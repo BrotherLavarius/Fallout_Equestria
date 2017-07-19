@@ -16,18 +16,20 @@ public class MessageOpenGuiClient implements IMessage {
 
     public Integer ID;
 
-    public MessageOpenGuiClient(){}
+    public MessageOpenGuiClient() {
+    }
+
     public MessageOpenGuiClient(
             Integer id
-    ){
-     this.ID = id;
+    ) {
+        this.ID = id;
 
 
     }
 
     @Override
     public void fromBytes(ByteBuf buf) {
-        ID= buf.readInt();
+        ID = buf.readInt();
 
     }
 

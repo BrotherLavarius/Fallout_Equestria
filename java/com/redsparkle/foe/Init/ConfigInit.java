@@ -68,8 +68,8 @@ public class ConfigInit {
     }
 
     public static void clientPreInit() {
-		/*
-		 * Register the save config handler to the Forge event bus, creates an
+        /*
+         * Register the save config handler to the Forge event bus, creates an
 		 * instance of the static class ConfigEventHandler and has it listen on
 		 * the core Forge event bus (see Notes and ConfigEventHandler for more information).
 		 */

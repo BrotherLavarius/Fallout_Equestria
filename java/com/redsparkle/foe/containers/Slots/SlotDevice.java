@@ -12,15 +12,15 @@ import net.minecraft.item.ItemStack;
 public class SlotDevice extends Slot {
 
 
-    public SlotDevice(IInventory inventoryIn, int index, int xPosition, int yPosition)
-    {
-        super(inventoryIn,index,xPosition,yPosition);
+    public SlotDevice(IInventory inventoryIn, int index, int xPosition, int yPosition) {
+        super(inventoryIn, index, xPosition, yPosition);
     }
 
     @Override
     public int getSlotStackLimit() {
         return 65;
     }
+
     @Override
     public boolean isItemValid(ItemStack stack) {
         return stack.getItem() instanceof Item_Utility;

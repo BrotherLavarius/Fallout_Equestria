@@ -6,7 +6,7 @@ import com.redsparkle.foe.creativeTabs.InitCreativeTabs;
 /**
  * Created by hoijima on 09.06.17.
  */
-public class GumDrops extends FoodMultipleUse{
+public class GumDrops extends FoodMultipleUse {
 
     public int foodLvl = 0;
 
@@ -14,7 +14,7 @@ public class GumDrops extends FoodMultipleUse{
     public int MaxDamage = 2;
     public int foodToAdd = 1;
 
-    public GumDrops(){
+    public GumDrops() {
         this.setMaxStackSize(NUMBER_OF_BOXES);
         this.setCreativeTab(InitCreativeTabs.Fallout_Food);   // the item will appear on the Miscellaneous tab in creative
         this.setMaxDamage(MaxDamage);

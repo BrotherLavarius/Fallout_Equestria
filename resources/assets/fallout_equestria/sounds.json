@@ -34,8 +34,6 @@
     ],
     "subtitle": "laser_dry"
   },
-
-
   "clip_load": {
     "category": "player",
     "sounds": [
@@ -43,7 +41,6 @@
     ],
     "subtitle": "clip_load"
   },
-
   "clip_out": {
     "category": "player",
     "sounds": [
@@ -51,7 +48,6 @@
     ],
     "subtitle": "clip_out"
   },
-
   "tenmm_shot": {
     "category": "player",
     "sounds": [
@@ -73,8 +69,6 @@
     ],
     "subtitle": "tenmm_dry"
   },
-
-
   "four_tenmm_shot": {
     "category": "player",
     "sounds": [
@@ -82,7 +76,6 @@
     ],
     "subtitle": "four_tenmm_shot"
   },
-
   "four_tenmm_reload": {
     "category": "player",
     "sounds": [
@@ -90,7 +83,6 @@
     ],
     "subtitle": "four_tenmm_reload"
   },
-
   "four_tenmm_dry": {
     "category": "player",
     "sounds": [
@@ -98,7 +90,6 @@
     ],
     "subtitle": "four_tenmm_dry"
   },
-
   "db_shotgun_shot": {
     "category": "player",
     "sounds": [
@@ -106,7 +97,6 @@
     ],
     "subtitle": "db_shotgun_shot"
   },
-
   "db_shotgun_reload": {
     "category": "player",
     "sounds": [
@@ -114,7 +104,6 @@
     ],
     "subtitle": "db_shotgun_reload"
   },
-
   "db_shotgun_dry": {
     "category": "player",
     "sounds": [
@@ -122,7 +111,6 @@
     ],
     "subtitle": "db_shotgun_dry"
   },
-
   "plasma_shot": {
     "category": "player",
     "sounds": [
@@ -130,7 +118,6 @@
     ],
     "subtitle": "plasma_shot"
   },
-
   "plasma_reload": {
     "category": "player",
     "sounds": [
@@ -138,7 +125,6 @@
     ],
     "subtitle": "plasma_reload"
   },
-
   "plasma_dry": {
     "category": "player",
     "sounds": [
@@ -146,7 +132,6 @@
     ],
     "subtitle": "plasma_dry"
   },
-
   "flaregun_shot": {
     "category": "player",
     "sounds": [
@@ -154,7 +139,6 @@
     ],
     "subtitle": "flaregun_shot"
   },
-
   "flaregun_reload": {
     "category": "player",
     "sounds": [
@@ -162,7 +146,6 @@
     ],
     "subtitle": "flaregun_reload"
   },
-
   "flaregun_dry": {
     "category": "player",
     "sounds": [
@@ -170,7 +153,6 @@
     ],
     "subtitle": "flaregun_dry"
   },
-
   "flamer_shot": {
     "category": "player",
     "sounds": [
@@ -178,7 +160,6 @@
     ],
     "subtitle": "flamer_shot"
   },
-
   "flamer_reload": {
     "category": "player",
     "sounds": [
@@ -186,7 +167,6 @@
     ],
     "subtitle": "flamer_reload"
   },
-
   "tenmm_clip_out": {
     "category": "player",
     "sounds": [
@@ -229,10 +209,6 @@
     ],
     "subtitle": "plasma_clip_out"
   },
-
-
-
-
   "lowentensity_rad": {
     "category": "player",
     "sounds": [

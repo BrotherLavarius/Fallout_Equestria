@@ -62,7 +62,7 @@ public class FourTenMM extends Item_Firearm {
         this.damage = GlobalWeaponsStats.FourDamage + playerIn.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getSmallGuns();
 
         if (!playerIn.capabilities.isCreativeMode) {
-            if (itemstack.getItemDamage() >= (GlobalWeaponsStats.FourclipRounds-1)) {
+            if (itemstack.getItemDamage() >= (GlobalWeaponsStats.FourclipRounds - 1)) {
                 if (findAmmo(playerIn) == ItemStack.EMPTY) {
                     // ---------------_EMPTY CLIP
                     worldIn.playSound(playerIn, playerIn.getPosition(), SoundInit.guns[4], SoundCategory.HOSTILE, 1F, 0.4F);
@@ -91,6 +91,7 @@ public class FourTenMM extends Item_Firearm {
         playerIn.addStat(StatList.getObjectUseStats(this));
         return new ActionResult<>(EnumActionResult.SUCCESS, itemstack);
     }
+
     @Override
     public boolean isAmmo(ItemStack stack) {
         return stack.getItem() instanceof TenMMClip;

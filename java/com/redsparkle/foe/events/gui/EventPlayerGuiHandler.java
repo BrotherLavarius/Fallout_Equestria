@@ -38,12 +38,13 @@ public class EventPlayerGuiHandler {
                 break;
         }
     }
-        /* The RenderGameOverlayEvent.Post event is called after each game overlay element is rendered.
-     * Similar to the RenderGameOverlayEvent.Pre event, it is called multiple times.
-     *
-     * If you want something to be rendered over an existing vanilla element, you would render
-     * it here.
-     */
+
+    /* The RenderGameOverlayEvent.Post event is called after each game overlay element is rendered.
+ * Similar to the RenderGameOverlayEvent.Pre event, it is called multiple times.
+ *
+ * If you want something to be rendered over an existing vanilla element, you would render
+ * it here.
+ */
     @SubscribeEvent(receiveCanceled = true)
     public void onEvent(RenderGameOverlayEvent.Post event) {
 

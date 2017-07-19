@@ -102,11 +102,12 @@ public class MessageAdvInvToServerSync implements IMessage {
     @Override
     public void toBytes(ByteBuf buf) {
         for (int i = 0; i < 12; i++) {
-        String message = new String(item_id[i]+","+item_count[i]+","+item_damage[i]);
-        ByteBufUtils.writeUTF8String(buf,message);
+            String message = new String(item_id[i] + "," + item_count[i] + "," + item_damage[i]);
+            ByteBufUtils.writeUTF8String(buf, message);
 
         }
     }
+
     /**
      * Convert from the supplied buffer into your specific message type
      *
@@ -114,15 +115,15 @@ public class MessageAdvInvToServerSync implements IMessage {
      */
     @Override
     public void fromBytes(ByteBuf buf) {
-        for (int i = 0; i < 12; i++) {
-
-            String recivedmessage = ByteBufUtils.readUTF8String(buf);
-            String[] parts = recivedmessage.split(",");
-            item_id[i] = parts[0];
-            item_count[i] = Integer.parseInt(parts[1]);
-            item_damage[i] = Integer.parseInt(parts[2]);
-
-        }
+//        for (int i = 0; i < 12; i++) {
+//
+//            String recivedmessage = ByteBufUtils.readUTF8String(buf);
+//            String[] parts = recivedmessage.split(",");
+//            item_id[i] = parts[0];
+//            item_count[i] = Integer.parseInt(parts[1]);
+//            item_damage[i] = Integer.parseInt(parts[2]);
+//
+//        }
     }
 
 

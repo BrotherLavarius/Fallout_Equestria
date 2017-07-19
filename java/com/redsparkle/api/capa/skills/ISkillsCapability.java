@@ -25,7 +25,6 @@ public interface ISkillsCapability {
     Integer getEnergyWeapons();
 
 
-
     Integer setMeleeWeapons(Integer newMeleeWeapons);
 
     Integer getMeleeWeapons();
@@ -56,28 +55,31 @@ public interface ISkillsCapability {
 //    Integer getSaddlebag_guns();
 
     Integer setExplosives(Integer newExplosives);
+
     Integer getExplosives();
 
     Integer setRepair(Integer newRepair);
+
     Integer getRepair();
 
     Integer setMedicine(Integer newMedicine);
+
     Integer getMedicine();
 
     Integer setScience(Integer newScience);
+
     Integer getScience();
 
     Integer setSneak(Integer newSneak);
+
     Integer getSneak();
 
     Integer setBarter(Integer newBarter);
+
     Integer getBarter();
 
 //    Integer setSurvival(Integer newSurvival);
 //    Integer getSurvival();
-
-
-
 
 
     void setAll(Integer All);

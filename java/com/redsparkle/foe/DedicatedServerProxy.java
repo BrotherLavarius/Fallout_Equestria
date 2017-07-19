@@ -28,6 +28,9 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.world.WorldServer;
 import net.minecraftforge.common.MinecraftForge;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static com.redsparkle.api.capa.level.LevelFactoryProvider.LEVEL_CAPABILITY;
 
 /**
@@ -37,28 +40,151 @@ import static com.redsparkle.api.capa.level.LevelFactoryProvider.LEVEL_CAPABILIT
  */
 public class DedicatedServerProxy extends CommonProxy {
 
+
     public static void handleSpechialMessage(MessageUpdateClientServerSPECHIAL message, EntityPlayerMP playerEntity) {
-            ISpechialCapability spechial = SpechialFactoryProvider.instanceFor(playerEntity);
-            spechial.setStreinght(message.Streinght);
-            spechial.setPerception(message.Perception);
-            spechial.setEndurance(message.Endurance);
-            spechial.setCharisma(message.Charisma);
-            spechial.setIntelligence(message.Intelligence);
-            spechial.setAgility(message.Agility);
-            spechial.setLuck(message.Luck);
+        ISpechialCapability spechial = SpechialFactoryProvider.instanceFor(playerEntity);
+        spechial.setStreinght(message.Streinght);
+        spechial.setPerception(message.Perception);
+        spechial.setEndurance(message.Endurance);
+        spechial.setCharisma(message.Charisma);
+        spechial.setIntelligence(message.Intelligence);
+        spechial.setAgility(message.Agility);
+        spechial.setLuck(message.Luck);
 
-            PlayerParamsSetup.normalizer(playerEntity);
+        PlayerParamsSetup.normalizer(playerEntity);
 
-            main.simpleNetworkWrapper.sendTo(new MessageUpdateClientServerSPECHIAL(spechial), playerEntity);
+        main.simpleNetworkWrapper.sendTo(new MessageUpdateClientServerSPECHIAL(spechial), playerEntity);
 
-            /** DEBUG MESSAGE ENABLER
-             * System.out.println("Client: "+message.radiation);
-             */
+        /** DEBUG MESSAGE ENABLER
+         * System.out.println("Client: "+message.radiation);
+         */
 
     }
+
     public static void handleSkillsMessage(MessageUpdateClientServerSkills message, EntityPlayerMP playerEntity) {
 
-            ISkillsCapability skills = SkillsFactoryProvider.instanceFor(playerEntity);
+        ISkillsCapability skills = SkillsFactoryProvider.instanceFor(playerEntity);
+
+        skills.setBigGuns(message.BigGuns);
+        skills.setSmallGuns(message.SmallGuns);
+        skills.setEnergyWeapons(message.EnergyWeapons);
+        skills.setExplosives(message.Explosives);
+        skills.setMeleeWeapons(message.MeleeWeapons);
+        skills.setUnarmed(message.Unarmed);
+        skills.setMedicine(message.Medicine);
+        skills.setLockpick(message.Lockpick);
+        skills.setRepair(message.Repair);
+        skills.setScience(message.Science);
+        skills.setSneak(message.Sneak);
+        skills.setBarter(message.Barter);
+
+
+        /** DEBUG MESSAGE ENABLER
+         * System.out.println("Client: "+message.radiation);
+         */
+
+    }
+
+    public static void handleLevelMessage(MessageUpdateClientServerLevel message, EntityPlayerMP playerEntity) {
+        ILevelCapability level = LevelFactoryProvider.instanceFor(playerEntity);
+        level.setLevel(message.Level);
+        level.setProgress(message.Progress);
+
+        /** DEBUG MESSAGE ENABLER
+         * System.out.println("Client: "+message.radiation);
+         */
+
+
+    }
+
+    public static void handleReloadMessage(EntityPlayerMP player) {
+        WorldServer mainThread = (WorldServer) (player.world);
+        ItemStack heldItem = player.getHeldItem(EnumHand.MAIN_HAND);
+        if (heldItem != null) { //&& heldItem.getTagCompound().getBoolean("isgun")
+            if (heldItem.getItem() instanceof TenMM) {
+                gunReload.TenMM(mainThread, heldItem, player);
+            } else if (heldItem.getItem() instanceof LaserPistol) {
+                gunReload.LaserPistol(mainThread, heldItem, player);
+            } else if (heldItem.getItem() instanceof FourTenMM) {
+                gunReload.FourTenMM(mainThread, heldItem, player);
+            } else if (heldItem.getItem() instanceof SB_shoutgun) {
+                gunReload.Shotgun(mainThread, heldItem, player);
+            } else if (heldItem.getItem() instanceof FlareGun) {
+                gunReload.FlareGun(mainThread, heldItem, player);
+            }
+
+
+        }
+    }
+
+    public static void handleSLSOnDemand(EntityPlayerMP player) {
+
+        if (player.getCapability(LEVEL_CAPABILITY, null).getProgress() < player.experienceTotal) {
+            player.getCapability(LEVEL_CAPABILITY, null).setProgress(player.experienceTotal);
+        } else if (player.getCapability(LEVEL_CAPABILITY, null).getProgress() > player.experienceTotal) {
+            player.getCapability(LEVEL_CAPABILITY, null).setProgress(
+                    player.getCapability(LEVEL_CAPABILITY, null).getProgress() +
+                            (player.getCapability(LEVEL_CAPABILITY, null).getProgress() -
+                                    player.experienceTotal));
+        }
+
+
+        main.simpleNetworkWrapper.sendTo(new MessageUpdateSLSServerReplyOnDemand(
+                player.getCapability(LevelFactoryProvider.LEVEL_CAPABILITY, null).getLevel(),
+                player.getCapability(LevelFactoryProvider.LEVEL_CAPABILITY, null).getProgress()
+
+        ), player);
+    }
+
+    public static void handleOpenGuiMessage(MessageOpenGuiClient message, EntityPlayerMP playerMP) {
+        //Minecraft.getMinecraft().addScheduledTask(() -> {
+        main.simpleNetworkWrapper.sendTo(new MessageOpenGuiClient(message.ID), playerMP);
+        //});
+
+    }
+
+    public static void SendOpenGui(int guiId, EntityPlayerMP player) {
+        main.simpleNetworkWrapper.sendTo(new MessageOpenGuiClient(guiId), player);
+    }
+
+    public static void handleSkillsLVLUPMessage(MessageUpdateClientServerSkills message, EntityPlayerMP player) {
+        ISkillsCapability skills = SkillsFactoryProvider.instanceFor(player);
+        ILevelCapability level = LevelFactoryProvider.instanceFor(player);
+        ISpechialCapability spechial = SpechialFactoryProvider.instanceFor(player);
+        int summ = (
+                message.BigGuns +
+                        message.SmallGuns +
+                        message.EnergyWeapons +
+                        message.Explosives +
+                        message.MeleeWeapons +
+                        message.Unarmed +
+                        message.Medicine +
+                        message.Lockpick +
+                        message.Repair +
+                        message.Science +
+                        message.Sneak +
+                        message.Barter
+        ) - 120;
+        int prevSumm = (
+
+                skills.getBigGuns() +
+                        skills.getSmallGuns() +
+                        skills.getEnergyWeapons() +
+                        skills.getExplosives() +
+                        skills.getMeleeWeapons() +
+                        skills.getUnarmed() +
+                        skills.getMedicine() +
+                        skills.getLockpick() +
+                        skills.getRepair() +
+                        skills.getScience() +
+                        skills.getSneak() +
+                        skills.getBarter()
+        ) - 120;
+        if (Lvlutil.ponitsAvailable(
+                player.getCapability(LevelFactoryProvider.LEVEL_CAPABILITY, null).getLevel(),
+                player.getCapability(LevelFactoryProvider.LEVEL_CAPABILITY, null).getProgress()) + prevSumm == summ
+                ) {
+
 
             skills.setBigGuns(message.BigGuns);
             skills.setSmallGuns(message.SmallGuns);
@@ -72,136 +198,14 @@ public class DedicatedServerProxy extends CommonProxy {
             skills.setScience(message.Science);
             skills.setSneak(message.Sneak);
             skills.setBarter(message.Barter);
-
-
-
-
-
-        /** DEBUG MESSAGE ENABLER
-         * System.out.println("Client: "+message.radiation);
-         */
-
-    }
-
-    public static void handleLevelMessage(MessageUpdateClientServerLevel message, EntityPlayerMP playerEntity) {
-            ILevelCapability level = LevelFactoryProvider.instanceFor(playerEntity);
-            level.setLevel(message.Level);
-            level.setProgress(message.Progress);
-
-            /** DEBUG MESSAGE ENABLER
-             * System.out.println("Client: "+message.radiation);
-             */
-
-
-    }
-    public static void handleReloadMessage(EntityPlayerMP player) {
-        WorldServer mainThread = (WorldServer) (player.world);
-        ItemStack heldItem = player.getHeldItem(EnumHand.MAIN_HAND);
-        if (heldItem != null) { //&& heldItem.getTagCompound().getBoolean("isgun")
-            if (heldItem.getItem() instanceof TenMM) {
-                gunReload.TenMM(mainThread, heldItem, player);
-            } else if (heldItem.getItem() instanceof LaserPistol) {
-                gunReload.LaserPistol(mainThread, heldItem, player);
-            } else if (heldItem.getItem() instanceof FourTenMM) {
-                gunReload.FourTenMM(mainThread, heldItem, player);
-            } else if (heldItem.getItem() instanceof SB_shoutgun){
-                gunReload.Shotgun(mainThread, heldItem, player);
-            }else if (heldItem.getItem() instanceof FlareGun){
-                gunReload.FlareGun(mainThread, heldItem, player);
-            }
-
+            level.setLevel((summ / 10));
+            skills.updateClient(player);
+            level.updateClient(player);
 
         }
-    }
-    public static void handleSLSOnDemand(EntityPlayerMP player) {
-
-            if (player.getCapability(LEVEL_CAPABILITY,null).getProgress() < player.experienceTotal){
-                player.getCapability(LEVEL_CAPABILITY,null).setProgress(player.experienceTotal);
-            } else
-            if (player.getCapability(LEVEL_CAPABILITY,null).getProgress() > player.experienceTotal){
-                player.getCapability(LEVEL_CAPABILITY,null).setProgress(
-                        player.getCapability(LEVEL_CAPABILITY,null).getProgress() +
-                                (player.getCapability(LEVEL_CAPABILITY,null).getProgress() -
-                                        player.experienceTotal));
-            }
-
-
-        main.simpleNetworkWrapper.sendTo(new MessageUpdateSLSServerReplyOnDemand(
-                player.getCapability(LevelFactoryProvider.LEVEL_CAPABILITY,null).getLevel(),
-                player.getCapability(LevelFactoryProvider.LEVEL_CAPABILITY,null).getProgress()
-
-        ),player);
-    }
-
-    public static void handleOpenGuiMessage(MessageOpenGuiClient message, EntityPlayerMP playerMP) {
-        //Minecraft.getMinecraft().addScheduledTask(() -> {
-            main.simpleNetworkWrapper.sendTo(new MessageOpenGuiClient(message.ID), playerMP);
-        //});
-
-    }
-
-    public static void SendOpenGui(int guiId,EntityPlayerMP player){
-        main.simpleNetworkWrapper.sendTo(new MessageOpenGuiClient(guiId),player);
-    }
-    public static void handleSkillsLVLUPMessage(MessageUpdateClientServerSkills message, EntityPlayerMP player) {
-            ISkillsCapability skills = SkillsFactoryProvider.instanceFor(player);
-            ILevelCapability level = LevelFactoryProvider.instanceFor(player);
-            ISpechialCapability spechial = SpechialFactoryProvider.instanceFor(player);
-            int summ = (
-                    message.BigGuns+
-                    message.SmallGuns+
-                    message.EnergyWeapons+
-                    message.Explosives+
-                    message.MeleeWeapons+
-                    message.Unarmed+
-                    message.Medicine+
-                    message.Lockpick+
-                    message.Repair+
-                    message.Science+
-                    message.Sneak+
-                    message.Barter
-                    )-120;
-            int prevSumm= (
-
-                    skills.getBigGuns()+
-                    skills.getSmallGuns()+
-                    skills.getEnergyWeapons()+
-                    skills.getExplosives()+
-                    skills.getMeleeWeapons()+
-                    skills.getUnarmed()+
-                    skills.getMedicine()+
-                    skills.getLockpick()+
-                    skills.getRepair()+
-                    skills.getScience()+
-                    skills.getSneak()+
-                    skills.getBarter()
-                    )-120;
-            if (Lvlutil.ponitsAvailable(
-            player.getCapability(LevelFactoryProvider.LEVEL_CAPABILITY,null).getLevel(),
-            player.getCapability(LevelFactoryProvider.LEVEL_CAPABILITY,null).getProgress()) + prevSumm == summ
-                    ){
-
-
-                skills.setBigGuns(message.BigGuns);
-                skills.setSmallGuns(message.SmallGuns);
-                skills.setEnergyWeapons(message.EnergyWeapons);
-                skills.setExplosives(message.Explosives);
-                skills.setMeleeWeapons(message.MeleeWeapons);
-                skills.setUnarmed(message.Unarmed);
-                skills.setMedicine(message.Medicine);
-                skills.setLockpick(message.Lockpick);
-                skills.setRepair(message.Repair);
-                skills.setScience(message.Science);
-                skills.setSneak(message.Sneak);
-                skills.setBarter(message.Barter);
-                level.setLevel((summ/10));
-                skills.updateClient(player);
-                level.updateClient(player);
-
-            }
         player.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(
-                    20D + (15 * spechial.getStreinght() + (2 * spechial.getEndurance()) + level.getLevel() * (Math.round(spechial.getEndurance() / 2) + 2))
-            );
+                20D + (15 * spechial.getStreinght() + (2 * spechial.getEndurance()) + level.getLevel() * (Math.round(spechial.getEndurance() / 2) + 2))
+        );
 
         player.heal(player.getMaxHealth());
 
@@ -222,6 +226,7 @@ public class DedicatedServerProxy extends CommonProxy {
     }
 
     public static void handleAdv(MessageAdvInv message, EntityPlayerMP playerMP) {
+        List<ItemStack> itemArray = new ArrayList<ItemStack>();
         IAdvInventory advInventory = IAdvProvider.instanceFor(playerMP);
         for (int i = 0; i < 12; i++) {
             Item item = null;
@@ -229,9 +234,15 @@ public class DedicatedServerProxy extends CommonProxy {
             ItemStack stack = new ItemStack(item);
             stack.setCount(message.item_count[i]);
             stack.setItemDamage(message.item_damage[i]);
-            advInventory.insertItem(i, stack, false);
+            itemArray.add(stack);
         }
-        main.simpleNetworkWrapper.sendTo(new MessageAdvInv(advInventory), playerMP);
+        //TODO: dosent work because fucking static
+        advInventory.inserProcesser(itemArray, playerMP);
+    }
+
+    public static void handleAdv_requestSync(EntityPlayerMP playerMP) {
+        IAdvInventory advInventory = IAdvProvider.instanceFor(playerMP);
+        main.simpleNetworkWrapper.sendTo(new MessageAdvInv(advInventory, true), playerMP);
     }
 
     /**
@@ -242,6 +253,9 @@ public class DedicatedServerProxy extends CommonProxy {
         super.preInit();
 
 
+    }
+
+    public void processer() {
     }
 
     /**
@@ -272,4 +286,5 @@ public class DedicatedServerProxy extends CommonProxy {
     public boolean isDedicatedServer() {
         return true;
     }
+
 }

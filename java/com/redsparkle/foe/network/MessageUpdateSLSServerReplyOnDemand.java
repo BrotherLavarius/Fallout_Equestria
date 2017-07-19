@@ -16,20 +16,22 @@ public class MessageUpdateSLSServerReplyOnDemand implements IMessage {
             Level,
             Progress;
 
-    public MessageUpdateSLSServerReplyOnDemand(){}
+    public MessageUpdateSLSServerReplyOnDemand() {
+    }
+
     public MessageUpdateSLSServerReplyOnDemand(
             Integer level,
             Integer progress
-    ){
-     this.Level = level;
-        this.Progress= progress;
+    ) {
+        this.Level = level;
+        this.Progress = progress;
 
     }
 
     @Override
     public void fromBytes(ByteBuf buf) {
-        Level= buf.readInt();
-        Progress= buf.readInt();
+        Level = buf.readInt();
+        Progress = buf.readInt();
 
     }
 
@@ -38,6 +40,7 @@ public class MessageUpdateSLSServerReplyOnDemand implements IMessage {
         buf.writeInt(Level);
         buf.writeInt(Progress);
     }
+
     public static class HandlerClient implements IMessageHandler<MessageUpdateSLSServerReplyOnDemand, IMessage> {
 
 

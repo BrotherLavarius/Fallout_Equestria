@@ -31,7 +31,7 @@ public class EventHandlerOverlayAEM {
                 }
             }
 
-        if (!foundInHotbar) return;
+            if (!foundInHotbar) return;
         }
         switch (event.getType()) {
             case HEALTH:

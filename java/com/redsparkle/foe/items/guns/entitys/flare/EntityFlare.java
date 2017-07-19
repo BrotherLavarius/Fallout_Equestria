@@ -28,8 +28,7 @@ public class EntityFlare extends EntityThrowable {
         super(world, entity);
     }
 
-    private void explode()
-    {
+    private void explode() {
         world.spawnParticle(EnumParticleTypes.FIREWORKS_SPARK, posX, posY, posZ, 0, 0, 0);
         world.spawnParticle(EnumParticleTypes.SMOKE_LARGE, posX, posY, posZ, 0, 0, 0);
         world.spawnParticle(EnumParticleTypes.FIREWORKS_SPARK, posX, posY, posZ, 0, 0, 0);
@@ -62,7 +61,6 @@ public class EntityFlare extends EntityThrowable {
             world.spawnParticle(EnumParticleTypes.FIREWORKS_SPARK, posX, posY, posZ, x, y, z);
 
 
-
         }
 
     }
@@ -71,11 +69,12 @@ public class EntityFlare extends EntityThrowable {
     public void handleStatusUpdate(byte p_handleStatusUpdate_1_) {
         if (p_handleStatusUpdate_1_ == 3) {
             for (int lvt_2_1_ = 0; lvt_2_1_ < 8; ++lvt_2_1_) {
-                this.world.spawnParticle(EnumParticleTypes.FIREWORKS_SPARK, this.posX, this.posY, this.posZ, 0.0D, 0.0D, 0.0D, new int[0]);
+                this.world.spawnParticle(EnumParticleTypes.FIREWORKS_SPARK, this.posX, this.posY, this.posZ, 0.0D, 0.0D, 0.0D);
             }
         }
 
     }
+
     @Override
     protected float getGravityVelocity() {
         return 0.005F;

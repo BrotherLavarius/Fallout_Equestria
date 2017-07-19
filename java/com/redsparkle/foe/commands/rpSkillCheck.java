@@ -67,8 +67,8 @@ public class rpSkillCheck extends CommandBase {
         } else {
 
             Entity player2 = getEntity(server, sender, args[2]);
-            EntityPlayer playerE1 = getPlayer(server,sender,args[1]);
-            EntityPlayer playerE2 = getPlayer(server,sender,args[2]);
+            EntityPlayer playerE1 = getPlayer(server, sender, args[1]);
+            EntityPlayer playerE2 = getPlayer(server, sender, args[2]);
 
             Integer[] player1Skills = new Integer[]{
                     SpechialFactoryProvider.instanceFor(playerE1).getStreinght(),
@@ -99,33 +99,31 @@ public class rpSkillCheck extends CommandBase {
             samelvl.getStyle().setColor(TextFormatting.GRAY).setItalic(Boolean.TRUE);
 
 
-            for(int i=0;i <= (skills.length -1);i++){
+            for (int i = 0; i <= (skills.length - 1); i++) {
 
-                if(skills[i].equals(args[0])){
-                        if (player1Skills[i] < player2Skills[i]) {
+                if (skills[i].equals(args[0])) {
+                    if (player1Skills[i] < player2Skills[i]) {
 
-                            player2.sendMessage(new TextComponentString(sender.getName()+"'s" + " " +skills[i]+ youSuck.getFormattedText()));
-                            sender.sendMessage(new TextComponentString(player2.getName()+"'s" + " " +skills[i]+ youRule.getFormattedText()));
+                        player2.sendMessage(new TextComponentString(sender.getName() + "'s" + " " + skills[i] + youSuck.getFormattedText()));
+                        sender.sendMessage(new TextComponentString(player2.getName() + "'s" + " " + skills[i] + youRule.getFormattedText()));
 
-                        } else if (player1Skills[i] > player2Skills[i]) {
+                    } else if (player1Skills[i] > player2Skills[i]) {
 
-                            player2.sendMessage(new TextComponentString(sender.getName()+"'s" + " " +skills[i]+ youSuck.getFormattedText()));
-                            sender.sendMessage(new TextComponentString(player2.getName()+"'s" + " " +skills[i]+ youRule.getFormattedText()));
+                        player2.sendMessage(new TextComponentString(sender.getName() + "'s" + " " + skills[i] + youSuck.getFormattedText()));
+                        sender.sendMessage(new TextComponentString(player2.getName() + "'s" + " " + skills[i] + youRule.getFormattedText()));
 
-                        } else if (player1Skills[i] == player2Skills[i]) {
+                    } else if (player1Skills[i] == player2Skills[i]) {
 
-                            TextComponentString toPlayer1 = new TextComponentString(sender.getName()+"'s" + " " +skills[i]+samelvl.getFormattedText());
-                            TextComponentString toPlayer2 = new TextComponentString(player2.getName()+"'s" + " " +skills[i]+samelvl.getFormattedText());
+                        TextComponentString toPlayer1 = new TextComponentString(sender.getName() + "'s" + " " + skills[i] + samelvl.getFormattedText());
+                        TextComponentString toPlayer2 = new TextComponentString(player2.getName() + "'s" + " " + skills[i] + samelvl.getFormattedText());
 
 
-                            player2.sendMessage(toPlayer1);
-                            sender.sendMessage(toPlayer2);
+                        player2.sendMessage(toPlayer1);
+                        sender.sendMessage(toPlayer2);
 
-                        }
+                    }
                 }
             }
-
-
 
 
         }

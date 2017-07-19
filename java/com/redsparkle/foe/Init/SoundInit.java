@@ -1,7 +1,6 @@
 package com.redsparkle.foe.Init;
 
 import com.redsparkle.foe.main;
-import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
@@ -55,19 +54,17 @@ public class SoundInit {
     public static SoundEvent plasma_clip_out;
 
 
-
-
     public static SoundEvent[] guns = new SoundEvent[]{
             tenmm_shot,                         //	0
             tenmm_dry,                          //	1
             tenmm_reload,                       //	2
-            four_tenmm_shot  ,                  //	3
-            four_tenmm_dry   ,                  //	4
+            four_tenmm_shot,                  //	3
+            four_tenmm_dry,                  //	4
             four_tenmm_reload,                  //	5
-            db_shotgun_shot  ,                  //	6
+            db_shotgun_shot,                  //	6
             db_shotgun_reload,                  //	7
-            db_shotgun_dry   ,                  //	8
-            flaregun_shot    ,                  //	9
+            db_shotgun_dry,                  //	8
+            flaregun_shot,                  //	9
             flaregun_dry,                       //	10
             flaregun_reload,                    //	11
             plasma_shot,                        //	12
@@ -121,17 +118,16 @@ public class SoundInit {
             "laser_clip_out",                     //  27
             "plasma_clip_out"                     //  28
     };
-    
 
 
     public static void registerSounds() {
         lowentensity_rad = registerSound("LowEntensityRad");
         mediumentensity_rad = registerSound("MediumEntensityRad");
-        highentensity_rad= registerSound("HighEntensityRad");
+        highentensity_rad = registerSound("HighEntensityRad");
         enervation = registerSound("Enervation");
 
 
-        for(int i=0;i < (guns.length-1 );i++){
+        for (int i = 0; i < (guns.length - 1); i++) {
             guns[i] = registerSound(gunsS[i]);
         }
 
@@ -148,17 +144,18 @@ public class SoundInit {
         final ResourceLocation soundID = new ResourceLocation(main.MODID, soundName);
         return GameRegistry.register(new SoundEvent(soundID).setRegistryName(soundID));
     }
+
     public enum sounds {
         tenmm_shot(),
         tenmm_dry(),
         tenmm_reload(),
-        four_tenmm_shot()  ,
-        four_tenmm_dry()   ,
+        four_tenmm_shot(),
+        four_tenmm_dry(),
         four_tenmm_reload(),
-        db_shotgun_shot()  ,
+        db_shotgun_shot(),
         db_shotgun_reload(),
-        db_shotgun_dry()   ,
-        flaregun_shot()    ,
+        db_shotgun_dry(),
+        flaregun_shot(),
         flaregun_dry(),
         flaregun_reload(),
         plasma_shot(),

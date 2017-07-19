@@ -1,6 +1,5 @@
 package com.redsparkle.foe.items.guns.entitys.flametrower;
 
-import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.projectile.EntityThrowable;
 import net.minecraft.init.Blocks;
@@ -32,7 +31,6 @@ public class EntityFlame extends EntityThrowable {
     }
 
 
-
     @Override
     public void onUpdate() {
         super.onUpdate();
@@ -59,50 +57,43 @@ public class EntityFlame extends EntityThrowable {
     public void handleStatusUpdate(byte p_handleStatusUpdate_1_) {
         if (p_handleStatusUpdate_1_ == 3) {
             for (int lvt_2_1_ = 0; lvt_2_1_ < 8; ++lvt_2_1_) {
-                this.world.spawnParticle(EnumParticleTypes.FLAME, this.posX, this.posY, this.posZ, 0.0D, 0.0D, 0.0D, new int[0]);
+                this.world.spawnParticle(EnumParticleTypes.FLAME, this.posX, this.posY, this.posZ, 0.0D, 0.0D, 0.0D);
             }
         }
 
     }
+
     @Override
     protected float getGravityVelocity() {
         return 0.005F;
     }
 
     @Override
-    protected void onImpact(RayTraceResult result)
-        {
-            if (!this.world.isRemote)
-            {
-                if (result.entityHit != null)
-                {
-                    if (!result.entityHit.isImmuneToFire())
-                    {
-                        boolean flag = result.entityHit.attackEntityFrom(DamageSource.causeIndirectDamage(this, this.shootingEntity), 5.0F);
+    protected void onImpact(RayTraceResult result) {
+        if (!this.world.isRemote) {
+            if (result.entityHit != null) {
+                if (!result.entityHit.isImmuneToFire()) {
+                    boolean flag = result.entityHit.attackEntityFrom(DamageSource.causeIndirectDamage(this, this.shootingEntity), 5.0F);
 
-                        if (flag)
-                        {
-                            this.applyEnchantments(this.shootingEntity, result.entityHit);
-                            result.entityHit.setFire(5);
-                            world.spawnParticle(EnumParticleTypes.FLAME, posX, posY, posZ, 0, 0, 0);
+                    if (flag) {
+                        this.applyEnchantments(this.shootingEntity, result.entityHit);
+                        result.entityHit.setFire(5);
+                        world.spawnParticle(EnumParticleTypes.FLAME, posX, posY, posZ, 0, 0, 0);
 
-                        }
                     }
                 }
-                else
-                {
-                    BlockPos blockpos = result.getBlockPos().offset(result.sideHit);
+            } else {
+                BlockPos blockpos = result.getBlockPos().offset(result.sideHit);
 
-                    if (this.world.isAirBlock(blockpos))
-                    {
-                        this.world.setBlockState(blockpos, Blocks.FIRE.getDefaultState());
-                    }
-
+                if (this.world.isAirBlock(blockpos)) {
+                    this.world.setBlockState(blockpos, Blocks.FIRE.getDefaultState());
                 }
 
-                this.setDead();
             }
+
+            this.setDead();
         }
+    }
 
     public void setDamage(float damage) {
         this.damage = damage;

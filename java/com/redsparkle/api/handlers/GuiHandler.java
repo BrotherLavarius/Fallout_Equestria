@@ -39,11 +39,21 @@ public class GuiHandler implements IGuiHandler {
     @Nullable
     @Override
     public Object getClientGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
-        if (ID == PIPBUCK_GUI){return new PipBuckGui();}
-        if (ID == LVL_UP_GUI){return new LvlUpGui();}
-        if (ID == PIPBUCK_GUI_INVE){return new InventoryGui();}
-        if (ID == PIPBUCK_GUI_DATA){return new DataGui();}
-        if (ID == FIRTS_TIME_LVLUP){return new StatsGuiFirstJoin();}
+        if (ID == PIPBUCK_GUI) {
+            return new PipBuckGui();
+        }
+        if (ID == LVL_UP_GUI) {
+            return new LvlUpGui();
+        }
+        if (ID == PIPBUCK_GUI_INVE) {
+            return new InventoryGui();
+        }
+        if (ID == PIPBUCK_GUI_DATA) {
+            return new DataGui();
+        }
+        if (ID == FIRTS_TIME_LVLUP) {
+            return new StatsGuiFirstJoin();
+        }
         if (ID == ADV_Inv) {
             System.out.println("ClientInv called");
             return new GUI_AdditionalInventory(player);
