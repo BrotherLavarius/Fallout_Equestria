@@ -30,7 +30,6 @@ import net.minecraft.world.WorldServer;
 import net.minecraftforge.common.MinecraftForge;
 
 import static com.redsparkle.api.capa.level.LevelFactoryProvider.LEVEL_CAPABILITY;
-import static com.redsparkle.foe.ClientOnlyProxy.mc;
 
 /**
  * DedicatedServerProxy is used to set up the mod and start it running on dedicated servers.  It contains all the code that should run on the
@@ -232,7 +231,8 @@ public class DedicatedServerProxy extends CommonProxy {
         }
         if (message.type == 1) {
             advInventory.updateClient(playerMP);
-            playerMP.openGui(main.instance, 5, mc.world, (int) mc.player.posX, (int) mc.player.posY, (int) mc.player.posZ);
+            playerMP.openGui(main.instance, 5, playerMP.world, (int) playerMP.posX, (int) playerMP.posY, (int) playerMP.posZ);
+            //playerMP.openGui(main.instance, 5, mc.world, (int) mc.player.posX, (int) mc.player.posY, (int) mc.player.posZ);
 
         }
         if (message.type == 2) {

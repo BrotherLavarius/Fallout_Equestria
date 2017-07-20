@@ -23,121 +23,25 @@ public class SkillsFactoryProvider implements ISkillsCapability, ICapabilitySeri
 
     private boolean dirty = true;
     private Integer
-            basicBigGuns,//constant 0 to init
-            BigGunsLevel;
-
-    private Integer
-            basicSmallGuns,//constant 0 to init
-            SmallGunsLevel;
-
-    private Integer
-            basicEnergyWeapons,//constant 0 to init
-            EnergyWeaponsLevel;
-
-    private Integer
-            basicExplosives,//constant 0 to init
-            ExplosivesLevel;
-
-    private Integer
-            basicMeleeWeapons,//constant 0 to init
-            MeleeWeaponsLevel;
-
-    private Integer
-            basicUnarmed,//constant 0 to init
-            UnarmedLevel;
-
-    private Integer
-            basicMedicine,//constant 0 to init
-            MedicineLevel;
-
-    private Integer
-            basicLockpick,//constant 0 to init
-            LockpickLevel;
-
-    private Integer
-            basicRepair,//constant 0 to init
-            RepairLevel;
-
-    private Integer
-            basicScience,//constant 0 to init
-            ScienceLevel;
-
-    private Integer
-            basicSneak,//constant 0 to init
-            SneakLevel;
-
-    private Integer
-            basicBarter,//constant 0 to init
-            BarterLevel;
+            Magic,
+            Melee_Weapons,
+            Firearms,
+            EneryWeapons,
+            Saddlebag_Guns,
+            Explosives,
+            Repair,
+            Medicine,
+            Lockpicking,
+            Science,
+            Sneak,
+            Barter,
+            Survival;
 
 
     public SkillsFactoryProvider() {
     }
 
 
-    public SkillsFactoryProvider(Integer basicBigGuns,
-                                 Integer BigGunsLevel,
-                                 Integer prevBigGunsLevel,
-                                 Integer basicSmallGuns,
-                                 Integer SmallGunsLevel,
-                                 Integer prevSmallGunsLevel,
-                                 Integer basicEnergyWeapons,
-                                 Integer EnergyWeaponsLevel,
-                                 Integer prevEnergyWeaponsLevel,
-                                 Integer basicExplosives,
-                                 Integer ExplosivesLevel,
-                                 Integer prevExplosivesLevel,
-                                 Integer basicMeleeWeapons,
-                                 Integer MeleeWeaponsLevel,
-                                 Integer prevMeleeWeaponsLevel,
-                                 Integer basicUnarmed,
-                                 Integer UnarmedLevel,
-                                 Integer prevUnarmedLevel,
-                                 Integer basicMedicine,
-                                 Integer MedicineLevel,
-                                 Integer prevMedicineLevel,
-                                 Integer basicLockpick,
-                                 Integer LockpickLevel,
-                                 Integer prevLockpickLevel,
-                                 Integer basicRepair,
-                                 Integer RepairLevel,
-                                 Integer prevRepairLevel,
-                                 Integer basicScience,
-                                 Integer ScienceLevel,
-                                 Integer prevScienceLevel,
-                                 Integer basicSneak,
-                                 Integer SneakLevel,
-                                 Integer prevSneakLevel,
-                                 Integer basicBarter,
-                                 Integer BarterLevel,
-                                 Integer prevBarterLevel) {
-        this.basicBigGuns = basicBigGuns;
-        this.BigGunsLevel = BigGunsLevel;
-        this.basicSmallGuns = basicSmallGuns;
-        this.SmallGunsLevel = SmallGunsLevel;
-        this.basicEnergyWeapons = basicEnergyWeapons;
-        this.EnergyWeaponsLevel = EnergyWeaponsLevel;
-        this.basicExplosives = basicExplosives;
-        this.ExplosivesLevel = ExplosivesLevel;
-        this.basicMeleeWeapons = basicMeleeWeapons;
-        this.MeleeWeaponsLevel = MeleeWeaponsLevel;
-        this.basicUnarmed = basicUnarmed;
-        this.UnarmedLevel = UnarmedLevel;
-        this.basicMedicine = basicMedicine;
-        this.MedicineLevel = MedicineLevel;
-        this.basicLockpick = basicLockpick;
-        this.LockpickLevel = LockpickLevel;
-        this.basicRepair = basicRepair;
-        this.RepairLevel = RepairLevel;
-        this.basicScience = basicScience;
-        this.ScienceLevel = ScienceLevel;
-        this.basicSneak = basicSneak;
-        this.SneakLevel = SneakLevel;
-        this.basicBarter = basicBarter;
-        this.BarterLevel = BarterLevel;
-
-
-    }
 
     public static ISkillsCapability instanceFor(EntityPlayer player) {
         return player.getCapability(SKILLS_CAPABILITY, null);
@@ -145,127 +49,168 @@ public class SkillsFactoryProvider implements ISkillsCapability, ICapabilitySeri
 
     /* ################################## */
 
-    public Integer setBigGuns(Integer newBigGunsLevel) {
-        return BigGunsLevel = newBigGunsLevel;
+
+    @Override
+    public Integer setMagic(Integer newMagic) {
+        return this.Magic=newMagic;
     }
 
-    public Integer getBigGuns() {
-        return BigGunsLevel;
+    @Override
+    public Integer getMagic() {
+        return Magic;
     }
 
-    public Integer setSmallGuns(Integer newSmallGunsLevel) {
-        return SmallGunsLevel = newSmallGunsLevel;
+    @Override
+    public Integer setMelee(Integer newMelee) {
+        return this.Melee_Weapons=newMelee;
     }
 
-    public Integer getSmallGuns() {
-        return SmallGunsLevel;
-    }
-    /* ################################## */
-
-    public Integer setEnergyWeapons(Integer newEnergyWeaponsLevel) {
-        return EnergyWeaponsLevel = newEnergyWeaponsLevel;
+    @Override
+    public Integer getMelee() {
+        return Melee_Weapons;
     }
 
+    @Override
+    public Integer setFirearms(Integer newFirearms) {
+        return this.Firearms=newFirearms;
+    }
+
+    @Override
+    public Integer getFirearms() {
+        return Firearms;
+    }
+
+    @Override
+    public Integer setEnergyWeapons(Integer newEnergyWeapons) {
+        return this.EneryWeapons=newEnergyWeapons;
+    }
+
+    @Override
     public Integer getEnergyWeapons() {
-        return EnergyWeaponsLevel;
-    }
-    /* ################################## */
-
-    public Integer setExplosives(Integer newExplosivesLevel) {
-        return ExplosivesLevel = newExplosivesLevel;
+        return EneryWeapons;
     }
 
+    @Override
+    public Integer setSaddlebag_guns(Integer newSaddlebag_guns) {
+        return this.Saddlebag_Guns=newSaddlebag_guns;
+    }
+
+    @Override
+    public Integer getSaddlebag_guns() {
+        return Saddlebag_Guns;
+    }
+
+    @Override
+    public Integer setExplosives(Integer newExplosives) {
+        return this.Explosives=newExplosives;
+    }
+
+    @Override
     public Integer getExplosives() {
-        return ExplosivesLevel;
-    }
-    /* ################################## */
-
-    public Integer setMeleeWeapons(Integer newMeleeWeaponsLevel) {
-        return MeleeWeaponsLevel = newMeleeWeaponsLevel;
+        return Explosives;
     }
 
-    public Integer getMeleeWeapons() {
-        return MeleeWeaponsLevel;
-    }
-    /* ################################## */
-
-    public Integer setUnarmed(Integer newUnarmedLevel) {
-        return UnarmedLevel = newUnarmedLevel;
+    @Override
+    public Integer setRepair(Integer newRepair) {
+        return this.Repair=newRepair;
     }
 
-    public Integer getUnarmed() {
-        return UnarmedLevel;
-    }
-    /* ################################## */
-
-    public Integer setMedicine(Integer newMedicineLevel) {
-        return MedicineLevel = newMedicineLevel;
-    }
-
-    public Integer getMedicine() {
-        return MedicineLevel;
-    }
-    /* ################################## */
-
-    public Integer setLockpick(Integer newLockpickLevel) {
-        return LockpickLevel = newLockpickLevel;
-    }
-
-    public Integer getLockpick() {
-        return LockpickLevel;
-    }
-    /* ################################## */
-
-    public Integer setRepair(Integer newRepairLevel) {
-        return RepairLevel = newRepairLevel;
-    }
-
+    @Override
     public Integer getRepair() {
-        return RepairLevel;
-    }
-    /* ################################## */
-
-    public Integer setScience(Integer newScienceLevel) {
-        return ScienceLevel = newScienceLevel;
+        return Repair;
     }
 
+    @Override
+    public Integer setMedicine(Integer newMedicine) {
+        return this.Medicine=newMedicine;
+    }
+
+    @Override
+    public Integer getMedicine() {
+        return Medicine;
+    }
+
+    @Override
+    public Integer setLockpick(Integer newLockpick) {
+        return this.Lockpicking=newLockpick;
+    }
+
+    @Override
+    public Integer getLockpick() {
+        return Lockpicking;
+    }
+
+    @Override
+    public Integer setScience(Integer newScience) {
+        return this.Science=newScience;
+    }
+
+    @Override
     public Integer getScience() {
-        return ScienceLevel;
-    }
-    /* ################################## */
-
-    public Integer setSneak(Integer newSneakLevel) {
-        return SneakLevel = newSneakLevel;
+        return Science;
     }
 
+    @Override
+    public Integer setSneak(Integer newSneak) {
+        return this.Sneak=newSneak;
+    }
+
+    @Override
     public Integer getSneak() {
-        return SneakLevel;
-    }
-    /* ################################## */
-
-    public Integer setBarter(Integer newBarterLevel) {
-        return BarterLevel = newBarterLevel;
+        return Sneak;
     }
 
+    @Override
+    public Integer setBarter(Integer newBarter) {
+        return this.Barter=newBarter;
+    }
+
+    @Override
     public Integer getBarter() {
-        return BarterLevel;
+        return Barter;
+    }
+
+    @Override
+    public Integer setSurvival(Integer newSurvival) {
+        return this.Survival=newSurvival;
+    }
+
+    @Override
+    public Integer getSurvival() {
+        return Survival;
     }
 
     @Override
     public void setAll(Integer all) {
-        setBigGuns(all);
-        setSmallGuns(all);
-        setEnergyWeapons(all);
+        /**
+         Magic
+         Melee Weapons
+         Firearms
+         EneryWeapons
+         Saddlebag_Guns
+         Explosives
+         Repair
+         Medicine
+         Lockpicking
+         Science
+         Sneak
+         Barter
+         Survival
+         */
+
+
+        setMagic(all);
+        setMelee(all);
+        setFirearms(all);
+        setSaddlebag_guns(all);
         setExplosives(all);
-        setMeleeWeapons(all);
-        setUnarmed(all);
+        setRepair(all);
         setMedicine(all);
         setLockpick(all);
-        setRepair(all);
         setScience(all);
         setSneak(all);
         setBarter(all);
-
+        setSurvival(all);
 
     }
     /* ################################## */
@@ -293,36 +238,55 @@ public class SkillsFactoryProvider implements ISkillsCapability, ICapabilitySeri
 
 
     public NBTTagCompound serializeNBT() {
+
+        /**
+         Magic
+         Melee Weapons
+         Firearms
+         EneryWeapons
+         Saddlebag_Guns
+         Explosives
+         Repair
+         Medicine
+         Lockpicking
+         Science
+         Sneak
+         Barter
+         Survival
+         */
         NBTTagCompound nbt = new NBTTagCompound();
-        nbt.setInteger("BigGuns", BigGunsLevel);
-        nbt.setInteger("SmallGuns", SmallGunsLevel);
-        nbt.setInteger("EnergyWeapons", EnergyWeaponsLevel);
-        nbt.setInteger("Explosives", ExplosivesLevel);
-        nbt.setInteger("MeleeWeapons", MeleeWeaponsLevel);
-        nbt.setInteger("Unarmed", UnarmedLevel);
-        nbt.setInteger("Medicine", MedicineLevel);
-        nbt.setInteger("Lockpick", LockpickLevel);
-        nbt.setInteger("Repair", RepairLevel);
-        nbt.setInteger("Science", ScienceLevel);
-        nbt.setInteger("Sneak", SneakLevel);
-        nbt.setInteger("Barter", BarterLevel);
+        nbt.setInteger("magic", Magic);
+        nbt.setInteger("melee", Melee_Weapons);
+        nbt.setInteger("firearms", Firearms);
+        nbt.setInteger("energy_wep", EneryWeapons);
+        nbt.setInteger("saddle_guns", Saddlebag_Guns);
+        nbt.setInteger("explosives", Explosives);
+        nbt.setInteger("repair", Repair);
+        nbt.setInteger("medicine", Medicine);
+        nbt.setInteger("lock", Lockpicking);
+        nbt.setInteger("science", Science);
+        nbt.setInteger("sneak", Sneak);
+        nbt.setInteger("barter", Barter);
+        nbt.setInteger("survival", Survival);
         return nbt;
     }
 
 
     public void deserializeNBT(NBTTagCompound nbt) {
-        setBigGuns(nbt.getInteger("BigGuns"));
-        setSmallGuns(nbt.getInteger("SmallGuns"));
-        setEnergyWeapons(nbt.getInteger("EnergyWeapons"));
-        setExplosives(nbt.getInteger("Explosives"));
-        setMeleeWeapons(nbt.getInteger("MeleeWeapons"));
-        setUnarmed(nbt.getInteger("Unarmed"));
-        setMedicine(nbt.getInteger("Medicine"));
-        setLockpick(nbt.getInteger("Lockpick"));
-        setRepair(nbt.getInteger("Repair"));
-        setScience(nbt.getInteger("Science"));
-        setSneak(nbt.getInteger("Sneak"));
-        setBarter(nbt.getInteger("Barter"));
+            setMagic(nbt.getInteger("magic"));
+            setMelee(nbt.getInteger("melee"));
+            setFirearms(nbt.getInteger("firearms"));
+            setEnergyWeapons(nbt.getInteger("energy_wep"));
+            setSaddlebag_guns(nbt.getInteger("saddle_guns"));
+            setExplosives(nbt.getInteger("explosives"));
+            setRepair(nbt.getInteger("repair"));
+            setMedicine(nbt.getInteger("medicine"));
+            setLockpick(nbt.getInteger("lock"));
+            setScience(nbt.getInteger("science"));
+            setSneak(nbt.getInteger("sneak"));
+            setBarter(nbt.getInteger("barter"));
+            setSurvival(nbt.getInteger("survival"));
+
     }
 }
 

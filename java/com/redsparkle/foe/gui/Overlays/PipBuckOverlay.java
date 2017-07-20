@@ -63,10 +63,10 @@ public class PipBuckOverlay extends Gui {
        */
 
       /* Set the rendering color to white */
-        GL11.glColor4f(10.0F, 1.0F, 1.0F, 1.0F);
+        GL11.glColor4f(0.0F, 90.0F, 1.0F, 90.0F);
         GlStateManager.disableLighting();
         GlStateManager.enableAlpha();
-        GlStateManager.enableBlend();
+        GlStateManager.disableBlend();
 
       /* This method tells OpenGL to draw with the custom texture */
         mc.renderEngine.bindTexture(overlayBar);

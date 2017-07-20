@@ -8,78 +8,71 @@ import net.minecraftforge.fml.common.gameevent.TickEvent;
  * Created by hoijima on 15.05.17.
  */
 public interface ISkillsCapability {
+        /**
+                Magic
+                Melee_Weapons
+                Firearms
+                EneryWeapons
+                Saddlebag_Guns
+                Explosives
+                Repair
+                Medicine
+                Lockpicking
+                Science
+                Sneak
+                Barter
+                Survival
+        */
+
+        Integer setMagic(Integer newMagic);
+        Integer getMagic();
+
+        Integer setMelee(Integer newMelee);
+        Integer getMelee();
+
+        Integer setFirearms(Integer newFirearms);
+        Integer getFirearms();
+
+        Integer setEnergyWeapons(Integer newEnergyWeapons);
+        Integer getEnergyWeapons();
 
 
-    Integer setBigGuns(Integer newBigGuns);
-
-    Integer getBigGuns();
-
-
-    Integer setSmallGuns(Integer newSmallGuns);
-
-    Integer getSmallGuns();
+        Integer setSaddlebag_guns(Integer newSaddlebag_guns);
+        Integer getSaddlebag_guns();
 
 
-    Integer setEnergyWeapons(Integer newEnergyWeapons);
+        Integer setExplosives(Integer newExplosives);
+        Integer getExplosives();
 
-    Integer getEnergyWeapons();
+        Integer setRepair(Integer newRepair);
+        Integer getRepair();
 
+        Integer setMedicine(Integer newMedicine);
+        Integer getMedicine();
 
-    Integer setMeleeWeapons(Integer newMeleeWeapons);
-
-    Integer getMeleeWeapons();
-
-
-    Integer setUnarmed(Integer newUnarmed);
-
-    Integer getUnarmed();
+        Integer setLockpick(Integer newLockpick);
+        Integer getLockpick();
 
 
-    Integer setLockpick(Integer newLockpick);
+        Integer setScience(Integer newScience);
+        Integer getScience();
 
-    Integer getLockpick();
+        Integer setSneak(Integer newSneak);
+        Integer getSneak();
 
-//    Integer setMagic(Integer newMagic);
-//    Integer getMagic();
-//
-//    Integer setMelee(Integer newMelee);
-//    Integer getMelee();
-//
-//    Integer setGuns(Integer newGuns);
-//    Integer getGuns();
-//
-//    Integer setEnergy_Weapons(Integer newEnergy_Weapons);
-//    Integer getEnergy_Weapons();
-//
-//    Integer setSaddlebag_guns(Integer newSaddlebag_guns);
-//    Integer getSaddlebag_guns();
+        Integer setBarter(Integer newBarter);
+        Integer getBarter();
 
-    Integer setExplosives(Integer newExplosives);
+        Integer setSurvival(Integer newSurvival);
+        Integer getSurvival();
 
-    Integer getExplosives();
 
-    Integer setRepair(Integer newRepair);
 
-    Integer getRepair();
 
-    Integer setMedicine(Integer newMedicine);
 
-    Integer getMedicine();
 
-    Integer setScience(Integer newScience);
 
-    Integer getScience();
 
-    Integer setSneak(Integer newSneak);
-
-    Integer getSneak();
-
-    Integer setBarter(Integer newBarter);
-
-    Integer getBarter();
-
-//    Integer setSurvival(Integer newSurvival);
-//    Integer getSurvival();
 
 
     void setAll(Integer All);
