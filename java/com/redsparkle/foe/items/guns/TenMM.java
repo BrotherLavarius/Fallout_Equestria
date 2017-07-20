@@ -58,7 +58,7 @@ public class TenMM extends Item_Firearm {
         casing = GlobalItemArray_For_init.AllInit[28];
         ItemStack caseStack = new ItemStack(casing);
 
-        this.damage = GlobalWeaponsStats.TenMMDamage + playerIn.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getSmallGuns();
+        this.damage = GlobalWeaponsStats.TenMMDamage + playerIn.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getFirearms();
 
         if (!playerIn.capabilities.isCreativeMode) {
             if (itemstack.getItemDamage() >= (GlobalWeaponsStats.TenMMclipRounds - 1)) {

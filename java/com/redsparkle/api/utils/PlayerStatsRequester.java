@@ -15,15 +15,15 @@ public class PlayerStatsRequester {
     public static Integer[] skills(EntityPlayer player) {
 
         Integer[] skills = new Integer[]{//0-11
-                player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getBigGuns(),
-                player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getSmallGuns(),
+                player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getMagic(),
+                player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getMelee(),
+                player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getFirearms(),
                 player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getEnergyWeapons(),
+                player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getSaddlebag_guns(),
                 player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getExplosives(),
-                player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getMeleeWeapons(),
-                player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getUnarmed(),
+                player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getRepair(),
                 player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getMedicine(),
                 player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getLockpick(),
-                player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getRepair(),
                 player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getScience(),
                 player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getSneak(),
                 player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getBarter()

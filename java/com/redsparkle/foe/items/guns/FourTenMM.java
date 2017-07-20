@@ -59,7 +59,7 @@ public class FourTenMM extends Item_Firearm {
         ItemStack itemstack = playerIn.getHeldItem(hand);
         casing = GlobalItemArray_For_init.AllInit[29];
         ItemStack caseStack = new ItemStack(casing);
-        this.damage = GlobalWeaponsStats.FourDamage + playerIn.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getSmallGuns();
+        this.damage = GlobalWeaponsStats.FourDamage + playerIn.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getFirearms();
 
         if (!playerIn.capabilities.isCreativeMode) {
             if (itemstack.getItemDamage() >= (GlobalWeaponsStats.FourclipRounds - 1)) {

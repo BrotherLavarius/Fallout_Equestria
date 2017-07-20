@@ -76,18 +76,19 @@ public class ClientOnlyProxy extends CommonProxy {
         Minecraft.getMinecraft().addScheduledTask(() -> {
             EntityPlayer player = Minecraft.getMinecraft().player;
             ISkillsCapability skills = SkillsFactoryProvider.instanceFor(player);
-            skills.setBigGuns(message.BigGuns);
-            skills.setSmallGuns(message.SmallGuns);
-            skills.setEnergyWeapons(message.EnergyWeapons);
-            skills.setExplosives(message.Explosives);
-            skills.setMeleeWeapons(message.MeleeWeapons);
-            skills.setUnarmed(message.Unarmed);
-            skills.setMedicine(message.Medicine);
-            skills.setLockpick(message.Lockpick);
-            skills.setRepair(message.Repair);
-            skills.setScience(message.Science);
-            skills.setSneak(message.Sneak);
-            skills.setBarter(message.Barter);
+            skills.setMagic(message.skills.get(0));
+            skills.setMelee(message.skills.get(1));
+            skills.setFirearms(message.skills.get(2));
+            skills.setEnergyWeapons(message.skills.get(3));
+            skills.setSaddlebag_guns(message.skills.get(4));
+            skills.setExplosives(message.skills.get(5));
+            skills.setRepair(message.skills.get(6));
+            skills.setMedicine(message.skills.get(7));
+            skills.setLockpick(message.skills.get(8));
+            skills.setScience(message.skills.get(9));
+            skills.setSneak(message.skills.get(10));
+            skills.setBarter(message.skills.get(11));
+            skills.setSurvival(message.skills.get(12));
             /** DEBUG MESSAGE ENABLER
              * System.out.println("Client: "+message.radiation);
              */

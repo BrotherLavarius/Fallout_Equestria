@@ -74,34 +74,48 @@ public class LvlUpGui extends GuiScreen {
         GlStateManager.enableAlpha();
         GlStateManager.enableBlend();
 
-
+        /**
+         Magic
+         Melee_Weapons
+         Firearms
+         EneryWeapons
+         Saddlebag_Guns
+         Explosives
+         Repair
+         Medicine
+         Lockpicking
+         Science
+         Sneak
+         Barter
+         Survival
+         */
         Integer[] params = {
-                mc.player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getBigGuns(),
-                mc.player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getSmallGuns(),
+                mc.player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getMagic(),
+                mc.player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getMelee(),
+                mc.player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getFirearms(),
                 mc.player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getEnergyWeapons(),
+                mc.player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getSaddlebag_guns(),
                 mc.player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getExplosives(),
-                mc.player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getMeleeWeapons(),
-                mc.player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getUnarmed(),
+                mc.player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getRepair(),
                 mc.player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getMedicine(),
                 mc.player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getLockpick(),
-                mc.player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getRepair(),
                 mc.player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getScience(),
                 mc.player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getSneak(),
-                mc.player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getBarter()
+                mc.player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getBarter(),
         };
         String[] names = {
-                "Big Guns:",
-                "Small Guns:",
-                "Energy Weapons:",
-                "Explosives:",
-                "MeleeWeapons:",
-                "Unarmed:",
-                "Medicine:",
-                "Lockpick:",
-                "Repair:",
-                "Science:",
-                "Sneak:",
-                "Barter:"
+                "Magic: ",
+                "Melee_Weapons: ",
+                "Firearms: ",
+                "Energy Weapons: ",
+                "Saddlebag_Guns: ",
+                "Explosives: ",
+                "Repair: ",
+                "Medicine: ",
+                "Lockpicking: ",
+                "Science: ",
+                "Sneak: ",
+                "Barter: "
 
         };
         GL11.glPushMatrix();
@@ -127,7 +141,7 @@ public class LvlUpGui extends GuiScreen {
                                 2) + (i * 15) + 30,
                         8453920, true
                 );
-                this.fontRendererObj.drawString("+ " + Integer.toString(
+                this.fontRendererObj.drawString(" + " + Integer.toString(
                         temp[i]),
                         ScreenGrid.XCoordStart(
                                 this.width,
@@ -184,8 +198,8 @@ public class LvlUpGui extends GuiScreen {
                 }
 
             }
-            this.buttonList.get(24).xPosition = ScreenGrid.XCoordStart(this.width, 55);
-            this.buttonList.get(24).yPosition = ScreenGrid.XCoordStart(this.height, 75);
+            this.buttonList.get(24).xPosition = ScreenGrid.XCoordStart(this.width, 2) + 30;
+            this.buttonList.get(24).yPosition = ScreenGrid.XCoordStart(this.height, 2) + 10;
             this.buttonList.get(24).height = 21;
             this.buttonList.get(24).width = 80;
             this.buttonList.get(24).enabled = CommitShow;
@@ -217,7 +231,7 @@ public class LvlUpGui extends GuiScreen {
 
     @Override
     protected void actionPerformed(GuiButton button) throws IOException {
-        for (int i = 0; i <= (temp.length - 1); i++) {
+        for (int i = 0; i < temp.length; i++) {
             counter = IntStream.of(temp).sum();
             if (pointsAvailable > 0) {
                 if (pointsAvailable != counter) {

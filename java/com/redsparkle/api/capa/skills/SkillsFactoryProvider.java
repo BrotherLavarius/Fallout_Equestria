@@ -39,6 +39,24 @@ public class SkillsFactoryProvider implements ISkillsCapability, ICapabilitySeri
 
 
     public SkillsFactoryProvider() {
+        this(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+    }
+
+    public SkillsFactoryProvider(int magic, int melee, int firearms, int eneryWeapons, int saddlebag_Guns, int explosives, int repair, int medicine, int lockpicking,
+                                 int science, int sneak, int barter, int survival) {
+        this.Magic = magic;
+        this.Melee_Weapons = melee;
+        this.Firearms = firearms;
+        this.EneryWeapons = eneryWeapons;
+        this.Saddlebag_Guns = saddlebag_Guns;
+        this.Explosives = explosives;
+        this.Repair = repair;
+        this.Medicine = medicine;
+        this.Lockpicking = lockpicking;
+        this.Science = science;
+        this.Sneak = sneak;
+        this.Barter = barter;
+        this.Survival = survival;
     }
 
 
@@ -202,6 +220,7 @@ public class SkillsFactoryProvider implements ISkillsCapability, ICapabilitySeri
         setMagic(all);
         setMelee(all);
         setFirearms(all);
+        setEnergyWeapons(all);
         setSaddlebag_guns(all);
         setExplosives(all);
         setRepair(all);

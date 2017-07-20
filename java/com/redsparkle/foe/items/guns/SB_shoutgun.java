@@ -54,7 +54,7 @@ public class SB_shoutgun extends Item_Firearm {
     @Override
     public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand hand) {
         ItemStack itemstack = playerIn.getHeldItem(hand);
-        this.damage = GlobalWeaponsStats.db_shoutgunDamage + playerIn.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getBigGuns();
+        this.damage = GlobalWeaponsStats.db_shoutgunDamage + playerIn.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getFirearms();
         if (!playerIn.capabilities.isCreativeMode) {
             if (itemstack.getItemDamage() == (2)) {
                 if (findAmmo(playerIn) == ItemStack.EMPTY) {

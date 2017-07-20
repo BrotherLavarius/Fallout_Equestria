@@ -1,5 +1,6 @@
 package com.redsparkle.foe.keys;
-import com.redsparkle.api.utils.GlobalItemArray_For_init;
+
+import com.redsparkle.api.capa.Inventory.IAdvProvider;
 import com.redsparkle.foe.main;
 import com.redsparkle.foe.network.ClientServerOneClass.MessageAdvInv;
 import com.redsparkle.foe.network.MessageGunReload;
@@ -22,7 +23,7 @@ public class KeyInputHandler {
             main.simpleNetworkWrapper.sendToServer(new MessageGunReload());
         }
         if (keyHandler.pipbuck.isPressed()) {
-            if (mc.player.inventory.hasItemStack(new ItemStack(GlobalItemArray_For_init.AllInit[0]))) {
+            if (mc.player.getCapability(IAdvProvider.Adv_Inv, null).getStackInSlot(0) != ItemStack.EMPTY) {
                 main.simpleNetworkWrapper.sendToServer(new MessageUpdateSLSClientOnDemand());
                 player.openGui(main.instance, 0, mc.world, (int) mc.player.posX, (int) mc.player.posY, (int) mc.player.posZ);
                 activated = true;

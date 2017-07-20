@@ -5,6 +5,7 @@ import com.redsparkle.foe.ClientOnlyProxy;
 import com.redsparkle.foe.DedicatedServerProxy;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.util.NonNullList;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
@@ -13,119 +14,64 @@ import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
  * Created by hoijima on 3/1/2017.
  */
 public class MessageUpdateClientServerSkills implements IMessage {
-    public Integer
-            Magic,
-            Melee_Weapons,
-            Firearms,
-            EneryWeapons,
-            Saddlebag_Guns,
-            Explosives,
-            Repair,
-            Medicine,
-            Lockpicking,
-            Science,
-            Sneak,
-            Barter;
-    public Integer[] params = {
-            Magic,
-            Melee_Weapons,
-            Firearms,
-            EneryWeapons,
-            Saddlebag_Guns,
-            Explosives,
-            Repair,
-            Medicine,
-            Lockpicking,
-            Science,
-            Sneak,
-            Barter
-    };
-    public Integer[] thisParams = {
-            this.Magic,
-            this.Melee_Weapons,
-            this.Firearms,
-            this.EneryWeapons,
-            this.Saddlebag_Guns,
-            this.Explosives,
-            this.Repair,
-            this.Medicine,
-            this.Lockpicking,
-            this.Science,
-            this.Sneak,
-            this.Barter
-    };
+    public NonNullList<Integer> skills = NonNullList.withSize(13, 0);
 
     public MessageUpdateClientServerSkills() {
     }
 
     public MessageUpdateClientServerSkills(ISkillsCapability skills) {
-
-        this.BigGuns = skills.getBigGuns();
-        this.SmallGuns = skills.getSmallGuns();
-        this.EnergyWeapons = skills.getEnergyWeapons();
-        this.Explosives = skills.getExplosives();
-        this.MeleeWeapons = skills.getMeleeWeapons();
-        this.Unarmed = skills.getUnarmed();
-        this.Medicine = skills.getMedicine();
-        this.Lockpick = skills.getLockpick();
-        this.Repair = skills.getRepair();
-        this.Science = skills.getScience();
-        this.Sneak = skills.getSneak();
-        this.Barter = skills.getBarter();
-
+        /**
+         Magic
+         Melee_Weapons
+         Firearms
+         EneryWeapons
+         Saddlebag_Guns
+         Explosives
+         Repair
+         Medicine
+         Lockpicking
+         Science
+         Sneak
+         Barter
+         Survival
+         */
+        //TODO finish this it gets NULL
+        this.skills.set(0, new Integer(skills.getMagic()));
+        this.skills.set(1, new Integer(skills.getMelee()));
+        this.skills.set(2, new Integer(skills.getFirearms()));
+        this.skills.set(3, new Integer(skills.getEnergyWeapons()));
+        this.skills.set(4, new Integer(skills.getSaddlebag_guns()));
+        this.skills.set(5, new Integer(skills.getExplosives()));
+        this.skills.set(6, new Integer(skills.getRepair()));
+        this.skills.set(7, new Integer(skills.getMedicine()));
+        this.skills.set(8, new Integer(skills.getLockpick()));
+        this.skills.set(9, new Integer(skills.getScience()));
+        this.skills.set(10, new Integer(skills.getSneak()));
+        this.skills.set(11, new Integer(skills.getBarter()));
+        this.skills.set(12, new Integer(skills.getSurvival()));
 
     }
 
     public MessageUpdateClientServerSkills(Integer[] Skills) {
-        this.BigGuns = Skills[0];
-        this.SmallGuns = Skills[1];
-        this.EnergyWeapons = Skills[2];
-        this.Explosives = Skills[3];
-        this.MeleeWeapons = Skills[4];
-        this.Unarmed = Skills[5];
-        this.Medicine = Skills[6];
-        this.Lockpick = Skills[7];
-        this.Repair = Skills[8];
-        this.Science = Skills[9];
-        this.Sneak = Skills[10];
-        this.Barter = Skills[11];
+        for (int i = 0; i < 12; i++) {
+            this.skills.set(i, Skills[i]);
+        }
 
 
     }
 
     @Override
     public void fromBytes(ByteBuf buf) {
-        BigGuns = buf.readInt();
-        SmallGuns = buf.readInt();
-        EnergyWeapons = buf.readInt();
-        Explosives = buf.readInt();
-        MeleeWeapons = buf.readInt();
-        Unarmed = buf.readInt();
-        Medicine = buf.readInt();
-        Lockpick = buf.readInt();
-        Repair = buf.readInt();
-        Science = buf.readInt();
-        Sneak = buf.readInt();
-        Barter = buf.readInt();
-
+        for (int i = 0; i < 12; i++) {
+            skills.set(i, buf.readInt());
+        }
     }
 
     @Override
     public void toBytes(ByteBuf buf) {
-
-        buf.writeInt(BigGuns);
-        buf.writeInt(SmallGuns);
-        buf.writeInt(EnergyWeapons);
-        buf.writeInt(Explosives);
-        buf.writeInt(MeleeWeapons);
-        buf.writeInt(Unarmed);
-        buf.writeInt(Medicine);
-        buf.writeInt(Lockpick);
-        buf.writeInt(Repair);
-        buf.writeInt(Science);
-        buf.writeInt(Sneak);
-        buf.writeInt(Barter);
-
+        for (int i = 0; i < 12; i++) {
+            buf.writeInt(skills.get(i));
+        }
     }
 
     public static class HandlerClient implements IMessageHandler<MessageUpdateClientServerSkills, IMessage> {

@@ -10,15 +10,15 @@ public class StatsGui {
             "STR", "PER", "END", "CHA", "INT", "AGI", "LUC"
     };
     public static String[] skillsNames = {
-            "Big Guns:",
-            "Small Guns:",
-            "Energy Weapons:",
+            "Magic:",
+            "Melee Weapons:",
+            "Firearms:",
+            "EneryWeapons:",
+            "Saddlebag_Guns:",
             "Explosives:",
-            "MeleeWeapons:",
-            "Unarmed:",
-            "Medicine:",
-            "Lockpick:",
             "Repair:",
+            "Medicine:",
+            "Lockpicking:",
             "Science:",
             "Sneak:",
             "Barter:"

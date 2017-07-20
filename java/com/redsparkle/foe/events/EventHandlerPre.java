@@ -172,15 +172,15 @@ public class EventHandlerPre {
                 ISkillsCapability originalSkills = event.getOriginal().getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null);
                 ISkillsCapability newSkills = event.getEntityPlayer().getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null);
 
-                newSkills.setBigGuns(originalSkills.getBigGuns());
-                newSkills.setSmallGuns(originalSkills.getSmallGuns());
+                newSkills.setMagic(originalSkills.getMagic());
+                newSkills.setMelee(originalSkills.getMelee());
+                newSkills.setFirearms(originalSkills.getFirearms());
                 newSkills.setEnergyWeapons(originalSkills.getEnergyWeapons());
+                newSkills.setSaddlebag_guns(originalSkills.getSaddlebag_guns());
                 newSkills.setExplosives(originalSkills.getExplosives());
-                newSkills.setMeleeWeapons(originalSkills.getMeleeWeapons());
-                newSkills.setUnarmed(originalSkills.getUnarmed());
+                newSkills.setRepair(originalSkills.getRepair());
                 newSkills.setMedicine(originalSkills.getMedicine());
                 newSkills.setLockpick(originalSkills.getLockpick());
-                newSkills.setRepair(originalSkills.getRepair());
                 newSkills.setScience(originalSkills.getScience());
                 newSkills.setSneak(originalSkills.getSneak());
                 newSkills.setBarter(originalSkills.getBarter());
@@ -221,15 +221,15 @@ public class EventHandlerPre {
     private void updatePlayerSkills(EntityPlayer player) {
         if (!player.world.isRemote) {
             ISkillsCapability skill = player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null);
-            skill.setBigGuns(skill.getBigGuns());
-            skill.setSmallGuns(skill.getSmallGuns());
+            skill.setMagic(skill.getMagic());
+            skill.setMelee(skill.getMelee());
+            skill.setFirearms(skill.getFirearms());
             skill.setEnergyWeapons(skill.getEnergyWeapons());
+            skill.setSaddlebag_guns(skill.getSaddlebag_guns());
             skill.setExplosives(skill.getExplosives());
-            skill.setMeleeWeapons(skill.getMeleeWeapons());
-            skill.setUnarmed(skill.getUnarmed());
+            skill.setRepair(skill.getRepair());
             skill.setMedicine(skill.getMedicine());
             skill.setLockpick(skill.getLockpick());
-            skill.setRepair(skill.getRepair());
             skill.setScience(skill.getScience());
             skill.setSneak(skill.getSneak());
             skill.setBarter(skill.getBarter());

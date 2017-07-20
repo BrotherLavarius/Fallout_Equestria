@@ -60,21 +60,39 @@ public class DedicatedServerProxy extends CommonProxy {
     }
 
     public static void handleSkillsMessage(MessageUpdateClientServerSkills message, EntityPlayerMP playerEntity) {
-
+        /**
+         Magic
+         Melee_Weapons
+         Firearms
+         EneryWeapons
+         Saddlebag_Guns
+         Explosives
+         Repair
+         Medicine
+         Lockpicking
+         Science
+         Sneak
+         Barter
+         Survival
+         */
         ISkillsCapability skills = SkillsFactoryProvider.instanceFor(playerEntity);
 
-        skills.setBigGuns(message.BigGuns);
-        skills.setSmallGuns(message.SmallGuns);
-        skills.setEnergyWeapons(message.EnergyWeapons);
-        skills.setExplosives(message.Explosives);
-        skills.setMeleeWeapons(message.MeleeWeapons);
-        skills.setUnarmed(message.Unarmed);
-        skills.setMedicine(message.Medicine);
-        skills.setLockpick(message.Lockpick);
-        skills.setRepair(message.Repair);
-        skills.setScience(message.Science);
-        skills.setSneak(message.Sneak);
-        skills.setBarter(message.Barter);
+        skills.setMagic(message.skills.get(0));
+        skills.setMelee(message.skills.get(1));
+        skills.setFirearms(message.skills.get(2));
+        skills.setEnergyWeapons(message.skills.get(3));
+        skills.setSaddlebag_guns(message.skills.get(4));
+        skills.setExplosives(message.skills.get(5));
+        skills.setRepair(message.skills.get(6));
+        skills.setMedicine(message.skills.get(7));
+        skills.setLockpick(message.skills.get(8));
+        skills.setScience(message.skills.get(9));
+        skills.setSneak(message.skills.get(10));
+        skills.setBarter(message.skills.get(11));
+        skills.setSurvival(message.skills.get(12));
+
+
+
 
 
         /** DEBUG MESSAGE ENABLER
@@ -150,33 +168,34 @@ public class DedicatedServerProxy extends CommonProxy {
         ILevelCapability level = LevelFactoryProvider.instanceFor(player);
         ISpechialCapability spechial = SpechialFactoryProvider.instanceFor(player);
         int summ = (
-                message.BigGuns +
-                        message.SmallGuns +
-                        message.EnergyWeapons +
-                        message.Explosives +
-                        message.MeleeWeapons +
-                        message.Unarmed +
-                        message.Medicine +
-                        message.Lockpick +
-                        message.Repair +
-                        message.Science +
-                        message.Sneak +
-                        message.Barter
+                message.skills.get(0) +
+                        message.skills.get(1) +
+                        message.skills.get(2) +
+                        message.skills.get(3) +
+                        message.skills.get(4) +
+                        message.skills.get(5) +
+                        message.skills.get(6) +
+                        message.skills.get(7) +
+                        message.skills.get(8) +
+                        message.skills.get(9) +
+                        message.skills.get(10) +
+                        message.skills.get(11) +
+                        message.skills.get(12)
         ) - 120;
         int prevSumm = (
-
-                skills.getBigGuns() +
-                        skills.getSmallGuns() +
+                skills.getMagic() +
+                        skills.getMelee() +
+                        skills.getFirearms() +
                         skills.getEnergyWeapons() +
+                        skills.getSaddlebag_guns() +
                         skills.getExplosives() +
-                        skills.getMeleeWeapons() +
-                        skills.getUnarmed() +
+                        skills.getRepair() +
                         skills.getMedicine() +
                         skills.getLockpick() +
-                        skills.getRepair() +
                         skills.getScience() +
                         skills.getSneak() +
-                        skills.getBarter()
+                        skills.getBarter() +
+                        skills.getSurvival()
         ) - 120;
         if (Lvlutil.ponitsAvailable(
                 player.getCapability(LevelFactoryProvider.LEVEL_CAPABILITY, null).getLevel(),
@@ -184,18 +203,19 @@ public class DedicatedServerProxy extends CommonProxy {
                 ) {
 
 
-            skills.setBigGuns(message.BigGuns);
-            skills.setSmallGuns(message.SmallGuns);
-            skills.setEnergyWeapons(message.EnergyWeapons);
-            skills.setExplosives(message.Explosives);
-            skills.setMeleeWeapons(message.MeleeWeapons);
-            skills.setUnarmed(message.Unarmed);
-            skills.setMedicine(message.Medicine);
-            skills.setLockpick(message.Lockpick);
-            skills.setRepair(message.Repair);
-            skills.setScience(message.Science);
-            skills.setSneak(message.Sneak);
-            skills.setBarter(message.Barter);
+            skills.setMagic(message.skills.get(0));
+            skills.setMelee(message.skills.get(1));
+            skills.setFirearms(message.skills.get(2));
+            skills.setEnergyWeapons(message.skills.get(3));
+            skills.setSaddlebag_guns(message.skills.get(4));
+            skills.setExplosives(message.skills.get(5));
+            skills.setRepair(message.skills.get(6));
+            skills.setMedicine(message.skills.get(7));
+            skills.setLockpick(message.skills.get(8));
+            skills.setScience(message.skills.get(9));
+            skills.setSneak(message.skills.get(10));
+            skills.setBarter(message.skills.get(11));
+            skills.setSurvival(message.skills.get(12));
             level.setLevel((summ / 10));
             skills.updateClient(player);
             level.updateClient(player);
