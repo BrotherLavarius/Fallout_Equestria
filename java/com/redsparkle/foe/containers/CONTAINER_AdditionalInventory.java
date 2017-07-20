@@ -3,8 +3,9 @@ package com.redsparkle.foe.containers;
 import com.redsparkle.api.capa.Inventory.IAdvInventory;
 import com.redsparkle.api.capa.Inventory.IAdvProvider;
 import com.redsparkle.foe.containers.Slots.*;
+import com.redsparkle.foe.inventory.Adv_inv;
 import com.redsparkle.foe.main;
-import com.redsparkle.foe.network.ClientServerOneClass.MessageAdvInv;
+import com.redsparkle.foe.network.ClientServerOneClass.MessageAdvInv_SYNC;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
@@ -35,7 +36,7 @@ public class CONTAINER_AdditionalInventory extends Container {
     public CONTAINER_AdditionalInventory(EntityPlayer player) {
         this.adv_inv = player.getCapability(IAdvProvider.Adv_Inv, null);
         this.inventoryPlayer = player.inventory;
-        this.additional_inventory = new InventoryBasic("FOE additional inventory", false, 12);
+        this.additional_inventory = new Adv_inv("FOE additional inventory", false, 12);
         additional_inventory.openInventory(player);
         numRows = inventoryPlayer.getSizeInventory() / 9;
 
@@ -87,6 +88,7 @@ public class CONTAINER_AdditionalInventory extends Container {
     }
 
 
+
     @Override
     public ItemStack transferStackInSlot(EntityPlayer player, int sourceSlotIndex) {
         Slot sourceSlot = inventorySlots.get(sourceSlotIndex);
@@ -130,7 +132,7 @@ public class CONTAINER_AdditionalInventory extends Container {
         for (int g = 0; g < 12; g++) {
             adv_inv.insertItem(g, additional_inventory.getStackInSlot(g), false);
         }
-        main.simpleNetworkWrapper.sendToServer(new MessageAdvInv(adv_inv, true));
+        main.simpleNetworkWrapper.sendToServer(new MessageAdvInv_SYNC(playerIn.getCapability(IAdvProvider.Adv_Inv, null)));
 
     }
 

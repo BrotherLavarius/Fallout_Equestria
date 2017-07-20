@@ -32,7 +32,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.fml.relauncher.Side;
 
 /**
  * Created by hoijima on 14.12.16.
@@ -218,19 +217,21 @@ public class ClientOnlyProxy extends CommonProxy {
         });
     }
 
-    public static void handleAdv(MessageAdvInv message) {
+
+    public static void handleAdv_SYNC(MessageAdvInv_SYNC message) {
         Minecraft.getMinecraft().addScheduledTask(() -> {
             EntityPlayer player = Minecraft.getMinecraft().player;
             IAdvInventory advInventory = IAdvProvider.instanceFor(player);
             for (int i = 0; i < 12; i++) {
-                Item item = null;
-                ItemStack quack = null;
-                item = ItemCatalog.Request(message.item_id.get(i));
-                quack = ItemCatalog.RequestStack(item, message.item_count.get(i), message.item_damage.get(i));
-                advInventory.insertItem(i, quack, false);
+                Item item = Item.getByNameOrId(message.item_id.get(i));
+                ItemStack stack = ItemCatalog.RequestStack(item, message.item_count.get(i), message.item_damage.get(i));
+                if (advInventory.getStackInSlot(i) == ItemStack.EMPTY && stack != ItemStack.EMPTY) {
+                    advInventory.insertItem(i, stack, false);
+                } else if (advInventory.getStackInSlot(i) != ItemStack.EMPTY && stack != ItemStack.EMPTY) {
+                    advInventory.extractItem(i, advInventory.getStackInSlot(i).getCount(), false);
+                    advInventory.insertItem(i, stack, false);
             }
-
-
+            }
         });
     }
 
@@ -245,7 +246,6 @@ public class ClientOnlyProxy extends CommonProxy {
 
     public void Init() {
         super.init();
-        main.simpleNetworkWrapper.registerMessage(MessageUpdateClientRads.Handler.class, MessageUpdateClientRads.class, main.RAIATION_CAPABILITY_MESSAGE_ID_CLIENT, Side.CLIENT);
         ClientOnlyStartup.initClientOnly();
     }
 

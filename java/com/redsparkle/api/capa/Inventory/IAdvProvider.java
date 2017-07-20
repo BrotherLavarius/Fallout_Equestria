@@ -1,11 +1,9 @@
 package com.redsparkle.api.capa.Inventory;
 
-import com.redsparkle.api.utils.ItemCatalog;
 import com.redsparkle.foe.main;
-import com.redsparkle.foe.network.ClientServerOneClass.MessageAdvInv;
+import com.redsparkle.foe.network.ClientServerOneClass.MessageAdvInv_SYNC;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
@@ -14,8 +12,6 @@ import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.CapabilityInject;
 import net.minecraftforge.common.capabilities.ICapabilitySerializable;
 import net.minecraftforge.items.ItemStackHandler;
-
-import java.util.List;
 
 
 /**
@@ -45,20 +41,19 @@ public class IAdvProvider extends ItemStackHandler implements IAdvInventory, ICa
         return player.getCapability(Adv_Inv, null);
     }
 
-    @Override
-    public void inserProcesser(List<String> item_id, List<Integer> item_count, List<Integer> item_damage, EntityPlayerMP player) {
-
-        for (int i = 0; i < 12; i++) {
-            Item item = null;
-            ItemStack quack= null;
-            item = ItemCatalog.Request(item_id.get(i));
-            quack = ItemCatalog.RequestStack(item, item_count.get(i), item_damage.get(i));
-            this.setStackInSlot(i,quack);
-        }
-
-        main.simpleNetworkWrapper.sendTo(new MessageAdvInv(stacks, true), player);
-
-    }
+//    @Override
+//    public void inserProcesser(List<String> item_id, List<Integer> item_count, List<Integer> item_damage, EntityPlayerMP player) {
+//
+//        for (int i = 0; i < 12; i++) {
+//            Item item = null;
+//            ItemStack quack= null;
+//            item = ItemCatalog.Request(item_id.get(i));
+//            quack = ItemCatalog.RequestStack(item, item_count.get(i), item_damage.get(i));
+//            this.setStackInSlot(i,quack);
+//        }
+//
+//
+//    }
 
 
     @Override
@@ -85,8 +80,9 @@ public class IAdvProvider extends ItemStackHandler implements IAdvInventory, ICa
 
     @Override
     public void updateClient(EntityPlayer player) {
-        main.simpleNetworkWrapper.sendTo(new MessageAdvInv(stacks, true), (EntityPlayerMP) player);
+        main.simpleNetworkWrapper.sendTo(new MessageAdvInv_SYNC(stacks), (EntityPlayerMP) player);
+    }
     }
 
 
-}
+

@@ -225,23 +225,44 @@ public class DedicatedServerProxy extends CommonProxy {
 
     public static void handleAdv(MessageAdvInv message, EntityPlayerMP playerMP) {
         IAdvInventory advInventory = IAdvProvider.instanceFor(playerMP);
+
+        if (message.type == 0) {
+            advInventory.updateClient(playerMP);
+        }
+        if (message.type == 1) {
+            advInventory.updateClient(playerMP);
+            main.simpleNetworkWrapper.sendTo(new MessageOpenGuiClient(5), playerMP);
+        }
+    }
+
+
+    public static void handleAdv_SYNC(MessageAdvInv_SYNC message, EntityPlayerMP playerMP) {
+        IAdvInventory advInventory = IAdvProvider.instanceFor(playerMP);
         for (int i = 0; i < 12; i++) {
-            Item item = null;
-            item = ItemCatalog.Request(message.item_id.get(i));
-            ItemStack stack = new ItemStack(item);
-            stack.setCount(message.item_count.get(i));
-            stack.setItemDamage(message.item_damage.get(i));
-            advInventory.insertItem(i,stack,false);
+            Item item = Item.getByNameOrId(message.item_id.get(i));//           ItemCatalog.Request(message.item_id.get(slot));
+            ItemStack stack = ItemCatalog.RequestStack(item, message.item_count.get(i), message.item_damage.get(i));
+            if (advInventory.getStackInSlot(i) == ItemStack.EMPTY && stack != ItemStack.EMPTY) {
+                advInventory.insertItem(i, stack, false);
+            } else if (advInventory.getStackInSlot(i) != ItemStack.EMPTY && stack != ItemStack.EMPTY) {
+                advInventory.extractItem(i, advInventory.getStackInSlot(i).getCount(), false);
+                advInventory.insertItem(i, stack, false);
+            }
         }
 
-        advInventory.inserProcesser(message.item_id,message.item_count,message.item_damage, playerMP);
     }
 
-    public static void handleAdv_requestSync(EntityPlayerMP playerMP) {
+    public static void handleAdv_SLOT(MessageAdvInv_SLOT message, EntityPlayerMP playerMP) {
         IAdvInventory advInventory = IAdvProvider.instanceFor(playerMP);
-        advInventory.updateClient(playerMP);
+        int slot = message.slot;
+        Item item = Item.getByNameOrId(message.item_id.get(slot));//           ItemCatalog.Request(message.item_id.get(slot));
+        ItemStack stack = ItemCatalog.RequestStack(item, message.item_count.get(slot), message.item_damage.get(slot));
+        if (advInventory.getStackInSlot(slot) == ItemStack.EMPTY && stack != ItemStack.EMPTY) {
+            advInventory.insertItem(slot, stack, false);
+        } else if (advInventory.getStackInSlot(slot) != ItemStack.EMPTY && stack != ItemStack.EMPTY) {
+            advInventory.extractItem(slot, advInventory.getStackInSlot(slot).getCount(), false);
+            advInventory.insertItem(slot, stack, false);
+        }
     }
-
     /**
      * Run before anything else. Read your config, create blocks, items, etc, and register them with the GameRegistry
      */
@@ -283,5 +304,6 @@ public class DedicatedServerProxy extends CommonProxy {
     public boolean isDedicatedServer() {
         return true;
     }
+
 
 }

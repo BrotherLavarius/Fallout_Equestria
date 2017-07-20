@@ -1,8 +1,5 @@
 package com.redsparkle.foe.keys;
-
-import com.redsparkle.api.capa.Inventory.IAdvProvider;
 import com.redsparkle.api.utils.GlobalItemArray_For_init;
-import com.redsparkle.foe.gui.Menus.PipBuckGui;
 import com.redsparkle.foe.main;
 import com.redsparkle.foe.network.ClientServerOneClass.MessageAdvInv;
 import com.redsparkle.foe.network.MessageGunReload;
@@ -12,14 +9,11 @@ import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.InputEvent;
-
 /**
  * Created by NENYN on 1/12/2017.
  */
 public class KeyInputHandler {
-    private static PipBuckGui pipBuckGui;
     public boolean activated = false;
-
     @SubscribeEvent
     public void onKeyInput(InputEvent.KeyInputEvent event) {
         Minecraft mc = Minecraft.getMinecraft();
@@ -28,26 +22,16 @@ public class KeyInputHandler {
             main.simpleNetworkWrapper.sendToServer(new MessageGunReload());
         }
         if (keyHandler.pipbuck.isPressed()) {
-
             if (mc.player.inventory.hasItemStack(new ItemStack(GlobalItemArray_For_init.AllInit[0]))) {
                 main.simpleNetworkWrapper.sendToServer(new MessageUpdateSLSClientOnDemand());
-
-
                 player.openGui(main.instance, 0, mc.world, (int) mc.player.posX, (int) mc.player.posY, (int) mc.player.posZ);
                 activated = true;
             }
-
-
         }
         if (keyHandler.testButton.isPressed()) {
-            main.simpleNetworkWrapper.sendToServer(new MessageAdvInv(mc.player.getCapability(IAdvProvider.Adv_Inv, null), false));
-            player.openGui(main.instance, 5, mc.world, (int) mc.player.posX, (int) mc.player.posY, (int) mc.player.posZ);
-
+            main.simpleNetworkWrapper.sendToServer(new MessageAdvInv("sync_and_gui"));
         }
         if (keyHandler.saddlebags.isPressed()) {
-
         }
     }
-
-
 }

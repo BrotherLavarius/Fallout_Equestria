@@ -23,6 +23,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.*;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
+import net.minecraftforge.event.entity.player.PlayerContainerEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
@@ -264,6 +265,11 @@ public class EventHandlerPre {
 
     private void onUpdate(TickEvent.WorldTickEvent event) {
 
+    }
+
+    @SubscribeEvent
+    public void onPlayerTick(PlayerContainerEvent.Open event) {
+        event.getContainer();
     }
 }
     
