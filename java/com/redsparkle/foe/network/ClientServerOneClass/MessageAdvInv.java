@@ -26,7 +26,9 @@ public class MessageAdvInv implements IMessage {
         if (type == "sync_and_gui") {
             this.type = 1;
         }
-
+        if (type == "close") {
+            this.type = 2;
+        }
 
     }
 

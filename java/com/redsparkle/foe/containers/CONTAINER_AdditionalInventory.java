@@ -4,8 +4,6 @@ import com.redsparkle.api.capa.Inventory.IAdvInventory;
 import com.redsparkle.api.capa.Inventory.IAdvProvider;
 import com.redsparkle.foe.containers.Slots.*;
 import com.redsparkle.foe.inventory.Adv_inv;
-import com.redsparkle.foe.main;
-import com.redsparkle.foe.network.ClientServerOneClass.MessageAdvInv_SYNC;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
@@ -128,11 +126,23 @@ public class CONTAINER_AdditionalInventory extends Container {
     @Override
     public void onContainerClosed(EntityPlayer playerIn) {
         super.onContainerClosed(playerIn);
-        this.additional_inventory.closeInventory(playerIn);
         for (int g = 0; g < 12; g++) {
             adv_inv.insertItem(g, additional_inventory.getStackInSlot(g), false);
+            if (adv_inv.getStackInSlot(g) == ItemStack.EMPTY && additional_inventory.getStackInSlot(g) == ItemStack.EMPTY) {
+
+            }
+            if (adv_inv.getStackInSlot(g) != ItemStack.EMPTY && additional_inventory.getStackInSlot(g) == ItemStack.EMPTY) {
+                adv_inv.extractItem(g, adv_inv.getStackInSlot(g).getCount(), false);
+            }
+            if (adv_inv.getStackInSlot(g) != ItemStack.EMPTY && additional_inventory.getStackInSlot(g) != ItemStack.EMPTY) {
+                adv_inv.extractItem(g, adv_inv.getStackInSlot(g).getCount(), false);
+                adv_inv.insertItem(g, additional_inventory.getStackInSlot(g), false);
+            }
+
+
         }
-        main.simpleNetworkWrapper.sendToServer(new MessageAdvInv_SYNC(playerIn.getCapability(IAdvProvider.Adv_Inv, null)));
+        this.additional_inventory.closeInventory(playerIn);
+
 
     }
 

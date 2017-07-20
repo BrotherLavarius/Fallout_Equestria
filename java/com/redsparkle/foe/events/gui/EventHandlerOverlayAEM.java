@@ -18,7 +18,8 @@ public class EventHandlerOverlayAEM {
         if (!entityPlayerSP.isCreative()) {
             boolean foundInHotbar = false;
             for (int i = 1; i < 5; i++) {
-                if (entityPlayerSP.getCapability(IAdvProvider.Adv_Inv, null).getStackInSlot(i).getItem() == GlobalItemArray_For_init.AllInit[2]) {
+                if (entityPlayerSP.getCapability(IAdvProvider.Adv_Inv, null).getStackInSlot(i).getItem() == GlobalItemArray_For_init.AllInit[2] &&
+                        entityPlayerSP.getCapability(IAdvProvider.Adv_Inv, null).getStackInSlot(0).getItem() == GlobalItemArray_For_init.AllInit[0]) {
                     foundInHotbar = true;
                 }
             }
