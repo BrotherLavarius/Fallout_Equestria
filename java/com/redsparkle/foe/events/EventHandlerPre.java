@@ -114,7 +114,7 @@ public class EventHandlerPre {
             e.player.getCapability(FTJFactoryProvider.FTJ_CAPABILITY, null).setFTJ(false);
 
         }
-
+        e.player.getCapability(IAdvProvider.Adv_Inv, null).updateClient(e.player);
         updatePlayerSpechial(e.player);
         updatePlayerSkills(e.player);
         updatePlayerLevel(e.player);
