@@ -53,7 +53,7 @@ public class MessageUpdateClientServerSkills implements IMessage {
     }
 
     public MessageUpdateClientServerSkills(Integer[] Skills) {
-        for (int i = 0; i < 12; i++) {
+        for (int i = 0; i < 13; i++) {
             this.skills.set(i, Skills[i]);
         }
 
@@ -62,14 +62,14 @@ public class MessageUpdateClientServerSkills implements IMessage {
 
     @Override
     public void fromBytes(ByteBuf buf) {
-        for (int i = 0; i < 12; i++) {
+        for (int i = 0; i < 13; i++) {
             skills.set(i, buf.readInt());
         }
     }
 
     @Override
     public void toBytes(ByteBuf buf) {
-        for (int i = 0; i < 12; i++) {
+        for (int i = 0; i < 13; i++) {
             buf.writeInt(skills.get(i));
         }
     }

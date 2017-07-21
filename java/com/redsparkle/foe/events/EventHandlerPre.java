@@ -233,7 +233,7 @@ public class EventHandlerPre {
             skill.setScience(skill.getScience());
             skill.setSneak(skill.getSneak());
             skill.setBarter(skill.getBarter());
-
+            skill.setSurvival(skill.getSurvival());
             skill.updateClient(player);
         }
     }

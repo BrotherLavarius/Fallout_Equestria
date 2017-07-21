@@ -10,18 +10,19 @@ public class StatsGui {
             "STR", "PER", "END", "CHA", "INT", "AGI", "LUC"
     };
     public static String[] skillsNames = {
-            "Magic:",
-            "Melee Weapons:",
-            "Firearms:",
-            "EneryWeapons:",
-            "Saddlebag_Guns:",
-            "Explosives:",
-            "Repair:",
-            "Medicine:",
-            "Lockpicking:",
-            "Science:",
-            "Sneak:",
-            "Barter:"
+            "Magic",
+            "Melee Weapons",
+            "Firearms",
+            "Energy Weapons",
+            "Saddlebag Gun",
+            "Explosives",
+            "Repair",
+            "Medicine",
+            "Lockpicking",
+            "Science",
+            "Sneak",
+            "Barter",
+            "Survival"
 
     };
     public static GuiButtonExtFallout STATUS = new GuiButtonExtFallout(5,

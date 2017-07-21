@@ -183,7 +183,7 @@ public class DedicatedServerProxy extends CommonProxy {
                         message.skills.get(12)
         ) - 120;
         int prevSumm = (
-                skills.getMagic() +
+                        skills.getMagic() +
                         skills.getMelee() +
                         skills.getFirearms() +
                         skills.getEnergyWeapons() +

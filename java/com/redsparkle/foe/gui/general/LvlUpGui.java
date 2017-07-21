@@ -23,47 +23,62 @@ public class LvlUpGui extends GuiScreen {
     public Integer counter = 0;
     public Boolean CommitShow = false;
     public int startY = 15;
-    GuiButtonExtFallout BGplus = new GuiButtonExtFallout(0, 0, 0, 0, 0, "+");
-    GuiButtonExtFallout SGPlus = new GuiButtonExtFallout(1, 0, 0, 0, 0, "+");
-    GuiButtonExtFallout EWPlus = new GuiButtonExtFallout(2, 0, 0, 0, 0, "+");
-    GuiButtonExtFallout EXPLus = new GuiButtonExtFallout(3, 0, 0, 0, 0, "+");
-    GuiButtonExtFallout MWPLus = new GuiButtonExtFallout(4, 0, 0, 0, 0, "+");
-    GuiButtonExtFallout UNPlus = new GuiButtonExtFallout(5, 0, 0, 0, 0, "+");
-    GuiButtonExtFallout MEDPLus = new GuiButtonExtFallout(6, 0, 0, 0, 0, "+");
-    GuiButtonExtFallout LOCKPLus = new GuiButtonExtFallout(7, 0, 0, 0, 0, "+");
-    GuiButtonExtFallout REPPLus = new GuiButtonExtFallout(8, 0, 0, 0, 0, "+");
-    GuiButtonExtFallout SCIPlus = new GuiButtonExtFallout(9, 0, 0, 0, 0, "+");
-    GuiButtonExtFallout SNIKPLus = new GuiButtonExtFallout(10, 0, 0, 0, 0, "+");
-    GuiButtonExtFallout BARTPLus = new GuiButtonExtFallout(11, 0, 0, 0, 0, "+");
-    GuiButtonExtFallout BGminus = new GuiButtonExtFallout(12, 0, 0, 0, 0, "-");
-    GuiButtonExtFallout SGminus = new GuiButtonExtFallout(13, 0, 0, 0, 0, "-");
-    GuiButtonExtFallout EWminus = new GuiButtonExtFallout(14, 0, 0, 0, 0, "-");
-    GuiButtonExtFallout EXminus = new GuiButtonExtFallout(15, 0, 0, 0, 0, "-");
-    GuiButtonExtFallout MWminus = new GuiButtonExtFallout(16, 0, 0, 0, 0, "-");
-    GuiButtonExtFallout UNminus = new GuiButtonExtFallout(17, 0, 0, 0, 0, "-");
-    GuiButtonExtFallout MEDminus = new GuiButtonExtFallout(18, 0, 0, 0, 0, "-");
-    GuiButtonExtFallout LOCKminus = new GuiButtonExtFallout(19, 0, 0, 0, 0, "-");
-    GuiButtonExtFallout REPminus = new GuiButtonExtFallout(20, 0, 0, 0, 0, "-");
-    GuiButtonExtFallout SCIminus = new GuiButtonExtFallout(21, 0, 0, 0, 0, "-");
-    GuiButtonExtFallout SNIKminus = new GuiButtonExtFallout(22, 0, 0, 0, 0, "-");
-    GuiButtonExtFallout BARTminus = new GuiButtonExtFallout(23, 0, 0, 0, 0, "-");
-    GuiButtonExtFallout Commit = new GuiButtonExtFallout(24, 0, 0, 0, 0, "Level up!");
-    Integer[] buttonsIdsPlus = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11};
-    Integer[] buttonsIdsMinus = {12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23};
+    public int index=0;
+    GuiButtonExtFallout MagicPlus = new GuiButtonExtFallout(index, 0, 0, 0, 0, "+");
+    GuiButtonExtFallout MagicMinus = new GuiButtonExtFallout(index++, 0, 0, 0, 0, "-");
+
+    GuiButtonExtFallout Melee_WeaponsPlus = new GuiButtonExtFallout(index++, 0, 0, 0, 0, "+");
+    GuiButtonExtFallout Melee_WeaponsMinus = new GuiButtonExtFallout(index++, 0, 0, 0, 0, "-");
+
+    GuiButtonExtFallout FirearmsPlus = new GuiButtonExtFallout(index++, 0, 0, 0, 0, "+");
+    GuiButtonExtFallout FirearmsMinus = new GuiButtonExtFallout(index++, 0, 0, 0, 0, "-");
+
+    GuiButtonExtFallout EneryWeaponsPlus = new GuiButtonExtFallout(index++, 0, 0, 0, 0, "+");
+    GuiButtonExtFallout EneryWeaponsMinus = new GuiButtonExtFallout(index++, 0, 0, 0, 0, "-");
+
+    GuiButtonExtFallout Saddlebag_GunsPlus = new GuiButtonExtFallout(index++, 0, 0, 0, 0, "+");
+    GuiButtonExtFallout Saddlebag_GunsMinus = new GuiButtonExtFallout(index++, 0, 0, 0, 0, "-");
+
+    GuiButtonExtFallout ExplosivesPlus = new GuiButtonExtFallout(index++, 0, 0, 0, 0, "+");
+    GuiButtonExtFallout ExplosivesMinus = new GuiButtonExtFallout(index++, 0, 0, 0, 0, "-");
+
+    GuiButtonExtFallout RepairPlus = new GuiButtonExtFallout(index++, 0, 0, 0, 0, "+");
+    GuiButtonExtFallout RepairMinus = new GuiButtonExtFallout(index++, 0, 0, 0, 0, "-");
+
+    GuiButtonExtFallout MedicinePlus = new GuiButtonExtFallout(index++, 0, 0, 0, 0, "+");
+    GuiButtonExtFallout MedicineMinus = new GuiButtonExtFallout(index++, 0, 0, 0, 0, "-");
+
+    GuiButtonExtFallout LockpickingPlus = new GuiButtonExtFallout(index++, 0, 0, 0, 0, "+");
+    GuiButtonExtFallout LockpickingMinus = new GuiButtonExtFallout(index++, 0, 0, 0, 0, "-");
+
+    GuiButtonExtFallout SciencePlus = new GuiButtonExtFallout(index++, 0, 0, 0, 0, "+");
+    GuiButtonExtFallout ScienceMinus = new GuiButtonExtFallout(index++, 0, 0, 0, 0, "-");
+
+    GuiButtonExtFallout SneakPlus = new GuiButtonExtFallout(index++, 0, 0, 0, 0, "+");
+    GuiButtonExtFallout SneakMinus = new GuiButtonExtFallout(index++, 0, 0, 0, 0, "-");
+
+    GuiButtonExtFallout BarterPlus = new GuiButtonExtFallout(index++, 0, 0, 0, 0, "+");
+    GuiButtonExtFallout BarterMinus = new GuiButtonExtFallout(index++, 0, 0, 0, 0, "-");
+
+    GuiButtonExtFallout SurvivalPlus = new GuiButtonExtFallout(index++, 0, 0, 0, 0, "+");
+    GuiButtonExtFallout SurvivalMinus = new GuiButtonExtFallout(index++, 0, 0, 0, 0, "-");
+
+
+    GuiButtonExtFallout Commit = new GuiButtonExtFallout(index++, 0, 0, 0, 0, "Level up!");
+    Integer[] buttonsIdsPlus = {0, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22,24};
+    Integer[] buttonsIdsMinus = {1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23,25};
     GuiButtonExtFallout[] buttonsPLus = {
-            BGplus, SGPlus, EWPlus,
-            EXPLus, MWPLus, UNPlus,
-            MEDPLus, LOCKPLus, REPPLus,
-            SCIPlus, SNIKPLus, BARTPLus
+           MagicPlus,Melee_WeaponsPlus,FirearmsPlus,EneryWeaponsPlus,Saddlebag_GunsPlus,
+            ExplosivesPlus,RepairPlus,MedicinePlus,LockpickingPlus,SciencePlus,
+            SneakPlus,BarterPlus,SurvivalPlus
     };
     GuiButtonExtFallout[] buttonsMinus = {
-            BGminus, SGminus, EWminus,
-            EXminus, MWminus, UNminus,
-            MEDminus, LOCKminus, REPminus,
-            SCIminus, SNIKminus, BARTminus
+            MagicMinus,Melee_WeaponsMinus,FirearmsMinus,EneryWeaponsMinus,Saddlebag_GunsMinus,
+            ExplosivesMinus,RepairMinus,MedicineMinus,LockpickingMinus,ScienceMinus,
+            SneakMinus,BarterMinus,SurvivalMinus
     };
-    int[] temp = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-    Integer[] finished = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+    int[] temp = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0};
+    Integer[] finished = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0};
     Integer pointsAvailable = 0;
 
     @Override
@@ -102,6 +117,8 @@ public class LvlUpGui extends GuiScreen {
                 mc.player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getScience(),
                 mc.player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getSneak(),
                 mc.player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getBarter(),
+                mc.player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getSurvival(),
+
         };
         String[] names = {
                 "Magic: ",
@@ -115,13 +132,14 @@ public class LvlUpGui extends GuiScreen {
                 "Lockpicking: ",
                 "Science: ",
                 "Sneak: ",
-                "Barter: "
+                "Barter: ",
+                "Survival: "
 
         };
         GL11.glPushMatrix();
         {
             GL11.glScalef((float) 1.0, (float) 1.0, 1.0f);
-            for (int i = 0; i <= (params.length - 1); i++) {
+            for (int i = 0; i < params.length ; i++) {
                 this.fontRendererObj.drawString(names[i],
                         ScreenGrid.XCoordStart(
                                 this.width,
@@ -183,26 +201,27 @@ public class LvlUpGui extends GuiScreen {
 
             {
                 int startYButtons = 36;
-                for (int o = 0; o <= (buttonsIdsPlus.length - 1); o++) {
-                    this.buttonList.get(buttonsIdsPlus[o]).xPosition = ScreenGrid.XCoordStart(this.width, 2) + 248;
-                    this.buttonList.get(buttonsIdsPlus[o]).yPosition = ScreenGrid.XCoordStart(this.height, 2) + (o * 15) + 30;
-                    this.buttonList.get(buttonsIdsPlus[o]).height = 12;
-                    this.buttonList.get(buttonsIdsPlus[o]).width = 10;
+                for (int o = 0; o < buttonsIdsPlus.length ; o++) {
 
-                    this.buttonList.get(buttonsIdsMinus[o]).xPosition = ScreenGrid.XCoordStart(this.width, 2) + 258;
-                    this.buttonList.get(buttonsIdsMinus[o]).yPosition = ScreenGrid.XCoordStart(this.height, 2) + (o * 15) + 30;
-                    this.buttonList.get(buttonsIdsMinus[o]).height = 10;
-                    this.buttonList.get(buttonsIdsMinus[o]).width = 9;
+                        this.buttonList.get(buttonsIdsPlus[o]).xPosition = ScreenGrid.XCoordStart(this.width, 2) + 248;
+                        this.buttonList.get(buttonsIdsPlus[o]).yPosition = ScreenGrid.XCoordStart(this.height, 2) + (o * 15) + 30;
+                        this.buttonList.get(buttonsIdsPlus[o]).height = 12;
+                        this.buttonList.get(buttonsIdsPlus[o]).width = 10;
+
+                        this.buttonList.get(buttonsIdsMinus[o]).xPosition = ScreenGrid.XCoordStart(this.width, 2) + 258;
+                        this.buttonList.get(buttonsIdsMinus[o]).yPosition = ScreenGrid.XCoordStart(this.height, 2) + (o * 15) + 30;
+                        this.buttonList.get(buttonsIdsMinus[o]).height = 10;
+                        this.buttonList.get(buttonsIdsMinus[o]).width = 9;
 
                     startYButtons = startYButtons + 13;
                 }
 
             }
-            this.buttonList.get(24).xPosition = ScreenGrid.XCoordStart(this.width, 2) + 30;
-            this.buttonList.get(24).yPosition = ScreenGrid.XCoordStart(this.height, 2) + 10;
-            this.buttonList.get(24).height = 21;
-            this.buttonList.get(24).width = 80;
-            this.buttonList.get(24).enabled = CommitShow;
+            this.buttonList.get(26).xPosition = ScreenGrid.XCoordStart(this.width, 2) + 30;
+            this.buttonList.get(26).yPosition = ScreenGrid.XCoordStart(this.height, 2) + 10;
+            this.buttonList.get(26).height = 21;
+            this.buttonList.get(26).width = 80;
+            this.buttonList.get(26).enabled = CommitShow;
             CommitShow = (pointsAvailable - IntStream.of(temp).sum()) == 0;
         }
         GL11.glPopMatrix();
@@ -218,10 +237,10 @@ public class LvlUpGui extends GuiScreen {
     @Override
     public void initGui() {
 
-        for (int i = 0; i <= (buttonsPLus.length - 1); i++) {
+        for (int i = 0; i < buttonsPLus.length ; i++) {
             this.buttonList.add(buttonsPLus[i]);
         }
-        for (int i = 0; i <= (buttonsMinus.length - 1); i++) {
+        for (int i = 0; i < buttonsMinus.length ; i++) {
             this.buttonList.add(buttonsMinus[i]);
         }
         this.buttonList.add(Commit);

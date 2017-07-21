@@ -26,7 +26,8 @@ public class PlayerStatsRequester {
                 player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getLockpick(),
                 player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getScience(),
                 player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getSneak(),
-                player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getBarter()
+                player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getBarter(),
+                player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getSurvival()
         };
 
 

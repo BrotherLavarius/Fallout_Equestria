@@ -39,7 +39,11 @@ public class SkillsFactoryProvider implements ISkillsCapability, ICapabilitySeri
 
 
     public SkillsFactoryProvider() {
-        this(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+        this(
+                0,
+                0,
+                0,
+                0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
     }
 
     public SkillsFactoryProvider(int magic, int melee, int firearms, int eneryWeapons, int saddlebag_Guns, int explosives, int repair, int medicine, int lockpicking,
