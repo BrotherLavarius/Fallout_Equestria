@@ -36,7 +36,8 @@ public class FlareGun extends Item_Firearm {
         this.setMaxDamage(clipRounds);
         this.setCreativeTab(InitCreativeTabs.Fallout_guns);
         isGun = true;
-
+        this.shot = SoundInit.flaregun_shot;
+        this.dry = SoundInit.flaregun_dry;
 
     }
 
@@ -61,11 +62,11 @@ public class FlareGun extends Item_Firearm {
             if (itemstack.getItemDamage() == (clipRounds)) {
                 if (findAmmo(playerIn) == ItemStack.EMPTY) {
                     // ---------------_EMPTY CLIP
-                    worldIn.playSound(playerIn, playerIn.getPosition(), SoundInit.guns[10], SoundCategory.HOSTILE, 0.5F, 0.4F);
+                    worldIn.playSound(playerIn, playerIn.getPosition(), dry, SoundCategory.HOSTILE, 0.5F, 0.4F);
                     return new ActionResult<>(EnumActionResult.FAIL, itemstack);
                 }
             } else {
-                worldIn.playSound(playerIn, playerIn.getPosition(), SoundInit.guns[9], SoundCategory.HOSTILE, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
+                worldIn.playSound(playerIn, playerIn.getPosition(), shot, SoundCategory.HOSTILE, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
                 if (worldIn.isRemote) {
                     flare(worldIn, playerIn);
                 }
@@ -73,7 +74,7 @@ public class FlareGun extends Item_Firearm {
                 return new ActionResult<>(EnumActionResult.SUCCESS, itemstack);
             }
         } else {
-            worldIn.playSound(playerIn, playerIn.getPosition(), SoundInit.guns[9], SoundCategory.HOSTILE, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
+            worldIn.playSound(playerIn, playerIn.getPosition(), shot, SoundCategory.HOSTILE, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
             if (worldIn.isRemote) {
                 flare(worldIn, playerIn);
             }

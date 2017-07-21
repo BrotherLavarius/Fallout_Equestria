@@ -19,9 +19,7 @@ import com.redsparkle.foe.Init.SoundInit;
 import com.redsparkle.foe.keys.KeyInputHandler;
 import com.redsparkle.foe.keys.keyHandler;
 import com.redsparkle.foe.network.ClientServerOneClass.*;
-import com.redsparkle.foe.network.MessageFireToClientServer;
 import com.redsparkle.foe.network.MessageGunReloadReply;
-import com.redsparkle.foe.network.MessageOpenGuiClient;
 import com.redsparkle.foe.network.MessageUpdateSLSServerReplyOnDemand;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
@@ -118,65 +116,65 @@ public class ClientOnlyProxy extends CommonProxy {
 //-------------------------------------------------------------
             if (message.soundname == 0) {
                 //10 mm reload
-                world.playSound(player, player.getPosition(), SoundInit.guns[2], SoundCategory.HOSTILE, 1.0F, 1.0F);
+                world.playSound(player, player.getPosition(), SoundInit.tenmm_reload, SoundCategory.HOSTILE, 1.0F, 1.0F);
             } else if (message.soundname == 1) {
                 //10 mm clip_out
-                world.playSound(player, player.getPosition(), SoundInit.guns[23], SoundCategory.HOSTILE, 1.0F, 1.0F);
+                world.playSound(player, player.getPosition(), SoundInit.tenmm_clip_out, SoundCategory.HOSTILE, 1.0F, 1.0F);
             }
 //-------------------------------------------------------------
             else if (message.soundname == 2) {
                 // 14mm reload
-                world.playSound(player, player.getPosition(), SoundInit.guns[5], SoundCategory.HOSTILE, 1.0F, 1.0F);
+                world.playSound(player, player.getPosition(), SoundInit.four_tenmm_reload, SoundCategory.HOSTILE, 1.0F, 1.0F);
 
             } else if (message.soundname == 3) {
                 // 14mm clip_out
-                world.playSound(player, player.getPosition(), SoundInit.guns[24], SoundCategory.HOSTILE, 1.0F, 1.0F);
+                world.playSound(player, player.getPosition(), SoundInit.four_tenmm_clip_out, SoundCategory.HOSTILE, 1.0F, 1.0F);
 
             }
 //-------------------------------------------------------------
             else if (message.soundname == 4) {
                 // db_shotgun reload
-                world.playSound(player, player.getPosition(), SoundInit.guns[7], SoundCategory.HOSTILE, 1.0F, 1.0F);
+                world.playSound(player, player.getPosition(), SoundInit.db_shotgun_reload, SoundCategory.HOSTILE, 1.0F, 1.0F);
 
             } else if (message.soundname == 5) {
                 // db_shotgun clip_out
-                world.playSound(player, player.getPosition(), SoundInit.guns[25], SoundCategory.HOSTILE, 1.0F, 1.0F);
+                world.playSound(player, player.getPosition(), SoundInit.db_shotgun_clip_out, SoundCategory.HOSTILE, 1.0F, 1.0F);
 
             }
 //-------------------------------------------------------------
             else if (message.soundname == 6) {
                 // flaregun reload
-                world.playSound(player, player.getPosition(), SoundInit.guns[11], SoundCategory.HOSTILE, 1.0F, 1.0F);
+                world.playSound(player, player.getPosition(), SoundInit.flaregun_reload, SoundCategory.HOSTILE, 1.0F, 1.0F);
 
             } else if (message.soundname == 7) {
                 // flaregun clip_out
-                world.playSound(player, player.getPosition(), SoundInit.guns[26], SoundCategory.HOSTILE, 1.0F, 1.0F);
+                world.playSound(player, player.getPosition(), SoundInit.flaregun_clip_out, SoundCategory.HOSTILE, 1.0F, 1.0F);
 
             }
 //-------------------------------------------------------------
             else if (message.soundname == 8) {
                 // laser reload
-                world.playSound(player, player.getPosition(), SoundInit.guns[20], SoundCategory.HOSTILE, 1.0F, 1.0F);
+                world.playSound(player, player.getPosition(), SoundInit.laser_reload, SoundCategory.HOSTILE, 1.0F, 1.0F);
 
             } else if (message.soundname == 9) {
                 // laser clip_out
-                world.playSound(player, player.getPosition(), SoundInit.guns[27], SoundCategory.HOSTILE, 1.0F, 1.0F);
+                world.playSound(player, player.getPosition(), SoundInit.laser_clip_out, SoundCategory.HOSTILE, 1.0F, 1.0F);
 
             }
 //-------------------------------------------------------------
             else if (message.soundname == 10) {
                 // plasma reload
-                world.playSound(player, player.getPosition(), SoundInit.guns[14], SoundCategory.HOSTILE, 1.0F, 1.0F);
+                world.playSound(player, player.getPosition(), SoundInit.plasma_reload, SoundCategory.HOSTILE, 1.0F, 1.0F);
 
             } else if (message.soundname == 11) {
                 // plasma clip_out
-                world.playSound(player, player.getPosition(), SoundInit.guns[28], SoundCategory.HOSTILE, 1.0F, 1.0F);
+                world.playSound(player, player.getPosition(), SoundInit.plasma_clip_out, SoundCategory.HOSTILE, 1.0F, 1.0F);
 
             }
 //-------------------------------------------------------------
             else if (message.soundname == 12) {
                 // flamer reload
-                world.playSound(player, player.getPosition(), SoundInit.guns[16], SoundCategory.HOSTILE, 1.0F, 1.0F);
+                world.playSound(player, player.getPosition(), SoundInit.flamer_reload, SoundCategory.HOSTILE, 1.0F, 1.0F);
 
             }
 
@@ -202,9 +200,6 @@ public class ClientOnlyProxy extends CommonProxy {
         });
     }
 
-    //TODO: finish this class
-    public static void handleFireMessage(MessageFireToClientServer message) {
-    }
 
     public static void handleWaterMessage(MessageUpdateClientWater message) {
         Minecraft.getMinecraft().addScheduledTask(() -> {
@@ -231,7 +226,7 @@ public class ClientOnlyProxy extends CommonProxy {
                 } else if (advInventory.getStackInSlot(i) != ItemStack.EMPTY && stack != ItemStack.EMPTY) {
                     advInventory.extractItem(i, advInventory.getStackInSlot(i).getCount(), false);
                     advInventory.insertItem(i, stack, false);
-            }
+                }
             }
         });
     }

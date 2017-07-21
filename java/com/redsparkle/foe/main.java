@@ -73,8 +73,8 @@ public class main {
         System.out.println("S.P.E.C.H.I.A.L------CHECK");
 
 //
-//          simpleNetworkWrapper.registerMessage(MessageFireToClientServer.HandlerClient.class,MessageFireToClientServer.class,message_start_index++,Side.CLIENT);
-//          simpleNetworkWrapper.registerMessage(MessageFireToClientServer.HandlerServer.class,MessageFireToClientServer.class,message_start_index++,Side.SERVER);
+          //simpleNetworkWrapper.registerMessage(MessageFireToClientServer.HandlerClient.class,MessageFireToClientServer.class,message_start_index++,Side.CLIENT);
+          simpleNetworkWrapper.registerMessage(MessageGunFire.Handler.class,MessageGunFire.class,message_start_index++,Side.SERVER);
 
         simpleNetworkWrapper.registerMessage(MessageUpdateClientServerSkills.HandlerClient.class, MessageUpdateClientServerSkills.class, message_start_index++, Side.CLIENT);
         simpleNetworkWrapper.registerMessage(MessageUpdateClientServerSkills.HandlerServer.class, MessageUpdateClientServerSkills.class, message_start_index++, Side.SERVER);

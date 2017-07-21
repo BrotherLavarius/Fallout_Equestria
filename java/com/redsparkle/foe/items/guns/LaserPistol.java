@@ -34,7 +34,10 @@ public class LaserPistol extends Item_Firearm {
         this.setMaxDamage(clipRounds);
         this.setCreativeTab(InitCreativeTabs.Fallout_guns);
         isGun = true;
-
+        this.shot_var1 = SoundInit.laser_fire_var_One;
+        this.shot_var2 = SoundInit.laser_fire_var_Two;
+        this.shot_var3 = SoundInit.laser_fire_var_Tree;
+        this.dry = SoundInit.laser_dry;
     }
 
     @Override
@@ -56,20 +59,20 @@ public class LaserPistol extends Item_Firearm {
             if (itemstack.getItemDamage() >= (GlobalWeaponsStats.LaserBatterRounds - 1)) {
                 if (findAmmo(playerIn) == ItemStack.EMPTY) {
                     // ---------------_EMPTY CLIP
-                    worldIn.playSound(playerIn, playerIn.getPosition(), SoundInit.guns[21], SoundCategory.HOSTILE, 0.5F, 0.4F);
+                    worldIn.playSound(playerIn, playerIn.getPosition(), dry, SoundCategory.HOSTILE, 0.5F, 0.4F);
                     return new ActionResult<>(EnumActionResult.FAIL, itemstack);
                 }
             } else {
                 int num = (int) Math.random() * 100 % 3;
                 switch (num) {
                     case 0:
-                        worldIn.playSound(playerIn, playerIn.getPosition(), SoundInit.guns[17], SoundCategory.PLAYERS, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
+                        worldIn.playSound(playerIn, playerIn.getPosition(), shot_var1, SoundCategory.PLAYERS, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
                         break;
                     case 1:
-                        worldIn.playSound(playerIn, playerIn.getPosition(), SoundInit.guns[18], SoundCategory.PLAYERS, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
+                        worldIn.playSound(playerIn, playerIn.getPosition(), shot_var2, SoundCategory.PLAYERS, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
                         break;
                     case 2:
-                        worldIn.playSound(playerIn, playerIn.getPosition(), SoundInit.guns[19], SoundCategory.PLAYERS, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
+                        worldIn.playSound(playerIn, playerIn.getPosition(), shot_var3, SoundCategory.PLAYERS, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
                         break;
                 }
                 if (!worldIn.isRemote) {
@@ -81,7 +84,7 @@ public class LaserPistol extends Item_Firearm {
                 return new ActionResult<>(EnumActionResult.PASS, itemstack);
             }
         } else {
-            worldIn.playSound(playerIn, playerIn.getPosition(), SoundInit.guns[19], SoundCategory.PLAYERS, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
+            worldIn.playSound(playerIn, playerIn.getPosition(), shot_var1, SoundCategory.PLAYERS, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
             if (!worldIn.isRemote) {
                 laser(worldIn, playerIn);
             }

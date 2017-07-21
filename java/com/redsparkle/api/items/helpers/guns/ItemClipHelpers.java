@@ -55,7 +55,7 @@ public class ItemClipHelpers {
         } else {
             ammo.shrink(1);
             clip.setItemDamage(clip.getItemDamage() - 1);
-            worldIn.playSound(playerIn, playerIn.getPosition(), SoundInit.guns[22], SoundCategory.HOSTILE, 1.0F, 1.0F);
+            worldIn.playSound(playerIn, playerIn.getPosition(), SoundInit.clip_load, SoundCategory.HOSTILE, 1.0F, 1.0F);
             return clip;
         }
     }
