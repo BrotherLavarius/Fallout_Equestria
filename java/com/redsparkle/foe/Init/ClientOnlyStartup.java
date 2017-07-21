@@ -43,7 +43,6 @@ public class ClientOnlyStartup {
         final CreativeTabs Fallout_stats_blocks = InitCreativeTabs.Fallout_stats_blocks;
         final CreativeTabs Fallout_stats_armor = InitCreativeTabs.Fallout_armor;
         //final CreativeTabs Fallout_Util = InitCreativeTabs.Fallout_Utils;
-        SoundInit.registerSounds();
         RenderingRegistry.registerEntityRenderingHandler(EntityBullet.class, new RenderFactoryBullet(Minecraft.getMinecraft().getRenderManager()));
         RenderingRegistry.registerEntityRenderingHandler(EntityLaser.class, new RenderFactoryLaser(Minecraft.getMinecraft().getRenderManager()));
         RenderingRegistry.registerEntityRenderingHandler(EntityFlame.class, new RenderFactoryBullet(Minecraft.getMinecraft().getRenderManager()));

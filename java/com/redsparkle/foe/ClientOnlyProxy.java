@@ -234,9 +234,12 @@ public class ClientOnlyProxy extends CommonProxy {
 
     public void preInit() {
         super.preInit();
+        SoundInit.registerSounds();
+
         ClientOnlyStartup.preInitClientOnly();
         keyHandler.register();
         MinecraftForge.EVENT_BUS.register(new KeyInputHandler());
+
 
     }
 

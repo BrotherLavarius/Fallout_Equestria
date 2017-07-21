@@ -3,6 +3,7 @@ package com.redsparkle.foe.gui.Overlays;
 
 import com.redsparkle.api.utils.GlobalNames;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.player.EntityPlayer;
@@ -47,6 +48,8 @@ public class PipBuckOverlay extends Gui {
     public PipBuckOverlay(Minecraft mc, int screenWidht, int screenHeight) {
 
     /* These are the variables that contain world and player information */
+        FontRenderer fr = mc.fontRendererObj;
+
         World world = mc.world;
         EntityPlayer player = mc.player;
         Integer PLayerArmor = player.getTotalArmorValue();
@@ -141,7 +144,8 @@ public class PipBuckOverlay extends Gui {
         GL11.glPushMatrix();
         GL11.glTranslatef(BAR_WIDTH + 25, 1, 0);
         GL11.glScalef(0.76F, 0.76F, 0.76F);
-
+        int k = 0;
+        k = mc.player.getAdjustedHorizontalFacing().getHorizontalIndex();
 
         GL11.glPopMatrix();
         GL11.glPopMatrix();

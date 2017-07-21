@@ -36,8 +36,7 @@ public class FlareGun extends Item_Firearm {
         this.setMaxDamage(clipRounds);
         this.setCreativeTab(InitCreativeTabs.Fallout_guns);
         isGun = true;
-        this.shot = SoundInit.flaregun_shot;
-        this.dry = SoundInit.flaregun_dry;
+
 
     }
 
@@ -55,6 +54,8 @@ public class FlareGun extends Item_Firearm {
 
     @Override
     public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand hand) {
+        this.shot = SoundInit.flaregun_shot;
+        this.dry = SoundInit.flaregun_dry;
         ItemStack itemstack = playerIn.getHeldItem(hand);
         this.damage = GlobalWeaponsStats.flaregun_Damage;
 
@@ -67,17 +68,15 @@ public class FlareGun extends Item_Firearm {
                 }
             } else {
                 worldIn.playSound(playerIn, playerIn.getPosition(), shot, SoundCategory.HOSTILE, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
-                if (worldIn.isRemote) {
                     flare(worldIn, playerIn);
-                }
+
                 itemstack.setItemDamage(itemstack.getItemDamage() + 1);
                 return new ActionResult<>(EnumActionResult.SUCCESS, itemstack);
             }
         } else {
             worldIn.playSound(playerIn, playerIn.getPosition(), shot, SoundCategory.HOSTILE, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
-            if (worldIn.isRemote) {
                 flare(worldIn, playerIn);
-            }
+
 
         }
         playerIn.addStat(StatList.getObjectUseStats(this));

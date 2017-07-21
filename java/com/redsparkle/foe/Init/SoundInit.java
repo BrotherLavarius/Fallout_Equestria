@@ -88,6 +88,7 @@ public class SoundInit {
 //    };
 
     private static int size = 0;
+
     public static void registerSounds() {
 
 
@@ -97,65 +98,35 @@ public class SoundInit {
         enervation = registerSound("Enervation");
 
 
-        tenmm_shot = new SoundEvent(new ResourceLocation(main.MODID, "tenmm_shot"));
-        tenmm_dry = new SoundEvent(new ResourceLocation(main.MODID, "tenmm_dry"));
-        tenmm_reload = new SoundEvent(new ResourceLocation(main.MODID, "tenmm_reload"));
-        four_tenmm_shot = new SoundEvent(new ResourceLocation(main.MODID, "four_tenmm_shot"));
-        four_tenmm_dry = new SoundEvent(new ResourceLocation(main.MODID, "four_tenmm_dry"));
-        four_tenmm_reload = new SoundEvent(new ResourceLocation(main.MODID, "four_tenmm_reload"));
-        db_shotgun_shot = new SoundEvent(new ResourceLocation(main.MODID, "db_shotgun_shot"));
-        db_shotgun_reload = new SoundEvent(new ResourceLocation(main.MODID, "db_shotgun_reload"));
-        db_shotgun_dry = new SoundEvent(new ResourceLocation(main.MODID, "db_shotgun_dry"));
-        flaregun_shot = new SoundEvent(new ResourceLocation(main.MODID, "flaregun_shot"));
-        flaregun_dry = new SoundEvent(new ResourceLocation(main.MODID, "flaregun_dry"));
-        flaregun_reload = new SoundEvent(new ResourceLocation(main.MODID, "flaregun_reload"));
-        plasma_shot = new SoundEvent(new ResourceLocation(main.MODID, "plasma_shot"));
-        plasma_dry = new SoundEvent(new ResourceLocation(main.MODID, "plasma_dry"));
-        plasma_reload = new SoundEvent(new ResourceLocation(main.MODID, "plasma_reload"));
-        flamer_shot = new SoundEvent(new ResourceLocation(main.MODID, "flamer_shot"));
-        flamer_reload = new SoundEvent(new ResourceLocation(main.MODID, "flamer_reload"));
-        laser_fire_var_One = new SoundEvent(new ResourceLocation(main.MODID, "laser_fire_var_One"));
-        laser_fire_var_Two = new SoundEvent(new ResourceLocation(main.MODID, "laser_fire_var_Two"));
-        laser_fire_var_Tree = new SoundEvent(new ResourceLocation(main.MODID, "laser_fire_var_Tree"));
-        laser_reload = new SoundEvent(new ResourceLocation(main.MODID, "laser_reload"));
-        laser_dry = new SoundEvent(new ResourceLocation(main.MODID, "laser_dry"));
-        clip_load = new SoundEvent(new ResourceLocation(main.MODID, "clip_load"));
-        tenmm_clip_out = new SoundEvent(new ResourceLocation(main.MODID, "tenmm_clip_out"));
-        four_tenmm_clip_out = new SoundEvent(new ResourceLocation(main.MODID, "four_tenmm_clip_out"));
-        db_shotgun_clip_out = new SoundEvent(new ResourceLocation(main.MODID, "db_shotgun_clip_out"));
-        flaregun_clip_out = new SoundEvent(new ResourceLocation(main.MODID, "flaregun_clip_out"));
-        laser_clip_out = new SoundEvent(new ResourceLocation(main.MODID, "laser_clip_out"));
-        plasma_clip_out = new SoundEvent(new ResourceLocation(main.MODID, "plasma_clip_out"));
-
-        tenmm_shot= register(null, "tenmm_shot");
-        tenmm_dry= register(null, "tenmm_dry");
-        tenmm_reload= register(null, "tenmm_reload");
-        four_tenmm_shot= register(null, "four_tenmm_shot");
-        four_tenmm_dry= register(null, "four_tenmm_dry");
-        four_tenmm_reload= register(null, "four_tenmm_reload");
-        db_shotgun_shot= register(null, "db_shotgun_shot");
-        db_shotgun_reload= register(null, "db_shotgun_reload");
-        db_shotgun_dry= register(null, "db_shotgun_dry");
-        flaregun_shot= register(null, "flaregun_shot");
-        flaregun_dry= register(null, "flaregun_dry");
-        flaregun_reload= register(null, "flaregun_reload");
-        plasma_shot= register(null, "plasma_shot");
-        plasma_dry= register(null, "plasma_dry");
-        plasma_reload= register(null, "plasma_reload");
-        flamer_shot= register(null, "flamer_shot");
-        flamer_reload= register(null, "flamer_reload");
-        laser_fire_var_One= register(null, "laser_fire_var_One");
-        laser_fire_var_Two= register(null, "laser_fire_var_Two");
-        laser_fire_var_Tree= register(null, "laser_fire_var_Tree");
-        laser_reload= register(null, "laser_reload");
-        laser_dry= register(null, "laser_dry");
-        clip_load= register(null, "clip_load");
-        tenmm_clip_out= register(null, "tenmm_clip_out");
-        four_tenmm_clip_out= register(null, "four_tenmm_clip_out");
-        db_shotgun_clip_out= register(null, "db_shotgun_clip_out");
-        flaregun_clip_out= register(null, "flaregun_clip_out");
-        laser_clip_out= register(null, "laser_clip_out");
-        plasma_clip_out= register(null, "plasma_clip_out");
+        tenmm_shot = registerSound("tenmm_shot");
+        tenmm_dry = registerSound("tenmm_dry");
+        tenmm_reload = registerSound("tenmm_reload");
+        four_tenmm_shot = registerSound("four_tenmm_shot");
+        four_tenmm_dry = registerSound("four_tenmm_dry");
+        four_tenmm_reload = registerSound("four_tenmm_reload");
+        db_shotgun_shot = registerSound("db_shotgun_shot");
+        db_shotgun_reload = registerSound("db_shotgun_reload");
+        db_shotgun_dry = registerSound("db_shotgun_dry");
+        flaregun_shot = registerSound("flaregun_shot");
+        flaregun_dry = registerSound("flaregun_dry");
+        flaregun_reload = registerSound("flaregun_reload");
+        plasma_shot = registerSound("plasma_shot");
+        plasma_dry = registerSound("plasma_dry");
+        plasma_reload = registerSound("plasma_reload");
+        flamer_shot = registerSound("flamer_shot");
+        flamer_reload = registerSound("flamer_reload");
+        laser_fire_var_One = registerSound("laser_fire_var_One");
+        laser_fire_var_Two = registerSound("laser_fire_var_Two");
+        laser_fire_var_Tree = registerSound("laser_fire_var_Tree");
+        laser_reload = registerSound("laser_reload");
+        laser_dry = registerSound("laser_dry");
+        clip_load = registerSound("clip_load");
+        tenmm_clip_out = registerSound("tenmm_clip_out");
+        four_tenmm_clip_out = registerSound("four_tenmm_clip_out");
+        db_shotgun_clip_out = registerSound("db_shotgun_clip_out");
+        flaregun_clip_out = registerSound("flaregun_clip_out");
+        laser_clip_out = registerSound("laser_clip_out");
+        plasma_clip_out = registerSound("plasma_clip_out");
     }
 
     /**
@@ -165,17 +136,8 @@ public class SoundInit {
      * @return The SoundEvent
      */
     private static SoundEvent registerSound(String soundName) {
-        final ResourceLocation soundID = new ResourceLocation(main.MODID, soundName);
+        ResourceLocation soundID = new ResourceLocation(main.MODID, soundName);
         return GameRegistry.register(new SoundEvent(soundID).setRegistryName(soundID));
-    }
-
-    public static SoundEvent register(String folder, String name) {
-        ResourceLocation location = new ResourceLocation(main.MODID + ":" + name);
-        SoundEvent event = new SoundEvent(location);
-
-        SoundEvent.REGISTRY.register(size, location, event);
-        size++;
-        return event;
     }
 
 

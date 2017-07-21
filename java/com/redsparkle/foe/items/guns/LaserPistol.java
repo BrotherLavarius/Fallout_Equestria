@@ -34,10 +34,7 @@ public class LaserPistol extends Item_Firearm {
         this.setMaxDamage(clipRounds);
         this.setCreativeTab(InitCreativeTabs.Fallout_guns);
         isGun = true;
-        this.shot_var1 = SoundInit.laser_fire_var_One;
-        this.shot_var2 = SoundInit.laser_fire_var_Two;
-        this.shot_var3 = SoundInit.laser_fire_var_Tree;
-        this.dry = SoundInit.laser_dry;
+
     }
 
     @Override
@@ -53,6 +50,10 @@ public class LaserPistol extends Item_Firearm {
 
     @Override
     public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand hand) {
+        this.shot_var1 = SoundInit.laser_fire_var_One;
+        this.shot_var2 = SoundInit.laser_fire_var_Two;
+        this.shot_var3 = SoundInit.laser_fire_var_Tree;
+        this.dry = SoundInit.laser_dry;
         ItemStack itemstack = playerIn.getHeldItem(hand);
         this.damage = GlobalWeaponsStats.LaserDamage + playerIn.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getEnergyWeapons();
         if (!playerIn.capabilities.isCreativeMode) {
@@ -75,9 +76,8 @@ public class LaserPistol extends Item_Firearm {
                         worldIn.playSound(playerIn, playerIn.getPosition(), shot_var3, SoundCategory.PLAYERS, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
                         break;
                 }
-                if (!worldIn.isRemote) {
                     laser(worldIn, playerIn);
-                }
+
 
                 itemstack.setItemDamage(itemstack.getItemDamage() + 1);
                 playerIn.cameraYaw = -0.1F;
@@ -85,9 +85,8 @@ public class LaserPistol extends Item_Firearm {
             }
         } else {
             worldIn.playSound(playerIn, playerIn.getPosition(), shot_var1, SoundCategory.PLAYERS, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
-            if (!worldIn.isRemote) {
                 laser(worldIn, playerIn);
-            }
+
         }
         return new ActionResult<>(EnumActionResult.PASS, itemstack);
     }

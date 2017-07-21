@@ -35,8 +35,6 @@ public class SB_shoutgun extends Item_Firearm {
         this.setMaxDamage(2);
         this.setCreativeTab(InitCreativeTabs.Fallout_guns);
         isGun = true;
-        this.shot= SoundInit.db_shotgun_shot;
-        this.dry= SoundInit.db_shotgun_dry;
 
     }
 
@@ -54,6 +52,9 @@ public class SB_shoutgun extends Item_Firearm {
 
     @Override
     public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand hand) {
+        this.shot = SoundInit.db_shotgun_shot;
+        this.dry = SoundInit.db_shotgun_dry;
+
         ItemStack itemstack = playerIn.getHeldItem(hand);
         this.damage = GlobalWeaponsStats.db_shoutgunDamage + playerIn.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getFirearms();
         if (!playerIn.capabilities.isCreativeMode) {
@@ -66,9 +67,7 @@ public class SB_shoutgun extends Item_Firearm {
             } else {
                 worldIn.playSound(playerIn, playerIn.getPosition(), shot, SoundCategory.HOSTILE, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
 
-                if (worldIn.isRemote) {
                     pellet(worldIn, playerIn);
-                }
                 itemstack.setItemDamage(itemstack.getItemDamage() + 1);
                 playerIn.cameraYaw = 3.9F;
                 return new ActionResult<>(EnumActionResult.SUCCESS, itemstack);
@@ -77,10 +76,9 @@ public class SB_shoutgun extends Item_Firearm {
 
         } else {
             worldIn.playSound(playerIn, playerIn.getPosition(), shot, SoundCategory.HOSTILE, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
-            if (worldIn.isRemote) {
                 pellet(worldIn, playerIn);
-            }
-            playerIn.cameraYaw = 3.9F;
+
+            playerIn.cameraYaw = 2.9F;
         }
         playerIn.addStat(StatList.getObjectUseStats(this));
         return new ActionResult<>(EnumActionResult.SUCCESS, itemstack);

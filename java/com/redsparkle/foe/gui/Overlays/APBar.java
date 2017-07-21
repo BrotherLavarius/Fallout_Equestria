@@ -1,7 +1,9 @@
 package com.redsparkle.foe.gui.Overlays;
 
+import com.redsparkle.api.items.helpers.Item_Instances.Item_Firearm;
 import com.redsparkle.api.utils.GlobalNames;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.renderer.GlStateManager;
@@ -27,12 +29,28 @@ public class APBar extends Gui {
     private Minecraft mc;
 
     public APBar(Minecraft mc) {
-
+        FontRenderer fr = mc.fontRendererObj;
         EntityPlayer player = mc.player;
         World world = mc.world;
         int playerFood = player.getFoodStats().getFoodLevel();
-
-
+        boolean show;
+        int bullets;
+        int maxBullets;
+        String bullets_left = "";
+        fr.FONT_HEIGHT = 15;
+        if (player.inventory.getCurrentItem().getItem() instanceof Item_Firearm) {
+            show = true;
+            bullets = player.inventory.getCurrentItem().getItemDamage();
+            maxBullets = player.inventory.getCurrentItem().getMaxDamage();
+            bullets_left = (maxBullets - (bullets + 1)) + "/" + (maxBullets - 1);
+        } else {
+            show = false;
+            bullets = 0;
+            maxBullets = 0;
+        }
+        if (bullets == maxBullets) {
+            bullets_left = 0 + "/" + (maxBullets - 2);
+        }
         ScaledResolution scaled = new ScaledResolution(mc);
         int screenWidth = scaled.getScaledWidth();
         int screenHeight = scaled.getScaledHeight();
@@ -58,21 +76,28 @@ public class APBar extends Gui {
 
         GL11.glTranslatef(PositionX, PositionY, 0);
         GL11.glScalef(0.76F, 0.76F, 0.76F);
+
         drawTexturedModalRect(0, 0, 0, 0, BAR_WIDTH, BAR_HEIGHT);
 
-        GL11.glPushMatrix();
-        if (playerFood <= 1) {
+        {
+            GL11.glPushMatrix();
+            if (playerFood <= 1) {
 
-        } else if (playerFood >= 1) {
-            drawTexturedModalRect(18, 15, 17, 48, Math.round(6.75F * playerFood), RadBAR_HEIGHT);
-            GL11.glScalef(0.76F, 0.76F, 0.76F);
+            } else if (playerFood >= 1) {
+                drawTexturedModalRect(18, 15, 17, 48, Math.round(6.75F * playerFood), RadBAR_HEIGHT);
+                GL11.glScalef(0.76F, 0.76F, 0.76F);
+            }
+
+            GL11.glPopMatrix();
         }
-        GL11.glPushMatrix();
+
+
 
         GL11.glPopMatrix();
-        GL11.glPopMatrix();
+        if (show) {
+            fr.drawString(bullets_left, PositionX + 85, PositionY + 25, 900000);
+        }
 
-        GL11.glPopMatrix();
         GL11.glPopAttrib();
     }
 

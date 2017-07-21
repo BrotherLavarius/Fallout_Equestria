@@ -37,8 +37,6 @@ public class TenMM extends Item_Firearm {
         this.setMaxDamage(clipRounds);
         this.setCreativeTab(InitCreativeTabs.Fallout_guns);
         isGun = true;
-        this.shot= SoundInit.tenmm_shot;
-        this.dry= SoundInit.tenmm_dry;
 
 
     }
@@ -56,6 +54,9 @@ public class TenMM extends Item_Firearm {
 
     @Override
     public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand hand) {
+
+        this.shot = SoundInit.tenmm_shot;
+        this.dry = SoundInit.tenmm_dry;
         ItemStack itemstack = playerIn.getHeldItem(hand);
         casing = GlobalItemArray_For_init.AllInit[28];
         ItemStack caseStack = new ItemStack(casing);
@@ -71,9 +72,7 @@ public class TenMM extends Item_Firearm {
                 }
             } else {
                 worldIn.playSound(playerIn, playerIn.getPosition(), shot, SoundCategory.HOSTILE, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
-                if (!worldIn.isRemote) {
                     bullet(worldIn, playerIn);
-                }
                 itemstack.setItemDamage(itemstack.getItemDamage() + 1);
                 playerIn.cameraYaw = -0.1F;
                 AddCase(playerIn, caseStack);
@@ -81,9 +80,7 @@ public class TenMM extends Item_Firearm {
             }
         } else {
             worldIn.playSound(playerIn, playerIn.getPosition(), shot, SoundCategory.HOSTILE, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
-            if (!worldIn.isRemote) {
                 bullet(worldIn, playerIn);
-            }
             AddCase(playerIn, caseStack);
             playerIn.cameraYaw = -0.1F;
 
