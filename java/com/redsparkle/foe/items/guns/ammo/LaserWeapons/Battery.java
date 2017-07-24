@@ -14,7 +14,7 @@ import java.util.List;
  */
 public class Battery extends Item {
 
-    public int MaxDamage = 31;
+    public int MaxDamage = 29;
 
     public Battery() {
         final int NUMBER_OF_BOXES = 10;

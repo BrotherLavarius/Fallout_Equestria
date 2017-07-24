@@ -1,8 +1,8 @@
 package com.redsparkle.foe.items.guns.ammo.FourTenMM;
 
+import com.redsparkle.api.inventory.GlobalsGunStats;
 import com.redsparkle.api.items.helpers.guns.ItemClipHelpers;
 import com.redsparkle.api.utils.GlobalItemArray_For_init;
-import com.redsparkle.api.utils.GlobalWeaponsStats;
 import com.redsparkle.foe.creativeTabs.InitCreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -24,8 +24,7 @@ import java.util.List;
 public class FourTenMMClip extends Item {
 
     public Item ammo = GlobalItemArray_For_init.tenMMAmmo;
-    public int MaxDamage = GlobalWeaponsStats.FourclipRounds;
-
+    public int MaxDamage = GlobalsGunStats.FOUR_TEN_MM.NearEmpty()+1;
     public FourTenMMClip() {
         final int NUMBER_OF_BOXES = 1;
         this.setMaxStackSize(NUMBER_OF_BOXES);

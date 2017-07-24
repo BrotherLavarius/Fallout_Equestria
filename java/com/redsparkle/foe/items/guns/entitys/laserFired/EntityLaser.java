@@ -71,8 +71,10 @@ public class EntityLaser extends EntityThrowable {
     @Override
     protected void onImpact(RayTraceResult rayTraceResult) {
         if (rayTraceResult.entityHit != null) {
-            rayTraceResult.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, this.getThrower()), damage);
-            this.setDead();
+            if(rayTraceResult.entityHit != this.getThrower()){
+                rayTraceResult.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, this.getThrower()), damage);
+                this.setDead();
+            }
         }
 
         if (!this.world.isRemote) {

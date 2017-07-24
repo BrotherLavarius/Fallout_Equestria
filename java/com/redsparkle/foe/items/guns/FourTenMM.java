@@ -1,9 +1,9 @@
 package com.redsparkle.foe.items.guns;
 
 import com.redsparkle.api.capa.skills.SkillsFactoryProvider;
+import com.redsparkle.api.inventory.GlobalsGunStats;
 import com.redsparkle.api.items.helpers.Item_Instances.Item_Firearm;
 import com.redsparkle.api.utils.GlobalItemArray_For_init;
-import com.redsparkle.api.utils.GlobalWeaponsStats;
 import com.redsparkle.foe.Init.SoundInit;
 import com.redsparkle.foe.creativeTabs.InitCreativeTabs;
 import com.redsparkle.foe.items.guns.ammo.TenMM.TenMMClip;
@@ -29,7 +29,7 @@ import java.util.List;
 public class FourTenMM extends Item_Firearm {
 
     public boolean isGun;
-    public int clipRounds = GlobalWeaponsStats.FourclipRounds;
+    public int clipRounds = GlobalsGunStats.FOUR_TEN_MM.Clipsize();
     public Item casing;
 
 
@@ -61,10 +61,10 @@ public class FourTenMM extends Item_Firearm {
         ItemStack itemstack = playerIn.getHeldItem(hand);
         casing = GlobalItemArray_For_init.AllInit[29];
         ItemStack caseStack = new ItemStack(casing);
-        this.damage = GlobalWeaponsStats.FourDamage + playerIn.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getFirearms();
+        this.damage = GlobalsGunStats.FOUR_TEN_MM.getDamage() + playerIn.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getFirearms();
 
         if (!playerIn.capabilities.isCreativeMode) {
-            if (itemstack.getItemDamage() >= (GlobalWeaponsStats.FourclipRounds - 1)) {
+            if (itemstack.getItemDamage() >= GlobalsGunStats.FOUR_TEN_MM.NearEmpty()) {
                 if (findAmmo(playerIn) == ItemStack.EMPTY) {
                     // ---------------_EMPTY CLIP
                     worldIn.playSound(playerIn, playerIn.getPosition(), dry, SoundCategory.HOSTILE, 1F, 0.4F);
@@ -103,8 +103,8 @@ public class FourTenMM extends Item_Firearm {
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack stack, EntityPlayer playerIn, List<String> tooltip, boolean advanced) {
         tooltip.add("14 MM pistol");
-        tooltip.add("Clip size: " + (clipRounds - 2));
-        tooltip.add("Base Damage: " + GlobalWeaponsStats.FourDamage);
+        tooltip.add("Clip size: " + (clipRounds - 3));
+        tooltip.add("Base Damage: " + GlobalsGunStats.FOUR_TEN_MM.getDamage());
         tooltip.add("Your Damage: " + damage);
 
     }

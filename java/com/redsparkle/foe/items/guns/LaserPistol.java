@@ -1,8 +1,8 @@
 package com.redsparkle.foe.items.guns;
 
 import com.redsparkle.api.capa.skills.SkillsFactoryProvider;
+import com.redsparkle.api.inventory.GlobalsGunStats;
 import com.redsparkle.api.items.helpers.Item_Instances.Item_Firearm;
-import com.redsparkle.api.utils.GlobalWeaponsStats;
 import com.redsparkle.foe.Init.SoundInit;
 import com.redsparkle.foe.creativeTabs.InitCreativeTabs;
 import com.redsparkle.foe.items.guns.ammo.LaserWeapons.Battery;
@@ -19,6 +19,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.List;
+import java.util.concurrent.ThreadLocalRandom;
 
 /**
  * Created by hoijima on 20.01.17.
@@ -26,7 +27,7 @@ import java.util.List;
 public class LaserPistol extends Item_Firearm {
 
     public boolean isGun;
-    public int clipRounds = GlobalWeaponsStats.LaserBatterRounds;
+    public int clipRounds = GlobalsGunStats.LASER_PISTOL.Clipsize();
 
 
     public LaserPistol() {
@@ -55,16 +56,16 @@ public class LaserPistol extends Item_Firearm {
         this.shot_var3 = SoundInit.laser_fire_var_Tree;
         this.dry = SoundInit.laser_dry;
         ItemStack itemstack = playerIn.getHeldItem(hand);
-        this.damage = GlobalWeaponsStats.LaserDamage + playerIn.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getEnergyWeapons();
+        this.damage = GlobalsGunStats.LASER_PISTOL.getDamage() + playerIn.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getEnergyWeapons();
         if (!playerIn.capabilities.isCreativeMode) {
-            if (itemstack.getItemDamage() >= (GlobalWeaponsStats.LaserBatterRounds - 1)) {
+            if (itemstack.getItemDamage() >= GlobalsGunStats.LASER_PISTOL.NearEmpty() ) {
                 if (findAmmo(playerIn) == ItemStack.EMPTY) {
                     // ---------------_EMPTY CLIP
                     worldIn.playSound(playerIn, playerIn.getPosition(), dry, SoundCategory.HOSTILE, 0.5F, 0.4F);
                     return new ActionResult<>(EnumActionResult.FAIL, itemstack);
                 }
             } else {
-                int num = (int) Math.random() * 100 % 3;
+                int num = ThreadLocalRandom.current().nextInt(0,2);
                 switch (num) {
                     case 0:
                         worldIn.playSound(playerIn, playerIn.getPosition(), shot_var1, SoundCategory.PLAYERS, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
@@ -104,8 +105,8 @@ public class LaserPistol extends Item_Firearm {
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack stack, EntityPlayer playerIn, List<String> tooltip, boolean advanced) {
         tooltip.add("Laser pistol");
-        tooltip.add("Clip size: " + (clipRounds - 1));
-        tooltip.add("Base Damage: " + GlobalWeaponsStats.LaserDamage);
+        tooltip.add("Clip size: " + (clipRounds - 3));
+        tooltip.add("Base Damage: " + GlobalsGunStats.LASER_PISTOL.getDamage());
         tooltip.add("Your Damage: " + damage);
 
 

@@ -42,14 +42,14 @@ public class APBar extends Gui {
             show = true;
             bullets = player.inventory.getCurrentItem().getItemDamage();
             maxBullets = player.inventory.getCurrentItem().getMaxDamage();
-            bullets_left = (maxBullets - (bullets + 1)) + "/" + (maxBullets - 1);
+            bullets_left = bullets+": AMMO";
         } else {
             show = false;
             bullets = 0;
             maxBullets = 0;
         }
-        if (bullets == maxBullets) {
-            bullets_left = 0 + "/" + (maxBullets - 2);
+        if (bullets+1 == maxBullets) {
+            bullets_left = 0 + ": AMMO" ;
         }
         ScaledResolution scaled = new ScaledResolution(mc);
         int screenWidth = scaled.getScaledWidth();
@@ -95,7 +95,7 @@ public class APBar extends Gui {
 
         GL11.glPopMatrix();
         if (show) {
-            fr.drawString(bullets_left, PositionX + 85, PositionY + 25, 900000);
+            fr.drawString(bullets_left, PositionX + 80, PositionY + 25, 900000);
         }
 
         GL11.glPopAttrib();

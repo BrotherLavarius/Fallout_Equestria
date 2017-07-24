@@ -1,8 +1,8 @@
 package com.redsparkle.foe.items.guns.ammo.TenMM;
 
+import com.redsparkle.api.inventory.GlobalsGunStats;
 import com.redsparkle.api.items.helpers.guns.ItemClipHelpers;
 import com.redsparkle.api.utils.GlobalItemArray_For_init;
-import com.redsparkle.api.utils.GlobalWeaponsStats;
 import com.redsparkle.foe.creativeTabs.InitCreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -24,7 +24,7 @@ import java.util.List;
 public class TenMMClip extends Item {
 
     public Item ammo = GlobalItemArray_For_init.tenMMAmmo;
-    public int MaxDamage = GlobalWeaponsStats.TenMMclipRounds;
+    public int MaxDamage = GlobalsGunStats.TEN_MM.Clipsize()+1;
 
     public TenMMClip() {
         final int NUMBER_OF_BOXES = 1;
@@ -40,7 +40,7 @@ public class TenMMClip extends Item {
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack stack, EntityPlayer playerIn, List<String> tooltip, boolean advanced) {
         tooltip.add("Ammo clip for TenMM pistol");
-        tooltip.add("AMMO LEFT:" + (stack.getMaxDamage() - (stack.getItemDamage() + 1)) + "/" + (stack.getMaxDamage() - 2));
+        tooltip.add("AMMO LEFT:" + (stack.getMaxDamage() - stack.getItemDamage() + "/" + stack.getMaxDamage()));
     }
 
     public ActionResult<ItemStack> onItemRightClick(World itemStackIn, EntityPlayer worldIn, EnumHand playerIn) {

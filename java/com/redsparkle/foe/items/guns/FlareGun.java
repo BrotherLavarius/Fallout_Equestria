@@ -1,11 +1,10 @@
 package com.redsparkle.foe.items.guns;
 
+import com.redsparkle.api.inventory.GlobalsGunStats;
 import com.redsparkle.api.items.helpers.Item_Instances.Item_Firearm;
-import com.redsparkle.api.utils.GlobalWeaponsStats;
 import com.redsparkle.foe.Init.SoundInit;
 import com.redsparkle.foe.creativeTabs.InitCreativeTabs;
 import com.redsparkle.foe.items.guns.ammo.FlareShell.FlareShell;
-import com.redsparkle.foe.items.guns.entitys.flare.EntityFlare;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -27,7 +26,7 @@ import java.util.List;
 public class FlareGun extends Item_Firearm {
 
     public boolean isGun;
-    public int clipRounds = GlobalWeaponsStats.flaregun_Rounds;
+    public int clipRounds = GlobalsGunStats.FLARE_GUN.Clipsize();
     public EntityPlayer playerIn;
     public World worldIn;
 
@@ -57,7 +56,7 @@ public class FlareGun extends Item_Firearm {
         this.shot = SoundInit.flaregun_shot;
         this.dry = SoundInit.flaregun_dry;
         ItemStack itemstack = playerIn.getHeldItem(hand);
-        this.damage = GlobalWeaponsStats.flaregun_Damage;
+        this.damage = GlobalsGunStats.FLARE_GUN.getDamage();
 
         if (!playerIn.capabilities.isCreativeMode) {
             if (itemstack.getItemDamage() == (clipRounds)) {
@@ -96,16 +95,8 @@ public class FlareGun extends Item_Firearm {
     public void addInformation(ItemStack stack, EntityPlayer playerIn, List<String> tooltip, boolean advanced) {
         tooltip.add("Flare Gun");
         tooltip.add("Clip size: " + clipRounds);
-        tooltip.add("Damage: " + GlobalWeaponsStats.flaregun_Damage);
-
-
+        tooltip.add("Damage: " + GlobalsGunStats.FLARE_GUN.getDamage());
     }
 
-    public void flare(World worldIn, EntityPlayer playerIn) {
-        EntityFlare flare = new EntityFlare(worldIn, playerIn);
-        flare.setHeadingFromThrower(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, 1F, 3.0F);
-        flare.setDamage(damage);
-        worldIn.spawnEntity(flare);
-    }
 }
 
