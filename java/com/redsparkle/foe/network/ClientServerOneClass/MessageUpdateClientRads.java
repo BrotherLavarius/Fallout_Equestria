@@ -1,6 +1,6 @@
 package com.redsparkle.foe.network.ClientServerOneClass;
 
-import com.redsparkle.api.capa.rad.IRadiationCapability;
+import com.redsparkle.api.Capability.Player.rad.IRadiationCapability;
 import com.redsparkle.foe.ClientOnlyProxy;
 import io.netty.buffer.ByteBuf;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;

@@ -1,9 +1,9 @@
 package com.redsparkle.api.utils;
 
-import com.redsparkle.api.capa.level.ILevelCapability;
-import com.redsparkle.api.capa.level.LevelFactoryProvider;
-import com.redsparkle.api.capa.spechial.ISpechialCapability;
-import com.redsparkle.api.capa.spechial.SpechialFactoryProvider;
+import com.redsparkle.api.Capability.Player.level.ILevelCapability;
+import com.redsparkle.api.Capability.Player.level.LevelFactoryProvider;
+import com.redsparkle.api.Capability.Player.spechial.ISpechialCapability;
+import com.redsparkle.api.Capability.Player.spechial.SpechialFactoryProvider;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.player.EntityPlayer;
 

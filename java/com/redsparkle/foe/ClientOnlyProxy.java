@@ -1,18 +1,18 @@
 package com.redsparkle.foe;
 
 
-import com.redsparkle.api.capa.Inventory.IAdvInventory;
-import com.redsparkle.api.capa.Inventory.IAdvProvider;
-import com.redsparkle.api.capa.level.ILevelCapability;
-import com.redsparkle.api.capa.level.LevelFactoryProvider;
-import com.redsparkle.api.capa.rad.IRadiationCapability;
-import com.redsparkle.api.capa.rad.RadsFactoryProvider;
-import com.redsparkle.api.capa.skills.ISkillsCapability;
-import com.redsparkle.api.capa.skills.SkillsFactoryProvider;
-import com.redsparkle.api.capa.spechial.ISpechialCapability;
-import com.redsparkle.api.capa.spechial.SpechialFactoryProvider;
-import com.redsparkle.api.capa.water.IWaterCapability;
-import com.redsparkle.api.capa.water.WaterFactoryProvider;
+import com.redsparkle.api.Capability.Player.Inventory.IAdvInventory;
+import com.redsparkle.api.Capability.Player.Inventory.IAdvProvider;
+import com.redsparkle.api.Capability.Player.level.ILevelCapability;
+import com.redsparkle.api.Capability.Player.level.LevelFactoryProvider;
+import com.redsparkle.api.Capability.Player.rad.IRadiationCapability;
+import com.redsparkle.api.Capability.Player.rad.RadsFactoryProvider;
+import com.redsparkle.api.Capability.Player.skills.ISkillsCapability;
+import com.redsparkle.api.Capability.Player.skills.SkillsFactoryProvider;
+import com.redsparkle.api.Capability.Player.spechial.ISpechialCapability;
+import com.redsparkle.api.Capability.Player.spechial.SpechialFactoryProvider;
+import com.redsparkle.api.Capability.Player.water.IWaterCapability;
+import com.redsparkle.api.Capability.Player.water.WaterFactoryProvider;
 import com.redsparkle.api.utils.ItemCatalog;
 import com.redsparkle.foe.Init.ClientOnlyStartup;
 import com.redsparkle.foe.Init.SoundInit;

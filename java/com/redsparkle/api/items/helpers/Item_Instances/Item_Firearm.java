@@ -1,6 +1,6 @@
 package com.redsparkle.api.items.helpers.Item_Instances;
 
-import com.redsparkle.api.capa.skills.SkillsFactoryProvider;
+import com.redsparkle.api.Capability.Player.skills.SkillsFactoryProvider;
 import com.redsparkle.api.utils.InventoryManager;
 import com.redsparkle.foe.creativeTabs.InitCreativeTabs;
 import com.redsparkle.foe.items.guns.entitys.bulletFired.EntityBullet;

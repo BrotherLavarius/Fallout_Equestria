@@ -1,6 +1,6 @@
 package com.redsparkle.foe.items.guns.ammo.TenMM;
 
-import com.redsparkle.api.inventory.GlobalsGunStats;
+import com.redsparkle.api.items.helpers.guns.GlobalsGunStats;
 import com.redsparkle.api.items.helpers.guns.ItemClipHelpers;
 import com.redsparkle.api.utils.GlobalItemArray_For_init;
 import com.redsparkle.foe.creativeTabs.InitCreativeTabs;

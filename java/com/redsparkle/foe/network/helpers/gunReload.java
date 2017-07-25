@@ -1,6 +1,6 @@
 package com.redsparkle.foe.network.helpers;
 
-import com.redsparkle.api.inventory.GlobalsGunStats;
+import com.redsparkle.api.items.helpers.guns.GlobalsGunStats;
 import com.redsparkle.api.utils.GlobalItemArray_For_init;
 import com.redsparkle.api.utils.InventoryManager;
 import com.redsparkle.foe.items.guns.ammo.FlareShell.FlareShell;

@@ -1,7 +1,7 @@
 package com.redsparkle.api.utils;
 
-import com.redsparkle.api.inventory.GlobalsGunStats;
 import com.redsparkle.api.items.helpers.Item_Instances.Item_Firearm;
+import com.redsparkle.api.items.helpers.guns.GlobalsGunStats;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.Item;

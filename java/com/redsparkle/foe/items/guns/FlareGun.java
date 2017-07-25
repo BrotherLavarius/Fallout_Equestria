@@ -1,7 +1,7 @@
 package com.redsparkle.foe.items.guns;
 
-import com.redsparkle.api.inventory.GlobalsGunStats;
 import com.redsparkle.api.items.helpers.Item_Instances.Item_Firearm;
+import com.redsparkle.api.items.helpers.guns.GlobalsGunStats;
 import com.redsparkle.foe.Init.SoundInit;
 import com.redsparkle.foe.creativeTabs.InitCreativeTabs;
 import com.redsparkle.foe.items.guns.ammo.FlareShell.FlareShell;

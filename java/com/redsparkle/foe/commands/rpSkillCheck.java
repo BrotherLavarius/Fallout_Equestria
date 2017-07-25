@@ -1,6 +1,6 @@
 package com.redsparkle.foe.commands;
 
-import com.redsparkle.api.capa.spechial.SpechialFactoryProvider;
+import com.redsparkle.api.Capability.Player.spechial.SpechialFactoryProvider;
 import net.minecraft.command.*;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
