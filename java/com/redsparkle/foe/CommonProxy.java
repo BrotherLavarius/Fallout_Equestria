@@ -3,6 +3,9 @@ package com.redsparkle.foe;
 import com.redsparkle.api.Capability.Items.Ammo.AmmoFactoryProvider;
 import com.redsparkle.api.Capability.Items.Ammo.IAmmoInterface;
 import com.redsparkle.api.Capability.Items.Ammo.IAmmoStorage;
+import com.redsparkle.api.Capability.Items.Gun.GunFactoryProvider;
+import com.redsparkle.api.Capability.Items.Gun.IGunInterface;
+import com.redsparkle.api.Capability.Items.Gun.IGunStorage;
 import com.redsparkle.api.Capability.Player.FirtsTimeJoin.FTJFactoryProvider;
 import com.redsparkle.api.Capability.Player.FirtsTimeJoin.FTJFactoryStorage;
 import com.redsparkle.api.Capability.Player.FirtsTimeJoin.IFTJCapability;
@@ -99,8 +102,8 @@ public abstract class CommonProxy {
         CapabilityManager.INSTANCE.register(IAdvInventory.class, new IAdvStorage(), IAdvProvider::new);
 
 
-        CapabilityManager.INSTANCE.register(IAmmoInterface.class, new IAmmoStorage(), new AmmoFactoryProvider());
-
+        CapabilityManager.INSTANCE.register(IAmmoInterface.class, new IAmmoStorage(),  AmmoFactoryProvider::new);
+        CapabilityManager.INSTANCE.register(IGunInterface.class,new IGunStorage(), GunFactoryProvider::new);
         System.out.println("FINISHED BOOTING CAPABILITY SYSTEM");
         MinecraftForge.EVENT_BUS.register(new EventHandlerInit());
     }

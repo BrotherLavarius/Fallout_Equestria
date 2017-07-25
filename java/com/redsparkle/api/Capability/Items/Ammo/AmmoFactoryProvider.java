@@ -1,6 +1,6 @@
 package com.redsparkle.api.Capability.Items.Ammo;
 
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.common.capabilities.Capability;
@@ -29,8 +29,8 @@ public class AmmoFactoryProvider implements IAmmoInterface, ICapabilitySerializa
     //    public static IAmmoInterface instanceFor(ItemStack stack) {
 //        return  stack.getCapability(AMMO_STORAGE, null);
 //    }
-    public static IAmmoInterface instanceFor(EntityPlayer player) {
-        return player.getCapability(AMMO_STORAGE, null);
+    public static IAmmoInterface instanceFor(ItemStack stack) {
+        return stack.getCapability(AMMO_STORAGE, null);
     }
 
     @Override
@@ -60,38 +60,7 @@ public class AmmoFactoryProvider implements IAmmoInterface, ICapabilitySerializa
         }
     }
 
-    /**
-     * Determines if this object has support for the capability in question on the specific side.
-     * The return value of this MIGHT change during runtime if this object gains or looses support
-     * for a capability.
-     * <p>
-     * Example:
-     * A Pipe getting a cover placed on one side causing it loose the Inventory attachment function for that side.
-     * <p>
-     * This is a light weight version of getCapability, intended for metadata uses.
-     *
-     * @param capability The capability to check
-     * @param facing     The Side to check from:
-     *                   CAN BE NULL. Null is defined to represent 'internal' or 'self'
-     * @return True if this object supports the capability.
-     */
-    public boolean hasCapability(Capability<?> capability, EnumFacing facing) {
-        return capability == AMMO_STORAGE;
-    }
 
-    /**
-     * Retrieves the handler for the capability requested on the specific side.
-     * The return value CAN be null if the object does not support the capability.
-     * The return value CAN be the same for multiple faces.
-     *
-     * @param capability The capability to check
-     * @param facing     The Side to check from:
-     *                   CAN BE NULL. Null is defined to represent 'internal' or 'self'
-     * @return The requested capability. Returns null when {@link #hasCapability(Capability, EnumFacing)} would return false.
-     */
-    public <T> T getCapability(Capability<T> capability, EnumFacing facing) {
-        return capability == AMMO_STORAGE ? (T) this : null;
-    }
 
 
     public NBTTagCompound get() {
@@ -100,6 +69,14 @@ public class AmmoFactoryProvider implements IAmmoInterface, ICapabilitySerializa
 
     public void set(NBTTagCompound nbt) {
         deserializeNBT(nbt);
+    }
+
+    public boolean hasCapability(Capability<?> capability, EnumFacing facing) {
+        return capability == AMMO_STORAGE;
+    }
+
+    public <T> T getCapability(Capability<T> capability, EnumFacing facing) {
+        return capability == AMMO_STORAGE ? (T) this : null;
     }
 
     @Override

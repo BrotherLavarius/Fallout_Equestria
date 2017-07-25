@@ -1,8 +1,8 @@
 package com.redsparkle.foe.items.guns.ammo.LaserWeapons;
 
+import com.redsparkle.api.items.helpers.Item_Instances.Item_AmmoHolder;
 import com.redsparkle.foe.creativeTabs.InitCreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * Created by hoijima desu on 29.07.16 desu.
  */
-public class Battery extends Item {
+public class Battery extends Item_AmmoHolder {
 
     public int MaxDamage = 29;
 

@@ -1,5 +1,6 @@
 package com.redsparkle.foe.items.guns.ammo.FourTenMM;
 
+import com.redsparkle.api.items.helpers.Item_Instances.Item_AmmoHolder;
 import com.redsparkle.api.items.helpers.guns.GlobalsGunStats;
 import com.redsparkle.api.items.helpers.guns.ItemClipHelpers;
 import com.redsparkle.api.utils.GlobalItemArray_For_init;
@@ -21,7 +22,7 @@ import java.util.List;
 /**
  * Created by NENYN on 1/2/2017.
  */
-public class FourTenMMClip extends Item {
+public class FourTenMMClip extends Item_AmmoHolder {
 
     public Item ammo = GlobalItemArray_For_init.tenMMAmmo;
     public int MaxDamage = GlobalsGunStats.FOUR_TEN_MM.NearEmpty()+1;

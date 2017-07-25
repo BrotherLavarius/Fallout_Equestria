@@ -1,6 +1,8 @@
 package com.redsparkle.foe;
 
 
+import com.redsparkle.api.Capability.Items.Ammo.AmmoFactoryProvider;
+import com.redsparkle.api.Capability.Items.Ammo.IAmmoInterface;
 import com.redsparkle.api.Capability.Player.Inventory.IAdvInventory;
 import com.redsparkle.api.Capability.Player.Inventory.IAdvProvider;
 import com.redsparkle.api.Capability.Player.level.ILevelCapability;
@@ -231,6 +233,27 @@ public class ClientOnlyProxy extends CommonProxy {
         });
     }
 
+    public static void handleSync_AmmoItems(MessageUpdateAmmoHolders message) {
+        Minecraft.getMinecraft().addScheduledTask(() -> {
+            EntityPlayer player = Minecraft.getMinecraft().player;
+            IAdvInventory advInventory = IAdvProvider.instanceFor(player);
+
+            IAmmoInterface capa;
+            if (message.invType == 0) {
+                ItemStack stack = player.inventory.getStackInSlot(message.slot);
+                capa = stack.getCapability(AmmoFactoryProvider.AMMO_STORAGE, null);
+                capa.setMaxAmmo(message.maxAmmo);
+                capa.setAmmo(message.ammo);
+            }
+            if (message.invType == 1) {
+                IAdvInventory stack = player.getCapability(IAdvProvider.Adv_Inv, null);
+                capa = stack.getStackInSlot(message.slot).getCapability(AmmoFactoryProvider.AMMO_STORAGE, null);
+                capa.setMaxAmmo(message.maxAmmo);
+                capa.setAmmo(message.ammo);
+            }
+
+        });
+    }
 
     public void preInit() {
         super.preInit();

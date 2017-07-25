@@ -1,5 +1,7 @@
 package com.redsparkle.foe.items.guns;
 
+import com.redsparkle.api.Capability.Items.Gun.GunFactoryProvider;
+import com.redsparkle.api.Capability.Items.Gun.IGunInterface;
 import com.redsparkle.api.Capability.Player.skills.SkillsFactoryProvider;
 import com.redsparkle.api.items.helpers.Item_Instances.Item_Firearm;
 import com.redsparkle.api.items.helpers.guns.GlobalsGunStats;
@@ -7,6 +9,7 @@ import com.redsparkle.api.utils.GlobalItemArray_For_init;
 import com.redsparkle.foe.Init.SoundInit;
 import com.redsparkle.foe.creativeTabs.InitCreativeTabs;
 import com.redsparkle.foe.items.guns.ammo.TenMM.TenMMClip;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -43,15 +46,20 @@ public class TenMM extends Item_Firearm {
 
     @Override
     public ICapabilityProvider initCapabilities(ItemStack stack, NBTTagCompound nbt) {
-        if (nbt == null) {
-            NBTTagCompound tag = new NBTTagCompound();
-            tag.setBoolean("isgun", isGun);
-            stack.setTagCompound(tag);
-        }
-
         return super.initCapabilities(stack, nbt);
     }
-
+    @Override
+    public void onUpdate(ItemStack stack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected)
+    {
+        IGunInterface iammo;
+        if(stack.hasCapability(GunFactoryProvider.GUN,null)){
+            iammo=stack.getCapability(GunFactoryProvider.GUN,null);
+            if(iammo.getMaxAmmo() == 0) {
+                iammo.setMaxAmmo(clipRounds);
+            }
+            stack.setItemDamage(iammo.getMaxAmmo() -iammo.getAmmo());
+        }
+    }
     @Override
     public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand hand) {
 
@@ -60,11 +68,11 @@ public class TenMM extends Item_Firearm {
         ItemStack itemstack = playerIn.getHeldItem(hand);
         casing = GlobalItemArray_For_init.AllInit[28];
         ItemStack caseStack = new ItemStack(casing);
-
+        IGunInterface igun = itemstack.getCapability(GunFactoryProvider.GUN,null);
         this.damage = GlobalsGunStats.TEN_MM.getDamage() + playerIn.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getFirearms();
 
         if (!playerIn.capabilities.isCreativeMode) {
-            if (itemstack.getItemDamage() >= GlobalsGunStats.TEN_MM.NearEmpty()) {
+            if (igun.getAmmo() == 0) {
                 if (findAmmo(playerIn) == ItemStack.EMPTY) {
                     // ---------------_EMPTY CLIP
                     worldIn.playSound(playerIn, playerIn.getPosition(), dry, SoundCategory.HOSTILE, 0.5F, 0.4F);
@@ -73,7 +81,7 @@ public class TenMM extends Item_Firearm {
             } else {
                 worldIn.playSound(playerIn, playerIn.getPosition(), shot, SoundCategory.HOSTILE, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
                     bullet(worldIn, playerIn);
-                itemstack.setItemDamage(itemstack.getItemDamage() + 1);
+                igun.removeAmmo(1);
                 playerIn.cameraYaw = -0.1F;
                 AddCase(playerIn, caseStack);
                 return new ActionResult<>(EnumActionResult.SUCCESS, itemstack);
@@ -100,10 +108,12 @@ public class TenMM extends Item_Firearm {
      */
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack stack, EntityPlayer playerIn, List<String> tooltip, boolean advanced) {
+        IGunInterface igun = stack.getCapability(GunFactoryProvider.GUN,null);
         tooltip.add("10 MM pistol");
-        tooltip.add("Clip size: " + (clipRounds - 3));
+        tooltip.add("Clip size: " + clipRounds);
         tooltip.add("Base Damage: " + GlobalsGunStats.TEN_MM.getDamage());
         tooltip.add("Your Damage: " + damage);
+        tooltip.add("Clip In: " + igun.clipInserted());
 
     }
 

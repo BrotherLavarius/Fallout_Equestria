@@ -1,6 +1,8 @@
 package com.redsparkle.foe.events;
 
 
+import com.redsparkle.api.Capability.Items.Ammo.AmmoFactoryProvider;
+import com.redsparkle.api.Capability.Items.Gun.GunFactoryProvider;
 import com.redsparkle.api.Capability.Player.FirtsTimeJoin.FTJFactoryProvider;
 import com.redsparkle.api.Capability.Player.FirtsTimeJoin.IFTJCapability;
 import com.redsparkle.api.Capability.Player.Inventory.IAdvProvider;
@@ -14,13 +16,16 @@ import com.redsparkle.api.Capability.Player.spechial.ISpechialCapability;
 import com.redsparkle.api.Capability.Player.spechial.SpechialFactoryProvider;
 import com.redsparkle.api.Capability.Player.water.IWaterCapability;
 import com.redsparkle.api.Capability.Player.water.WaterFactoryProvider;
+import com.redsparkle.api.items.helpers.Item_Instances.Item_AmmoHolder;
+import com.redsparkle.api.items.helpers.Item_Instances.Item_Firearm;
 import com.redsparkle.api.utils.GlobalItemArray_For_init;
 import com.redsparkle.api.utils.PlayerParamsSetup;
 import com.redsparkle.foe.main;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.*;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.entity.player.PlayerContainerEvent;
@@ -41,12 +46,6 @@ public class EventHandlerPre {
     public static boolean canHaveAttributes(Entity entity) {
         return entity instanceof EntityLivingBase;
     }
-
-    public static boolean canHaveAttributes(Item item) {
-        return (item instanceof ItemTool || item instanceof ItemSword || item instanceof ItemBow
-                || item instanceof ItemArmor || item instanceof ItemShield);
-    }
-
 
     @SubscribeEvent
     public void onAddCapabilitiesEntity(AttachCapabilitiesEvent<Entity> event) {
@@ -69,14 +68,21 @@ public class EventHandlerPre {
     }
 
     @SubscribeEvent
-    public void onAddCapabilitiesItemStack(AttachCapabilitiesEvent<Item> e) {
-        if (canHaveAttributes(e.getObject())) {
+    public void onAddCapabilitiesItemStack(AttachCapabilitiesEvent<ItemStack> e) {
+        if (e.getObject().getItem() instanceof Item_AmmoHolder ) {
+            if(!e.getObject().hasCapability(AmmoFactoryProvider.AMMO_STORAGE,null)){
+                e.addCapability(new ResourceLocation(main.MODID + ":ammo_capability"), new AmmoFactoryProvider());
+            }
+        }
+        if (e.getObject().getItem() instanceof Item_Firearm) {
+            if(!e.getObject().hasCapability(GunFactoryProvider.GUN,null)){
+                e.addCapability(new ResourceLocation(main.MODID + ":gun_capability"), new GunFactoryProvider());
+            }
         }
     }
 
     @SubscribeEvent
     public void onPlayerTick(TickEvent.PlayerTickEvent e) {
-        //if (e.phase != TickEvent.Phase.END) return;
         updatePlayerRads(e.player);
         updatePlayerWater(e.player);
 
@@ -91,9 +97,10 @@ public class EventHandlerPre {
                                 (e.player.getCapability(LEVEL_CAPABILITY, null).getProgress() -
                                         e.player.experienceTotal));
             }
-            //System.out.println("RUnning Update");
 
         }
+
+
     }
 
     @SubscribeEvent

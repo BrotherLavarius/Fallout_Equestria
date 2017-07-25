@@ -12,23 +12,21 @@ public enum GlobalsGunStats {
      */
 
 
-    TEN_MM(10, 13, 11, 12),
-    FOUR_TEN_MM(7, 15, 13, 14),
-    LASER_PISTOL(12, 31, 29, 30),
-    FLARE_GUN(1, 1, 1, 1),
-    DB_SHOUTGUN(1, 2, 1, 2);
+    TEN_MM(10, 10),
+    FOUR_TEN_MM(7, 12),
+    LASER_PISTOL(12, 30),
+    FLARE_GUN(1, 1),
+    DB_SHOUTGUN(1, 2);
 
     private int Damage;
     private int Clipsize;
-    private int NearEmpty;
-    private int Empty;
 
 
-    GlobalsGunStats(int Damage, int Clipsize, int NearEmpty, int Empty) {
+
+    GlobalsGunStats(int Damage, int Clipsize) {
         this.Damage = Damage;
         this.Clipsize = Clipsize;
-        this.NearEmpty = NearEmpty;
-        this.Empty = Empty;
+
     }
 
     public int getDamage() {
@@ -39,11 +37,5 @@ public enum GlobalsGunStats {
         return Clipsize;
     }
 
-    public int NearEmpty() {
-        return NearEmpty;
-    }
 
-    public int Empty() {
-        return Empty;
-    }
 }
