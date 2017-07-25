@@ -122,13 +122,11 @@ public class DedicatedServerProxy extends CommonProxy {
     public static void handleReloadMessage(EntityPlayerMP player) {
         WorldServer mainThread = (WorldServer) (player.world);
         ItemStack heldItem = player.getHeldItem(EnumHand.MAIN_HAND);
-        if (heldItem != null) { //&& heldItem.getTagCompound().getBoolean("isgun")
+        if (heldItem != null) {
             if (heldItem.getItem() instanceof TenMM || heldItem.getItem() instanceof FourTenMM || heldItem.getItem() instanceof LaserPistol) {
                 gunReload.ClipLoaded(mainThread, heldItem, player);
-            }  else if (heldItem.getItem() instanceof SB_shoutgun) {
-                gunReload.Shotgun(mainThread, heldItem, player);
-            } else if (heldItem.getItem() instanceof FlareGun) {
-                gunReload.FlareGun(mainThread, heldItem, player);
+            } else if (heldItem.getItem() instanceof SB_shoutgun || heldItem.getItem() instanceof FlareGun) {
+                gunReload.BulletLoaded(mainThread, heldItem, player);
             }
 
 

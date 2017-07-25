@@ -42,7 +42,8 @@ public class ItemClipHelpers {
     }
 
     public static ItemStack FourTenMMClipStackHelper(ItemStack clip, World worldIn, EntityPlayer playerIn, int MaxDamage) {
-        if (clip.getItemDamage() > 1 && clip.getItemDamage() <= MaxDamage) {
+        IAmmoInterface capa = clip.getCapability(AmmoFactoryProvider.AMMO_STORAGE, null);
+        if (capa.getAmmo() <= capa.getMaxAmmo()) {
             ItemStack ammo = ItemClipHelpers.FourTenMMFind(playerIn);
             triggers(clip, ammo, worldIn, playerIn);
         }

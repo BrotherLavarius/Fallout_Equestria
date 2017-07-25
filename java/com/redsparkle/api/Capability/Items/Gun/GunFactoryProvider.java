@@ -32,6 +32,10 @@ public class GunFactoryProvider implements IGunInterface, ICapabilitySerializabl
     }
 
     @Override
+    public void addAmmo(int ammo) {
+        this.Ammo = Ammo + ammo;
+    }
+    @Override
     public void removeAmmo(int ammo) {
         this.Ammo=Ammo-ammo;
     }

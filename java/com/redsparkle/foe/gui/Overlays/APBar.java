@@ -1,5 +1,8 @@
 package com.redsparkle.foe.gui.Overlays;
 
+import com.redsparkle.api.Capability.Items.Ammo.AmmoFactoryProvider;
+import com.redsparkle.api.Capability.Items.Gun.GunFactoryProvider;
+import com.redsparkle.api.items.helpers.Item_Instances.Item_AmmoHolder;
 import com.redsparkle.api.items.helpers.Item_Instances.Item_Firearm;
 import com.redsparkle.api.utils.GlobalNames;
 import net.minecraft.client.Minecraft;
@@ -33,24 +36,30 @@ public class APBar extends Gui {
         EntityPlayer player = mc.player;
         World world = mc.world;
         int playerFood = player.getFoodStats().getFoodLevel();
-        boolean show;
-        int bullets;
-        int maxBullets;
+        boolean show = false;
+        int bullets = 0;
+        int maxBullets = 0;
         String bullets_left = "";
         fr.FONT_HEIGHT = 15;
         if (player.inventory.getCurrentItem().getItem() instanceof Item_Firearm) {
-            show = true;
-            bullets = player.inventory.getCurrentItem().getItemDamage();
-            maxBullets = player.inventory.getCurrentItem().getMaxDamage();
-            bullets_left = bullets+": AMMO";
+            if (player.inventory.getCurrentItem().hasCapability(GunFactoryProvider.GUN, null)) {
+                show = true;
+                bullets = player.inventory.getCurrentItem().getCapability(GunFactoryProvider.GUN, null).getAmmo();
+                maxBullets = player.inventory.getCurrentItem().getCapability(GunFactoryProvider.GUN, null).getMaxAmmo();
+                bullets_left = "AMMO:     " + bullets + ":" + maxBullets;
+            }
+        } else if (player.inventory.getCurrentItem().getItem() instanceof Item_AmmoHolder) {
+            if (player.inventory.getCurrentItem().hasCapability(AmmoFactoryProvider.AMMO_STORAGE, null)) {
+                show = true;
+                bullets = player.inventory.getCurrentItem().getCapability(AmmoFactoryProvider.AMMO_STORAGE, null).getAmmo();
+                maxBullets = player.inventory.getCurrentItem().getCapability(AmmoFactoryProvider.AMMO_STORAGE, null).getMaxAmmo();
+                bullets_left = "Capacity:     " + bullets + ":" + maxBullets;
+            }
         } else {
             show = false;
-            bullets = 0;
-            maxBullets = 0;
         }
-        if (bullets+1 == maxBullets) {
-            bullets_left = 0 + ": AMMO" ;
-        }
+
+
         ScaledResolution scaled = new ScaledResolution(mc);
         int screenWidth = scaled.getScaledWidth();
         int screenHeight = scaled.getScaledHeight();
@@ -64,9 +73,9 @@ public class APBar extends Gui {
 
       /* Set the rendering color to white */
         GL11.glColor4f(0.0F, 90.0F, 1.0F, 90.0F);
-        GlStateManager.disableLighting();
+        //GlStateManager.disableLighting();
         GlStateManager.enableAlpha();
-        GlStateManager.disableBlend();
+        //GlStateManager.disableBlend();
 
       /* This method tells OpenGL to draw with the custom texture */
         mc.renderEngine.bindTexture(overlayBarRad);
@@ -95,7 +104,7 @@ public class APBar extends Gui {
 
         GL11.glPopMatrix();
         if (show) {
-            fr.drawString(bullets_left, PositionX + 80, PositionY + 25, 900000);
+            fr.drawString(bullets_left, PositionX + 25, PositionY + 25, 900000);
         }
 
         GL11.glPopAttrib();

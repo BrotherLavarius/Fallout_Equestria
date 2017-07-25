@@ -5,6 +5,8 @@ package com.redsparkle.api.Capability.Items.Gun;
  */
 public interface IGunInterface {
 
+    void addAmmo(int ammo);
+
     void removeAmmo(int ammo);
 
     int getAmmo();

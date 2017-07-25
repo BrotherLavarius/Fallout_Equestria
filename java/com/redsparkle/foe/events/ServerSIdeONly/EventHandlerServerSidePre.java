@@ -16,7 +16,7 @@ import net.minecraftforge.fml.common.gameevent.TickEvent;
  * Created by hoijima on 24.05.17.
  */
 public class EventHandlerServerSidePre {
-
+    //TODO: make a sync for guns
     @SubscribeEvent
     public void onPlayerTick(TickEvent.PlayerTickEvent e) {
         InventoryPlayer inv = e.player.inventory;
