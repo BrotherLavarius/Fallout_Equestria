@@ -87,29 +87,35 @@ public class gunReload {
             ItemStack clipstack = new ItemStack(clip);
             IGunInterface igun = heldItem.getCapability(GunFactoryProvider.GUN,null);
             IAmmoInterface iclip = clipstack.getCapability(AmmoFactoryProvider.AMMO_STORAGE,null);
-            if (igun.getAmmo() > 0) {
-                if (findAmmo(player, gunName) != ItemStack.EMPTY) {
+            if(igun.clipInserted()){//clip is in
+                if (findAmmo(player, gunName) != ItemStack.EMPTY){//if there IS clips available
                     iclip.setAmmo(igun.getAmmo());
                     igun.setAmmo(findAmmo(player, gunName).getCapability(AmmoFactoryProvider.AMMO_STORAGE,null).getAmmo());
                     findAmmo(player, gunName).shrink(1);
                     igun.setClipStatus(true);
                     player.inventory.setInventorySlotContents(InventoryManager.FindEmpty(player), clipstack);
                     main.simpleNetworkWrapper.sendTo(new MessageGunReloadReply(clipIn), player);
-                } else if (findAmmo(player, gunName) == ItemStack.EMPTY && igun.clipInserted()) {
+                }
+                else if (findAmmo(player, gunName) == ItemStack.EMPTY){//if NO clips available
                     iclip.setAmmo(igun.getAmmo());
                     igun.setAmmo(0);
                     igun.setClipStatus(false);
                     player.inventory.setInventorySlotContents(InventoryManager.FindEmpty(player), clipstack);
                     main.simpleNetworkWrapper.sendTo(new MessageGunReloadReply(clipOut), player);
                 }
-            } else if (igun.getAmmo() == 0 && !igun.clipInserted()) {
-                if (findAmmo(player, gunName) != ItemStack.EMPTY) {
+
+            }else if (!igun.clipInserted()){//clip is out
+                if (findAmmo(player, gunName) != ItemStack.EMPTY){//if there IS clips available
+                    iclip.setAmmo(igun.getAmmo());
                     igun.setAmmo(findAmmo(player, gunName).getCapability(AmmoFactoryProvider.AMMO_STORAGE,null).getAmmo());
                     findAmmo(player, gunName).shrink(1);
                     igun.setClipStatus(true);
                     main.simpleNetworkWrapper.sendTo(new MessageGunReloadReply(clipIn), player);
+                }
+                else if (findAmmo(player, gunName) == ItemStack.EMPTY){//if NO clips available
 
                 }
+
             }
         });
 
@@ -130,14 +136,14 @@ public class gunReload {
             }
             if (heldItem.getItem() == GlobalItemArray_For_init.AllInit[27]) {
                 gunName = "FlareGun";
-                ammoIN = 4;
-                ammoOut = 5;
+                ammoIN = 6;
+                ammoOut = 7;
             }
             if (maxAmmo > 1) {
                 if (igun.getAmmo() < maxAmmo) {
                     if (findAmmo(player, gunName) != ItemStack.EMPTY) {
                         findAmmo(player, gunName).shrink(igun.getMaxAmmo() - igun.getAmmo());
-                        igun.addAmmo(igun.getMaxAmmo());
+                        igun.addAmmo(igun.getMaxAmmo()- igun.getAmmo());
                         main.simpleNetworkWrapper.sendTo(new MessageGunReloadReply(ammoIN), player);
                     }
                 }

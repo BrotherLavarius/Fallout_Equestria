@@ -10,7 +10,7 @@ import com.redsparkle.foe.creativeTabs.InitCreativeTabs;
 public class Battery extends Item_AmmoHolder {
 
     public Battery() {
-        final int NUMBER_OF_BOXES = 1;
+        final int NUMBER_OF_BOXES = 20;
         this.clipsize = GlobalsGunStats.LASER_PISTOL.Clipsize();
         this.setMaxStackSize(NUMBER_OF_BOXES);
         this.setCreativeTab(InitCreativeTabs.Fallout_ammo);   // the item will appear on the Miscellaneous tab in creative

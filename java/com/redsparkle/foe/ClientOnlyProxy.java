@@ -3,6 +3,8 @@ package com.redsparkle.foe;
 
 import com.redsparkle.api.Capability.Items.Ammo.AmmoFactoryProvider;
 import com.redsparkle.api.Capability.Items.Ammo.IAmmoInterface;
+import com.redsparkle.api.Capability.Items.Gun.GunFactoryProvider;
+import com.redsparkle.api.Capability.Items.Gun.IGunInterface;
 import com.redsparkle.api.Capability.Player.Inventory.IAdvInventory;
 import com.redsparkle.api.Capability.Player.Inventory.IAdvProvider;
 import com.redsparkle.api.Capability.Player.level.ILevelCapability;
@@ -238,20 +240,38 @@ public class ClientOnlyProxy extends CommonProxy {
             EntityPlayer player = Minecraft.getMinecraft().player;
             IAdvInventory advInventory = IAdvProvider.instanceFor(player);
 
-            IAmmoInterface capa;
-            if (message.invType == 0) {
-                ItemStack stack = player.inventory.getStackInSlot(message.slot);
-                capa = stack.getCapability(AmmoFactoryProvider.AMMO_STORAGE, null);
-                capa.setMaxAmmo(message.maxAmmo);
-                capa.setAmmo(message.ammo);
-            }
-            if (message.invType == 1) {
-                IAdvInventory stack = player.getCapability(IAdvProvider.Adv_Inv, null);
-                capa = stack.getStackInSlot(message.slot).getCapability(AmmoFactoryProvider.AMMO_STORAGE, null);
-                capa.setMaxAmmo(message.maxAmmo);
-                capa.setAmmo(message.ammo);
-            }
 
+            IAmmoInterface AmmoCapa;
+            IGunInterface GunCapa;
+
+            if(message.type == 0) {
+                if (message.invType == 0) {
+                    ItemStack stack = player.inventory.getStackInSlot(message.slot);
+                    AmmoCapa = stack.getCapability(AmmoFactoryProvider.AMMO_STORAGE, null);
+                    AmmoCapa.setMaxAmmo(message.maxAmmo);
+                    AmmoCapa.setAmmo(message.ammo);
+                }
+                if (message.invType == 1) {
+                    IAdvInventory stack = player.getCapability(IAdvProvider.Adv_Inv, null);
+                    AmmoCapa = stack.getStackInSlot(message.slot).getCapability(AmmoFactoryProvider.AMMO_STORAGE, null);
+                    AmmoCapa.setMaxAmmo(message.maxAmmo);
+                    AmmoCapa.setAmmo(message.ammo);
+                }
+            }
+            if(message.type == 1) {
+                if (message.invType == 0) {
+                    ItemStack stack = player.inventory.getStackInSlot(message.slot);
+                    GunCapa = stack.getCapability(GunFactoryProvider.GUN, null);
+                    GunCapa.setMaxAmmo(message.maxAmmo);
+                    GunCapa.setAmmo(message.ammo);
+                }
+                if (message.invType == 1) {
+                    IAdvInventory stack = player.getCapability(IAdvProvider.Adv_Inv, null);
+                    GunCapa = stack.getStackInSlot(message.slot).getCapability(GunFactoryProvider.GUN, null);
+                    GunCapa.setMaxAmmo(message.maxAmmo);
+                    GunCapa.setAmmo(message.ammo);
+                }
+            }
         });
     }
 

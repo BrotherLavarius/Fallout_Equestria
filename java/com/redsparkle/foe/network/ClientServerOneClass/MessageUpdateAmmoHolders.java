@@ -17,21 +17,24 @@ public class MessageUpdateAmmoHolders implements IMessage {
      * @param ammo - main sync;
      * @param slot - slot index , self explanatory;
      * @param invType  - 0 for plain , 1 for Advanced inventory
-     *
+     * @param type - 0 ammo holder(like a clip) , 1 for guns
      */
     public int maxAmmo=0;
     public int ammo=0;
     public int slot=0;
     public int invType=0;
+    public int type=0;
+
 
 
     public MessageUpdateAmmoHolders(){}
 
-    public MessageUpdateAmmoHolders(int ammo, int maxammo, int slot, int invtype){
+    public MessageUpdateAmmoHolders(int ammo, int maxammo, int slot, int invtype,int type){
         this.ammo = ammo;
         this.maxAmmo=maxammo;
         this.slot=slot;
         this.invType=invtype;
+        this.type=type;
     }
 
 
@@ -41,6 +44,8 @@ public class MessageUpdateAmmoHolders implements IMessage {
         buf.writeInt(ammo);
         buf.writeInt(slot);
         buf.writeInt(invType);
+        buf.writeInt(type);
+
     }
 
 
@@ -50,6 +55,8 @@ public class MessageUpdateAmmoHolders implements IMessage {
         ammo = buf.readInt();
         slot = buf.readInt();
         invType = buf.readInt();
+        type = buf.readInt();
+
     }
 
 
