@@ -1,6 +1,6 @@
 package com.redsparkle.foe.events.gui;
 
-import com.redsparkle.api.capa.Inventory.IAdvProvider;
+import com.redsparkle.api.Capability.Player.Inventory.IAdvProvider;
 import com.redsparkle.api.utils.GlobalItemArray_For_init;
 import com.redsparkle.foe.gui.Overlays.APBar;
 import com.redsparkle.foe.gui.Overlays.PipBuckOverlay;

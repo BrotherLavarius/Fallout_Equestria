@@ -1,6 +1,6 @@
 package com.redsparkle.foe.gui.Inventory_Crafting;
 
-import com.redsparkle.api.capa.Inventory.IAdvProvider;
+import com.redsparkle.api.Capability.Player.Inventory.IAdvProvider;
 import com.redsparkle.api.utils.GlobalNames;
 import com.redsparkle.foe.containers.CONTAINER_AdditionalInventory;
 import com.redsparkle.foe.main;

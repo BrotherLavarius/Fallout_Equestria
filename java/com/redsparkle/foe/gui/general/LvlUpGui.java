@@ -1,7 +1,7 @@
 package com.redsparkle.foe.gui.general;
 
-import com.redsparkle.api.capa.level.LevelFactoryProvider;
-import com.redsparkle.api.capa.skills.SkillsFactoryProvider;
+import com.redsparkle.api.Capability.Player.level.LevelFactoryProvider;
+import com.redsparkle.api.Capability.Player.skills.SkillsFactoryProvider;
 import com.redsparkle.api.utils.Lvlutil;
 import com.redsparkle.api.utils.ScreenGrid;
 import com.redsparkle.api.utils.gui.GuiButtonExtFallout;

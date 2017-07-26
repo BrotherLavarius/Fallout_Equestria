@@ -1,7 +1,7 @@
 package com.redsparkle.foe.gui.Overlays;
 
 
-import com.redsparkle.api.capa.rad.RadsFactoryProvider;
+import com.redsparkle.api.Capability.Player.rad.RadsFactoryProvider;
 import com.redsparkle.api.utils.GlobalNames;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;

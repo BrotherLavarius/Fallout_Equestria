@@ -1,6 +1,6 @@
 package com.redsparkle.foe.network.ClientServerOneClass;
 
-import com.redsparkle.api.capa.spechial.ISpechialCapability;
+import com.redsparkle.api.Capability.Player.spechial.ISpechialCapability;
 import com.redsparkle.foe.ClientOnlyProxy;
 import com.redsparkle.foe.DedicatedServerProxy;
 import io.netty.buffer.ByteBuf;

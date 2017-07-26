@@ -1,18 +1,22 @@
 package com.redsparkle.foe;
 
 
-import com.redsparkle.api.capa.Inventory.IAdvInventory;
-import com.redsparkle.api.capa.Inventory.IAdvProvider;
-import com.redsparkle.api.capa.level.ILevelCapability;
-import com.redsparkle.api.capa.level.LevelFactoryProvider;
-import com.redsparkle.api.capa.rad.IRadiationCapability;
-import com.redsparkle.api.capa.rad.RadsFactoryProvider;
-import com.redsparkle.api.capa.skills.ISkillsCapability;
-import com.redsparkle.api.capa.skills.SkillsFactoryProvider;
-import com.redsparkle.api.capa.spechial.ISpechialCapability;
-import com.redsparkle.api.capa.spechial.SpechialFactoryProvider;
-import com.redsparkle.api.capa.water.IWaterCapability;
-import com.redsparkle.api.capa.water.WaterFactoryProvider;
+import com.redsparkle.api.Capability.Items.Ammo.AmmoFactoryProvider;
+import com.redsparkle.api.Capability.Items.Ammo.IAmmoInterface;
+import com.redsparkle.api.Capability.Items.Gun.GunFactoryProvider;
+import com.redsparkle.api.Capability.Items.Gun.IGunInterface;
+import com.redsparkle.api.Capability.Player.Inventory.IAdvInventory;
+import com.redsparkle.api.Capability.Player.Inventory.IAdvProvider;
+import com.redsparkle.api.Capability.Player.level.ILevelCapability;
+import com.redsparkle.api.Capability.Player.level.LevelFactoryProvider;
+import com.redsparkle.api.Capability.Player.rad.IRadiationCapability;
+import com.redsparkle.api.Capability.Player.rad.RadsFactoryProvider;
+import com.redsparkle.api.Capability.Player.skills.ISkillsCapability;
+import com.redsparkle.api.Capability.Player.skills.SkillsFactoryProvider;
+import com.redsparkle.api.Capability.Player.spechial.ISpechialCapability;
+import com.redsparkle.api.Capability.Player.spechial.SpechialFactoryProvider;
+import com.redsparkle.api.Capability.Player.water.IWaterCapability;
+import com.redsparkle.api.Capability.Player.water.WaterFactoryProvider;
 import com.redsparkle.api.utils.ItemCatalog;
 import com.redsparkle.foe.Init.ClientOnlyStartup;
 import com.redsparkle.foe.Init.SoundInit;
@@ -231,6 +235,45 @@ public class ClientOnlyProxy extends CommonProxy {
         });
     }
 
+    public static void handleSync_AmmoItems(MessageUpdateAmmoHolders message) {
+        Minecraft.getMinecraft().addScheduledTask(() -> {
+            EntityPlayer player = Minecraft.getMinecraft().player;
+            IAdvInventory advInventory = IAdvProvider.instanceFor(player);
+
+
+            IAmmoInterface AmmoCapa;
+            IGunInterface GunCapa;
+
+            if(message.type == 0) {
+                if (message.invType == 0) {
+                    ItemStack stack = player.inventory.getStackInSlot(message.slot);
+                    AmmoCapa = stack.getCapability(AmmoFactoryProvider.AMMO_STORAGE, null);
+                    AmmoCapa.setMaxAmmo(message.maxAmmo);
+                    AmmoCapa.setAmmo(message.ammo);
+                }
+                if (message.invType == 1) {
+                    IAdvInventory stack = player.getCapability(IAdvProvider.Adv_Inv, null);
+                    AmmoCapa = stack.getStackInSlot(message.slot).getCapability(AmmoFactoryProvider.AMMO_STORAGE, null);
+                    AmmoCapa.setMaxAmmo(message.maxAmmo);
+                    AmmoCapa.setAmmo(message.ammo);
+                }
+            }
+            if(message.type == 1) {
+                if (message.invType == 0) {
+                    ItemStack stack = player.inventory.getStackInSlot(message.slot);
+                    GunCapa = stack.getCapability(GunFactoryProvider.GUN, null);
+                    GunCapa.setMaxAmmo(message.maxAmmo);
+                    GunCapa.setAmmo(message.ammo);
+                }
+                if (message.invType == 1) {
+                    IAdvInventory stack = player.getCapability(IAdvProvider.Adv_Inv, null);
+                    GunCapa = stack.getStackInSlot(message.slot).getCapability(GunFactoryProvider.GUN, null);
+                    GunCapa.setMaxAmmo(message.maxAmmo);
+                    GunCapa.setAmmo(message.ammo);
+                }
+            }
+        });
+    }
 
     public void preInit() {
         super.preInit();

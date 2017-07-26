@@ -102,6 +102,8 @@ public class main {
 
         simpleNetworkWrapper.registerMessage(MessageAdvInv.HandlerServer.class, MessageAdvInv.class, message_start_index++, Side.SERVER);
 
+        simpleNetworkWrapper.registerMessage(MessageUpdateAmmoHolders.HandlerClient.class,MessageUpdateAmmoHolders.class,message_start_index++,Side.CLIENT);
+
         System.out.println("FINISHED BOOTING NETWORK MESSAGES");
     }
 

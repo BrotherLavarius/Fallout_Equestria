@@ -1,6 +1,8 @@
 package com.redsparkle.api.items.helpers.Item_Instances;
 
-import com.redsparkle.api.capa.skills.SkillsFactoryProvider;
+import com.redsparkle.api.Capability.Items.Gun.GunFactoryProvider;
+import com.redsparkle.api.Capability.Items.Gun.IGunInterface;
+import com.redsparkle.api.Capability.Player.skills.SkillsFactoryProvider;
 import com.redsparkle.api.utils.InventoryManager;
 import com.redsparkle.foe.creativeTabs.InitCreativeTabs;
 import com.redsparkle.foe.items.guns.entitys.bulletFired.EntityBullet;
@@ -13,9 +15,16 @@ import com.redsparkle.foe.network.MessageGunFire;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.EnumParticleTypes;
-import net.minecraft.util.SoundEvent;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.stats.StatList;
+import net.minecraft.util.*;
 import net.minecraft.world.World;
+import net.minecraftforge.common.capabilities.ICapabilityProvider;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
+import java.util.List;
+import java.util.concurrent.ThreadLocalRandom;
 
 import static com.redsparkle.api.utils.GunHelpers.getGunDamage;
 
@@ -23,19 +32,22 @@ import static com.redsparkle.api.utils.GunHelpers.getGunDamage;
  * Created by NENYN on 1/21/2017.
  */
 public abstract class Item_Firearm extends Item {
-
+    public Item casing;
     public SoundEvent shot;
     public SoundEvent dry;
-
+    public float cameraYaw;
     public SoundEvent shot_var1;
     public SoundEvent shot_var2;
     public SoundEvent shot_var3;
     public Object ammoItem;
     public int damage;
+    public int BaseDamage;
     public int clipRounds;
     public EntityBullet bullet;
     public EnumParticleTypes effect;
     public Integer[] invArray = {0, 1, 2, 3, 4, 5, 6, 7, 8};
+    public String gunName;
+    public String projectile;
 
 
     public Item_Firearm() {
@@ -59,6 +71,73 @@ public abstract class Item_Firearm extends Item {
             // }
         }
         return ItemStack.EMPTY;
+    }
+
+    @Override
+    public ICapabilityProvider initCapabilities(ItemStack stack, NBTTagCompound nbt) {
+        return super.initCapabilities(stack, nbt);
+    }
+
+
+    public ActionResult<ItemStack> shoot(EntityPlayer playerIn, IGunInterface igun, World worldIn, ItemStack caseStack, ItemStack itemstack) {
+        if (!playerIn.capabilities.isCreativeMode) {
+            if (igun.getAmmo() == 0) {
+                if (findAmmo(playerIn) == ItemStack.EMPTY) {
+                    // ---------------_EMPTY CLIP
+                    worldIn.playSound(playerIn, playerIn.getPosition(), dry, SoundCategory.HOSTILE, 0.5F, 0.4F);
+                    return new ActionResult<>(EnumActionResult.FAIL, itemstack);
+                }
+            } else {
+                if (shot_var1 != null) {
+                    int num = ThreadLocalRandom.current().nextInt(0, 2);
+                    switch (num) {
+                        case 0:
+                            worldIn.playSound(playerIn, playerIn.getPosition(), shot_var1, SoundCategory.PLAYERS, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
+                            break;
+                        case 1:
+                            worldIn.playSound(playerIn, playerIn.getPosition(), shot_var2, SoundCategory.PLAYERS, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
+                            break;
+                        case 2:
+                            worldIn.playSound(playerIn, playerIn.getPosition(), shot_var3, SoundCategory.PLAYERS, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
+                            break;
+                    }
+                } else {
+                    worldIn.playSound(playerIn, playerIn.getPosition(), shot, SoundCategory.HOSTILE, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
+                }
+                firedType(projectile, worldIn, playerIn);
+                igun.removeAmmo(1);
+                playerIn.cameraYaw = cameraYaw;
+                AddCase(playerIn, caseStack);
+                return new ActionResult<>(EnumActionResult.SUCCESS, itemstack);
+            }
+        } else {
+            worldIn.playSound(playerIn, playerIn.getPosition(), shot, SoundCategory.HOSTILE, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
+            firedType(projectile, worldIn, playerIn);
+            AddCase(playerIn, caseStack);
+            playerIn.cameraYaw = cameraYaw;
+
+
+        }
+        playerIn.addStat(StatList.getObjectUseStats(this));
+        return new ActionResult<>(EnumActionResult.SUCCESS, itemstack);
+    }
+
+    public void firedType(String projectile, World worldIn, EntityPlayer playerIn) {
+        if (projectile == "bullet") {
+            bullet(worldIn, playerIn);
+        }
+        if (projectile == "laser") {
+            laser(worldIn, playerIn);
+        }
+        if (projectile == "pellet") {
+            pellet(worldIn, playerIn);
+        }
+        if (projectile == "flare") {
+            flare(worldIn, playerIn);
+        }
+        if (projectile == "flame") {
+            flame(worldIn, playerIn);
+        }
     }
 
     public void bullet(World worldIn,EntityPlayer playerIn) {
@@ -126,4 +205,15 @@ public abstract class Item_Firearm extends Item {
 
     }
 
+
+    @SideOnly(Side.CLIENT)
+    public void addInformation(ItemStack stack, EntityPlayer playerIn, List<String> tooltip, boolean advanced) {
+        IGunInterface igun = stack.getCapability(GunFactoryProvider.GUN, null);
+        tooltip.add(gunName);
+        tooltip.add("Clip size: " + clipRounds);
+        tooltip.add("Base Damage: " + BaseDamage);
+        tooltip.add("Your Damage: " + damage);
+        tooltip.add("Clip In: " + igun.clipInserted());
+
+    }
 }

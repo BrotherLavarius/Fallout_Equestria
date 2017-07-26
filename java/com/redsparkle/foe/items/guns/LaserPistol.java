@@ -1,115 +1,71 @@
 package com.redsparkle.foe.items.guns;
 
-import com.redsparkle.api.capa.skills.SkillsFactoryProvider;
-import com.redsparkle.api.inventory.GlobalsGunStats;
+import com.redsparkle.api.Capability.Items.Gun.GunFactoryProvider;
+import com.redsparkle.api.Capability.Items.Gun.IGunInterface;
+import com.redsparkle.api.Capability.Player.skills.SkillsFactoryProvider;
 import com.redsparkle.api.items.helpers.Item_Instances.Item_Firearm;
+import com.redsparkle.api.items.helpers.guns.GlobalsGunStats;
 import com.redsparkle.foe.Init.SoundInit;
 import com.redsparkle.foe.creativeTabs.InitCreativeTabs;
 import com.redsparkle.foe.items.guns.ammo.LaserWeapons.Battery;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ActionResult;
-import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
-import net.minecraft.util.SoundCategory;
 import net.minecraft.world.World;
-import net.minecraftforge.common.capabilities.ICapabilityProvider;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-
-import java.util.List;
-import java.util.concurrent.ThreadLocalRandom;
 
 /**
  * Created by hoijima on 20.01.17.
  */
 public class LaserPistol extends Item_Firearm {
 
-    public boolean isGun;
-    public int clipRounds = GlobalsGunStats.LASER_PISTOL.Clipsize();
-
 
     public LaserPistol() {
+        this.clipRounds = GlobalsGunStats.LASER_PISTOL.Clipsize();
         this.setMaxStackSize(1);
         this.setMaxDamage(clipRounds);
         this.setCreativeTab(InitCreativeTabs.Fallout_guns);
-        isGun = true;
+        this.cameraYaw = -0.0F;
+        this.gunName = "Pre war Laser pistol";
+        this.projectile = "laser";
 
     }
-
     @Override
-    public ICapabilityProvider initCapabilities(ItemStack stack, NBTTagCompound nbt) {
-        if (nbt == null) {
-            NBTTagCompound tag = new NBTTagCompound();
-            tag.setBoolean("isgun", isGun);
-            stack.setTagCompound(tag);
+    public void onUpdate(ItemStack stack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected) {
+        IGunInterface iammo;
+        if (stack.hasCapability(GunFactoryProvider.GUN, null)) {
+            iammo = stack.getCapability(GunFactoryProvider.GUN, null);
+            if (iammo.getMaxAmmo() == 0) {
+                iammo.setMaxAmmo(clipRounds);
+            }
+            stack.setItemDamage(iammo.getMaxAmmo() - iammo.getAmmo());
         }
-        return super.initCapabilities(stack, nbt);
     }
-
 
     @Override
     public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand hand) {
         this.shot_var1 = SoundInit.laser_fire_var_One;
         this.shot_var2 = SoundInit.laser_fire_var_Two;
         this.shot_var3 = SoundInit.laser_fire_var_Tree;
+        this.shot = SoundInit.laser_fire_var_One;
         this.dry = SoundInit.laser_dry;
+        ItemStack caseStack = ItemStack.EMPTY;
         ItemStack itemstack = playerIn.getHeldItem(hand);
+        IGunInterface igun = itemstack.getCapability(GunFactoryProvider.GUN, null);
         this.damage = GlobalsGunStats.LASER_PISTOL.getDamage() + playerIn.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getEnergyWeapons();
-        if (!playerIn.capabilities.isCreativeMode) {
-            if (itemstack.getItemDamage() >= GlobalsGunStats.LASER_PISTOL.NearEmpty() ) {
-                if (findAmmo(playerIn) == ItemStack.EMPTY) {
-                    // ---------------_EMPTY CLIP
-                    worldIn.playSound(playerIn, playerIn.getPosition(), dry, SoundCategory.HOSTILE, 0.5F, 0.4F);
-                    return new ActionResult<>(EnumActionResult.FAIL, itemstack);
-                }
-            } else {
-                int num = ThreadLocalRandom.current().nextInt(0,2);
-                switch (num) {
-                    case 0:
-                        worldIn.playSound(playerIn, playerIn.getPosition(), shot_var1, SoundCategory.PLAYERS, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
-                        break;
-                    case 1:
-                        worldIn.playSound(playerIn, playerIn.getPosition(), shot_var2, SoundCategory.PLAYERS, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
-                        break;
-                    case 2:
-                        worldIn.playSound(playerIn, playerIn.getPosition(), shot_var3, SoundCategory.PLAYERS, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
-                        break;
-                }
-                    laser(worldIn, playerIn);
+        this.BaseDamage = GlobalsGunStats.LASER_PISTOL.getDamage();
 
+        return shoot(playerIn, igun, worldIn, caseStack, itemstack);
 
-                itemstack.setItemDamage(itemstack.getItemDamage() + 1);
-                playerIn.cameraYaw = -0.1F;
-                return new ActionResult<>(EnumActionResult.PASS, itemstack);
-            }
-        } else {
-            worldIn.playSound(playerIn, playerIn.getPosition(), shot_var1, SoundCategory.PLAYERS, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
-                laser(worldIn, playerIn);
-
-        }
-        return new ActionResult<>(EnumActionResult.PASS, itemstack);
     }
 
 
     @Override
     public boolean isAmmo(ItemStack stack) {
-
         return stack.getItem() instanceof Battery;
     }
 
-    /**
-     * allows items to add custom lines of information to the mouseover description
-     */
-    @SideOnly(Side.CLIENT)
-    public void addInformation(ItemStack stack, EntityPlayer playerIn, List<String> tooltip, boolean advanced) {
-        tooltip.add("Laser pistol");
-        tooltip.add("Clip size: " + (clipRounds - 3));
-        tooltip.add("Base Damage: " + GlobalsGunStats.LASER_PISTOL.getDamage());
-        tooltip.add("Your Damage: " + damage);
 
-
-    }
 
 }

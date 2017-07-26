@@ -1,6 +1,6 @@
 package com.redsparkle.foe.gui.general;
 
-import com.redsparkle.api.capa.spechial.SpechialFactoryProvider;
+import com.redsparkle.api.Capability.Player.spechial.SpechialFactoryProvider;
 import com.redsparkle.api.utils.ScreenGrid;
 import com.redsparkle.api.utils.gui.GuiButtonExtFallout;
 import com.redsparkle.foe.main;

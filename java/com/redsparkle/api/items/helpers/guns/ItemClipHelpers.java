@@ -1,5 +1,7 @@
 package com.redsparkle.api.items.helpers.guns;
 
+import com.redsparkle.api.Capability.Items.Ammo.AmmoFactoryProvider;
+import com.redsparkle.api.Capability.Items.Ammo.IAmmoInterface;
 import com.redsparkle.foe.Init.SoundInit;
 import com.redsparkle.foe.items.guns.ammo.FourTenMM.FourTenMMammo;
 import com.redsparkle.foe.items.guns.ammo.TenMM.TenMMammo;
@@ -22,7 +24,8 @@ public class ItemClipHelpers {
     }
 
     public static ItemStack TenMMClipStackHelper(ItemStack clip, World worldIn, EntityPlayer playerIn, int MaxDamage) {
-        if (clip.getItemDamage() > 1 && clip.getItemDamage() <= MaxDamage) {
+        IAmmoInterface capa = clip.getCapability(AmmoFactoryProvider.AMMO_STORAGE,null);
+        if (capa.getAmmo() <= capa.getMaxAmmo()) {
             ItemStack ammo = TenMMFind(playerIn);
             triggers(clip, ammo, worldIn, playerIn);
         }
@@ -39,7 +42,8 @@ public class ItemClipHelpers {
     }
 
     public static ItemStack FourTenMMClipStackHelper(ItemStack clip, World worldIn, EntityPlayer playerIn, int MaxDamage) {
-        if (clip.getItemDamage() > 1 && clip.getItemDamage() <= MaxDamage) {
+        IAmmoInterface capa = clip.getCapability(AmmoFactoryProvider.AMMO_STORAGE, null);
+        if (capa.getAmmo() <= capa.getMaxAmmo()) {
             ItemStack ammo = ItemClipHelpers.FourTenMMFind(playerIn);
             triggers(clip, ammo, worldIn, playerIn);
         }
@@ -48,16 +52,16 @@ public class ItemClipHelpers {
     }
 
     public static ItemStack triggers(ItemStack clip, ItemStack ammo, World worldIn, EntityPlayer playerIn) {
+        IAmmoInterface capa = clip.getCapability(AmmoFactoryProvider.AMMO_STORAGE,null);
         if (ammo == ItemStack.EMPTY) {
             return clip;
-        } else if (clip.getItemDamage() <= 0) {
-            return clip;
-        } else {
+        } else if (capa.getAmmo() < capa.getMaxAmmo()){
             ammo.shrink(1);
-            clip.setItemDamage(clip.getItemDamage() - 1);
+            clip.getCapability(AmmoFactoryProvider.AMMO_STORAGE,null).addAmmo(1);
             worldIn.playSound(playerIn, playerIn.getPosition(), SoundInit.clip_load, SoundCategory.HOSTILE, 1.0F, 1.0F);
             return clip;
         }
+        return clip;
     }
 
 }

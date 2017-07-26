@@ -1,15 +1,15 @@
 package com.redsparkle.foe;
 
-import com.redsparkle.api.capa.Inventory.IAdvInventory;
-import com.redsparkle.api.capa.Inventory.IAdvProvider;
-import com.redsparkle.api.capa.level.ILevelCapability;
-import com.redsparkle.api.capa.level.LevelFactoryProvider;
-import com.redsparkle.api.capa.skills.ISkillsCapability;
-import com.redsparkle.api.capa.skills.SkillsFactoryProvider;
-import com.redsparkle.api.capa.spechial.ISpechialCapability;
-import com.redsparkle.api.capa.spechial.SpechialFactoryProvider;
-import com.redsparkle.api.capa.water.IWaterCapability;
-import com.redsparkle.api.capa.water.WaterFactoryProvider;
+import com.redsparkle.api.Capability.Player.Inventory.IAdvInventory;
+import com.redsparkle.api.Capability.Player.Inventory.IAdvProvider;
+import com.redsparkle.api.Capability.Player.level.ILevelCapability;
+import com.redsparkle.api.Capability.Player.level.LevelFactoryProvider;
+import com.redsparkle.api.Capability.Player.skills.ISkillsCapability;
+import com.redsparkle.api.Capability.Player.skills.SkillsFactoryProvider;
+import com.redsparkle.api.Capability.Player.spechial.ISpechialCapability;
+import com.redsparkle.api.Capability.Player.spechial.SpechialFactoryProvider;
+import com.redsparkle.api.Capability.Player.water.IWaterCapability;
+import com.redsparkle.api.Capability.Player.water.WaterFactoryProvider;
 import com.redsparkle.api.utils.ItemCatalog;
 import com.redsparkle.api.utils.Lvlutil;
 import com.redsparkle.api.utils.PlayerParamsSetup;
@@ -22,7 +22,6 @@ import com.redsparkle.foe.items.guns.entitys.laserFired.EntityLaser;
 import com.redsparkle.foe.items.guns.entitys.spreadPellet_shotgun.*;
 import com.redsparkle.foe.network.ClientServerOneClass.*;
 import com.redsparkle.foe.network.MessageGunFire;
-import com.redsparkle.foe.network.ClientServerOneClass.MessageOpenGuiClient;
 import com.redsparkle.foe.network.MessageUpdateSLSServerReplyOnDemand;
 import com.redsparkle.foe.network.helpers.gunReload;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -35,7 +34,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 import net.minecraftforge.common.MinecraftForge;
 
-import static com.redsparkle.api.capa.level.LevelFactoryProvider.LEVEL_CAPABILITY;
+import static com.redsparkle.api.Capability.Player.level.LevelFactoryProvider.LEVEL_CAPABILITY;
 import static com.redsparkle.api.utils.GunHelpers.getGunDamageMP;
 
 /**
@@ -123,17 +122,11 @@ public class DedicatedServerProxy extends CommonProxy {
     public static void handleReloadMessage(EntityPlayerMP player) {
         WorldServer mainThread = (WorldServer) (player.world);
         ItemStack heldItem = player.getHeldItem(EnumHand.MAIN_HAND);
-        if (heldItem != null) { //&& heldItem.getTagCompound().getBoolean("isgun")
-            if (heldItem.getItem() instanceof TenMM) {
-                gunReload.TenMM(mainThread, heldItem, player);
-            } else if (heldItem.getItem() instanceof LaserPistol) {
-                gunReload.LaserPistol(mainThread, heldItem, player);
-            } else if (heldItem.getItem() instanceof FourTenMM) {
-                gunReload.FourTenMM(mainThread, heldItem, player);
-            } else if (heldItem.getItem() instanceof SB_shoutgun) {
-                gunReload.Shotgun(mainThread, heldItem, player);
-            } else if (heldItem.getItem() instanceof FlareGun) {
-                gunReload.FlareGun(mainThread, heldItem, player);
+        if (heldItem != null) {
+            if (heldItem.getItem() instanceof TenMM || heldItem.getItem() instanceof FourTenMM || heldItem.getItem() instanceof LaserPistol) {
+                gunReload.ClipLoaded(mainThread, heldItem, player);
+            } else if (heldItem.getItem() instanceof SB_shoutgun || heldItem.getItem() instanceof FlareGun) {
+                gunReload.BulletLoaded(mainThread, heldItem, player);
             }
 
 

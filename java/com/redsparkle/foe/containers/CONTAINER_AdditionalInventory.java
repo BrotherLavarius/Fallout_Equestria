@@ -1,7 +1,7 @@
 package com.redsparkle.foe.containers;
 
-import com.redsparkle.api.capa.Inventory.IAdvInventory;
-import com.redsparkle.api.capa.Inventory.IAdvProvider;
+import com.redsparkle.api.Capability.Player.Inventory.IAdvInventory;
+import com.redsparkle.api.Capability.Player.Inventory.IAdvProvider;
 import com.redsparkle.foe.containers.Slots.*;
 import com.redsparkle.foe.inventory.Adv_inv;
 import net.minecraft.entity.player.EntityPlayer;

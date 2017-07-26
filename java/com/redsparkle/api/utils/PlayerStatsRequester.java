@@ -1,10 +1,10 @@
 package com.redsparkle.api.utils;
 
-import com.redsparkle.api.capa.level.LevelFactoryProvider;
-import com.redsparkle.api.capa.rad.RadsFactoryProvider;
-import com.redsparkle.api.capa.skills.SkillsFactoryProvider;
-import com.redsparkle.api.capa.spechial.SpechialFactoryProvider;
-import com.redsparkle.api.capa.water.WaterFactoryProvider;
+import com.redsparkle.api.Capability.Player.level.LevelFactoryProvider;
+import com.redsparkle.api.Capability.Player.rad.RadsFactoryProvider;
+import com.redsparkle.api.Capability.Player.skills.SkillsFactoryProvider;
+import com.redsparkle.api.Capability.Player.spechial.SpechialFactoryProvider;
+import com.redsparkle.api.Capability.Player.water.WaterFactoryProvider;
 import net.minecraft.entity.player.EntityPlayer;
 
 /**
