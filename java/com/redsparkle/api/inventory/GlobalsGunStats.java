@@ -1,9 +1,5 @@
 package com.redsparkle.api.inventory;
 
-/**
- * Created by hoijima on 24.07.17.
- */
-
 public enum GlobalsGunStats {
     /**
      * 1.Damage (plain simple damage)
@@ -27,19 +23,24 @@ public enum GlobalsGunStats {
 
     GlobalsGunStats(int Damage, int Clipsize, int NearEmpty, int Empty) {
         this.Damage = Damage;
-        this.Clipsize= Clipsize;
-        this.NearEmpty= NearEmpty;
-        this.Empty=Empty;
+        this.Clipsize = Clipsize;
+        this.NearEmpty = NearEmpty;
+        this.Empty = Empty;
     }
 
-    public int getDamage(){
+    public int getDamage() {
         return Damage;
     }
-    public int Clipsize(){return Clipsize;}
-    public int NearEmpty(){
+
+    public int Clipsize() {
+        return Clipsize;
+    }
+
+    public int NearEmpty() {
         return NearEmpty;
     }
-    public int Empty(){
+
+    public int Empty() {
         return Empty;
     }
 }
