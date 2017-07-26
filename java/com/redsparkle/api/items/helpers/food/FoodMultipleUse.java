@@ -17,27 +17,20 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.List;
-
 /**
  * Created by hoijima on 09.06.17.
  */
 public abstract class FoodMultipleUse extends Item {
-
     public int foodLvl;
     public int NUMBER_OF_BOXES;
     public int MaxDamage;
     public int foodToAdd;
-
-
     public FoodMultipleUse() {
-
         this.setMaxStackSize(NUMBER_OF_BOXES);
         this.setCreativeTab(InitCreativeTabs.Fallout_Food);   // the item will appear on the Miscellaneous tab in creative
         this.setMaxDamage(MaxDamage);
         this.foodLvl = foodToAdd;
     }
-
-
     /**
      * allows items to add custom lines of information to the mouseover description
      */
@@ -45,16 +38,13 @@ public abstract class FoodMultipleUse extends Item {
     public void addInformation(ItemStack stack, EntityPlayer playerIn, List<String> tooltip, boolean advanced) {
         tooltip.add("Food left:" + (stack.getMaxDamage() - stack.getItemDamage() + "/" + stack.getMaxDamage()));
     }
-
     public ActionResult<ItemStack> onItemRightClick(World itemStackIn, EntityPlayer worldIn, EnumHand playerIn) {
         worldIn.setActiveHand(playerIn);
-
         if (worldIn.getFoodStats().getFoodLevel() == 20) {
             return new ActionResult<>(EnumActionResult.FAIL, worldIn.getHeldItem(playerIn));
         }
         return new ActionResult<>(EnumActionResult.SUCCESS, worldIn.getHeldItem(playerIn));
     }
-
     public ItemStack onItemUseFinish(ItemStack stack, World worldIn, EntityLivingBase entityLiving) {
         EntityPlayer entityplayer = (EntityPlayer) entityLiving;
         if (entityLiving instanceof EntityPlayer) {
@@ -76,18 +66,11 @@ public abstract class FoodMultipleUse extends Item {
         } else {
             return stack;
         }
-
-
     }
-
     public EnumAction getItemUseAction(ItemStack stack) {
         return EnumAction.EAT;
     }
-
     public int getMaxItemUseDuration(ItemStack stack) {
         return 16;
     }
-
-
 }
-

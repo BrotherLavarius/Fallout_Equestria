@@ -1,8 +1,6 @@
 package com.redsparkle.foe.events.gui;
-
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-
 /**
  * Created by hoijima on 02.06.17.
  */
@@ -38,7 +36,6 @@ public class EventPlayerGuiHandler {
                 break;
         }
     }
-
     /* The RenderGameOverlayEvent.Post event is called after each game overlay element is rendered.
  * Similar to the RenderGameOverlayEvent.Pre event, it is called multiple times.
  *
@@ -47,7 +44,6 @@ public class EventPlayerGuiHandler {
  */
     @SubscribeEvent(receiveCanceled = true)
     public void onEvent(RenderGameOverlayEvent.Post event) {
-
         switch (event.getType()) {
             case HEALTH:
                 break;

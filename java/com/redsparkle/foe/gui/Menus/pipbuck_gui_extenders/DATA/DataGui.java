@@ -1,7 +1,5 @@
 package com.redsparkle.foe.gui.Menus.pipbuck_gui_extenders.DATA;
-
 import com.redsparkle.api.utils.gui.GuiButtonExtFallout;
-
 /**
  * Created by hoijima on 09.05.17.
  */
@@ -24,7 +22,6 @@ public class DataGui {
     public static final GuiButtonExtFallout[] buttonsDATAmain = new GuiButtonExtFallout[]{
             World_Map, Misc, Radio
     };
-
     public static GuiButtonExtFallout RadioWasteland = new GuiButtonExtFallout(33,
             0,
             0,
@@ -45,24 +42,19 @@ public class DataGui {
             0,
             0,
             0, "Radio STOP!");
-
     public static GuiButtonExtFallout RadioVolumeUp = new GuiButtonExtFallout(37,
             0,
             0,
             0,
             0, "Volume +");
-
     public static GuiButtonExtFallout RadioVolumeDown = new GuiButtonExtFallout(38,
             0,
             0,
             0,
             0, "Volume -");
-
     public static final GuiButtonExtFallout[] buttonsDATARadio = new GuiButtonExtFallout[]{
-
             RadioWasteland,
             RadioManeStream,
             RadioBrony, RadioButtonStop, RadioVolumeUp, RadioVolumeDown
     };
-
 }

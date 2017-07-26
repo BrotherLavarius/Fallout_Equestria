@@ -16,15 +16,12 @@
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  */
-
 package com.redsparkle.api.utils.gui;
-
 import com.redsparkle.api.utils.GlobalNames;
 import net.minecraft.client.Minecraft;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.client.config.GuiButtonExt;
 import net.minecraftforge.fml.client.config.GuiUtils;
-
 /**
  * This class provides a button that fixes several bugs present in the vanilla GuiButton drawing code.
  * The gist of it is that it allows buttons of any size without gaps in the graphics and with the
@@ -38,15 +35,12 @@ import net.minecraftforge.fml.client.config.GuiUtils;
 public class GuiButtonExtFallout extends GuiButtonExt {
     final ResourceLocation FalloutWidgets = new ResourceLocation(GlobalNames.Domain,
             "textures/gui/fallout_widgets.png");
-
     public GuiButtonExtFallout(int id, int xPos, int yPos, String displayString) {
         super(id, xPos, yPos, displayString);
     }
-
     public GuiButtonExtFallout(int id, int xPos, int yPos, int width, int height, String displayString) {
         super(id, xPos, yPos, width, height, displayString);
     }
-
     /**
      * Draws this button to the screen.
      */
@@ -61,7 +55,6 @@ public class GuiButtonExtFallout extends GuiButtonExt {
             GuiUtils.drawContinuousTexturedBox(FalloutWidgets, this.xPosition, this.yPosition, 0, 46 + k * 20, this.width, this.height, 200, 20, 2, 3, 2, 2, this.zLevel);
             this.mouseDragged(mc, mouseX, mouseY);
             int color = 15435844;
-
             if (packedFGColour != 0) {
                 color = packedFGColour;
             } else if (!this.enabled) {
@@ -69,7 +62,6 @@ public class GuiButtonExtFallout extends GuiButtonExt {
             } else if (this.hovered) {
                 color = 15465844;
             }
-
             String buttonText = this.displayString;
             int strWidth = mc.fontRendererObj.getStringWidth(buttonText);
             int ellipsisWidth = mc.fontRendererObj.getStringWidth("...");

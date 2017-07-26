@@ -7,7 +7,6 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.List;
-
 /**
  * Created by hoijima on 19.06.17.
  */
@@ -15,7 +14,6 @@ public class Item_bullet extends Item {
     public Item_bullet() {
         this.setMaxStackSize(1);
     }
-
     /**
      * allows items to add custom lines of information to the mouseover description
      */

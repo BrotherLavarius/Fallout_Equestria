@@ -1,5 +1,4 @@
 package com.redsparkle.foe.keys;
-
 import com.redsparkle.api.Capability.Player.Inventory.IAdvProvider;
 import com.redsparkle.foe.main;
 import com.redsparkle.foe.network.ClientServerOneClass.MessageAdvInv;

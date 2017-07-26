@@ -27,7 +27,6 @@ import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 import static com.redsparkle.api.utils.GunHelpers.getGunDamage;
-
 /**
  * Created by NENYN on 1/21/2017.
  */
@@ -48,19 +47,15 @@ public abstract class Item_Firearm extends Item {
     public Integer[] invArray = {0, 1, 2, 3, 4, 5, 6, 7, 8};
     public String gunName;
     public String projectile;
-
-
     public Item_Firearm() {
         this.clipRounds = 32;
         this.setCreativeTab(InitCreativeTabs.Fallout_guns);
         this.setMaxStackSize(1);
         this.setMaxDamage(1000);
     }
-
     public ItemStack findAmmo(EntityPlayer player) {
         for (int i = 0; i < invArray.length; ++i) {
             ItemStack itemstack = player.inventory.getStackInSlot(i);
-
             if (this.isAmmo(itemstack)) {
                 if (itemstack.getItemDamage() >= 12) {
                     return ItemStack.EMPTY;
@@ -72,13 +67,10 @@ public abstract class Item_Firearm extends Item {
         }
         return ItemStack.EMPTY;
     }
-
     @Override
     public ICapabilityProvider initCapabilities(ItemStack stack, NBTTagCompound nbt) {
         return super.initCapabilities(stack, nbt);
     }
-
-
     public ActionResult<ItemStack> shoot(EntityPlayer playerIn, IGunInterface igun, World worldIn, ItemStack caseStack, ItemStack itemstack) {
         if (!playerIn.capabilities.isCreativeMode) {
             if (igun.getAmmo() == 0) {
@@ -115,13 +107,10 @@ public abstract class Item_Firearm extends Item {
             firedType(projectile, worldIn, playerIn);
             AddCase(playerIn, caseStack);
             playerIn.cameraYaw = cameraYaw;
-
-
         }
         playerIn.addStat(StatList.getObjectUseStats(this));
         return new ActionResult<>(EnumActionResult.SUCCESS, itemstack);
     }
-
     public void firedType(String projectile, World worldIn, EntityPlayer playerIn) {
         if (projectile == "bullet") {
             bullet(worldIn, playerIn);
@@ -139,7 +128,6 @@ public abstract class Item_Firearm extends Item {
             flame(worldIn, playerIn);
         }
     }
-
     public void bullet(World worldIn,EntityPlayer playerIn) {
         int damage_firearms = playerIn.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY,null).getFirearms();
         EntityBullet bullet = new EntityBullet(worldIn, playerIn);
@@ -148,9 +136,7 @@ public abstract class Item_Firearm extends Item {
         bullet.setDamage(getGunDamage(playerIn) + damage_firearms);
         worldIn.spawnEntity(bullet);
         if(!worldIn.isRemote){main.simpleNetworkWrapper.sendToServer(new MessageGunFire("firearm"));}
-
     }
-
     public void pellet(World worldIn,EntityPlayer playerIn) {
         int damage_firearms = playerIn.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY,null).getFirearms();
         Pellet[] pellets = new Pellet[]{new Pellet_one(worldIn, playerIn), new Pellet_two(worldIn, playerIn), new Pellet_tree(worldIn, playerIn), new Pellet_four(worldIn, playerIn), new Pellet_five(worldIn, playerIn), new Pellet_six(worldIn, playerIn)};
@@ -162,7 +148,6 @@ public abstract class Item_Firearm extends Item {
         }
         if(!worldIn.isRemote){main.simpleNetworkWrapper.sendToServer(new MessageGunFire("shotgun"));}
     }
-
     public void laser(World worldIn,EntityPlayer playerIn) {
         int damage_magic_modif = playerIn.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY,null).getMagic();
         int damage_laser_weapons = playerIn.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY,null).getEnergyWeapons();
@@ -173,8 +158,6 @@ public abstract class Item_Firearm extends Item {
         worldIn.spawnEntity(laser);
         if(!worldIn.isRemote){main.simpleNetworkWrapper.sendToServer(new MessageGunFire("laser"));}
     }
-
-
     public void flame(World worldIn,EntityPlayer playerIn)
     {
         EntityFlame flame = new EntityFlame(worldIn, playerIn);
@@ -189,23 +172,16 @@ public abstract class Item_Firearm extends Item {
         worldIn.spawnEntity(flare);
         if(!worldIn.isRemote){main.simpleNetworkWrapper.sendToServer(new MessageGunFire("flare"));}
     }
-
-
     public boolean isAmmo(ItemStack stack) {
-
         return false;
     }
-
     public void AddCase(EntityPlayer playerIn, ItemStack casing) {
         if (InventoryManager.AddItemToExistingStack(playerIn, casing) != ItemStack.EMPTY) {
             InventoryManager.AddItemToExistingStack(playerIn, casing).grow(1);
         } else {
             playerIn.inventory.addItemStackToInventory(casing);
         }
-
     }
-
-
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack stack, EntityPlayer playerIn, List<String> tooltip, boolean advanced) {
         IGunInterface igun = stack.getCapability(GunFactoryProvider.GUN, null);
@@ -214,6 +190,5 @@ public abstract class Item_Firearm extends Item {
         tooltip.add("Base Damage: " + BaseDamage);
         tooltip.add("Your Damage: " + damage);
         tooltip.add("Clip In: " + igun.clipInserted());
-
     }
 }

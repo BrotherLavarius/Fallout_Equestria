@@ -1,5 +1,4 @@
 package com.redsparkle.foe.items.guns.entitys.flare;
-
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.projectile.EntityThrowable;
 import net.minecraft.init.Blocks;
@@ -11,34 +10,25 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-
 /**
  * Created by hoijima on 22.06.17.
  */
 public class EntityFlare extends EntityThrowable {
-
     public float damage;
     public EntityLivingBase shootingEntity;
-
     public EntityFlare(World world) {
         super(world);
     }
-
     public EntityFlare(World world, EntityLivingBase entity) {
         super(world, entity);
     }
-
     private void explode() {
         world.spawnParticle(EnumParticleTypes.FIREWORKS_SPARK, posX, posY, posZ, 0, 0, 0);
         world.spawnParticle(EnumParticleTypes.SMOKE_LARGE, posX, posY, posZ, 0, 0, 0);
         world.spawnParticle(EnumParticleTypes.FIREWORKS_SPARK, posX, posY, posZ, 0, 0, 0);
-
         world.createExplosion(this, posX, posY, posZ, 0F, true);
-
-
         setDead();
     }
-
     @Override
     public void onUpdate() {
         super.onUpdate();
@@ -49,7 +39,6 @@ public class EntityFlare extends EntityThrowable {
             this.prevRotationYaw = this.rotationYaw;
             this.prevRotationPitch = this.rotationPitch;
         }
-
         if (ticksExisted > 30) {
             explode();
         }
@@ -57,14 +46,9 @@ public class EntityFlare extends EntityThrowable {
             double x = (double) (rand.nextInt(3) - 5) / 8.0D;
             double y = (double) (rand.nextInt(3) - 5) / 8.0D;
             double z = (double) (rand.nextInt(3) - 5) / 8.0D;
-
             world.spawnParticle(EnumParticleTypes.FIREWORKS_SPARK, posX, posY, posZ, x, y, z);
-
-
         }
-
     }
-
     @SideOnly(Side.CLIENT)
     public void handleStatusUpdate(byte p_handleStatusUpdate_1_) {
         if (p_handleStatusUpdate_1_ == 3) {
@@ -72,14 +56,11 @@ public class EntityFlare extends EntityThrowable {
                 this.world.spawnParticle(EnumParticleTypes.FIREWORKS_SPARK, this.posX, this.posY, this.posZ, 0.0D, 0.0D, 0.0D);
             }
         }
-
     }
-
     @Override
     protected float getGravityVelocity() {
         return 0.005F;
     }
-
     @Override
     protected void onImpact(RayTraceResult result) {
         {
@@ -88,34 +69,24 @@ public class EntityFlare extends EntityThrowable {
                     if(result.entityHit != this.getThrower()) {
                         if (!result.entityHit.isImmuneToFire()) {
                             boolean flag = result.entityHit.attackEntityFrom(DamageSource.causeIndirectDamage(this, this.shootingEntity), 1.0F);
-
                             if (flag) {
                                 this.applyEnchantments(this.shootingEntity, result.entityHit);
                                 result.entityHit.setFire(5);
                                 world.spawnParticle(EnumParticleTypes.FIREWORKS_SPARK, posX, posY, posZ, 0, 0, 0);
-
                             }
                         }
                     }
                 } else {
                     BlockPos blockpos = result.getBlockPos().offset(result.sideHit);
-
                     if (this.world.isAirBlock(blockpos)) {
                         this.world.setBlockState(blockpos, Blocks.FIRE.getDefaultState());
                     }
-
                 }
-
                 this.setDead();
             }
         }
     }
-
     public void setDamage(float damage) {
         this.damage = damage;
     }
-
-
 }
-
-

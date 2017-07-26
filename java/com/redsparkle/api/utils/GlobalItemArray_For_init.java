@@ -1,5 +1,4 @@
 package com.redsparkle.api.utils;
-
 import com.redsparkle.api.items.helpers.Item_Instances.Item_bullet;
 import com.redsparkle.foe.items.food.old.*;
 import com.redsparkle.foe.items.guns.*;
@@ -22,13 +21,10 @@ import com.redsparkle.foe.items.misc_one_Time_use.LvlingCrystall;
 import com.redsparkle.foe.items.utility.AdvancedEnviropmentMonitor;
 import com.redsparkle.foe.items.utility.PipBuck;
 import net.minecraft.item.Item;
-
 /**
  * Created by hoijima on 23.06.17.
  */
 public class GlobalItemArray_For_init {
-
-
     public static final String[] ItemNames = new String[]{
             //---------------------UTILITY--------------------------
             GlobalNames.PipbuckTT,
@@ -42,7 +38,6 @@ public class GlobalItemArray_For_init {
             GlobalNames.potato_crisps,
             GlobalNames.sugar_bombs,
             //---------------------MEDS--------------------------
-
             GlobalNames.RadAway,
             GlobalNames.RadX,
             GlobalNames.redHealPotion,
@@ -57,19 +52,16 @@ public class GlobalItemArray_For_init {
             GlobalNames.FourTenMMClip,
             GlobalNames.shell,
             //---------------------GUNS--------------------------
-
             GlobalNames.TenMM,
             GlobalNames.LaserPistol,
             GlobalNames.FourTenMM,
             GlobalNames.db_shoutgun,
-
             //---------------------PLACEHOLDER--------------------
             "bullet",
             //---------------------AMMO--------------------------
             GlobalNames.flare,
             //---------------------GUNS--------------------------
             GlobalNames.flare_gun,
-
             GlobalNames.TenMMCase,
             GlobalNames.FourTenMMCase
     };
@@ -107,13 +99,10 @@ public class GlobalItemArray_For_init {
     public static LaserPistol laserPistol;
     public static SB_shoutgun sb_shoutgun;
     public static FlareGun flareGun;
-
     // PLACEHOLDER
     public static Item_bullet itb;
     public static final Item[] AllInit = new Item[]{
-
             //---------------------UTILITY--------------------------
-
             pipbuck,                                    //0
             lvlingCrystall,//1
             aem,//2
@@ -125,16 +114,13 @@ public class GlobalItemArray_For_init {
             potato_crisps,//7
             sugar_bombs,//8
             //--------------MEDS--------------------------
-
             radAway,//9
             radx,//10
-
             redHealPotion,//11
             whiteHealpotion,//12
             purpleHealPotion,//13
             darkHealPotion,//14
             //--------------AMMO--------------------------
-
             tenMMAmmo,//15
             tenMMClip,//16
             battery,//17
@@ -142,20 +128,16 @@ public class GlobalItemArray_For_init {
             fourTenMMClip,//19
             sShell,//20
             //--------------GUNS--------------------------
-
             tenMM,//21
             laserPistol,//22
             fourTenMM,//23
             sb_shoutgun,//24
-
             //--------------PLACEHOLDER--------------------
             itb,//25
             //--------------AMMO--------------------------
             flare,//26
             //--------------GUNS--------------------------
             flareGun,//27
-
-
             tenMMbulletCase,//28
             fourTenMMbulletCase//29
     };
@@ -163,44 +145,32 @@ public class GlobalItemArray_For_init {
             new PipBuck(),
             new LvlingCrystall(),
             new AdvancedEnviropmentMonitor(),
-
             new Blamko_MacCheese(),
             new Dandy_Boy_Apples(),
             new GumDrops(),
             new Potato_Crisps(),
             new Fancy_mare_Snack_Cakes(),
             new Sugar_Bombs(),
-
             new RadAway(),
             new RadX(),
-
             new RedHealPotion(),
             new WhiteHealpotion(),
             new PurpleHealPotion(),
             new DarkHealPotion(),
-
-
             new TenMMammo(),
             new TenMMClip(),
             new Battery(),
             new FourTenMMammo(),
             new FourTenMMClip(),
             new SShell(),
-
             new TenMM(),
             new LaserPistol(),
             new FourTenMM(),
             new SB_shoutgun(),
-
             new Item_bullet(),
             new FlareShell(),
             new FlareGun(),
-
             new TenMMbulletCase(),
             new FourTenMMbulletCase()
     };
-
-
 }
-
-

@@ -1,6 +1,4 @@
 package com.redsparkle.api.utils;
-
-
 /**
  * Created by NENYN on 12/16/2016.
  */
@@ -18,7 +16,6 @@ public class GlobalNames {
             Creative_tab_Meds = "FOE_Meds",
             Creative_tab_Ammo = "FOE_Ammo",
             Creative_tab_Armor = "FOE_Armor";
-
     // Food
     public static final String
             potato_crisps = "potato_crisps",
@@ -46,8 +43,6 @@ public class GlobalNames {
             purpleHealPotion = "purple_heal_potion",
             redHealPotion = "red_heal_potion",
             whiteHealpotion = "white_heal_potion";
-
-
     // Guns
     public static final String
             TenMM = "tenmm_pistol",
@@ -56,7 +51,6 @@ public class GlobalNames {
             db_shoutgun = "db_shotgun",
             flare_gun = "flare_gun";
     // Food
-
     // AMMO
     public static final String
             TenMMAmmo = "tenmm_ammo",
@@ -66,38 +60,27 @@ public class GlobalNames {
             Battery = "battery",
             shell = "shell",
             flare = "flare",
-
     TenMMCase = "ten_mm_case",
             FourTenMMCase = "four_ten_mm_case";
     // PLACEHOLDERS
-
     public static final String
             TenMMbullet = "bullet10mm",
             Buckshot = "buckshot",
             RifleRound = "rifleround";
-
     // Blocks -- Inventory -- World
     public static final String
             SPCmachine = "sparkle_cola_machine";
-
-
     // Blocks -- interract -- World
     public static final String
             Workbench_handmade = "workbench_handmade",
             Workbench = "workbench_industrial",
             ArmorBench_tier_one = "armorbench_tier_one";
-
-
     // Blocks -- interract -- Stable
-
     public static final String
             Terminal = "desktop_Terminal";
-
-
     // Blocks -- Inventory -- Stable
     public static final String
             Locker = "locker";
-
     // Blocks - Stat dispencers
     public static final String
             RadBlock = "radiation_dispencer",
@@ -105,20 +88,14 @@ public class GlobalNames {
             FLMBlock = "flamer_block",
             MagicBuffer = "magic_dispencer",
             WirelessCharger = "wireless_charger";
-
-
     // Items
-
     // ARMOR
     public static final String
             T60Head = "t60head", T60Hooves = "t60hooves", T60Legs = "t60legs", T60Body = "t60body";
-
     public static final String
             T50Head = "t50head", T50Hooves = "t50hooves", T50Legs = "t50legs", T50Body = "t50body";
-
     public static final String
             T40Head = "t40head", T40Hooves = "t40hooves", T40Legs = "t40legs", T40Body = "t40body";
-
     // Utils
     public static final String
             AEM = "aem",

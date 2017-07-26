@@ -1,7 +1,5 @@
 package com.redsparkle.foe.gui.Menus.pipbuck_gui_extenders.ITEMS;
-
 import com.redsparkle.api.utils.gui.GuiButtonExtFallout;
-
 /**
  * Created by hoijima on 09.05.17.
  */
@@ -43,6 +41,5 @@ public class InventoryGui {
             0, "Repair");
     public static final GuiButtonExtFallout[] buttonsINVmain = new GuiButtonExtFallout[]{
             WEAPONS, Apparel, Aid, Ammo, MiscInv, Mod, Repair
-
     };
 }

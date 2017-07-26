@@ -1,10 +1,8 @@
 package com.redsparkle.foe.Init;
-
 import com.redsparkle.foe.main;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
-
 /**
  * Created by hoijima on 14.12.16.
  */
@@ -13,47 +11,35 @@ public class SoundInit {
     public static SoundEvent mediumentensity_rad;
     public static SoundEvent highentensity_rad;
     public static SoundEvent enervation;
-
-
     public static SoundEvent tenmm_shot;
     public static SoundEvent tenmm_dry;
     public static SoundEvent tenmm_reload;
-
     public static SoundEvent four_tenmm_shot;
     public static SoundEvent four_tenmm_dry;
     public static SoundEvent four_tenmm_reload;
-
     public static SoundEvent db_shotgun_shot;
     public static SoundEvent db_shotgun_reload;
     public static SoundEvent db_shotgun_dry;
-
     public static SoundEvent flaregun_shot;
     public static SoundEvent flaregun_dry;
     public static SoundEvent flaregun_reload;
-
     public static SoundEvent plasma_shot;
     public static SoundEvent plasma_dry;
     public static SoundEvent plasma_reload;
-
     public static SoundEvent flamer_shot;
     public static SoundEvent flamer_reload;
-
     public static SoundEvent laser_fire_var_One;
     public static SoundEvent laser_fire_var_Two;
     public static SoundEvent laser_fire_var_Tree;
     public static SoundEvent laser_reload;
     public static SoundEvent laser_dry;
-
     public static SoundEvent clip_load;
-
     public static SoundEvent tenmm_clip_out;
     public static SoundEvent four_tenmm_clip_out;
     public static SoundEvent db_shotgun_clip_out;
     public static SoundEvent flaregun_clip_out;
     public static SoundEvent laser_clip_out;
     public static SoundEvent plasma_clip_out;
-
-
 //    public static SoundEvent[] guns = {
 //            tenmm_shot,                         //	0
 //            tenmm_dry,                          //	1
@@ -86,18 +72,12 @@ public class SoundInit {
 //            laser_clip_out,                     //  27
 //            plasma_clip_out                     //  28
 //    };
-
     private static int size = 0;
-
     public static void registerSounds() {
-
-
         lowentensity_rad = registerSound("LowEntensityRad");
         mediumentensity_rad = registerSound("MediumEntensityRad");
         highentensity_rad = registerSound("HighEntensityRad");
         enervation = registerSound("Enervation");
-
-
         tenmm_shot = registerSound("tenmm_shot");
         tenmm_dry = registerSound("tenmm_dry");
         tenmm_reload = registerSound("tenmm_reload");
@@ -128,7 +108,6 @@ public class SoundInit {
         laser_clip_out = registerSound("laser_clip_out");
         plasma_clip_out = registerSound("plasma_clip_out");
     }
-
     /**
      * Register a {@link SoundEvent}.
      *
@@ -139,7 +118,4 @@ public class SoundInit {
         ResourceLocation soundID = new ResourceLocation(main.MODID, soundName);
         return GameRegistry.register(new SoundEvent(soundID).setRegistryName(soundID));
     }
-
-
-
 }

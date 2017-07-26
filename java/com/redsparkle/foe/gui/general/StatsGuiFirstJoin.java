@@ -12,14 +12,11 @@ import org.lwjgl.opengl.GL11;
 
 import java.io.IOException;
 import java.util.stream.IntStream;
-
 /**
  * Created by hoijima on 09.05.17.
  */
 @SuppressWarnings("Duplicates")
 public class StatsGuiFirstJoin extends GuiScreen {
-
-
     public Integer counter = 0;
     public Boolean CommitShow = false;
     public int startY = 15;
@@ -61,7 +58,6 @@ public class StatsGuiFirstJoin extends GuiScreen {
     int[] temp = {0, 0, 0, 0, 0, 0, 0};
     int[] finished = {0, 0, 0, 0, 0, 0, 0};
     Integer pointsAvailable = 0;
-
     @Override
     public void drawScreen(int mouseX, int mouseY, float partialTicks) {
         int startY = 15;
@@ -69,8 +65,6 @@ public class StatsGuiFirstJoin extends GuiScreen {
         GlStateManager.color(1, 1, 1, 1);
         GlStateManager.enableAlpha();
         GlStateManager.enableBlend();
-
-
         Integer[] params = {
                 mc.player.getCapability(SpechialFactoryProvider.SPECHIAL_CAPABILITY, null).getStreinght(),
                 mc.player.getCapability(SpechialFactoryProvider.SPECHIAL_CAPABILITY, null).getPerception(),
@@ -88,7 +82,6 @@ public class StatsGuiFirstJoin extends GuiScreen {
                 " Intelligence :",
                 " Agility:      ",
                 " Luck :        "
-
         };
         GL11.glPushMatrix();
         {
@@ -123,7 +116,6 @@ public class StatsGuiFirstJoin extends GuiScreen {
                                 2) + (i * 15) + 30,
                         15465844, true
                 );
-
                 this.fontRendererObj.drawString(Integer.toString(
                         finished[i] = temp[i] + params[i]),
                         ScreenGrid.XCoordStart(
@@ -134,12 +126,9 @@ public class StatsGuiFirstJoin extends GuiScreen {
                                 2) + (i * 15) + 30,
                         15465844, true
                 );
-
-
                 startY = startY + 4;
             }
             pointsAvailable = 30;
-
             this.fontRendererObj.drawString("Points available: " + Integer.toString(pointsAvailable - IntStream.of(temp).sum()),
                     ScreenGrid.XCoordStart(
                             this.width,
@@ -149,8 +138,6 @@ public class StatsGuiFirstJoin extends GuiScreen {
                             2) + 10,
                     15465844, true
             );
-
-
             {
                 int startYButtons = 36;
                 for (int o = 0; o <= (buttonsIdsPlus.length - 1); o++) {
@@ -162,10 +149,8 @@ public class StatsGuiFirstJoin extends GuiScreen {
                     this.buttonList.get(buttonsIdsMinus[o]).yPosition = ScreenGrid.XCoordStart(this.height, 2) + (o * 15) + 30;
                     this.buttonList.get(buttonsIdsMinus[o]).height = 10;
                     this.buttonList.get(buttonsIdsMinus[o]).width = 9;
-
                     startYButtons = startYButtons + 13;
                 }
-
             }
             this.buttonList.get(14).xPosition = ScreenGrid.XCoordStart(this.width, 55);
             this.buttonList.get(14).yPosition = ScreenGrid.XCoordStart(this.height, 75);
@@ -175,18 +160,14 @@ public class StatsGuiFirstJoin extends GuiScreen {
             CommitShow = (pointsAvailable - IntStream.of(temp).sum()) == 0;
         }
         GL11.glPopMatrix();
-
         super.drawScreen(mouseX, mouseY, partialTicks);
     }
-
     @Override
     public boolean doesGuiPauseGame() {
         return false;
     }
-
     @Override
     public void initGui() {
-
         for (int i = 0; i <= (buttonsPLus.length - 1); i++) {
             this.buttonList.add(buttonsPLus[i]);
         }
@@ -195,9 +176,7 @@ public class StatsGuiFirstJoin extends GuiScreen {
         }
         this.buttonList.add(Commit);
         super.initGui();
-
     }
-
     @Override
     protected void actionPerformed(GuiButton button) throws IOException {
         for (int i = 0; i <= (temp.length - 1); i++) {
@@ -227,6 +206,5 @@ public class StatsGuiFirstJoin extends GuiScreen {
                 }
             }
         }
-
     }
 }

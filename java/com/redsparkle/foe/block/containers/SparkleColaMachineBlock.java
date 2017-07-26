@@ -17,13 +17,11 @@ import net.minecraftforge.common.property.IExtendedBlockState;
 import net.minecraftforge.common.property.Properties;
 
 import static com.redsparkle.foe.main.MODID;
-
 /**
  * Created by hoijima on 04.07.16.
  */
 public class SparkleColaMachineBlock extends GeneralAllignBlockTwoOTwo {
     public static final SparkleColaMachineBlock instance = new SparkleColaMachineBlock();
-
     public SparkleColaMachineBlock() {
         super(Material.IRON);
         this.setLightLevel(1);
@@ -32,40 +30,30 @@ public class SparkleColaMachineBlock extends GeneralAllignBlockTwoOTwo {
         this.setSoundType(SoundType.METAL);
         this.setUnlocalizedName(MODID + ":" + GlobalNames.SPCmachine);
     }
-
-
     public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack) {
         worldIn.setBlockState(pos, state.withProperty(FACING, placer.getHorizontalFacing().getOpposite()), 2);
-
         if (stack.hasDisplayName()) {
             TileEntity tileentity = worldIn.getTileEntity(pos);
-
             if (tileentity instanceof SparkleColaMachineTileEntity) {
                 ((SparkleColaMachineTileEntity) tileentity).setCustomInventoryName(stack.getDisplayName());
             }
         }
     }
-
     public TileEntity createNewTileEntity(World worldIn, int meta) {
         return new SparkleColaMachineTileEntity();
     }
-
     @Override
     public boolean isOpaqueCube(IBlockState state) {
         return false;
     }
-
     @Override
     public boolean isFullCube(IBlockState state) {
         return false;
     }
-
-
     @Override
     public boolean hasTileEntity(IBlockState state) {
         return true;
     }
-
     @Override
     public IBlockState getExtendedState(IBlockState state, IBlockAccess world, BlockPos pos) {
         if (world.getTileEntity(pos) != null && world.getTileEntity(pos) instanceof SparkleColaMachineTileEntity) {
@@ -74,9 +62,4 @@ public class SparkleColaMachineBlock extends GeneralAllignBlockTwoOTwo {
         }
         return state;
     }
-
-
 }
-
-
-

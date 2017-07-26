@@ -8,7 +8,6 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.List;
-
 /**
  * Created by hoijima desu on 29.07.16 desu.
  */
@@ -18,7 +17,6 @@ public class TenMMammo extends Item {
         this.setMaxStackSize(NUMBER_OF_BOXES);
         this.setCreativeTab(InitCreativeTabs.Fallout_ammo);   // the item will appear on the Miscellaneous tab in creative
     }
-
     /**
      * allows items to add custom lines of information to the mouseover description
      */

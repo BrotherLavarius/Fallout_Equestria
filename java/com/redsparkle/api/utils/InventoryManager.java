@@ -1,11 +1,8 @@
 package com.redsparkle.api.utils;
-
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumHand;
-
-
 /**
  * Created by hoijima on 09.01.17.
  */
@@ -14,7 +11,6 @@ public class InventoryManager {
         int errorCode = 99;
         for (int i = 9; i <= player.inventory.getSizeInventory(); ++i) {
             ItemStack itemstack = player.inventory.getStackInSlot(i);
-
             if (itemstack == ItemStack.EMPTY || itemstack == null || itemstack != player.inventory.getStackInSlot(i)) {
                 if (itemstack.getItem() == Item.getByNameOrId("minecraft:air")) {
                     return i;
@@ -23,10 +19,8 @@ public class InventoryManager {
         }
         return errorCode;
     }
-
     public static ItemStack findItemOnhotBar(EntityPlayer player, ItemStack stack) {
         Integer[] invArrayOnBar = {0, 1, 2, 3, 4, 5, 6, 7, 8};
-
         if (stack == (player.getHeldItem(EnumHand.OFF_HAND))) {
             if (player.getHeldItem(EnumHand.OFF_HAND).getItemDamage() <= 12) {
                 return player.getHeldItem(EnumHand.OFF_HAND);
@@ -38,7 +32,6 @@ public class InventoryManager {
         } else {
             for (int i = 0; i < invArrayOnBar.length; ++i) {
                 ItemStack itemstack = player.inventory.getStackInSlot(i);
-
                 if (stack == (itemstack)) {
                     return itemstack;
                 }
@@ -46,7 +39,6 @@ public class InventoryManager {
         }
         return ItemStack.EMPTY;
     }
-
     public static ItemStack findItemOffBar(EntityPlayer player, ItemStack stack) {
         for (int i = 9; i <= player.inventory.getSizeInventory(); ++i) {
             ItemStack itemstack = player.inventory.getStackInSlot(i);
@@ -55,10 +47,7 @@ public class InventoryManager {
             }
         }
         return ItemStack.EMPTY;
-
-
     }
-
     public static ItemStack AddItemToExistingStack(EntityPlayer player, ItemStack stack) {
         //TODO: kick the Case's to player main inv, not the hotbar
         for (int i = 0; i <= player.inventory.getSizeInventory(); i++) {
@@ -67,9 +56,6 @@ public class InventoryManager {
                 return itemstack;
             }
         }
-
         return ItemStack.EMPTY;
     }
-
-
 }

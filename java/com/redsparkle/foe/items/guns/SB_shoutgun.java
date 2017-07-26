@@ -1,5 +1,4 @@
 package com.redsparkle.foe.items.guns;
-
 import com.redsparkle.api.Capability.Items.Gun.GunFactoryProvider;
 import com.redsparkle.api.Capability.Items.Gun.IGunInterface;
 import com.redsparkle.api.Capability.Player.skills.SkillsFactoryProvider;
@@ -14,12 +13,10 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.world.World;
-
 /**
  * Created by hoijima on 24.06.17.
  */
 public class SB_shoutgun extends Item_Firearm {
-
     public SB_shoutgun() {
         this.clipRounds = GlobalsGunStats.DB_SHOUTGUN.Clipsize();
         this.setMaxStackSize(1);
@@ -40,7 +37,6 @@ public class SB_shoutgun extends Item_Firearm {
             stack.setItemDamage(iammo.getMaxAmmo() - iammo.getAmmo());
         }
     }
-
     @Override
     public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand hand) {
         this.shot = SoundInit.db_shotgun_shot;
@@ -50,16 +46,10 @@ public class SB_shoutgun extends Item_Firearm {
         IGunInterface igun = itemstack.getCapability(GunFactoryProvider.GUN, null);
         this.damage = GlobalsGunStats.DB_SHOUTGUN.getDamage() + playerIn.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getFirearms();
         this.BaseDamage = GlobalsGunStats.DB_SHOUTGUN.getDamage();
-
         return shoot(playerIn, igun, worldIn, caseStack, itemstack);
     }
-
-
     @Override
     public boolean isAmmo(ItemStack stack) {
         return stack.getItem() instanceof TenMMClip;
     }
-
-
 }
-

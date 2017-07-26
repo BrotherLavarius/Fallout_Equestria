@@ -1,5 +1,4 @@
 package com.redsparkle.foe.items.guns;
-
 import com.redsparkle.api.Capability.Items.Gun.GunFactoryProvider;
 import com.redsparkle.api.Capability.Items.Gun.IGunInterface;
 import com.redsparkle.api.Capability.Player.skills.SkillsFactoryProvider;
@@ -15,13 +14,10 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.world.World;
-
 /**
  * Created by NENYN on 1/5/2017.
  */
 public class FourTenMM extends Item_Firearm {
-
-
     public FourTenMM() {
         this.clipRounds = GlobalsGunStats.FOUR_TEN_MM.Clipsize();
         this.setMaxStackSize(1);
@@ -30,8 +26,6 @@ public class FourTenMM extends Item_Firearm {
         this.cameraYaw = -0.1F;
         this.gunName = "Pre war 14mm pistol";
         this.projectile = "bullet";
-
-
     }
     @Override
     public void onUpdate(ItemStack stack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected) {
@@ -54,20 +48,10 @@ public class FourTenMM extends Item_Firearm {
         IGunInterface igun = itemstack.getCapability(GunFactoryProvider.GUN, null);
         this.damage = GlobalsGunStats.FOUR_TEN_MM.getDamage() + playerIn.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getFirearms();
         this.BaseDamage = GlobalsGunStats.FOUR_TEN_MM.getDamage();
-
         return shoot(playerIn, igun, worldIn, caseStack, itemstack);
     }
-
     @Override
     public boolean isAmmo(ItemStack stack) {
         return stack.getItem() instanceof TenMMClip;
     }
-
-
-
 }
-
-
-
-
-

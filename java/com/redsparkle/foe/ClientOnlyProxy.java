@@ -1,6 +1,4 @@
 package com.redsparkle.foe;
-
-
 import com.redsparkle.api.Capability.Items.Ammo.AmmoFactoryProvider;
 import com.redsparkle.api.Capability.Items.Ammo.IAmmoInterface;
 import com.redsparkle.api.Capability.Items.Gun.GunFactoryProvider;
@@ -34,16 +32,13 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
-
 /**
  * Created by hoijima on 14.12.16.
  */
 @SuppressWarnings("ALL")
 public class ClientOnlyProxy extends CommonProxy {
-
     public static Minecraft mc = Minecraft.getMinecraft();
     public static World world = mc.world;
-
     public static void handleRadMessage(MessageUpdateClientRads message) {
         Minecraft.getMinecraft().addScheduledTask(() -> {
             EntityPlayer player = Minecraft.getMinecraft().player;
@@ -52,10 +47,8 @@ public class ClientOnlyProxy extends CommonProxy {
             /** DEBUG MESSAGE ENABLER
              * System.out.println("Client: "+message.radiation);
              */
-
         });
     }
-
     public static void handleSpechialMessage(MessageUpdateClientServerSPECHIAL message) {
         Minecraft.getMinecraft().addScheduledTask(() -> {
             EntityPlayer player = Minecraft.getMinecraft().player;
@@ -70,10 +63,8 @@ public class ClientOnlyProxy extends CommonProxy {
             /** DEBUG MESSAGE ENABLER
              * System.out.println("Client: "+message.radiation);
              */
-
         });
     }
-
     public static void handleSkillsMessage(MessageUpdateClientServerSkills message) {
         Minecraft.getMinecraft().addScheduledTask(() -> {
             EntityPlayer player = Minecraft.getMinecraft().player;
@@ -94,10 +85,8 @@ public class ClientOnlyProxy extends CommonProxy {
             /** DEBUG MESSAGE ENABLER
              * System.out.println("Client: "+message.radiation);
              */
-
         });
     }
-
     public static void handleLevelMessage(MessageUpdateClientServerLevel message) {
         Minecraft.getMinecraft().addScheduledTask(() -> {
             EntityPlayer player = Minecraft.getMinecraft().player;
@@ -107,11 +96,8 @@ public class ClientOnlyProxy extends CommonProxy {
             /** DEBUG MESSAGE ENABLER
              * System.out.println("Client: "+message.radiation);
              */
-
         });
-
     }
-
     public static void handleGundMessageReload(MessageGunReloadReply message) {
         Minecraft.getMinecraft().addScheduledTask(() -> {
             System.out.println("Sound int: " + message.soundname);
@@ -129,63 +115,49 @@ public class ClientOnlyProxy extends CommonProxy {
             else if (message.soundname == 2) {
                 // 14mm reload
                 world.playSound(player, player.getPosition(), SoundInit.four_tenmm_reload, SoundCategory.HOSTILE, 1.0F, 1.0F);
-
             } else if (message.soundname == 3) {
                 // 14mm clip_out
                 world.playSound(player, player.getPosition(), SoundInit.four_tenmm_clip_out, SoundCategory.HOSTILE, 1.0F, 1.0F);
-
             }
 //-------------------------------------------------------------
             else if (message.soundname == 4) {
                 // db_shotgun reload
                 world.playSound(player, player.getPosition(), SoundInit.db_shotgun_reload, SoundCategory.HOSTILE, 1.0F, 1.0F);
-
             } else if (message.soundname == 5) {
                 // db_shotgun clip_out
                 world.playSound(player, player.getPosition(), SoundInit.db_shotgun_clip_out, SoundCategory.HOSTILE, 1.0F, 1.0F);
-
             }
 //-------------------------------------------------------------
             else if (message.soundname == 6) {
                 // flaregun reload
                 world.playSound(player, player.getPosition(), SoundInit.flaregun_reload, SoundCategory.HOSTILE, 1.0F, 1.0F);
-
             } else if (message.soundname == 7) {
                 // flaregun clip_out
                 world.playSound(player, player.getPosition(), SoundInit.flaregun_clip_out, SoundCategory.HOSTILE, 1.0F, 1.0F);
-
             }
 //-------------------------------------------------------------
             else if (message.soundname == 8) {
                 // laser reload
                 world.playSound(player, player.getPosition(), SoundInit.laser_reload, SoundCategory.HOSTILE, 1.0F, 1.0F);
-
             } else if (message.soundname == 9) {
                 // laser clip_out
                 world.playSound(player, player.getPosition(), SoundInit.laser_clip_out, SoundCategory.HOSTILE, 1.0F, 1.0F);
-
             }
 //-------------------------------------------------------------
             else if (message.soundname == 10) {
                 // plasma reload
                 world.playSound(player, player.getPosition(), SoundInit.plasma_reload, SoundCategory.HOSTILE, 1.0F, 1.0F);
-
             } else if (message.soundname == 11) {
                 // plasma clip_out
                 world.playSound(player, player.getPosition(), SoundInit.plasma_clip_out, SoundCategory.HOSTILE, 1.0F, 1.0F);
-
             }
 //-------------------------------------------------------------
             else if (message.soundname == 12) {
                 // flamer reload
                 world.playSound(player, player.getPosition(), SoundInit.flamer_reload, SoundCategory.HOSTILE, 1.0F, 1.0F);
-
             }
-
-
         });
     }
-
     public static void handleLevelMessageOnDemand(MessageUpdateSLSServerReplyOnDemand message) {
         Minecraft.getMinecraft().addScheduledTask(() -> {
             EntityPlayer player = Minecraft.getMinecraft().player;
@@ -197,14 +169,11 @@ public class ClientOnlyProxy extends CommonProxy {
             System.out.println("player progress: " + player.getCapability(LevelFactoryProvider.LEVEL_CAPABILITY, null).getProgress());
         });
     }
-
     public static void handleOpenGui(MessageOpenGuiClient message) {
         Minecraft.getMinecraft().addScheduledTask(() -> {
             mc.player.openGui(main.instance, message.ID, mc.world, (int) mc.player.posX, (int) mc.player.posY, (int) mc.player.posZ);
         });
     }
-
-
     public static void handleWaterMessage(MessageUpdateClientWater message) {
         Minecraft.getMinecraft().addScheduledTask(() -> {
             EntityPlayer player = Minecraft.getMinecraft().player;
@@ -213,11 +182,8 @@ public class ClientOnlyProxy extends CommonProxy {
             /** DEBUG MESSAGE ENABLER
              * System.out.println("Client: "+message.radiation);
              */
-
         });
     }
-
-
     public static void handleAdv_SYNC(MessageAdvInv_SYNC message) {
         Minecraft.getMinecraft().addScheduledTask(() -> {
             EntityPlayer player = Minecraft.getMinecraft().player;
@@ -234,16 +200,12 @@ public class ClientOnlyProxy extends CommonProxy {
             }
         });
     }
-
     public static void handleSync_AmmoItems(MessageUpdateAmmoHolders message) {
         Minecraft.getMinecraft().addScheduledTask(() -> {
             EntityPlayer player = Minecraft.getMinecraft().player;
             IAdvInventory advInventory = IAdvProvider.instanceFor(player);
-
-
             IAmmoInterface AmmoCapa;
             IGunInterface GunCapa;
-
             if(message.type == 0) {
                 if (message.invType == 0) {
                     ItemStack stack = player.inventory.getStackInSlot(message.slot);
@@ -274,28 +236,21 @@ public class ClientOnlyProxy extends CommonProxy {
             }
         });
     }
-
     public void preInit() {
         super.preInit();
         SoundInit.registerSounds();
-
         ClientOnlyStartup.preInitClientOnly();
         keyHandler.register();
         MinecraftForge.EVENT_BUS.register(new KeyInputHandler());
-
-
     }
-
     public void Init() {
         super.init();
         ClientOnlyStartup.initClientOnly();
     }
-
     public void postInit() {
         super.postInit();
         ClientOnlyStartup.postInitClientOnly();
     }
-
     @Override
     public boolean playerIsInCreativeMode(EntityPlayer player) {
         if (player instanceof EntityPlayerMP) {
@@ -306,13 +261,8 @@ public class ClientOnlyProxy extends CommonProxy {
         }
         return false;
     }
-
     @Override
     public boolean isDedicatedServer() {
         return false;
     }
-
-
 }
-
-

@@ -5,7 +5,6 @@ import net.minecraft.potion.Potion;
 import net.minecraft.util.ResourceLocation;
 
 import javax.annotation.Nullable;
-
 /**
  * Created by hoijima on 01.03.17.
  */
@@ -35,7 +34,6 @@ public class ModEffects {
     public static final Potion LightOverWeight;
     public static final Potion MediumOverWeight;
     public static final Potion HeavyOverWeight;
-
     static {
         if (!Bootstrap.isRegistered()) {
             throw new RuntimeException("Accessed MobEffects before Bootstrap!");
@@ -65,14 +63,11 @@ public class ModEffects {
             LightOverWeight = getRegisteredMobEffect("LightOverWeight");
             MediumOverWeight = getRegisteredMobEffect("MediumOverWeight");
             HeavyOverWeight = getRegisteredMobEffect("HeavyOverWeight");
-
         }
     }
-
     @Nullable
     private static Potion getRegisteredMobEffect(String id) {
         Potion potion = Potion.REGISTRY.getObject(new ResourceLocation(id));
-
         if (potion == null) {
             throw new IllegalStateException("Invalid ModEffect requested: " + id);
         } else {

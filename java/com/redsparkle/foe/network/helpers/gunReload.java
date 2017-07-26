@@ -1,5 +1,4 @@
 package com.redsparkle.foe.network.helpers;
-
 import com.redsparkle.api.Capability.Items.Ammo.AmmoFactoryProvider;
 import com.redsparkle.api.Capability.Items.Ammo.IAmmoInterface;
 import com.redsparkle.api.Capability.Items.Gun.GunFactoryProvider;
@@ -18,28 +17,22 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.WorldServer;
-
 /**
  * Created by hoijima on 20.01.17.
  */
 public class gunReload {
 //TODO: fix reload logic
     //TODO:FIX FLARE SOUND
-
     public static ItemStack findAmmo(EntityPlayer player, String ammo) {
         Integer[] invArray = {0, 1, 2, 3, 4, 5, 6, 7, 8};
         for (int i = 0; i < invArray.length; ++i) {
             ItemStack itemstack = player.inventory.getStackInSlot(i);
-
             if (isAmmo(itemstack, ammo)) {
                     return itemstack;
                 }
             }
-
         return ItemStack.EMPTY;
     }
-
-
     public static boolean isAmmo(ItemStack stack, String ammo) {
         if (ammo == "TenMM") {
             return stack.getItem() instanceof TenMMClip;
@@ -57,9 +50,7 @@ public class gunReload {
             return stack.getItem() instanceof FlareShell;
         }
         return false;
-
     }
-
     public static void ClipLoaded(WorldServer mainThread, ItemStack heldItem, EntityPlayerMP player) {
         mainThread.addScheduledTask(() -> {
             Item clip =null;
@@ -83,7 +74,6 @@ public class gunReload {
                 clipOut=9;
                 gunName="LaserPistol";
             }
-
             ItemStack clipstack = new ItemStack(clip);
             IGunInterface igun = heldItem.getCapability(GunFactoryProvider.GUN,null);
             IAmmoInterface iclip = clipstack.getCapability(AmmoFactoryProvider.AMMO_STORAGE,null);
@@ -103,7 +93,6 @@ public class gunReload {
                     player.inventory.setInventorySlotContents(InventoryManager.FindEmpty(player), clipstack);
                     main.simpleNetworkWrapper.sendTo(new MessageGunReloadReply(clipOut), player);
                 }
-
             }else if (!igun.clipInserted()){//clip is out
                 if (findAmmo(player, gunName) != ItemStack.EMPTY){//if there IS clips available
                     iclip.setAmmo(igun.getAmmo());
@@ -113,15 +102,10 @@ public class gunReload {
                     main.simpleNetworkWrapper.sendTo(new MessageGunReloadReply(clipIn), player);
                 }
                 else if (findAmmo(player, gunName) == ItemStack.EMPTY){//if NO clips available
-
                 }
-
             }
         });
-
     }
-
-
     public static void BulletLoaded(WorldServer mainThread, ItemStack heldItem, EntityPlayerMP player) {
         mainThread.addScheduledTask(() -> {
             String gunName = "";
@@ -157,15 +141,10 @@ public class gunReload {
             }
         });
     }
-
-
     private static void Return_Empty_Clip(EntityPlayerMP player, Item emptyclip, ItemStack heldItem) {
         ItemStack emptyClipStack = new ItemStack(emptyclip);
         emptyClipStack.getCapability(AmmoFactoryProvider.AMMO_STORAGE,null).setAmmo(0);
         heldItem.getCapability(GunFactoryProvider.GUN,null).setAmmo(0);
         player.inventory.setInventorySlotContents(InventoryManager.FindEmpty(player), emptyClipStack);
-
     }
 }
-
-

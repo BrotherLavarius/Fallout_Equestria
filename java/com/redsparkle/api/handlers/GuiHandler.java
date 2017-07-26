@@ -12,7 +12,6 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.IGuiHandler;
 
 import javax.annotation.Nullable;
-
 /**
  * Created by hoijima on 3/15/2017.
  */
@@ -23,19 +22,15 @@ public class GuiHandler implements IGuiHandler {
     public static final int PIPBUCK_GUI_DATA = 3;
     public static final int FIRTS_TIME_LVLUP = 4;
     public static final int ADV_Inv = 5;
-
-
     @Nullable
     @Override
     public Object getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
-
         if (ID == ADV_Inv) {
             System.out.println("ServerINv called");
             return new CONTAINER_AdditionalInventory(player);
         }
         return null;
     }
-
     @Nullable
     @Override
     public Object getClientGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {

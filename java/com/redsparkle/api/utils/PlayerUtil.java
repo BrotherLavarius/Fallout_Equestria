@@ -15,71 +15,54 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.UUID;
-
 public class PlayerUtil {
     public static HashMap<String, GameProfile> knownSkins = new HashMap();
-
     public static EntityPlayerMP getPlayerForUsernameVanilla(MinecraftServer server, String username) {
         return server.getPlayerList().getPlayerByUsername(username);
 //        return VersionUtil.getPlayerForUsername(server, username);
     }
-
     public static EntityPlayerMP getPlayerBaseServerFromPlayerUsername(String username, boolean ignoreCase) {
         MinecraftServer server = FMLCommonHandler.instance().getMinecraftServerInstance();
-
         if (server != null) {
             if (ignoreCase) {
                 return getPlayerForUsernameVanilla(server, username);
             } else {
                 Iterator iterator = server.getPlayerList().getPlayers().iterator();
                 EntityPlayerMP entityplayermp;
-
                 do {
                     if (!iterator.hasNext()) {
                         return null;
                     }
-
                     entityplayermp = (EntityPlayerMP) iterator.next();
                 }
                 while (!entityplayermp.getName().equalsIgnoreCase(username));
-
                 return entityplayermp;
             }
         }
-
         FOELog.severe("Warning: Could not find player base server instance for player " + username);
-
         return null;
     }
-
     public static EntityPlayerMP getPlayerBaseServerFromPlayer(EntityPlayer player, boolean ignoreCase) {
         if (player == null) {
             return null;
         }
-
         if (player instanceof EntityPlayerMP) {
             return (EntityPlayerMP) player;
         }
-
         return PlayerUtil.getPlayerBaseServerFromPlayerUsername(player.getName(), ignoreCase);
     }
-
     @SideOnly(Side.CLIENT)
     public static EntityPlayerSP getPlayerBaseClientFromPlayer(EntityPlayer player, boolean ignoreCase) {
         EntityPlayerSP clientPlayer = FMLClientHandler.instance().getClientPlayerEntity();
-
         if (clientPlayer == null && player != null) {
             FOELog.severe("Warning: Could not find player base client instance for player " + player.getGameProfile().getName());
         }
-
         return clientPlayer;
     }
-
     @SideOnly(Side.CLIENT)
     public static GameProfile getOtherPlayerProfile(String name) {
         return knownSkins.get(name);
     }
-
     @SideOnly(Side.CLIENT)
     public static GameProfile makeOtherPlayerProfile(String strName, String strUUID) {
         GameProfile profile = null;
@@ -96,11 +79,9 @@ public class PlayerUtil {
             UUID uuid = strUUID.isEmpty() ? UUID.randomUUID() : UUID.fromString(strUUID);
             profile = new GameProfile(uuid, strName);
         }
-
         PlayerUtil.knownSkins.put(strName, profile);
         return profile;
     }
-
     @SideOnly(Side.CLIENT)
     public static GameProfile getSkinForName(String strName, String strUUID, int dimID) {
         GameProfile profile = FMLClientHandler.instance().getClientPlayerEntity().getGameProfile();
@@ -115,21 +96,17 @@ public class PlayerUtil {
         }
         return profile;
     }
-
     public static EntityPlayerMP getPlayerByUUID(UUID theUUID) {
         List players = FMLCommonHandler.instance().getMinecraftServerInstance().getPlayerList().getPlayers();
         EntityPlayerMP entityplayermp;
         for (int i = players.size() - 1; i >= 0; --i) {
             entityplayermp = (EntityPlayerMP) players.get(i);
-
             if (entityplayermp.getUniqueID().equals(theUUID)) {
                 return entityplayermp;
             }
         }
         return null;
     }
-
-
     public static boolean isPlayerOnline(EntityPlayerMP player) {
         return player.world.getMinecraftServer().getPlayerList().getPlayers().contains(player);
     }

@@ -7,7 +7,6 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.List;
-
 /**
  * Created by NENYN on 1/12/2017.
  */
@@ -15,7 +14,6 @@ public class TenMMbulletCase extends Item {
     public TenMMbulletCase() {
         this.setMaxStackSize(64);
     }
-
     /**
      * allows items to add custom lines of information to the mouseover description
      */

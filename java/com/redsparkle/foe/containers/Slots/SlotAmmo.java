@@ -1,16 +1,12 @@
 package com.redsparkle.foe.containers.Slots;
-
 import com.redsparkle.api.items.helpers.Item_Instances.Item_SaddleBagAmmo;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
-
 /**
  * Created by hoijima on 28.06.17.
  */
 public class SlotAmmo extends Slot {
-
-
     /**
      * The inventory we want to extract a slot from.
      */
@@ -31,7 +27,6 @@ public class SlotAmmo extends Slot {
      * display position of the inventory slot on the screen y axis
      */
     public int yPos;
-
     public SlotAmmo(IInventory inventoryIn, int index, int xPosition, int yPosition) {
         super(inventoryIn, index, xPosition, yPosition);
         this.inventory = inventoryIn;
@@ -39,20 +34,16 @@ public class SlotAmmo extends Slot {
         this.xPos = xPosition;
         this.yPos = yPosition;
     }
-
     @Override
     public int getSlotIndex() {
         return slotIndex;
     }
-
     @Override
     public int getSlotStackLimit() {
         return 65;
     }
-
     @Override
     public boolean isItemValid(ItemStack stack) {
         return super.isItemValid(stack) && stack.getItem() instanceof Item_SaddleBagAmmo;
     }
-
 }

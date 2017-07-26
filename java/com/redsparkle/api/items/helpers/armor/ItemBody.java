@@ -9,7 +9,6 @@ import net.minecraft.util.DamageSource;
 import net.minecraftforge.common.ISpecialArmor;
 
 import javax.annotation.Nonnull;
-
 /**
  * Created by hoijima on 3/20/2017.
  */
@@ -17,7 +16,6 @@ public class ItemBody extends ItemArmor implements ISpecialArmor {
     public ItemBody(ArmorMaterial materialIn, int renderIndexIn, EntityEquipmentSlot equipmentSlotIn) {
         super(materialIn, renderIndexIn, equipmentSlotIn);
     }
-
     /**
      * Retrieves the modifiers to be used when calculating armor damage.
      * <p>
@@ -38,7 +36,6 @@ public class ItemBody extends ItemArmor implements ISpecialArmor {
     public ArmorProperties getProperties(EntityLivingBase player, @Nonnull ItemStack armor, DamageSource source, double damage, int slot) {
         return null;
     }
-
     /**
      * Get the displayed effective armor.
      *
@@ -51,7 +48,6 @@ public class ItemBody extends ItemArmor implements ISpecialArmor {
     public int getArmorDisplay(EntityPlayer player, @Nonnull ItemStack armor, int slot) {
         return 0;
     }
-
     /**
      * Applies damage to the ItemStack. The mod is responsible for reducing the
      * item durability and stack size. If the stack is depleted it will be cleaned
@@ -66,8 +62,5 @@ public class ItemBody extends ItemArmor implements ISpecialArmor {
      */
     @Override
     public void damageArmor(EntityLivingBase entity, @Nonnull ItemStack stack, DamageSource source, int damage, int slot) {
-
     }
-
-
 }

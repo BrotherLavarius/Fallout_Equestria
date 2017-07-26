@@ -27,13 +27,11 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 
 import static com.redsparkle.foe.main.MODID;
-
 /**
  * Created by hoijima on 23.09.16.
  */
 public class ClientOnlyStartup {
     private static PipBuckOverlay pipBuckGui;
-
     public static void preInitClientOnly() {
         final CreativeTabs Fallout_ammo = InitCreativeTabs.Fallout_ammo;
         final CreativeTabs Fallout_blocks = InitCreativeTabs.Fallout_blocks;
@@ -46,7 +44,6 @@ public class ClientOnlyStartup {
         RenderingRegistry.registerEntityRenderingHandler(EntityBullet.class, new RenderFactoryBullet(Minecraft.getMinecraft().getRenderManager()));
         RenderingRegistry.registerEntityRenderingHandler(EntityLaser.class, new RenderFactoryLaser(Minecraft.getMinecraft().getRenderManager()));
         RenderingRegistry.registerEntityRenderingHandler(EntityFlame.class, new RenderFactoryBullet(Minecraft.getMinecraft().getRenderManager()));
-
         RenderingRegistry.registerEntityRenderingHandler(Pellet.class, new RenderFactoryBullet(Minecraft.getMinecraft().getRenderManager()));
         RenderingRegistry.registerEntityRenderingHandler(Pellet_one.class, new RenderFactoryBullet(Minecraft.getMinecraft().getRenderManager()));
         RenderingRegistry.registerEntityRenderingHandler(Pellet_two.class, new RenderFactoryBullet(Minecraft.getMinecraft().getRenderManager()));
@@ -54,15 +51,11 @@ public class ClientOnlyStartup {
         RenderingRegistry.registerEntityRenderingHandler(Pellet_four.class, new RenderFactoryBullet(Minecraft.getMinecraft().getRenderManager()));
         RenderingRegistry.registerEntityRenderingHandler(Pellet_five.class, new RenderFactoryBullet(Minecraft.getMinecraft().getRenderManager()));
         RenderingRegistry.registerEntityRenderingHandler(Pellet_six.class, new RenderFactoryBullet(Minecraft.getMinecraft().getRenderManager()));
-
         RenderingRegistry.registerEntityRenderingHandler(EntityFlare.class, new RenderFactoryBullet(Minecraft.getMinecraft().getRenderManager()));
-
         OBJLoader.INSTANCE.addDomain(GlobalNames.Domain);
-
         for (int i = 0; i < (GlobalBlockArray.blocks.length - 1); i++) {
             ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(GlobalBlockArray.blocks[i]), 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalBlockArray.blocksNames[i], "inventory"));
         }
-
         //ITEMS SECTION#########################################
         for (int it = 0; it <= (GlobalItemArray_For_init.AllInit.length - 1); it++) {
             final int DEFAULT_ITEM_SUBTYPE = 0;
@@ -70,27 +63,18 @@ public class ClientOnlyStartup {
                 ModelLoader.setCustomModelResourceLocation(GlobalItemArray_For_init.AllInit[it], DEFAULT_ITEM_SUBTYPE, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalItemArray_For_init.ItemNames[it], "inventory"));
             }
         }
-
-
         for (int ar = 0; ar <= (GlobalItemModelsInitArray.AllInit.length - 1); ar++) {
             final int DEFAULT_ITEM_SUBTYPE = 0;
             if (GlobalItemModelsInitArray.AllInit[ar] != null) {
                 ModelLoader.setCustomModelResourceLocation(GlobalItemModelsInitArray.AllInit[ar], DEFAULT_ITEM_SUBTYPE, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalItemModelsInitArray.ItemNames[ar], "inventory"));
             }
         }
-
     }
-
     public static void initClientOnly() {
         for (int i = 0; i < (GlobalBlockArray.blocks.length - 1); i++) {
             Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(Item.getItemFromBlock(GlobalBlockArray.blocks[i]), 0, new ModelResourceLocation(MODID + ":" + GlobalBlockArray.blocksNames[i]));
-
         }
-
-
     }
-
-
     public static void postInitClientOnly() {
   /* Here, we register the event handler that modifies the overlay. Since
    * the overlay is a GUI element, and the GUI only exists on the client side,
@@ -98,7 +82,6 @@ public class ClientOnlyStartup {
    */
         MinecraftForge.EVENT_BUS.register(new EventHandlerOverlayPipBuck());
         MinecraftForge.EVENT_BUS.register(new EventHandlerOverlayAEM());
-
         MinecraftForge.EVENT_BUS.register(new EventPlayerGuiHandler());
         MinecraftForge.EVENT_BUS.register(new EventPlayerRenders());
     }

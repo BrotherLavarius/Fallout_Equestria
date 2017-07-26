@@ -1,12 +1,10 @@
 package com.redsparkle.foe.creativeTabs;
-
 import com.redsparkle.api.utils.GlobalNames;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-
 /**
  * Created by hoijima desu on 06.08.16 desu.
  */
@@ -53,5 +51,4 @@ public class InitCreativeTabs {
             return new ItemStack(Items.ARMOR_STAND);
         }
     };
-
 }

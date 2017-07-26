@@ -36,15 +36,12 @@ import net.minecraftforge.common.MinecraftForge;
 
 import static com.redsparkle.api.Capability.Player.level.LevelFactoryProvider.LEVEL_CAPABILITY;
 import static com.redsparkle.api.utils.GunHelpers.getGunDamageMP;
-
 /**
  * DedicatedServerProxy is used to set up the mod and start it running on dedicated servers.  It contains all the code that should run on the
  * dedicated servers.  This is almost never required.
  * For more background information see here http://greyminecraftcoder.blogspot.com/2013/11/how-forge-starts-up-your-code.html
  */
 public class DedicatedServerProxy extends CommonProxy {
-
-
     public static void handleSpechialMessage(MessageUpdateClientServerSPECHIAL message, EntityPlayerMP playerEntity) {
         ISpechialCapability spechial = SpechialFactoryProvider.instanceFor(playerEntity);
         spechial.setStreinght(message.Streinght);
@@ -54,17 +51,12 @@ public class DedicatedServerProxy extends CommonProxy {
         spechial.setIntelligence(message.Intelligence);
         spechial.setAgility(message.Agility);
         spechial.setLuck(message.Luck);
-
         PlayerParamsSetup.normalizer(playerEntity);
-
         main.simpleNetworkWrapper.sendTo(new MessageUpdateClientServerSPECHIAL(spechial), playerEntity);
-
         /** DEBUG MESSAGE ENABLER
          * System.out.println("Client: "+message.radiation);
          */
-
     }
-
     public static void handleSkillsMessage(MessageUpdateClientServerSkills message, EntityPlayerMP playerEntity) {
         /**
          Magic
@@ -82,7 +74,6 @@ public class DedicatedServerProxy extends CommonProxy {
          Survival
          */
         ISkillsCapability skills = SkillsFactoryProvider.instanceFor(playerEntity);
-
         skills.setMagic(message.skills.get(0));
         skills.setMelee(message.skills.get(1));
         skills.setFirearms(message.skills.get(2));
@@ -96,29 +87,18 @@ public class DedicatedServerProxy extends CommonProxy {
         skills.setSneak(message.skills.get(10));
         skills.setBarter(message.skills.get(11));
         skills.setSurvival(message.skills.get(12));
-
-
-
-
-
         /** DEBUG MESSAGE ENABLER
          * System.out.println("Client: "+message.radiation);
          */
-
     }
-
     public static void handleLevelMessage(MessageUpdateClientServerLevel message, EntityPlayerMP playerEntity) {
         ILevelCapability level = LevelFactoryProvider.instanceFor(playerEntity);
         level.setLevel(message.Level);
         level.setProgress(message.Progress);
-
         /** DEBUG MESSAGE ENABLER
          * System.out.println("Client: "+message.radiation);
          */
-
-
     }
-
     public static void handleReloadMessage(EntityPlayerMP player) {
         WorldServer mainThread = (WorldServer) (player.world);
         ItemStack heldItem = player.getHeldItem(EnumHand.MAIN_HAND);
@@ -128,13 +108,9 @@ public class DedicatedServerProxy extends CommonProxy {
             } else if (heldItem.getItem() instanceof SB_shoutgun || heldItem.getItem() instanceof FlareGun) {
                 gunReload.BulletLoaded(mainThread, heldItem, player);
             }
-
-
         }
     }
-
     public static void handleSLSOnDemand(EntityPlayerMP player) {
-
         if (player.getCapability(LEVEL_CAPABILITY, null).getProgress() < player.experienceTotal) {
             player.getCapability(LEVEL_CAPABILITY, null).setProgress(player.experienceTotal);
         } else if (player.getCapability(LEVEL_CAPABILITY, null).getProgress() > player.experienceTotal) {
@@ -143,26 +119,19 @@ public class DedicatedServerProxy extends CommonProxy {
                             (player.getCapability(LEVEL_CAPABILITY, null).getProgress() -
                                     player.experienceTotal));
         }
-
-
         main.simpleNetworkWrapper.sendTo(new MessageUpdateSLSServerReplyOnDemand(
                 player.getCapability(LevelFactoryProvider.LEVEL_CAPABILITY, null).getLevel(),
                 player.getCapability(LevelFactoryProvider.LEVEL_CAPABILITY, null).getProgress()
-
         ), player);
     }
-
     public static void handleOpenGuiMessage(MessageOpenGuiClient message, EntityPlayerMP playerMP) {
         //Minecraft.getMinecraft().addScheduledTask(() -> {
         main.simpleNetworkWrapper.sendTo(new MessageOpenGuiClient(message.ID), playerMP);
         //});
-
     }
-
     public static void SendOpenGui(int guiId, EntityPlayerMP player) {
         main.simpleNetworkWrapper.sendTo(new MessageOpenGuiClient(guiId), player);
     }
-
     public static void handleSkillsLVLUPMessage(MessageUpdateClientServerSkills message, EntityPlayerMP player) {
         ISkillsCapability skills = SkillsFactoryProvider.instanceFor(player);
         ILevelCapability level = LevelFactoryProvider.instanceFor(player);
@@ -201,8 +170,6 @@ public class DedicatedServerProxy extends CommonProxy {
                 player.getCapability(LevelFactoryProvider.LEVEL_CAPABILITY, null).getLevel(),
                 player.getCapability(LevelFactoryProvider.LEVEL_CAPABILITY, null).getProgress()) + prevSumm == summ
                 ) {
-
-
             skills.setMagic(message.skills.get(0));
             skills.setMelee(message.skills.get(1));
             skills.setFirearms(message.skills.get(2));
@@ -219,26 +186,18 @@ public class DedicatedServerProxy extends CommonProxy {
             level.setLevel((summ / 10));
             skills.updateClient(player);
             level.updateClient(player);
-
         }
         player.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(
                 20D + (15 * spechial.getStreinght() + (2 * spechial.getEndurance()) + level.getLevel() * (Math.round(spechial.getEndurance() / 2) + 2))
         );
-
         player.heal(player.getMaxHealth());
-
     }
-
     public static void handleFireMessage(MessageGunFire message, EntityPlayerMP player) {
         World worldIn = player.world;
         EntityPlayerMP playerIn = player;
-
         int damage_firearms = player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY,null).getFirearms();
         int damage_laser_weapons = player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY,null).getEnergyWeapons();
         int damage_magic_modif = player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY,null).getMagic();
-
-
-
         if(message.type == 0){ //FIREARM
             EntityBullet bullet = new EntityBullet(worldIn, player);
             bullet.setHeadingFromThrower(player, player.rotationPitch, player.rotationYaw, 0.0F, 4.5F, 1.5F);
@@ -246,7 +205,6 @@ public class DedicatedServerProxy extends CommonProxy {
             bullet.setDamage(getGunDamageMP(player) + damage_firearms);
             worldIn.spawnEntity(bullet);
         }
-
         if(message.type == 1){ //PELLET
             Pellet[] pellets = new Pellet[]{new Pellet_one(worldIn, playerIn), new Pellet_two(worldIn, playerIn), new Pellet_tree(worldIn, playerIn), new Pellet_four(worldIn, playerIn), new Pellet_five(worldIn, playerIn), new Pellet_six(worldIn, playerIn)};
             for (int i = 0; i <= (pellets.length - 1); i++) {
@@ -274,24 +232,16 @@ public class DedicatedServerProxy extends CommonProxy {
             flare.setDamage(getGunDamageMP(player));
             worldIn.spawnEntity(flare);
         }
-
     }
-
-
     public static void handleWaterMessage(MessageUpdateClientWater message, EntityPlayerMP playerMP) {
         IWaterCapability water = WaterFactoryProvider.instanceFor(playerMP);
         water.setWater(message.water);
-
         /** DEBUG MESSAGE ENABLER
          * System.out.println("Client: "+message.radiation);
          */
-
-
     }
-
     public static void handleAdv(MessageAdvInv message, EntityPlayerMP playerMP) {
         IAdvInventory advInventory = IAdvProvider.instanceFor(playerMP);
-
         if (message.type == 0) {
             advInventory.updateClient(playerMP);
         }
@@ -299,16 +249,11 @@ public class DedicatedServerProxy extends CommonProxy {
             advInventory.updateClient(playerMP);
             playerMP.openGui(main.instance, 5, playerMP.world, (int) playerMP.posX, (int) playerMP.posY, (int) playerMP.posZ);
             //playerMP.openGui(main.instance, 5, mc.world, (int) mc.player.posX, (int) mc.player.posY, (int) mc.player.posZ);
-
         }
         if (message.type == 2) {
-
             playerMP.closeContainer();
-
         }
     }
-
-
     public static void handleAdv_SYNC(MessageAdvInv_SYNC message, EntityPlayerMP playerMP) {
         IAdvInventory advInventory = IAdvProvider.instanceFor(playerMP);
         for (int i = 0; i < 12; i++) {
@@ -321,9 +266,7 @@ public class DedicatedServerProxy extends CommonProxy {
                 advInventory.insertItem(i, stack, false);
             }
         }
-
     }
-
     public static void handleAdv_SLOT(MessageAdvInv_SLOT message, EntityPlayerMP playerMP) {
         IAdvInventory advInventory = IAdvProvider.instanceFor(playerMP);
         int slot = message.slot;
@@ -342,13 +285,9 @@ public class DedicatedServerProxy extends CommonProxy {
     public void preInit() {
         MinecraftForge.EVENT_BUS.register(new EventHandlerServerSidePre());
         super.preInit();
-
-
     }
-
     public void processer() {
     }
-
     /**
      * Do your mod setup. Build whatever data structures you care about. Register recipes,
      * send FMLInterModComms messages to other mods.
@@ -356,14 +295,12 @@ public class DedicatedServerProxy extends CommonProxy {
     public void init() {
         super.init();
     }
-
     /**
      * Handle interaction with other mods, complete your setup based on this.
      */
     public void postInit() {
         super.postInit();
     }
-
     @Override
     public boolean playerIsInCreativeMode(EntityPlayer player) {
         if (player instanceof EntityPlayerMP) {
@@ -372,11 +309,8 @@ public class DedicatedServerProxy extends CommonProxy {
         }
         return false;
     }
-
     @Override
     public boolean isDedicatedServer() {
         return true;
     }
-
-
 }

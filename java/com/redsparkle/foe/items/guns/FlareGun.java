@@ -1,5 +1,4 @@
 package com.redsparkle.foe.items.guns;
-
 import com.redsparkle.api.Capability.Items.Gun.GunFactoryProvider;
 import com.redsparkle.api.Capability.Items.Gun.IGunInterface;
 import com.redsparkle.api.items.helpers.Item_Instances.Item_Firearm;
@@ -13,13 +12,10 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.world.World;
-
 /**
  * Created by hoijima on 24.06.17.
  */
 public class FlareGun extends Item_Firearm {
-
-
     public FlareGun() {
         this.clipRounds = GlobalsGunStats.FLARE_GUN.Clipsize();
         this.setMaxStackSize(1);
@@ -28,7 +24,6 @@ public class FlareGun extends Item_Firearm {
         this.cameraYaw = -0.1F;
         this.gunName = "Pre war Flare launcher";
         this.projectile = "flare";
-
     }
     @Override
     public void onUpdate(ItemStack stack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected) {
@@ -41,8 +36,6 @@ public class FlareGun extends Item_Firearm {
             stack.setItemDamage(iammo.getMaxAmmo() - iammo.getAmmo());
         }
     }
-
-
     @Override
     public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand hand) {
         this.shot = SoundInit.flaregun_shot;
@@ -53,13 +46,9 @@ public class FlareGun extends Item_Firearm {
         ItemStack caseStack = ItemStack.EMPTY;
         IGunInterface igun = itemstack.getCapability(GunFactoryProvider.GUN, null);
         return shoot(playerIn, igun, worldIn, caseStack, itemstack);
-
     }
-
     @Override
     public boolean isAmmo(ItemStack stack) {
         return stack.getItem() instanceof FlareShell;
     }
-
 }
-

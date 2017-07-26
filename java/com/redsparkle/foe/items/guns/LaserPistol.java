@@ -1,5 +1,4 @@
 package com.redsparkle.foe.items.guns;
-
 import com.redsparkle.api.Capability.Items.Gun.GunFactoryProvider;
 import com.redsparkle.api.Capability.Items.Gun.IGunInterface;
 import com.redsparkle.api.Capability.Player.skills.SkillsFactoryProvider;
@@ -14,13 +13,10 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.world.World;
-
 /**
  * Created by hoijima on 20.01.17.
  */
 public class LaserPistol extends Item_Firearm {
-
-
     public LaserPistol() {
         this.clipRounds = GlobalsGunStats.LASER_PISTOL.Clipsize();
         this.setMaxStackSize(1);
@@ -29,7 +25,6 @@ public class LaserPistol extends Item_Firearm {
         this.cameraYaw = -0.0F;
         this.gunName = "Pre war Laser pistol";
         this.projectile = "laser";
-
     }
     @Override
     public void onUpdate(ItemStack stack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected) {
@@ -42,7 +37,6 @@ public class LaserPistol extends Item_Firearm {
             stack.setItemDamage(iammo.getMaxAmmo() - iammo.getAmmo());
         }
     }
-
     @Override
     public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand hand) {
         this.shot_var1 = SoundInit.laser_fire_var_One;
@@ -55,17 +49,10 @@ public class LaserPistol extends Item_Firearm {
         IGunInterface igun = itemstack.getCapability(GunFactoryProvider.GUN, null);
         this.damage = GlobalsGunStats.LASER_PISTOL.getDamage() + playerIn.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getEnergyWeapons();
         this.BaseDamage = GlobalsGunStats.LASER_PISTOL.getDamage();
-
         return shoot(playerIn, igun, worldIn, caseStack, itemstack);
-
     }
-
-
     @Override
     public boolean isAmmo(ItemStack stack) {
         return stack.getItem() instanceof Battery;
     }
-
-
-
 }

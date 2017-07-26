@@ -7,18 +7,15 @@ import net.minecraft.inventory.EntityEquipmentSlot;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
-
 /**
  * Created by hoijima desu on 06.08.16 desu.
  */
 public class Constants {
-
     public static final int HOTBAR_SIZE = 9;
     public static final int ARMOR_SIZE = 4;
     public static final int ROWS_VANILLA = 3;
     public static final int COLS_VANILLA = 9;
     public static final int V_INVO_SIZE = ROWS_VANILLA * COLS_VANILLA; // 36
-
     public static final int Slot_pipb = 140;
     public static final int Slot_dev1 = 141;
     public static final int Slot_dev2 = 142;

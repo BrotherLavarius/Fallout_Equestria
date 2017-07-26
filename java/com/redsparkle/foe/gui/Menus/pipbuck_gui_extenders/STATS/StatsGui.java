@@ -1,7 +1,5 @@
 package com.redsparkle.foe.gui.Menus.pipbuck_gui_extenders.STATS;
-
 import com.redsparkle.api.utils.gui.GuiButtonExtFallout;
-
 /**
  * Created by hoijima on 09.05.17.
  */
@@ -23,7 +21,6 @@ public class StatsGui {
             "Sneak",
             "Barter",
             "Survival"
-
     };
     public static GuiButtonExtFallout STATUS = new GuiButtonExtFallout(5,
             0,
@@ -47,7 +44,6 @@ public class StatsGui {
             0, "Perks");
     public static final GuiButtonExtFallout[] buttonsSTATNavigation = new GuiButtonExtFallout[]{
             STATUS, SPECIAL, SKILLS, PERKS
-
     };
     public static GuiButtonExtFallout CND = new GuiButtonExtFallout(10,
             0,
@@ -81,8 +77,5 @@ public class StatsGui {
             0, "SLP");
     public static final GuiButtonExtFallout[] buttonsSTATmain = new GuiButtonExtFallout[]{
             CND, RAD, EFF, H2O, FOD, SLP
-
     };
-
-
 }

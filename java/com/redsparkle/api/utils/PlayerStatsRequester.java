@@ -1,19 +1,15 @@
 package com.redsparkle.api.utils;
-
 import com.redsparkle.api.Capability.Player.level.LevelFactoryProvider;
 import com.redsparkle.api.Capability.Player.rad.RadsFactoryProvider;
 import com.redsparkle.api.Capability.Player.skills.SkillsFactoryProvider;
 import com.redsparkle.api.Capability.Player.spechial.SpechialFactoryProvider;
 import com.redsparkle.api.Capability.Player.water.WaterFactoryProvider;
 import net.minecraft.entity.player.EntityPlayer;
-
 /**
  * Created by hoijima on 17.06.17.
  */
 public class PlayerStatsRequester {
-
     public static Integer[] skills(EntityPlayer player) {
-
         Integer[] skills = new Integer[]{//0-11
                 player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getMagic(),
                 player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getMelee(),
@@ -29,26 +25,16 @@ public class PlayerStatsRequester {
                 player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getBarter(),
                 player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getSurvival()
         };
-
-
         return skills;
     }
-
     public static Integer[] lvl(EntityPlayer player) {
-
         Integer[] playerParams = new Integer[]{
                 player.getCapability(LevelFactoryProvider.LEVEL_CAPABILITY, null).getLevel(),
                 player.getCapability(LevelFactoryProvider.LEVEL_CAPABILITY, null).getProgress()
-
-
         };
-
-
         return playerParams;
     }
-
     public static Integer[] spechials(EntityPlayer player) {
-
         Integer[] spechials = {
                 player.getCapability(SpechialFactoryProvider.SPECHIAL_CAPABILITY, null).getStreinght(),
                 player.getCapability(SpechialFactoryProvider.SPECHIAL_CAPABILITY, null).getPerception(),
@@ -58,20 +44,13 @@ public class PlayerStatsRequester {
                 player.getCapability(SpechialFactoryProvider.SPECHIAL_CAPABILITY, null).getAgility(),
                 player.getCapability(SpechialFactoryProvider.SPECHIAL_CAPABILITY, null).getLuck()
         };
-
-
         return spechials;
     }
-
-
     public static Integer[] additionalStats(EntityPlayer player) {
-
         Integer[] player_RAD_WATER = new Integer[]{
                 player.getCapability(RadsFactoryProvider.RADIATION_CAPABILITY, null).getRadiation(),
                 player.getCapability(WaterFactoryProvider.WATER_CAPABILITY, null).getWater()
-
         };
-
         return player_RAD_WATER;
     }
 }

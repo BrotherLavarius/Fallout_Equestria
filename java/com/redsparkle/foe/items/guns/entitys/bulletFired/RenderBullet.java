@@ -10,17 +10,11 @@ import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 
 import javax.annotation.Nullable;
-
-
 public class RenderBullet extends Render {
-
     private static final ResourceLocation textures = new ResourceLocation(GlobalNames.Domain + ":textures/entities/bulletrender.png");
-
     public RenderBullet(RenderManager renderManager) {
         super(renderManager);
     }
-
-
     @Override
     public void doRender(Entity entity, double x, double y, double z, float yaw, float partialTick) {
         ModelBase model;
@@ -31,9 +25,7 @@ public class RenderBullet extends Render {
         GL11.glTranslated(x, y - 1.25D, z);
         model.render(entity, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0625F);
         GL11.glPopMatrix();
-
     }
-
     @Nullable
     @Override
     protected ResourceLocation getEntityTexture(Entity entity) {
