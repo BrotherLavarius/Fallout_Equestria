@@ -9,10 +9,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-/**
- * Created by hoijima on 19.06.17.
- */
-//https://emxtutorials.wordpress.com/creating-a-gun/
+
 public class EntityBullet extends EntityThrowable {
     public float damage;
     public EnumParticleTypes effect;

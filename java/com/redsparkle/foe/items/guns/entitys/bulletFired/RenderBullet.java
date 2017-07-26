@@ -11,9 +11,7 @@ import org.lwjgl.opengl.GL11;
 
 import javax.annotation.Nullable;
 
-/**
- * Created by hoijima on 19.06.17.выв
- */
+
 public class RenderBullet extends Render {
 
     private static final ResourceLocation textures = new ResourceLocation(GlobalNames.Domain + ":textures/entities/bulletrender.png");
