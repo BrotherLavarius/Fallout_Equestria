@@ -3,7 +3,7 @@
     "modid": "falloutequestria",
     "name": "Fallout Equestria pack",
     "description": "Bringing Fallout to the ponys",
-    "version": "0.9.3",
+    "version": "0.9.3.1",
     "mcversion": "${mcversion}",
     "url": "https://fallout-equestria.tk",
     "updateUrl": "https://fallout-equestria.tk/download/updates.json",
