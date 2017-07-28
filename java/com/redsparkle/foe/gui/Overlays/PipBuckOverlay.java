@@ -1,11 +1,14 @@
 package com.redsparkle.foe.gui.Overlays;
 import com.redsparkle.api.utils.GlobalNames;
+import com.sun.istack.internal.NotNull;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.MobEffects;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import org.lwjgl.opengl.GL11;
@@ -20,6 +23,7 @@ public class PipBuckOverlay extends Gui {
      *
      *   "resources/assets/MODID/textures/gui/advanced_overlay.png"
      */
+    NonNullList<String> compas_points = NonNullList.withSize(8,".");
     private final static ResourceLocation overlayBar = new ResourceLocation(GlobalNames.Domain,
             "textures/gui/health_hud_overlay.png");
     /* These two variables describe the size of the bar */
@@ -118,11 +122,20 @@ public class PipBuckOverlay extends Gui {
             drawTexturedModalRect(4, 10, 7, ARMOR_TEXTURE_U, armor, 3);
             GL11.glScalef(0.76F, 0.76F, 0.76F);
         }
+
         GL11.glPushMatrix();
         GL11.glTranslatef(BAR_WIDTH + 25, 1, 0);
         GL11.glScalef(0.76F, 0.76F, 0.76F);
-        int k = 0;
-        k = mc.player.getAdjustedHorizontalFacing().getHorizontalIndex();
+
+
+        int k = Math.round(mc.player.rotationYaw);
+        if (k<0)              //due to the yaw running a -360 to positive 360
+        k+=360;
+        k%=360;
+
+
+
+        fr.drawString(String.valueOf(k),10,10,900000);
         GL11.glPopMatrix();
         GL11.glPopMatrix();
         GL11.glPopMatrix();
