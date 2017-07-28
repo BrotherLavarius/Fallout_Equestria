@@ -19,7 +19,7 @@ public class EventHandlerOverlayPipBuck {
         if (!entityPlayerSP.isCreative()) {
             // look for the ItemHUDactivator in the hotbar.  If not present, return without changing the HUD.
             boolean foundInHotbar = false;
-            if (entityPlayerSP.getCapability(IAdvProvider.Adv_Inv, null).getStackInSlot(0).getItem() == GlobalItemArray_For_init.AllInit[0]) {
+            if (entityPlayerSP.getCapability(IAdvProvider.Adv_Inv, null).getStackInSlot(0).getItem() == GlobalItemArray_For_init.pipbuck) {
                 foundInHotbar = true;
             }
             if (!foundInHotbar) return;

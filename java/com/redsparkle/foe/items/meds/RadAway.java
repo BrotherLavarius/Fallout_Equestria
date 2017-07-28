@@ -2,11 +2,11 @@ package com.redsparkle.foe.items.meds;
 
 import com.redsparkle.api.Capability.Player.rad.RadsFactoryProvider;
 import com.redsparkle.foe.creativeTabs.InitCreativeTabs;
+import com.redsparkle.foe.items.FoeItem;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.EnumAction;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
@@ -19,8 +19,9 @@ import java.util.List;
 /**
  * Created by hoijima desu on 29.07.16 desu.
  */
-public class RadAway extends Item {
-    public RadAway() {
+public class RadAway extends FoeItem {
+    public RadAway(String name) {
+        super(name);
         this.setMaxStackSize(10);
         this.setCreativeTab(InitCreativeTabs.Fallout_meds);
     }

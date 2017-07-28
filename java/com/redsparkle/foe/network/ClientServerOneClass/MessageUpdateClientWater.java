@@ -35,7 +35,7 @@ public class MessageUpdateClientWater implements IMessage {
     public static class HandlerServer implements IMessageHandler<MessageUpdateClientWater, IMessage> {
         @Override
         public IMessage onMessage(MessageUpdateClientWater message, MessageContext ctx) {
-            EntityPlayerMP playerMP = ctx.getServerHandler().playerEntity;
+            EntityPlayerMP playerMP = ctx.getServerHandler().player;
             DedicatedServerProxy.handleWaterMessage(message, playerMP);
             return null;
         }

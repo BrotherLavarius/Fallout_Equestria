@@ -1,6 +1,7 @@
 package com.redsparkle.api.items.helpers.meds;
 
 import com.redsparkle.foe.creativeTabs.InitCreativeTabs;
+import com.redsparkle.foe.items.FoeItem;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
@@ -22,7 +23,7 @@ import java.util.List;
 /**
  * Created by hoijima on 17.06.17.
  */
-public abstract class meds_Potion extends Item {
+public abstract class meds_Potion extends FoeItem {
     public int NUMBER_OF_BOXES;
     public int MaxDamage;
     public float HealMomentln;
@@ -33,7 +34,8 @@ public abstract class meds_Potion extends Item {
     public String potion;
     public int duration;
     public int amplifier;
-    public meds_Potion() {
+    public meds_Potion(final String name) {
+        super(name);
         this.setMaxStackSize(NUMBER_OF_BOXES);
         this.setCreativeTab(InitCreativeTabs.Fallout_meds);   // the item will appear on the Miscellaneous tab in creative
         this.setMaxDamage(MaxDamage);

@@ -2,10 +2,10 @@ package com.redsparkle.api.items.helpers.Item_Instances;
 
 import com.redsparkle.api.Capability.Items.Ammo.AmmoFactoryProvider;
 import com.redsparkle.api.Capability.Items.Ammo.IAmmoInterface;
+import com.redsparkle.foe.items.FoeItem;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumAction;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
@@ -18,9 +18,14 @@ import java.util.List;
 /**
  * Created by hoijima on 25.07.17.
  */
-public abstract class Item_AmmoHolder extends Item {
+public abstract class Item_AmmoHolder extends FoeItem {
     public String clipInfo;
     public int clipsize;
+
+    public Item_AmmoHolder(String itemName) {
+        super(itemName);
+    }
+
     /**
      * allows items to add custom lines of information to the mouseover description
      */

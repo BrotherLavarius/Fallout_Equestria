@@ -92,7 +92,7 @@ public class EventHandlerPre {
             ISkillsCapability skills = e.player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null);
             ILevelCapability lvl = e.player.getCapability(LEVEL_CAPABILITY, null);
             ISpechialCapability spe = e.player.getCapability(SpechialFactoryProvider.SPECHIAL_CAPABILITY, null);
-            Item lvliningCrystal = GlobalItemArray_For_init.AllInit[1];
+            Item lvliningCrystal = GlobalItemArray_For_init.lvlingCrystall;
             ItemStack lvlingcrystallS = new ItemStack(lvliningCrystal);
             lvlingcrystallS.setCount(1);
             e.player.inventory.addItemStackToInventory(lvlingcrystallS);

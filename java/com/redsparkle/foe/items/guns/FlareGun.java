@@ -16,7 +16,8 @@ import net.minecraft.world.World;
  * Created by hoijima on 24.06.17.
  */
 public class FlareGun extends Item_Firearm {
-    public FlareGun() {
+    public FlareGun(String name) {
+        super(name);
         this.clipRounds = GlobalsGunStats.FLARE_GUN.Clipsize();
         this.setMaxStackSize(1);
         this.setMaxDamage(clipRounds);

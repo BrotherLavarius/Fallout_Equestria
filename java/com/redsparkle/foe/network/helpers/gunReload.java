@@ -56,20 +56,20 @@ public class gunReload {
             Item clip =null;
             int clipOut=0,clipIn = 0;
             String gunName = "";
-            if(heldItem.getItem() == GlobalItemArray_For_init.AllInit[21]){
-                clip = GlobalItemArray_For_init.AllInit[16];
+            if(heldItem.getItem() == GlobalItemArray_For_init.tenMM){
+                clip = GlobalItemArray_For_init.tenMMClip;
                 clipIn=0;
                 clipOut=1;
                 gunName="TenMM";
             }
-            if(heldItem.getItem() == GlobalItemArray_For_init.AllInit[23]){
-                clip = GlobalItemArray_For_init.AllInit[19];
+            if(heldItem.getItem() == GlobalItemArray_For_init.fourTenMM){
+                clip = GlobalItemArray_For_init.fourTenMMClip;
                 clipIn=2;
                 clipOut=3;
                 gunName="FourTenMM";
             }
-            if (heldItem.getItem() == GlobalItemArray_For_init.AllInit[22]) {
-                clip = GlobalItemArray_For_init.AllInit[17];
+            if (heldItem.getItem() == GlobalItemArray_For_init.laserPistol) {
+                clip = GlobalItemArray_For_init.battery;
                 clipIn=8;
                 clipOut=9;
                 gunName="LaserPistol";
@@ -113,12 +113,12 @@ public class gunReload {
             int ammoOut = 0;
             IGunInterface igun = heldItem.getCapability(GunFactoryProvider.GUN, null);
             int maxAmmo = igun.getMaxAmmo();
-            if (heldItem.getItem() == GlobalItemArray_For_init.AllInit[24]) {
+            if (heldItem.getItem() == GlobalItemArray_For_init.sb_shoutgun) {
                 gunName = "Shotgun";
                 ammoIN = 4;
                 ammoOut = 5;
             }
-            if (heldItem.getItem() == GlobalItemArray_For_init.AllInit[27]) {
+            if (heldItem.getItem() == GlobalItemArray_For_init.flare) {
                 gunName = "FlareGun";
                 ammoIN = 6;
                 ammoOut = 7;

@@ -1,8 +1,5 @@
 package com.redsparkle.foe.Init;
 
-import com.redsparkle.api.utils.GlobalBlockArray;
-import com.redsparkle.api.utils.GlobalItemArray_For_init;
-import com.redsparkle.api.utils.GlobalItemModelsInitArray;
 import com.redsparkle.api.utils.GlobalNames;
 import com.redsparkle.foe.creativeTabs.InitCreativeTabs;
 import com.redsparkle.foe.events.character.EventPlayerRenders;
@@ -18,15 +15,10 @@ import com.redsparkle.foe.items.guns.entitys.laserFired.EntityLaser;
 import com.redsparkle.foe.items.guns.entitys.laserFired.RenderFactoryLaser;
 import com.redsparkle.foe.items.guns.entitys.spreadPellet_shotgun.*;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.item.Item;
-import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.client.model.obj.OBJLoader;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
-
-import static com.redsparkle.foe.main.MODID;
 /**
  * Created by hoijima on 23.09.16.
  */
@@ -53,27 +45,30 @@ public class ClientOnlyStartup {
         RenderingRegistry.registerEntityRenderingHandler(Pellet_six.class, new RenderFactoryBullet(Minecraft.getMinecraft().getRenderManager()));
         RenderingRegistry.registerEntityRenderingHandler(EntityFlare.class, new RenderFactoryBullet(Minecraft.getMinecraft().getRenderManager()));
         OBJLoader.INSTANCE.addDomain(GlobalNames.Domain);
-        for (int i = 0; i < (GlobalBlockArray.blocks.length - 1); i++) {
-            ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(GlobalBlockArray.blocks[i]), 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalBlockArray.blocksNames[i], "inventory"));
-        }
-        //ITEMS SECTION#########################################
-        for (int it = 0; it <= (GlobalItemArray_For_init.AllInit.length - 1); it++) {
-            final int DEFAULT_ITEM_SUBTYPE = 0;
-            if (GlobalItemArray_For_init.AllInit[it] != null) {
-                ModelLoader.setCustomModelResourceLocation(GlobalItemArray_For_init.AllInit[it], DEFAULT_ITEM_SUBTYPE, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalItemArray_For_init.ItemNames[it], "inventory"));
-            }
-        }
-        for (int ar = 0; ar <= (GlobalItemModelsInitArray.AllInit.length - 1); ar++) {
-            final int DEFAULT_ITEM_SUBTYPE = 0;
-            if (GlobalItemModelsInitArray.AllInit[ar] != null) {
-                ModelLoader.setCustomModelResourceLocation(GlobalItemModelsInitArray.AllInit[ar], DEFAULT_ITEM_SUBTYPE, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalItemModelsInitArray.ItemNames[ar], "inventory"));
-            }
-        }
-    }
-    public static void initClientOnly() {
-        for (int i = 0; i < (GlobalBlockArray.blocks.length - 1); i++) {
-            Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(Item.getItemFromBlock(GlobalBlockArray.blocks[i]), 0, new ModelResourceLocation(MODID + ":" + GlobalBlockArray.blocksNames[i]));
-        }
+//        for (int i = 0; i < (GlobalBlockArray.blocks.length - 1); i++) {
+//            ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(GlobalBlockArray.blocks[i]), 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalBlockArray.blocksNames[i], "inventory"));
+//
+//            ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(GlobalBlockArray.RadiationBlock,0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalBlockArray.RadiationBlock, "inventory"));
+//
+//        }
+//        //ITEMS SECTION#########################################
+//        for (int it = 0; it <= (GlobalItemArray_For_init.AllInit.length - 1); it++) {
+//            final int DEFAULT_ITEM_SUBTYPE = 0;
+//            if (GlobalItemArray_For_init.AllInit[it] != null) {
+//                ModelLoader.setCustomModelResourceLocation(GlobalItemArray_For_init.AllInit[it], DEFAULT_ITEM_SUBTYPE, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalItemArray_For_init.ItemNames[it], "inventory"));
+//            }
+//        }
+//        for (int ar = 0; ar <= (GlobalItemModelsInitArray.AllInit.length - 1); ar++) {
+//            final int DEFAULT_ITEM_SUBTYPE = 0;
+//            if (GlobalItemModelsInitArray.AllInit[ar] != null) {
+//                ModelLoader.setCustomModelResourceLocation(GlobalItemModelsInitArray.AllInit[ar], DEFAULT_ITEM_SUBTYPE, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalItemModelsInitArray.ItemNames[ar], "inventory"));
+//            }
+//        }
+//    }
+//    public static void initClientOnly() {
+//        for (int i = 0; i < (GlobalBlockArray.blocks.length - 1); i++) {
+//            Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(Item.getItemFromBlock(GlobalBlockArray.blocks[i]), 0, new ModelResourceLocation(MODID + ":" + GlobalBlockArray.blocksNames[i]));
+//        }
     }
     public static void postInitClientOnly() {
   /* Here, we register the event handler that modifies the overlay. Since

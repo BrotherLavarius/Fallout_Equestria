@@ -29,7 +29,6 @@ import com.redsparkle.api.Capability.Player.water.WaterFactoryStorage;
 import com.redsparkle.api.handlers.GuiHandler;
 import com.redsparkle.api.utils.GlobalNames;
 import com.redsparkle.foe.Init.BlockInit;
-import com.redsparkle.foe.Init.ItemInit;
 import com.redsparkle.foe.Init.StartUpCommon;
 import com.redsparkle.foe.events.EventHandlerInit;
 import com.redsparkle.foe.events.EventHandlerPre;
@@ -55,7 +54,6 @@ public abstract class CommonProxy {
         System.out.println("WAR NEVER CHANGES...");
         StartUpCommon.preInitCommon();
         BlockInit.preInitCommon();
-        ItemInit.preInitCommon();
         // INIT Handler
         MinecraftForge.EVENT_BUS.register(new EventHandlerPre());
         EntityRegistry.registerModEntity(new ResourceLocation(GlobalNames.Domain + ":entity/bullet"), EntityBullet.class, "Bullet", 0, main.instance, 64, 10, true);
@@ -72,8 +70,7 @@ public abstract class CommonProxy {
     }
     public void init() {
         StartUpCommon.InitCommon();
-        BlockInit.InitCommon();
-        ItemInit.InitCommon();
+
         NetworkRegistry.INSTANCE.registerGuiHandler(main.instance, new GuiHandler());
         System.out.println("STARTING BOOTING CAPABILITY SYSTEM");
         CapabilityManager.INSTANCE.register(IRadiationCapability.class, new RadsFactoryStorage(), RadsFactoryProvider::new);
@@ -95,8 +92,6 @@ public abstract class CommonProxy {
     }
     public void postInit() {
         StartUpCommon.postInitCommon();
-        BlockInit.postInitCommon();
-        ItemInit.postInitCommon();
         //MinecraftForge.EVENT_BUS.register(new EventHandlerPost());
     }
     // helper to determine whether the given player is in creative mode

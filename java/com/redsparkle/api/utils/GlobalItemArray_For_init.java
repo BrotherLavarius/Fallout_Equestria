@@ -1,5 +1,7 @@
 package com.redsparkle.api.utils;
+
 import com.redsparkle.api.items.helpers.Item_Instances.Item_bullet;
+import com.redsparkle.foe.items.armor.powered.*;
 import com.redsparkle.foe.items.food.old.*;
 import com.redsparkle.foe.items.guns.*;
 import com.redsparkle.foe.items.guns.ammo.FlareShell.FlareShell;
@@ -20,157 +22,52 @@ import com.redsparkle.foe.items.meds.RadX;
 import com.redsparkle.foe.items.misc_one_Time_use.LvlingCrystall;
 import com.redsparkle.foe.items.utility.AdvancedEnviropmentMonitor;
 import com.redsparkle.foe.items.utility.PipBuck;
-import net.minecraft.item.Item;
+import net.minecraft.inventory.EntityEquipmentSlot;
+
 /**
  * Created by hoijima on 23.06.17.
  */
 public class GlobalItemArray_For_init {
-    public static final String[] ItemNames = new String[]{
-            //---------------------UTILITY--------------------------
-            GlobalNames.PipbuckTT,
-            GlobalNames.LevelingCrystall,
-            GlobalNames.AEM,
-            //---------------------FOOD--------------------------
-            GlobalNames.blamko_macCheese,
-            GlobalNames.dandy_boy_apples,
-            GlobalNames.Fancy_mare_Snack_Cakes,
-            GlobalNames.gumDrops,
-            GlobalNames.potato_crisps,
-            GlobalNames.sugar_bombs,
-            //---------------------MEDS--------------------------
-            GlobalNames.RadAway,
-            GlobalNames.RadX,
-            GlobalNames.redHealPotion,
-            GlobalNames.whiteHealpotion,
-            GlobalNames.purpleHealPotion,
-            GlobalNames.darkHealPotion,
-            //---------------------AMMO--------------------------
-            GlobalNames.TenMMAmmo,
-            GlobalNames.TenMMClip,
-            GlobalNames.Battery,
-            GlobalNames.FourTenMMAmmo,
-            GlobalNames.FourTenMMClip,
-            GlobalNames.shell,
-            //---------------------GUNS--------------------------
-            GlobalNames.TenMM,
-            GlobalNames.LaserPistol,
-            GlobalNames.FourTenMM,
-            GlobalNames.db_shoutgun,
-            //---------------------PLACEHOLDER--------------------
-            "bullet",
-            //---------------------AMMO--------------------------
-            GlobalNames.flare,
-            //---------------------GUNS--------------------------
-            GlobalNames.flare_gun,
-            GlobalNames.TenMMCase,
-            GlobalNames.FourTenMMCase
-    };
-    // MEDS
-    public static RadX radx;
-    public static RadAway radAway;
-    public static RedHealPotion redHealPotion;
-    public static WhiteHealpotion whiteHealpotion;
-    public static PurpleHealPotion purpleHealPotion;
-    public static DarkHealPotion darkHealPotion;
-    // UTILITY
-    public static PipBuck pipbuck;
-    public static LvlingCrystall lvlingCrystall;
-    public static AdvancedEnviropmentMonitor aem;
-    // FOOD
-    public static Potato_Crisps potato_crisps;
-    public static Blamko_MacCheese blamko_macCheese;
-    public static Dandy_Boy_Apples dandy_boy_apples;
-    public static GumDrops gumDrops;
-    public static Sugar_Bombs sugar_bombs;
-    public static Fancy_mare_Snack_Cakes fancy_mare_snack_cakes;
-    // AMMO and CLIPS
-    public static TenMMammo tenMMAmmo;
-    public static TenMMClip tenMMClip;
-    public static FourTenMMammo fourTenMMammo;
-    public static FourTenMMClip fourTenMMClip;
-    public static Battery battery;
-    public static SShell sShell;
-    public static FlareShell flare;
-    public static TenMMbulletCase tenMMbulletCase;
-    public static FourTenMMbulletCase fourTenMMbulletCase;
-    // GUNS
-    public static TenMM tenMM;
-    public static FourTenMM fourTenMM;
-    public static LaserPistol laserPistol;
-    public static SB_shoutgun sb_shoutgun;
-    public static FlareGun flareGun;
-    // PLACEHOLDER
-    public static Item_bullet itb;
-    public static final Item[] AllInit = new Item[]{
-            //---------------------UTILITY--------------------------
-            pipbuck,                                    //0
-            lvlingCrystall,//1
-            aem,//2
-            //--------------FOOD--------------------------
-            blamko_macCheese,//3
-            dandy_boy_apples,//4
-            fancy_mare_snack_cakes,//5
-            gumDrops,//6
-            potato_crisps,//7
-            sugar_bombs,//8
-            //--------------MEDS--------------------------
-            radAway,//9
-            radx,//10
-            redHealPotion,//11
-            whiteHealpotion,//12
-            purpleHealPotion,//13
-            darkHealPotion,//14
-            //--------------AMMO--------------------------
-            tenMMAmmo,//15
-            tenMMClip,//16
-            battery,//17
-            fourTenMMammo,//18
-            fourTenMMClip,//19
-            sShell,//20
-            //--------------GUNS--------------------------
-            tenMM,//21
-            laserPistol,//22
-            fourTenMM,//23
-            sb_shoutgun,//24
-            //--------------PLACEHOLDER--------------------
-            itb,//25
-            //--------------AMMO--------------------------
-            flare,//26
-            //--------------GUNS--------------------------
-            flareGun,//27
-            tenMMbulletCase,//28
-            fourTenMMbulletCase//29
-    };
-    public static Item[] obj = new Item[]{
-            new PipBuck(),
-            new LvlingCrystall(),
-            new AdvancedEnviropmentMonitor(),
-            new Blamko_MacCheese(),
-            new Dandy_Boy_Apples(),
-            new GumDrops(),
-            new Potato_Crisps(),
-            new Fancy_mare_Snack_Cakes(),
-            new Sugar_Bombs(),
-            new RadAway(),
-            new RadX(),
-            new RedHealPotion(),
-            new WhiteHealpotion(),
-            new PurpleHealPotion(),
-            new DarkHealPotion(),
-            new TenMMammo(),
-            new TenMMClip(),
-            new Battery(),
-            new FourTenMMammo(),
-            new FourTenMMClip(),
-            new SShell(),
-            new TenMM(),
-            new LaserPistol(),
-            new FourTenMM(),
-            new SB_shoutgun(),
-            new Item_bullet(),
-            new FlareShell(),
-            new FlareGun(),
-            new TenMMbulletCase(),
-            new FourTenMMbulletCase()
-    };
+    public static final RadX                                radx                        = new RadX(GlobalNames.RadX);
+    public static final RadAway                             radAway                     = new RadAway(GlobalNames.RadAway);
+    public static final RedHealPotion                       redHealPotion               = new RedHealPotion(GlobalNames.redHealPotion);
+    public static final WhiteHealpotion                     whiteHealpotion             = new WhiteHealpotion(GlobalNames.whiteHealpotion);
+    public static final PurpleHealPotion                    purpleHealPotion            = new PurpleHealPotion(GlobalNames.purpleHealPotion);
+    public static final DarkHealPotion                      darkHealPotion              = new DarkHealPotion(GlobalNames.darkHealPotion);
+    public static final PipBuck                             pipbuck                     = new PipBuck(GlobalNames.PipbuckTT);
+    public static final LvlingCrystall                      lvlingCrystall              = new LvlingCrystall(GlobalNames.LevelingCrystall);
+    public static final AdvancedEnviropmentMonitor          aem                         = new AdvancedEnviropmentMonitor(GlobalNames.AEM);
+    public static final Potato_Crisps                       potato_crisps               = new Potato_Crisps(GlobalNames.potato_crisps);
+    public static final Blamko_MacCheese                    blamko_macCheese            = new Blamko_MacCheese(GlobalNames.blamko_macCheese);
+    public static final Dandy_Boy_Apples                    dandy_boy_apples            = new Dandy_Boy_Apples(GlobalNames.dandy_boy_apples);
+    public static final GumDrops                            gumDrops                    = new GumDrops(GlobalNames.gumDrops);
+    public static final Sugar_Bombs                         sugar_bombs                 = new Sugar_Bombs(GlobalNames.sugar_bombs);
+    public static final Fancy_mare_Snack_Cakes              fancy_mare_snack_cakes      = new Fancy_mare_Snack_Cakes(GlobalNames.Fancy_mare_Snack_Cakes);
+    public static final TenMMammo                           tenMMAmmo                   = new TenMMammo(GlobalNames.TenMMAmmo);
+    public static final TenMMClip                           tenMMClip                   = new TenMMClip(GlobalNames.TenMMClip);
+    public static final FourTenMMammo                       fourTenMMammo               = new FourTenMMammo(GlobalNames.FourTenMMAmmo);
+    public static final FourTenMMClip                       fourTenMMClip               = new FourTenMMClip(GlobalNames.FourTenMMClip);
+    public static final Battery                             battery                     = new Battery(GlobalNames.Battery);
+    public static final SShell                              sShell                      = new SShell(GlobalNames.shell);
+    public static final FlareShell                          flare                       = new FlareShell(GlobalNames.TenMM);
+    public static final TenMMbulletCase                     tenMMbulletCase             = new TenMMbulletCase(GlobalNames.TenMMCase);
+    public static final FourTenMMbulletCase                 fourTenMMbulletCase         = new FourTenMMbulletCase(GlobalNames.FourTenMMCase);
+    public static final TenMM                               tenMM                       = new TenMM(GlobalNames.db_shoutgun);
+    public static final FourTenMM                           fourTenMM                   = new FourTenMM(GlobalNames.flare);
+    public static final LaserPistol                         laserPistol                 = new LaserPistol(GlobalNames.flare_gun);
+    public static final SB_shoutgun                         sb_shoutgun                 = new SB_shoutgun(GlobalNames.TenMMCase);
+    public static final FlareGun                            flareGun                    = new FlareGun(GlobalNames.FourTenMMCase);
+    public static final Item_bullet                         itb                         = new Item_bullet("bullet");
+
+
+    public static final t40head t40head = (t40head) new t40head(Armor_material.T40_ARMOR, 0,EntityEquipmentSlot.HEAD).setUnlocalizedName(GlobalNames.T40Head);
+    public static final t40body t40body = (t40body) new t40body(Armor_material.T40_ARMOR, 0, EntityEquipmentSlot.CHEST).setUnlocalizedName(GlobalNames.T40Body);
+    public static final t40legs t40legs = (t40legs) new t40legs(Armor_material.T40_ARMOR, 0, EntityEquipmentSlot.LEGS).setUnlocalizedName(GlobalNames.T40Legs);
+    public static final t50head t50head = (t50head) new t50head(Armor_material.T50_ARMOR, 0, EntityEquipmentSlot.HEAD).setUnlocalizedName(GlobalNames.T50Head);
+    public static final t50body t50body = (t50body) new t50body(Armor_material.T50_ARMOR, 0, EntityEquipmentSlot.CHEST).setUnlocalizedName(GlobalNames.T50Body);
+    public static final t50legs t50legs = (t50legs) new t50legs(Armor_material.T50_ARMOR, 0, EntityEquipmentSlot.LEGS).setUnlocalizedName(GlobalNames.T50Legs);
+    public static final t60head t60head = (t60head) new t60head(Armor_material.T60_ARMOR, 0, EntityEquipmentSlot.HEAD).setUnlocalizedName(GlobalNames.T60Head);
+    public static final t60body t60body = (t60body) new t60body(Armor_material.T60_ARMOR, 0, EntityEquipmentSlot.CHEST).setUnlocalizedName(GlobalNames.T60Body);
+    public static final t60legs t60legs = (t60legs) new t60legs(Armor_material.T60_ARMOR, 0, EntityEquipmentSlot.LEGS).setUnlocalizedName(GlobalNames.T60Legs);
+
 }

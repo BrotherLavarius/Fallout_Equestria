@@ -18,7 +18,7 @@ public class MessageGunReload implements IMessage {
     public static class HandlerServer implements IMessageHandler<MessageGunReload, IMessage> {
         @Override
         public IMessage onMessage(MessageGunReload message, MessageContext ctx) {
-            final EntityPlayerMP player = ctx.getServerHandler().playerEntity;
+            final EntityPlayerMP player = ctx.getServerHandler().player;
             DedicatedServerProxy.handleReloadMessage(player);
             return null;
         }

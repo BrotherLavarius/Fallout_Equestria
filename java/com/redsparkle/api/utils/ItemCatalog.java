@@ -8,9 +8,9 @@ import net.minecraft.item.ItemStack;
 public class ItemCatalog {
     public static Item Request(String name){
             if(name.equalsIgnoreCase("item.aem")){
-                return GlobalItemArray_For_init.AllInit[2];
+                return GlobalItemArray_For_init.aem;
             }else if(name.equalsIgnoreCase("item.pipbuck")){
-                return GlobalItemArray_For_init.AllInit[0];
+                return GlobalItemArray_For_init.pipbuck;
             }else{return Items.AIR;}
     }
     public static ItemStack RequestStack(Item item,int amount,int damage){

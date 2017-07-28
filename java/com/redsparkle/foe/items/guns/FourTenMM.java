@@ -18,7 +18,8 @@ import net.minecraft.world.World;
  * Created by NENYN on 1/5/2017.
  */
 public class FourTenMM extends Item_Firearm {
-    public FourTenMM() {
+    public FourTenMM(String name) {
+        super(name);
         this.clipRounds = GlobalsGunStats.FOUR_TEN_MM.Clipsize();
         this.setMaxStackSize(1);
         this.setMaxDamage(clipRounds);
@@ -27,6 +28,7 @@ public class FourTenMM extends Item_Firearm {
         this.gunName = "Pre war 14mm pistol";
         this.projectile = "bullet";
     }
+
     @Override
     public void onUpdate(ItemStack stack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected) {
         IGunInterface iammo;
@@ -43,7 +45,7 @@ public class FourTenMM extends Item_Firearm {
         this.shot = SoundInit.four_tenmm_shot;
         this.dry = SoundInit.flaregun_dry;
         ItemStack itemstack = playerIn.getHeldItem(hand);
-        this.casing = GlobalItemArray_For_init.AllInit[29];
+        this.casing = GlobalItemArray_For_init.fourTenMMbulletCase;
         ItemStack caseStack = new ItemStack(casing);
         IGunInterface igun = itemstack.getCapability(GunFactoryProvider.GUN, null);
         this.damage = GlobalsGunStats.FOUR_TEN_MM.getDamage() + playerIn.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getFirearms();

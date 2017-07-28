@@ -103,10 +103,10 @@ public class PipBuckGui extends GuiScreen {
         GL11.glPushMatrix();
         //STATS BUTTON
         {
-            this.buttonList.get(0).xPosition = ScreenGrid.XCoordStart(
+            this.buttonList.get(0).x = ScreenGrid.XCoordStart(
                     this.width,
                     2) + 98;
-            this.buttonList.get(0).yPosition = ScreenGrid.XCoordStart(
+            this.buttonList.get(0).y = ScreenGrid.XCoordStart(
                     this.height,
                     2) + 185;
             this.buttonList.get(0).height = 29;
@@ -115,10 +115,10 @@ public class PipBuckGui extends GuiScreen {
         }
         //INVENTORY BUTTON
         {
-            this.buttonList.get(1).xPosition = ScreenGrid.XCoordStart(
+            this.buttonList.get(1).x = ScreenGrid.XCoordStart(
                     this.width,
                     2) + 188;
-            this.buttonList.get(1).yPosition = ScreenGrid.XCoordStart(
+            this.buttonList.get(1).y = ScreenGrid.XCoordStart(
                     this.height,
                     2) + 185;
             this.buttonList.get(1).height = 29;
@@ -127,10 +127,10 @@ public class PipBuckGui extends GuiScreen {
         }
         //DATA BUTTON
         {
-            this.buttonList.get(2).xPosition = ScreenGrid.XCoordStart(
+            this.buttonList.get(2).x = ScreenGrid.XCoordStart(
                     this.width,
                     2) + 275;
-            this.buttonList.get(2).yPosition = ScreenGrid.XCoordStart(
+            this.buttonList.get(2).y = ScreenGrid.XCoordStart(
                     this.height,
                     2) + 185;
             this.buttonList.get(2).height = 29;
@@ -143,10 +143,10 @@ public class PipBuckGui extends GuiScreen {
         {// STATS BLOCK MAIN
             //---------------------NAV BLOCK STATS-------------------START
             for (int inv = 4; inv < 8; inv++) {
-                this.buttonList.get(inv).xPosition = ScreenGrid.XCoordStart(
+                this.buttonList.get(inv).x = ScreenGrid.XCoordStart(
                         this.width,
                         2) + (inv * 60) - 148;
-                this.buttonList.get(inv).yPosition = ScreenGrid.XCoordStart(
+                this.buttonList.get(inv).y = ScreenGrid.XCoordStart(
                         this.height,
                         2) + 145;
                 this.buttonList.get(inv).height = 15;
@@ -161,10 +161,10 @@ public class PipBuckGui extends GuiScreen {
             }
             //---------------------NAV BLOCK STATS-------------------END
             {   //LVLUp BUTTON
-                this.buttonList.get(3).xPosition = ScreenGrid.XCoordStart(
+                this.buttonList.get(3).x = ScreenGrid.XCoordStart(
                         this.width,
                         2) + 275;
-                this.buttonList.get(3).yPosition = ScreenGrid.XCoordStart(
+                this.buttonList.get(3).y = ScreenGrid.XCoordStart(
                         this.height,
                         2) + 125;
                 this.buttonList.get(3).height = 14;
@@ -184,7 +184,7 @@ public class PipBuckGui extends GuiScreen {
             {
                 if (Stats_STATUS) {
                     // TOP INFO DISPLAY
-                    this.fontRendererObj.drawString(
+                    this.fontRenderer.drawString(
                             "|LVL  " + Integer.toString(playerParams[0]) + "| " +
                                     "HP  :" + Integer.toString(Math.round(player.getHealth())) + "/" + Float.toString(player.getMaxHealth()) + "| " +
                                     "AP  :" + player.getFoodStats().getFoodLevel() + "| " +
@@ -198,7 +198,7 @@ public class PipBuckGui extends GuiScreen {
                                     2) + 70,
                             15465844, true
                     );
-                    this.fontRendererObj.drawString(
+                    this.fontRenderer.drawString(
                             player.getDisplayNameString() + " - " + Integer.toString(playerParams[0]),
                             ScreenGrid.XCoordStart(
                                     this.width,
@@ -208,7 +208,7 @@ public class PipBuckGui extends GuiScreen {
                                     2) + 90,
                             15465844, true
                     );
-                    this.fontRendererObj.drawString(
+                    this.fontRenderer.drawString(
                             "Water lvl:" + Integer.toString(player_RAD_WATER[1]),
                             ScreenGrid.XCoordStart(
                                     this.width,
@@ -218,7 +218,7 @@ public class PipBuckGui extends GuiScreen {
                                     2) + 100,
                             15465844, true
                     );
-                    this.fontRendererObj.drawString(
+                    this.fontRenderer.drawString(
                             Lvlutil.progress(100, player_RAD_WATER[1]),
                             ScreenGrid.XCoordStart(
                                     this.width,
@@ -270,7 +270,7 @@ public class PipBuckGui extends GuiScreen {
                 }
                 if (Stats_SPECHIAL) {
                     for (int spechial = 0; spechial < (StatsGui.spechialName.length - 1); spechial++) {
-                        this.fontRendererObj.drawString(
+                        this.fontRenderer.drawString(
                                 StatsGui.spechialName[spechial] + " : " + Integer.toString(spechials[spechial]),
                                 ScreenGrid.XCoordStart(
                                         this.width,
@@ -284,7 +284,7 @@ public class PipBuckGui extends GuiScreen {
                 }
                 if (Stats_SKILLS) {
                     for (int skillsFR = 0; skillsFR < 6; skillsFR++) {
-                        this.fontRendererObj.drawString(
+                        this.fontRenderer.drawString(
                                 StatsGui.skillsNames[skillsFR] + " : " + Integer.toString(skills[skillsFR]),
                                 ScreenGrid.XCoordStart(
                                         this.width,
@@ -296,7 +296,7 @@ public class PipBuckGui extends GuiScreen {
                         );
                     }
                     for (int skillsSR = 6; skillsSR < 13; skillsSR++) {
-                        this.fontRendererObj.drawString(
+                        this.fontRenderer.drawString(
                                 StatsGui.skillsNames[skillsSR] + " : " + Integer.toString(skills[skillsSR]),
                                 ScreenGrid.XCoordStart(
                                         this.width,
@@ -313,10 +313,10 @@ public class PipBuckGui extends GuiScreen {
             }
             //---------------------NAV BLOCK INV-------------------START
             for (int inv = 14; inv < 19; inv++) {
-                this.buttonList.get(inv).xPosition = ScreenGrid.XCoordStart(
+                this.buttonList.get(inv).x = ScreenGrid.XCoordStart(
                         this.width,
                         2) + (inv * 46) - 545;
-                this.buttonList.get(inv).yPosition = ScreenGrid.XCoordStart(
+                this.buttonList.get(inv).y = ScreenGrid.XCoordStart(
                         this.height,
                         2) + 145;
                 this.buttonList.get(inv).height = 15;
@@ -335,10 +335,10 @@ public class PipBuckGui extends GuiScreen {
             {// DATA BLOCK MAIN
                 //---------------------NAV BLOCK DATA-------------------START
                 for (int data = 21; data < 24; data++) {
-                    this.buttonList.get(data).xPosition = ScreenGrid.XCoordStart(
+                    this.buttonList.get(data).x = ScreenGrid.XCoordStart(
                             this.width,
                             2) + (data * 60) - 1150;
-                    this.buttonList.get(data).yPosition = ScreenGrid.XCoordStart(
+                    this.buttonList.get(data).y = ScreenGrid.XCoordStart(
                             this.height,
                             2) + 145;
                     this.buttonList.get(data).height = 15;
@@ -361,10 +361,10 @@ public class PipBuckGui extends GuiScreen {
                 //RADIO START BUTTON
                 {
                     for (int radio = 24; radio < 27; radio++) {
-                        this.buttonList.get(radio).xPosition = ScreenGrid.XCoordStart(
+                        this.buttonList.get(radio).x = ScreenGrid.XCoordStart(
                                 this.width,
                                 2) + 120;
-                        this.buttonList.get(radio).yPosition = ScreenGrid.XCoordStart(
+                        this.buttonList.get(radio).y = ScreenGrid.XCoordStart(
                                 this.height,
                                 2) + (radio * 15) - 290;
                         this.buttonList.get(radio).height = 15;
@@ -377,10 +377,10 @@ public class PipBuckGui extends GuiScreen {
                             this.buttonList.get(radio).enabled = Radio_isOff;
                         }
                     }
-                    this.buttonList.get(27).xPosition = ScreenGrid.XCoordStart(
+                    this.buttonList.get(27).x = ScreenGrid.XCoordStart(
                             this.width,
                             2) + 125;
-                    this.buttonList.get(27).yPosition = ScreenGrid.XCoordStart(
+                    this.buttonList.get(27).y = ScreenGrid.XCoordStart(
                             this.height,
                             2) + (27 * 15) - 290;
                     this.buttonList.get(27).height = 15;
@@ -396,10 +396,10 @@ public class PipBuckGui extends GuiScreen {
                 //RADIO VOLUME
                 {
                     for (int vol = 28; vol <= 29; vol++) {
-                        this.buttonList.get(vol).xPosition = ScreenGrid.XCoordStart(
+                        this.buttonList.get(vol).x = ScreenGrid.XCoordStart(
                                 this.width,
                                 2) + 245;
-                        this.buttonList.get(vol).yPosition = ScreenGrid.XCoordStart(
+                        this.buttonList.get(vol).y = ScreenGrid.XCoordStart(
                                 this.height,
                                 2) + (vol * 15) - 310;
                         this.buttonList.get(vol).height = 15;

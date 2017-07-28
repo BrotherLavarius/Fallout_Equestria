@@ -15,7 +15,8 @@ import java.util.List;
  * Created by NENYN on 12/16/2016.
  */
 public class PipBuck extends Item_pipbuck {
-    public PipBuck() {
+    public PipBuck(String name) {
+        super(name);
         this.setMaxStackSize(1);
         this.setCreativeTab(InitCreativeTabs.Fallout_meds);   // the item will appear on the Miscellaneous tab in creative
     }
@@ -29,7 +30,6 @@ public class PipBuck extends Item_pipbuck {
     }
     // adds 'tooltip' text
     @SideOnly(Side.CLIENT)
-    @SuppressWarnings("unchecked")
     @Override
     public void addInformation(ItemStack stack, EntityPlayer playerIn, List tooltip, boolean advanced) {
         tooltip.add("Before-War tech");

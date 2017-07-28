@@ -36,7 +36,7 @@ public class MessageOpenGuiClient implements IMessage {
     public static class HandleServer implements IMessageHandler<MessageOpenGuiClient, IMessage> {
         @Override
         public IMessage onMessage(MessageOpenGuiClient message, MessageContext ctx) {
-            EntityPlayerMP playerMP = ctx.getServerHandler().playerEntity;
+            EntityPlayerMP playerMP = ctx.getServerHandler().player;
             DedicatedServerProxy.handleOpenGuiMessage(message, playerMP);
             return null;
         }

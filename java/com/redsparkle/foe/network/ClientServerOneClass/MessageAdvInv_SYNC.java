@@ -74,7 +74,7 @@ public class MessageAdvInv_SYNC implements IMessage {
     public static class HandlerServer implements IMessageHandler<MessageAdvInv_SYNC, IMessage> {
         @Override
         public IMessage onMessage(MessageAdvInv_SYNC message, MessageContext ctx) {
-            EntityPlayerMP playerMP = ctx.getServerHandler().playerEntity;
+            EntityPlayerMP playerMP = ctx.getServerHandler().player;
             DedicatedServerProxy.handleAdv_SYNC(message, playerMP);
             return null;
         }

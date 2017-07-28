@@ -1,13 +1,27 @@
 package com.redsparkle.foe.Init;
-import com.redsparkle.api.utils.GlobalBlockArray;
+
+import com.google.common.base.Preconditions;
 import com.redsparkle.api.utils.GlobalNames;
 import com.redsparkle.foe.block.containers.TileEntitys.SparkleColaMachineTileEntity;
 import com.redsparkle.foe.block.effectDispenser.TileEntitys.RadiationBlockTileEntity;
 import com.redsparkle.foe.block.interractable.TileEntitys.*;
+import com.redsparkle.foe.main;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.registries.IForgeRegistry;
+
+import java.util.HashSet;
+import java.util.Set;
+
+import static com.redsparkle.api.utils.GlobalBlockArray.*;
+
 /**
  * Created by hoijima on 14.12.16.
  */
@@ -25,26 +39,80 @@ public class BlockInit {
         //  |  stationary_water  +       water          |
         //  +--------------------+----------------------+
         //
-        for (int i = 0; i < (GlobalBlockArray.blocks.length - 1); i++) {
-            Block tempB = GlobalBlockArray.blocks[i];
-            tempB.setRegistryName(GlobalBlockArray.blocksNames[i]);
-            tempB.setUnlocalizedName(GlobalBlockArray.blocksNames[i]);
-            GameRegistry.register(tempB);
-            Item tempI = new ItemBlock(GlobalBlockArray.blocks[i]);
-            tempI.setUnlocalizedName(GlobalBlockArray.blocksNames[i]);
-            tempI.setRegistryName(GlobalBlockArray.blocksNames[i]);
-            GameRegistry.register(tempI);
+
+
+    }
+
+
+    @Mod.EventBusSubscriber(modid = main.MODID)
+    public static class RegistrationHandler {
+        public static final Set<ItemBlock> ITEM_BLOCKS = new HashSet<>();
+
+        /**
+         * Register this mod's {@link Block}s.
+         *
+         * @param event The event
+         */
+        @SubscribeEvent
+        public static void registerBlocks(final RegistryEvent.Register<Block> event) {
+            final IForgeRegistry<Block> registry = event.getRegistry();
+
+            final Block[] blocks = {
+                    SparkleColaMachineBlock,
+                    workbench,
+                    workbench_handmade,
+                    armor_bench_tier_one,
+                    DesktopTerminal,
+                    locker,
+                    RadiationBlock
+            };
+
+            registry.registerAll(blocks);
+
         }
-        GameRegistry.registerTileEntity(SparkleColaMachineTileEntity.class, GlobalNames.SPCmachine);
-        GameRegistry.registerTileEntity(DesktopTerminalTileEntity.class, GlobalNames.Terminal);
-        GameRegistry.registerTileEntity(TileEntity_ArmorBench_tier_one.class, GlobalNames.ArmorBench_tier_one);
-        GameRegistry.registerTileEntity(TileEntity_locker.class, GlobalNames.Locker);
-        GameRegistry.registerTileEntity(TileEntity_workbench.class, GlobalNames.Workbench);
-        GameRegistry.registerTileEntity(TileEntity_workbench_handmade.class, GlobalNames.Workbench_handmade);
-        GameRegistry.registerTileEntity(RadiationBlockTileEntity.class, GlobalNames.RadBlock);
+
+        /**
+         * Register this mod's {@link ItemBlock}s.
+         *
+         * @param event The event
+         */
+        @SubscribeEvent
+        public static void registerItemBlocks(final RegistryEvent.Register<Item> event) {
+            final ItemBlock[] items = {
+                    new ItemBlock(SparkleColaMachineBlock),
+                    new ItemBlock(workbench),
+                    new ItemBlock(workbench_handmade),
+                    new ItemBlock(armor_bench_tier_one),
+                    new ItemBlock(DesktopTerminal),
+                    new ItemBlock(locker),
+                    new ItemBlock(RadiationBlock)
+            };
+
+            final IForgeRegistry<Item> registry = event.getRegistry();
+
+            for (final ItemBlock item : items) {
+                final Block block = item.getBlock();
+                final ResourceLocation registryName = Preconditions.checkNotNull(block.getRegistryName(), "Block %s has null registry name", block);
+                registry.register(item.setRegistryName(registryName));
+                ITEM_BLOCKS.add(item);
+            }
+
+            registerTileEntities();
+        }
     }
-    public static void InitCommon() {
+
+    private static void registerTileEntities() {
+        registerTileEntity(SparkleColaMachineTileEntity.class, GlobalNames.SPCmachine);
+        registerTileEntity(DesktopTerminalTileEntity.class, GlobalNames.Terminal);
+        registerTileEntity(TileEntity_ArmorBench_tier_one.class, GlobalNames.ArmorBench_tier_one);
+        registerTileEntity(TileEntity_locker.class, GlobalNames.Locker);
+        registerTileEntity(TileEntity_workbench.class, GlobalNames.Workbench);
+        registerTileEntity(TileEntity_workbench_handmade.class, GlobalNames.Workbench_handmade);
+        registerTileEntity(RadiationBlockTileEntity.class, GlobalNames.RadBlock);
+
     }
-    public static void postInitCommon() {
+
+    private static void registerTileEntity(final Class<? extends TileEntity> tileEntityClass, final String name) {
+        GameRegistry.registerTileEntity(tileEntityClass, GlobalNames.Domain + name);
     }
 }

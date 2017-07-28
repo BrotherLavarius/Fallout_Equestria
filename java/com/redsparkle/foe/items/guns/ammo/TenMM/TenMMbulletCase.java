@@ -1,7 +1,7 @@
 package com.redsparkle.foe.items.guns.ammo.TenMM;
 
+import com.redsparkle.foe.items.FoeItem;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -10,8 +10,9 @@ import java.util.List;
 /**
  * Created by NENYN on 1/12/2017.
  */
-public class TenMMbulletCase extends Item {
-    public TenMMbulletCase() {
+public class TenMMbulletCase extends FoeItem {
+    public TenMMbulletCase(String tenMMCase) {
+        super(tenMMCase);
         this.setMaxStackSize(64);
     }
     /**

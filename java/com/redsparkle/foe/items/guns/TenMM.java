@@ -18,7 +18,8 @@ import net.minecraft.world.World;
  * Created by NENYN on 1/5/2017.
  */
 public class TenMM extends Item_Firearm {
-    public TenMM() {
+    public TenMM(String name) {
+        super(name);
         this.setMaxStackSize(1);
         this.clipRounds = GlobalsGunStats.TEN_MM.Clipsize();
         this.setMaxDamage(clipRounds);
@@ -44,7 +45,7 @@ public class TenMM extends Item_Firearm {
         this.shot = SoundInit.tenmm_shot;
         this.dry = SoundInit.tenmm_dry;
         ItemStack itemstack = playerIn.getHeldItem(hand);
-        this.casing = GlobalItemArray_For_init.AllInit[28];
+        this.casing = GlobalItemArray_For_init.tenMMbulletCase;
         ItemStack caseStack = new ItemStack(casing);
         IGunInterface igun = itemstack.getCapability(GunFactoryProvider.GUN, null);
         this.damage = GlobalsGunStats.TEN_MM.getDamage() + playerIn.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getFirearms();

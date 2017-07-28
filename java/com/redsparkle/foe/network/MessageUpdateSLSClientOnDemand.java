@@ -18,7 +18,7 @@ public class MessageUpdateSLSClientOnDemand implements IMessage {
     public static class serverSideHandler implements IMessageHandler<MessageUpdateSLSClientOnDemand, IMessage> {
         @Override
         public IMessage onMessage(MessageUpdateSLSClientOnDemand message, MessageContext ctx) {
-            final EntityPlayerMP player = ctx.getServerHandler().playerEntity;
+            final EntityPlayerMP player = ctx.getServerHandler().player;
             DedicatedServerProxy.handleSLSOnDemand(player);
             return null;
         }

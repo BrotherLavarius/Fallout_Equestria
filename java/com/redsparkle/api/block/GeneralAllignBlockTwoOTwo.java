@@ -10,11 +10,11 @@ import net.minecraft.world.IBlockAccess;
  */
 public class GeneralAllignBlockTwoOTwo extends GeneralAllignBlockOneOone {
     public static final AxisAlignedBB FULL_BLOCK_AABB = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 1.0D, 1.0D);
-    public GeneralAllignBlockTwoOTwo(Material blockMaterialIn, MapColor blockMapColorIn) {
-        super(blockMaterialIn, blockMapColorIn);
+    public GeneralAllignBlockTwoOTwo(Material blockMaterialIn, MapColor blockMapColorIn,String name) {
+        super(blockMaterialIn, blockMapColorIn,name);
     }
-    public GeneralAllignBlockTwoOTwo(Material materialIn) {
-        super(materialIn);
+    public GeneralAllignBlockTwoOTwo(Material materialIn,String name) {
+        super(materialIn,name);
     }
     @Override
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {

@@ -1,7 +1,7 @@
 package com.redsparkle.foe.items.guns.ammo.FourTenMM;
 
+import com.redsparkle.foe.items.FoeItem;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -10,8 +10,10 @@ import java.util.List;
 /**
  * Created by NENYN on 1/12/2017.
  */
-public class FourTenMMbulletCase extends Item {
-    public FourTenMMbulletCase() {
+public class FourTenMMbulletCase extends FoeItem {
+    public FourTenMMbulletCase(String fourTenMMCase) {
+
+        super(fourTenMMCase);
         this.setMaxStackSize(64);
     }
     /**
