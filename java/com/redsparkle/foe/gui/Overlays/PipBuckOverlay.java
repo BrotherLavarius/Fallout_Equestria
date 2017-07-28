@@ -1,14 +1,12 @@
 package com.redsparkle.foe.gui.Overlays;
 
 import com.redsparkle.api.utils.GlobalNames;
-import com.sun.istack.internal.NotNull;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.MobEffects;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
@@ -18,14 +16,6 @@ import org.lwjgl.opengl.GL11;
  * Created by NENYN on 12/25/2016.
  */
 public class PipBuckOverlay extends Gui {
-    /* This line tells Minecraft/Forge where your texture is. The first argument is your MODID,
-     * and the second argument is the path to your texture starting at "resources/assets/MODID"
-     *
-     * In this case, the location of the texture is
-     *
-     *   "resources/assets/MODID/textures/gui/advanced_overlay.png"
-     */
-    NonNullList<String> compas_points = NonNullList.withSize(8,".");
     private final static ResourceLocation overlayBar = new ResourceLocation(GlobalNames.Domain,
             "textures/gui/health_hud_overlay.png");
     /* These two variables describe the size of the bar */
@@ -34,6 +24,14 @@ public class PipBuckOverlay extends Gui {
     private final static int BAR_SPACING_ABOVE_EXP_BAR = 3;  // pixels between the BAR and the Experience Bar below it
     private final static int ACTUAL_BAR_WIDTH = 135;
     private final static int ACTUAL_BAR_HEIGHT = 9;
+    /* This line tells Minecraft/Forge where your texture is. The first argument is your MODID,
+     * and the second argument is the path to your texture starting at "resources/assets/MODID"
+     *
+     * In this case, the location of the texture is
+     *
+     *   "resources/assets/MODID/textures/gui/advanced_overlay.png"
+     */
+    NonNullList<String> compas_points = NonNullList.withSize(8,".");
     /* Sometimes you want to include extra information from the game. This instance of
      * Minecraft will let you access the World and EntityPlayer objects which is more than
      * enough for most purposes. It also contains some helper objects for OpenGL which can be
