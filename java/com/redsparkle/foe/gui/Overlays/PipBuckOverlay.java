@@ -1,4 +1,5 @@
 package com.redsparkle.foe.gui.Overlays;
+
 import com.redsparkle.api.utils.GlobalNames;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
@@ -9,6 +10,7 @@ import net.minecraft.init.MobEffects;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import org.lwjgl.opengl.GL11;
+
 /**
  * Created by NENYN on 12/25/2016.
  */
@@ -38,6 +40,7 @@ public class PipBuckOverlay extends Gui {
      * always be possible if you want to include information that's part of another class.
      */
     private Minecraft mc;
+
     public PipBuckOverlay(Minecraft mc, int screenWidht, int screenHeight) {
     /* These are the variables that contain world and player information */
         FontRenderer fr = mc.fontRendererObj;
