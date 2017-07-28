@@ -14,14 +14,17 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.MathHelper;
 
 import static java.lang.Math.abs;
+
 /**
  * Created by NENYN on 2/12/2017.
  */
 public class ArmorLayerRender implements LayerRenderer<EntityLivingBase> {
     private Float rotationPitch = 0F;
+
     public ArmorLayerRender(RenderPlayer playerRendererIn) {
         RenderPlayer playerRenderer = playerRendererIn;
     }
+
     @Override
     public void doRenderLayer(EntityLivingBase entitylivingbaseIn, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch, float scale) {
         ItemStack itemstackHead = entitylivingbaseIn.getItemStackFromSlot(EntityEquipmentSlot.HEAD);
@@ -39,7 +42,12 @@ public class ArmorLayerRender implements LayerRenderer<EntityLivingBase> {
         }
         if (itemstackHead != null && itemHead instanceof ItemHelmet) {
             GlStateManager.pushMatrix();
-            GlStateManager.translate(0F, 0F, 0F);
+
+            if (entitylivingbaseIn.isSneaking()) {
+                GlStateManager.translate(0F, 0.20F, 0F);
+            } else {
+                GlStateManager.translate(0F, 0F, 0F);
+            }
             GlStateManager.rotate(netHeadYaw, 0, 1.0F, 0);
             GlStateManager.rotate(headPitch, 1.0F, 0, 0);
             minecraft.getItemRenderer().renderItem(entitylivingbaseIn, itemstackHead, ItemCameraTransforms.TransformType.HEAD);
@@ -47,11 +55,16 @@ public class ArmorLayerRender implements LayerRenderer<EntityLivingBase> {
         }
         if (itemstackBody != null && itemBody instanceof ItemBody) {
             GlStateManager.pushMatrix();
-            GlStateManager.translate(0.280F, 0.65F, 0F);
+            if (entitylivingbaseIn.isSneaking()) {
+                GlStateManager.translate(0.280F, 0.85F, 0F);
+            } else {
+                GlStateManager.translate(0.280F, 0.65F, 0F);
+            }
             minecraft.getItemRenderer().renderItem(entitylivingbaseIn, itemstackBody, ItemCameraTransforms.TransformType.HEAD);
             GlStateManager.popMatrix();
         }
     }
+
     public boolean shouldCombineTextures() {
         return false;
     }
