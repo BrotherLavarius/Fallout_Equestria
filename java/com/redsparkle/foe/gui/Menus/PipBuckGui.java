@@ -623,24 +623,32 @@ public class PipBuckGui extends GuiScreen {
         //RadioButtonStart 24-27
         //Radio start
         if (button == this.buttonList.get(24)) {
-            Radio_isOff = false;
-            Radio_stopVisible = true;
-            radioPLayer = new RadioPLayer("http://home.fallout-equestria.tk:8100/rcr.ogg");
+            if (radioPLayer.player.getName() == "" ) {
+
+                Radio_isOff = false;
+                Radio_stopVisible = true;
+                radioPLayer = new RadioPLayer("http://home.fallout-equestria.tk:8100/rcr.ogg");
+            }
         }
         //Radio start
         if (button == this.buttonList.get(25)) {
-            Radio_isOff = false;
-            Radio_stopVisible = true;
-            radioPLayer = new RadioPLayer("http://192.99.131.205:8000/pvfm1.ogg");
+            if (radioPLayer.player.getName() == "" ) {
+                Radio_isOff = false;
+                Radio_stopVisible = true;
+                radioPLayer = new RadioPLayer("http://192.99.131.205:8000/pvfm1.ogg");
+            }
         }
         //Radio start
         if (button == this.buttonList.get(26)) {
-            Radio_isOff = false;
-            Radio_stopVisible = true;
-            radioPLayer = new RadioPLayer("http://62.210.138.34:8000/ogg");
+            if (radioPLayer.player.getName() == "" ) {
+                Radio_isOff = false;
+                Radio_stopVisible = true;
+                radioPLayer = new RadioPLayer("http://62.210.138.34:8000/ogg");
+            }
         }
         //Radio stop
         if (button == this.buttonList.get(27)) {
+
             Radio_isOff = true;
             Radio_stopVisible = false;
             if (radioPLayer.player.isAlive()) {
@@ -651,7 +659,7 @@ public class PipBuckGui extends GuiScreen {
         }
         //Vol up
         if (button == this.buttonList.get(28)) {
-            if (radioPLayer.player.isAlive()) {
+            if (radioPLayer.player.isAlive() && radioPLayer.player !=null ) {
                 gain = (FloatControl) radioPLayer.line.getControl(FloatControl.Type.MASTER_GAIN);
                 if (gain.getValue() < (gain.getMaximum() - 2.0F)) {
                     gain.setValue(gain.getValue() + 1.0F);

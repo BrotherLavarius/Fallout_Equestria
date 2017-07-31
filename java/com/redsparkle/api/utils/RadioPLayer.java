@@ -8,7 +8,7 @@ import java.net.URL;
 public class RadioPLayer {
     public Thread player;
     public Runnable playerR;
-    public String playerThreadname;
+    public String playerThreadname = "";
     public AudioInputStream din;
     public AudioInputStream in;
     public SourceDataLine line;
@@ -27,6 +27,7 @@ public class RadioPLayer {
             public void run() {
                 while (running) {
                     try {
+                        playerThreadname = "running";
                         URL file = new URL(Url);
                         //System.out.print("Starting Playing thread");
                         // Get AudioInputStream from given file.

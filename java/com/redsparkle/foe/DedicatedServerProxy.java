@@ -24,6 +24,7 @@ import com.redsparkle.foe.network.ClientServerOneClass.*;
 import com.redsparkle.foe.network.MessageGunFire;
 import com.redsparkle.foe.network.MessageUpdateSLSServerReplyOnDemand;
 import com.redsparkle.foe.network.helpers.gunReload;
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -125,9 +126,9 @@ public class DedicatedServerProxy extends CommonProxy {
         ), player);
     }
     public static void handleOpenGuiMessage(MessageOpenGuiClient message, EntityPlayerMP playerMP) {
-        //Minecraft.getMinecraft().addScheduledTask(() -> {
+        Minecraft.getMinecraft().addScheduledTask(() -> {
         main.simpleNetworkWrapper.sendTo(new MessageOpenGuiClient(message.ID), playerMP);
-        //});
+        });
     }
     public static void SendOpenGui(int guiId, EntityPlayerMP player) {
         main.simpleNetworkWrapper.sendTo(new MessageOpenGuiClient(guiId), player);
