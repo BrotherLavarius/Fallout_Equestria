@@ -28,7 +28,6 @@ import com.redsparkle.api.Capability.Player.water.WaterFactoryProvider;
 import com.redsparkle.api.Capability.Player.water.WaterFactoryStorage;
 import com.redsparkle.api.handlers.GuiHandler;
 import com.redsparkle.api.utils.GlobalNames;
-import com.redsparkle.foe.Init.BlockInit;
 import com.redsparkle.foe.Init.StartUpCommon;
 import com.redsparkle.foe.events.EventHandlerInit;
 import com.redsparkle.foe.events.EventHandlerPre;
@@ -53,7 +52,6 @@ public abstract class CommonProxy {
         System.out.println("WAR...");
         System.out.println("WAR NEVER CHANGES...");
         StartUpCommon.preInitCommon();
-        BlockInit.preInitCommon();
         // INIT Handler
         MinecraftForge.EVENT_BUS.register(new EventHandlerPre());
         EntityRegistry.registerModEntity(new ResourceLocation(GlobalNames.Domain + ":entity/bullet"), EntityBullet.class, "Bullet", 0, main.instance, 64, 10, true);

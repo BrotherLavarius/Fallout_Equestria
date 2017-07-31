@@ -1,12 +1,10 @@
 package com.redsparkle.foe.Init;
 
-import com.redsparkle.api.utils.GlobalNames;
 import com.redsparkle.foe.main;
 import net.minecraft.item.Item;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.registries.IForgeRegistry;
 
 import java.util.HashSet;
@@ -17,26 +15,10 @@ import static com.redsparkle.api.utils.GlobalItemArray_For_init.*;
 /**
  * Created by hoijima on 14.12.16.
  */
-@SuppressWarnings("WeakerAccess")
-@GameRegistry.ObjectHolder(main.MODID)
+@Mod.EventBusSubscriber(modid = main.MODID)
 public class ItemInit {
 
-    private static void rename_armor() {
 
-        t40head.setRegistryName(GlobalNames.T40Head);
-        t40body.setRegistryName(GlobalNames.T40Body);
-        t40legs.setRegistryName(GlobalNames.T40Legs);
-        t50head.setRegistryName(GlobalNames.T50Head);
-        t50body.setRegistryName(GlobalNames.T50Body);
-        t50legs.setRegistryName(GlobalNames.T50Legs);
-        t60head.setRegistryName(GlobalNames.T60Head);
-        t60body.setRegistryName(GlobalNames.T60Body);
-        t60legs.setRegistryName(GlobalNames.T60Legs);
-    }
-
-
-    @Mod.EventBusSubscriber(modid = main.MODID)
-    public static class RegistrationHandler {
         public static final Set<Item> ITEMS = new HashSet<>();
 
         /**
@@ -46,6 +28,7 @@ public class ItemInit {
          */
         @SubscribeEvent
         public static void registerItems(final RegistryEvent.Register<Item> event) {
+            final IForgeRegistry<Item> registry = event.getRegistry();
             final Item[] items = {
                     radx,
                     radAway,
@@ -88,15 +71,15 @@ public class ItemInit {
                     t60legs
             };
 
-            final IForgeRegistry<Item> registry = event.getRegistry();
-            rename_armor();
+
             for (final Item item : items) {
 
                 registry.register(item);
                 ITEMS.add(item);
             }
         }
+
     }
 
-}
+
 

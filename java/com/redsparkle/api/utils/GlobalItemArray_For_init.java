@@ -60,14 +60,14 @@ public class GlobalItemArray_For_init {
     public static final Item_bullet                         itb                         = new Item_bullet("bullet");
 
 
-    public static final t40head t40head = (t40head) new t40head(Armor_material.T40_ARMOR, 0,EntityEquipmentSlot.HEAD).setUnlocalizedName(GlobalNames.T40Head);
-    public static final t40body t40body = (t40body) new t40body(Armor_material.T40_ARMOR, 0, EntityEquipmentSlot.CHEST).setUnlocalizedName(GlobalNames.T40Body);
-    public static final t40legs t40legs = (t40legs) new t40legs(Armor_material.T40_ARMOR, 0, EntityEquipmentSlot.LEGS).setUnlocalizedName(GlobalNames.T40Legs);
-    public static final t50head t50head = (t50head) new t50head(Armor_material.T50_ARMOR, 0, EntityEquipmentSlot.HEAD).setUnlocalizedName(GlobalNames.T50Head);
-    public static final t50body t50body = (t50body) new t50body(Armor_material.T50_ARMOR, 0, EntityEquipmentSlot.CHEST).setUnlocalizedName(GlobalNames.T50Body);
-    public static final t50legs t50legs = (t50legs) new t50legs(Armor_material.T50_ARMOR, 0, EntityEquipmentSlot.LEGS).setUnlocalizedName(GlobalNames.T50Legs);
-    public static final t60head t60head = (t60head) new t60head(Armor_material.T60_ARMOR, 0, EntityEquipmentSlot.HEAD).setUnlocalizedName(GlobalNames.T60Head);
-    public static final t60body t60body = (t60body) new t60body(Armor_material.T60_ARMOR, 0, EntityEquipmentSlot.CHEST).setUnlocalizedName(GlobalNames.T60Body);
-    public static final t60legs t60legs = (t60legs) new t60legs(Armor_material.T60_ARMOR, 0, EntityEquipmentSlot.LEGS).setUnlocalizedName(GlobalNames.T60Legs);
+    public static final t40head t40head = (t40head) new t40head(Armor_material.T40_ARMOR, 0,EntityEquipmentSlot.HEAD).setUnlocalizedName(   GlobalNames.T40Head).setRegistryName(GlobalNames.T40Head);
+    public static final t40body t40body = (t40body) new t40body(Armor_material.T40_ARMOR, 0, EntityEquipmentSlot.CHEST).setUnlocalizedName( GlobalNames.T40Body).setRegistryName(GlobalNames.T40Body);
+    public static final t40legs t40legs = (t40legs) new t40legs(Armor_material.T40_ARMOR, 0, EntityEquipmentSlot.LEGS).setUnlocalizedName(  GlobalNames.T40Legs).setRegistryName(GlobalNames.T40Legs);
+    public static final t50head t50head = (t50head) new t50head(Armor_material.T50_ARMOR, 0, EntityEquipmentSlot.HEAD).setUnlocalizedName(  GlobalNames.T50Head).setRegistryName(GlobalNames.T50Head);
+    public static final t50body t50body = (t50body) new t50body(Armor_material.T50_ARMOR, 0, EntityEquipmentSlot.CHEST).setUnlocalizedName( GlobalNames.T50Body).setRegistryName(GlobalNames.T50Body);
+    public static final t50legs t50legs = (t50legs) new t50legs(Armor_material.T50_ARMOR, 0, EntityEquipmentSlot.LEGS).setUnlocalizedName(  GlobalNames.T50Legs).setRegistryName(GlobalNames.T50Legs);
+    public static final t60head t60head = (t60head) new t60head(Armor_material.T60_ARMOR, 0, EntityEquipmentSlot.HEAD).setUnlocalizedName(  GlobalNames.T60Head).setRegistryName(GlobalNames.T60Head);
+    public static final t60body t60body = (t60body) new t60body(Armor_material.T60_ARMOR, 0, EntityEquipmentSlot.CHEST).setUnlocalizedName( GlobalNames.T60Body).setRegistryName(GlobalNames.T60Body);
+    public static final t60legs t60legs = (t60legs) new t60legs(Armor_material.T60_ARMOR, 0, EntityEquipmentSlot.LEGS).setUnlocalizedName(  GlobalNames.T60Legs).setRegistryName(GlobalNames.T60Legs);
 
 }
