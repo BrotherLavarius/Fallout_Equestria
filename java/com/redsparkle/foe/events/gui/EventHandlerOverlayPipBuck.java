@@ -1,6 +1,6 @@
 package com.redsparkle.foe.events.gui;
 import com.redsparkle.api.Capability.Player.Inventory.IAdvProvider;
-import com.redsparkle.api.utils.GlobalItemArray_For_init;
+import com.redsparkle.foe.Init.ItemInit;
 import com.redsparkle.foe.gui.Overlays.APBar;
 import com.redsparkle.foe.gui.Overlays.PipBuckOverlay;
 import com.redsparkle.foe.gui.Overlays.RadsOverlay;
@@ -19,7 +19,7 @@ public class EventHandlerOverlayPipBuck {
         if (!entityPlayerSP.isCreative()) {
             // look for the ItemHUDactivator in the hotbar.  If not present, return without changing the HUD.
             boolean foundInHotbar = false;
-            if (entityPlayerSP.getCapability(IAdvProvider.Adv_Inv, null).getStackInSlot(0).getItem() == GlobalItemArray_For_init.pipbuck) {
+            if (entityPlayerSP.getCapability(IAdvProvider.Adv_Inv, null).getStackInSlot(0).getItem() == ItemInit.pipbuck) {
                 foundInHotbar = true;
             }
             if (!foundInHotbar) return;

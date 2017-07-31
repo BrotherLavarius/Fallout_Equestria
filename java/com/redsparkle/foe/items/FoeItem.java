@@ -8,6 +8,7 @@ import net.minecraft.item.Item;
  */
 public class FoeItem extends Item {
     public FoeItem(final String itemName) {
+
         setItemName(this, itemName);
     }
 

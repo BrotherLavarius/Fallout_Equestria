@@ -1,6 +1,7 @@
 package com.redsparkle.api.utils;
 import com.redsparkle.api.items.helpers.Item_Instances.Item_Firearm;
 import com.redsparkle.api.items.helpers.guns.GlobalsGunStats;
+import com.redsparkle.foe.Init.ItemInit;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.Item;
@@ -15,19 +16,19 @@ public class GunHelpers {
         ItemStack handStack = player.inventory.getCurrentItem();
         Item gun = handStack.getItem();
         if(gun instanceof Item_Firearm){
-            if(gun == GlobalItemArray_For_init.tenMM){
+            if(gun == ItemInit.tenMM){
                 damage = GlobalsGunStats.TEN_MM.getDamage();
             }
-            if(gun == GlobalItemArray_For_init.laserPistol){
+            if(gun == ItemInit.laserPistol){
                 damage = GlobalsGunStats.LASER_PISTOL.getDamage();
             }
-            if(gun == GlobalItemArray_For_init.fourTenMM){
+            if(gun == ItemInit.fourTenMM){
                 damage = GlobalsGunStats.FOUR_TEN_MM.getDamage();
             }
-            if(gun == GlobalItemArray_For_init.sb_shoutgun){
+            if(gun == ItemInit.sb_shoutgun){
                 damage = GlobalsGunStats.DB_SHOUTGUN.getDamage();
             }
-            if (gun == GlobalItemArray_For_init.fourTenMM) {
+            if (gun == ItemInit.fourTenMM) {
                 damage = GlobalsGunStats.FOUR_TEN_MM.getDamage();
             }
         }
@@ -38,19 +39,19 @@ public class GunHelpers {
         ItemStack handStack = player.inventory.getCurrentItem();
         Item gun = handStack.getItem();
         if(gun instanceof Item_Firearm){
-            if(gun == GlobalItemArray_For_init.tenMM){
+            if(gun == ItemInit.tenMM){
                 damage = GlobalsGunStats.TEN_MM.getDamage();
             }
-            if(gun == GlobalItemArray_For_init.laserPistol){
+            if(gun == ItemInit.laserPistol){
                 damage = GlobalsGunStats.LASER_PISTOL.getDamage();
             }
-            if(gun == GlobalItemArray_For_init.fourTenMM){
+            if(gun == ItemInit.fourTenMM){
                 damage = GlobalsGunStats.FOUR_TEN_MM.getDamage();
             }
-            if(gun == GlobalItemArray_For_init.sb_shoutgun){
+            if(gun == ItemInit.sb_shoutgun){
                 damage = GlobalsGunStats.DB_SHOUTGUN.getDamage();
             }
-            if (gun == GlobalItemArray_For_init.fourTenMM) {
+            if (gun == ItemInit.fourTenMM) {
                 damage = GlobalsGunStats.FOUR_TEN_MM.getDamage();
             }
         }

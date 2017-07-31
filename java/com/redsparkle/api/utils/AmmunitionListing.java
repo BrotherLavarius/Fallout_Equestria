@@ -1,10 +1,11 @@
 package com.redsparkle.api.utils;
+import com.redsparkle.foe.Init.ItemInit;
 import net.minecraft.item.Item;
 /**
  * Created by NENYN on 1/13/2017.
  */
 public class AmmunitionListing {
     public static final Item
-            TenMMClip = (Item) GlobalItemArray_For_init.tenMMClip,
-            Battery = (Item) GlobalItemArray_For_init.battery;
+            TenMMClip = (Item) ItemInit.tenMMClip,
+            Battery = (Item) ItemInit.battery;
 }

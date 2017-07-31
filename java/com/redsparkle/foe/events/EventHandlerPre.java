@@ -17,8 +17,8 @@ import com.redsparkle.api.Capability.Player.water.IWaterCapability;
 import com.redsparkle.api.Capability.Player.water.WaterFactoryProvider;
 import com.redsparkle.api.items.helpers.Item_Instances.Item_AmmoHolder;
 import com.redsparkle.api.items.helpers.Item_Instances.Item_Firearm;
-import com.redsparkle.api.utils.GlobalItemArray_For_init;
 import com.redsparkle.api.utils.PlayerParamsSetup;
+import com.redsparkle.foe.Init.ItemInit;
 import com.redsparkle.foe.main;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -92,7 +92,7 @@ public class EventHandlerPre {
             ISkillsCapability skills = e.player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null);
             ILevelCapability lvl = e.player.getCapability(LEVEL_CAPABILITY, null);
             ISpechialCapability spe = e.player.getCapability(SpechialFactoryProvider.SPECHIAL_CAPABILITY, null);
-            Item lvliningCrystal = GlobalItemArray_For_init.lvlingCrystall;
+            Item lvliningCrystal = ItemInit.lvlingCrystall;
             ItemStack lvlingcrystallS = new ItemStack(lvliningCrystal);
             lvlingcrystallS.setCount(1);
             e.player.inventory.addItemStackToInventory(lvlingcrystallS);

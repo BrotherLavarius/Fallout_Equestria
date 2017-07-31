@@ -16,8 +16,11 @@ import com.redsparkle.api.Capability.Player.spechial.SpechialFactoryProvider;
 import com.redsparkle.api.Capability.Player.water.IWaterCapability;
 import com.redsparkle.api.Capability.Player.water.WaterFactoryProvider;
 import com.redsparkle.api.utils.ItemCatalog;
-import com.redsparkle.foe.Init.ClientOnlyStartup;
 import com.redsparkle.foe.Init.SoundInit;
+import com.redsparkle.foe.events.character.EventPlayerRenders;
+import com.redsparkle.foe.events.gui.EventHandlerOverlayAEM;
+import com.redsparkle.foe.events.gui.EventHandlerOverlayPipBuck;
+import com.redsparkle.foe.events.gui.EventPlayerGuiHandler;
 import com.redsparkle.foe.keys.KeyInputHandler;
 import com.redsparkle.foe.keys.keyHandler;
 import com.redsparkle.foe.network.ClientServerOneClass.*;
@@ -238,8 +241,6 @@ public class ClientOnlyProxy extends CommonProxy {
     }
     public void preInit() {
         super.preInit();
-        new SoundInit.RegistrationHandler();
-        ClientOnlyStartup.preInitClientOnly();
         keyHandler.register();
         MinecraftForge.EVENT_BUS.register(new KeyInputHandler());
     }
@@ -248,7 +249,10 @@ public class ClientOnlyProxy extends CommonProxy {
     }
     public void postInit() {
         super.postInit();
-        ClientOnlyStartup.postInitClientOnly();
+        MinecraftForge.EVENT_BUS.register(new EventHandlerOverlayPipBuck());
+        MinecraftForge.EVENT_BUS.register(new EventHandlerOverlayAEM());
+        MinecraftForge.EVENT_BUS.register(new EventPlayerGuiHandler());
+        MinecraftForge.EVENT_BUS.register(new EventPlayerRenders());
     }
     @Override
     public boolean playerIsInCreativeMode(EntityPlayer player) {

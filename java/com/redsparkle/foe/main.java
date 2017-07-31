@@ -1,7 +1,9 @@
 package com.redsparkle.foe;
 import com.redsparkle.foe.commands.rpSkillCheck;
+import com.redsparkle.foe.creativeTabs.InitCreativeTabs;
 import com.redsparkle.foe.network.ClientServerOneClass.*;
 import com.redsparkle.foe.network.*;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
@@ -28,9 +30,14 @@ public class main {
      * @param name
      * @return eg "minecraftbyexample:myblockname"
      */
-    public static String prependModID(String name) {
-        return MODID + ":" + name;
-    }
+
+    final CreativeTabs Fallout_ammo = InitCreativeTabs.Fallout_ammo;
+    final CreativeTabs Fallout_blocks = InitCreativeTabs.Fallout_blocks;
+    final CreativeTabs Fallout_guns = InitCreativeTabs.Fallout_guns;
+    final CreativeTabs Fallout_food = InitCreativeTabs.Fallout_Food;
+    final CreativeTabs Fallout_meds = InitCreativeTabs.Fallout_meds;
+    final CreativeTabs Fallout_stats_blocks = InitCreativeTabs.Fallout_stats_blocks;
+    final CreativeTabs Fallout_stats_armor = InitCreativeTabs.Fallout_armor;
     @Mod.EventHandler
     public static void init(FMLServerStartingEvent event) {
         event.registerServerCommand(new rpSkillCheck());

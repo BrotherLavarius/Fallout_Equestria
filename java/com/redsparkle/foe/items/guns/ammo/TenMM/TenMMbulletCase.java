@@ -11,8 +11,8 @@ import java.util.List;
  * Created by NENYN on 1/12/2017.
  */
 public class TenMMbulletCase extends FoeItem {
-    public TenMMbulletCase(String tenMMCase) {
-        super(tenMMCase);
+    public TenMMbulletCase(String name) {
+        super(name);
         this.setMaxStackSize(64);
     }
     /**

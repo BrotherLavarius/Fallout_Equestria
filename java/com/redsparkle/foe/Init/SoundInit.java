@@ -1,18 +1,19 @@
 package com.redsparkle.foe.Init;
 
 import com.redsparkle.foe.main;
+import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.registries.IForgeRegistry;
 
 /**
  * Created by hoijima on 14.12.16.
  */
 @SuppressWarnings("WeakerAccess")
-@GameRegistry.ObjectHolder(main.MODID)
+@Mod.EventBusSubscriber(modid = main.MODID)
 public class SoundInit {
     public static final SoundEvent lowentensity_rad     = registerSound("LowEntensityRad");
     public static final SoundEvent mediumentensity_rad  = registerSound("MediumEntensityRad");
@@ -59,45 +60,48 @@ public class SoundInit {
         ResourceLocation soundID = new ResourceLocation(main.MODID, soundName);
         return new SoundEvent(soundID).setRegistryName(soundID);
     }
-    @Mod.EventBusSubscriber(modid = main.MODID)
-    public static class RegistrationHandler {
+
         @SubscribeEvent
         public static void registerSoundEvents(final RegistryEvent.Register<SoundEvent> event) {
-            event.getRegistry().registerAll(
-                    lowentensity_rad,
-                    mediumentensity_rad,
-                    highentensity_rad,
-                    enervation,
-                    tenmm_shot,
-                    tenmm_dry,
-                    tenmm_reload,
-                    four_tenmm_shot,
-                    four_tenmm_dry,
-                    four_tenmm_reload,
-                    db_shotgun_shot,
-                    db_shotgun_reload,
-                    db_shotgun_dry,
-                    flaregun_shot,
-                    flaregun_dry,
-                    flaregun_reload,
-                    plasma_shot,
-                    plasma_dry,
-                    plasma_reload,
-                    flamer_shot,
-                    flamer_reload,
-                    laser_fire_var_One,
-                    laser_fire_var_Two,
-                    laser_fire_var_Tree,
-                    laser_reload,
-                    laser_dry,
-                    clip_load,
-                    tenmm_clip_out,
-                    four_tenmm_clip_out,
-                    db_shotgun_clip_out,
-                    flaregun_clip_out,
-                    laser_clip_out,
-                    plasma_clip_out
-            );
-        }
+            final IForgeRegistry<SoundEvent> registry = event.getRegistry();
+
+            final SoundEvent[] soundEvents = {
+                lowentensity_rad,
+                mediumentensity_rad,
+                highentensity_rad,
+                enervation,
+                tenmm_shot,
+                tenmm_dry,
+                tenmm_reload,
+                four_tenmm_shot,
+                four_tenmm_dry,
+                four_tenmm_reload,
+                db_shotgun_shot,
+                db_shotgun_reload,
+                db_shotgun_dry,
+                flaregun_shot,
+                flaregun_dry,
+                flaregun_reload,
+                plasma_shot,
+                plasma_dry,
+                plasma_reload,
+                flamer_shot,
+                flamer_reload,
+                laser_fire_var_One,
+                laser_fire_var_Two,
+                laser_fire_var_Tree,
+                laser_reload,
+                laser_dry,
+                clip_load,
+                tenmm_clip_out,
+                four_tenmm_clip_out,
+                db_shotgun_clip_out,
+                flaregun_clip_out,
+                laser_clip_out,
+                plasma_clip_out
+        };
+            registry.registerAll(soundEvents);
+
     }
 }
+
