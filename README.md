@@ -3,7 +3,7 @@
 [![forthebadge](http://forthebadge.com/images/badges/built-with-swag.svg)](http://forthebadge.com)
 [![forthebadge](http://forthebadge.com/images/badges/contains-cat-gifs.svg)](http://forthebadge.com)
 
-currently uses `forge 1.11.2-13.20.0.2315`
+currently uses `forge 1.12.2-14.21.1.2426`
 A pack of stuff from FE with a fallout 4 inspired items
 
 Done\in progress
