@@ -3,6 +3,7 @@ package com.redsparkle.foe.gui.Menus;
 import com.redsparkle.api.utils.*;
 import com.redsparkle.api.utils.gui.GuiButtonExtFallout;
 import com.redsparkle.api.utils.gui.GuiButtonExtFallout_pipbuck;
+import com.redsparkle.foe.Init.ConfigInit;
 import com.redsparkle.foe.gui.Menus.pipbuck_gui_extenders.DATA.DataGui;
 import com.redsparkle.foe.gui.Menus.pipbuck_gui_extenders.ITEMS.InventoryGui;
 import com.redsparkle.foe.gui.Menus.pipbuck_gui_extenders.STATS.StatsGui;
@@ -15,7 +16,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 
-import javax.sound.sampled.FloatControl;
 import java.io.IOException;
 import java.util.Collections;
 /**
@@ -24,8 +24,7 @@ import java.util.Collections;
 public class PipBuckGui extends GuiScreen {
     final ResourceLocation pipbuck = new ResourceLocation(GlobalNames.Domain,
             "textures/gui/pipbuck_bg.png");
-    public FloatControl gain;
-    public RadioPLayer radioPLayer;
+
     public int pip_buck_x = 0;
     public int pip_buck_y = 0;
     public boolean StatsShowButton = false;
@@ -360,6 +359,7 @@ public class PipBuckGui extends GuiScreen {
                 }
                 //RADIO START BUTTON
                 {
+
                     for (int radio = 24; radio < 27; radio++) {
                         this.buttonList.get(radio).x = ScreenGrid.XCoordStart(
                                 this.width,
@@ -412,6 +412,10 @@ public class PipBuckGui extends GuiScreen {
                             this.buttonList.get(vol).enabled = false;
                         }
                     }
+                }
+                if (RadioThreadManager.isTreadAlive()) {
+                    Radio_isOff = false;
+                    Radio_stopVisible = true;
                 }
             }
         }
@@ -623,57 +627,41 @@ public class PipBuckGui extends GuiScreen {
         //RadioButtonStart 24-27
         //Radio start
         if (button == this.buttonList.get(24)) {
-            if (radioPLayer.player.getName() == "" ) {
 
                 Radio_isOff = false;
                 Radio_stopVisible = true;
-                radioPLayer = new RadioPLayer("http://home.fallout-equestria.tk:8100/rcr.ogg");
-            }
+            RadioThreadManager.SpawnRadio("http://home.fallout-equestria.tk:8100/rcr.ogg");
+
         }
         //Radio start
         if (button == this.buttonList.get(25)) {
-            if (radioPLayer.player.getName() == "" ) {
                 Radio_isOff = false;
                 Radio_stopVisible = true;
-                radioPLayer = new RadioPLayer("http://192.99.131.205:8000/pvfm1.ogg");
-            }
+            RadioThreadManager.SpawnRadio(ConfigInit.Radio1URL);
+
         }
         //Radio start
         if (button == this.buttonList.get(26)) {
-            if (radioPLayer.player.getName() == "" ) {
                 Radio_isOff = false;
                 Radio_stopVisible = true;
-                radioPLayer = new RadioPLayer("http://62.210.138.34:8000/ogg");
-            }
+            RadioThreadManager.SpawnRadio(ConfigInit.Radio2URL);
+
         }
         //Radio stop
         if (button == this.buttonList.get(27)) {
 
             Radio_isOff = true;
             Radio_stopVisible = false;
-            if (radioPLayer.player.isAlive()) {
-                radioPLayer.running = false;
-                radioPLayer.line.close();
-                radioPLayer.din.close();
-            }
+            RadioThreadManager.StopPlayer();
         }
         //Vol up
         if (button == this.buttonList.get(28)) {
-            if (radioPLayer.player.isAlive() && radioPLayer.player !=null ) {
-                gain = (FloatControl) radioPLayer.line.getControl(FloatControl.Type.MASTER_GAIN);
-                if (gain.getValue() < (gain.getMaximum() - 2.0F)) {
-                    gain.setValue(gain.getValue() + 1.0F);
-                }
-            }
+            RadioThreadManager.increaseSound();
+
         }
         //Vol down
         if (button == this.buttonList.get(29)) {
-            if (radioPLayer.player.isAlive()) {
-                gain = (FloatControl) radioPLayer.line.getControl(FloatControl.Type.MASTER_GAIN);
-                if (gain.getValue() > (gain.getMinimum() + 2.0F)) {
-                    gain.setValue(gain.getValue() - 1.0F);
-                }
-            }
+            RadioThreadManager.decreaseSound();
         }
         super.actionPerformed(button);
     }

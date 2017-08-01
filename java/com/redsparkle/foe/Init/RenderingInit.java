@@ -1,11 +1,6 @@
 package com.redsparkle.foe.Init;
 
 import com.redsparkle.api.utils.GlobalNames;
-import com.redsparkle.foe.creativeTabs.InitCreativeTabs;
-import com.redsparkle.foe.events.character.EventPlayerRenders;
-import com.redsparkle.foe.events.gui.EventHandlerOverlayAEM;
-import com.redsparkle.foe.events.gui.EventHandlerOverlayPipBuck;
-import com.redsparkle.foe.events.gui.EventPlayerGuiHandler;
 import com.redsparkle.foe.gui.Overlays.PipBuckOverlay;
 import com.redsparkle.foe.items.guns.entitys.bulletFired.EntityBullet;
 import com.redsparkle.foe.items.guns.entitys.bulletFired.RenderFactoryBullet;
@@ -17,12 +12,10 @@ import com.redsparkle.foe.items.guns.entitys.spreadPellet_shotgun.*;
 import com.redsparkle.foe.main;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.client.model.obj.OBJLoader;
-import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;

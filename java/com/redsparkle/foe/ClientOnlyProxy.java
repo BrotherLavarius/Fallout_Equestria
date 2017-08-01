@@ -18,10 +18,11 @@ import com.redsparkle.api.Capability.Player.water.IWaterCapability;
 import com.redsparkle.api.Capability.Player.water.WaterFactoryProvider;
 import com.redsparkle.api.utils.ItemCatalog;
 import com.redsparkle.foe.Init.SoundInit;
-import com.redsparkle.foe.events.character.EventPlayerRenders;
-import com.redsparkle.foe.events.gui.EventHandlerOverlayAEM;
-import com.redsparkle.foe.events.gui.EventHandlerOverlayPipBuck;
-import com.redsparkle.foe.events.gui.EventPlayerGuiHandler;
+import com.redsparkle.foe.events.ClientSide.CommonEventHandler;
+import com.redsparkle.foe.events.ClientSide.character.EventPlayerRenders;
+import com.redsparkle.foe.events.ClientSide.gui.EventHandlerOverlayAEM;
+import com.redsparkle.foe.events.ClientSide.gui.EventHandlerOverlayPipBuck;
+import com.redsparkle.foe.events.ClientSide.gui.EventPlayerGuiHandler;
 import com.redsparkle.foe.keys.KeyInputHandler;
 import com.redsparkle.foe.keys.keyHandler;
 import com.redsparkle.foe.network.ClientServerOneClass.*;
@@ -264,10 +265,12 @@ public class ClientOnlyProxy extends CommonProxy {
 
     public void postInit() {
         super.postInit();
+        MinecraftForge.EVENT_BUS.register(new CommonEventHandler());
         MinecraftForge.EVENT_BUS.register(new EventHandlerOverlayPipBuck());
         MinecraftForge.EVENT_BUS.register(new EventHandlerOverlayAEM());
         MinecraftForge.EVENT_BUS.register(new EventPlayerGuiHandler());
         MinecraftForge.EVENT_BUS.register(new EventPlayerRenders());
+
     }
 
     @Override
