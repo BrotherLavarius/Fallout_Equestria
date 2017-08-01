@@ -29,7 +29,7 @@ public class MessageGunFire implements IMessage {
     public static class Handler implements IMessageHandler<MessageGunFire, IMessage> {
         @Override
         public IMessage onMessage(MessageGunFire message, MessageContext ctx) {
-            EntityPlayerMP player = ctx.getServerHandler().playerEntity;
+            EntityPlayerMP player = ctx.getServerHandler().player;
             DedicatedServerProxy.handleFireMessage(message,player);
             return null;
         }

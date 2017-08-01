@@ -9,7 +9,8 @@ public class Sugar_Bombs extends FoodMultipleUse {
     public int NUMBER_OF_BOXES = 2;
     public int MaxDamage = 2;
     public int foodToAdd = 2;
-    public Sugar_Bombs() {
+    public Sugar_Bombs(String sugar_bombs) {
+        super(sugar_bombs);
         this.setMaxStackSize(NUMBER_OF_BOXES);
         this.setCreativeTab(InitCreativeTabs.Fallout_Food);   // the item will appear on the Miscellaneous tab in creative
         this.setMaxDamage(MaxDamage);

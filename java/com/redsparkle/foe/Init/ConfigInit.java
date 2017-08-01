@@ -12,6 +12,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+
 /**
  * Holds the configuration information and synchronises the various copies of it.
  * The configuration information is stored in three places:
@@ -45,8 +46,16 @@ public class ConfigInit {
     public static int[] myIntList;
     public static String myString;
     public static String myColour;
+
+    public static String Radio1Name;
+    public static String Radio1URL;
+
+    public static String Radio2Name;
+    public static String Radio2URL;
+
     // Define your configuration object
     private static Configuration config = null;
+
     public static void preInit() {
         /*
          * Here is where you specify the location from where your config file
@@ -62,6 +71,7 @@ public class ConfigInit {
         // load config from file (see mbe70 package for more info)
         syncFromFile();
     }
+
     public static void clientPreInit() {
         /*
          * Register the save config handler to the Forge event bus, creates an
@@ -70,27 +80,32 @@ public class ConfigInit {
 		 */
         MinecraftForge.EVENT_BUS.register(new ConfigEventHandler());
     }
+
     public static Configuration getConfig() {
         return config;
     }
+
     /**
      * load the configuration values from the configuration file
      */
     public static void syncFromFile() {
         syncConfig(true, true);
     }
+
     /**
      * save the GUI-altered values to disk
      */
     public static void syncFromGUI() {
         syncConfig(false, true);
     }
+
     /**
      * save the MBEConfiguration variables (fields) to disk
      */
     public static void syncFromFields() {
         syncConfig(false, false);
     }
+
     /**
      * Synchronise the three copies of the data
      * 1) loadConfigFromFile && readFieldsFromConfig -> initialise everything from the disk file.
@@ -101,8 +116,8 @@ public class ConfigInit {
      * @param readFieldsFromConfig if true, reload the member variables from the config field.
      */
     private static void syncConfig(boolean loadConfigFromFile, boolean readFieldsFromConfig) {
-		/*
-		 * ---- step 1 - load raw values from config file (if loadFromFile true) -------------------
+        /*
+         * ---- step 1 - load raw values from config file (if loadFromFile true) -------------------
 		 *
 		 * Check if this configuration object is the main config file or a child
 		 * configuration For simple configuration setups, this only matters if
@@ -145,53 +160,85 @@ public class ConfigInit {
 		 * already exists, the property values will already have been read from
 		 * the file, otherwise they will be assigned the default value.
 		 */
-        // integer
-        final int MY_INT_MIN_VALUE = 3;
-        final int MY_INT_MAX_VALUE = 12;
-        final int MY_INT_DEFAULT_VALUE = 10;
-        Property propMyInt = config.get(CATEGORY_NAME_GENERAL, "myInteger", MY_INT_DEFAULT_VALUE,
-                "Configuration integer (myInteger)", MY_INT_MIN_VALUE, MY_INT_MAX_VALUE);
-        propMyInt.setLanguageKey("gui.mbe70_configuration.myInteger");
-        // boolean
-        final boolean MY_BOOL_DEFAULT_VALUE = true;
-        Property propMyBool = config.get(CATEGORY_NAME_GENERAL, "myBoolean", MY_BOOL_DEFAULT_VALUE);
-        propMyBool.setComment("Configuration boolean (myBoolean)");
-        propMyBool.setLanguageKey("gui.mbe70_configuration.myBoolean").setRequiresMcRestart(true);
-        // double
-        final double MY_DOUBLE_MIN_VALUE = 0.0;
-        final double MY_DOUBLE_MAX_VALUE = 1.0;
-        final double MY_DOUBLE_DEFAULT_VALUE = 0.80;
-        Property propMyDouble = config.get(CATEGORY_NAME_GENERAL, "myDouble", MY_DOUBLE_DEFAULT_VALUE,
-                "Configuration double (myDouble)", MY_DOUBLE_MIN_VALUE, MY_DOUBLE_MAX_VALUE);
-        propMyDouble.setLanguageKey("gui.mbe70_configuration.myDouble");
+//        // integer
+//        final int MY_INT_MIN_VALUE = 3;
+//        final int MY_INT_MAX_VALUE = 12;
+//        final int MY_INT_DEFAULT_VALUE = 10;
+//        Property propMyInt = config.get(CATEGORY_NAME_GENERAL, "myInteger", MY_INT_DEFAULT_VALUE,
+//                "Configuration integer (myInteger)", MY_INT_MIN_VALUE, MY_INT_MAX_VALUE);
+//        propMyInt.setLanguageKey("gui.mbe70_configuration.myInteger");
+//        // boolean
+//        final boolean MY_BOOL_DEFAULT_VALUE = true;
+//        Property propMyBool = config.get(CATEGORY_NAME_GENERAL, "myBoolean", MY_BOOL_DEFAULT_VALUE);
+//        propMyBool.setComment("Configuration boolean (myBoolean)");
+//        propMyBool.setLanguageKey("gui.mbe70_configuration.myBoolean").setRequiresMcRestart(true);
+//        // double
+//        final double MY_DOUBLE_MIN_VALUE = 0.0;
+//        final double MY_DOUBLE_MAX_VALUE = 1.0;
+//        final double MY_DOUBLE_DEFAULT_VALUE = 0.80;
+//        Property propMyDouble = config.get(CATEGORY_NAME_GENERAL, "myDouble", MY_DOUBLE_DEFAULT_VALUE,
+//                "Configuration double (myDouble)", MY_DOUBLE_MIN_VALUE, MY_DOUBLE_MAX_VALUE);
+//        propMyDouble.setLanguageKey("gui.mbe70_configuration.myDouble");
+//        // string
+//        final String MY_STRING_DEFAULT_VALUE = "default";
+//        Property propMyString = config.get(CATEGORY_NAME_GENERAL, "myString", MY_STRING_DEFAULT_VALUE);
+//        propMyString.setComment("Configuration string (myString)");
+//        propMyString.setLanguageKey("gui.mbe70_configuration.myString").setRequiresWorldRestart(true);
+
+        //RADIO STRINGS
+
         // string
-        final String MY_STRING_DEFAULT_VALUE = "default";
-        Property propMyString = config.get(CATEGORY_NAME_GENERAL, "myString", MY_STRING_DEFAULT_VALUE);
-        propMyString.setComment("Configuration string (myString)");
-        propMyString.setLanguageKey("gui.mbe70_configuration.myString").setRequiresWorldRestart(true);
-        // list of integer values
-        final int[] MY_INT_LIST_DEFAULT_VALUE = new int[]{1, 2, 3, 4, 5};
-        Property propMyIntList = config.get(CATEGORY_NAME_GENERAL, "myIntList", MY_INT_LIST_DEFAULT_VALUE,
-                "Configuration integer list (myIntList)");
-        propMyIntList.setLanguageKey("gui.mbe70_configuration.myIntList");
-        // a string restricted to several choices - located on a separate category tab in the GUI
-        final String COLOUR_DEFAULT_VALUE = "red";
-        final String[] COLOUR_CHOICES = {"blue", "red", "yellow"};
-        Property propColour = config.get(CATEGORY_NAME_OTHER, "myColour", COLOUR_DEFAULT_VALUE);
-        propColour.setComment("Configuration string (myColour): blue, red, yellow");
-        propColour.setLanguageKey("gui.mbe70_configuration.myColour").setRequiresWorldRestart(true);
-        propColour.setValidValues(COLOUR_CHOICES);
+        final String RADIO_1_NAME_DEFAULT_VALUE = "Mane Stream";
+        Property radio1nameProp = config.get(CATEGORY_NAME_GENERAL, "1st_radio_name", RADIO_1_NAME_DEFAULT_VALUE);
+        radio1nameProp.setComment("Configuration string (Radio 1 name)");
+        radio1nameProp.setLanguageKey("gui.mbe70_configuration.myString").setRequiresWorldRestart(true);
+        // string
+        final String RADIO_1_URL_DEFAULT_VALUE = "http://192.99.131.205:8000/pvfm1.ogg";
+        Property radio1urlProp = config.get(CATEGORY_NAME_GENERAL, "1st_radio_url", RADIO_1_URL_DEFAULT_VALUE);
+        radio1urlProp.setComment("Configuration string (Radio 1 address) ONLY OGG RADIO ALLOWED YOU ARE WARNED");
+        radio1urlProp.setLanguageKey("gui.mbe70_configuration.myString").setRequiresWorldRestart(true);
+
+
+        // string
+        final String RADIO_2_NAME_DEFAULT_VALUE = "Radio Brony";
+        Property radio2nameProp = config.get(CATEGORY_NAME_GENERAL, "2st_radio_name", RADIO_2_NAME_DEFAULT_VALUE);
+        radio2nameProp.setComment("Configuration string (Radio 2 name)");
+        radio2nameProp.setLanguageKey("gui.mbe70_configuration.myString").setRequiresWorldRestart(true);
+        // string
+        final String RADIO_2_URL_DEFAULT_VALUE = "http://62.210.138.34:8000/ogg";
+        Property radio2urlProp = config.get(CATEGORY_NAME_GENERAL, "2st_radio_url", RADIO_2_URL_DEFAULT_VALUE);
+        radio2urlProp.setComment("Configuration string (Radio 2 address) ONLY OGG RADIO ALLOWED YOU ARE WARNED");
+        radio2urlProp.setLanguageKey("gui.mbe70_configuration.myString").setRequiresWorldRestart(true);
+
+
+//        // list of integer values
+//        final int[] MY_INT_LIST_DEFAULT_VALUE = new int[]{1, 2, 3, 4, 5};
+//        Property propMyIntList = config.get(CATEGORY_NAME_GENERAL, "myIntList", MY_INT_LIST_DEFAULT_VALUE,
+//                "Configuration integer list (myIntList)");
+//        propMyIntList.setLanguageKey("gui.mbe70_configuration.myIntList");
+//        // a string restricted to several choices - located on a separate category tab in the GUI
+//        final String COLOUR_DEFAULT_VALUE = "red";
+//        final String[] COLOUR_CHOICES = {"blue", "red", "yellow"};
+//        Property propColour = config.get(CATEGORY_NAME_OTHER, "myColour", COLOUR_DEFAULT_VALUE);
+//        propColour.setComment("Configuration string (myColour): blue, red, yellow");
+//        propColour.setLanguageKey("gui.mbe70_configuration.myColour").setRequiresWorldRestart(true);
+//        propColour.setValidValues(COLOUR_CHOICES);
         // By defining a property order we can control the order of the
         // properties in the config file and GUI. This is defined on a per config-category basis.
         List<String> propOrderGeneral = new ArrayList<String>();
-        propOrderGeneral.add(propMyInt.getName()); // push the config value's name into the ordered list
-        propOrderGeneral.add(propMyBool.getName());
-        propOrderGeneral.add(propMyDouble.getName());
-        propOrderGeneral.add(propMyString.getName());
-        propOrderGeneral.add(propMyIntList.getName());
+//        propOrderGeneral.add(propMyInt.getName()); // push the config value's name into the ordered list
+//        propOrderGeneral.add(propMyBool.getName());
+//        propOrderGeneral.add(propMyDouble.getName());
+//        propOrderGeneral.add(propMyString.getName());
+//        propOrderGeneral.add(propMyIntList.getName());
+        propOrderGeneral.add(radio1nameProp.getName());
+        propOrderGeneral.add(radio1urlProp.getName());
+        propOrderGeneral.add(radio2nameProp.getName());
+        propOrderGeneral.add(radio2urlProp.getName());
+
         config.setCategoryPropertyOrder(CATEGORY_NAME_GENERAL, propOrderGeneral);
         List<String> propOrderOther = new ArrayList<String>();
-        propOrderOther.add(propColour.getName());
+//        propOrderOther.add(propColour.getName());
         config.setCategoryPropertyOrder(CATEGORY_NAME_OTHER, propOrderOther);
 		/*
 		 * ---- step 3 - read the configuration property values into the class's  -------------------
@@ -206,28 +253,35 @@ public class ConfigInit {
             // If getInt() cannot get an integer value from the config file
             // value of myInteger (e.g. corrupted file).
             // It will set it to the default value passed to the function.
-            myInteger = propMyInt.getInt(MY_INT_DEFAULT_VALUE);
-            if (myInteger > MY_INT_MAX_VALUE || myInteger < MY_INT_MIN_VALUE) {
-                myInteger = MY_INT_DEFAULT_VALUE;
-            }
-            myBoolean = propMyBool.getBoolean(MY_BOOL_DEFAULT_VALUE); // can also use a literal (see integer example) if desired
-            myDouble = propMyDouble.getDouble(MY_DOUBLE_DEFAULT_VALUE);
-            if (myDouble > MY_DOUBLE_MAX_VALUE || myDouble < MY_DOUBLE_MIN_VALUE) {
-                myDouble = MY_DOUBLE_DEFAULT_VALUE;
-            }
-            myString = propMyString.getString();
-            myIntList = propMyIntList.getIntList();
-            myColour = propColour.getString();
-            boolean matched = false;
-            for (String entry : COLOUR_CHOICES) {
-                if (entry.equals(myColour)) {
-                    matched = true;
-                    break;
-                }
-            }
-            if (!matched) {
-                myColour = COLOUR_DEFAULT_VALUE;
-            }
+//            myInteger = propMyInt.getInt(MY_INT_DEFAULT_VALUE);
+//            if (myInteger > MY_INT_MAX_VALUE || myInteger < MY_INT_MIN_VALUE) {
+//                myInteger = MY_INT_DEFAULT_VALUE;
+//            }
+//            myBoolean = propMyBool.getBoolean(MY_BOOL_DEFAULT_VALUE); // can also use a literal (see integer example) if desired
+//            myDouble = propMyDouble.getDouble(MY_DOUBLE_DEFAULT_VALUE);
+//            if (myDouble > MY_DOUBLE_MAX_VALUE || myDouble < MY_DOUBLE_MIN_VALUE) {
+//                myDouble = MY_DOUBLE_DEFAULT_VALUE;
+//            }
+//            myString = propMyString.getString();
+//            myIntList = propMyIntList.getIntList();
+//            myColour = propColour.getString();
+//            boolean matched = false;
+//            for (String entry : COLOUR_CHOICES) {
+//                if (entry.equals(myColour)) {
+//                    matched = true;
+//                    break;
+//                }
+//            }
+//            if (!matched) {
+//                myColour = COLOUR_DEFAULT_VALUE;
+//            }
+            Radio1Name = radio1nameProp.getString();
+            Radio1URL = radio1urlProp.getString();
+
+            Radio2Name = radio2nameProp.getString();
+            Radio2URL = radio2urlProp.getString();
+
+
         }
 		/*
 		 * ---- step 4 - write the class's variables back into the config  -------------------
@@ -236,16 +290,22 @@ public class ConfigInit {
 		 * This is done even for a 'loadFromFile==true', because some of the
 		 * properties may have been assigned default values if the file was empty or corrupt.
 		 */
-        propMyInt.set(myInteger);
-        propMyBool.set(myBoolean);
-        propMyDouble.set(myDouble);
-        propMyString.set(myString);
-        propMyIntList.set(myIntList);
-        propColour.set(myColour);
+//        propMyInt.set(myInteger);
+//        propMyBool.set(myBoolean);
+//        propMyDouble.set(myDouble);
+//        propMyString.set(myString);
+//        propMyIntList.set(myIntList);
+//        propColour.set(myColour);
+
+        radio1nameProp.set(Radio1Name);
+        radio1urlProp.set(Radio1URL);
+        radio2nameProp.set(Radio2Name);
+        radio2urlProp.set(Radio2URL);
         if (config.hasChanged()) {
             config.save();
         }
     }
+
     public static class ConfigEventHandler {
         /*
          * This class, when instantiated as an object, will listen on the Forge

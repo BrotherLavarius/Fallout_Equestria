@@ -45,7 +45,7 @@ public class PipBuckOverlay extends Gui {
 
     public PipBuckOverlay(Minecraft mc, int screenWidht, int screenHeight) {
     /* These are the variables that contain world and player information */
-        FontRenderer fr = mc.fontRendererObj;
+        FontRenderer fr = mc.fontRenderer;
         World world = mc.world;
         EntityPlayer player = mc.player;
         Integer PLayerArmor = player.getTotalArmorValue();

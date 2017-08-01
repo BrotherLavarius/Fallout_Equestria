@@ -11,7 +11,8 @@ import net.minecraft.world.World;
  * Created by NENYN on 1/2/2017.
  */
 public class FourTenMMClip extends Item_AmmoHolder {
-    public FourTenMMClip() {
+    public FourTenMMClip(String fourTenMMClip) {
+        super(fourTenMMClip);
         final int NUMBER_OF_BOXES = 1;
         this.clipsize = GlobalsGunStats.FOUR_TEN_MM.Clipsize();
         this.setMaxStackSize(NUMBER_OF_BOXES);

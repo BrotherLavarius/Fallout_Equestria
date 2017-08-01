@@ -11,7 +11,8 @@ public class RedHealPotion extends meds_Potion {
     public String potionId = "regeneration";
     public int durationIn = 160;
     public int amplifierIn = 1;
-    public RedHealPotion() {
+    public RedHealPotion(String aem) {
+        super(aem);
         this.setMaxStackSize(NUMBER_OF_BOXES);
         this.setCreativeTab(InitCreativeTabs.Fallout_meds);   // the item will appear on the Miscellaneous tab in creative
         this.setMaxDamage(MaxDamage);

@@ -1,5 +1,6 @@
 package com.redsparkle.foe.block.effectDispenser;
 
+import com.redsparkle.api.utils.GlobalNames;
 import com.redsparkle.foe.block.effectDispenser.TileEntitys.RadiationBlockTileEntity;
 import com.redsparkle.foe.creativeTabs.InitCreativeTabs;
 import net.minecraft.block.BlockContainer;
@@ -24,16 +25,18 @@ import java.util.Random;
  */
 public class RadiationBlock extends BlockContainer {
     public static final PropertyDirection FACING = PropertyDirection.create("facing");
-    public static final RadiationBlock instance = new RadiationBlock();
+    public static final RadiationBlock instance = new RadiationBlock(GlobalNames.RadBlock);
     public static final String name = "RadiationBlock";
     private final boolean isOn = true;
     boolean red = true;
-    public RadiationBlock() {
+    public RadiationBlock(String radBlock) {
         super(Material.AIR);
         setLightLevel(0.1F);
         setSoundType(SoundType.METAL);
         setCreativeTab(InitCreativeTabs.Fallout_stats_blocks);
         setSoundType(SoundType.GROUND);
+        setRegistryName("rad_block");
+        setUnlocalizedName("rad_block");
     }
     public TileEntity createNewTileEntity(World worldIn, int meta) {
         return new RadiationBlockTileEntity();

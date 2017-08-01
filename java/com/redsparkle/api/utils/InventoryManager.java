@@ -52,7 +52,7 @@ public class InventoryManager {
         //TODO: kick the Case's to player main inv, not the hotbar
         for (int i = 0; i <= player.inventory.getSizeInventory(); i++) {
             ItemStack itemstack = player.inventory.getStackInSlot(i);
-            if (itemstack.getItem() == stack.getItem() && itemstack.getCount() <= stack.getItem().getItemStackLimit()) {
+            if (itemstack.getItem() == stack.getItem() && itemstack.getCount() <= stack.getMaxStackSize()) {
                 return itemstack;
             }
         }

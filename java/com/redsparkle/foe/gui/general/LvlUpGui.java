@@ -120,7 +120,7 @@ public class LvlUpGui extends GuiScreen {
         {
             GL11.glScalef((float) 1.0, (float) 1.0, 1.0f);
             for (int i = 0; i < params.length ; i++) {
-                this.fontRendererObj.drawString(names[i],
+                this.fontRenderer.drawString(names[i],
                         ScreenGrid.XCoordStart(
                                 this.width,
                                 2) + 25,
@@ -129,7 +129,7 @@ public class LvlUpGui extends GuiScreen {
                                 2) + (i * 15) + 30,
                         8453920, true
                 );
-                this.fontRendererObj.drawString(Integer.toString(
+                this.fontRenderer.drawString(Integer.toString(
                         params[i]),
                         ScreenGrid.XCoordStart(
                                 this.width,
@@ -139,7 +139,7 @@ public class LvlUpGui extends GuiScreen {
                                 2) + (i * 15) + 30,
                         8453920, true
                 );
-                this.fontRendererObj.drawString(" + " + Integer.toString(
+                this.fontRenderer.drawString(" + " + Integer.toString(
                         temp[i]),
                         ScreenGrid.XCoordStart(
                                 this.width,
@@ -149,7 +149,7 @@ public class LvlUpGui extends GuiScreen {
                                 2) + (i * 15) + 30,
                         8453920, true
                 );
-                this.fontRendererObj.drawString(Integer.toString(
+                this.fontRenderer.drawString(Integer.toString(
                         finished[i] = temp[i] + params[i]),
                         ScreenGrid.XCoordStart(
                                 this.width,
@@ -165,7 +165,7 @@ public class LvlUpGui extends GuiScreen {
                     mc.player.getCapability(LevelFactoryProvider.LEVEL_CAPABILITY, null).getLevel(),
                     mc.player.getCapability(LevelFactoryProvider.LEVEL_CAPABILITY, null).getProgress()
             );
-            this.fontRendererObj.drawString("Points available: " + Integer.toString(pointsAvailable - IntStream.of(temp).sum()),
+            this.fontRenderer.drawString("Points available: " + Integer.toString(pointsAvailable - IntStream.of(temp).sum()),
                     ScreenGrid.XCoordStart(
                             this.width,
                             2) + 30,
@@ -177,19 +177,19 @@ public class LvlUpGui extends GuiScreen {
             {
                 int startYButtons = 36;
                 for (int o = 0; o < buttonsIdsPlus.length ; o++) {
-                        this.buttonList.get(buttonsIdsPlus[o]).xPosition = ScreenGrid.XCoordStart(this.width, 2) + 248;
-                        this.buttonList.get(buttonsIdsPlus[o]).yPosition = ScreenGrid.XCoordStart(this.height, 2) + (o * 15) + 30;
+                        this.buttonList.get(buttonsIdsPlus[o]).x = ScreenGrid.XCoordStart(this.width, 2) + 248;
+                        this.buttonList.get(buttonsIdsPlus[o]).y = ScreenGrid.XCoordStart(this.height, 2) + (o * 15) + 30;
                         this.buttonList.get(buttonsIdsPlus[o]).height = 12;
                         this.buttonList.get(buttonsIdsPlus[o]).width = 10;
-                        this.buttonList.get(buttonsIdsMinus[o]).xPosition = ScreenGrid.XCoordStart(this.width, 2) + 258;
-                        this.buttonList.get(buttonsIdsMinus[o]).yPosition = ScreenGrid.XCoordStart(this.height, 2) + (o * 15) + 30;
+                        this.buttonList.get(buttonsIdsMinus[o]).x = ScreenGrid.XCoordStart(this.width, 2) + 258;
+                        this.buttonList.get(buttonsIdsMinus[o]).y = ScreenGrid.XCoordStart(this.height, 2) + (o * 15) + 30;
                         this.buttonList.get(buttonsIdsMinus[o]).height = 10;
                         this.buttonList.get(buttonsIdsMinus[o]).width = 9;
                     startYButtons = startYButtons + 13;
                 }
             }
-            this.buttonList.get(26).xPosition = ScreenGrid.XCoordStart(this.width, 2) + 30;
-            this.buttonList.get(26).yPosition = ScreenGrid.XCoordStart(this.height, 2) + 10;
+            this.buttonList.get(26).x = ScreenGrid.XCoordStart(this.width, 2) + 30;
+            this.buttonList.get(26).y = ScreenGrid.XCoordStart(this.height, 2) + 10;
             this.buttonList.get(26).height = 21;
             this.buttonList.get(26).width = 80;
             this.buttonList.get(26).enabled = CommitShow;

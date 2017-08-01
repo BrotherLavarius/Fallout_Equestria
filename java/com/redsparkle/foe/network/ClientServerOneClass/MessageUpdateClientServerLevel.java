@@ -40,7 +40,7 @@ public class MessageUpdateClientServerLevel implements IMessage {
     public static class HandlerServer implements IMessageHandler<MessageUpdateClientServerLevel, IMessage> {
         @Override
         public IMessage onMessage(MessageUpdateClientServerLevel message, MessageContext ctx) {
-            EntityPlayerMP playerMP = ctx.getServerHandler().playerEntity;
+            EntityPlayerMP playerMP = ctx.getServerHandler().player;
             DedicatedServerProxy.handleLevelMessage(message, playerMP);
             return null;
         }

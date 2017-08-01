@@ -24,7 +24,7 @@ public class APBar extends Gui {
     private final static int RadBAR_HEIGHT = 9;
     private Minecraft mc;
     public APBar(Minecraft mc) {
-        FontRenderer fr = mc.fontRendererObj;
+        FontRenderer fr = mc.fontRenderer;
         EntityPlayer player = mc.player;
         World world = mc.world;
         int playerFood = player.getFoodStats().getFoodLevel();

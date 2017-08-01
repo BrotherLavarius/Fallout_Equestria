@@ -14,17 +14,15 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import net.minecraftforge.common.property.IExtendedBlockState;
-import net.minecraftforge.common.property.Properties;
 
 import static com.redsparkle.foe.main.MODID;
 /**
  * Created by hoijima on 04.07.16.
  */
 public class armor_bench_tier_one extends GeneralAllignBlockTwoOTwo {
-    public static final armor_bench_tier_one instance = new armor_bench_tier_one();
-    public armor_bench_tier_one() {
-        super(Material.IRON);
+    public static final armor_bench_tier_one instance = new armor_bench_tier_one(GlobalNames.ArmorBench_tier_one);
+    public armor_bench_tier_one(String armorBench_tier_one) {
+        super(Material.IRON,armorBench_tier_one);
         setLightLevel(0);
         setSoundType(SoundType.METAL);
         setCreativeTab(InitCreativeTabs.Fallout_blocks);
@@ -48,7 +46,7 @@ public class armor_bench_tier_one extends GeneralAllignBlockTwoOTwo {
     public IBlockState getExtendedState(IBlockState state, IBlockAccess world, BlockPos pos) {
         if (world.getTileEntity(pos) != null && world.getTileEntity(pos) instanceof TileEntity_ArmorBench_tier_one) {
             TileEntity_ArmorBench_tier_one te = (TileEntity_ArmorBench_tier_one) world.getTileEntity(pos);
-            return ((IExtendedBlockState) state).withProperty(Properties.AnimationProperty, te.state);
+            return state;
         }
         return state;
     }

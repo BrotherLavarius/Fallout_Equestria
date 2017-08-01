@@ -1,7 +1,7 @@
 package com.redsparkle.api.items.helpers.Item_Instances;
 
+import com.redsparkle.foe.items.FoeItem;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -10,8 +10,9 @@ import java.util.List;
 /**
  * Created by hoijima on 19.06.17.
  */
-public class Item_bullet extends Item {
-    public Item_bullet() {
+public class Item_bullet extends FoeItem {
+    public Item_bullet(String name) {
+        super(name);
         this.setMaxStackSize(1);
     }
     /**

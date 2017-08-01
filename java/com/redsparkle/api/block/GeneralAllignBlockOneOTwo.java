@@ -9,11 +9,11 @@ import net.minecraft.world.IBlockAccess;
  * Created by hoijima on 02.06.17.
  */
 public class GeneralAllignBlockOneOTwo extends GeneralAllignBlockOneOone {
-    public GeneralAllignBlockOneOTwo(Material blockMaterialIn, MapColor blockMapColorIn) {
-        super(blockMaterialIn, blockMapColorIn);
+    public GeneralAllignBlockOneOTwo(Material blockMaterialIn, MapColor blockMapColorIn,String Name) {
+        super(blockMaterialIn, blockMapColorIn,Name);
     }
-    public GeneralAllignBlockOneOTwo(Material materialIn) {
-        super(materialIn);
+    public GeneralAllignBlockOneOTwo(Material materialIn,String Name) {
+        super(materialIn,Name);
     }
     @Override
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {

@@ -6,7 +6,8 @@ import com.redsparkle.foe.creativeTabs.InitCreativeTabs;
  * Created by hoijima desu on 29.07.16 desu.
  */
 public class Battery extends Item_AmmoHolder {
-    public Battery() {
+    public Battery(String battery) {
+        super(battery);
         final int NUMBER_OF_BOXES = 20;
         this.clipsize = GlobalsGunStats.LASER_PISTOL.Clipsize();
         this.setMaxStackSize(NUMBER_OF_BOXES);

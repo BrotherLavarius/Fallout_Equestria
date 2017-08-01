@@ -73,7 +73,7 @@ public class MessageUpdateClientServerSkills implements IMessage {
     public static class HandlerServer implements IMessageHandler<MessageUpdateClientServerSkills, IMessage> {
         @Override
         public IMessage onMessage(MessageUpdateClientServerSkills message, MessageContext ctx) {
-            EntityPlayerMP playerMP = ctx.getServerHandler().playerEntity;
+            EntityPlayerMP playerMP = ctx.getServerHandler().player;
             DedicatedServerProxy.handleSkillsMessage(message, playerMP);
             return null;
         }
@@ -81,7 +81,7 @@ public class MessageUpdateClientServerSkills implements IMessage {
     public static class ServerOnLVLUP implements IMessageHandler<MessageUpdateClientServerSkills, IMessage> {
         @Override
         public IMessage onMessage(MessageUpdateClientServerSkills message, MessageContext ctx) {
-            EntityPlayerMP playerMP = ctx.getServerHandler().playerEntity;
+            EntityPlayerMP playerMP = ctx.getServerHandler().player;
             DedicatedServerProxy.handleSkillsLVLUPMessage(message, playerMP);
             return null;
         }

@@ -64,7 +64,7 @@ public class MessageAdvInv_SLOT implements IMessage {
     public static class HandlerServer implements IMessageHandler<MessageAdvInv_SLOT, IMessage> {
         @Override
         public IMessage onMessage(MessageAdvInv_SLOT message, MessageContext ctx) {
-            EntityPlayerMP playerMP = ctx.getServerHandler().playerEntity;
+            EntityPlayerMP playerMP = ctx.getServerHandler().player;
             DedicatedServerProxy.handleAdv_SLOT(message, playerMP);
             return null;
         }

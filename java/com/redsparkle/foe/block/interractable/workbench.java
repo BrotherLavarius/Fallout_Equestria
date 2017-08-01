@@ -1,5 +1,6 @@
 package com.redsparkle.foe.block.interractable;
 import com.redsparkle.api.block.GeneralAllignBlockTwoOTwo;
+import com.redsparkle.api.utils.GlobalNames;
 import com.redsparkle.foe.block.interractable.TileEntitys.DesktopTerminalTileEntity;
 import com.redsparkle.foe.block.interractable.TileEntitys.TileEntity_workbench;
 import com.redsparkle.foe.creativeTabs.InitCreativeTabs;
@@ -12,15 +13,13 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import net.minecraftforge.common.property.IExtendedBlockState;
-import net.minecraftforge.common.property.Properties;
 /**
  * Created by hoijima on 04.07.16.
  */
 public class workbench extends GeneralAllignBlockTwoOTwo {
-    public static final workbench instance = new workbench();
-    public workbench() {
-        super(Material.IRON);
+    public static final workbench instance = new workbench(GlobalNames.Workbench);
+    public workbench(String workbench) {
+        super(Material.IRON,workbench);
         setLightLevel(0);
         setSoundType(SoundType.METAL);
         setCreativeTab(InitCreativeTabs.Fallout_blocks);
@@ -39,7 +38,7 @@ public class workbench extends GeneralAllignBlockTwoOTwo {
     public IBlockState getExtendedState(IBlockState state, IBlockAccess world, BlockPos pos) {
         if (world.getTileEntity(pos) != null && world.getTileEntity(pos) instanceof TileEntity_workbench) {
             TileEntity_workbench te = (TileEntity_workbench) world.getTileEntity(pos);
-            return ((IExtendedBlockState) state).withProperty(Properties.AnimationProperty, te.state);
+            return state;
         }
         return state;
     }

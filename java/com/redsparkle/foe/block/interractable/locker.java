@@ -1,5 +1,6 @@
 package com.redsparkle.foe.block.interractable;
 import com.redsparkle.api.block.GeneralAllignBlockOneOTwo;
+import com.redsparkle.api.utils.GlobalNames;
 import com.redsparkle.foe.block.interractable.TileEntitys.DesktopTerminalTileEntity;
 import com.redsparkle.foe.block.interractable.TileEntitys.TileEntity_locker;
 import com.redsparkle.foe.creativeTabs.InitCreativeTabs;
@@ -12,15 +13,13 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import net.minecraftforge.common.property.IExtendedBlockState;
-import net.minecraftforge.common.property.Properties;
 /**
  * Created by hoijima on 04.07.16.
  */
 public class locker extends GeneralAllignBlockOneOTwo {
-    public static final locker instance = new locker();
-    public locker() {
-        super(Material.IRON);
+    public static final locker instance = new locker(GlobalNames.Locker);
+    public locker(String locker) {
+        super(Material.IRON,locker);
         setLightLevel(0);
         setSoundType(SoundType.METAL);
         setCreativeTab(InitCreativeTabs.Fallout_blocks);
@@ -43,7 +42,7 @@ public class locker extends GeneralAllignBlockOneOTwo {
     public IBlockState getExtendedState(IBlockState state, IBlockAccess world, BlockPos pos) {
         if (world.getTileEntity(pos) != null && world.getTileEntity(pos) instanceof TileEntity_locker) {
             TileEntity_locker te = (TileEntity_locker) world.getTileEntity(pos);
-            return ((IExtendedBlockState) state).withProperty(Properties.AnimationProperty, te.state);
+            return state;
         }
         return state;
     }

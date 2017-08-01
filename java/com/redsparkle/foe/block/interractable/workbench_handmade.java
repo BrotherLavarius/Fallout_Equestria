@@ -1,5 +1,6 @@
 package com.redsparkle.foe.block.interractable;
 import com.redsparkle.api.block.GeneralAllignBlockTwoOTwo;
+import com.redsparkle.api.utils.GlobalNames;
 import com.redsparkle.foe.block.interractable.TileEntitys.DesktopTerminalTileEntity;
 import com.redsparkle.foe.block.interractable.TileEntitys.TileEntity_workbench_handmade;
 import com.redsparkle.foe.creativeTabs.InitCreativeTabs;
@@ -12,15 +13,13 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import net.minecraftforge.common.property.IExtendedBlockState;
-import net.minecraftforge.common.property.Properties;
 /**
  * Created by hoijima on 04.07.16.
  */
 public class workbench_handmade extends GeneralAllignBlockTwoOTwo {
-    public static final workbench_handmade instance = new workbench_handmade();
-    public workbench_handmade() {
-        super(Material.IRON);
+    public static final workbench_handmade instance = new workbench_handmade(GlobalNames.Workbench_handmade);
+    public workbench_handmade(String workbench_handmade) {
+        super(Material.IRON,workbench_handmade);
         setLightLevel(0);
         setSoundType(SoundType.METAL);
         setCreativeTab(InitCreativeTabs.Fallout_blocks);
@@ -54,7 +53,7 @@ public class workbench_handmade extends GeneralAllignBlockTwoOTwo {
     public IBlockState getExtendedState(IBlockState state, IBlockAccess world, BlockPos pos) {
         if (world.getTileEntity(pos) != null && world.getTileEntity(pos) instanceof TileEntity_workbench_handmade) {
             TileEntity_workbench_handmade te = (TileEntity_workbench_handmade) world.getTileEntity(pos);
-            return ((IExtendedBlockState) state).withProperty(Properties.AnimationProperty, te.state);
+            return state;
         }
         return state;
     }

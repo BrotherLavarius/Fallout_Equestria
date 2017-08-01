@@ -9,7 +9,8 @@ public class Dandy_Boy_Apples extends FoodMultipleUse {
     public int NUMBER_OF_BOXES = 1;
     public int MaxDamage = 3;
     public int foodToAdd = 3;
-    public Dandy_Boy_Apples() {
+    public Dandy_Boy_Apples(String name) {
+        super(name);
         this.setMaxStackSize(NUMBER_OF_BOXES);
         this.setCreativeTab(InitCreativeTabs.Fallout_Food);   // the item will appear on the Miscellaneous tab in creative
         this.setMaxDamage(MaxDamage);
