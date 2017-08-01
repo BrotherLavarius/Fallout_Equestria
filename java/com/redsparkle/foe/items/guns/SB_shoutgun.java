@@ -17,7 +17,8 @@ import net.minecraft.world.World;
  * Created by hoijima on 24.06.17.
  */
 public class SB_shoutgun extends Item_Firearm {
-    public SB_shoutgun() {
+    public SB_shoutgun(String name) {
+        super(name);
         this.clipRounds = GlobalsGunStats.DB_SHOUTGUN.Clipsize();
         this.setMaxStackSize(1);
         this.setMaxDamage(clipRounds);

@@ -13,17 +13,15 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import net.minecraftforge.common.property.IExtendedBlockState;
-import net.minecraftforge.common.property.Properties;
 
 import static com.redsparkle.foe.main.MODID;
 /**
  * Created by hoijima on 04.07.16.
  */
 public class SparkleColaMachineBlock extends GeneralAllignBlockTwoOTwo {
-    public static final SparkleColaMachineBlock instance = new SparkleColaMachineBlock();
-    public SparkleColaMachineBlock() {
-        super(Material.IRON);
+    public static final SparkleColaMachineBlock instance = new SparkleColaMachineBlock(GlobalNames.SPCmachine);
+    public SparkleColaMachineBlock(String SPCmachine) {
+        super(Material.IRON,SPCmachine);
         this.setLightLevel(1);
         this.setSoundType(SoundType.METAL);
         this.setCreativeTab(InitCreativeTabs.Fallout_blocks);
@@ -58,7 +56,7 @@ public class SparkleColaMachineBlock extends GeneralAllignBlockTwoOTwo {
     public IBlockState getExtendedState(IBlockState state, IBlockAccess world, BlockPos pos) {
         if (world.getTileEntity(pos) != null && world.getTileEntity(pos) instanceof SparkleColaMachineTileEntity) {
             SparkleColaMachineTileEntity te = (SparkleColaMachineTileEntity) world.getTileEntity(pos);
-            return ((IExtendedBlockState) state).withProperty(Properties.AnimationProperty, te.state);
+            return state;
         }
         return state;
     }

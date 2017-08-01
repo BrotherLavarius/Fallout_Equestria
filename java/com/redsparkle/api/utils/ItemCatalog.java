@@ -1,4 +1,5 @@
 package com.redsparkle.api.utils;
+import com.redsparkle.foe.Init.ItemInit;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -8,9 +9,9 @@ import net.minecraft.item.ItemStack;
 public class ItemCatalog {
     public static Item Request(String name){
             if(name.equalsIgnoreCase("item.aem")){
-                return GlobalItemArray_For_init.AllInit[2];
+                return ItemInit.aem;
             }else if(name.equalsIgnoreCase("item.pipbuck")){
-                return GlobalItemArray_For_init.AllInit[0];
+                return ItemInit.pipbuck;
             }else{return Items.AIR;}
     }
     public static ItemStack RequestStack(Item item,int amount,int damage){

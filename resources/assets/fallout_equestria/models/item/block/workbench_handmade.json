@@ -1,0 +1,81 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "textures": {},
+    "model": "fallout_equestria:workbench_handmade.obj"
+  },
+  "variants": {
+    "normal": [
+      {}
+    ],
+    "inventory": [
+      {
+        "transform": {
+          "thirdperson": {
+            "translation": [
+              0,
+              0,
+              0
+            ],
+            "rotation": [
+              {
+                "y": -45
+              },
+              {
+                "x": 10
+              },
+              {
+                "z": 170
+              }
+            ],
+            "scale": 0.15
+          },
+          "gui": {
+            "translation": [
+              -0.1,
+              0,
+              0
+            ],
+            "rotation": [
+              {
+                "y": 160
+              },
+              {
+                "x": -10
+              },
+              {
+                "z": 0
+              }
+            ],
+            "scale": 0.8
+          }
+        }
+      }
+    ],
+    "facing": {
+      "down": {
+        "model": "fallout_equestria:workbench_handmade.obj",
+        "x": 90
+      },
+      "up": {
+        "model": "fallout_equestria:workbench_handmade.obj",
+        "x": 270
+      },
+      "north": {
+        "model": "fallout_equestria:workbench_handmade.obj"
+      },
+      "south": {
+        "model": "fallout_equestria:workbench_handmade.obj",
+        "y": 180
+      },
+      "west": {
+        "model": "fallout_equestria:workbench_handmade.obj",
+        "y": 270
+      },
+      "east": {
+        "model": "fallout_equestria:workbench_handmade.obj",
+        "y": 90
+      }
+    }
+  }
+}

@@ -1,6 +1,7 @@
 package com.redsparkle.api.items.helpers.food;
 
 import com.redsparkle.foe.creativeTabs.InitCreativeTabs;
+import com.redsparkle.foe.items.FoeItem;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
@@ -20,12 +21,13 @@ import java.util.List;
 /**
  * Created by hoijima on 09.06.17.
  */
-public abstract class FoodMultipleUse extends Item {
+public abstract class FoodMultipleUse extends FoeItem {
     public int foodLvl;
     public int NUMBER_OF_BOXES;
     public int MaxDamage;
     public int foodToAdd;
-    public FoodMultipleUse() {
+    public FoodMultipleUse(final String itemName) {
+        super(itemName);
         this.setMaxStackSize(NUMBER_OF_BOXES);
         this.setCreativeTab(InitCreativeTabs.Fallout_Food);   // the item will appear on the Miscellaneous tab in creative
         this.setMaxDamage(MaxDamage);

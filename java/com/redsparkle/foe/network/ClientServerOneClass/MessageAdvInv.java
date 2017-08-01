@@ -39,7 +39,7 @@ public class MessageAdvInv implements IMessage {
     public static class HandlerServer implements IMessageHandler<MessageAdvInv, IMessage> {
         @Override
         public IMessage onMessage(MessageAdvInv message, MessageContext ctx) {
-            EntityPlayerMP playerMP = ctx.getServerHandler().playerEntity;
+            EntityPlayerMP playerMP = ctx.getServerHandler().player;
             DedicatedServerProxy.handleAdv(message, playerMP);
             return null;
         }

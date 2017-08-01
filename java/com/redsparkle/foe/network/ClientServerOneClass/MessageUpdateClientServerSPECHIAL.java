@@ -71,7 +71,7 @@ public class MessageUpdateClientServerSPECHIAL implements IMessage {
     public static class HandlerServer implements IMessageHandler<MessageUpdateClientServerSPECHIAL, IMessage> {
         @Override
         public IMessage onMessage(MessageUpdateClientServerSPECHIAL message, MessageContext ctx) {
-            EntityPlayerMP playerMP = ctx.getServerHandler().playerEntity;
+            EntityPlayerMP playerMP = ctx.getServerHandler().player;
             DedicatedServerProxy.handleSpechialMessage(message, playerMP);
             return null;
         }

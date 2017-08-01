@@ -1,8 +1,8 @@
 package com.redsparkle.foe.items.guns.ammo.FourTenMM;
 
 import com.redsparkle.foe.creativeTabs.InitCreativeTabs;
+import com.redsparkle.foe.items.FoeItem;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -11,8 +11,9 @@ import java.util.List;
 /**
  * Created by hoijima desu on 29.07.16 desu.
  */
-public class FourTenMMammo extends Item {
-    public FourTenMMammo() {
+public class FourTenMMammo extends FoeItem {
+    public FourTenMMammo(String fourTenMMAmmo) {
+        super(fourTenMMAmmo);
         final int NUMBER_OF_BOXES = 50;
         this.setMaxStackSize(NUMBER_OF_BOXES);
         this.setCreativeTab(InitCreativeTabs.Fallout_ammo);   // the item will appear on the Miscellaneous tab in creative

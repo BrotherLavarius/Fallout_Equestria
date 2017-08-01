@@ -1,4 +1,4 @@
-package com.redsparkle.foe.events.character;
+package com.redsparkle.foe.events.ClientSide.character;
 import com.redsparkle.api.items.helpers.Item_Instances.Item_Firearm;
 import com.redsparkle.foe.playerrenderers.ArmorLayerRender;
 import com.redsparkle.foe.playerrenderers.GunRender;

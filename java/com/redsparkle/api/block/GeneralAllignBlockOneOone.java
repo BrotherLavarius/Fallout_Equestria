@@ -1,5 +1,5 @@
 package com.redsparkle.api.block;
-import net.minecraft.block.Block;
+import com.redsparkle.foe.block.FoeBlock;
 import net.minecraft.block.BlockHorizontal;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
@@ -19,16 +19,16 @@ import net.minecraftforge.common.property.Properties;
 /**
  * Created by hoijima on 02.06.17.
  */
-public class GeneralAllignBlockOneOone extends Block {
+public class GeneralAllignBlockOneOone extends FoeBlock {
     public static final PropertyDirection FACING = BlockHorizontal.FACING;
     public static final AxisAlignedBB FULL_BLOCK_AABB = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 1.0D, 1.0D);
     public AxisAlignedBB Fixed;
     private ExtendedBlockState state = new ExtendedBlockState(this, new IProperty[]{FACING}, new IUnlistedProperty[]{OBJModel.OBJProperty.INSTANCE});
-    public GeneralAllignBlockOneOone(Material blockMaterialIn, MapColor blockMapColorIn) {
-        super(blockMaterialIn, blockMapColorIn);
+    public GeneralAllignBlockOneOone(Material blockMaterialIn, MapColor blockMapColorIn,String name) {
+        super(blockMaterialIn, blockMapColorIn,name);
     }
-    public GeneralAllignBlockOneOone(Material materialIn) {
-        super(materialIn);
+    public GeneralAllignBlockOneOone(Material materialIn,String name) {
+        super(materialIn,name);
         this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
     }
     private void setDefaultFacing(World worldIn, BlockPos pos, IBlockState state) {

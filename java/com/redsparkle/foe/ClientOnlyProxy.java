@@ -1,4 +1,5 @@
 package com.redsparkle.foe;
+
 import com.redsparkle.api.Capability.Items.Ammo.AmmoFactoryProvider;
 import com.redsparkle.api.Capability.Items.Ammo.IAmmoInterface;
 import com.redsparkle.api.Capability.Items.Gun.GunFactoryProvider;
@@ -16,8 +17,12 @@ import com.redsparkle.api.Capability.Player.spechial.SpechialFactoryProvider;
 import com.redsparkle.api.Capability.Player.water.IWaterCapability;
 import com.redsparkle.api.Capability.Player.water.WaterFactoryProvider;
 import com.redsparkle.api.utils.ItemCatalog;
-import com.redsparkle.foe.Init.ClientOnlyStartup;
 import com.redsparkle.foe.Init.SoundInit;
+import com.redsparkle.foe.events.ClientSide.CommonEventHandler;
+import com.redsparkle.foe.events.ClientSide.character.EventPlayerRenders;
+import com.redsparkle.foe.events.ClientSide.gui.EventHandlerOverlayAEM;
+import com.redsparkle.foe.events.ClientSide.gui.EventHandlerOverlayPipBuck;
+import com.redsparkle.foe.events.ClientSide.gui.EventPlayerGuiHandler;
 import com.redsparkle.foe.keys.KeyInputHandler;
 import com.redsparkle.foe.keys.keyHandler;
 import com.redsparkle.foe.network.ClientServerOneClass.*;
@@ -32,6 +37,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
+
 /**
  * Created by hoijima on 14.12.16.
  */
@@ -39,6 +45,7 @@ import net.minecraftforge.common.MinecraftForge;
 public class ClientOnlyProxy extends CommonProxy {
     public static Minecraft mc = Minecraft.getMinecraft();
     public static World world = mc.world;
+
     public static void handleRadMessage(MessageUpdateClientRads message) {
         Minecraft.getMinecraft().addScheduledTask(() -> {
             EntityPlayer player = Minecraft.getMinecraft().player;
@@ -49,6 +56,7 @@ public class ClientOnlyProxy extends CommonProxy {
              */
         });
     }
+
     public static void handleSpechialMessage(MessageUpdateClientServerSPECHIAL message) {
         Minecraft.getMinecraft().addScheduledTask(() -> {
             EntityPlayer player = Minecraft.getMinecraft().player;
@@ -65,6 +73,7 @@ public class ClientOnlyProxy extends CommonProxy {
              */
         });
     }
+
     public static void handleSkillsMessage(MessageUpdateClientServerSkills message) {
         Minecraft.getMinecraft().addScheduledTask(() -> {
             EntityPlayer player = Minecraft.getMinecraft().player;
@@ -87,6 +96,7 @@ public class ClientOnlyProxy extends CommonProxy {
              */
         });
     }
+
     public static void handleLevelMessage(MessageUpdateClientServerLevel message) {
         Minecraft.getMinecraft().addScheduledTask(() -> {
             EntityPlayer player = Minecraft.getMinecraft().player;
@@ -98,6 +108,7 @@ public class ClientOnlyProxy extends CommonProxy {
              */
         });
     }
+
     public static void handleGundMessageReload(MessageGunReloadReply message) {
         Minecraft.getMinecraft().addScheduledTask(() -> {
             System.out.println("Sound int: " + message.soundname);
@@ -158,6 +169,7 @@ public class ClientOnlyProxy extends CommonProxy {
             }
         });
     }
+
     public static void handleLevelMessageOnDemand(MessageUpdateSLSServerReplyOnDemand message) {
         Minecraft.getMinecraft().addScheduledTask(() -> {
             EntityPlayer player = Minecraft.getMinecraft().player;
@@ -169,11 +181,13 @@ public class ClientOnlyProxy extends CommonProxy {
             System.out.println("player progress: " + player.getCapability(LevelFactoryProvider.LEVEL_CAPABILITY, null).getProgress());
         });
     }
+
     public static void handleOpenGui(MessageOpenGuiClient message) {
         Minecraft.getMinecraft().addScheduledTask(() -> {
             mc.player.openGui(main.instance, message.ID, mc.world, (int) mc.player.posX, (int) mc.player.posY, (int) mc.player.posZ);
         });
     }
+
     public static void handleWaterMessage(MessageUpdateClientWater message) {
         Minecraft.getMinecraft().addScheduledTask(() -> {
             EntityPlayer player = Minecraft.getMinecraft().player;
@@ -184,6 +198,7 @@ public class ClientOnlyProxy extends CommonProxy {
              */
         });
     }
+
     public static void handleAdv_SYNC(MessageAdvInv_SYNC message) {
         Minecraft.getMinecraft().addScheduledTask(() -> {
             EntityPlayer player = Minecraft.getMinecraft().player;
@@ -200,13 +215,14 @@ public class ClientOnlyProxy extends CommonProxy {
             }
         });
     }
+
     public static void handleSync_AmmoItems(MessageUpdateAmmoHolders message) {
         Minecraft.getMinecraft().addScheduledTask(() -> {
             EntityPlayer player = Minecraft.getMinecraft().player;
             IAdvInventory advInventory = IAdvProvider.instanceFor(player);
             IAmmoInterface AmmoCapa;
             IGunInterface GunCapa;
-            if(message.type == 0) {
+            if (message.type == 0) {
                 if (message.invType == 0) {
                     ItemStack stack = player.inventory.getStackInSlot(message.slot);
                     AmmoCapa = stack.getCapability(AmmoFactoryProvider.AMMO_STORAGE, null);
@@ -220,7 +236,7 @@ public class ClientOnlyProxy extends CommonProxy {
                     AmmoCapa.setAmmo(message.ammo);
                 }
             }
-            if(message.type == 1) {
+            if (message.type == 1) {
                 if (message.invType == 0) {
                     ItemStack stack = player.inventory.getStackInSlot(message.slot);
                     GunCapa = stack.getCapability(GunFactoryProvider.GUN, null);
@@ -236,21 +252,27 @@ public class ClientOnlyProxy extends CommonProxy {
             }
         });
     }
+
     public void preInit() {
         super.preInit();
-        SoundInit.registerSounds();
-        ClientOnlyStartup.preInitClientOnly();
         keyHandler.register();
         MinecraftForge.EVENT_BUS.register(new KeyInputHandler());
     }
+
     public void Init() {
         super.init();
-        ClientOnlyStartup.initClientOnly();
     }
+
     public void postInit() {
         super.postInit();
-        ClientOnlyStartup.postInitClientOnly();
+        MinecraftForge.EVENT_BUS.register(new CommonEventHandler());
+        MinecraftForge.EVENT_BUS.register(new EventHandlerOverlayPipBuck());
+        MinecraftForge.EVENT_BUS.register(new EventHandlerOverlayAEM());
+        MinecraftForge.EVENT_BUS.register(new EventPlayerGuiHandler());
+        MinecraftForge.EVENT_BUS.register(new EventPlayerRenders());
+
     }
+
     @Override
     public boolean playerIsInCreativeMode(EntityPlayer player) {
         if (player instanceof EntityPlayerMP) {
@@ -261,6 +283,7 @@ public class ClientOnlyProxy extends CommonProxy {
         }
         return false;
     }
+
     @Override
     public boolean isDedicatedServer() {
         return false;

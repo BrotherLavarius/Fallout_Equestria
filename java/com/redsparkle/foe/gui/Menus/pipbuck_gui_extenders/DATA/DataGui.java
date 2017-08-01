@@ -1,5 +1,7 @@
 package com.redsparkle.foe.gui.Menus.pipbuck_gui_extenders.DATA;
 import com.redsparkle.api.utils.gui.GuiButtonExtFallout;
+import com.redsparkle.foe.Init.ConfigInit;
+
 /**
  * Created by hoijima on 09.05.17.
  */
@@ -31,12 +33,12 @@ public class DataGui {
             0,
             0,
             0,
-            0, "Mane Stream");
+            0, ConfigInit.Radio1Name);
     public static GuiButtonExtFallout RadioBrony = new GuiButtonExtFallout(335,
             0,
             0,
             0,
-            0, "Radio Brony");
+            0, ConfigInit.Radio2Name);
     public static GuiButtonExtFallout RadioButtonStop = new GuiButtonExtFallout(36,
             0,
             0,

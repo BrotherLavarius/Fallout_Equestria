@@ -3,8 +3,8 @@ import com.redsparkle.api.Capability.Items.Ammo.AmmoFactoryProvider;
 import com.redsparkle.api.Capability.Items.Ammo.IAmmoInterface;
 import com.redsparkle.api.Capability.Items.Gun.GunFactoryProvider;
 import com.redsparkle.api.Capability.Items.Gun.IGunInterface;
-import com.redsparkle.api.utils.GlobalItemArray_For_init;
 import com.redsparkle.api.utils.InventoryManager;
+import com.redsparkle.foe.Init.ItemInit;
 import com.redsparkle.foe.items.guns.ammo.FlareShell.FlareShell;
 import com.redsparkle.foe.items.guns.ammo.FourTenMM.FourTenMMClip;
 import com.redsparkle.foe.items.guns.ammo.LaserWeapons.Battery;
@@ -56,20 +56,20 @@ public class gunReload {
             Item clip =null;
             int clipOut=0,clipIn = 0;
             String gunName = "";
-            if(heldItem.getItem() == GlobalItemArray_For_init.AllInit[21]){
-                clip = GlobalItemArray_For_init.AllInit[16];
+            if(heldItem.getItem() == ItemInit.tenMM){
+                clip = ItemInit.tenMMClip;
                 clipIn=0;
                 clipOut=1;
                 gunName="TenMM";
             }
-            if(heldItem.getItem() == GlobalItemArray_For_init.AllInit[23]){
-                clip = GlobalItemArray_For_init.AllInit[19];
+            if(heldItem.getItem() == ItemInit.fourTenMM){
+                clip = ItemInit.fourTenMMClip;
                 clipIn=2;
                 clipOut=3;
                 gunName="FourTenMM";
             }
-            if (heldItem.getItem() == GlobalItemArray_For_init.AllInit[22]) {
-                clip = GlobalItemArray_For_init.AllInit[17];
+            if (heldItem.getItem() == ItemInit.laserPistol) {
+                clip = ItemInit.battery;
                 clipIn=8;
                 clipOut=9;
                 gunName="LaserPistol";
@@ -113,12 +113,12 @@ public class gunReload {
             int ammoOut = 0;
             IGunInterface igun = heldItem.getCapability(GunFactoryProvider.GUN, null);
             int maxAmmo = igun.getMaxAmmo();
-            if (heldItem.getItem() == GlobalItemArray_For_init.AllInit[24]) {
+            if (heldItem.getItem() == ItemInit.sb_shoutgun) {
                 gunName = "Shotgun";
                 ammoIN = 4;
                 ammoOut = 5;
             }
-            if (heldItem.getItem() == GlobalItemArray_For_init.AllInit[27]) {
+            if (heldItem.getItem() == ItemInit.flare) {
                 gunName = "FlareGun";
                 ammoIN = 6;
                 ammoOut = 7;

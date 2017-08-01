@@ -5,6 +5,7 @@ import com.redsparkle.api.Capability.Items.Gun.IGunInterface;
 import com.redsparkle.api.Capability.Player.skills.SkillsFactoryProvider;
 import com.redsparkle.api.utils.InventoryManager;
 import com.redsparkle.foe.creativeTabs.InitCreativeTabs;
+import com.redsparkle.foe.items.FoeItem;
 import com.redsparkle.foe.items.guns.entitys.bulletFired.EntityBullet;
 import com.redsparkle.foe.items.guns.entitys.flametrower.EntityFlame;
 import com.redsparkle.foe.items.guns.entitys.flare.EntityFlare;
@@ -30,7 +31,7 @@ import static com.redsparkle.api.utils.GunHelpers.getGunDamage;
 /**
  * Created by NENYN on 1/21/2017.
  */
-public abstract class Item_Firearm extends Item {
+public abstract class Item_Firearm extends FoeItem {
     public Item casing;
     public SoundEvent shot;
     public SoundEvent dry;
@@ -47,7 +48,8 @@ public abstract class Item_Firearm extends Item {
     public Integer[] invArray = {0, 1, 2, 3, 4, 5, 6, 7, 8};
     public String gunName;
     public String projectile;
-    public Item_Firearm() {
+    public Item_Firearm(final String itemName) {
+        super(itemName);
         this.clipRounds = 32;
         this.setCreativeTab(InitCreativeTabs.Fallout_guns);
         this.setMaxStackSize(1);

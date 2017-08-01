@@ -87,7 +87,7 @@ public class StatsGuiFirstJoin extends GuiScreen {
         {
             GL11.glScalef((float) 1.0, (float) 1.0, 1.0f);
             for (int i = 0; i <= (params.length - 1); i++) {
-                this.fontRendererObj.drawString(names[i],
+                this.fontRenderer.drawString(names[i],
                         ScreenGrid.XCoordStart(
                                 this.width,
                                 2) + 25,
@@ -96,7 +96,7 @@ public class StatsGuiFirstJoin extends GuiScreen {
                                 2) + (i * 15) + 30,
                         15435844, true
                 );
-                this.fontRendererObj.drawString(Integer.toString(
+                this.fontRenderer.drawString(Integer.toString(
                         params[i]),
                         ScreenGrid.XCoordStart(
                                 this.width,
@@ -106,7 +106,7 @@ public class StatsGuiFirstJoin extends GuiScreen {
                                 2) + (i * 15) + 30,
                         15465844, true
                 );
-                this.fontRendererObj.drawString("+ " + Integer.toString(
+                this.fontRenderer.drawString("+ " + Integer.toString(
                         temp[i]),
                         ScreenGrid.XCoordStart(
                                 this.width,
@@ -116,7 +116,7 @@ public class StatsGuiFirstJoin extends GuiScreen {
                                 2) + (i * 15) + 30,
                         15465844, true
                 );
-                this.fontRendererObj.drawString(Integer.toString(
+                this.fontRenderer.drawString(Integer.toString(
                         finished[i] = temp[i] + params[i]),
                         ScreenGrid.XCoordStart(
                                 this.width,
@@ -129,7 +129,7 @@ public class StatsGuiFirstJoin extends GuiScreen {
                 startY = startY + 4;
             }
             pointsAvailable = 30;
-            this.fontRendererObj.drawString("Points available: " + Integer.toString(pointsAvailable - IntStream.of(temp).sum()),
+            this.fontRenderer.drawString("Points available: " + Integer.toString(pointsAvailable - IntStream.of(temp).sum()),
                     ScreenGrid.XCoordStart(
                             this.width,
                             2) + 30,
@@ -141,19 +141,19 @@ public class StatsGuiFirstJoin extends GuiScreen {
             {
                 int startYButtons = 36;
                 for (int o = 0; o <= (buttonsIdsPlus.length - 1); o++) {
-                    this.buttonList.get(buttonsIdsPlus[o]).xPosition = ScreenGrid.XCoordStart(this.width, 2) + 248;
-                    this.buttonList.get(buttonsIdsPlus[o]).yPosition = ScreenGrid.XCoordStart(this.height, 2) + (o * 15) + 30;
+                    this.buttonList.get(buttonsIdsPlus[o]).x = ScreenGrid.XCoordStart(this.width, 2) + 248;
+                    this.buttonList.get(buttonsIdsPlus[o]).y = ScreenGrid.XCoordStart(this.height, 2) + (o * 15) + 30;
                     this.buttonList.get(buttonsIdsPlus[o]).height = 12;
                     this.buttonList.get(buttonsIdsPlus[o]).width = 10;
-                    this.buttonList.get(buttonsIdsMinus[o]).xPosition = ScreenGrid.XCoordStart(this.width, 2) + 258;
-                    this.buttonList.get(buttonsIdsMinus[o]).yPosition = ScreenGrid.XCoordStart(this.height, 2) + (o * 15) + 30;
+                    this.buttonList.get(buttonsIdsMinus[o]).x = ScreenGrid.XCoordStart(this.width, 2) + 258;
+                    this.buttonList.get(buttonsIdsMinus[o]).y = ScreenGrid.XCoordStart(this.height, 2) + (o * 15) + 30;
                     this.buttonList.get(buttonsIdsMinus[o]).height = 10;
                     this.buttonList.get(buttonsIdsMinus[o]).width = 9;
                     startYButtons = startYButtons + 13;
                 }
             }
-            this.buttonList.get(14).xPosition = ScreenGrid.XCoordStart(this.width, 55);
-            this.buttonList.get(14).yPosition = ScreenGrid.XCoordStart(this.height, 75);
+            this.buttonList.get(14).x = ScreenGrid.XCoordStart(this.width, 55);
+            this.buttonList.get(14).y = ScreenGrid.XCoordStart(this.height, 75);
             this.buttonList.get(14).height = 21;
             this.buttonList.get(14).width = 80;
             this.buttonList.get(14).enabled = CommitShow;

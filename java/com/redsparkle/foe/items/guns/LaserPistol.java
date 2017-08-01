@@ -17,7 +17,8 @@ import net.minecraft.world.World;
  * Created by hoijima on 20.01.17.
  */
 public class LaserPistol extends Item_Firearm {
-    public LaserPistol() {
+    public LaserPistol(String name) {
+        super(name);
         this.clipRounds = GlobalsGunStats.LASER_PISTOL.Clipsize();
         this.setMaxStackSize(1);
         this.setMaxDamage(clipRounds);

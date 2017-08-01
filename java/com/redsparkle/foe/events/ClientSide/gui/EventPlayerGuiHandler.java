@@ -1,4 +1,4 @@
-package com.redsparkle.foe.events.gui;
+package com.redsparkle.foe.events.ClientSide.gui;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 /**

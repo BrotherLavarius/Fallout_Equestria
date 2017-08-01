@@ -8,25 +8,24 @@ import java.net.URL;
 public class RadioPLayer {
     public Thread player;
     public Runnable playerR;
-    public String playerThreadname;
+    public String playerThreadState = "";
     public AudioInputStream din;
     public AudioInputStream in;
     public SourceDataLine line;
     public SourceDataLine res;
     public boolean running;
+    public FloatControl gain;
+
     public RadioPLayer(String arg) {
         running = true;
         playSound(arg);
-    }
-    public RadioPLayer() {
-        player.stop();
-        player.interrupt();
     }
     public synchronized void playSound(final String Url) {
         playerR = new Runnable() {
             public void run() {
                 while (running) {
                     try {
+                        playerThreadState = "running";
                         URL file = new URL(Url);
                         //System.out.print("Starting Playing thread");
                         // Get AudioInputStream from given file.
@@ -71,6 +70,7 @@ public class RadioPLayer {
                     line.stop();
                     line.close();
                     din.close();
+                    playerThreadState = "";
                 }
             }
             private SourceDataLine getLine(AudioFormat audioFormat) throws LineUnavailableException {
@@ -80,21 +80,29 @@ public class RadioPLayer {
                 res.open(audioFormat);
                 return res;
             }
-            public void stopSound() {
-                if (line != null) {
-                    line.drain();
-                    line.stop();
-                    line.close();
-                    try {
-                        din.close();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
+
         };
         player = new Thread(playerR);
         player.setName("RadioPlayerThread");
         player.start();
     }
+
+    public synchronized void LowerSound() {
+        if (player.isAlive()) {
+            gain = (FloatControl) line.getControl(FloatControl.Type.MASTER_GAIN);
+            if (gain.getValue() < (gain.getMaximum() - 2.0F)) {
+                gain.setValue(gain.getValue() + 1.0F);
+            }
+        }
+    }
+
+    public synchronized void RaiseSound() {
+        if (player.isAlive()) {
+            gain = (FloatControl) line.getControl(FloatControl.Type.MASTER_GAIN);
+            if (gain.getValue() > (gain.getMinimum() + 2.0F)) {
+                gain.setValue(gain.getValue() - 1.0F);
+            }
+        }
+    }
+
 }
