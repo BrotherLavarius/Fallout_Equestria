@@ -45,6 +45,7 @@ public abstract class FoodMultipleUse extends Item {
         }
         return new ActionResult<>(EnumActionResult.SUCCESS, worldIn.getHeldItem(playerIn));
     }
+    //TODO: fix food consumption algoritm, it is kinda trash
     public ItemStack onItemUseFinish(ItemStack stack, World worldIn, EntityLivingBase entityLiving) {
         EntityPlayer entityplayer = (EntityPlayer) entityLiving;
         if (entityLiving instanceof EntityPlayer) {
