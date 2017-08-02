@@ -41,36 +41,43 @@ public abstract class FoodMultipleUse extends FoeItem {
     public void addInformation(ItemStack stack, EntityPlayer playerIn, List<String> tooltip, boolean advanced) {
         tooltip.add("Food left:" + (stack.getMaxDamage() - stack.getItemDamage() + "/" + stack.getMaxDamage()));
     }
-    public ActionResult<ItemStack> onItemRightClick(World itemStackIn, EntityPlayer worldIn, EnumHand playerIn) {
-        worldIn.setActiveHand(playerIn);
-        if (worldIn.getFoodStats().getFoodLevel() == 20) {
-            return new ActionResult<>(EnumActionResult.FAIL, worldIn.getHeldItem(playerIn));
+
+    public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn) {
+        playerIn.setActiveHand(handIn);
+        if (playerIn.getFoodStats().getFoodLevel() == 20) {
+            return new ActionResult<>(EnumActionResult.FAIL, playerIn.getHeldItem(handIn));
         }
-        return new ActionResult<>(EnumActionResult.SUCCESS, worldIn.getHeldItem(playerIn));
+        if (playerIn.isCreative()) {
+            return new ActionResult<>(EnumActionResult.FAIL, playerIn.getHeldItem(handIn));
+        }
+        return new ActionResult<>(EnumActionResult.SUCCESS, playerIn.getHeldItem(handIn));
     }
     //TODO: fix food consumption algoritm, it is kinda trash
     public ItemStack onItemUseFinish(ItemStack stack, World worldIn, EntityLivingBase entityLiving) {
         EntityPlayer entityplayer = (EntityPlayer) entityLiving;
-        if (entityLiving instanceof EntityPlayer) {
-            worldIn.playSound(null, entityplayer.posX, entityplayer.posY, entityplayer.posZ, SoundEvents.ENTITY_PLAYER_BURP, SoundCategory.PLAYERS, 0.5F, worldIn.rand.nextFloat() * 0.1F + 0.9F);
-        }
-        if (stack.getCount() > 1) {
-            ItemStack excessStack = new ItemStack(stack.getItem());
-            excessStack.setCount(stack.getCount() - 1);
+        if (!entityplayer.isCreative()) {
+            if (entityLiving instanceof EntityPlayer) {
+                worldIn.playSound(null, entityplayer.posX, entityplayer.posY, entityplayer.posZ, SoundEvents.ENTITY_PLAYER_BURP, SoundCategory.PLAYERS, 0.5F, worldIn.rand.nextFloat() * 0.1F + 0.9F);
+            }
+            if (stack.getCount() > 1) {
+                ItemStack excessStack = new ItemStack(stack.getItem());
+                excessStack.setCount(stack.getCount() - 1);
 //            entityplayer.inventory.addItemStackToInventory(excessStack);
-            entityplayer.inventory.setInventorySlotContents(InventoryManager.FindEmpty(entityplayer), excessStack);
-            stack.setCount(1);
+                entityplayer.inventory.setInventorySlotContents(InventoryManager.FindEmpty(entityplayer), excessStack);
+                stack.setCount(1);
+            }
+            stack.setItemDamage(stack.getItemDamage() + 1);
+            int food = entityplayer.getFoodStats().getFoodLevel();
+            entityplayer.getFoodStats().setFoodLevel(food + foodToAdd);
+            if (stack.getItemDamage() >= stack.getMaxDamage()) {
+                Item air = Items.AIR;
+                ItemStack airS = new ItemStack(air);
+                return airS;
+            } else {
+                return stack;
+            }
         }
-        stack.setItemDamage(stack.getItemDamage() + 1);
-        int food = entityplayer.getFoodStats().getFoodLevel();
-        entityplayer.getFoodStats().setFoodLevel(food + foodToAdd);
-        if (stack.getItemDamage() >= stack.getMaxDamage()) {
-            Item air = Items.AIR;
-            ItemStack airS = new ItemStack(air);
-            return airS;
-        } else {
-            return stack;
-        }
+        return stack;
     }
     public EnumAction getItemUseAction(ItemStack stack) {
         return EnumAction.EAT;

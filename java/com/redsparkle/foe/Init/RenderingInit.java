@@ -75,15 +75,15 @@ public class RenderingInit {
         ModelLoader.setCustomModelResourceLocation(sb_shoutgun, 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.db_shoutgun, "inventory"));
         ModelLoader.setCustomModelResourceLocation(flareGun, 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.flare_gun, "inventory"));
         ModelLoader.setCustomModelResourceLocation(itb, 0, new ModelResourceLocation(GlobalNames.Domain + ":" + "bullet", "inventory"));
-        ModelLoader.setCustomModelResourceLocation(t40head, 0, new ModelResourceLocation(GlobalNames.Domain + ":armor/" + GlobalNames.T40Head, "inventory"));
-        ModelLoader.setCustomModelResourceLocation(t40body, 0, new ModelResourceLocation(GlobalNames.Domain + ":armor/" + GlobalNames.T40Body, "inventory"));
-        ModelLoader.setCustomModelResourceLocation(t40legs, 0, new ModelResourceLocation(GlobalNames.Domain + ":armor/" + GlobalNames.T40Legs, "inventory"));
-        ModelLoader.setCustomModelResourceLocation(t50head, 0, new ModelResourceLocation(GlobalNames.Domain + ":armor/" + GlobalNames.T50Head, "inventory"));
-        ModelLoader.setCustomModelResourceLocation(t50body, 0, new ModelResourceLocation(GlobalNames.Domain + ":armor/" + GlobalNames.T50Body, "inventory"));
-        ModelLoader.setCustomModelResourceLocation(t50legs, 0, new ModelResourceLocation(GlobalNames.Domain + ":armor/" + GlobalNames.T50Legs, "inventory"));
-        ModelLoader.setCustomModelResourceLocation(t60head, 0, new ModelResourceLocation(GlobalNames.Domain + ":armor/" + GlobalNames.T60Head, "inventory"));
-        ModelLoader.setCustomModelResourceLocation(t60body, 0, new ModelResourceLocation(GlobalNames.Domain + ":armor/" + GlobalNames.T60Body, "inventory"));
-        ModelLoader.setCustomModelResourceLocation(t60legs, 0, new ModelResourceLocation(GlobalNames.Domain + ":armor/" + GlobalNames.T60Legs, "inventory"));
+        ModelLoader.setCustomModelResourceLocation(t40head, 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.T40Head, "inventory"));
+        ModelLoader.setCustomModelResourceLocation(t40body, 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.T40Body, "inventory"));
+        ModelLoader.setCustomModelResourceLocation(t40legs, 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.T40Legs, "inventory"));
+        ModelLoader.setCustomModelResourceLocation(t50head, 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.T50Head, "inventory"));
+        ModelLoader.setCustomModelResourceLocation(t50body, 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.T50Body, "inventory"));
+        ModelLoader.setCustomModelResourceLocation(t50legs, 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.T50Legs, "inventory"));
+        ModelLoader.setCustomModelResourceLocation(t60head, 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.T60Head, "inventory"));
+        ModelLoader.setCustomModelResourceLocation(t60body, 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.T60Body, "inventory"));
+        ModelLoader.setCustomModelResourceLocation(t60legs, 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.T60Legs, "inventory"));
 
         RenderingRegistry.registerEntityRenderingHandler(EntityBullet.class, new RenderFactoryBullet(Minecraft.getMinecraft().getRenderManager()));
         RenderingRegistry.registerEntityRenderingHandler(EntityLaser.class, new RenderFactoryLaser(Minecraft.getMinecraft().getRenderManager()));
