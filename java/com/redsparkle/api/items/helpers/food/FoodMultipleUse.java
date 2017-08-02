@@ -1,5 +1,6 @@
 package com.redsparkle.api.items.helpers.food;
 
+import com.redsparkle.api.utils.InventoryManager;
 import com.redsparkle.foe.creativeTabs.InitCreativeTabs;
 import com.redsparkle.foe.items.FoeItem;
 import net.minecraft.entity.EntityLivingBase;
@@ -56,13 +57,14 @@ public abstract class FoodMultipleUse extends FoeItem {
         if (stack.getCount() > 1) {
             ItemStack excessStack = new ItemStack(stack.getItem());
             excessStack.setCount(stack.getCount() - 1);
-            entityplayer.inventory.addItemStackToInventory(excessStack);
+//            entityplayer.inventory.addItemStackToInventory(excessStack);
+            entityplayer.inventory.setInventorySlotContents(InventoryManager.FindEmpty(entityplayer), excessStack);
             stack.setCount(1);
         }
         stack.setItemDamage(stack.getItemDamage() + 1);
         int food = entityplayer.getFoodStats().getFoodLevel();
-        entityplayer.getFoodStats().setFoodLevel(food + this.foodToAdd);
-        if (stack.getItemDamage() == stack.getMaxDamage() || stack.getItemDamage() > stack.getMaxDamage()) {
+        entityplayer.getFoodStats().setFoodLevel(food + foodToAdd);
+        if (stack.getItemDamage() >= stack.getMaxDamage()) {
             Item air = Items.AIR;
             ItemStack airS = new ItemStack(air);
             return airS;
