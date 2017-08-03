@@ -1,7 +1,7 @@
 package com.redsparkle.foe.Init;
 
 import com.redsparkle.api.utils.GlobalNames;
-import com.redsparkle.foe.gui.Overlays.PipBuckOverlay;
+import com.redsparkle.foe.Init.model.MeshDefinitionFix;
 import com.redsparkle.foe.items.guns.entitys.bulletFired.EntityBullet;
 import com.redsparkle.foe.items.guns.entitys.bulletFired.RenderFactoryBullet;
 import com.redsparkle.foe.items.guns.entitys.flametrower.EntityFlame;
@@ -10,12 +10,18 @@ import com.redsparkle.foe.items.guns.entitys.laserFired.EntityLaser;
 import com.redsparkle.foe.items.guns.entitys.laserFired.RenderFactoryLaser;
 import com.redsparkle.foe.items.guns.entitys.spreadPellet_shotgun.*;
 import com.redsparkle.foe.main;
+import net.minecraft.block.Block;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.block.model.ModelBakery;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.client.renderer.block.statemap.StateMapperBase;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.client.model.obj.OBJLoader;
+import net.minecraftforge.fluids.IFluidBlock;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -30,7 +36,14 @@ import static com.redsparkle.foe.Init.ItemInit.*;
  */
 @Mod.EventBusSubscriber(modid = main.MODID)
 public class RenderingInit {
-    private static PipBuckOverlay pipBuckGui;
+    public static final RenderingInit INSTANCE = new RenderingInit();
+
+    private static final String FLUID_MODEL_PATH = GlobalNames.Domain + ":" + "fluid";
+
+
+    private RenderingInit() {
+    }
+
 
 
     @SideOnly(Side.CLIENT)
@@ -97,6 +110,28 @@ public class RenderingInit {
         RenderingRegistry.registerEntityRenderingHandler(Pellet_six.class, new RenderFactoryBullet(Minecraft.getMinecraft().getRenderManager()));
         RenderingRegistry.registerEntityRenderingHandler(EntityFlare.class, new RenderFactoryBullet(Minecraft.getMinecraft().getRenderManager()));
 
+        INSTANCE.registerFluidModels();
     }
 
+    private void registerFluidModels() {
+        FluidsInit.MOD_FLUID_BLOCKS.forEach(this::registerFluidModel);
+    }
+
+    private void registerFluidModel(final IFluidBlock fluidBlock) {
+        final Item item = Item.getItemFromBlock((Block) fluidBlock);
+        assert item != Items.AIR;
+
+        ModelBakery.registerItemVariants(item);
+
+        final ModelResourceLocation modelResourceLocation = new ModelResourceLocation(FLUID_MODEL_PATH, fluidBlock.getFluid().getName());
+
+        ModelLoader.setCustomMeshDefinition(item, MeshDefinitionFix.create(stack -> modelResourceLocation));
+
+        ModelLoader.setCustomStateMapper((Block) fluidBlock, new StateMapperBase() {
+            @Override
+            protected ModelResourceLocation getModelResourceLocation(final IBlockState p_178132_1_) {
+                return modelResourceLocation;
+            }
+        });
+    }
 }
