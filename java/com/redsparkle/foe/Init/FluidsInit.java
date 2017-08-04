@@ -44,6 +44,7 @@ public class FluidsInit {
             fluid -> fluid.setLuminosity(10).setDensity(1800).setViscosity(10).setGaseous(true),
             fluid -> new BlockFluidClassic(fluid, new MaterialLiquid(MapColor.PINK)));
 
+
     public static final Fluid TOXICFUMES = createFluid("toxic_fumes", true,
             fluid -> fluid.setLuminosity(10).setDensity(800).setViscosity(10).setGaseous(true),
             fluid -> new BlockFluidClassic(fluid, new MaterialLiquid(MapColor.GREEN)));

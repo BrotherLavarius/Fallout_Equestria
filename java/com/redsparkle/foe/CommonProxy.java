@@ -1,4 +1,5 @@
 package com.redsparkle.foe;
+
 import com.redsparkle.api.Capability.Items.Ammo.AmmoFactoryProvider;
 import com.redsparkle.api.Capability.Items.Ammo.IAmmoInterface;
 import com.redsparkle.api.Capability.Items.Ammo.IAmmoStorage;
@@ -31,6 +32,7 @@ import com.redsparkle.api.utils.GlobalNames;
 import com.redsparkle.foe.Init.StartUpCommon;
 import com.redsparkle.foe.events.EventHandlerInit;
 import com.redsparkle.foe.events.EventHandlerPre;
+import com.redsparkle.foe.events.UpdateEvents;
 import com.redsparkle.foe.items.guns.entitys.bulletFired.EntityBullet;
 import com.redsparkle.foe.items.guns.entitys.flametrower.EntityFlame;
 import com.redsparkle.foe.items.guns.entitys.flare.EntityFlare;
@@ -54,6 +56,7 @@ public abstract class CommonProxy {
         StartUpCommon.preInitCommon();
         // INIT Handler
         MinecraftForge.EVENT_BUS.register(new EventHandlerPre());
+        MinecraftForge.EVENT_BUS.register(new UpdateEvents());
         EntityRegistry.registerModEntity(new ResourceLocation(GlobalNames.Domain + ":entity/bullet"), EntityBullet.class, "Bullet", 0, main.instance, 64, 10, true);
         EntityRegistry.registerModEntity(new ResourceLocation(GlobalNames.Domain + ":entity/laser"), EntityLaser.class, "laser", 1, main.instance, 64, 10, true);
         EntityRegistry.registerModEntity(new ResourceLocation(GlobalNames.Domain + ":entity/Flame"), EntityFlame.class, "Flame", 2, main.instance, 64, 10, true);
