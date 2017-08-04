@@ -14,11 +14,11 @@ import com.redsparkle.api.Capability.Player.water.WaterFactoryProvider;
 import com.redsparkle.api.utils.PlayerParamsSetup;
 import com.redsparkle.foe.Init.FluidsInit;
 import com.redsparkle.foe.Init.ItemInit;
+import com.redsparkle.foe.Init.PotionInit;
 import net.minecraft.block.BlockLiquid;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.MobEffects;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
@@ -137,9 +137,9 @@ public class UpdateEvents {
 
     @SubscribeEvent
     public void onExit(PlayerEvent.PlayerLoggedOutEvent e) {
-        updatePlayerSpechial(e.player);
-        updatePlayerSkills(e.player);
-        updatePlayerLevel(e.player);
+//        updatePlayerSpechial(e.player);
+//        updatePlayerSkills(e.player);
+//        updatePlayerLevel(e.player);
     }
 
     @SubscribeEvent
@@ -180,12 +180,8 @@ public class UpdateEvents {
 
                             if (iblockstate.getBlock() == FluidsInit.PINKCLOUD.getBlock()) {
                                 if (iblockstate.getValue(BlockLiquid.LEVEL).intValue() != 0) {
-                                    System.out.println("Collide!");
-
-                                    player.addPotionEffect(new PotionEffect(MobEffects.POISON, 200));
+                                    player.addPotionEffect(new PotionEffect(PotionInit.STATICPOISON, 200));
                                 }
-                                System.out.println("no Collide!");
-
                             }
                         }
                     }

@@ -21,8 +21,10 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
+import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.PlayerContainerEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
@@ -115,5 +117,17 @@ public class EventHandlerPre {
     @SubscribeEvent
     public void onPlayerTick(PlayerContainerEvent.Open event) {
         event.getContainer();
+    }
+
+
+    @SubscribeEvent
+    public void onDamageRender(LivingHurtEvent e) {
+        if (e.getEntity() instanceof EntityPlayer && e.getSource() == DamageSource.MAGIC) {
+            e.setCanceled(true);
+
+            System.out.println("Event got thought");
+
+            return;
+        }
     }
 }

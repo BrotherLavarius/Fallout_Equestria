@@ -1,5 +1,6 @@
 package com.redsparkle.api.items.helpers.meds;
 
+import com.redsparkle.api.utils.InventoryManager;
 import com.redsparkle.foe.creativeTabs.InitCreativeTabs;
 import com.redsparkle.foe.items.FoeItem;
 import net.minecraft.entity.EntityLivingBase;
@@ -63,9 +64,11 @@ public abstract class meds_Potion extends FoeItem {
         if (stack.getCount() > 1) {
             ItemStack excessStack = new ItemStack(stack.getItem());
             excessStack.setCount(stack.getCount() - 1);
-            entityplayer.inventory.addItemStackToInventory(excessStack);
+//            entityplayer.inventory.addItemStackToInventory(excessStack);
+            entityplayer.inventory.setInventorySlotContents(InventoryManager.FindEmpty(entityplayer), excessStack);
             stack.setCount(1);
         }
+
         entityplayer.heal(this.HealMoment);
         entityplayer.addPotionEffect(new PotionEffect(Potion.getPotionFromResourceLocation(this.potion), this.duration, this.amplifier));
         Item air = Items.AIR;
