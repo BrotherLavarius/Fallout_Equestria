@@ -161,7 +161,7 @@ public class UpdateEvents {
 
             EntityLivingBase player = (EntityLivingBase) event.getEntity();
             AxisAlignedBB axisalignedbb = event.getEntity().getEntityBoundingBox();
-            double d0 = axisalignedbb.maxY + 0.001D;
+            double d0 = axisalignedbb.maxY + 0.002D;
             int i = MathHelper.floor(axisalignedbb.minX);
             int j = MathHelper.ceil(axisalignedbb.maxX);
             int k = MathHelper.floor(axisalignedbb.maxY);
@@ -179,8 +179,9 @@ public class UpdateEvents {
                             IBlockState iblockstate = event.getWorld().getBlockState(blockpos$pooledmutableblockpos);
 
                             if (iblockstate.getBlock() == FluidsInit.PINKCLOUD.getBlock()) {
-                                if (iblockstate.getValue(BlockLiquid.LEVEL).intValue() != 0) {
-                                    player.addPotionEffect(new PotionEffect(PotionInit.STATICPOISON, 200));
+                                if (iblockstate.getValue(BlockLiquid.LEVEL).intValue() != 0 && !player.getActivePotionEffects().contains(PotionInit.STATICPOISON)) {
+
+                                    player.addPotionEffect(new PotionEffect(PotionInit.STATICPOISON, 100));
                                 }
                             }
                         }

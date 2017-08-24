@@ -1,4 +1,4 @@
-package choonster.testmod3.block.fluid;
+package com.redsparkle.foe.block.fluid;
 
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;

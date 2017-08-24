@@ -1,6 +1,6 @@
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
-package choonster.testmod3.block.fluid;
+package com.redsparkle.foe.block.fluid;
 
 import mcp.MethodsReturnNonnullByDefault;
 

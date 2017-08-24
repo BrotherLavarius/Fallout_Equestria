@@ -1,10 +1,15 @@
 package com.redsparkle.foe.mobeffects;
 
+import com.redsparkle.api.utils.PlayerUtil;
+import com.redsparkle.foe.Init.ItemInit;
 import com.redsparkle.foe.Init.PotionInit;
+import com.redsparkle.foe.items.armor.powered.t40head;
 import com.redsparkle.foe.main;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.ResourceLocation;
@@ -12,6 +17,8 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.awt.*;
+
+import static net.minecraft.util.DamageSource.MAGIC;
 
 /**
  * Created by hoijima on 04.08.17.
@@ -88,9 +95,16 @@ public class StaticPoison extends Potion {
     public void performEffect(EntityLivingBase entityLivingBaseIn, int amplifier) {
         if (this == PotionInit.STATICPOISON) {
             {
-                //entityLivingBaseIn.attackEntityFrom(MAGIC,0.001F);
-                entityLivingBaseIn.rotationYawHead = 0F;
-                entityLivingBaseIn.setHealth(entityLivingBaseIn.getHealth() + -0.005F);
+                if(entityLivingBaseIn instanceof EntityPlayer){
+
+
+                    if(PlayerUtil.is_player_in_gas_proof_armin(entityLivingBaseIn)){
+                    }else{
+                        entityLivingBaseIn.setHealth(entityLivingBaseIn.getHealth() -0.1F);
+                    }
+                }else{
+                    entityLivingBaseIn.attackEntityFrom(MAGIC,0.1F);
+                }
             }
         }
     }

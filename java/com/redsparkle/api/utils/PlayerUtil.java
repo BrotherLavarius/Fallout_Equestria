@@ -1,10 +1,13 @@
 package com.redsparkle.api.utils;
 
 import com.mojang.authlib.GameProfile;
+import com.redsparkle.foe.Init.ItemInit;
 import net.minecraft.client.entity.AbstractClientPlayer;
 import net.minecraft.client.entity.EntityPlayerSP;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.server.MinecraftServer;
 import net.minecraftforge.fml.client.FMLClientHandler;
 import net.minecraftforge.fml.common.FMLCommonHandler;
@@ -109,5 +112,29 @@ public class PlayerUtil {
     }
     public static boolean isPlayerOnline(EntityPlayerMP player) {
         return player.world.getMinecraftServer().getPlayerList().getPlayers().contains(player);
+    }
+
+
+
+
+    public static boolean is_player_in_gas_proof_armin(EntityLivingBase player){
+
+        if(player.getItemStackFromSlot(EntityEquipmentSlot.HEAD).getItem() == ItemInit.t40head||
+                player.getItemStackFromSlot(EntityEquipmentSlot.HEAD).getItem() == ItemInit.t50head||
+                player.getItemStackFromSlot(EntityEquipmentSlot.HEAD).getItem() == ItemInit.t60head){
+            if(player.getItemStackFromSlot(EntityEquipmentSlot.CHEST).getItem() == ItemInit.t40body||
+                    player.getItemStackFromSlot(EntityEquipmentSlot.CHEST).getItem() == ItemInit.t50body||
+                    player.getItemStackFromSlot(EntityEquipmentSlot.CHEST).getItem() == ItemInit.t60body){
+                if(player.getItemStackFromSlot(EntityEquipmentSlot.LEGS).getItem() == ItemInit.t40legs||
+                        player.getItemStackFromSlot(EntityEquipmentSlot.LEGS).getItem() == ItemInit.t50legs||
+                        player.getItemStackFromSlot(EntityEquipmentSlot.LEGS).getItem() == ItemInit.t60legs){
+                    return true;
+                }
+            }
+        }
+
+
+
+        return false;
     }
 }

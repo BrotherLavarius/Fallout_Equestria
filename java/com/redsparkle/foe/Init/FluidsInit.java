@@ -3,6 +3,7 @@ package com.redsparkle.foe.Init;
 import com.google.common.base.Function;
 import com.google.common.base.Preconditions;
 import com.redsparkle.api.utils.GlobalNames;
+import com.redsparkle.foe.block.fluid.BlockFluidNoFlow;
 import com.redsparkle.foe.creativeTabs.InitCreativeTabs;
 import com.redsparkle.foe.main;
 import net.minecraft.block.Block;
@@ -12,10 +13,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.fluids.BlockFluidClassic;
-import net.minecraftforge.fluids.Fluid;
-import net.minecraftforge.fluids.FluidRegistry;
-import net.minecraftforge.fluids.IFluidBlock;
+import net.minecraftforge.fluids.*;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -41,12 +39,12 @@ public class FluidsInit {
 
 
     public static final Fluid PINKCLOUD = createFluid("pink_cloud", true,
-            fluid -> fluid.setLuminosity(10).setDensity(1800).setViscosity(10).setGaseous(true),
+            fluid -> fluid.setLuminosity(10).setDensity(1).setViscosity(1).setGaseous(true),
             fluid -> new BlockFluidClassic(fluid, new MaterialLiquid(MapColor.PINK)));
 
 
     public static final Fluid TOXICFUMES = createFluid("toxic_fumes", true,
-            fluid -> fluid.setLuminosity(10).setDensity(800).setViscosity(10).setGaseous(true),
+            fluid -> fluid.setLuminosity(10).setDensity(1).setViscosity(1).setGaseous(true),
             fluid -> new BlockFluidClassic(fluid, new MaterialLiquid(MapColor.GREEN)));
 
 
@@ -118,7 +116,7 @@ public class FluidsInit {
                 final Block block = (Block) fluidBlock;
                 block.setRegistryName(main.MODID, "fluid." + fluidBlock.getFluid().getName());
                 block.setUnlocalizedName(GlobalNames.Domain + fluidBlock.getFluid().getUnlocalizedName());
-                block.setCreativeTab(InitCreativeTabs.Fallout_blocks);
+                block.setCreativeTab(InitCreativeTabs.Fallout_stats_blocks);
                 registry.register(block);
             }
         }
