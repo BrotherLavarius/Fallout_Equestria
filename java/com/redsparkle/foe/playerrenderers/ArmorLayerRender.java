@@ -1,7 +1,9 @@
 package com.redsparkle.foe.playerrenderers;
 
+import com.redsparkle.api.Capability.Player.Inventory.IAdvProvider;
 import com.redsparkle.api.items.helpers.armor.ItemBody;
 import com.redsparkle.api.items.helpers.armor.ItemHelmet;
+import com.redsparkle.foe.items.saddlebags.Harness;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
@@ -33,6 +35,10 @@ public class ArmorLayerRender implements LayerRenderer<EntityLivingBase> {
         Item itemBody = itemstackBody.getItem();
         ItemStack itemstackLegs = entitylivingbaseIn.getItemStackFromSlot(EntityEquipmentSlot.LEGS);
         Item itemLegs = itemstackBody.getItem();
+
+        ItemStack harnes = entitylivingbaseIn.getCapability(IAdvProvider.Adv_Inv,null).getStackInSlot(5);
+        Item itemHarness = harnes.getItem();
+
         Minecraft minecraft = Minecraft.getMinecraft();
         Float yawCorrector = 0F;
         if (MathHelper.wrapDegrees(entitylivingbaseIn.getPitchYaw().y) >= 0.0F) {
@@ -61,6 +67,16 @@ public class ArmorLayerRender implements LayerRenderer<EntityLivingBase> {
                 GlStateManager.translate(0.280F, 0.65F, 0F);
             }
             minecraft.getItemRenderer().renderItem(entitylivingbaseIn, itemstackBody, ItemCameraTransforms.TransformType.HEAD);
+            GlStateManager.popMatrix();
+        }
+        if (itemHarness != null && itemHarness instanceof Harness) {
+            GlStateManager.pushMatrix();
+            if (entitylivingbaseIn.isSneaking()) {
+                GlStateManager.translate(0.280F, 0.85F, 0F);
+            } else {
+                GlStateManager.translate(0.280F, 0.65F, 0F);
+            }
+            minecraft.getItemRenderer().renderItem(entitylivingbaseIn, harnes, ItemCameraTransforms.TransformType.HEAD);
             GlStateManager.popMatrix();
         }
     }
