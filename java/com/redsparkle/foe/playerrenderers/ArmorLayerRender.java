@@ -3,7 +3,7 @@ package com.redsparkle.foe.playerrenderers;
 import com.redsparkle.api.Capability.Player.Inventory.IAdvProvider;
 import com.redsparkle.api.items.helpers.armor.ItemBody;
 import com.redsparkle.api.items.helpers.armor.ItemHelmet;
-import com.redsparkle.foe.items.saddlebags.Harness;
+import com.redsparkle.foe.items.saddlebags.Saddlebags;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
@@ -69,7 +69,7 @@ public class ArmorLayerRender implements LayerRenderer<EntityLivingBase> {
             minecraft.getItemRenderer().renderItem(entitylivingbaseIn, itemstackBody, ItemCameraTransforms.TransformType.HEAD);
             GlStateManager.popMatrix();
         }
-        if (itemHarness != null && itemHarness instanceof Harness) {
+        if (itemHarness != null && itemHarness instanceof Saddlebags) {
             GlStateManager.pushMatrix();
             if (entitylivingbaseIn.isSneaking()) {
                 GlStateManager.translate(0.280F, 0.85F, 0F);

@@ -22,6 +22,7 @@ import com.redsparkle.foe.items.meds.HealPotions.WhiteHealpotion;
 import com.redsparkle.foe.items.meds.RadAway;
 import com.redsparkle.foe.items.meds.RadX;
 import com.redsparkle.foe.items.misc_one_Time_use.LvlingCrystall;
+import com.redsparkle.foe.items.saddlebags.Saddlebags;
 import com.redsparkle.foe.items.utility.AdvancedEnviropmentMonitor;
 import com.redsparkle.foe.items.utility.PipBuck;
 import com.redsparkle.foe.main;
@@ -74,6 +75,7 @@ public class ItemInit {
     public static final Item_bullet itb = new Item_bullet("bullet");
 
 
+    public static final Saddlebags sadlebags = new Saddlebags(GlobalNames.saddlebags);
     public static final t40head t40head = new t40head(Armor_material.T40_ARMOR, 0, EntityEquipmentSlot.HEAD);
     public static final t40body t40body = new t40body(Armor_material.T40_ARMOR, 0, EntityEquipmentSlot.CHEST);
     public static final t40legs t40legs = new t40legs(Armor_material.T40_ARMOR, 0, EntityEquipmentSlot.LEGS);
@@ -145,7 +147,8 @@ public class ItemInit {
                 t50legs,
                 t60head,
                 t60body,
-                t60legs
+                t60legs,
+                sadlebags
         };
 
 

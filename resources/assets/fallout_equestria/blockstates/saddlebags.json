@@ -1,0 +1,128 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "textures": {},
+    "model": "fallout_equestria:armor/saddlebags.obj"
+  },
+  "variants": {
+    "normal": [
+      {
+        "transform": {
+          "rotation": [
+            {
+              "y": 0
+            },
+            {
+              "x": 0
+            },
+            {
+              "z": 5
+            }
+          ]
+        },
+        "scale": 1
+      }
+    ],
+    "inventory": [
+      {
+        "transform": {
+          "thirdperson_righthand": {
+            "translation": [
+              0,
+              0,
+              0
+            ],
+            "rotation": [
+              {
+                "y": 0
+              },
+              {
+                "x": 0
+              },
+              {
+                "z": 0
+              }
+            ],
+            "scale": 0.35
+          },
+          "ground": {
+            "translation": [
+              0,
+              0,
+              0
+            ],
+            "rotation": [
+              {
+                "y": 0
+              },
+              {
+                "x": 0
+              },
+              {
+                "z": 0
+              }
+            ],
+            "scale": 0.35
+          },
+          "gui": {
+            "translation": [
+              0,
+              0,
+              -7
+            ],
+            "rotation": [
+              {
+                "y": 160
+              },
+              {
+                "x": -10
+              },
+              {
+                "z": 0
+              }
+            ],
+            "scale": 0.65
+          },
+          "head": {
+            "translation": [
+              0,
+              0,
+              0
+            ],
+            "rotation": [
+              {
+                "y": 180
+              },
+              {
+                "x": 180
+              },
+              {
+                "z": 0
+              }
+            ],
+            "scale": 0.63
+          },
+          "firstperson_righthand": {
+            "translation": [
+              -2,
+              -2.5,
+              -3
+            ],
+            "rotation": [
+              {
+                "y": 5
+              },
+              {
+                "x": -3
+              },
+              {
+                "z": -1
+              }
+            ],
+            "scale": 0.35
+          }
+        }
+      }
+    ]
+  }
+}

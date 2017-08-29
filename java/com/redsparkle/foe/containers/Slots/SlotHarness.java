@@ -1,5 +1,6 @@
 package com.redsparkle.foe.containers.Slots;
-import com.redsparkle.api.items.helpers.Item_Instances.Item_Saddlebag_harness;
+
+import com.redsparkle.foe.items.saddlebags.Saddlebags;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
@@ -44,6 +45,6 @@ public class SlotHarness extends Slot {
     }
     @Override
     public boolean isItemValid(ItemStack stack) {
-        return super.isItemValid(stack) && stack.getItem() instanceof Item_Saddlebag_harness;
+        return super.isItemValid(stack) && stack.getItem() instanceof Saddlebags;
     }
 }
