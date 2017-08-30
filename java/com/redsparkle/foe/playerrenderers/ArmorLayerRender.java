@@ -71,6 +71,7 @@ public class ArmorLayerRender implements LayerRenderer<EntityLivingBase> {
         }
         if (itemHarness != null && itemHarness instanceof Saddlebags) {
             GlStateManager.pushMatrix();
+            GlStateManager.scale(1.5,1.5,1.5);
             if (entitylivingbaseIn.isSneaking()) {
                 GlStateManager.translate(0.280F, 0.85F, 0F);
             } else {
