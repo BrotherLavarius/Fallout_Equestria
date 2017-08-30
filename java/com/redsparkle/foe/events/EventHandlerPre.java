@@ -8,6 +8,7 @@ import com.redsparkle.api.Capability.Player.Inventory.IAdvProvider;
 import com.redsparkle.api.Capability.Player.level.ILevelCapability;
 import com.redsparkle.api.Capability.Player.level.LevelFactoryProvider;
 import com.redsparkle.api.Capability.Player.rad.RadsFactoryProvider;
+import com.redsparkle.api.Capability.Player.saddlegun_shooting.ITrigger_item_Provider;
 import com.redsparkle.api.Capability.Player.skills.ISkillsCapability;
 import com.redsparkle.api.Capability.Player.skills.SkillsFactoryProvider;
 import com.redsparkle.api.Capability.Player.spechial.ISpechialCapability;
@@ -15,6 +16,8 @@ import com.redsparkle.api.Capability.Player.spechial.SpechialFactoryProvider;
 import com.redsparkle.api.Capability.Player.water.WaterFactoryProvider;
 import com.redsparkle.api.items.helpers.Item_Instances.Item_AmmoHolder;
 import com.redsparkle.api.items.helpers.Item_Instances.Item_Firearm;
+import com.redsparkle.api.items.helpers.Item_Instances.Item_SaddleBagAmmo;
+import com.redsparkle.api.items.helpers.Item_Instances.Item_SaggleBagGun;
 import com.redsparkle.api.utils.PlayerParamsSetup;
 import com.redsparkle.foe.Init.PotionInit;
 import com.redsparkle.foe.main;
@@ -22,12 +25,9 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.EntityDamageSourceIndirect;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
-import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.PlayerContainerEvent;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -51,17 +51,19 @@ public class EventHandlerPre {
                 event.addCapability(new ResourceLocation(main.MODID + ":level_capability"), new LevelFactoryProvider());
                 event.addCapability(new ResourceLocation(main.MODID + ":ftj_capability"), new FTJFactoryProvider());
                 event.addCapability(new ResourceLocation(main.MODID + ":adv_inv_capability"), new IAdvProvider());
+                event.addCapability(new ResourceLocation(main.MODID + ":trigger_cap"), new ITrigger_item_Provider());
+
             }
         }
     }
     @SubscribeEvent
     public void onAddCapabilitiesItemStack(AttachCapabilitiesEvent<ItemStack> e) {
-        if (e.getObject().getItem() instanceof Item_AmmoHolder ) {
+        if (e.getObject().getItem() instanceof Item_AmmoHolder || e.getObject().getItem() instanceof Item_SaddleBagAmmo) {
             if(!e.getObject().hasCapability(AmmoFactoryProvider.AMMO_STORAGE,null)){
                 e.addCapability(new ResourceLocation(main.MODID + ":ammo_capability"), new AmmoFactoryProvider());
             }
         }
-        if (e.getObject().getItem() instanceof Item_Firearm) {
+        if (e.getObject().getItem() instanceof Item_Firearm || e.getObject().getItem() instanceof Item_SaggleBagGun) {
             if(!e.getObject().hasCapability(GunFactoryProvider.GUN,null)){
                 e.addCapability(new ResourceLocation(main.MODID + ":gun_capability"), new GunFactoryProvider());
             }
@@ -123,17 +125,6 @@ public class EventHandlerPre {
         event.getContainer();
     }
 
-
-//    @SubscribeEvent
-//    public void onDamageRender(EntityDamageSourceIndirect e) {
-//        if (e.getEntity() instanceof EntityPlayer && e.getSource() == DamageSource.MAGIC) {
-//            e.setCanceled(true);
-//
-//            System.out.println("Event got thought");
-//
-//            return;
-//        }
-//    }
 
     @SubscribeEvent(priority = EventPriority.HIGHEST)
     public void onPlayerDamageEvent(LivingAttackEvent event)

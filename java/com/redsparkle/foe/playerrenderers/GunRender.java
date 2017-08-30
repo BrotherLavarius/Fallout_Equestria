@@ -1,18 +1,23 @@
 package com.redsparkle.foe.playerrenderers;
 
+import com.redsparkle.api.Capability.Player.saddlegun_shooting.ITrigger_item;
+import com.redsparkle.api.Capability.Player.saddlegun_shooting.ITrigger_item_Provider;
 import com.redsparkle.api.items.helpers.Item_Instances.Item_Firearm;
+import com.redsparkle.foe.Init.ItemInit;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
 import net.minecraft.client.renderer.entity.RenderPlayer;
 import net.minecraft.client.renderer.entity.layers.LayerRenderer;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.MathHelper;
 
 import static java.lang.Math.abs;
+
 /**
  * Created by NENYN on 2/12/2017.
  */
@@ -26,6 +31,8 @@ public class GunRender implements LayerRenderer<EntityLivingBase> {
         ItemStack itemstack = entitylivingbaseIn.getHeldItem(EnumHand.MAIN_HAND);
         Item item = itemstack.getItem();
         Minecraft minecraft = Minecraft.getMinecraft();
+        ITrigger_item triggeritem = minecraft.player.getCapability(ITrigger_item_Provider.TRIGGER_ITEM, null);
+
         Float yawCorrector = 0F;
         Float rotationPitch = 0F;
         if (itemstack != null && item instanceof Item_Firearm) {
@@ -44,6 +51,26 @@ public class GunRender implements LayerRenderer<EntityLivingBase> {
             GlStateManager.rotate(netHeadYaw, 0, 1.0F, 0);
             GlStateManager.rotate(headPitch, 1.0F, 0, 0);
             minecraft.getItemRenderer().renderItem(entitylivingbaseIn, itemstack, ItemCameraTransforms.TransformType.HEAD);
+            GlStateManager.popMatrix();
+        }
+        if (triggeritem.getStatus() && itemstack.getItem() == Items.AIR) {
+            Item trigger_item = ItemInit.trigger_item;
+            ItemStack trigger_item_stack = new ItemStack(trigger_item);
+            GlStateManager.pushMatrix();
+            if (MathHelper.wrapDegrees(entitylivingbaseIn.getPitchYaw().y) >= 0.0F) {
+                yawCorrector = MathHelper.wrapDegrees(entitylivingbaseIn.getPitchYaw().y);
+            } else if (MathHelper.wrapDegrees(entitylivingbaseIn.getPitchYaw().y) < 0.0F) {
+                yawCorrector = abs(MathHelper.wrapDegrees(entitylivingbaseIn.getPitchYaw().y) + 360);
+            }
+            if (MathHelper.wrapDegrees(entitylivingbaseIn.rotationPitch) >= 0.0F) {
+                rotationPitch = MathHelper.wrapDegrees(entitylivingbaseIn.rotationPitch);
+            } else if (MathHelper.wrapDegrees(entitylivingbaseIn.rotationPitch) < 0.0F) {
+                rotationPitch = abs(MathHelper.wrapDegrees(entitylivingbaseIn.rotationPitch) + 360);
+            }
+            GlStateManager.translate(0.0F, 0.0F, 0.0F);
+            GlStateManager.rotate(netHeadYaw, 0, 1.0F, 0);
+            GlStateManager.rotate(headPitch, 1.0F, 0, 0);
+            minecraft.getItemRenderer().renderItem(entitylivingbaseIn, trigger_item_stack, ItemCameraTransforms.TransformType.HEAD);
             GlStateManager.popMatrix();
         }
     }

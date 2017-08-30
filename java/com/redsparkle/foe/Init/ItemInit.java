@@ -23,6 +23,7 @@ import com.redsparkle.foe.items.meds.RadAway;
 import com.redsparkle.foe.items.meds.RadX;
 import com.redsparkle.foe.items.misc_one_Time_use.LvlingCrystall;
 import com.redsparkle.foe.items.saddlebags.Saddlebags;
+import com.redsparkle.foe.items.saddlebags.Trigger_Item;
 import com.redsparkle.foe.items.utility.AdvancedEnviropmentMonitor;
 import com.redsparkle.foe.items.utility.PipBuck;
 import com.redsparkle.foe.main;
@@ -73,6 +74,9 @@ public class ItemInit {
     public static final SB_shoutgun sb_shoutgun = new SB_shoutgun(GlobalNames.db_shoutgun);
     public static final FlareGun flareGun = new FlareGun(GlobalNames.flare_gun);
     public static final Item_bullet itb = new Item_bullet("bullet");
+
+    public static final Trigger_Item trigger_item = new Trigger_Item(GlobalNames.trigger_Item);
+
 
 
     public static final Saddlebags sadlebags = new Saddlebags(GlobalNames.saddlebags);
@@ -148,7 +152,8 @@ public class ItemInit {
                 t60head,
                 t60body,
                 t60legs,
-                sadlebags
+                sadlebags,
+                trigger_item
         };
 
 

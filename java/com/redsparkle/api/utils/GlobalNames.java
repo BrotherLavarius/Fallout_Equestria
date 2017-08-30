@@ -103,5 +103,6 @@ public class GlobalNames {
             PipbuckTT = "pipbuck_2000",
             StealthBuck = "stealthbuck",
             LevelingCrystall = "lvlcrystal",
-            saddlebags = "saddlebags";
+            saddlebags = "saddlebags",
+            trigger_Item = "trigger_Item";
 }

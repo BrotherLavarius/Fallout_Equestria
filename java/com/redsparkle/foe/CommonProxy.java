@@ -18,6 +18,9 @@ import com.redsparkle.api.Capability.Player.level.LevelFactoryStorage;
 import com.redsparkle.api.Capability.Player.rad.IRadiationCapability;
 import com.redsparkle.api.Capability.Player.rad.RadsFactoryProvider;
 import com.redsparkle.api.Capability.Player.rad.RadsFactoryStorage;
+import com.redsparkle.api.Capability.Player.saddlegun_shooting.ITrigger_Item_Storage;
+import com.redsparkle.api.Capability.Player.saddlegun_shooting.ITrigger_item;
+import com.redsparkle.api.Capability.Player.saddlegun_shooting.ITrigger_item_Provider;
 import com.redsparkle.api.Capability.Player.skills.ISkillsCapability;
 import com.redsparkle.api.Capability.Player.skills.SkillsFactoryProvider;
 import com.redsparkle.api.Capability.Player.skills.SkillsFactoryStorage;
@@ -88,6 +91,7 @@ public abstract class CommonProxy {
         CapabilityManager.INSTANCE.register(IAdvInventory.class, new IAdvStorage(), IAdvProvider::new);
         CapabilityManager.INSTANCE.register(IAmmoInterface.class, new IAmmoStorage(),  AmmoFactoryProvider::new);
         CapabilityManager.INSTANCE.register(IGunInterface.class,new IGunStorage(), GunFactoryProvider::new);
+        CapabilityManager.INSTANCE.register(ITrigger_item.class, new ITrigger_Item_Storage(), ITrigger_item_Provider::new);
         System.out.println("FINISHED BOOTING CAPABILITY SYSTEM");
         MinecraftForge.EVENT_BUS.register(new EventHandlerInit());
     }

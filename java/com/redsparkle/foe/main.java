@@ -23,7 +23,6 @@ public class main {
     public static main instance;
     @SidedProxy(clientSide = "com.redsparkle.foe.ClientOnlyProxy", serverSide = "com.redsparkle.foe.DedicatedServerProxy")
     public static CommonProxy proxy;
-    public byte message_start_index = 100;
     /**
      * Prepend the name with the mod ID, suitable for ResourceLocations such as textures.
      *
@@ -38,6 +37,8 @@ public class main {
     final CreativeTabs Fallout_meds = InitCreativeTabs.Fallout_meds;
     final CreativeTabs Fallout_stats_blocks = InitCreativeTabs.Fallout_stats_blocks;
     final CreativeTabs Fallout_stats_armor = InitCreativeTabs.Fallout_armor;
+    public byte message_start_index = 100;
+
     @Mod.EventHandler
     public static void init(FMLServerStartingEvent event) {
         event.registerServerCommand(new rpSkillCheck());
@@ -82,6 +83,11 @@ public class main {
         simpleNetworkWrapper.registerMessage(MessageAdvInv_SLOT.HandlerServer.class, MessageAdvInv_SLOT.class, message_start_index++, Side.SERVER);
         simpleNetworkWrapper.registerMessage(MessageAdvInv.HandlerServer.class, MessageAdvInv.class, message_start_index++, Side.SERVER);
         simpleNetworkWrapper.registerMessage(MessageUpdateAmmoHolders.HandlerClient.class,MessageUpdateAmmoHolders.class,message_start_index++,Side.CLIENT);
+
+        simpleNetworkWrapper.registerMessage(MessageUpdateClientTrigger_Item.HandlerClient.class, MessageUpdateClientTrigger_Item.class, message_start_index++, Side.CLIENT);
+        simpleNetworkWrapper.registerMessage(MessageUpdateClientTrigger_Item.HandlerServer.class, MessageUpdateClientTrigger_Item.class, message_start_index++, Side.SERVER);
+
+
         System.out.println("FINISHED BOOTING NETWORK MESSAGES");
     }
     @Mod.EventHandler

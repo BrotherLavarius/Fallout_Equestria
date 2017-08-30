@@ -63,6 +63,7 @@ public class CONTAINER_AdditionalInventory extends Container {
         for (int g = 0; g < 12; g++) {
             this.additional_inventory.setInventorySlotContents(g, adv_inv.getStackInSlot(g));
         }
+
     }
     public boolean canInteractWith(EntityPlayer var1) {
         return true;

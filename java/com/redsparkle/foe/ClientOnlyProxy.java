@@ -10,6 +10,8 @@ import com.redsparkle.api.Capability.Player.level.ILevelCapability;
 import com.redsparkle.api.Capability.Player.level.LevelFactoryProvider;
 import com.redsparkle.api.Capability.Player.rad.IRadiationCapability;
 import com.redsparkle.api.Capability.Player.rad.RadsFactoryProvider;
+import com.redsparkle.api.Capability.Player.saddlegun_shooting.ITrigger_item;
+import com.redsparkle.api.Capability.Player.saddlegun_shooting.ITrigger_item_Provider;
 import com.redsparkle.api.Capability.Player.skills.ISkillsCapability;
 import com.redsparkle.api.Capability.Player.skills.SkillsFactoryProvider;
 import com.redsparkle.api.Capability.Player.spechial.ISpechialCapability;
@@ -253,6 +255,15 @@ public class ClientOnlyProxy extends CommonProxy {
         });
     }
 
+    public static void handleTrigger_Item_Message(MessageUpdateClientTrigger_Item message) {
+        Minecraft.getMinecraft().addScheduledTask(() -> {
+            EntityPlayer player = Minecraft.getMinecraft().player;
+            ITrigger_item status = player.getCapability(ITrigger_item_Provider.TRIGGER_ITEM, null);
+            status.setStatus(message.status);
+        });
+
+    }
+
     public void preInit() {
         super.preInit();
         keyHandler.register();
@@ -288,4 +299,6 @@ public class ClientOnlyProxy extends CommonProxy {
     public boolean isDedicatedServer() {
         return false;
     }
+
+
 }

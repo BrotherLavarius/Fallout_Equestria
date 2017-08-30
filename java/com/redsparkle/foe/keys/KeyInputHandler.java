@@ -1,11 +1,14 @@
 package com.redsparkle.foe.keys;
 import com.redsparkle.api.Capability.Player.Inventory.IAdvProvider;
+import com.redsparkle.api.Capability.Player.saddlegun_shooting.ITrigger_item_Provider;
 import com.redsparkle.foe.main;
 import com.redsparkle.foe.network.ClientServerOneClass.MessageAdvInv;
+import com.redsparkle.foe.network.ClientServerOneClass.MessageUpdateClientTrigger_Item;
 import com.redsparkle.foe.network.MessageGunReload;
 import com.redsparkle.foe.network.MessageUpdateSLSClientOnDemand;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.InputEvent;
@@ -29,9 +32,31 @@ public class KeyInputHandler {
             }
         }
         if (keyHandler.testButton.isPressed()) {
-            main.simpleNetworkWrapper.sendToServer(new MessageAdvInv("sync_and_gui"));
         }
         if (keyHandler.saddlebags.isPressed()) {
+            main.simpleNetworkWrapper.sendToServer(new MessageAdvInv("sync_and_gui"));
+
+        }
+
+        if (keyHandler.sbag_shooter.isPressed()) {
+            if (player.getCapability(IAdvProvider.Adv_Inv, null).getStackInSlot(5).getItem() != Items.AIR) {
+                if (mc.player.getCapability(ITrigger_item_Provider.TRIGGER_ITEM, null).getStatus()) {
+                    main.simpleNetworkWrapper.sendToServer(new MessageUpdateClientTrigger_Item(false));
+                } else {
+                    main.simpleNetworkWrapper.sendToServer(new MessageUpdateClientTrigger_Item(true));
+                }
+            }
+
+        }
+
+        if (keyHandler.shootLSB.isPressed()) {
+            //if player.getCapability()
+
+        }
+
+        if (keyHandler.shootRSB.isPressed()) {
+
+
         }
     }
 }

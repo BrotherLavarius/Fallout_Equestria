@@ -4,6 +4,8 @@ import com.redsparkle.api.Capability.Player.Inventory.IAdvInventory;
 import com.redsparkle.api.Capability.Player.Inventory.IAdvProvider;
 import com.redsparkle.api.Capability.Player.level.ILevelCapability;
 import com.redsparkle.api.Capability.Player.level.LevelFactoryProvider;
+import com.redsparkle.api.Capability.Player.saddlegun_shooting.ITrigger_item;
+import com.redsparkle.api.Capability.Player.saddlegun_shooting.ITrigger_item_Provider;
 import com.redsparkle.api.Capability.Player.skills.ISkillsCapability;
 import com.redsparkle.api.Capability.Player.skills.SkillsFactoryProvider;
 import com.redsparkle.api.Capability.Player.spechial.ISpechialCapability;
@@ -280,6 +282,12 @@ public class DedicatedServerProxy extends CommonProxy {
             advInventory.insertItem(slot, stack, false);
         }
     }
+
+    public static void handleTrigger_Item_Message(MessageUpdateClientTrigger_Item message, EntityPlayerMP playerMP) {
+        ITrigger_item status = playerMP.getCapability(ITrigger_item_Provider.TRIGGER_ITEM, null);
+        status.setStatus(message.status);
+        main.simpleNetworkWrapper.sendTo(new MessageUpdateClientTrigger_Item(status), playerMP);
+    }
     /**
      * Run before anything else. Read your config, create blocks, items, etc, and register them with the GameRegistry
      */
@@ -314,4 +322,6 @@ public class DedicatedServerProxy extends CommonProxy {
     public boolean isDedicatedServer() {
         return true;
     }
+
+
 }
