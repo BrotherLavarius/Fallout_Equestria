@@ -1,9 +1,12 @@
 package com.redsparkle.foe.playerrenderers;
 
+import com.redsparkle.api.Capability.Player.Inventory.IAdvProvider;
 import com.redsparkle.api.Capability.Player.saddlegun_shooting.ITrigger_item;
 import com.redsparkle.api.Capability.Player.saddlegun_shooting.ITrigger_item_Provider;
 import com.redsparkle.api.items.helpers.Item_Instances.Item_Firearm;
+import com.redsparkle.api.items.helpers.Item_Instances.Item_SaggleBagGun;
 import com.redsparkle.foe.Init.ItemInit;
+import com.redsparkle.foe.items.saddlebags.Saddlebags;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
@@ -32,6 +35,12 @@ public class GunRender implements LayerRenderer<EntityLivingBase> {
         Item item = itemstack.getItem();
         Minecraft minecraft = Minecraft.getMinecraft();
         ITrigger_item triggeritem = minecraft.player.getCapability(ITrigger_item_Provider.TRIGGER_ITEM, null);
+
+        ItemStack harnes = entitylivingbaseIn.getCapability(IAdvProvider.Adv_Inv,null).getStackInSlot(5);
+        Item itemHarness = harnes.getItem();
+
+        ItemStack RS_GUN = entitylivingbaseIn.getCapability(IAdvProvider.Adv_Inv,null).getStackInSlot(7);
+        ItemStack LS_GUN = entitylivingbaseIn.getCapability(IAdvProvider.Adv_Inv,null).getStackInSlot(6);
 
         Float yawCorrector = 0F;
         Float rotationPitch = 0F;
@@ -73,6 +82,35 @@ public class GunRender implements LayerRenderer<EntityLivingBase> {
             minecraft.getItemRenderer().renderItem(entitylivingbaseIn, trigger_item_stack, ItemCameraTransforms.TransformType.HEAD);
             GlStateManager.popMatrix();
         }
+        if (itemHarness != null && itemHarness instanceof Saddlebags && RS_GUN.getItem() instanceof Item_SaggleBagGun) {
+            if(((Item_SaggleBagGun)RS_GUN.getItem()).side()  == "RS") {
+                GlStateManager.pushMatrix();
+                GlStateManager.rotate(180,0,1,0);
+                GlStateManager.translate(-0.80,0,0.65);
+                if (entitylivingbaseIn.isSneaking()) {
+                    GlStateManager.translate(0.280F, 0.85F, 0F);
+                } else {
+                    GlStateManager.translate(0.280F, 0.65F, 0F);
+                }
+                minecraft.getItemRenderer().renderItem(entitylivingbaseIn, RS_GUN, ItemCameraTransforms.TransformType.HEAD);
+                GlStateManager.popMatrix();
+            }
+        }
+        if (itemHarness != null && itemHarness instanceof Saddlebags && LS_GUN.getItem() instanceof Item_SaggleBagGun) {
+            if(((Item_SaggleBagGun)LS_GUN.getItem()).side() == "LS") {
+                GlStateManager.pushMatrix();
+
+                if (entitylivingbaseIn.isSneaking()) {
+                    GlStateManager.translate(0.280F, 0.85F, 0F);
+                } else {
+                    GlStateManager.translate(0.280F, 0.65F, 0F);
+                }
+                minecraft.getItemRenderer().renderItem(entitylivingbaseIn, LS_GUN, ItemCameraTransforms.TransformType.HEAD);
+                GlStateManager.popMatrix();
+            }
+        }
+
+
     }
     public boolean shouldCombineTextures() {
         return false;

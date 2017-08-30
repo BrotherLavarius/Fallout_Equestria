@@ -28,14 +28,17 @@ public abstract class Item_SaggleBagGun extends Item_Firearm {
     public EnumParticleTypes effect;
     public Integer[] invArray = {8, 9, 10, 11};
     public String gunName;
+    public String side;
+
     public String projectile;
 
-    public Item_SaggleBagGun(String itemName) {
+    public Item_SaggleBagGun(String itemName,String side) {
         super(itemName);
         this.clipRounds = 32;
         this.setCreativeTab(InitCreativeTabs.Fallout_guns);
         this.setMaxStackSize(1);
         this.setMaxDamage(1000);
+        this.side = side;
     }
 
     @Override
@@ -57,6 +60,9 @@ public abstract class Item_SaggleBagGun extends Item_Firearm {
     @Override
     public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand hand) {
         return ActionResult.newResult(EnumActionResult.PASS, playerIn.getActiveItemStack());
+    }
+    public String side(){
+        return side;
     }
 
 

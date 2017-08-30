@@ -50,6 +50,10 @@ public class GlobalNames {
             FourTenMM = "four_tenmm_pistol",
             db_shoutgun = "db_shotgun",
             flare_gun = "flare_gun";
+
+    // Saddle bag guns
+    public static final String
+            Seven_mm_rifle = "seven_mm_rifle";
     // Food
     // AMMO
     public static final String

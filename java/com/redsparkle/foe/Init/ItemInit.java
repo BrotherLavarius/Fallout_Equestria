@@ -24,6 +24,7 @@ import com.redsparkle.foe.items.meds.RadX;
 import com.redsparkle.foe.items.misc_one_Time_use.LvlingCrystall;
 import com.redsparkle.foe.items.saddlebags.Saddlebags;
 import com.redsparkle.foe.items.saddlebags.Trigger_Item;
+import com.redsparkle.foe.items.saddlebags.guns.Seven_mm_rifle;
 import com.redsparkle.foe.items.utility.AdvancedEnviropmentMonitor;
 import com.redsparkle.foe.items.utility.PipBuck;
 import com.redsparkle.foe.main;
@@ -76,6 +77,9 @@ public class ItemInit {
     public static final Item_bullet itb = new Item_bullet("bullet");
 
     public static final Trigger_Item trigger_item = new Trigger_Item(GlobalNames.trigger_Item);
+
+    public static final Seven_mm_rifle seven_mm_rifle_RS = new Seven_mm_rifle(GlobalNames.Seven_mm_rifle+"_rs","RS");
+    public static final Seven_mm_rifle seven_mm_rifle_LS = new Seven_mm_rifle(GlobalNames.Seven_mm_rifle+"_ls","LS");
 
 
 
@@ -153,7 +157,9 @@ public class ItemInit {
                 t60body,
                 t60legs,
                 sadlebags,
-                trigger_item
+                trigger_item,
+                seven_mm_rifle_RS,
+                seven_mm_rifle_LS
         };
 
 
