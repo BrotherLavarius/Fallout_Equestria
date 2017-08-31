@@ -87,10 +87,10 @@ public class GunRender implements LayerRenderer<EntityLivingBase> {
                 GlStateManager.pushMatrix();
                 GlStateManager.scale(1.5,1.5,1.5);
 
-                GlStateManager.rotate(180,0,1,0);
-                GlStateManager.translate(-0.80,0,0.65);
+                //GlStateManager.rotate(180,0,1,0);
+                GlStateManager.translate(-0.25, -0.198, -0.045);
                 if (entitylivingbaseIn.isSneaking()) {
-                    GlStateManager.translate(0.280F, 0.85F, 0F);
+                    GlStateManager.translate(0.280F, 0.79F, 0F);
                 } else {
                     GlStateManager.translate(0.280F, 0.65F, 0F);
                 }
@@ -100,17 +100,17 @@ public class GunRender implements LayerRenderer<EntityLivingBase> {
         }
         if (itemHarness != null && itemHarness instanceof Saddlebags && LS_GUN.getItem() instanceof Item_SaggleBagGun) {
             if(((Item_SaggleBagGun)LS_GUN.getItem()).side() == "LS") {
-                GlStateManager.pushMatrix();
-                GlStateManager.scale(1.5,1.5,1.5);
-                GlStateManager.rotate(180,0,1,0);
-                GlStateManager.translate(-0.80,0,0.65);
-                if (entitylivingbaseIn.isSneaking()) {
-                    GlStateManager.translate(0.280F, 0.85F, 0F);
-                } else {
-                    GlStateManager.translate(0.280F, 0.65F, 0F);
-                }
-                minecraft.getItemRenderer().renderItem(entitylivingbaseIn, LS_GUN, ItemCameraTransforms.TransformType.HEAD);
-                GlStateManager.popMatrix();
+//                GlStateManager.pushMatrix();
+//                GlStateManager.scale(1.5,1.5,1.5);
+//                GlStateManager.rotate(180,0,1,0);
+//                GlStateManager.translate(-0.80,0,0.65);
+//                if (entitylivingbaseIn.isSneaking()) {
+//                    GlStateManager.translate(0.280F, 0.85F, 0F);
+//                } else {
+//                    GlStateManager.translate(0.280F, 0.65F, 0F);
+//                }
+//                minecraft.getItemRenderer().renderItem(entitylivingbaseIn, LS_GUN, ItemCameraTransforms.TransformType.HEAD);
+//                GlStateManager.popMatrix();
             }
         }
 

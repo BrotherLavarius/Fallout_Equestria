@@ -50,7 +50,7 @@ public class ArmorLayerRender implements LayerRenderer<EntityLivingBase> {
             GlStateManager.pushMatrix();
 
             if (entitylivingbaseIn.isSneaking()) {
-                GlStateManager.translate(0F, 0.20F, 0F);
+                GlStateManager.translate(0, 0.35F, -0.17F);
             } else {
                 GlStateManager.translate(0F, 0F, 0F);
             }
@@ -62,7 +62,8 @@ public class ArmorLayerRender implements LayerRenderer<EntityLivingBase> {
         if (itemstackBody != null && itemBody instanceof ItemBody) {
             GlStateManager.pushMatrix();
             if (entitylivingbaseIn.isSneaking()) {
-                GlStateManager.translate(0.280F, 0.85F, 0F);
+                GlStateManager.rotate(20, 1, 0, 0);
+                GlStateManager.translate(0.280F, 0.85F, -0.40F);
             } else {
                 GlStateManager.translate(0.280F, 0.65F, 0F);
             }
@@ -71,7 +72,7 @@ public class ArmorLayerRender implements LayerRenderer<EntityLivingBase> {
         }
         if (itemHarness != null && itemHarness instanceof Saddlebags) {
             GlStateManager.pushMatrix();
-            GlStateManager.scale(1.5,1.5,1.5);
+//            GlStateManager.scale(1.5,1.5,1.5);
             if (entitylivingbaseIn.isSneaking()) {
                 GlStateManager.translate(0.280F, 0.85F, 0F);
             } else {
