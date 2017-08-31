@@ -10,4 +10,5 @@ public class Seven_mm_rifle extends Item_SaggleBagGun {
     public Seven_mm_rifle(String itemName, String side) {
         super(itemName, side);
     }
+
 }

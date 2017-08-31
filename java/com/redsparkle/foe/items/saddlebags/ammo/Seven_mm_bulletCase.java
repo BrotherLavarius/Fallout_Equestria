@@ -12,12 +12,17 @@ import java.util.List;
 /**
  * Created by hoijima on 31.08.17.
  */
-public class Seven_mmAmmo extends FoeItem {
-    public Seven_mmAmmo(String seven_mmAmmo) {
-        super(seven_mmAmmo);
-        final int NUMBER_OF_BOXES = 50;
+public class Seven_mm_bulletCase extends FoeItem {
+    public int MaxDamage = 1;
+
+    public Seven_mm_bulletCase(String name) {
+
+        super(name);
+        final int NUMBER_OF_BOXES = 40;
         this.setMaxStackSize(NUMBER_OF_BOXES);
         this.setCreativeTab(InitCreativeTabs.Fallout_ammo);   // the item will appear on the Miscellaneous tab in creative
+        this.setMaxStackSize(64);
+        this.setMaxDamage(MaxDamage);
     }
 
     /**
@@ -25,7 +30,6 @@ public class Seven_mmAmmo extends FoeItem {
      */
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack stack, EntityPlayer playerIn, List<String> tooltip, boolean advanced) {
-        tooltip.add("Widely produced before the war");
-        tooltip.add("Used by any 7mm rifle");
+        tooltip.add("Case from a 7mm bullet");
     }
 }

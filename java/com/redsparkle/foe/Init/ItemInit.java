@@ -24,6 +24,9 @@ import com.redsparkle.foe.items.meds.RadX;
 import com.redsparkle.foe.items.misc_one_Time_use.LvlingCrystall;
 import com.redsparkle.foe.items.saddlebags.Saddlebags;
 import com.redsparkle.foe.items.saddlebags.Trigger_Item;
+import com.redsparkle.foe.items.saddlebags.ammo.Seven_mmAmmo;
+import com.redsparkle.foe.items.saddlebags.ammo.Seven_mm_bulletCase;
+import com.redsparkle.foe.items.saddlebags.clip.Seven_mmClip;
 import com.redsparkle.foe.items.saddlebags.guns.Seven_mm_rifle;
 import com.redsparkle.foe.items.utility.AdvancedEnviropmentMonitor;
 import com.redsparkle.foe.items.utility.PipBuck;
@@ -81,6 +84,9 @@ public class ItemInit {
     public static final Seven_mm_rifle seven_mm_rifle_RS = new Seven_mm_rifle(GlobalNames.Seven_mm_rifle+"_rs","RS");
     public static final Seven_mm_rifle seven_mm_rifle_LS = new Seven_mm_rifle(GlobalNames.Seven_mm_rifle+"_ls","LS");
 
+    public static final Seven_mmAmmo seven_mmAmmo = new Seven_mmAmmo(GlobalNames.Seven_mmAmmo);
+    public static final Seven_mmClip seven_mmClip = new Seven_mmClip(GlobalNames.Seven_mmClip);
+    public static final Seven_mm_bulletCase seven_mm_bulletCase = new Seven_mm_bulletCase(GlobalNames.Seven_mm_bulletCase);
 
 
     public static final Saddlebags sadlebags = new Saddlebags(GlobalNames.saddlebags);
@@ -159,7 +165,10 @@ public class ItemInit {
                 sadlebags,
                 trigger_item,
                 seven_mm_rifle_RS,
-                seven_mm_rifle_LS
+                seven_mm_rifle_LS,
+                seven_mmAmmo,
+                seven_mmClip,
+                seven_mm_bulletCase
         };
 
 

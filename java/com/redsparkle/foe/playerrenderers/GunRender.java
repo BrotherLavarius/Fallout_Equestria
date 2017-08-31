@@ -58,7 +58,16 @@ public class GunRender implements LayerRenderer<EntityLivingBase> {
             }
             GlStateManager.translate(0.0F, 0.0F, 0.0F);
             GlStateManager.rotate(netHeadYaw, 0, 1.0F, 0);
-            GlStateManager.rotate(headPitch, 1.0F, 0, 0);
+            if (headPitch >= 33.0) {
+                GlStateManager.rotate(33, 1.0F, 0, 0);
+            } else if (headPitch < -67.0) {
+                GlStateManager.rotate(-67, 1.0F, 0, 0);
+            } else {
+                GlStateManager.rotate(headPitch, 1.0F, 0, 0);
+            }
+
+
+
             minecraft.getItemRenderer().renderItem(entitylivingbaseIn, itemstack, ItemCameraTransforms.TransformType.HEAD);
             GlStateManager.popMatrix();
         }

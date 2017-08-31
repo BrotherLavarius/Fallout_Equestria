@@ -102,7 +102,9 @@ public class RenderingInit {
         ModelLoader.setCustomModelResourceLocation(seven_mm_rifle_RS, 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.Seven_mm_rifle+"_rs", "inventory"));
         ModelLoader.setCustomModelResourceLocation(seven_mm_rifle_LS, 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.Seven_mm_rifle+"_ls", "inventory"));
 
-
+        ModelLoader.setCustomModelResourceLocation(seven_mmAmmo, 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.Seven_mmAmmo, "inventory"));
+        ModelLoader.setCustomModelResourceLocation(seven_mmClip, 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.Seven_mmClip, "inventory"));
+        ModelLoader.setCustomModelResourceLocation(seven_mm_bulletCase, 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.Seven_mm_bulletCase, "inventory"));
 
         RenderingRegistry.registerEntityRenderingHandler(EntityBullet.class, new RenderFactoryBullet(Minecraft.getMinecraft().getRenderManager()));
         RenderingRegistry.registerEntityRenderingHandler(EntityLaser.class, new RenderFactoryLaser(Minecraft.getMinecraft().getRenderManager()));

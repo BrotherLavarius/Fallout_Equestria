@@ -4,6 +4,7 @@ import com.redsparkle.api.Capability.Items.Ammo.IAmmoInterface;
 import com.redsparkle.foe.Init.SoundInit;
 import com.redsparkle.foe.items.guns.ammo.FourTenMM.FourTenMMammo;
 import com.redsparkle.foe.items.guns.ammo.TenMM.TenMMammo;
+import com.redsparkle.foe.items.saddlebags.ammo.Seven_mmAmmo;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.SoundCategory;
@@ -18,6 +19,21 @@ public class ItemClipHelpers {
                 return player.inventory.getStackInSlot(slot);
         return ItemStack.EMPTY;
     }
+
+    public static ItemStack FourTenMMFind(EntityPlayer player) {
+        for (int slot = 0; slot < player.inventory.getSizeInventory(); ++slot)
+            if (player.inventory.getStackInSlot(slot).getItem() instanceof FourTenMMammo)
+                return player.inventory.getStackInSlot(slot);
+        return ItemStack.EMPTY;
+    }
+
+    public static ItemStack SevenMMFind(EntityPlayer player) {
+        for (int slot = 0; slot < player.inventory.getSizeInventory(); ++slot)
+            if (player.inventory.getStackInSlot(slot).getItem() instanceof Seven_mmAmmo)
+                return player.inventory.getStackInSlot(slot);
+        return ItemStack.EMPTY;
+    }
+
     public static ItemStack TenMMClipStackHelper(ItemStack clip, World worldIn, EntityPlayer playerIn, int MaxDamage) {
         IAmmoInterface capa = clip.getCapability(AmmoFactoryProvider.AMMO_STORAGE,null);
         if (capa.getAmmo() <= capa.getMaxAmmo()) {
@@ -26,16 +42,20 @@ public class ItemClipHelpers {
         }
         return clip;
     }
-    public static ItemStack FourTenMMFind(EntityPlayer player) {
-        for (int slot = 0; slot < player.inventory.getSizeInventory(); ++slot)
-            if (player.inventory.getStackInSlot(slot).getItem() instanceof FourTenMMammo)
-                return player.inventory.getStackInSlot(slot);
-        return ItemStack.EMPTY;
-    }
+
     public static ItemStack FourTenMMClipStackHelper(ItemStack clip, World worldIn, EntityPlayer playerIn, int MaxDamage) {
         IAmmoInterface capa = clip.getCapability(AmmoFactoryProvider.AMMO_STORAGE, null);
         if (capa.getAmmo() <= capa.getMaxAmmo()) {
             ItemStack ammo = ItemClipHelpers.FourTenMMFind(playerIn);
+            triggers(clip, ammo, worldIn, playerIn);
+        }
+        return clip;
+    }
+
+    public static ItemStack SevenMMClipStackHelper(ItemStack clip, World worldIn, EntityPlayer playerIn, int MaxDamage) {
+        IAmmoInterface capa = clip.getCapability(AmmoFactoryProvider.AMMO_STORAGE, null);
+        if (capa.getAmmo() <= capa.getMaxAmmo()) {
+            ItemStack ammo = ItemClipHelpers.SevenMMFind(playerIn);
             triggers(clip, ammo, worldIn, playerIn);
         }
         return clip;
