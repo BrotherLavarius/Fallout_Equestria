@@ -3,6 +3,7 @@ package com.redsparkle.api.items.helpers.Item_Instances;
 import com.redsparkle.api.Capability.Items.Gun.GunFactoryProvider;
 import com.redsparkle.api.Capability.Items.Gun.IGunInterface;
 import com.redsparkle.api.Capability.Player.skills.SkillsFactoryProvider;
+import com.redsparkle.api.utils.GunHelpers;
 import com.redsparkle.api.utils.InventoryManager;
 import com.redsparkle.foe.creativeTabs.InitCreativeTabs;
 import com.redsparkle.foe.items.FoeItem;
@@ -26,8 +27,6 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
-
-import static com.redsparkle.api.utils.GunHelpers.getGunDamage;
 /**
  * Created by NENYN on 1/21/2017.
  */
@@ -135,7 +134,7 @@ public abstract class Item_Firearm extends FoeItem {
         EntityBullet bullet = new EntityBullet(worldIn, playerIn);
         bullet.setHeadingFromThrower(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, 4.5F, 1.5F);
         bullet.setRenderYawOffset(5F);
-        bullet.setDamage(getGunDamage(playerIn) + damage_firearms);
+        bullet.setDamage(Integer.parseInt(GunHelpers.GunParams(playerIn, 0).getItem(1)) + damage_firearms);
         worldIn.spawnEntity(bullet);
         if(!worldIn.isRemote){main.simpleNetworkWrapper.sendToServer(new MessageGunFire("firearm"));}
     }
@@ -145,7 +144,7 @@ public abstract class Item_Firearm extends FoeItem {
         for (int i = 0; i <= (pellets.length - 1); i++) {
             pellets[i].setHeadingFromThrower(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, 4.5F, 15.5F);
             pellets[i].setRenderYawOffset(10F);
-            pellets[i].setDamage(getGunDamage(playerIn) + damage_firearms);
+            pellets[i].setDamage(Integer.parseInt(GunHelpers.GunParams(playerIn, 0).getItem(1)) + damage_firearms);
             worldIn.spawnEntity(pellets[i]);
         }
         if(!worldIn.isRemote){main.simpleNetworkWrapper.sendToServer(new MessageGunFire("shotgun"));}
@@ -156,7 +155,7 @@ public abstract class Item_Firearm extends FoeItem {
         EntityLaser laser = new EntityLaser(worldIn, playerIn);
         laser.setHeadingFromThrower(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, 4.5F, 0.5F);
         laser.setRenderYawOffset(5F);
-        laser.setDamage(getGunDamage(playerIn) + damage_laser_weapons + Math.round(damage_magic_modif/2));
+        laser.setDamage(Integer.parseInt(GunHelpers.GunParams(playerIn, 0).getItem(1)) + damage_laser_weapons + Math.round(damage_magic_modif / 2));
         worldIn.spawnEntity(laser);
         if(!worldIn.isRemote){main.simpleNetworkWrapper.sendToServer(new MessageGunFire("laser"));}
     }
@@ -164,13 +163,13 @@ public abstract class Item_Firearm extends FoeItem {
     {
         EntityFlame flame = new EntityFlame(worldIn, playerIn);
         flame.setHeadingFromThrower(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, 0.5F, 3.0F);
-        flame.setDamage(getGunDamage(playerIn));
+        flame.setDamage(Integer.parseInt(GunHelpers.GunParams(playerIn, 0).getItem(1)));
         if(!worldIn.isRemote){main.simpleNetworkWrapper.sendToServer(new MessageGunFire("flame"));}
     }
     public void flare(World worldIn,EntityPlayer playerIn) {
         EntityFlare flare = new EntityFlare(worldIn, playerIn);
         flare.setHeadingFromThrower(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, 1F, 3.0F);
-        flare.setDamage(getGunDamage(playerIn));
+        flare.setDamage(Integer.parseInt(GunHelpers.GunParams(playerIn, 0).getItem(1)));
         worldIn.spawnEntity(flare);
         if(!worldIn.isRemote){main.simpleNetworkWrapper.sendToServer(new MessageGunFire("flare"));}
     }

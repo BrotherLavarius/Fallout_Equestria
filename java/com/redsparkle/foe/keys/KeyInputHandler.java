@@ -4,6 +4,7 @@ import com.redsparkle.api.Capability.Player.saddlegun_shooting.ITrigger_item_Pro
 import com.redsparkle.foe.main;
 import com.redsparkle.foe.network.ClientServerOneClass.MessageAdvInv;
 import com.redsparkle.foe.network.ClientServerOneClass.MessageUpdateClientTrigger_Item;
+import com.redsparkle.foe.network.MessageGunFire;
 import com.redsparkle.foe.network.MessageGunReload;
 import com.redsparkle.foe.network.MessageUpdateSLSClientOnDemand;
 import net.minecraft.client.Minecraft;
@@ -48,14 +49,21 @@ public class KeyInputHandler {
             }
 
         }
+        boolean triggered = false;
+        if (keyHandler.shootLSB.isKeyDown()) {
+            triggered = true;
 
-        if (keyHandler.shootLSB.isPressed()) {
-            //if player.getCapability()
-
+            while (triggered) {
+                main.simpleNetworkWrapper.sendToServer(new MessageGunFire("saddlebag_LS"));
+            }
         }
 
-        if (keyHandler.shootRSB.isPressed()) {
+        if (keyHandler.shootRSB.isKeyDown()) {
+            triggered = true;
 
+            while (triggered) {
+                main.simpleNetworkWrapper.sendToServer(new MessageGunFire("saddlebag_RS"));
+            }
 
         }
     }

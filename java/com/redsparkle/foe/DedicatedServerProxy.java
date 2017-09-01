@@ -12,16 +12,12 @@ import com.redsparkle.api.Capability.Player.spechial.ISpechialCapability;
 import com.redsparkle.api.Capability.Player.spechial.SpechialFactoryProvider;
 import com.redsparkle.api.Capability.Player.water.IWaterCapability;
 import com.redsparkle.api.Capability.Player.water.WaterFactoryProvider;
+import com.redsparkle.api.utils.GunHelpers;
 import com.redsparkle.api.utils.ItemCatalog;
 import com.redsparkle.api.utils.Lvlutil;
 import com.redsparkle.api.utils.PlayerParamsSetup;
 import com.redsparkle.foe.events.ServerSIdeONly.EventHandlerServerSidePre;
 import com.redsparkle.foe.items.guns.*;
-import com.redsparkle.foe.items.guns.entitys.bulletFired.EntityBullet;
-import com.redsparkle.foe.items.guns.entitys.flametrower.EntityFlame;
-import com.redsparkle.foe.items.guns.entitys.flare.EntityFlare;
-import com.redsparkle.foe.items.guns.entitys.laserFired.EntityLaser;
-import com.redsparkle.foe.items.guns.entitys.spreadPellet_shotgun.*;
 import com.redsparkle.foe.network.ClientServerOneClass.*;
 import com.redsparkle.foe.network.MessageGunFire;
 import com.redsparkle.foe.network.MessageUpdateSLSServerReplyOnDemand;
@@ -33,12 +29,10 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumHand;
-import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 import net.minecraftforge.common.MinecraftForge;
 
 import static com.redsparkle.api.Capability.Player.level.LevelFactoryProvider.LEVEL_CAPABILITY;
-import static com.redsparkle.api.utils.GunHelpers.getGunDamageMP;
 /**
  * DedicatedServerProxy is used to set up the mod and start it running on dedicated servers.  It contains all the code that should run on the
  * dedicated servers.  This is almost never required.
@@ -107,10 +101,12 @@ public class DedicatedServerProxy extends CommonProxy {
         ItemStack heldItem = player.getHeldItem(EnumHand.MAIN_HAND);
         if (heldItem != null) {
             if (heldItem.getItem() instanceof TenMM || heldItem.getItem() instanceof FourTenMM || heldItem.getItem() instanceof LaserPistol) {
-                gunReload.ClipLoaded(mainThread, heldItem, player);
+                gunReload.ClipLoaded(mainThread, heldItem, player, false);
             } else if (heldItem.getItem() instanceof SB_shoutgun || heldItem.getItem() instanceof FlareGun) {
                 gunReload.BulletLoaded(mainThread, heldItem, player);
             }
+        } else if (player.getCapability(IAdvProvider.Adv_Inv, null).getStackInSlot(6) != ItemStack.EMPTY || player.getCapability(IAdvProvider.Adv_Inv, null).getStackInSlot(7) != ItemStack.EMPTY) {
+            gunReload.ClipLoaded(mainThread, heldItem, player, true);
         }
     }
     public static void handleSLSOnDemand(EntityPlayerMP player) {
@@ -196,45 +192,8 @@ public class DedicatedServerProxy extends CommonProxy {
         player.heal(player.getMaxHealth());
     }
     public static void handleFireMessage(MessageGunFire message, EntityPlayerMP player) {
-        World worldIn = player.world;
-        EntityPlayerMP playerIn = player;
-        int damage_firearms = player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY,null).getFirearms();
-        int damage_laser_weapons = player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY,null).getEnergyWeapons();
-        int damage_magic_modif = player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY,null).getMagic();
-        if(message.type == 0){ //FIREARM
-            EntityBullet bullet = new EntityBullet(worldIn, player);
-            bullet.setHeadingFromThrower(player, player.rotationPitch, player.rotationYaw, 0.0F, 4.5F, 1.5F);
-            bullet.setRenderYawOffset(5F);
-            bullet.setDamage(getGunDamageMP(player) + damage_firearms);
-            worldIn.spawnEntity(bullet);
-        }
-        if(message.type == 1){ //PELLET
-            Pellet[] pellets = new Pellet[]{new Pellet_one(worldIn, playerIn), new Pellet_two(worldIn, playerIn), new Pellet_tree(worldIn, playerIn), new Pellet_four(worldIn, playerIn), new Pellet_five(worldIn, playerIn), new Pellet_six(worldIn, playerIn)};
-            for (int i = 0; i <= (pellets.length - 1); i++) {
-                pellets[i].setHeadingFromThrower(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, 4.5F, 15.5F);
-                pellets[i].setRenderYawOffset(10F);
-                pellets[i].setDamage(getGunDamageMP(player) + damage_firearms);
-                worldIn.spawnEntity(pellets[i]);
-            }
-        }
-        if(message.type == 2){ //LASER
-            EntityLaser laser = new EntityLaser(worldIn, playerIn);
-            laser.setHeadingFromThrower(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, 4.5F, 0.5F);
-            laser.setRenderYawOffset(5F);
-            laser.setDamage(getGunDamageMP(player) + damage_laser_weapons + Math.round(damage_magic_modif/2));
-            worldIn.spawnEntity(laser);
-        }
-        if(message.type == 3){ //FLAME
-            EntityFlame flame = new EntityFlame(worldIn, playerIn);
-            flame.setHeadingFromThrower(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, 0.5F, 3.0F);
-            flame.setDamage(getGunDamageMP(player));
-        }
-        if(message.type == 4){ //FLARE
-            EntityFlare flare = new EntityFlare(worldIn, playerIn);
-            flare.setHeadingFromThrower(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, 1F, 3.0F);
-            flare.setDamage(getGunDamageMP(player));
-            worldIn.spawnEntity(flare);
-        }
+        GunHelpers.gunFire(player.world, player, message.type);
+
     }
     public static void handleWaterMessage(MessageUpdateClientWater message, EntityPlayerMP playerMP) {
         IWaterCapability water = WaterFactoryProvider.instanceFor(playerMP);

@@ -66,9 +66,9 @@ public class GlobalNames {
             flare = "flare",
             TenMMCase = "ten_mm_case",
             FourTenMMCase = "four_ten_mm_case",
-            Seven_mmAmmo = "seven_mmAmmo",
-            Seven_mmClip = "seven_mmClip",
-            Seven_mm_bulletCase = "seven_mm_bulletCase";
+            Seven_mmAmmo = "seven_mm_ammo",
+            Seven_mmClip = "seven_mm_clip",
+            Seven_mm_bulletCase = "seven_mm_case";
     // PLACEHOLDERS
     public static final String
             TenMMbullet = "bullet10mm",

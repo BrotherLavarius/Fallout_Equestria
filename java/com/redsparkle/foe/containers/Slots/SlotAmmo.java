@@ -1,5 +1,6 @@
 package com.redsparkle.foe.containers.Slots;
-import com.redsparkle.api.items.helpers.Item_Instances.Item_SaddleBagAmmo;
+
+import com.redsparkle.api.items.helpers.Item_Instances.Item_AmmoHolder;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
@@ -44,6 +45,6 @@ public class SlotAmmo extends Slot {
     }
     @Override
     public boolean isItemValid(ItemStack stack) {
-        return super.isItemValid(stack) && stack.getItem() instanceof Item_SaddleBagAmmo;
+        return super.isItemValid(stack) && stack.getItem() instanceof Item_AmmoHolder;
     }
 }

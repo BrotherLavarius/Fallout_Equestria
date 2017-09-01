@@ -9,7 +9,7 @@ import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
  * Created by NENYN on 1/17/2017.
  *///Spawn entity and shit
 public class MessageGunFire implements IMessage {
-    public int type;
+    public int type = 0;
     public MessageGunFire(){}
     public MessageGunFire(String type){
         if(type == "firearm"){this.type =0;}
@@ -17,6 +17,13 @@ public class MessageGunFire implements IMessage {
         if(type == "laser"){this.type =2;}
         if(type == "flame"){this.type =3;}
         if(type == "flare"){this.type =4;}
+        if (type == "saddlebag_LS") {
+            this.type = 10;
+        }
+        if (type == "saddlebag_RS") {
+            this.type = 20;
+        }
+
     }
     @Override
     public void fromBytes(ByteBuf buf) {

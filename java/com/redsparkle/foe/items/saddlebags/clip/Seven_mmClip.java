@@ -1,7 +1,7 @@
 package com.redsparkle.foe.items.saddlebags.clip;
 
-import com.redsparkle.api.inventory.GlobalsGunStats;
 import com.redsparkle.api.items.helpers.Item_Instances.Item_AmmoHolder;
+import com.redsparkle.api.items.helpers.guns.GlobalsGunStats;
 import com.redsparkle.api.items.helpers.guns.ItemClipHelpers;
 import com.redsparkle.foe.creativeTabs.InitCreativeTabs;
 import net.minecraft.entity.EntityLivingBase;

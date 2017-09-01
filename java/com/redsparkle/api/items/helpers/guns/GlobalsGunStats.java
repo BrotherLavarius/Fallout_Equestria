@@ -13,7 +13,8 @@ public enum GlobalsGunStats {
     FOUR_TEN_MM(7, 12),
     LASER_PISTOL(12, 30),
     FLARE_GUN(1, 1),
-    DB_SHOUTGUN(1, 2);
+    DB_SHOUTGUN(1, 2),
+    SEVEN_MM_RIFLE(14, 45);
     private int Damage;
     private int Clipsize;
     GlobalsGunStats(int Damage, int Clipsize) {
