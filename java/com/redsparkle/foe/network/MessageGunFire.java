@@ -1,4 +1,6 @@
 package com.redsparkle.foe.network;
+
+import com.redsparkle.foe.ClientOnlyProxy;
 import com.redsparkle.foe.DedicatedServerProxy;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -33,18 +35,28 @@ public class MessageGunFire implements IMessage {
 
     }
     @Override
-    public void fromBytes(ByteBuf buf) {
-        this.type = buf.readInt();
-    }
-    @Override
     public void toBytes(ByteBuf buf) {
         buf.writeInt(type);
     }
-    public static class Handler implements IMessageHandler<MessageGunFire, IMessage> {
+
+    @Override
+    public void fromBytes(ByteBuf buf) {
+        this.type = buf.readInt();
+    }
+
+    public static class HandlerServer implements IMessageHandler<MessageGunFire, IMessage> {
         @Override
         public IMessage onMessage(MessageGunFire message, MessageContext ctx) {
             EntityPlayerMP player = ctx.getServerHandler().player;
             DedicatedServerProxy.handleFireMessage(message,player);
+            return null;
+        }
+    }
+
+    public static class HandlerClient implements IMessageHandler<MessageGunFire, IMessage> {
+        @Override
+        public IMessage onMessage(MessageGunFire message, MessageContext ctx) {
+            ClientOnlyProxy.handleFireMessage(message);
             return null;
         }
     }

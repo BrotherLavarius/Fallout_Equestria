@@ -23,7 +23,7 @@ public class EntityBullet extends EntityThrowable {
     @Override
     public void onUpdate() {
         super.onUpdate();
-        if (ticksExisted > 30) {
+        if (ticksExisted > 10) {
             setDead();
         }
         for (int i = 0; i < 25; i++) {
@@ -55,12 +55,12 @@ public class EntityBullet extends EntityThrowable {
         if (rayTraceResult.entityHit != null) {
             if(rayTraceResult.entityHit != this.getThrower()) {
                 rayTraceResult.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, this.getThrower()), damage);
-                this.setDead();
+                setDead();
             }
         }
         if (!this.world.isRemote) {
             this.world.setEntityState(this, (byte) 3);
-            this.setDead();
+            setDead();
         }
     }
     public void setDamage(float damage) {

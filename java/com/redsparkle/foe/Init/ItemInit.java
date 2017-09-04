@@ -65,6 +65,7 @@ public class ItemInit {
     public static final Sugar_Bombs sugar_bombs = new Sugar_Bombs(GlobalNames.sugar_bombs);
     public static final Fancy_mare_Snack_Cakes fancy_mare_snack_cakes = new Fancy_mare_Snack_Cakes(GlobalNames.Fancy_mare_Snack_Cakes);
 
+
     public static final TenMMammo tenMMAmmo = new TenMMammo(GlobalNames.TenMMAmmo);
     public static final TenMMClip tenMMClip = new TenMMClip(GlobalNames.TenMMClip);
     public static final FourTenMMammo fourTenMMammo = new FourTenMMammo(GlobalNames.FourTenMMAmmo);

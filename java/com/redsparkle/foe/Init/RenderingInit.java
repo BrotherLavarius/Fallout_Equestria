@@ -26,7 +26,6 @@ import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
 import static com.redsparkle.foe.Init.ItemInit.*;
 
@@ -34,19 +33,18 @@ import static com.redsparkle.foe.Init.ItemInit.*;
 /**
  * Created by hoijima on 23.09.16.
  */
-@Mod.EventBusSubscriber(modid = main.MODID)
+
+@Mod.EventBusSubscriber(value = Side.CLIENT, modid = main.MODID)
 public class RenderingInit {
     public static final RenderingInit INSTANCE = new RenderingInit();
 
     private static final String FLUID_MODEL_PATH = GlobalNames.Domain + ":" + "fluid";
-
 
     private RenderingInit() {
     }
 
 
 
-    @SideOnly(Side.CLIENT)
     @SubscribeEvent
     public static void registerModels(ModelRegistryEvent event) {
         OBJLoader.INSTANCE.addDomain(GlobalNames.Domain);
@@ -120,7 +118,6 @@ public class RenderingInit {
 
         INSTANCE.registerFluidModels();
     }
-
     private void registerFluidModels() {
         FluidsInit.MOD_FLUID_BLOCKS.forEach(this::registerFluidModel);
     }

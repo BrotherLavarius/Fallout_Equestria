@@ -1,19 +1,21 @@
 package com.redsparkle.foe.Init;
 
 import com.redsparkle.foe.main;
-import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.registries.IForgeRegistry;
 
 /**
  * Created by hoijima on 14.12.16.
  */
 @SuppressWarnings("WeakerAccess")
-@Mod.EventBusSubscriber(modid = main.MODID)
+
+@Mod.EventBusSubscriber(value = Side.CLIENT, modid = main.MODID)
 public class SoundInit {
     public static final SoundEvent lowentensity_rad     = registerSound("LowEntensityRad");
     public static final SoundEvent mediumentensity_rad  = registerSound("MediumEntensityRad");
@@ -56,16 +58,17 @@ public class SoundInit {
      * @param soundName The SoundEvent's name without the testmod3 prefix
      * @return The SoundEvent
      */
+    @SideOnly(Side.CLIENT)
     private static SoundEvent registerSound(String soundName) {
         ResourceLocation soundID = new ResourceLocation(main.MODID, soundName);
         return new SoundEvent(soundID).setRegistryName(soundID);
     }
 
-        @SubscribeEvent
-        public static void registerSoundEvents(final RegistryEvent.Register<SoundEvent> event) {
-            final IForgeRegistry<SoundEvent> registry = event.getRegistry();
+    @SubscribeEvent
+    public static void registerSoundEvents(final RegistryEvent.Register<SoundEvent> event) {
+        final IForgeRegistry<SoundEvent> registry = event.getRegistry();
 
-            final SoundEvent[] soundEvents = {
+        final SoundEvent[] soundEvents = {
                 lowentensity_rad,
                 mediumentensity_rad,
                 highentensity_rad,
@@ -100,7 +103,7 @@ public class SoundInit {
                 laser_clip_out,
                 plasma_clip_out
         };
-            registry.registerAll(soundEvents);
+        registry.registerAll(soundEvents);
 
     }
 }

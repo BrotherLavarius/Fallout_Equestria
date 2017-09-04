@@ -18,6 +18,7 @@ import com.redsparkle.api.Capability.Player.spechial.ISpechialCapability;
 import com.redsparkle.api.Capability.Player.spechial.SpechialFactoryProvider;
 import com.redsparkle.api.Capability.Player.water.IWaterCapability;
 import com.redsparkle.api.Capability.Player.water.WaterFactoryProvider;
+import com.redsparkle.api.items.helpers.guns.GunFire;
 import com.redsparkle.api.utils.ItemCatalog;
 import com.redsparkle.foe.Init.SoundInit;
 import com.redsparkle.foe.events.ClientSide.CommonEventHandler;
@@ -28,6 +29,7 @@ import com.redsparkle.foe.events.ClientSide.gui.EventPlayerGuiHandler;
 import com.redsparkle.foe.keys.KeyInputHandler;
 import com.redsparkle.foe.keys.keyHandler;
 import com.redsparkle.foe.network.ClientServerOneClass.*;
+import com.redsparkle.foe.network.MessageGunFire;
 import com.redsparkle.foe.network.MessageGunReloadReply;
 import com.redsparkle.foe.network.MessageUpdateSLSServerReplyOnDemand;
 import net.minecraft.client.Minecraft;
@@ -46,6 +48,7 @@ import net.minecraftforge.common.MinecraftForge;
 @SuppressWarnings("ALL")
 public class ClientOnlyProxy extends CommonProxy {
     public static Minecraft mc = Minecraft.getMinecraft();
+
     public static World world = mc.world;
 
     public static void handleRadMessage(MessageUpdateClientRads message) {
@@ -171,6 +174,29 @@ public class ClientOnlyProxy extends CommonProxy {
             }
         });
     }
+
+    public static void handleFireMessage(MessageGunFire message) {
+        Minecraft.getMinecraft().addScheduledTask(() -> {
+            EntityPlayerSP player = Minecraft.getMinecraft().player;
+            GunFire.GunFire(player.world, player, message.type);
+        });
+    }
+
+    public static void FireMessage(String type) {
+        Minecraft.getMinecraft().addScheduledTask(() -> {
+            main.simpleNetworkWrapper.sendToServer(new MessageGunFire(type));
+        });
+
+    }
+
+
+
+
+
+
+
+
+
 
     public static void handleLevelMessageOnDemand(MessageUpdateSLSServerReplyOnDemand message) {
         Minecraft.getMinecraft().addScheduledTask(() -> {

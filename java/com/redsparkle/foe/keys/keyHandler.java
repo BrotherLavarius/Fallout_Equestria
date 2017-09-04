@@ -4,21 +4,20 @@ import com.redsparkle.foe.main;
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import org.lwjgl.input.Keyboard;
+
 /**
  * Created by NENYN on 1/12/2017.
  */
 public class keyHandler {
-    public static KeyBinding reload;
-    public static KeyBinding pipbuck;
-    public static KeyBinding testButton;
-    public static KeyBinding saddlebags;
-
-    public static KeyBinding sbag_shooter;
-    public static KeyBinding shootLSB;
-    public static KeyBinding shootRSB;
-
-    public static KeyBinding reloadLSB;
-    public static KeyBinding reloadRSB;
+    public static KeyBinding reload,
+            pipbuck,
+            testButton,
+            saddlebags,
+            sbag_shooter,
+            fire_LSB,
+            fire_RSB,
+            reloadLSB,
+            reloadRSB;
 
     public static String reloadS = "Reload the gun";
     public static String pipbuckS = "open PipBuckDummyOverlayItem GUI";
@@ -31,8 +30,8 @@ public class keyHandler {
     public static String shootLSB_S = "Shoot left Saddle gun";
     public static String shootRSB_S = "Shoot right Saddle gun";
 
-    public static String reloadLSB_S = "Shoot left Saddle gun";
-    public static String reloadRSB_S = "Shoot right Saddle gun";
+    public static String reloadLSB_S = "Reload left Saddle gun";
+    public static String reloadRSB_S = "Reload right Saddle gun";
 
 
     public static void register() {
@@ -43,20 +42,27 @@ public class keyHandler {
 
         sbag_shooter = new KeyBinding(sbag_shooter_S, Keyboard.KEY_B, main.MODID);
 
-        shootLSB = new KeyBinding(shootLSB_S, Keyboard.KEY_J, main.MODID);
-        shootRSB = new KeyBinding(shootRSB_S, Keyboard.KEY_K, main.MODID);
+        fire_LSB = new KeyBinding(shootLSB_S, Keyboard.KEY_LBRACKET, main.MODID);
+        fire_RSB = new KeyBinding(shootRSB_S, Keyboard.KEY_RBRACKET, main.MODID);
 
-        reloadLSB = new KeyBinding(reloadLSB_S, Keyboard.KEY_N, main.MODID);
-        reloadRSB = new KeyBinding(reloadRSB_S, Keyboard.KEY_M, main.MODID);
+        reloadLSB = new KeyBinding(reloadLSB_S, Keyboard.KEY_COMMA, main.MODID);
+        reloadRSB = new KeyBinding(reloadRSB_S, Keyboard.KEY_PERIOD, main.MODID);
 
         ClientRegistry.registerKeyBinding(reload);
         ClientRegistry.registerKeyBinding(pipbuck);
         ClientRegistry.registerKeyBinding(testButton);
+
+        ClientRegistry.registerKeyBinding(fire_LSB);
+        ClientRegistry.registerKeyBinding(fire_RSB);
+
+        ClientRegistry.registerKeyBinding(reloadLSB);
+        ClientRegistry.registerKeyBinding(reloadRSB);
+
         ClientRegistry.registerKeyBinding(saddlebags);
 
         ClientRegistry.registerKeyBinding(sbag_shooter);
 
-        ClientRegistry.registerKeyBinding(shootLSB);
-        ClientRegistry.registerKeyBinding(shootRSB);
     }
+
+
 }

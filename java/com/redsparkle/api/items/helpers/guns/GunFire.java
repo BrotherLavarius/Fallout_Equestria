@@ -14,6 +14,7 @@ import com.redsparkle.foe.network.MessageGunFire;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
 
 import java.awt.*;
 
@@ -26,20 +27,20 @@ public class GunFire {
 
     public static void GunFire(World world, EntityPlayer player, int type) {
 
-        if (type == 0 && type == 1) {
+        if (type == 0 || type == 1) {
 
             Item_Firearm gun = (Item_Firearm) player.getHeldItemMainhand().getItem();
 
-            projectyleType(gun, world, player);
+            projectyleType(gun, world, player, type);
         }
-        if (type >= 10 & type <= 29) {
+        if (type >= 10 && type <= 29) {
 
 
-            if (type == 10 & type == 11) {
+            if (type == 10 || type == 11) {
 
             }
 
-            if (type == 20 && type == 21) {
+            if (type == 20 || type == 21) {
 
             }
         }
@@ -54,15 +55,15 @@ public class GunFire {
     }
 
 
-    public static void bullet(World worldIn, EntityPlayer playerIn, Item item, GlobalsGunStats params) {
+    public static void bullet(World worldIn, EntityPlayer playerIn, Item item, GlobalsGunStats params, int type) {
         int damage_firearms = playerIn.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getFirearms();
         EntityBullet bullet = new EntityBullet(worldIn, playerIn);
         bullet.setHeadingFromThrower(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, params.getVelocity(), 1.5F);
         bullet.setRenderYawOffset(params.getYawOffset());
         bullet.setDamage(params.getDamage() + damage_firearms);
         worldIn.spawnEntity(bullet);
-        if (!worldIn.isRemote) {
-            main.simpleNetworkWrapper.sendToServer(new MessageGunFire(params.getProjectileType()));
+        if (!worldIn.isRemote & Side.SERVER.isServer()) {
+            //main.simpleNetworkWrapper.sendTo(new MessageGunFire(incode_type(type)), (EntityPlayerMP) playerIn);
         }
     }
 
@@ -124,7 +125,7 @@ public class GunFire {
      * boolean autofireSupport;
      * String ProjectileType;
      **/
-    public static void projectyleType(Item item, World world, EntityPlayer player) {
+    public static void projectyleType(Item item, World world, EntityPlayer player, int type) {
         String projectileType = "";
         GlobalsGunStats params = null;
         if (item instanceof Item_Firearm) {
@@ -136,8 +137,8 @@ public class GunFire {
             params = ((Item_SaggleBagGun) item).params;
 
         }
-        if (projectileType == "bullet") {
-            bullet(world, player, item, params);
+        if (projectileType == "firearm") {
+            bullet(world, player, item, params, type);
         }
         if (projectileType == "pellet") {
             pellet(world, player, item, params);
@@ -154,5 +155,26 @@ public class GunFire {
         }
     }
 
+    public static String incode_type(int type) {
+        if (type == 0) {
+            return "main_gun_once";
+        }
+        if (type == 1) {
+            return "main_gun_cont";
+        }
+        if (type == 10) {
+            return "saddlebag_LS_once";
+        }
+        if (type == 11) {
+            return "saddlebag_LS_cont";
+        }
+        if (type == 20) {
+            return "saddlebag_RS_once";
+        }
+        if (type == 21) {
+            return "saddlebag_RS_cont";
+        }
+        return "could not process :(";
+    }
 
 }
