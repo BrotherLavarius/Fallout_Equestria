@@ -1,7 +1,7 @@
 package com.redsparkle.foe.items.utility;
 
 import com.redsparkle.api.items.helpers.Item_Instances.Item_Utility;
-import com.redsparkle.foe.creativeTabs.InitCreativeTabs;
+import com.redsparkle.foe.Init.InitCreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;

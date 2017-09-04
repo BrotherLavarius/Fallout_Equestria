@@ -1,4 +1,4 @@
-package com.redsparkle.foe.containers.Slots;
+package com.redsparkle.foe.containers.player_additional_inventory.Slots;
 import com.redsparkle.api.items.helpers.Item_Instances.Item_SaggleBagGun;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;

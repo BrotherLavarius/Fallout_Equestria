@@ -1,4 +1,4 @@
-package com.redsparkle.foe.inventory;
+package com.redsparkle.foe.containers.player_additional_inventory;
 import net.minecraft.inventory.InventoryBasic;
 import net.minecraft.util.text.ITextComponent;
 /**

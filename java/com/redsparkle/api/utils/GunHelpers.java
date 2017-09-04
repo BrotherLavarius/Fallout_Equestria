@@ -4,7 +4,7 @@ import com.redsparkle.api.Capability.Player.Inventory.IAdvProvider;
 import com.redsparkle.api.Capability.Player.skills.SkillsFactoryProvider;
 import com.redsparkle.api.items.helpers.Item_Instances.Item_Firearm;
 import com.redsparkle.api.items.helpers.Item_Instances.Item_SaggleBagGun;
-import com.redsparkle.api.items.helpers.guns.GlobalsGunStats;
+import com.redsparkle.foe.Init.GlobalsGunStats;
 import com.redsparkle.foe.Init.ItemInit;
 import com.redsparkle.foe.items.guns.entitys.bulletFired.EntityBullet;
 import com.redsparkle.foe.items.guns.entitys.flametrower.EntityFlame;

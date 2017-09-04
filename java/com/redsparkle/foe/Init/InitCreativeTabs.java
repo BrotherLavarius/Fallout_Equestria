@@ -1,4 +1,4 @@
-package com.redsparkle.foe.creativeTabs;
+package com.redsparkle.foe.Init;
 import com.redsparkle.api.utils.GlobalNames;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;

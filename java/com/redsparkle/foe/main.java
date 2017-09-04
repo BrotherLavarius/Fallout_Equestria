@@ -1,6 +1,7 @@
 package com.redsparkle.foe;
+
+import com.redsparkle.foe.Init.InitCreativeTabs;
 import com.redsparkle.foe.commands.rpSkillCheck;
-import com.redsparkle.foe.creativeTabs.InitCreativeTabs;
 import com.redsparkle.foe.network.ClientServerOneClass.*;
 import com.redsparkle.foe.network.*;
 import net.minecraft.creativetab.CreativeTabs;

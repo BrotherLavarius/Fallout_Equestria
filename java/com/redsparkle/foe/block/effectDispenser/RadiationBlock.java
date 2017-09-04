@@ -1,8 +1,8 @@
 package com.redsparkle.foe.block.effectDispenser;
 
 import com.redsparkle.api.utils.GlobalNames;
+import com.redsparkle.foe.Init.InitCreativeTabs;
 import com.redsparkle.foe.block.effectDispenser.TileEntitys.RadiationBlockTileEntity;
-import com.redsparkle.foe.creativeTabs.InitCreativeTabs;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;

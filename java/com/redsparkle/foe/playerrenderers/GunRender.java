@@ -92,7 +92,7 @@ public class GunRender implements LayerRenderer<EntityLivingBase> {
             GlStateManager.popMatrix();
         }
         if (itemHarness != null && itemHarness instanceof Saddlebags && RS_GUN.getItem() instanceof Item_SaggleBagGun) {
-            if(((Item_SaggleBagGun)RS_GUN.getItem()).side()  == "RS") {
+            if (((Item_SaggleBagGun) RS_GUN.getItem()).Side == "RS") {
                 GlStateManager.pushMatrix();
                 GlStateManager.scale(1.5,1.5,1.5);
 
@@ -108,7 +108,7 @@ public class GunRender implements LayerRenderer<EntityLivingBase> {
             }
         }
         if (itemHarness != null && itemHarness instanceof Saddlebags && LS_GUN.getItem() instanceof Item_SaggleBagGun) {
-            if(((Item_SaggleBagGun)LS_GUN.getItem()).side() == "LS") {
+            if (((Item_SaggleBagGun) LS_GUN.getItem()).Side == "LS") {
 //                GlStateManager.pushMatrix();
 //                GlStateManager.scale(1.5,1.5,1.5);
 //                GlStateManager.rotate(180,0,1,0);

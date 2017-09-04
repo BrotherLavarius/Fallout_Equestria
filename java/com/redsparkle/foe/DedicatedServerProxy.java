@@ -1,5 +1,6 @@
 package com.redsparkle.foe;
 
+import com.redsparkle.api.Capability.Items.Gun.GunFactoryProvider;
 import com.redsparkle.api.Capability.Player.Inventory.IAdvInventory;
 import com.redsparkle.api.Capability.Player.Inventory.IAdvProvider;
 import com.redsparkle.api.Capability.Player.level.ILevelCapability;
@@ -12,7 +13,7 @@ import com.redsparkle.api.Capability.Player.spechial.ISpechialCapability;
 import com.redsparkle.api.Capability.Player.spechial.SpechialFactoryProvider;
 import com.redsparkle.api.Capability.Player.water.IWaterCapability;
 import com.redsparkle.api.Capability.Player.water.WaterFactoryProvider;
-import com.redsparkle.api.utils.GunHelpers;
+import com.redsparkle.api.items.helpers.guns.GunFire;
 import com.redsparkle.api.utils.ItemCatalog;
 import com.redsparkle.api.utils.Lvlutil;
 import com.redsparkle.api.utils.PlayerParamsSetup;
@@ -20,6 +21,7 @@ import com.redsparkle.foe.events.ServerSIdeONly.EventHandlerServerSidePre;
 import com.redsparkle.foe.items.guns.*;
 import com.redsparkle.foe.network.ClientServerOneClass.*;
 import com.redsparkle.foe.network.MessageGunFire;
+import com.redsparkle.foe.network.MessageGunReload;
 import com.redsparkle.foe.network.MessageUpdateSLSServerReplyOnDemand;
 import com.redsparkle.foe.network.helpers.gunReload;
 import net.minecraft.client.Minecraft;
@@ -96,7 +98,8 @@ public class DedicatedServerProxy extends CommonProxy {
          * System.out.println("Client: "+message.radiation);
          */
     }
-    public static void handleReloadMessage(EntityPlayerMP player) {
+
+    public static void handleReloadMessage(MessageGunReload message, EntityPlayerMP player) {
         WorldServer mainThread = (WorldServer) (player.world);
         ItemStack heldItem = player.getHeldItem(EnumHand.MAIN_HAND);
         if (heldItem != null) {
@@ -192,7 +195,23 @@ public class DedicatedServerProxy extends CommonProxy {
         player.heal(player.getMaxHealth());
     }
     public static void handleFireMessage(MessageGunFire message, EntityPlayerMP player) {
-        GunHelpers.gunFire(player.world, player, message.type);
+
+        if (message.type == 0 && message.type == 1) {
+            player.getHeldItemMainhand().getCapability(GunFactoryProvider.GUN, null).removeAmmo(1);
+
+        }
+        if (message.type >= 10 & message.type <= 29) {
+
+
+            if (message.type == 10 & message.type == 11) {
+                player.getCapability(IAdvProvider.Adv_Inv, null).getStackInSlot(6).getCapability(GunFactoryProvider.GUN, null).removeAmmo(1);
+            }
+
+            if (message.type == 20 && message.type == 21) {
+                player.getCapability(IAdvProvider.Adv_Inv, null).getStackInSlot(6).getCapability(GunFactoryProvider.GUN, null).removeAmmo(1);
+            }
+        }
+        GunFire.GunFire(player.world, player, message.type);
 
     }
     public static void handleWaterMessage(MessageUpdateClientWater message, EntityPlayerMP playerMP) {

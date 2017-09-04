@@ -17,6 +17,9 @@ public class keyHandler {
     public static KeyBinding shootLSB;
     public static KeyBinding shootRSB;
 
+    public static KeyBinding reloadLSB;
+    public static KeyBinding reloadRSB;
+
     public static String reloadS = "Reload the gun";
     public static String pipbuckS = "open PipBuckDummyOverlayItem GUI";
     public static String testButtonS = "Button for testing stuffs";
@@ -28,6 +31,9 @@ public class keyHandler {
     public static String shootLSB_S = "Shoot left Saddle gun";
     public static String shootRSB_S = "Shoot right Saddle gun";
 
+    public static String reloadLSB_S = "Shoot left Saddle gun";
+    public static String reloadRSB_S = "Shoot right Saddle gun";
+
 
     public static void register() {
         reload = new KeyBinding(reloadS, Keyboard.KEY_R, main.MODID);
@@ -37,8 +43,11 @@ public class keyHandler {
 
         sbag_shooter = new KeyBinding(sbag_shooter_S, Keyboard.KEY_B, main.MODID);
 
-        shootLSB = new KeyBinding(shootLSB_S, Keyboard.KEY_LBRACKET, main.MODID);
-        shootRSB = new KeyBinding(shootRSB_S, Keyboard.KEY_RBRACKET, main.MODID);
+        shootLSB = new KeyBinding(shootLSB_S, Keyboard.KEY_J, main.MODID);
+        shootRSB = new KeyBinding(shootRSB_S, Keyboard.KEY_K, main.MODID);
+
+        reloadLSB = new KeyBinding(reloadLSB_S, Keyboard.KEY_N, main.MODID);
+        reloadRSB = new KeyBinding(reloadRSB_S, Keyboard.KEY_M, main.MODID);
 
         ClientRegistry.registerKeyBinding(reload);
         ClientRegistry.registerKeyBinding(pipbuck);

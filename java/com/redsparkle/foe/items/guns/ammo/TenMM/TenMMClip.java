@@ -1,8 +1,9 @@
 package com.redsparkle.foe.items.guns.ammo.TenMM;
+
 import com.redsparkle.api.items.helpers.Item_Instances.Item_AmmoHolder;
-import com.redsparkle.api.items.helpers.guns.GlobalsGunStats;
 import com.redsparkle.api.items.helpers.guns.ItemClipHelpers;
-import com.redsparkle.foe.creativeTabs.InitCreativeTabs;
+import com.redsparkle.foe.Init.GlobalsGunStats;
+import com.redsparkle.foe.Init.InitCreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -14,7 +15,7 @@ public class TenMMClip extends Item_AmmoHolder {
     public TenMMClip(String tenMMClip) {
         super(tenMMClip);
         final int NUMBER_OF_BOXES = 1;
-        this.clipsize = GlobalsGunStats.TEN_MM.Clipsize();
+        this.clipsize = GlobalsGunStats.TEN_MM.getClipsize();
         this.setMaxStackSize(NUMBER_OF_BOXES);
         this.setCreativeTab(InitCreativeTabs.Fallout_ammo);   // the item will appear on the Miscellaneous tab in creative
         this.setMaxDamage(clipsize);

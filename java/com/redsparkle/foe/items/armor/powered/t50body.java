@@ -1,7 +1,7 @@
 package com.redsparkle.foe.items.armor.powered;
 import com.redsparkle.api.items.helpers.armor.ItemBody;
 import com.redsparkle.api.utils.Armor_material;
-import com.redsparkle.foe.creativeTabs.InitCreativeTabs;
+import com.redsparkle.foe.Init.InitCreativeTabs;
 import net.minecraft.inventory.EntityEquipmentSlot;
 /**
  * Created by hoijima on 3/25/2017.

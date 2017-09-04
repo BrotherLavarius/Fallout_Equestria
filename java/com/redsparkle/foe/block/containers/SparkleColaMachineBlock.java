@@ -2,8 +2,8 @@ package com.redsparkle.foe.block.containers;
 
 import com.redsparkle.api.block.GeneralAllignBlockTwoOTwo;
 import com.redsparkle.api.utils.GlobalNames;
+import com.redsparkle.foe.Init.InitCreativeTabs;
 import com.redsparkle.foe.block.containers.TileEntitys.SparkleColaMachineTileEntity;
-import com.redsparkle.foe.creativeTabs.InitCreativeTabs;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;

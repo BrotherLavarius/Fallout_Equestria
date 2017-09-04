@@ -12,16 +12,23 @@ public class MessageGunFire implements IMessage {
     public int type = 0;
     public MessageGunFire(){}
     public MessageGunFire(String type){
-        if(type == "firearm"){this.type =0;}
-        if(type == "shotgun"){this.type =1;}
-        if(type == "laser"){this.type =2;}
-        if(type == "flame"){this.type =3;}
-        if(type == "flare"){this.type =4;}
-        if (type == "saddlebag_LS") {
+        if (type == "main_gun_once") {
+            this.type = 0;
+        }
+        if (type == "main_gun_cont") {
+            this.type = 1;
+        }
+        if (type == "saddlebag_LS_once") {
             this.type = 10;
         }
-        if (type == "saddlebag_RS") {
+        if (type == "saddlebag_LS_cont") {
+            this.type = 11;
+        }
+        if (type == "saddlebag_RS_once") {
             this.type = 20;
+        }
+        if (type == "saddlebag_RS_cont") {
+            this.type = 21;
         }
 
     }

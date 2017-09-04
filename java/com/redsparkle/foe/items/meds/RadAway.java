@@ -1,7 +1,7 @@
 package com.redsparkle.foe.items.meds;
 
 import com.redsparkle.api.Capability.Player.rad.RadsFactoryProvider;
-import com.redsparkle.foe.creativeTabs.InitCreativeTabs;
+import com.redsparkle.foe.Init.InitCreativeTabs;
 import com.redsparkle.foe.items.FoeItem;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;

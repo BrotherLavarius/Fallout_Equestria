@@ -31,6 +31,7 @@ import com.redsparkle.foe.items.saddlebags.guns.Seven_mm_rifle;
 import com.redsparkle.foe.items.utility.AdvancedEnviropmentMonitor;
 import com.redsparkle.foe.items.utility.PipBuck;
 import com.redsparkle.foe.main;
+import net.minecraft.init.Items;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraftforge.event.RegistryEvent;
@@ -63,6 +64,7 @@ public class ItemInit {
     public static final GumDrops gumDrops = new GumDrops(GlobalNames.gumDrops);
     public static final Sugar_Bombs sugar_bombs = new Sugar_Bombs(GlobalNames.sugar_bombs);
     public static final Fancy_mare_Snack_Cakes fancy_mare_snack_cakes = new Fancy_mare_Snack_Cakes(GlobalNames.Fancy_mare_Snack_Cakes);
+
     public static final TenMMammo tenMMAmmo = new TenMMammo(GlobalNames.TenMMAmmo);
     public static final TenMMClip tenMMClip = new TenMMClip(GlobalNames.TenMMClip);
     public static final FourTenMMammo fourTenMMammo = new FourTenMMammo(GlobalNames.FourTenMMAmmo);
@@ -72,21 +74,24 @@ public class ItemInit {
     public static final FlareShell flare = new FlareShell(GlobalNames.flare);
     public static final TenMMbulletCase tenMMbulletCase = new TenMMbulletCase(GlobalNames.TenMMCase);
     public static final FourTenMMbulletCase fourTenMMbulletCase = new FourTenMMbulletCase(GlobalNames.FourTenMMCase);
-    public static final TenMM tenMM = new TenMM(GlobalNames.TenMM);
-    public static final FourTenMM fourTenMM = new FourTenMM(GlobalNames.FourTenMM);
-    public static final LaserPistol laserPistol = new LaserPistol(GlobalNames.LaserPistol);
-    public static final SB_shoutgun sb_shoutgun = new SB_shoutgun(GlobalNames.db_shoutgun);
-    public static final FlareGun flareGun = new FlareGun(GlobalNames.flare_gun);
-    public static final Item_bullet itb = new Item_bullet("bullet");
-
-    public static final Trigger_Item trigger_item = new Trigger_Item(GlobalNames.trigger_Item);
-
-    public static final Seven_mm_rifle seven_mm_rifle_RS = new Seven_mm_rifle(GlobalNames.Seven_mm_rifle+"_rs","RS");
-    public static final Seven_mm_rifle seven_mm_rifle_LS = new Seven_mm_rifle(GlobalNames.Seven_mm_rifle+"_ls","LS");
 
     public static final Seven_mmAmmo seven_mmAmmo = new Seven_mmAmmo(GlobalNames.Seven_mmAmmo);
     public static final Seven_mmClip seven_mmClip = new Seven_mmClip(GlobalNames.Seven_mmClip);
     public static final Seven_mm_bulletCase seven_mm_bulletCase = new Seven_mm_bulletCase(GlobalNames.Seven_mm_bulletCase);
+
+
+    public static final TenMM tenMM = new TenMM(GlobalNames.TenMM, GlobalsGunStats.TEN_MM, tenMMClip, tenMMAmmo);
+    public static final FourTenMM fourTenMM = new FourTenMM(GlobalNames.FourTenMM, GlobalsGunStats.FOUR_TEN_MM, fourTenMMClip, fourTenMMammo);
+    public static final LaserPistol laserPistol = new LaserPistol(GlobalNames.LaserPistol, GlobalsGunStats.LASER_PISTOL, battery, Items.AIR);
+    public static final SB_shoutgun sb_shoutgun = new SB_shoutgun(GlobalNames.db_shoutgun, GlobalsGunStats.DB_SHOUTGUN, Items.AIR, sShell);
+    public static final FlareGun flareGun = new FlareGun(GlobalNames.flare_gun, GlobalsGunStats.FLARE_GUN, Items.AIR, flare);
+
+    public static final Item_bullet itb = new Item_bullet("bullet");
+
+    public static final Trigger_Item trigger_item = new Trigger_Item(GlobalNames.trigger_Item);
+
+    public static final Seven_mm_rifle seven_mm_rifle_RS = new Seven_mm_rifle(GlobalNames.Seven_mm_rifle + "_rs", "RS", GlobalsGunStats.SEVEN_MM_RIFLE, seven_mmClip, seven_mmAmmo);
+    public static final Seven_mm_rifle seven_mm_rifle_LS = new Seven_mm_rifle(GlobalNames.Seven_mm_rifle + "_ls", "LS", GlobalsGunStats.SEVEN_MM_RIFLE, seven_mmClip, seven_mmAmmo);
 
 
     public static final Saddlebags sadlebags = new Saddlebags(GlobalNames.saddlebags);
