@@ -23,7 +23,7 @@ public class EntityBullet extends EntityThrowable {
     @Override
     public void onUpdate() {
         super.onUpdate();
-        if (ticksExisted > 10) {
+        if (ticksExisted > 5) {
             setDead();
         }
         for (int i = 0; i < 25; i++) {

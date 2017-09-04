@@ -12,6 +12,7 @@ import com.redsparkle.foe.items.guns.entitys.spreadPellet_shotgun.*;
 import com.redsparkle.foe.main;
 import com.redsparkle.foe.network.MessageGunFire;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.Item;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
@@ -63,7 +64,7 @@ public class GunFire {
         bullet.setDamage(params.getDamage() + damage_firearms);
         worldIn.spawnEntity(bullet);
         if (!worldIn.isRemote & Side.SERVER.isServer()) {
-            //main.simpleNetworkWrapper.sendTo(new MessageGunFire(incode_type(type)), (EntityPlayerMP) playerIn);
+            main.simpleNetworkWrapper.sendTo(new MessageGunFire(incode_type(type)), (EntityPlayerMP) playerIn);
         }
     }
 

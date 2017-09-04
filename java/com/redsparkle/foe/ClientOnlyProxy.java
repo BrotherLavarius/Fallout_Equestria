@@ -178,14 +178,34 @@ public class ClientOnlyProxy extends CommonProxy {
     public static void handleFireMessage(MessageGunFire message) {
         Minecraft.getMinecraft().addScheduledTask(() -> {
             EntityPlayerSP player = Minecraft.getMinecraft().player;
-            GunFire.GunFire(player.world, player, message.type);
+            boolean shoot = false;
+
+            if (message.type == 99) {
+                shoot = false;
+            }
+            if (message.type < 2) {
+                if (message.type == 0 || message.type == 10 || message.type == 20) {
+                    GunFire.GunFire(player.world, player, message.type);
+                }
+                if (message.type == 1 || message.type == 11 || message.type == 21) {
+                    shoot = true;
+                    while (shoot) {
+                        int count = 0;
+                        if (count == 40) {
+                            GunFire.GunFire(player.world, player, message.type);
+                        }
+                        count++;
+
+                    }
+                }
+
+            }
         });
     }
 
     public static void FireMessage(String type) {
-        Minecraft.getMinecraft().addScheduledTask(() -> {
             main.simpleNetworkWrapper.sendToServer(new MessageGunFire(type));
-        });
+
 
     }
 

@@ -1,6 +1,5 @@
 package com.redsparkle.foe;
 
-import com.redsparkle.api.Capability.Items.Gun.GunFactoryProvider;
 import com.redsparkle.api.Capability.Player.Inventory.IAdvInventory;
 import com.redsparkle.api.Capability.Player.Inventory.IAdvProvider;
 import com.redsparkle.api.Capability.Player.level.ILevelCapability;
@@ -191,25 +190,60 @@ public class DedicatedServerProxy extends CommonProxy {
         player.heal(player.getMaxHealth());
     }
     public static void handleFireMessage(MessageGunFire message, EntityPlayerMP player) {
-
-        if (!player.isCreative()) {
-            if (message.type == 0 && message.type == 1) {
-                player.getHeldItemMainhand().getCapability(GunFactoryProvider.GUN, null).removeAmmo(1);
-
-            }
-            if (message.type >= 10 & message.type <= 29) {
+        boolean shoot = false;
 
 
-                if (message.type == 10 & message.type == 11) {
-                    player.getCapability(IAdvProvider.Adv_Inv, null).getStackInSlot(6).getCapability(GunFactoryProvider.GUN, null).removeAmmo(1);
-                }
-
-                if (message.type == 20 && message.type == 21) {
-                    player.getCapability(IAdvProvider.Adv_Inv, null).getStackInSlot(6).getCapability(GunFactoryProvider.GUN, null).removeAmmo(1);
-                }
-            }
+//        if (!player.isCreative()) {
+//            if (message.type == 0 && message.type == 1) {
+//                player.getHeldItemMainhand().getCapability(GunFactoryProvider.GUN, null).removeAmmo(1);
+//
+//            }
+//            if (message.type >= 10 & message.type <= 29) {
+//
+//
+//                if (message.type == 10 && message.type == 11) {
+//                    player.getCapability(IAdvProvider.Adv_Inv, null).getStackInSlot(6).getCapability(GunFactoryProvider.GUN, null).removeAmmo(1);
+//                    GunFire.GunFire(player.world, player, message.type);
+//
+//                }
+//
+//                if (message.type == 20 && message.type == 21) {
+//                    player.getCapability(IAdvProvider.Adv_Inv, null).getStackInSlot(6).getCapability(GunFactoryProvider.GUN, null).removeAmmo(1);
+//                    GunFire.GunFire(player.world, player, message.type);
+//
+//                }
+//            }
+//        }
+        if (message.type == 99) {
+            shoot = false;
         }
-        GunFire.GunFire(player.world, player, message.type);
+
+        if (message.type == 0 || message.type == 10 || message.type == 20) {
+            GunFire.GunFire(player.world, player, message.type);
+        }
+        //TODO: make a new thread here for shotas
+        if (message.type == 1 || message.type == 11 || message.type == 21) {
+            shoot = true;
+            int count = 0;
+            while (shoot) {
+                /**
+                 @count;
+                 **/
+                count = count + 1;
+                if (count == 40) {
+
+                    System.out.println(count);
+                    count = 0;
+                    //GunFire.GunFire(player.world, player, message.type);
+                }
+
+
+            }
+            count = 0;
+            shoot = true;
+        }
+
+
     }
     public static void handleWaterMessage(MessageUpdateClientWater message, EntityPlayerMP playerMP) {
         IWaterCapability water = WaterFactoryProvider.instanceFor(playerMP);

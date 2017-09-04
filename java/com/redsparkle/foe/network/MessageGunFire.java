@@ -32,6 +32,10 @@ public class MessageGunFire implements IMessage {
         if (type == "saddlebag_RS_cont") {
             this.type = 21;
         }
+        if (type == "STOP") {
+            this.type = 99;
+        }
+
 
     }
     @Override

@@ -23,7 +23,7 @@ import org.lwjgl.input.Keyboard;
  */
 public class KeyInputHandler {
     public boolean activated = false;
-
+    public int count = 0;
     @SubscribeEvent
     public void onKeyInput(InputEvent.KeyInputEvent event) {
         Keyboard.enableRepeatEvents(true);
@@ -62,24 +62,32 @@ public class KeyInputHandler {
 
         }
 
-        int counter = 0;
         if (Keyboard.getEventKey() == keyHandler.fire_RSB.getKeyCode()
                 && !mc.player.getCapability(ITrigger_item_Provider.TRIGGER_ITEM, null).getStatus()
                 && player.getHeldItemMainhand().getItem() instanceof Item_Firearm
                 ) {
 
+
             if (Keyboard.getEventKeyState()) {
                 if (Keyboard.getEventKeyState()) {
                     if (Keyboard.isRepeatEvent()) {
                         // Key held down
-//                        if (((Item_Firearm) player.getHeldItemMainhand().getItem()).autofireSupport) {
-                        ClientOnlyProxy.FireMessage("main_gun_cont");
-//                        }
+                        if (count == 0) {
+                            //                      if (((Item_Firearm) player.getHeldItemMainhand().getItem()).autofireSupport) {
+
+                            main.simpleNetworkWrapper.sendToServer(new MessageGunFire("main_gun_cont"));
+
+
+                            count = 1;
+                            //                      }
+                        }
                     } else {
                         // Key pressed
                         main.simpleNetworkWrapper.sendToServer(new MessageGunFire("main_gun_once"));
+
                     }
-                    // Key released
+                    count = 0;
+                    ClientOnlyProxy.FireMessage("STOP");
                 }
             }
         }
