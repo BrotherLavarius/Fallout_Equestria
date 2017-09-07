@@ -6,7 +6,7 @@ import com.redsparkle.api.items.helpers.Item_Instances.Item_AmmoHolder;
  */
 public class FourTenMMClip extends Item_AmmoHolder {
 
-    public FourTenMMClip(String itemName) {
-        super(itemName);
+    public FourTenMMClip(String itemName,int clipsize,String clipInfo) {
+        super(itemName,clipsize,clipInfo);
     }
 }

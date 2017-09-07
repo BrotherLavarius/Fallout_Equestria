@@ -67,34 +67,36 @@ public class ItemInit {
     public static final Sugar_Bombs sugar_bombs = new Sugar_Bombs(GlobalNames.sugar_bombs);
     public static final Fancy_mare_Snack_Cakes fancy_mare_snack_cakes = new Fancy_mare_Snack_Cakes(GlobalNames.Fancy_mare_Snack_Cakes);
 
-
-    public static final TenMMammo tenMMAmmo = new TenMMammo(GlobalNames.TenMMAmmo);
-    public static final TenMMClip tenMMClip = new TenMMClip(GlobalNames.TenMMClip);
-    public static final FourTenMMammo fourTenMMammo = new FourTenMMammo(GlobalNames.FourTenMMAmmo);
-    public static final FourTenMMClip fourTenMMClip = new FourTenMMClip(GlobalNames.FourTenMMClip);
-    public static final Battery battery = new Battery(GlobalNames.Battery);
     public static final SShell sShell = new SShell(GlobalNames.shell);
     public static final FlareShell flare = new FlareShell(GlobalNames.flare);
+    public static final TenMMammo tenMMAmmo = new TenMMammo(GlobalNames.TenMMAmmo);
+    public static final FourTenMMammo fourTenMMammo = new FourTenMMammo(GlobalNames.FourTenMMAmmo);
+    public static final Seven_mmAmmo seven_mmAmmo = new Seven_mmAmmo(GlobalNames.Seven_mmAmmo);
+
+
+    public static final TenMMClip tenMMClip = new TenMMClip(GlobalNames.TenMMClip,GlobalsGunStats.TEN_MM.getClipsize(),"for "+GlobalsGunStats.TEN_MM.getGunName());
+    public static final FourTenMMClip fourTenMMClip = new FourTenMMClip(GlobalNames.FourTenMMClip,GlobalsGunStats.FOUR_TEN_MM.getClipsize(),"for "+GlobalsGunStats.FOUR_TEN_MM.getGunName());
+    public static final Battery battery = new Battery(GlobalNames.Battery,GlobalsGunStats.SEVEN_MM_RIFLE.getClipsize(),"for "+GlobalsGunStats.LASER_PISTOL.getGunName());
+    public static final Seven_mmClip seven_mmClip = new Seven_mmClip(GlobalNames.Seven_mmClip,GlobalsGunStats.SEVEN_MM_RIFLE.getClipsize(),"for "+GlobalsGunStats.SEVEN_MM_RIFLE.getGunName());
+
+
+
+    public static final Seven_mm_bulletCase seven_mm_bulletCase = new Seven_mm_bulletCase(GlobalNames.Seven_mm_bulletCase);
     public static final TenMMbulletCase tenMMbulletCase = new TenMMbulletCase(GlobalNames.TenMMCase);
     public static final FourTenMMbulletCase fourTenMMbulletCase = new FourTenMMbulletCase(GlobalNames.FourTenMMCase);
 
-    public static final Seven_mmAmmo seven_mmAmmo = new Seven_mmAmmo(GlobalNames.Seven_mmAmmo);
-    public static final Seven_mmClip seven_mmClip = new Seven_mmClip(GlobalNames.Seven_mmClip);
-    public static final Seven_mm_bulletCase seven_mm_bulletCase = new Seven_mm_bulletCase(GlobalNames.Seven_mm_bulletCase);
-
-
-    public static final TenMM tenMM = new TenMM(GlobalNames.TenMM, GlobalsGunStats.TEN_MM, tenMMClip, tenMMAmmo);
-    public static final FourTenMM fourTenMM = new FourTenMM(GlobalNames.FourTenMM, GlobalsGunStats.FOUR_TEN_MM, fourTenMMClip, fourTenMMammo);
-    public static final LaserPistol laserPistol = new LaserPistol(GlobalNames.LaserPistol, GlobalsGunStats.LASER_PISTOL, battery, Items.AIR);
-    public static final SB_shoutgun sb_shoutgun = new SB_shoutgun(GlobalNames.db_shoutgun, GlobalsGunStats.DB_SHOUTGUN, Items.AIR, sShell);
-    public static final FlareGun flareGun = new FlareGun(GlobalNames.flare_gun, GlobalsGunStats.FLARE_GUN, Items.AIR, flare);
+    public static final TenMM tenMM = new TenMM(GlobalsGunStats.TEN_MM.getGunName(), GlobalsGunStats.TEN_MM, tenMMClip, tenMMAmmo);
+    public static final FourTenMM fourTenMM = new FourTenMM(GlobalsGunStats.FOUR_TEN_MM.getGunName(), GlobalsGunStats.FOUR_TEN_MM, fourTenMMClip, fourTenMMammo);
+    public static final LaserPistol laserPistol = new LaserPistol(GlobalsGunStats.LASER_PISTOL.getGunName(), GlobalsGunStats.LASER_PISTOL, battery, Items.AIR);
+    public static final SB_shoutgun sb_shoutgun = new SB_shoutgun(GlobalsGunStats.DB_SHOUTGUN.getGunName(), GlobalsGunStats.DB_SHOUTGUN, Items.AIR, sShell);
+    public static final FlareGun flareGun = new FlareGun(GlobalsGunStats.FLARE_GUN.getGunName(), GlobalsGunStats.FLARE_GUN, Items.AIR, flare);
 
     public static final Item_bullet itb = new Item_bullet("bullet");
 
     public static final Trigger_Item trigger_item = new Trigger_Item(GlobalNames.trigger_Item);
 
-    public static final Seven_mm_rifle seven_mm_rifle_RS = new Seven_mm_rifle(GlobalNames.Seven_mm_rifle + "_rs", "RS", GlobalsGunStats.SEVEN_MM_RIFLE, seven_mmClip, seven_mmAmmo);
-    public static final Seven_mm_rifle seven_mm_rifle_LS = new Seven_mm_rifle(GlobalNames.Seven_mm_rifle + "_ls", "LS", GlobalsGunStats.SEVEN_MM_RIFLE, seven_mmClip, seven_mmAmmo);
+    public static final Seven_mm_rifle seven_mm_rifle_RS = new Seven_mm_rifle(GlobalsGunStats.SEVEN_MM_RIFLE.getGunName() + "_rs", "RS", GlobalsGunStats.SEVEN_MM_RIFLE, seven_mmClip, seven_mmAmmo);
+    public static final Seven_mm_rifle seven_mm_rifle_LS = new Seven_mm_rifle(GlobalsGunStats.SEVEN_MM_RIFLE.getGunName() + "_ls", "LS", GlobalsGunStats.SEVEN_MM_RIFLE, seven_mmClip, seven_mmAmmo);
 
 
     public static final Saddlebags sadlebags = new Saddlebags(GlobalNames.saddlebags);
@@ -111,6 +113,9 @@ public class ItemInit {
     public static final Set<Item> ITEMS = new HashSet<>();
 
     public static final Map<String, Object> gun_ammo_lookup = new HashMap<String, Object>();
+    public static final Map<String, Object> gun_case_lookup = new HashMap<String, Object>();
+    public static final Map<Object, Object> Clip_ammo_lookup = new HashMap<Object, Object>();
+
 
     /**
      * Register this mod's {@link Item}s.
@@ -195,6 +200,25 @@ public class ItemInit {
         gun_ammo_lookup.put(GlobalsGunStats.LASER_PISTOL.getGunName(), battery);
         gun_ammo_lookup.put(GlobalsGunStats.FLARE_GUN.getGunName(), flare);
         gun_ammo_lookup.put(GlobalsGunStats.SEVEN_MM_RIFLE.getGunName(), seven_mmClip);
+
+        Clip_ammo_lookup.put(tenMMClip,tenMMAmmo);
+        Clip_ammo_lookup.put(fourTenMMClip,fourTenMMammo);
+        Clip_ammo_lookup.put(battery,Items.AIR);
+        Clip_ammo_lookup.put(sShell,Items.AIR);
+        Clip_ammo_lookup.put(seven_mmClip,seven_mmAmmo);
+        Clip_ammo_lookup.put(flare,Items.AIR);
+
+
+
+        gun_case_lookup.put(GlobalsGunStats.TEN_MM.getGunName(), tenMMbulletCase);
+        gun_case_lookup.put(GlobalsGunStats.FOUR_TEN_MM.getGunName(), fourTenMMbulletCase);
+        gun_case_lookup.put(GlobalsGunStats.DB_SHOUTGUN.getGunName(), Items.AIR);
+        gun_case_lookup.put(GlobalsGunStats.LASER_PISTOL.getGunName(), Items.AIR);
+        gun_case_lookup.put(GlobalsGunStats.FLARE_GUN.getGunName(), Items.AIR);
+        gun_case_lookup.put(GlobalsGunStats.SEVEN_MM_RIFLE.getGunName(), seven_mm_bulletCase);
+
+
+
 
     }
 

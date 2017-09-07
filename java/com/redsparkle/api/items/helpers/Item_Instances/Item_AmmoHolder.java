@@ -2,8 +2,11 @@ package com.redsparkle.api.items.helpers.Item_Instances;
 
 import com.redsparkle.api.Capability.Items.Ammo.AmmoFactoryProvider;
 import com.redsparkle.api.Capability.Items.Ammo.IAmmoInterface;
+import com.redsparkle.api.items.helpers.guns.ItemClipHelpers;
+import com.redsparkle.foe.Init.InitCreativeTabs;
 import com.redsparkle.foe.items.FoeItem;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumAction;
 import net.minecraft.item.ItemStack;
@@ -22,9 +25,18 @@ public abstract class Item_AmmoHolder extends FoeItem {
     public String clipInfo;
     public int clipsize;
 
-    public Item_AmmoHolder(String itemName) {
+    public Item_AmmoHolder(String itemName,int clipsize,String clipInfo) {
+
         super(itemName);
+        final int NUMBER_OF_BOXES = 1;
+        this.clipsize = clipsize;
+        this.clipInfo = clipInfo;
+        this.setCreativeTab(InitCreativeTabs.Fallout_ammo);
+        this.setMaxStackSize(NUMBER_OF_BOXES);
+        this.setCreativeTab(InitCreativeTabs.Fallout_ammo);   // the item will appear on the Miscellaneous tab in creative
+        this.setMaxDamage(clipsize);
     }
+
 
     /**
      * allows items to add custom lines of information to the mouseover description
@@ -56,5 +68,11 @@ public abstract class Item_AmmoHolder extends FoeItem {
     public ActionResult<ItemStack> onItemRightClick(World itemStackIn, EntityPlayer worldIn, EnumHand playerIn) {
         worldIn.setActiveHand(playerIn);
         return new ActionResult<>(EnumActionResult.SUCCESS, worldIn.getHeldItem(playerIn));
+    }
+
+    public ItemStack onItemUseFinish(ItemStack stack, World worldIn, EntityLivingBase entityLiving) {
+        EntityPlayer playerIn = (EntityPlayer) entityLiving;
+        ItemStack Istack = ItemClipHelpers.Cliphelper(stack, worldIn, playerIn, clipsize);
+        return Istack;
     }
 }

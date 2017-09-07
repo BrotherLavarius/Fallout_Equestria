@@ -39,8 +39,8 @@ public class CONTAINER_AdditionalInventory extends Container {
         this.addSlotToContainer(new SlotDevice(additional_inventory, 3, 6, 43));
         this.addSlotToContainer(new SlotDevice(additional_inventory, 4, 6, 62));
         this.addSlotToContainer(new SlotHarness(additional_inventory, 5, 123, 50));
-        this.addSlotToContainer(new SlotGun(additional_inventory, 6, 152, 15));
-        this.addSlotToContainer(new SlotGun(additional_inventory, 7, 92, 15));
+        this.addSlotToContainer(new SlotGun(additional_inventory, 6, 92, 15));
+        this.addSlotToContainer(new SlotGun(additional_inventory, 7, 152, 15));
         this.addSlotToContainer(new SlotAmmo(additional_inventory, 8, 113, 6));
         this.addSlotToContainer(new SlotAmmo(additional_inventory, 9, 132, 6));
         this.addSlotToContainer(new SlotAmmo(additional_inventory, 10, 113, 25));

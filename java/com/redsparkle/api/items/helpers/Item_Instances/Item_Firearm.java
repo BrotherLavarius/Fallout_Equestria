@@ -9,7 +9,6 @@ import net.minecraft.entity.Entity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 
@@ -17,9 +16,6 @@ import net.minecraftforge.common.capabilities.ICapabilityProvider;
  * Created by NENYN on 1/21/2017.
  */
 public abstract class Item_Firearm extends FoeItem {
-    public SoundEvent shot_var1;
-    public SoundEvent shot_var2;
-    public SoundEvent shot_var3;
 
     public int Damage;
     public int Clipsize;
@@ -36,7 +32,7 @@ public abstract class Item_Firearm extends FoeItem {
         super(itemName);
         this.setCreativeTab(InitCreativeTabs.Fallout_guns);
         this.setMaxStackSize(1);
-        this.setMaxDamage(1000);
+        this.setMaxDamage(params.getClipsize());
         this.params = params;
         this.Damage = params.getDamage();
         this.Clipsize = params.getClipsize();

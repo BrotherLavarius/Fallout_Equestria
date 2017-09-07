@@ -86,12 +86,18 @@ public class MessageClientPlaySound implements IMessage {
                         } else if (whatToPlayArray[2].equalsIgnoreCase("reload")) {
                             player.world.playSound(Double.parseDouble(positionArray[0]), Double.parseDouble(positionArray[1]), Double.parseDouble(positionArray[2]),
                                     SoundInit.lookup.get(gunStats.getGunName()).get(2), SoundCategory.AMBIENT, 1.0F, 1.0F, true);
-                        } else if (whatToPlayArray[2].equalsIgnoreCase("clip_out")) {
+                        } else if (whatToPlayArray[2].equalsIgnoreCase("clipout")) {
                             player.world.playSound(Double.parseDouble(positionArray[0]), Double.parseDouble(positionArray[1]), Double.parseDouble(positionArray[2]),
                                     SoundInit.lookup.get(gunStats.getGunName()).get(3), SoundCategory.AMBIENT, 1.0F, 1.0F, true);
                         }
 
+
+                        if (whatToPlayArray[1].equalsIgnoreCase("clipReload")) {
+                            player.world.playSound(Double.parseDouble(positionArray[0]), Double.parseDouble(positionArray[1]), Double.parseDouble(positionArray[2]),
+                                    SoundInit.clip_load, SoundCategory.AMBIENT, 1.0F, 1.0F, true);
+                        }
                     }
+
 
                 }
             });
