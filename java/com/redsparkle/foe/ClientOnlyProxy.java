@@ -18,7 +18,6 @@ import com.redsparkle.api.Capability.Player.spechial.ISpechialCapability;
 import com.redsparkle.api.Capability.Player.spechial.SpechialFactoryProvider;
 import com.redsparkle.api.Capability.Player.water.IWaterCapability;
 import com.redsparkle.api.Capability.Player.water.WaterFactoryProvider;
-import com.redsparkle.api.items.helpers.guns.GunFire;
 import com.redsparkle.api.utils.ItemCatalog;
 import com.redsparkle.foe.Init.SoundInit;
 import com.redsparkle.foe.events.ClientSide.CommonEventHandler;
@@ -175,38 +174,24 @@ public class ClientOnlyProxy extends CommonProxy {
         });
     }
 
-    public static void handleFireMessage(MessageGunFire message) {
-        Minecraft.getMinecraft().addScheduledTask(() -> {
-            EntityPlayerSP player = Minecraft.getMinecraft().player;
-            boolean shoot = false;
-
-            if (message.type == 99) {
-                shoot = false;
-            }
-            if (message.type < 2) {
-                if (message.type == 0 || message.type == 10 || message.type == 20) {
-                    GunFire.GunFire(player.world, player, message.type);
-                }
-                if (message.type == 1 || message.type == 11 || message.type == 21) {
-                    shoot = true;
-                    while (shoot) {
-                        int count = 0;
-                        if (count == 40) {
-                            GunFire.GunFire(player.world, player, message.type);
-                        }
-                        count++;
-
-                    }
-                }
-
-            }
-        });
-    }
 
     public static void FireMessage(String type) {
-            main.simpleNetworkWrapper.sendToServer(new MessageGunFire(type));
+        Minecraft.getMinecraft().addScheduledTask(() -> {
+            boolean cont_fire = false;
 
+            EntityPlayer player = mc.player;
 
+            if (type.equalsIgnoreCase("gun_main")) {
+                main.simpleNetworkWrapper.sendToServer(new MessageGunFire("gun_main"));
+            }
+            if (type.equalsIgnoreCase("gun_saddlebagRS")) {
+                main.simpleNetworkWrapper.sendToServer(new MessageGunFire("gun_saddlebagRS"));
+            }
+            if (type.equalsIgnoreCase("gun_saddlebagLS")) {
+                main.simpleNetworkWrapper.sendToServer(new MessageGunFire("gun_saddlebagLS"));
+            }
+
+        });
     }
 
 

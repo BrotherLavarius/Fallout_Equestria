@@ -12,14 +12,11 @@ import com.redsparkle.api.Capability.Player.spechial.ISpechialCapability;
 import com.redsparkle.api.Capability.Player.spechial.SpechialFactoryProvider;
 import com.redsparkle.api.Capability.Player.water.IWaterCapability;
 import com.redsparkle.api.Capability.Player.water.WaterFactoryProvider;
-import com.redsparkle.api.items.helpers.guns.GunFire;
 import com.redsparkle.api.utils.ItemCatalog;
 import com.redsparkle.api.utils.Lvlutil;
 import com.redsparkle.api.utils.PlayerParamsSetup;
 import com.redsparkle.foe.events.ServerSIdeONly.EventHandlerServerSidePre;
 import com.redsparkle.foe.network.ClientServerOneClass.*;
-import com.redsparkle.foe.network.MessageGunFire;
-import com.redsparkle.foe.network.MessageGunReload;
 import com.redsparkle.foe.network.MessageUpdateSLSServerReplyOnDemand;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -94,19 +91,7 @@ public class DedicatedServerProxy extends CommonProxy {
          */
     }
 
-    public static void handleReloadMessage(MessageGunReload message, EntityPlayerMP player) {
-//        WorldServer mainThread = (WorldServer) (player.world);
-//        ItemStack heldItem = player.getHeldItem(EnumHand.MAIN_HAND);
-//        if (heldItem != null) {
-//            if (heldItem.getItem() instanceof TenMM || heldItem.getItem() instanceof FourTenMM || heldItem.getItem() instanceof LaserPistol) {
-//                gunReload.ClipLoaded(mainThread, heldItem, player, false);
-//            } else if (heldItem.getItem() instanceof SB_shoutgun || heldItem.getItem() instanceof FlareGun) {
-//                gunReload.BulletLoaded(mainThread, heldItem, player);
-//            }
-//        } else if (player.getCapability(IAdvProvider.Adv_Inv, null).getStackInSlot(6) != ItemStack.EMPTY || player.getCapability(IAdvProvider.Adv_Inv, null).getStackInSlot(7) != ItemStack.EMPTY) {
-//            gunReload.ClipLoaded(mainThread, heldItem, player, true);
-//        }
-    }
+
     public static void handleSLSOnDemand(EntityPlayerMP player) {
         if (player.getCapability(LEVEL_CAPABILITY, null).getProgress() < player.experienceTotal) {
             player.getCapability(LEVEL_CAPABILITY, null).setProgress(player.experienceTotal);
@@ -189,62 +174,9 @@ public class DedicatedServerProxy extends CommonProxy {
         );
         player.heal(player.getMaxHealth());
     }
-    public static void handleFireMessage(MessageGunFire message, EntityPlayerMP player) {
-        boolean shoot = false;
 
 
-//        if (!player.isCreative()) {
-//            if (message.type == 0 && message.type == 1) {
-//                player.getHeldItemMainhand().getCapability(GunFactoryProvider.GUN, null).removeAmmo(1);
-//
-//            }
-//            if (message.type >= 10 & message.type <= 29) {
-//
-//
-//                if (message.type == 10 && message.type == 11) {
-//                    player.getCapability(IAdvProvider.Adv_Inv, null).getStackInSlot(6).getCapability(GunFactoryProvider.GUN, null).removeAmmo(1);
-//                    GunFire.GunFire(player.world, player, message.type);
-//
-//                }
-//
-//                if (message.type == 20 && message.type == 21) {
-//                    player.getCapability(IAdvProvider.Adv_Inv, null).getStackInSlot(6).getCapability(GunFactoryProvider.GUN, null).removeAmmo(1);
-//                    GunFire.GunFire(player.world, player, message.type);
-//
-//                }
-//            }
-//        }
-        if (message.type == 99) {
-            shoot = false;
-        }
 
-        if (message.type == 0 || message.type == 10 || message.type == 20) {
-            GunFire.GunFire(player.world, player, message.type);
-        }
-        //TODO: make a new thread here for shotas
-        if (message.type == 1 || message.type == 11 || message.type == 21) {
-            shoot = true;
-            int count = 0;
-            while (shoot) {
-                /**
-                 @count;
-                 **/
-                count = count + 1;
-                if (count == 40) {
-
-                    System.out.println(count);
-                    count = 0;
-                    //GunFire.GunFire(player.world, player, message.type);
-                }
-
-
-            }
-            count = 0;
-            shoot = true;
-        }
-
-
-    }
     public static void handleWaterMessage(MessageUpdateClientWater message, EntityPlayerMP playerMP) {
         IWaterCapability water = WaterFactoryProvider.instanceFor(playerMP);
         water.setWater(message.water);

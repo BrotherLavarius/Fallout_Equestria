@@ -7,6 +7,9 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import java.util.ConcurrentModificationException;
+
 public class EntityBullet extends EntityThrowable {
     public float damage;
     public EnumParticleTypes effect;
@@ -22,21 +25,23 @@ public class EntityBullet extends EntityThrowable {
     }
     @Override
     public void onUpdate() {
-        super.onUpdate();
-        if (ticksExisted > 5) {
-            setDead();
-        }
-        for (int i = 0; i < 25; i++) {
-            double x = (double) (rand.nextInt(10) - 5) / 8.0D;
-            double y = (double) (rand.nextInt(10) - 5) / 8.0D;
-            double z = (double) (rand.nextInt(10) - 5) / 8.0D;
-            if (effect == null) {
+
+            super.onUpdate();
+            if (ticksExisted > 20) {
+                setDead();
+            }
+            for (int i = 0; i < 25; i++) {
+                double x = (double) (rand.nextInt(10) - 5) / 8.0D;
+                double y = (double) (rand.nextInt(10) - 5) / 8.0D;
+                double z = (double) (rand.nextInt(10) - 5) / 8.0D;
+                if (effect == null) {
 //                effect = EnumParticleTypes.SMOKE_NORMAL;
 //                world.spawnParticle(effect, posX, posY, posZ, x, y, z);
-            } else {
-                world.spawnParticle(effect, posX, posY, posZ, x, y, z);
+                } else {
+                    world.spawnParticle(effect, posX, posY, posZ, x, y, z);
+                }
             }
-        }
+
     }
     @SideOnly(Side.CLIENT)
     public void handleStatusUpdate(byte p_handleStatusUpdate_1_) {

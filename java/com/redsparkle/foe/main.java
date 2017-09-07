@@ -69,6 +69,8 @@ public class main {
         simpleNetworkWrapper.registerMessage(MessageGunFire.HandlerServer.class, MessageGunFire.class, message_start_index++, Side.SERVER);
         simpleNetworkWrapper.registerMessage(MessageGunFire.HandlerClient.class, MessageGunFire.class, message_start_index++, Side.CLIENT);
 
+        simpleNetworkWrapper.registerMessage(MessageClientPlaySound.HandlerClient.class, MessageClientPlaySound.class, message_start_index++, Side.CLIENT);
+
 
         simpleNetworkWrapper.registerMessage(MessageUpdateClientServerSkills.HandlerClient.class, MessageUpdateClientServerSkills.class, message_start_index++, Side.CLIENT);
         simpleNetworkWrapper.registerMessage(MessageUpdateClientServerSkills.HandlerServer.class, MessageUpdateClientServerSkills.class, message_start_index++, Side.SERVER);
