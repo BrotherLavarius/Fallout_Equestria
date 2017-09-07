@@ -145,18 +145,18 @@ public class KeyInputHandler {
 
     }
 
-    @SubscribeEvent(receiveCanceled = true)
-    public void onMouseInput(InputEvent.MouseInputEvent event) {
-        {
-            //LogHelper.info("At least I get called");
-            if (Minecraft.getMinecraft().gameSettings.keyBindAttack.isPressed()) {
-                System.out.println("Left button pressed");
-                event.setCanceled(true);
-            }
-            if (Minecraft.getMinecraft().gameSettings.keyBindUseItem.isPressed()) {
-                System.out.println("Right button pressed");
-                event.setCanceled(true);
-            }
-        }
-    }
+//    @SubscribeEvent(receiveCanceled = true)
+//    public void onMouseInput(InputEvent.MouseInputEvent event) {
+//        {
+//            //LogHelper.info("At least I get called");
+//            if (Minecraft.getMinecraft().gameSettings.keyBindAttack.isPressed()) {
+//                System.out.println("Left button pressed");
+//                event.setCanceled(true);
+//            }
+//            if (Minecraft.getMinecraft().gameSettings.keyBindUseItem.isPressed()) {
+//                System.out.println("Right button pressed");
+//                event.setCanceled(true);
+//            }
+//        }
+//    }
 }

@@ -62,12 +62,12 @@
                 "z": 0
               }
             ],
-            "scale": 0.05
+            "scale": 1
           },
           "gui": {
             "translation": [
-              -0.9,
-              -0.4,
+              0,
+              0,
               0
             ],
             "rotation": [
@@ -81,7 +81,7 @@
                 "z": 13
               }
             ],
-            "scale": 0.15
+            "scale": 1
           },
           "head": {
             "translation": [
@@ -100,7 +100,7 @@
                 "z": 0
               }
             ],
-            "scale": 0.075
+            "scale": 1
           },
           "firstperson_righthand": {
             "translation": [
@@ -119,7 +119,7 @@
                 "z": -1
               }
             ],
-            "scale": 0.5
+            "scale": 1
           }
         }
       }

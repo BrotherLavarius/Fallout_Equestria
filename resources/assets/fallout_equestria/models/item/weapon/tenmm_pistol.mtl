@@ -1,5 +1,15 @@
-# Blender MTL File: '10mmPistol.blend'
-# Material Count: 8
+# Blender MTL File: 'None'
+# Material Count: 9
+
+newmtl Foregrou
+Ns 96.078431
+Ka 1.000000 1.000000 1.000000
+Kd 0.000000 0.000000 0.000000
+Ks 0.164706 0.164706 0.164706
+Ke 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 2
 
 newmtl FrontCol
 Ns 96.078431
@@ -20,6 +30,7 @@ Ke 0.000000 0.000000 0.000000
 Ni 1.000000
 d 1.000000
 illum 2
+map_Kd fallout_equestria:gun/10mm_pistol/leather
 
 newmtl Metal
 Ns 96.078431
@@ -30,6 +41,7 @@ Ke 0.000000 0.000000 0.000000
 Ni 1.000000
 d 1.000000
 illum 2
+map_Kd fallout_equestria:gun/10mm_pistol/metal
 
 newmtl _2
 Ns 96.078431
@@ -40,6 +52,7 @@ Ke 0.000000 0.000000 0.000000
 Ni 1.000000
 d 1.000000
 illum 2
+map_Kd fallout_equestria:gun/10mm_pistol/_2
 
 newmtl _3
 Ns 96.078431
@@ -50,6 +63,7 @@ Ke 0.000000 0.000000 0.000000
 Ni 1.000000
 d 1.000000
 illum 2
+map_Kd fallout_equestria:gun/10mm_pistol/_3
 
 newmtl _4
 Ns 96.078431
@@ -60,6 +74,7 @@ Ke 0.000000 0.000000 0.000000
 Ni 1.000000
 d 1.000000
 illum 2
+map_Kd fallout_equestria:gun/10mm_pistol/_4
 
 newmtl _5
 Ns 96.078431
@@ -70,6 +85,7 @@ Ke 0.000000 0.000000 0.000000
 Ni 1.000000
 d 1.000000
 illum 2
+map_Kd fallout_equestria:gun/10mm_pistol/_5
 
 newmtl _6
 Ns 96.078431
@@ -80,3 +96,4 @@ Ke 0.000000 0.000000 0.000000
 Ni 1.000000
 d 1.000000
 illum 2
+map_Kd fallout_equestria:gun/10mm_pistol/_6
