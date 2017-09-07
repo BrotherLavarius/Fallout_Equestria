@@ -3,11 +3,11 @@ package com.redsparkle.foe.keys;
 import com.redsparkle.api.Capability.Player.Inventory.IAdvProvider;
 import com.redsparkle.api.Capability.Player.saddlegun_shooting.ITrigger_item_Provider;
 import com.redsparkle.api.items.helpers.Item_Instances.Item_Firearm;
+import com.redsparkle.api.items.helpers.Item_Instances.Item_SaggleBagGun;
 import com.redsparkle.foe.ClientOnlyProxy;
 import com.redsparkle.foe.main;
 import com.redsparkle.foe.network.ClientServerOneClass.MessageAdvInv;
 import com.redsparkle.foe.network.ClientServerOneClass.MessageUpdateClientTrigger_Item;
-import com.redsparkle.foe.network.MessageGunFire;
 import com.redsparkle.foe.network.MessageGunReload;
 import com.redsparkle.foe.network.MessageUpdateSLSClientOnDemand;
 import net.minecraft.client.Minecraft;
@@ -72,72 +72,91 @@ public class KeyInputHandler {
                 if (Keyboard.getEventKeyState()) {
                     if (Keyboard.isRepeatEvent()) {
                         // Key held down
-                        if (count == 0) {
-                            //                      if (((Item_Firearm) player.getHeldItemMainhand().getItem()).autofireSupport) {
-
-                            main.simpleNetworkWrapper.sendToServer(new MessageGunFire("main_gun_cont"));
-
-
-                            count = 1;
-                            //                      }
+                        if (((Item_Firearm) mc.player.getHeldItemMainhand().getItem()).autofireSupport) {
+                            ClientOnlyProxy.FireMessage("gun_main");
                         }
                     } else {
                         // Key pressed
-                        main.simpleNetworkWrapper.sendToServer(new MessageGunFire("main_gun_once"));
+                        ClientOnlyProxy.FireMessage("gun_main");
 
                     }
-                    count = 0;
-                    ClientOnlyProxy.FireMessage("STOP");
+                    // Key released
+
                 }
             }
         }
 
 
-//        if (Keyboard.getEventKey() == keyHandler.fire_RSB.getKeyCode()
-//                && mc.player.getCapability(ITrigger_item_Provider.TRIGGER_ITEM, null).getStatus()
-//                && mc.player.getCapability(IAdvProvider.Adv_Inv, null).getStackInSlot(7).getItem() instanceof Item_SaggleBagGun){
-//
-//                if (Keyboard.getEventKeyState()) {
-//                    if (Keyboard.isRepeatEvent()) {
-//                        // Key held down
-//                        if(((Item_SaggleBagGun) mc.player.getCapability(IAdvProvider.Adv_Inv, null).getStackInSlot(7).getItem()).autofireSupport){
-//                            main.simpleNetworkWrapper.sendToServer(new MessageGunFire("saddlebag_RS_cont"));
-//                        }
-//                    } else {
-//                        // Key pressed
-//                        main.simpleNetworkWrapper.sendToServer(new MessageGunFire("saddlebag_RS_once"));
-//                    }
-//                    // Key released
-//                }
-//        }
-//
-//        if (Keyboard.getEventKey() == keyHandler.fire_LSB.getKeyCode()
-//                && mc.player.getCapability(ITrigger_item_Provider.TRIGGER_ITEM, null).getStatus()
-//                && mc.player.getCapability(IAdvProvider.Adv_Inv, null).getStackInSlot(6).getItem() instanceof Item_SaggleBagGun){
-//
-//            if (Keyboard.getEventKeyState()) {
-//                if (Keyboard.isRepeatEvent()) {
-//                    // Key held down
-//                    if(((Item_SaggleBagGun) mc.player.getCapability(IAdvProvider.Adv_Inv, null).getStackInSlot(6).getItem()).autofireSupport) {
-//                        main.simpleNetworkWrapper.sendToServer(new MessageGunFire("saddlebag_LS_cont"));
-//                    }
-//                } else {
-//                    // Key pressed
-//                    main.simpleNetworkWrapper.sendToServer(new MessageGunFire("saddlebag_LS_once"));
-//                }
-//                // Key released
-//            }
-//        }
+
+
+        if (Keyboard.getEventKey() == keyHandler.fire_LSB.getKeyCode()
+                && mc.player.getCapability(ITrigger_item_Provider.TRIGGER_ITEM, null).getStatus()
+                && mc.player.getCapability(IAdvProvider.Adv_Inv, null).getStackInSlot(6).getItem() instanceof Item_SaggleBagGun) {
+
+            if (Keyboard.getEventKeyState()) {
+                if (Keyboard.isRepeatEvent()) {
+                    // Key held down
+                    if (((Item_SaggleBagGun) mc.player.getCapability(IAdvProvider.Adv_Inv, null).getStackInSlot(6).getItem()).autofireSupport) {
+                        ClientOnlyProxy.FireMessage("gun_saddlebagLS");
+                    }
+                } else {
+                    // Key pressed
+                    ClientOnlyProxy.FireMessage("gun_saddlebagLS");
+                }
+                // Key released
+            }
+        }
+
+        if (Keyboard.getEventKey() == keyHandler.fire_RSB.getKeyCode()
+                && mc.player.getCapability(ITrigger_item_Provider.TRIGGER_ITEM, null).getStatus()
+                && mc.player.getCapability(IAdvProvider.Adv_Inv, null).getStackInSlot(7).getItem() instanceof Item_SaggleBagGun) {
+
+            if (Keyboard.getEventKeyState()) {
+                if (Keyboard.isRepeatEvent()) {
+                    // Key held down
+                    if (((Item_SaggleBagGun) mc.player.getCapability(IAdvProvider.Adv_Inv, null).getStackInSlot(7).getItem()).autofireSupport) {
+                        ClientOnlyProxy.FireMessage("gun_saddlebagRS");
+                    }
+                } else {
+                    // Key pressed
+                    ClientOnlyProxy.FireMessage("gun_saddlebagRS");
+                }
+                // Key released
+            }
+        }
 
         if (keyHandler.reload.isPressed()) {
-            main.simpleNetworkWrapper.sendToServer(new MessageGunReload(0));
-        }
-        if (keyHandler.reloadRSB.isPressed()) {
-            main.simpleNetworkWrapper.sendToServer(new MessageGunReload(1));
+            if(player.getHeldItemMainhand().getItem() instanceof Item_Firearm){
+                main.simpleNetworkWrapper.sendToServer(new MessageGunReload("gun_main"));
+            }
         }
         if (keyHandler.reloadLSB.isPressed()) {
-            main.simpleNetworkWrapper.sendToServer(new MessageGunReload(2));
+            if(player.getCapability(IAdvProvider.Adv_Inv, null).getStackInSlot(6).getItem() != Items.AIR){
+                main.simpleNetworkWrapper.sendToServer(new MessageGunReload("gun_saddlebagLS"));
+            }
+        }
+        if (keyHandler.reloadRSB.isPressed()) {
+            if(player.getCapability(IAdvProvider.Adv_Inv, null).getStackInSlot(7).getItem() != Items.AIR) {
+                main.simpleNetworkWrapper.sendToServer(new MessageGunReload("gun_saddlebagRS"));
+            }
         }
 
+
+
+    }
+
+    @SubscribeEvent(receiveCanceled = true)
+    public void onMouseInput(InputEvent.MouseInputEvent event) {
+        {
+            //LogHelper.info("At least I get called");
+            if (Minecraft.getMinecraft().gameSettings.keyBindAttack.isPressed()) {
+                System.out.println("Left button pressed");
+                event.setCanceled(true);
+            }
+            if (Minecraft.getMinecraft().gameSettings.keyBindUseItem.isPressed()) {
+                System.out.println("Right button pressed");
+                event.setCanceled(true);
+            }
+        }
     }
 }

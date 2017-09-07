@@ -1,24 +1,10 @@
 {
-  "laser_fire_var_One": {
+  "laser_fire": {
     "category": "player",
     "sounds": [
       "fallout_equestria:guns/laserpistol/fire_var1"
     ],
-    "subtitle": "laser_fire_var_One"
-  },
-  "laser_fire_var_Two": {
-    "category": "player",
-    "sounds": [
-      "fallout_equestria:guns/laserpistol/fire_var2"
-    ],
-    "subtitle": "laser_fire_var_Two"
-  },
-  "laser_fire_var_Tree": {
-    "category": "player",
-    "sounds": [
-      "fallout_equestria:guns/laserpistol/fire_var3"
-    ],
-    "subtitle": "laser_fire_var_Tree"
+    "subtitle": "laser_fire"
   },
   "laser_reload": {
     "category": "player",

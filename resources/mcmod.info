@@ -3,7 +3,7 @@
     "modid": "falloutequestria",
     "name": "Fallout Equestria pack",
     "description": "Bringing Fallout to the ponys",
-    "version": "0.9.3.3",
+    "version": "0.9.3.4",
     "mcversion": "${mcversion}",
     "url": "https://fallout-equestria.tk",
     "updateUrl": "https://fallout-equestria.tk/download/updates.json",
@@ -11,7 +11,7 @@
       "Coder: RedSparkle",
       "Artist: Veleshka"
     ],
-    "credits": "The Forge and FML guys, for making this example",
+    "credits": "",
     "logoFile": "",
     "screenshots": [],
     "dependencies": []

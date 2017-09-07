@@ -10,6 +10,11 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.registries.IForgeRegistry;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 /**
  * Created by hoijima on 14.12.16.
  */
@@ -38,9 +43,7 @@ public class SoundInit {
     public static final SoundEvent plasma_reload        = registerSound("plasma_reload");
     public static final SoundEvent flamer_shot          = registerSound("flamer_shot");
     public static final SoundEvent flamer_reload        = registerSound("flamer_reload");
-    public static final SoundEvent laser_fire_var_One   = registerSound("laser_fire_var_One");
-    public static final SoundEvent laser_fire_var_Two   = registerSound("laser_fire_var_Two");
-    public static final SoundEvent laser_fire_var_Tree  = registerSound("laser_fire_var_Tree");
+    public static final SoundEvent laser_shot = registerSound("laser_fire");
     public static final SoundEvent laser_reload         = registerSound("laser_reload");
     public static final SoundEvent laser_dry            = registerSound("laser_dry");
     public static final SoundEvent clip_load            = registerSound("clip_load");
@@ -51,8 +54,17 @@ public class SoundInit {
     public static final SoundEvent laser_clip_out       = registerSound("laser_clip_out");
     public static final SoundEvent plasma_clip_out      = registerSound("plasma_clip_out");
 
+    public static final Map<String, List<SoundEvent>> lookup = new HashMap<String, List<SoundEvent>>();
+    public static List<SoundEvent> tenmm;
+    public static List<SoundEvent> four_tenmm;
+    public static List<SoundEvent> db_shotgun;
+    public static List<SoundEvent> flaregun;
+    public static List<SoundEvent> laser;
+    public static List<SoundEvent> plasma;
+
 
     /**
+     *
      * Register a {@link SoundEvent}.
      *
      * @param soundName The SoundEvent's name without the testmod3 prefix
@@ -90,9 +102,7 @@ public class SoundInit {
                 plasma_reload,
                 flamer_shot,
                 flamer_reload,
-                laser_fire_var_One,
-                laser_fire_var_Two,
-                laser_fire_var_Tree,
+                laser_shot,
                 laser_reload,
                 laser_dry,
                 clip_load,
@@ -104,6 +114,54 @@ public class SoundInit {
                 plasma_clip_out
         };
         registry.registerAll(soundEvents);
+
+        tenmm = new ArrayList<SoundEvent>();
+        four_tenmm = new ArrayList<SoundEvent>();
+        db_shotgun = new ArrayList<SoundEvent>();
+        flaregun = new ArrayList<SoundEvent>();
+        laser = new ArrayList<SoundEvent>();
+        plasma = new ArrayList<SoundEvent>();
+
+        tenmm.add(tenmm_shot);
+        tenmm.add(tenmm_dry);
+        tenmm.add(tenmm_reload);
+        tenmm.add(tenmm_clip_out);
+
+        four_tenmm.add(four_tenmm_shot);
+        four_tenmm.add(four_tenmm_dry);
+        four_tenmm.add(four_tenmm_reload);
+        four_tenmm.add(four_tenmm_clip_out);
+
+        db_shotgun.add(db_shotgun_shot);
+        db_shotgun.add(db_shotgun_dry);
+        db_shotgun.add(db_shotgun_reload);
+        db_shotgun.add(db_shotgun_clip_out);
+
+        flaregun.add(flaregun_shot);
+        flaregun.add(flaregun_dry);
+        flaregun.add(flaregun_reload);
+        flaregun.add(flaregun_clip_out);
+
+        laser.add(laser_shot);
+        laser.add(laser_dry);
+        laser.add(laser_reload);
+        laser.add(laser_clip_out);
+
+        plasma.add(plasma_shot);
+        plasma.add(plasma_dry);
+        plasma.add(plasma_reload);
+        plasma.add(plasma_clip_out);
+
+        lookup.put(GlobalsGunStats.TEN_MM.getGunName()          ,tenmm);
+        lookup.put(GlobalsGunStats.FOUR_TEN_MM.getGunName()     ,four_tenmm);
+        lookup.put(GlobalsGunStats.DB_SHOUTGUN.getGunName()     ,db_shotgun);
+        lookup.put(GlobalsGunStats.FLARE_GUN.getGunName()       ,flaregun);
+        lookup.put(GlobalsGunStats.LASER_PISTOL.getGunName()    ,laser);
+        lookup.put(GlobalsGunStats.SEVEN_MM_RIFLE.getGunName(), tenmm);
+
+
+
+
 
     }
 }

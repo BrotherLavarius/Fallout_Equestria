@@ -1,5 +1,6 @@
 package com.redsparkle.api.items.helpers.guns;
 
+import com.redsparkle.api.Capability.Player.Inventory.IAdvProvider;
 import com.redsparkle.api.Capability.Player.skills.SkillsFactoryProvider;
 import com.redsparkle.api.items.helpers.Item_Instances.Item_Firearm;
 import com.redsparkle.api.items.helpers.Item_Instances.Item_SaggleBagGun;
@@ -10,11 +11,13 @@ import com.redsparkle.foe.items.guns.entitys.flare.EntityFlare;
 import com.redsparkle.foe.items.guns.entitys.laserFired.EntityLaser;
 import com.redsparkle.foe.items.guns.entitys.spreadPellet_shotgun.*;
 import com.redsparkle.foe.main;
+import com.redsparkle.foe.network.MessageClientPlaySound;
 import com.redsparkle.foe.network.MessageGunFire;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.Item;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 
 import java.awt.*;
@@ -28,7 +31,7 @@ public class GunFire {
 
     public static void GunFire(World world, EntityPlayer player, int type) {
 
-        if (type == 0 || type == 1) {
+        if (type == 0) {
 
             Item_Firearm gun = (Item_Firearm) player.getHeldItemMainhand().getItem();
 
@@ -37,12 +40,16 @@ public class GunFire {
         if (type >= 10 && type <= 29) {
 
 
-            if (type == 10 || type == 11) {
+            if (type == 10) {
+                Item_SaggleBagGun gun = (Item_SaggleBagGun) player.getCapability(IAdvProvider.Adv_Inv, null).getStackInSlot(6).getItem();
 
+                projectyleType(gun, world, player, type);
             }
 
-            if (type == 20 || type == 21) {
+            if (type == 20) {
+                Item_SaggleBagGun gun = (Item_SaggleBagGun) player.getCapability(IAdvProvider.Adv_Inv, null).getStackInSlot(7).getItem();
 
+                projectyleType(gun, world, player, type);
             }
         }
     }
@@ -63,12 +70,16 @@ public class GunFire {
         bullet.setRenderYawOffset(params.getYawOffset());
         bullet.setDamage(params.getDamage() + damage_firearms);
         worldIn.spawnEntity(bullet);
+        int x = playerIn.getPosition().getX();
+        int y = playerIn.getPosition().getY();
+        int z = playerIn.getPosition().getZ();
         if (!worldIn.isRemote & Side.SERVER.isServer()) {
-            main.simpleNetworkWrapper.sendTo(new MessageGunFire(incode_type(type)), (EntityPlayerMP) playerIn);
+            SendSoundMessage(playerIn, x, y, z, type);
+            main.simpleNetworkWrapper.sendToAll(new MessageGunFire(incode_type(type)));
         }
     }
 
-    public static void pellet(World worldIn, EntityPlayer playerIn, Item item, GlobalsGunStats params) {
+    public static void pellet(World worldIn, EntityPlayer playerIn, Item item, GlobalsGunStats params, int type) {
         int damage_firearms = playerIn.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getFirearms();
         Pellet[] pellets = new Pellet[]{new Pellet_one(worldIn, playerIn), new Pellet_two(worldIn, playerIn), new Pellet_tree(worldIn, playerIn), new Pellet_four(worldIn, playerIn), new Pellet_five(worldIn, playerIn), new Pellet_six(worldIn, playerIn)};
         for (int i = 0; i <= (pellets.length - 1); i++) {
@@ -77,12 +88,17 @@ public class GunFire {
             pellets[i].setDamage(params.getDamage() + damage_firearms);
             worldIn.spawnEntity(pellets[i]);
         }
-        if (!worldIn.isRemote) {
-            main.simpleNetworkWrapper.sendToServer(new MessageGunFire(params.getProjectileType()));
+        int x = playerIn.getPosition().getX();
+        int y = playerIn.getPosition().getY();
+        int z = playerIn.getPosition().getZ();
+        if (!worldIn.isRemote & Side.SERVER.isServer()) {
+            SendSoundMessage(playerIn, x, y, z, type);
+
+            main.simpleNetworkWrapper.sendToAll(new MessageGunFire(incode_type(type)));
         }
     }
 
-    public static void laser(World worldIn, EntityPlayer playerIn, Item item, GlobalsGunStats params) {
+    public static void laser(World worldIn, EntityPlayer playerIn, Item item, GlobalsGunStats params, int type) {
         int damage_magic_modif = playerIn.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getMagic();
         int damage_laser_weapons = playerIn.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getEnergyWeapons();
         EntityLaser laser = new EntityLaser(worldIn, playerIn);
@@ -90,31 +106,60 @@ public class GunFire {
         laser.setRenderYawOffset(params.getYawOffset());
         laser.setDamage(params.getDamage() + damage_laser_weapons + Math.round(damage_magic_modif / 2));
         worldIn.spawnEntity(laser);
-        if (!worldIn.isRemote) {
-            main.simpleNetworkWrapper.sendToServer(new MessageGunFire(params.getProjectileType()));
+        int x = playerIn.getPosition().getX();
+        int y = playerIn.getPosition().getY();
+        int z = playerIn.getPosition().getZ();
+        if (!worldIn.isRemote & Side.SERVER.isServer()) {
+            SendSoundMessage(playerIn, x, y, z, type);
+
+            main.simpleNetworkWrapper.sendToAll(new MessageGunFire(incode_type(type)));
         }
     }
 
-    public static void flame(World worldIn, EntityPlayer playerIn, Item item, GlobalsGunStats params) {
+    public static void flame(World worldIn, EntityPlayer playerIn, Item item, GlobalsGunStats params, int type) {
         EntityFlame flame = new EntityFlame(worldIn, playerIn);
         flame.setHeadingFromThrower(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, params.getVelocity(), 3.0F);
         flame.setDamage(params.getDamage());
-        if (!worldIn.isRemote) {
-            main.simpleNetworkWrapper.sendToServer(new MessageGunFire(params.getProjectileType()));
+        int x = playerIn.getPosition().getX();
+        int y = playerIn.getPosition().getY();
+        int z = playerIn.getPosition().getZ();
+        if (!worldIn.isRemote & Side.SERVER.isServer()) {
+            SendSoundMessage(playerIn, x, y, z, type);
+
+            main.simpleNetworkWrapper.sendToAll(new MessageGunFire(incode_type(type)));
         }
     }
 
-    public static void flare(World worldIn, EntityPlayer playerIn, Item item, GlobalsGunStats params) {
+    public static void flare(World worldIn, EntityPlayer playerIn, Item item, GlobalsGunStats params, int type) {
         EntityFlare flare = new EntityFlare(worldIn, playerIn);
         flare.setHeadingFromThrower(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, params.getVelocity(), 3.0F);
         flare.setRenderYawOffset(params.getYawOffset());
         flare.setDamage(params.getDamage());
         worldIn.spawnEntity(flare);
-        if (!worldIn.isRemote) {
-            main.simpleNetworkWrapper.sendToServer(new MessageGunFire(params.getProjectileType()));
+        int x = playerIn.getPosition().getX();
+        int y = playerIn.getPosition().getY();
+        int z = playerIn.getPosition().getZ();
+        if (!worldIn.isRemote & Side.SERVER.isServer()) {
+            SendSoundMessage(playerIn, x, y, z, type);
+
+            main.simpleNetworkWrapper.sendToAllAround(new MessageGunFire(incode_type(type)),new NetworkRegistry.TargetPoint(0, (double) x, (double) y,(double) z,  20.0));
         }
     }
 
+    public static void SendSoundMessage(EntityPlayer playerIn, int x, int y, int z, int type) {
+        if (type == 0) {
+            main.simpleNetworkWrapper.sendToAllAround(new MessageClientPlaySound("gun_main_fire", x + "," + y + "," + z), new NetworkRegistry.TargetPoint(0, (double) x, (double) y, (double) z, 10.0));
+            main.simpleNetworkWrapper.sendTo(new MessageClientPlaySound("gun_main_fire", x + "," + y + "," + z), (EntityPlayerMP) playerIn);
+        }
+        if (type == 10) {
+            main.simpleNetworkWrapper.sendToAllAround(new MessageClientPlaySound("gun_saddlebagLS_fire", x + "," + y + "," + z), new NetworkRegistry.TargetPoint(0, (double) x, (double) y, (double) z, 10.0));
+            main.simpleNetworkWrapper.sendTo(new MessageClientPlaySound("gun_saddlebagLS_fire", x + "," + y + "," + z), (EntityPlayerMP) playerIn);
+        }
+        if (type == 20) {
+            main.simpleNetworkWrapper.sendToAllAround(new MessageClientPlaySound("gun_saddlebagRS_fire", x + "," + y + "," + z), new NetworkRegistry.TargetPoint(0, (double) x, (double) y, (double) z, 10.0));
+            main.simpleNetworkWrapper.sendTo(new MessageClientPlaySound("gun_saddlebagRS_fire", x + "," + y + "," + z), (EntityPlayerMP) playerIn);
+        }
+    }
 
     /**
      * int Damage;
@@ -142,39 +187,34 @@ public class GunFire {
             bullet(world, player, item, params, type);
         }
         if (projectileType == "pellet") {
-            pellet(world, player, item, params);
+            pellet(world, player, item, params, type);
 
         }
         if (projectileType == "laser") {
-            laser(world, player, item, params);
+            laser(world, player, item, params, type);
         }
         if (projectileType == "flame") {
-            flame(world, player, item, params);
+            flame(world, player, item, params, type);
         }
         if (projectileType == "flare") {
-            flare(world, player, item, params);
+            flare(world, player, item, params, type);
         }
     }
 
     public static String incode_type(int type) {
         if (type == 0) {
-            return "main_gun_once";
+            return "gun_main";
         }
-        if (type == 1) {
-            return "main_gun_cont";
-        }
+
         if (type == 10) {
-            return "saddlebag_LS_once";
+            return "gun_saddlebagLS";
         }
-        if (type == 11) {
-            return "saddlebag_LS_cont";
-        }
+
         if (type == 20) {
-            return "saddlebag_RS_once";
+            return "gun_saddlebagRS";
         }
-        if (type == 21) {
-            return "saddlebag_RS_cont";
-        }
+
+
         return "could not process :(";
     }
 

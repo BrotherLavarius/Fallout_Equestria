@@ -1,9 +1,14 @@
 package com.redsparkle.foe.network;
 
-import com.redsparkle.foe.ClientOnlyProxy;
-import com.redsparkle.foe.DedicatedServerProxy;
+import com.redsparkle.api.Capability.Items.Gun.GunFactoryProvider;
+import com.redsparkle.api.Capability.Player.Inventory.IAdvProvider;
+import com.redsparkle.api.items.helpers.guns.GunFire;
 import io.netty.buffer.ByteBuf;
+import net.minecraft.client.Minecraft;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.util.IThreadListener;
+import net.minecraft.world.WorldServer;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
@@ -14,27 +19,18 @@ public class MessageGunFire implements IMessage {
     public int type = 0;
     public MessageGunFire(){}
     public MessageGunFire(String type){
-        if (type == "main_gun_once") {
+        if (type == "gun_main") {
             this.type = 0;
         }
-        if (type == "main_gun_cont") {
-            this.type = 1;
-        }
-        if (type == "saddlebag_LS_once") {
+
+        if (type == "gun_saddlebagLS") {
             this.type = 10;
         }
-        if (type == "saddlebag_LS_cont") {
-            this.type = 11;
-        }
-        if (type == "saddlebag_RS_once") {
+
+        if (type == "gun_saddlebagRS") {
             this.type = 20;
         }
-        if (type == "saddlebag_RS_cont") {
-            this.type = 21;
-        }
-        if (type == "STOP") {
-            this.type = 99;
-        }
+
 
 
     }
@@ -52,16 +48,72 @@ public class MessageGunFire implements IMessage {
         @Override
         public IMessage onMessage(MessageGunFire message, MessageContext ctx) {
             EntityPlayerMP player = ctx.getServerHandler().player;
-            DedicatedServerProxy.handleFireMessage(message,player);
+            IThreadListener mainThread = (WorldServer) ctx.getServerHandler().player.world;
+            mainThread.addScheduledTask(new Runnable() {
+                @Override
+                public void run() {
+
+
+
+                        if (message.type == 0) {
+                            if(!player.isCreative() && player.getHeldItemMainhand().getCapability(GunFactoryProvider.GUN, null).getAmmo() > 0){
+                                player.getHeldItemMainhand().getCapability(GunFactoryProvider.GUN, null).removeAmmo(1);
+                                player.getHeldItemMainhand().setItemDamage(player.getHeldItemMainhand().getItemDamage() + 1);
+                                GunFire.GunFire(player.world, player, message.type);
+                            }
+                            else if(player.isCreative()){
+                                GunFire.GunFire(player.world, player, message.type);
+                            }
+
+                        }
+
+                        if (message.type >= 10 & message.type <= 29) {
+
+
+                            if (message.type == 10) {
+                                if (!player.isCreative() &&player.getCapability(IAdvProvider.Adv_Inv, null).getStackInSlot(6).getCapability(GunFactoryProvider.GUN, null).getAmmo() > 0) {
+                                    player.getCapability(IAdvProvider.Adv_Inv, null).getStackInSlot(6).getCapability(GunFactoryProvider.GUN, null).removeAmmo(1);
+                                    player.getCapability(IAdvProvider.Adv_Inv, null).getStackInSlot(6).setItemDamage(player.getCapability(IAdvProvider.Adv_Inv, null).getStackInSlot(6).getItemDamage() + 1);
+                                    GunFire.GunFire(player.world, player, message.type);
+                                }
+                                else if(player.isCreative()){
+                                    GunFire.GunFire(player.world, player, message.type);
+                                }
+                            }
+
+                            if (message.type == 20) {
+                                if (!player.isCreative() &&player.getCapability(IAdvProvider.Adv_Inv, null).getStackInSlot(7).getCapability(GunFactoryProvider.GUN, null).getAmmo() > 0) {
+                                    player.getCapability(IAdvProvider.Adv_Inv, null).getStackInSlot(7).getCapability(GunFactoryProvider.GUN, null).removeAmmo(1);
+                                    player.getCapability(IAdvProvider.Adv_Inv, null).getStackInSlot(7).setItemDamage(player.getCapability(IAdvProvider.Adv_Inv, null).getStackInSlot(7).getItemDamage() +1);
+                                    GunFire.GunFire(player.world, player, message.type);
+                                }
+                                else if(player.isCreative()){
+                                    GunFire.GunFire(player.world, player, message.type);
+                                }
+                            }
+                        }
+
+
+                }
+            });
+            return null;
+        }
+    }
+    public static class HandlerClient implements IMessageHandler<MessageGunFire, IMessage> {
+        @Override
+        public IMessage onMessage(MessageGunFire message, MessageContext ctx) {
+            IThreadListener mainThread = Minecraft.getMinecraft();
+            EntityPlayer player = Minecraft.getMinecraft().player;
+            mainThread.addScheduledTask(new Runnable() {
+                @Override
+                public void run() {
+                        GunFire.GunFire(player.world, player, message.type);
+
+
+                }
+            });
             return null;
         }
     }
 
-    public static class HandlerClient implements IMessageHandler<MessageGunFire, IMessage> {
-        @Override
-        public IMessage onMessage(MessageGunFire message, MessageContext ctx) {
-            ClientOnlyProxy.handleFireMessage(message);
-            return null;
-        }
-    }
 }

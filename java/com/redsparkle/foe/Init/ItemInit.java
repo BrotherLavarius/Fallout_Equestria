@@ -39,7 +39,9 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.registries.IForgeRegistry;
 
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 
@@ -107,6 +109,8 @@ public class ItemInit {
     public static final t60legs t60legs = new t60legs(Armor_material.T60_ARMOR, 0, EntityEquipmentSlot.LEGS);
 
     public static final Set<Item> ITEMS = new HashSet<>();
+
+    public static final Map<String, Object> gun_ammo_lookup = new HashMap<String, Object>();
 
     /**
      * Register this mod's {@link Item}s.
@@ -184,6 +188,14 @@ public class ItemInit {
             ITEMS.add(item);
         }
         registry.registerAll(items);
+
+        gun_ammo_lookup.put(GlobalsGunStats.TEN_MM.getGunName(), tenMMClip);
+        gun_ammo_lookup.put(GlobalsGunStats.FOUR_TEN_MM.getGunName(), fourTenMMClip);
+        gun_ammo_lookup.put(GlobalsGunStats.DB_SHOUTGUN.getGunName(), sShell);
+        gun_ammo_lookup.put(GlobalsGunStats.LASER_PISTOL.getGunName(), battery);
+        gun_ammo_lookup.put(GlobalsGunStats.FLARE_GUN.getGunName(), flare);
+        gun_ammo_lookup.put(GlobalsGunStats.SEVEN_MM_RIFLE.getGunName(), seven_mmClip);
+
     }
 
 }
