@@ -1,0 +1,226 @@
+{
+  "laser_fire": {
+    "category": "player",
+    "sounds": [
+      "fallout_equestria:guns/laserpistol/fire_var1"
+    ],
+    "subtitle": "laser_fire"
+  },
+  "laser_reload": {
+    "category": "player",
+    "sounds": [
+      "fallout_equestria:guns/laserpistol/reload"
+    ],
+    "subtitle": "laser_reload"
+  },
+  "laser_dry": {
+    "category": "player",
+    "sounds": [
+      "fallout_equestria:guns/laserpistol/noammo"
+    ],
+    "subtitle": "laser_dry"
+  },
+  "clip_load": {
+    "category": "player",
+    "sounds": [
+      "fallout_equestria:guns/clip_load"
+    ],
+    "subtitle": "clip_load"
+  },
+  "clip_out": {
+    "category": "player",
+    "sounds": [
+      "fallout_equestria:guns/clip_out"
+    ],
+    "subtitle": "clip_out"
+  },
+  "tenmm_shot": {
+    "category": "player",
+    "sounds": [
+      "fallout_equestria:guns/10mm/fire"
+    ],
+    "subtitle": "tenmm_shot"
+  },
+  "tenmm_reload": {
+    "category": "player",
+    "sounds": [
+      "fallout_equestria:guns/10mm/reload"
+    ],
+    "subtitle": "tenmm_reload"
+  },
+  "tenmm_dry": {
+    "category": "player",
+    "sounds": [
+      "fallout_equestria:guns/10mm/noammo"
+    ],
+    "subtitle": "tenmm_dry"
+  },
+  "four_tenmm_shot": {
+    "category": "player",
+    "sounds": [
+      "fallout_equestria:guns/14mm/fire"
+    ],
+    "subtitle": "four_tenmm_shot"
+  },
+  "four_tenmm_reload": {
+    "category": "player",
+    "sounds": [
+      "fallout_equestria:guns/14mm/reload"
+    ],
+    "subtitle": "four_tenmm_reload"
+  },
+  "four_tenmm_dry": {
+    "category": "player",
+    "sounds": [
+      "fallout_equestria:guns/14mm/noammo"
+    ],
+    "subtitle": "four_tenmm_dry"
+  },
+  "db_shotgun_shot": {
+    "category": "player",
+    "sounds": [
+      "fallout_equestria:guns/db_shotgun/fire"
+    ],
+    "subtitle": "db_shotgun_shot"
+  },
+  "db_shotgun_reload": {
+    "category": "player",
+    "sounds": [
+      "fallout_equestria:guns/db_shotgun/reload"
+    ],
+    "subtitle": "db_shotgun_reload"
+  },
+  "db_shotgun_dry": {
+    "category": "player",
+    "sounds": [
+      "fallout_equestria:guns/db_shotgun/noammo"
+    ],
+    "subtitle": "db_shotgun_dry"
+  },
+  "plasma_shot": {
+    "category": "player",
+    "sounds": [
+      "fallout_equestria:guns/plasma/fire"
+    ],
+    "subtitle": "plasma_shot"
+  },
+  "plasma_reload": {
+    "category": "player",
+    "sounds": [
+      "fallout_equestria:guns/plasma/reload"
+    ],
+    "subtitle": "plasma_reload"
+  },
+  "plasma_dry": {
+    "category": "player",
+    "sounds": [
+      "fallout_equestria:guns/plasma/noammo"
+    ],
+    "subtitle": "plasma_dry"
+  },
+  "flaregun_shot": {
+    "category": "player",
+    "sounds": [
+      "fallout_equestria:guns/flaregun/fire"
+    ],
+    "subtitle": "flaregun_shot"
+  },
+  "flaregun_reload": {
+    "category": "player",
+    "sounds": [
+      "fallout_equestria:guns/flaregun/reload"
+    ],
+    "subtitle": "flaregun_reload"
+  },
+  "flaregun_dry": {
+    "category": "player",
+    "sounds": [
+      "fallout_equestria:guns/flaregun/noammo"
+    ],
+    "subtitle": "flaregun_dry"
+  },
+  "flamer_shot": {
+    "category": "player",
+    "sounds": [
+      "fallout_equestria:guns/flamer/fire"
+    ],
+    "subtitle": "flamer_shot"
+  },
+  "flamer_reload": {
+    "category": "player",
+    "sounds": [
+      "fallout_equestria:guns/flamer/reload"
+    ],
+    "subtitle": "flamer_reload"
+  },
+  "tenmm_clip_out": {
+    "category": "player",
+    "sounds": [
+      "fallout_equestria:guns/10mm/mag_out"
+    ],
+    "subtitle": "tenmm_clip_out"
+  },
+  "four_tenmm_clip_out": {
+    "category": "player",
+    "sounds": [
+      "fallout_equestria:guns/14mm/mag_out"
+    ],
+    "subtitle": "four_tenmm_clip_out"
+  },
+  "db_shotgun_clip_out": {
+    "category": "player",
+    "sounds": [
+      "fallout_equestria:guns/db_shotgun/mag_out"
+    ],
+    "subtitle": "db_shotgun_clip_out"
+  },
+  "flaregun_clip_out": {
+    "category": "player",
+    "sounds": [
+      "fallout_equestria:guns/flaregun/mag_out"
+    ],
+    "subtitle": "flaregun_clip_out"
+  },
+  "laser_clip_out": {
+    "category": "player",
+    "sounds": [
+      "fallout_equestria:guns/laserpistol/mag_out"
+    ],
+    "subtitle": "laser_clip_out"
+  },
+  "plasma_clip_out": {
+    "category": "player",
+    "sounds": [
+      "fallout_equestria:guns/plasma/mag_out"
+    ],
+    "subtitle": "plasma_clip_out"
+  },
+  "lowentensity_rad": {
+    "category": "player",
+    "sounds": [
+      "fallout_equestria:lowentensity_rad"
+    ],
+    "subtitle": "lowentensity_rad"
+  },
+  "mediumentensity_rad": {
+    "category": "player",
+    "sounds": [
+      "fallout_equestria:mediumentensity_rad"
+    ],
+    "subtitle": "mediumentensity_rad"
+  },
+  "highentensity_rad": {
+    "category": "player",
+    "sounds": [
+      "fallout_equestria:highentensity_rad"
+    ],
+    "subtitle": "highentensity_rad"
+  },
+  "enervation": {
+    "category": "player",
+    "sounds": [
+      "fallout_equestria:enervation"
+    ],
+    "subtitle": "enervation"
+  }
+}
