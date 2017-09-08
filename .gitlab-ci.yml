@@ -1,5 +1,10 @@
 image: java:8-jdk
 
+cache:
+  paths:
+    - gradle/wrapper
+    - gradle/caches
+
 stages:
   - build
 
