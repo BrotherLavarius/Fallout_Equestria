@@ -38,10 +38,10 @@ configurations {
 }
 
 dependencies {
-    embed files("./src/main/lib/jogg-0.0.7.jar")
-    embed files("./src/main/lib/jorbis-0.0.15.jar")
-    embed files("./src/main/lib/tritonus-share-0.3.7.4.jar")
-    embed files("./src/main/lib/vorbisspi1.0.3.jar")
+    embed files("./lib/jogg-0.0.7.jar")
+    embed files("./lib/jorbis-0.0.15.jar")
+    embed files("./lib/tritonus-share-0.3.7.4.jar")
+    embed files("./lib/vorbisspi1.0.3.jar")
 }
 
 processResources {
