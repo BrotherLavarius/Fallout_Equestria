@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-641795798/IdeaProjects-Fallout_Equestria.iml" filepath="$PROJECT_DIR$/.idea/modules/-641795798/IdeaProjects-Fallout_Equestria.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-1812784548/MineLittlePony.iml" filepath="$PROJECT_DIR$/.idea/modules/-1812784548/MineLittlePony.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../run_module/run_module.iml" filepath="$PROJECT_DIR$/../run_module/run_module.iml" />
+    </modules>
+  </component>
+</project>
