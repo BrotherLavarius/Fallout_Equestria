@@ -35,6 +35,7 @@ build:
     - master
 
 deploy:
+  stage: deploy
   image: python:latest
   script:
   - pip install awscli
