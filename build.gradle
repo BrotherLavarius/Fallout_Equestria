@@ -1,24 +1,51 @@
 
+repositories {
+	ext.myRepos = {
+		maven { url "https://mvnrepository.com/artifact" }
+		maven { url "http://central.maven.org/maven2"}
+		maven { url "http://clojars.org/repo"}
+  		maven {
+		    url "http://vault.voxelmodpack.com/content/groups/public/"
+		}
+		maven {
+		    url "https://hub.spigotmc.org/nexus/content/groups/public/"
+		}
+		maven {
+		    url "http://repo.spongepowered.org/maven/"
+		}
+    	}
+
+
+
+    	repositories myRepos
+}
+
+
 buildscript {
     repositories {
-        jcenter()
+        jcenter();
         maven { url = "http://files.minecraftforge.net/maven" }
         maven { url = "http://central.maven.org/maven2"}
-        maven { url = "http://clojars.org/repo"}
-        maven { url = "https://mvnrepository.com/artifact/"}
+
+
+
     }
     dependencies {
+        classpath 'com.github.jengelman.gradle.plugins:shadow:1.2.4'
         classpath 'net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT'
     }
 }
+apply plugin: 'com.github.johnrengelman.shadow'
 apply plugin: 'net.minecraftforge.gradle.forge'
 //Only edit below this line, the above code adds and enables the necessary things for Forge to be setup.
 
 version='0.9.3.4'
 group = "com.redsparkle.foe" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
+archivesBaseName = "Fallout_Equestria"
 
 
 sourceCompatibility = targetCompatibility = '1.8' // Need this here so eclipse task generates correctly.
+
 compileJava {
     sourceCompatibility = targetCompatibility = '1.8'
 }
@@ -31,17 +58,12 @@ minecraft {
     mappings = "snapshot_20170624"
 
 }
-//Add "embedded" configuration
-configurations {
-    embed
-    compile.extendsFrom(embed)
-}
 
 dependencies {
-    embed files("./lib/jogg-0.0.7.jar")
-    embed files("./lib/jorbis-0.0.15.jar")
-    embed files("./lib/tritonus-share-0.3.7.4.jar")
-    embed files("./lib/vorbisspi1.0.3.jar")
+compile group: 'org.clojars.aseipp', name: 'jogg', version: '0.0.7'
+compile group: 'org.clojars.aseipp', name: 'jorbis', version: '0.0.15'
+compile group: 'com.googlecode.soundlibs', name: 'tritonus-share', version: '0.3.7.4'
+compile group: 'com.googlecode.soundlibs', name: 'vorbisspi', version: '1.0.3.3'
 }
 
 processResources {
@@ -62,8 +84,23 @@ processResources {
         exclude 'mcmod.info'
     }
 }
-jar {
-    from configurations.embed.collect { it.isDirectory() ? it : zipTree(it) }
+
+
+
+shadowJar {
+	dependencies {
+			include dependency('org.clojars.aseipp:jogg')
+			include dependency('org.clojars.aseipp:jorbis')
+			include dependency('com.googlecode.soundlibs:tritonus-share')
+			include dependency('com.googlecode.soundlibs:vorbisspi')
+	}
+	relocate 'com.jcraft.jorbis', 'com.jcraft.jorbis'
+  relocate 'com.jcraft.jogg', 'com.jcraft.jogg'
+  relocate 'org.tritonus', 'org.tritonus'
+  relocate 'javazoom.spi', 'javazoom.spi'
+  classifier ''
 }
 
-archivesBaseName = "foe_"+project.version+"_"+project.minecraft.version
+reobf {
+    shadowJar {}
+}

@@ -9,7 +9,6 @@
   "credits" : "Inspired by Fallout Equestria by KKat.",
   "logoFile" : "assets/fallout_equestria/textures/gui/logo.png",
   "requiredMods": [ "Forge@[14.22.0.2461,)" ],
-  "dependencies": [""],
   "dependants": [],
   "useDependencyInformation": "false"
 }]
