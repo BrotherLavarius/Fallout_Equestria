@@ -20,7 +20,7 @@ build:
   script:
     - set +e
     - du -sh $CI_PROJECT_DIR/gradle/wrapper
-    - du -sh $CI_PROJECT_DIR/gradle/caches
+    - du -sh $CI_PROJECT_DIR/gradle/cache
     - set -e
     - ./gradlew setupCiWorkspace jar
   artifacts:
