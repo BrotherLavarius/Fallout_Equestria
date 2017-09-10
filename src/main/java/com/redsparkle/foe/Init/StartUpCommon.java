@@ -1,8 +1,17 @@
 package com.redsparkle.foe.Init;
+
+import com.redsparkle.foe.main;
+import com.redsparkle.foe.network.ClientServerOneClass.*;
+import com.redsparkle.foe.network.MessageClientPlaySound;
+import com.redsparkle.foe.network.MessageGunFire;
+import com.redsparkle.foe.network.MessageUpdateSLSServerReplyOnDemand;
+import net.minecraftforge.fml.relauncher.Side;
+
 /**
  * Created by hoijima on 14.12.16.
  */
 public class StartUpCommon {
+
     public static void preInitCommon() {
         ConfigInit.preInit();
 //        System.out.println("MBE70: myInteger=" + ConfigInit.myInteger
@@ -26,6 +35,7 @@ public class StartUpCommon {
 
     }
     public static void InitCommon() {
+
     }
     public static void postInitCommon() {
     }

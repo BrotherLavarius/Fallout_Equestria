@@ -18,7 +18,11 @@ import com.redsparkle.api.Capability.Player.spechial.ISpechialCapability;
 import com.redsparkle.api.Capability.Player.spechial.SpechialFactoryProvider;
 import com.redsparkle.api.Capability.Player.water.IWaterCapability;
 import com.redsparkle.api.Capability.Player.water.WaterFactoryProvider;
+import com.redsparkle.api.items.helpers.Item_Instances.Item_Firearm;
+import com.redsparkle.api.items.helpers.Item_Instances.Item_SaggleBagGun;
+import com.redsparkle.api.items.helpers.guns.GunFire;
 import com.redsparkle.api.utils.ItemCatalog;
+import com.redsparkle.foe.Init.GlobalsGunStats;
 import com.redsparkle.foe.Init.SoundInit;
 import com.redsparkle.foe.events.ClientSide.CommonEventHandler;
 import com.redsparkle.foe.events.ClientSide.character.EventPlayerRenders;
@@ -28,8 +32,8 @@ import com.redsparkle.foe.events.ClientSide.gui.EventPlayerGuiHandler;
 import com.redsparkle.foe.keys.KeyInputHandler;
 import com.redsparkle.foe.keys.keyHandler;
 import com.redsparkle.foe.network.ClientServerOneClass.*;
+import com.redsparkle.foe.network.MessageClientPlaySound;
 import com.redsparkle.foe.network.MessageGunFire;
-import com.redsparkle.foe.network.MessageGunReloadReply;
 import com.redsparkle.foe.network.MessageUpdateSLSServerReplyOnDemand;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
@@ -37,9 +41,11 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.IThreadListener;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 
 /**
  * Created by hoijima on 14.12.16.
@@ -113,66 +119,6 @@ public class ClientOnlyProxy extends CommonProxy {
         });
     }
 
-    public static void handleGundMessageReload(MessageGunReloadReply message) {
-        Minecraft.getMinecraft().addScheduledTask(() -> {
-            System.out.println("Sound int: " + message.soundname);
-            EntityPlayer player = Minecraft.getMinecraft().player;
-            World world = Minecraft.getMinecraft().world;
-//-------------------------------------------------------------
-            if (message.soundname == 0) {
-                //10 mm reload
-                world.playSound(player, player.getPosition(), SoundInit.tenmm_reload, SoundCategory.HOSTILE, 1.0F, 1.0F);
-            } else if (message.soundname == 1) {
-                //10 mm clip_out
-                world.playSound(player, player.getPosition(), SoundInit.tenmm_clip_out, SoundCategory.HOSTILE, 1.0F, 1.0F);
-            }
-//-------------------------------------------------------------
-            else if (message.soundname == 2) {
-                // 14mm reload
-                world.playSound(player, player.getPosition(), SoundInit.four_tenmm_reload, SoundCategory.HOSTILE, 1.0F, 1.0F);
-            } else if (message.soundname == 3) {
-                // 14mm clip_out
-                world.playSound(player, player.getPosition(), SoundInit.four_tenmm_clip_out, SoundCategory.HOSTILE, 1.0F, 1.0F);
-            }
-//-------------------------------------------------------------
-            else if (message.soundname == 4) {
-                // db_shotgun reload
-                world.playSound(player, player.getPosition(), SoundInit.db_shotgun_reload, SoundCategory.HOSTILE, 1.0F, 1.0F);
-            } else if (message.soundname == 5) {
-                // db_shotgun clip_out
-                world.playSound(player, player.getPosition(), SoundInit.db_shotgun_clip_out, SoundCategory.HOSTILE, 1.0F, 1.0F);
-            }
-//-------------------------------------------------------------
-            else if (message.soundname == 6) {
-                // flaregun reload
-                world.playSound(player, player.getPosition(), SoundInit.flaregun_reload, SoundCategory.HOSTILE, 1.0F, 1.0F);
-            } else if (message.soundname == 7) {
-                // flaregun clip_out
-                world.playSound(player, player.getPosition(), SoundInit.flaregun_clip_out, SoundCategory.HOSTILE, 1.0F, 1.0F);
-            }
-//-------------------------------------------------------------
-            else if (message.soundname == 8) {
-                // laser reload
-                world.playSound(player, player.getPosition(), SoundInit.laser_reload, SoundCategory.HOSTILE, 1.0F, 1.0F);
-            } else if (message.soundname == 9) {
-                // laser clip_out
-                world.playSound(player, player.getPosition(), SoundInit.laser_clip_out, SoundCategory.HOSTILE, 1.0F, 1.0F);
-            }
-//-------------------------------------------------------------
-            else if (message.soundname == 10) {
-                // plasma reload
-                world.playSound(player, player.getPosition(), SoundInit.plasma_reload, SoundCategory.HOSTILE, 1.0F, 1.0F);
-            } else if (message.soundname == 11) {
-                // plasma clip_out
-                world.playSound(player, player.getPosition(), SoundInit.plasma_clip_out, SoundCategory.HOSTILE, 1.0F, 1.0F);
-            }
-//-------------------------------------------------------------
-            else if (message.soundname == 12) {
-                // flamer reload
-                world.playSound(player, player.getPosition(), SoundInit.flamer_reload, SoundCategory.HOSTILE, 1.0F, 1.0F);
-            }
-        });
-    }
 
 
     public static void FireMessage(String type) {
@@ -332,4 +278,60 @@ public class ClientOnlyProxy extends CommonProxy {
     }
 
 
+    public static void MessageClientPlaySound_handler(MessageClientPlaySound message, MessageContext ctx) {
+        IThreadListener mainThread = Minecraft.getMinecraft();
+        EntityPlayer player = Minecraft.getMinecraft().player;
+        mainThread.addScheduledTask(() -> {
+
+                String whatToPlay = message.type;
+                String position = message.position;
+                // Types of things vary from sound_env_rads to gun_tenmm_fire
+                String[] whatToPlayArray = whatToPlay.split("_");
+                String[] positionArray = position.split(",");
+                GlobalsGunStats gunStats = null;
+
+                if (whatToPlayArray[0].equalsIgnoreCase("gun")) {
+                    if (whatToPlayArray[1].equalsIgnoreCase("main")) {
+                        gunStats = ((Item_Firearm) player.getHeldItemMainhand().getItem()).params;
+                    }
+                    if (whatToPlayArray[1].equalsIgnoreCase("saddlebagLS")) {
+                        gunStats = ((Item_SaggleBagGun) player.getCapability(IAdvProvider.Adv_Inv, null).getStackInSlot(6).getItem()).params;
+                    }
+
+                    if (whatToPlayArray[1].equalsIgnoreCase("saddlebagRS")) {
+                        gunStats = ((Item_SaggleBagGun) player.getCapability(IAdvProvider.Adv_Inv, null).getStackInSlot(7).getItem()).params;
+                    }
+                    if (whatToPlayArray[2].equalsIgnoreCase("fire")) {
+                        player.world.playSound(Double.parseDouble(positionArray[0]), Double.parseDouble(positionArray[1]), Double.parseDouble(positionArray[2]),
+                                SoundInit.lookup.get(gunStats.getGunName()).get(0), SoundCategory.AMBIENT, 1.0F, 1.0F, true);
+                    } else if (whatToPlayArray[2].equalsIgnoreCase("dry")) {
+                        player.world.playSound(Double.parseDouble(positionArray[0]), Double.parseDouble(positionArray[1]), Double.parseDouble(positionArray[2]),
+                                SoundInit.lookup.get(gunStats.getGunName()).get(1), SoundCategory.AMBIENT, 1.0F, 1.0F, true);
+                    } else if (whatToPlayArray[2].equalsIgnoreCase("reload")) {
+                        player.world.playSound(Double.parseDouble(positionArray[0]), Double.parseDouble(positionArray[1]), Double.parseDouble(positionArray[2]),
+                                SoundInit.lookup.get(gunStats.getGunName()).get(2), SoundCategory.AMBIENT, 1.0F, 1.0F, true);
+                    } else if (whatToPlayArray[2].equalsIgnoreCase("clipout")) {
+                        player.world.playSound(Double.parseDouble(positionArray[0]), Double.parseDouble(positionArray[1]), Double.parseDouble(positionArray[2]),
+                                SoundInit.lookup.get(gunStats.getGunName()).get(3), SoundCategory.AMBIENT, 1.0F, 1.0F, true);
+                    }
+
+
+                    if (whatToPlayArray[1].equalsIgnoreCase("clipReload")) {
+                        player.world.playSound(Double.parseDouble(positionArray[0]), Double.parseDouble(positionArray[1]), Double.parseDouble(positionArray[2]),
+                                SoundInit.clip_load, SoundCategory.AMBIENT, 1.0F, 1.0F, true);
+                    }
+                }
+
+
+
+        });
+    }
+
+    public static void MessageGunFire_hadnler(MessageGunFire message, MessageContext ctx) {
+        IThreadListener mainThread = Minecraft.getMinecraft();
+        EntityPlayer player = Minecraft.getMinecraft().player;
+        mainThread.addScheduledTask(() -> {
+                GunFire.GunFire(player.world, player, message.type);
+        });
+    }
 }

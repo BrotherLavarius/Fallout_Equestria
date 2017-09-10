@@ -30,7 +30,7 @@ Ke 0.000000 0.000000 0.000000
 Ni 1.000000
 d 1.000000
 illum 0
-map_Kd fallout_equestria:gun/flaregun/leather
+map_Kd fallout_equestria:gun/leather
 
 newmtl Metal
 Ns 96.078431
@@ -41,7 +41,7 @@ Ke 0.000000 0.000000 0.000000
 Ni 1.000000
 d 1.000000
 illum 0
-map_Kd fallout_equestria:gun/flaregun/Metal
+map_Kd fallout_equestria:gun/Metal
 
 newmtl Metal_4
 Ns 96.078431
@@ -52,7 +52,7 @@ Ke 0.252471 0.161059 0.161059
 Ni 1.000000
 d 1.000000
 illum 2
-map_Kd fallout_equestria:gun/flaregun/Metal_4
+map_Kd fallout_equestria:gun/Metal_4
 
 newmtl _1
 Ns 96.078431
@@ -63,7 +63,7 @@ Ke 0.075059 0.075059 0.072471
 Ni 1.000000
 d 1.000000
 illum 2
-map_Kd fallout_equestria:gun/flaregun/_1
+map_Kd fallout_equestria:gun/_1
 
 newmtl _2
 Ns 96.078431
@@ -74,7 +74,7 @@ Ke 0.111686 0.111686 0.111686
 Ni 1.000000
 d 1.000000
 illum 2
-map_Kd fallout_equestria:gun/flaregun/_2
+map_Kd fallout_equestria:gun/_2
 
 newmtl _3
 Ns 96.078431
@@ -85,7 +85,7 @@ Ke 0.352549 0.352549 0.352549
 Ni 1.000000
 d 1.000000
 illum 2
-map_Kd fallout_equestria:gun/flaregun/_3
+map_Kd fallout_equestria:gun/_3
 
 newmtl _4
 Ns 862.745098
@@ -96,4 +96,4 @@ Ke 0.478431 0.486275 0.188235
 Ni 1.000000
 d 1.000000
 illum 2
-map_Kd fallout_equestria:gun/flaregun/_4
+map_Kd fallout_equestria:gun/_4

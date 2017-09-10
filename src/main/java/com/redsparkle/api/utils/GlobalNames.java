@@ -46,10 +46,13 @@ public class GlobalNames {
     // Guns
     public static final String
             TenMM = "tenmm_pistol",
+            TenMMSub = "tenmm_sub",
             LaserPistol = "laser_pistol",
             FourTenMM = "four_tenmm_pistol",
             db_shoutgun = "db_shotgun",
-            flare_gun = "flare_gun";
+            flare_gun = "flare_gun",
+            fortyfour_revolver = "fortyfour_revolver",
+            magic_plasma_rifle = "magic_plasma_rifle";
 
     // Saddle bag guns
     public static final String
@@ -59,8 +62,11 @@ public class GlobalNames {
     public static final String
             TenMMAmmo = "tenmm_ammo",
             TenMMClip = "tenmm_clip",
+            TenMMSubClip = "10mm_submachine_clip",
             FourTenMMAmmo = "four_tenmm_ammo",
             FourTenMMClip = "four_tenmm_clip",
+            fortyfour_ammo = "fortyfour_ammo",
+            plasma_cartidge = "plasma_cartidge",
             Battery = "battery",
             shell = "shell",
             flare = "flare",

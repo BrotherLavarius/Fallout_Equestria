@@ -59,7 +59,6 @@ public class main {
         simpleNetworkWrapper.registerMessage(MessageUpdateClientWater.HandlerClient.class, MessageUpdateClientWater.class, message_start_index++, Side.CLIENT);
         System.out.println("WATER------CHECK");
         simpleNetworkWrapper.registerMessage(MessageGunReload.HandlerServer.class, MessageGunReload.class, message_start_index++, Side.SERVER);
-        simpleNetworkWrapper.registerMessage(MessageGunReloadReply.HandlerClient.class, MessageGunReloadReply.class, message_start_index++, Side.CLIENT);
         System.out.println("WEAPON RELOADS------CHECK");
         simpleNetworkWrapper.registerMessage(MessageUpdateClientServerSPECHIAL.HandlerClient.class, MessageUpdateClientServerSPECHIAL.class, message_start_index++, Side.CLIENT);
         simpleNetworkWrapper.registerMessage(MessageUpdateClientServerSPECHIAL.HandlerServer.class, MessageUpdateClientServerSPECHIAL.class, message_start_index++, Side.SERVER);

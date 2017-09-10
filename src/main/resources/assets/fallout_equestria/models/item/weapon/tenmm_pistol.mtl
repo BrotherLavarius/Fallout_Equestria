@@ -30,7 +30,7 @@ Ke 0.000000 0.000000 0.000000
 Ni 1.000000
 d 1.000000
 illum 2
-map_Kd fallout_equestria:gun/10mm_pistol/leather
+map_Kd fallout_equestria:gun/leather
 
 newmtl Metal
 Ns 96.078431
@@ -41,7 +41,7 @@ Ke 0.000000 0.000000 0.000000
 Ni 1.000000
 d 1.000000
 illum 2
-map_Kd fallout_equestria:gun/10mm_pistol/metal
+map_Kd fallout_equestria:gun/metal
 
 newmtl _2
 Ns 96.078431
@@ -52,7 +52,7 @@ Ke 0.000000 0.000000 0.000000
 Ni 1.000000
 d 1.000000
 illum 2
-map_Kd fallout_equestria:gun/10mm_pistol/_2
+map_Kd fallout_equestria:gun/_2
 
 newmtl _3
 Ns 96.078431
@@ -63,7 +63,7 @@ Ke 0.000000 0.000000 0.000000
 Ni 1.000000
 d 1.000000
 illum 2
-map_Kd fallout_equestria:gun/10mm_pistol/_3
+map_Kd fallout_equestria:gun/_3
 
 newmtl _4
 Ns 96.078431
@@ -74,7 +74,7 @@ Ke 0.000000 0.000000 0.000000
 Ni 1.000000
 d 1.000000
 illum 2
-map_Kd fallout_equestria:gun/10mm_pistol/_4
+map_Kd fallout_equestria:gun/_4
 
 newmtl _5
 Ns 96.078431
@@ -85,7 +85,7 @@ Ke 0.000000 0.000000 0.000000
 Ni 1.000000
 d 1.000000
 illum 2
-map_Kd fallout_equestria:gun/10mm_pistol/_5
+map_Kd fallout_equestria:gun/_5
 
 newmtl _6
 Ns 96.078431
@@ -96,4 +96,4 @@ Ke 0.000000 0.000000 0.000000
 Ni 1.000000
 d 1.000000
 illum 2
-map_Kd fallout_equestria:gun/10mm_pistol/_6
+map_Kd fallout_equestria:gun/_6
