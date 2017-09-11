@@ -13,12 +13,15 @@ import net.minecraftforge.fml.relauncher.SideOnly;
  */
 public class EntityLaser extends EntityThrowable {
     public float damage;
+    public boolean plasma;
     public EnumParticleTypes effect;
     public EntityLaser(World world) {
         super(world);
     }
-    public EntityLaser(World world, EntityLivingBase entity) {
+
+    public EntityLaser(World world, EntityLivingBase entity, boolean plasma) {
         super(world, entity);
+        this.plasma = plasma;
     }
     @Override
     public void onUpdate() {
@@ -37,16 +40,27 @@ public class EntityLaser extends EntityThrowable {
             double x = (double) (rand.nextInt(3) - 5) / 8.0D;
             double y = (double) (rand.nextInt(3) - 5) / 8.0D;
             double z = (double) (rand.nextInt(3) - 5) / 8.0D;
-            world.spawnParticle(EnumParticleTypes.REDSTONE, posX, posY, posZ, 1, 0, 0);
-            world.spawnParticle(EnumParticleTypes.REDSTONE, posX, posY, posZ, 1, 0, 0);
-            world.spawnParticle(EnumParticleTypes.REDSTONE, posX, posY, posZ, 1, 0, 0);
+            if (!plasma) {
+                world.spawnParticle(EnumParticleTypes.REDSTONE, posX, posY, posZ, 1, 0, 0);
+                world.spawnParticle(EnumParticleTypes.REDSTONE, posX, posY, posZ, 1, 0, 0);
+                world.spawnParticle(EnumParticleTypes.REDSTONE, posX, posY, posZ, 1, 0, 0);
+            } else {
+                world.spawnParticle(EnumParticleTypes.REDSTONE, posX, posY, posZ, 0, 0, 100);
+                world.spawnParticle(EnumParticleTypes.REDSTONE, posX, posY, posZ, 100, 0, 0);
+                world.spawnParticle(EnumParticleTypes.REDSTONE, posX, posY, posZ, 0, 0, 100);
+            }
         }
     }
     @SideOnly(Side.CLIENT)
     public void handleStatusUpdate(byte p_handleStatusUpdate_1_) {
         if (p_handleStatusUpdate_1_ == 3) {
             for (int lvt_2_1_ = 0; lvt_2_1_ < 8; ++lvt_2_1_) {
-                this.world.spawnParticle(EnumParticleTypes.REDSTONE, this.posX, this.posY, this.posZ, 0.0D, 0.0D, 0.0D);
+                if (!plasma) {
+                    this.world.spawnParticle(EnumParticleTypes.REDSTONE, this.posX, this.posY, this.posZ, 0.0D, 0.0D, 0.0D);
+                } else {
+                    this.world.spawnParticle(EnumParticleTypes.REDSTONE, this.posX, this.posY, this.posZ, 0.0D, 0.0D, 100.0D);
+                }
+
             }
         }
     }

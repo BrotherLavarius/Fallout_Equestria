@@ -52,7 +52,7 @@ public class GlobalNames {
             db_shoutgun = "db_shotgun",
             flare_gun = "flare_gun",
             fortyfour_revolver = "fortyfour_revolver",
-            magic_plasma_rifle = "magic_plasma_rifle";
+            magic_plasma_pistol = "magic_plasma_pistol";
 
     // Saddle bag guns
     public static final String

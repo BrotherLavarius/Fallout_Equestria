@@ -98,10 +98,10 @@ public class GunFire {
         }
     }
 
-    public static void laser(World worldIn, EntityPlayer playerIn, Item item, GlobalsGunStats params, int type) {
+    public static void laser(World worldIn, EntityPlayer playerIn, Item item, GlobalsGunStats params, int type, boolean plasma) {
         int damage_magic_modif = playerIn.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getMagic();
         int damage_laser_weapons = playerIn.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getEnergyWeapons();
-        EntityLaser laser = new EntityLaser(worldIn, playerIn);
+        EntityLaser laser = new EntityLaser(worldIn, playerIn, plasma);
         laser.setHeadingFromThrower(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, params.getVelocity(), 0.5F);
         laser.setRenderYawOffset(params.getYawOffset());
         laser.setDamage(params.getDamage() + damage_laser_weapons + Math.round(damage_magic_modif / 2));
@@ -191,7 +191,10 @@ public class GunFire {
 
         }
         if (projectileType == "laser") {
-            laser(world, player, item, params, type);
+            laser(world, player, item, params, type, false);
+        }
+        if (projectileType == "plasma") {
+            laser(world, player, item, params, type, true);
         }
         if (projectileType == "flame") {
             flame(world, player, item, params, type);

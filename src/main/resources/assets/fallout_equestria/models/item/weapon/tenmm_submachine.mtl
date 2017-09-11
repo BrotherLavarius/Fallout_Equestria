@@ -20,7 +20,7 @@ Ke 0.000000 0.000000 0.000000
 Ni 1.000000
 d 1.000000
 illum 2
-map_Kd Leather
+map_Kd fallout_equestria:gun/leather
 
 newmtl Metal
 Ns 96.078431
@@ -31,7 +31,7 @@ Ke 0.000000 0.000000 0.000000
 Ni 1.000000
 d 1.000000
 illum 2
-map_Kd Metal
+map_Kd fallout_equestria:gun/metal
 
 newmtl _1
 Ns 96.078431
@@ -42,7 +42,7 @@ Ke 0.000000 0.000000 0.000000
 Ni 1.000000
 d 1.000000
 illum 2
-map_Kd /mnt/storage/transfer/_1
+map_Kd fallout_equestria:gun/_1
 
 newmtl _7
 Ns 96.078431
@@ -53,7 +53,7 @@ Ke 0.000000 0.000000 0.000000
 Ni 1.000000
 d 1.000000
 illum 2
-map_Kd /mnt/storage/transfer/_7
+map_Kd fallout_equestria:gun/_7
 
 newmtl _8
 Ns 96.078431
@@ -64,4 +64,4 @@ Ke 0.000000 0.000000 0.000000
 Ni 1.000000
 d 1.000000
 illum 2
-map_Kd /mnt/storage/transfer/_8
+map_Kd fallout_equestria:gun/_8

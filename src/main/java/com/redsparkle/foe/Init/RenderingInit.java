@@ -71,20 +71,36 @@ public class RenderingInit {
         ModelLoader.setCustomModelResourceLocation(gumDrops, 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.gumDrops, "inventory"));
         ModelLoader.setCustomModelResourceLocation(sugar_bombs, 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.sugar_bombs, "inventory"));
         ModelLoader.setCustomModelResourceLocation(fancy_mare_snack_cakes, 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.Fancy_mare_Snack_Cakes, "inventory"));
+
         ModelLoader.setCustomModelResourceLocation(tenMMAmmo, 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.TenMMAmmo, "inventory"));
         ModelLoader.setCustomModelResourceLocation(tenMMClip, 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.TenMMClip, "inventory"));
+        ModelLoader.setCustomModelResourceLocation(tenMMSubclip, 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.TenMMSubClip, "inventory"));
+
         ModelLoader.setCustomModelResourceLocation(fourTenMMammo, 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.FourTenMMAmmo, "inventory"));
         ModelLoader.setCustomModelResourceLocation(fourTenMMClip, 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.FourTenMMClip, "inventory"));
+
         ModelLoader.setCustomModelResourceLocation(battery, 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.Battery, "inventory"));
+        ModelLoader.setCustomModelResourceLocation(plasma_cartridge, 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.plasma_cartidge, "inventory"));
+
+
         ModelLoader.setCustomModelResourceLocation(sShell, 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.shell, "inventory"));
         ModelLoader.setCustomModelResourceLocation(flare, 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.flare, "inventory"));
+        ModelLoader.setCustomModelResourceLocation(fourFourMagAmmo, 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.fortyfour_ammo, "inventory"));
+
+
         ModelLoader.setCustomModelResourceLocation(tenMMbulletCase, 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.TenMMCase, "inventory"));
         ModelLoader.setCustomModelResourceLocation(fourTenMMbulletCase, 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.FourTenMMCase, "inventory"));
+
         ModelLoader.setCustomModelResourceLocation(tenMM, 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.TenMM, "inventory"));
         ModelLoader.setCustomModelResourceLocation(fourTenMM, 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.FourTenMM, "inventory"));
         ModelLoader.setCustomModelResourceLocation(laserPistol, 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.LaserPistol, "inventory"));
         ModelLoader.setCustomModelResourceLocation(sb_shoutgun, 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.db_shoutgun, "inventory"));
         ModelLoader.setCustomModelResourceLocation(flareGun, 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.flare_gun, "inventory"));
+        ModelLoader.setCustomModelResourceLocation(fourFourRevolver, 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.fortyfour_revolver, "inventory"));
+        ModelLoader.setCustomModelResourceLocation(plasma_pistol, 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.magic_plasma_pistol, "inventory"));
+        ModelLoader.setCustomModelResourceLocation(tenMMsub, 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.TenMMSub, "inventory"));
+
+
         ModelLoader.setCustomModelResourceLocation(itb, 0, new ModelResourceLocation(GlobalNames.Domain + ":" + "bullet", "inventory"));
         ModelLoader.setCustomModelResourceLocation(t40head, 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.T40Head, "inventory"));
         ModelLoader.setCustomModelResourceLocation(t40body, 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.T40Body, "inventory"));
@@ -95,10 +111,12 @@ public class RenderingInit {
         ModelLoader.setCustomModelResourceLocation(t60head, 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.T60Head, "inventory"));
         ModelLoader.setCustomModelResourceLocation(t60body, 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.T60Body, "inventory"));
         ModelLoader.setCustomModelResourceLocation(t60legs, 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.T60Legs, "inventory"));
+
         ModelLoader.setCustomModelResourceLocation(sadlebags, 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.saddlebags, "inventory"));
         ModelLoader.setCustomModelResourceLocation(trigger_item, 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.trigger_Item, "inventory"));
         ModelLoader.setCustomModelResourceLocation(seven_mm_rifle_RS, 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.Seven_mm_rifle+"_rs", "inventory"));
         ModelLoader.setCustomModelResourceLocation(seven_mm_rifle_LS, 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.Seven_mm_rifle+"_ls", "inventory"));
+
 
         ModelLoader.setCustomModelResourceLocation(seven_mmAmmo, 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.Seven_mmAmmo, "inventory"));
         ModelLoader.setCustomModelResourceLocation(seven_mmClip, 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.Seven_mmClip, "inventory"));

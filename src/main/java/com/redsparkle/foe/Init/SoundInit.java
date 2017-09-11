@@ -153,10 +153,18 @@ public class SoundInit {
         plasma.add(plasma_clip_out);
 
         lookup.put(GlobalsGunStats.TEN_MM.getGunName()          ,tenmm);
+        lookup.put(GlobalsGunStats.TEN_MM_SUB.getGunName(), tenmm);
+        lookup.put(GlobalsGunStats.FOURFOUR_REVOLVER.getGunName(), tenmm);
+
         lookup.put(GlobalsGunStats.FOUR_TEN_MM.getGunName()     ,four_tenmm);
+
+        lookup.put(GlobalsGunStats.FOURFOUR_REVOLVER.getGunName(), tenmm);
         lookup.put(GlobalsGunStats.DB_SHOUTGUN.getGunName()     ,db_shotgun);
         lookup.put(GlobalsGunStats.FLARE_GUN.getGunName()       ,flaregun);
+
         lookup.put(GlobalsGunStats.LASER_PISTOL.getGunName()    ,laser);
+        lookup.put(GlobalsGunStats.PLASMA_PISTOL.getGunName(), plasma);
+
         lookup.put(GlobalsGunStats.SEVEN_MM_RIFLE.getGunName(), tenmm);
 
 
