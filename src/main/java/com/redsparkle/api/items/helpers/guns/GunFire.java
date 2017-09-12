@@ -18,7 +18,6 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.Item;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
-import net.minecraftforge.fml.relauncher.Side;
 
 import java.awt.*;
 
@@ -35,18 +34,23 @@ public class GunFire {
             bullet(worldln,player,null,null,0,x,y,z,xHeading,yHeading,zHeading,vel,inac,false);
         }
         if (type == 81) {
-
+            pellet(worldln,player,null,null,0,x,y,z,xHeading,yHeading,zHeading,vel,inac,false);
         }
         if (type == 82) {
-
+            laser(worldln,player,null,null,0,false,x,y,z,xHeading,yHeading,zHeading,vel,inac,false);
         }
         if (type == 83) {
+            laser(worldln,player,null,null,0,true,x,y,z,xHeading,yHeading,zHeading,vel,inac,false);
 
         }
         if (type == 84) {
+            flame(worldln,player,null,null,0,x,y,z,xHeading,yHeading,zHeading,vel,inac,false);
 
         }
+        if (type == 85) {
+            flare(worldln,player,null,null,0,x,y,z,xHeading,yHeading,zHeading,vel,inac,false);
 
+        }
 
     }
 
@@ -95,38 +99,28 @@ public class GunFire {
             bullet.setHeadingFromThrower(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, params.getVelocity(), 1.5F);
             bullet.setDamage(params.getDamage() + damage_firearms);
             worldIn.spawnEntity(bullet);
-            double xPl = playerIn.getPosition().getX();
-            double yPl = playerIn.getPosition().getY();
-            double zPl = playerIn.getPosition().getZ();
-            xHeading=playerIn.getLookVec().x;
-            yHeading=playerIn.getLookVec().y;
-            zHeading=playerIn.getLookVec().z;
-            SendSoundMessage(playerIn,params.getGunName(), xPl, yPl, zPl, type);
-            main.simpleNetworkWrapper.sendToAllAround(new MessageGunFire(80,xPl,yPl,zPl,xHeading,yHeading,zHeading,params.getVelocity(),1.5F),new NetworkRegistry.TargetPoint(0,  xPl,  yPl,  zPl, 60.0));
+            SendRenderMessage(playerIn,params,type,80);
+
         }
 
     }
 
-    public static void pellet(World worldIn, EntityPlayer playerIn, Item item, GlobalsGunStats params, int type) {
-        int damage_firearms = playerIn.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getFirearms();
-        Pellet[] pellets = new Pellet[]{new Pellet_one(worldIn, playerIn), new Pellet_two(worldIn, playerIn), new Pellet_tree(worldIn, playerIn), new Pellet_four(worldIn, playerIn), new Pellet_five(worldIn, playerIn), new Pellet_six(worldIn, playerIn)};
-        for (int i = 0; i <= (pellets.length - 1); i++) {
-            pellets[i].setHeadingFromThrower(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, params.getVelocity(), 15.5F);
-            pellets[i].setRenderYawOffset(params.getYawOffset());
-            pellets[i].setDamage(params.getDamage() + damage_firearms);
-            worldIn.spawnEntity(pellets[i]);
-        }
-        int x = playerIn.getPosition().getX();
-        int y = playerIn.getPosition().getY();
-        int z = playerIn.getPosition().getZ();
-        if (!worldIn.isRemote & Side.SERVER.isServer()) {
-            //SendSoundMessage(playerIn, x, y, z, type);
+    public static void pellet(World worldIn, EntityPlayer playerIn, Item item, GlobalsGunStats params, int type,double x,double y,double z,double xHeading,double yHeading,double zHeading ,float vel,float inac,boolean remote) {
+        if (remote) {
+            int damage_firearms = playerIn.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getFirearms();
+            Pellet[] pellets = new Pellet[]{new Pellet_one(worldIn, playerIn), new Pellet_two(worldIn, playerIn), new Pellet_tree(worldIn, playerIn), new Pellet_four(worldIn, playerIn), new Pellet_five(worldIn, playerIn), new Pellet_six(worldIn, playerIn)};
+            for (int i = 0; i <= (pellets.length - 1); i++) {
+                pellets[i].setHeadingFromThrower(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, params.getVelocity(), 15.5F);
+                pellets[i].setRenderYawOffset(params.getYawOffset());
+                pellets[i].setDamage(params.getDamage() + damage_firearms);
+                worldIn.spawnEntity(pellets[i]);
+            }
+            SendRenderMessage(playerIn,params,type,81);
 
-            main.simpleNetworkWrapper.sendToAll(new MessageGunFire(incode_type(type)));
         }
     }
 
-    public static void laser(World worldIn, EntityPlayer playerIn, Item item, GlobalsGunStats params, int type, boolean plasma) {
+    public static void laser(World worldIn, EntityPlayer playerIn, Item item, GlobalsGunStats params, int type, boolean plasma,double x,double y,double z,double xHeading,double yHeading,double zHeading ,float vel,float inac,boolean remote) {
         int damage_magic_modif = playerIn.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getMagic();
         int damage_laser_weapons = playerIn.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getEnergyWeapons();
         EntityLaser laser = new EntityLaser(worldIn, playerIn, plasma);
@@ -134,44 +128,29 @@ public class GunFire {
         laser.setRenderYawOffset(params.getYawOffset());
         laser.setDamage(params.getDamage() + damage_laser_weapons + Math.round(damage_magic_modif / 2));
         worldIn.spawnEntity(laser);
-        int x = playerIn.getPosition().getX();
-        int y = playerIn.getPosition().getY();
-        int z = playerIn.getPosition().getZ();
-        if (!worldIn.isRemote & Side.SERVER.isServer()) {
-            //SendSoundMessage(playerIn, x, y, z, type);
+        int sp_type = 82;
+        if(plasma){sp_type = 83;}
 
-            main.simpleNetworkWrapper.sendToAll(new MessageGunFire(incode_type(type)));
-        }
+        SendRenderMessage(playerIn,params,type,sp_type);
+
     }
 
-    public static void flame(World worldIn, EntityPlayer playerIn, Item item, GlobalsGunStats params, int type) {
+    public static void flame(World worldIn, EntityPlayer playerIn, Item item, GlobalsGunStats params, int type,double x,double y,double z,double xHeading,double yHeading,double zHeading ,float vel,float inac,boolean remote) {
         EntityFlame flame = new EntityFlame(worldIn, playerIn);
         flame.setHeadingFromThrower(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, params.getVelocity(), 3.0F);
         flame.setDamage(params.getDamage());
-        int x = playerIn.getPosition().getX();
-        int y = playerIn.getPosition().getY();
-        int z = playerIn.getPosition().getZ();
-        if (!worldIn.isRemote & Side.SERVER.isServer()) {
-            //SendSoundMessage(playerIn, x, y, z, type);
+        SendRenderMessage(playerIn,params,type,84);
 
-            main.simpleNetworkWrapper.sendToAll(new MessageGunFire(incode_type(type)));
-        }
     }
 
-    public static void flare(World worldIn, EntityPlayer playerIn, Item item, GlobalsGunStats params, int type) {
+    public static void flare(World worldIn, EntityPlayer playerIn, Item item, GlobalsGunStats params, int type,double x,double y,double z,double xHeading,double yHeading,double zHeading ,float vel,float inac,boolean remote) {
         EntityFlare flare = new EntityFlare(worldIn, playerIn);
         flare.setHeadingFromThrower(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, params.getVelocity(), 3.0F);
         flare.setRenderYawOffset(params.getYawOffset());
         flare.setDamage(params.getDamage());
         worldIn.spawnEntity(flare);
-        int x = playerIn.getPosition().getX();
-        int y = playerIn.getPosition().getY();
-        int z = playerIn.getPosition().getZ();
-        if (!worldIn.isRemote & Side.SERVER.isServer()) {
-            //SendSoundMessage(playerIn, x, y, z, type);
+        SendRenderMessage(playerIn,params,type,85);
 
-            main.simpleNetworkWrapper.sendToAllAround(new MessageGunFire(incode_type(type)),new NetworkRegistry.TargetPoint(0, (double) x, (double) y,(double) z,  20.0));
-        }
     }
 
     public static void SendSoundMessage(EntityPlayer playerIn,String gunname, double x, double y, double z, int type) {
@@ -189,6 +168,17 @@ public class GunFire {
         }
     }
 
+    public static void SendRenderMessage(EntityPlayer playerIn,GlobalsGunStats params,int type,int sp_type){
+        double xPl = playerIn.getPosition().getX();
+        double yPl = playerIn.getPosition().getY();
+        double zPl = playerIn.getPosition().getZ();
+        double xHeading=playerIn.getLookVec().x;
+        double yHeading=playerIn.getLookVec().y;
+        double zHeading=playerIn.getLookVec().z;
+        SendSoundMessage(playerIn,params.getGunName(), xPl, yPl, zPl, type);
+        main.simpleNetworkWrapper.sendToAllAround(new MessageGunFire(sp_type,xPl,yPl,zPl,xHeading,yHeading,zHeading,params.getVelocity(),1.5F),new NetworkRegistry.TargetPoint(0,  xPl,  yPl,  zPl, 120.0));
+
+    }
     /**
      * int Damage;
      * int Clipsize;
@@ -215,20 +205,20 @@ public class GunFire {
             bullet(world, player, item, params, type,0D,0D,0D,0D,0D,0D,0F,0F,true);
         }
         if (projectileType == "pellet") {
-            pellet(world, player, item, params, type);
+            pellet(world, player, item, params, type,0D,0D,0D,0D,0D,0D,0F,0F,true);
 
         }
         if (projectileType == "laser") {
-            laser(world, player, item, params, type, false);
+            laser(world, player, item, params, type, false,0D,0D,0D,0D,0D,0D,0F,0F,false);
         }
         if (projectileType == "plasma") {
-            laser(world, player, item, params, type, true);
+            laser(world, player, item, params, type, true,0D,0D,0D,0D,0D,0D,0F,0F,true);
         }
         if (projectileType == "flame") {
-            flame(world, player, item, params, type);
+            flame(world, player, item, params, type,0D,0D,0D,0D,0D,0D,0F,0F,true);
         }
         if (projectileType == "flare") {
-            flare(world, player, item, params, type);
+            flare(world, player, item, params, type,0D,0D,0D,0D,0D,0D,0F,0F,true);
         }
     }
 
