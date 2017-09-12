@@ -8,21 +8,26 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import java.util.ConcurrentModificationException;
-
 public class EntityBullet extends EntityThrowable {
     public float damage;
     public EnumParticleTypes effect;
+    public double x;
+    public double y;
+    public double z;
     public EntityBullet(World world) {
         super(world);
     }
     public EntityBullet(World worldIn, double x, double y, double z) {
         this(worldIn);
         this.setPosition(x, y, z);
+        this.x=x;
+        this.y=y;
+        this.z=z;
     }
     public EntityBullet(World world, EntityLivingBase entity) {
         super(world, entity);
     }
+
     @Override
     public void onUpdate() {
 
@@ -59,13 +64,17 @@ public class EntityBullet extends EntityThrowable {
     protected void onImpact(RayTraceResult rayTraceResult) {
         if (rayTraceResult.entityHit != null) {
             if(rayTraceResult.entityHit != this.getThrower()) {
-                rayTraceResult.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, this.getThrower()), damage);
-                setDead();
+//                if(rayTraceResult.entityHit.posX != x &&
+//                        rayTraceResult.entityHit.posY != y &&
+//                        rayTraceResult.entityHit.posZ != z){
+                    rayTraceResult.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, this.getThrower()), damage);
+                    //setDead();
+//                }
             }
         }
         if (!this.world.isRemote) {
             this.world.setEntityState(this, (byte) 3);
-            setDead();
+            //setDead();
         }
     }
     public void setDamage(float damage) {

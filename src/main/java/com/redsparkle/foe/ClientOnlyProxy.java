@@ -121,7 +121,7 @@ public class ClientOnlyProxy extends CommonProxy {
 
 
 
-    public static void FireMessage(String type) {
+    public static void FireMessage(String type){
         Minecraft.getMinecraft().addScheduledTask(() -> {
             boolean cont_fire = false;
 
@@ -331,7 +331,7 @@ public class ClientOnlyProxy extends CommonProxy {
         IThreadListener mainThread = Minecraft.getMinecraft();
         EntityPlayer player = Minecraft.getMinecraft().player;
         mainThread.addScheduledTask(() -> {
-                GunFire.GunFire(player.world, player, message.type);
+                GunFire.GunFire_clienHandler(player.world,player,message.type,message.x,message.y,message.z,message.xHeading,message.yHeading,message.zHeading,message.vel,message.inac);
         });
     }
 }

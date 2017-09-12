@@ -29,7 +29,28 @@ import java.awt.*;
 public class GunFire {
 
 
-    public static void GunFire(World world, EntityPlayer player, int type) {
+    public static void GunFire_clienHandler(World worldln, EntityPlayer player,int type,double x,double y,double z,double xHeading,double yHeading,double zHeading ,float vel,float inac){
+
+        if (type == 80) {
+            bullet(worldln,player,null,null,0,x,y,z,xHeading,yHeading,zHeading,vel,inac,false);
+        }
+        if (type == 81) {
+
+        }
+        if (type == 82) {
+
+        }
+        if (type == 83) {
+
+        }
+        if (type == 84) {
+
+        }
+
+
+    }
+
+    public static void GunFire(World world, EntityPlayer player, int type){
 
         if (type == 0) {
 
@@ -52,6 +73,8 @@ public class GunFire {
                 projectyleType(gun, world, player, type);
             }
         }
+
+
     }
 
     public static List gunStats() {
@@ -63,19 +86,28 @@ public class GunFire {
     }
 
 
-    public static void bullet(World worldIn, EntityPlayer playerIn, Item item, GlobalsGunStats params, int type) {
-        int damage_firearms = playerIn.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getFirearms();
-        EntityBullet bullet = new EntityBullet(worldIn, playerIn);
-        bullet.setHeadingFromThrower(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, params.getVelocity(), 1.5F);
-        bullet.setRenderYawOffset(params.getYawOffset());
-        bullet.setDamage(params.getDamage() + damage_firearms);
-        worldIn.spawnEntity(bullet);
-        int x = playerIn.getPosition().getX();
-        int y = playerIn.getPosition().getY();
-        int z = playerIn.getPosition().getZ();
-        if (!worldIn.isRemote & Side.SERVER.isServer()) {
-            SendSoundMessage(playerIn, x, y, z, type);
-            main.simpleNetworkWrapper.sendToAll(new MessageGunFire(incode_type(type)));
+    public static void bullet(World worldIn, EntityPlayer playerIn, Item item, GlobalsGunStats params, int type,double x,double y,double z,double xHeading,double yHeading,double zHeading ,float vel,float inac,boolean remote) {
+
+
+        if (remote) {
+            int damage_firearms = playerIn.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getFirearms();
+            EntityBullet bullet = new EntityBullet(worldIn, playerIn);
+            bullet.setHeadingFromThrower(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, params.getVelocity(), 1.5F);
+            bullet.setDamage(params.getDamage() + damage_firearms);
+            worldIn.spawnEntity(bullet);
+            double xPl = playerIn.getPosition().getX();
+            double yPl = playerIn.getPosition().getY();
+            double zPl = playerIn.getPosition().getZ();
+            xHeading=playerIn.getLookVec().x;
+            yHeading=playerIn.getLookVec().y;
+            zHeading=playerIn.getLookVec().z;
+            SendSoundMessage(playerIn, xPl, yPl, zPl, type);
+            main.simpleNetworkWrapper.sendToAll(new MessageGunFire(80,xPl,yPl,zPl,xHeading,yHeading,zHeading,params.getVelocity(),1.5F));
+        }
+        else {
+//            EntityBullet bullet = new EntityBullet(worldIn,x,y+playerIn.getEyeHeight(),z);
+//            bullet.setThrowableHeading(xHeading,yHeading,zHeading,vel,inac);
+//            worldIn.spawnEntity(bullet);
         }
     }
 
@@ -146,17 +178,17 @@ public class GunFire {
         }
     }
 
-    public static void SendSoundMessage(EntityPlayer playerIn, int x, int y, int z, int type) {
+    public static void SendSoundMessage(EntityPlayer playerIn, double x, double y, double z, int type) {
         if (type == 0) {
-            main.simpleNetworkWrapper.sendToAllAround(new MessageClientPlaySound("gun_main_fire", x + "," + y + "," + z), new NetworkRegistry.TargetPoint(0, (double) x, (double) y, (double) z, 10.0));
+            main.simpleNetworkWrapper.sendToAllAround(new MessageClientPlaySound("gun_main_fire", x + "," + y + "," + z), new NetworkRegistry.TargetPoint(0,  x,  y,  z, 10.0));
             main.simpleNetworkWrapper.sendTo(new MessageClientPlaySound("gun_main_fire", x + "," + y + "," + z), (EntityPlayerMP) playerIn);
         }
         if (type == 10) {
-            main.simpleNetworkWrapper.sendToAllAround(new MessageClientPlaySound("gun_saddlebagLS_fire", x + "," + y + "," + z), new NetworkRegistry.TargetPoint(0, (double) x, (double) y, (double) z, 10.0));
+            main.simpleNetworkWrapper.sendToAllAround(new MessageClientPlaySound("gun_saddlebagLS_fire", x + "," + y + "," + z), new NetworkRegistry.TargetPoint(0,  x,  y, z, 10.0));
             main.simpleNetworkWrapper.sendTo(new MessageClientPlaySound("gun_saddlebagLS_fire", x + "," + y + "," + z), (EntityPlayerMP) playerIn);
         }
         if (type == 20) {
-            main.simpleNetworkWrapper.sendToAllAround(new MessageClientPlaySound("gun_saddlebagRS_fire", x + "," + y + "," + z), new NetworkRegistry.TargetPoint(0, (double) x, (double) y, (double) z, 10.0));
+            main.simpleNetworkWrapper.sendToAllAround(new MessageClientPlaySound("gun_saddlebagRS_fire", x + "," + y + "," + z), new NetworkRegistry.TargetPoint(0, x,  y,  z, 10.0));
             main.simpleNetworkWrapper.sendTo(new MessageClientPlaySound("gun_saddlebagRS_fire", x + "," + y + "," + z), (EntityPlayerMP) playerIn);
         }
     }
@@ -184,7 +216,7 @@ public class GunFire {
 
         }
         if (projectileType == "firearm") {
-            bullet(world, player, item, params, type);
+            bullet(world, player, item, params, type,0D,0D,0D,0D,0D,0D,0F,0F,true);
         }
         if (projectileType == "pellet") {
             pellet(world, player, item, params, type);
