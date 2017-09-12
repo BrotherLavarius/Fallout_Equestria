@@ -21,12 +21,15 @@ public enum GlobalsGunStats {
      * 7.Load Type by (clip,ammo)
      * 8.Gun name
      */
-    TEN_MM(10, 10, 4.5F, 0F, false, "firearm", "clip", GlobalNames.TenMM),
-    FOUR_TEN_MM(7, 12, 4.5F, 0F, false, "firearm", "clip", GlobalNames.FourTenMM),
-    LASER_PISTOL(12, 30, 4.5F, 0F, false, "laser", "clip", GlobalNames.LaserPistol),
+    TEN_MM(10, 10, 4.5F, 0.7F, false, "firearm", "clip", GlobalNames.TenMM),
+    TEN_MM_SUB(8, 30, 4.5F, 0.5F, true, "firearm", "clip", GlobalNames.TenMMSub),
+    FOURFOUR_REVOLVER(25, 6, 4.5F, 1.5F, false, "firearm", "ammo", GlobalNames.fortyfour_revolver),
+    PLASMA_PISTOL(14, 19, 4.5F, 0F, false, "plasma", "clip", GlobalNames.magic_plasma_pistol),
+    FOUR_TEN_MM(17, 9, 4.5F, 0.9F, false, "firearm", "clip", GlobalNames.FourTenMM),
+    LASER_PISTOL(8, 30, 4.5F, 0F, false, "laser", "clip", GlobalNames.LaserPistol),
     FLARE_GUN(1, 1, 4.5F, 0F, false, "flare", "ammo", GlobalNames.flare_gun),
     DB_SHOUTGUN(1, 2, 4.5F, 0F, false, "pellet", "ammo",  GlobalNames.db_shoutgun),
-    SEVEN_MM_RIFLE(14, 45, 4.5F, 0F, false, "firearm", "clip", GlobalNames.Seven_mm_rifle);
+    SEVEN_MM_RIFLE(23, 25, 4.5F, 0F, false, "firearm", "clip", GlobalNames.Seven_mm_rifle);
 
 
 
@@ -39,6 +42,16 @@ public enum GlobalsGunStats {
     private String LoadType;
     private List<SoundEvent> sounds;
     private String GunName;
+
+    // Reverse-lookup map for getting a day from an abbreviation
+    public static final Map<String, GlobalsGunStats> lookup = new HashMap<String, GlobalsGunStats>();
+
+    static {
+        for (GlobalsGunStats d : GlobalsGunStats.values()) {
+            lookup.put(d.getGunName(), d);
+        }
+    }
+
 
     GlobalsGunStats(int Damage, int Clipsize, float velocity, float yawOffset, boolean autofireSupport, String ProjectileType, String LoadType, String GunName) {
         this.Damage = Damage;

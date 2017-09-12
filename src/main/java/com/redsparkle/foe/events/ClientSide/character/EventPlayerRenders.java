@@ -4,6 +4,7 @@ import com.redsparkle.foe.playerrenderers.ArmorLayerRender;
 import com.redsparkle.foe.playerrenderers.GunRender;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
+import net.minecraft.client.model.ModelBiped;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.client.event.RenderPlayerEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
@@ -30,13 +31,15 @@ public class EventPlayerRenders {
             //event.getEntityPlayer().swingProgressInt = 0;
         }
     }
-//    @SubscribeEvent(receiveCanceled = true)
-//    public void onWeaponCarry(RenderPlayerEvent.Pre event) {
-//        if (event.getEntity() instanceof EntityPlayer && !done) {
-//            EntityPlayer player = (EntityPlayer) event.getEntity();
-//            if (player.getHeldItemMainhand().getItem() instanceof Item_Firearm) {
-//
-//            }
-//        }
-//    }
+
+    @SubscribeEvent(receiveCanceled = true)
+    public void onWeaponCarry(RenderPlayerEvent.Post event) {
+        if (event.getEntity() instanceof EntityPlayer && !done) {
+            EntityPlayer player = (EntityPlayer) event.getEntity();
+            if (player.getHeldItemMainhand().getItem() instanceof Item_Firearm) {
+                event.isCanceled();
+                event.getRenderer().getMainModel().rightArmPose.equals(ModelBiped.ArmPose.EMPTY);
+            }
+        }
+    }
 }

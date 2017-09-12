@@ -1,5 +1,5 @@
 # Blender MTL File: 'None'
-# Material Count: 4
+# Material Count: 5
 
 newmtl Foregrou
 Ns 96.078431
@@ -33,7 +33,7 @@ d 1.000000
 illum 2
 map_Kd fallout_equestria:gun/metal
 
-newmtl _1
+newmtl _12
 Ns 96.078431
 Ka 1.000000 1.000000 1.000000
 Kd 0.511373 0.511373 0.511373
@@ -42,4 +42,15 @@ Ke 0.000000 0.000000 0.000000
 Ni 1.000000
 d 1.000000
 illum 2
-map_Kd fallout_equestria:gun/_1
+map_Kd fallout_equestria:gun/_12
+
+newmtl _13
+Ns 96.078431
+Ka 1.000000 1.000000 1.000000
+Kd 0.583529 0.586667 0.498824
+Ks 0.164706 0.164706 0.164706
+Ke 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd fallout_equestria:gun/_13

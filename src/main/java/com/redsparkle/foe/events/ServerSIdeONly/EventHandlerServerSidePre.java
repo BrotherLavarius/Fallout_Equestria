@@ -4,38 +4,19 @@ import com.redsparkle.api.Capability.Items.Ammo.AmmoFactoryProvider;
 import com.redsparkle.api.Capability.Items.Ammo.IAmmoInterface;
 import com.redsparkle.api.Capability.Items.Gun.GunFactoryProvider;
 import com.redsparkle.api.Capability.Items.Gun.IGunInterface;
-import com.redsparkle.api.Capability.Player.FirtsTimeJoin.FTJFactoryProvider;
 import com.redsparkle.api.Capability.Player.Inventory.IAdvInventory;
 import com.redsparkle.api.Capability.Player.Inventory.IAdvProvider;
-import com.redsparkle.api.Capability.Player.level.ILevelCapability;
-import com.redsparkle.api.Capability.Player.rad.IRadiationCapability;
-import com.redsparkle.api.Capability.Player.rad.RadsFactoryProvider;
-import com.redsparkle.api.Capability.Player.saddlegun_shooting.ITrigger_item;
 import com.redsparkle.api.Capability.Player.saddlegun_shooting.ITrigger_item_Provider;
-import com.redsparkle.api.Capability.Player.skills.ISkillsCapability;
-import com.redsparkle.api.Capability.Player.skills.SkillsFactoryProvider;
-import com.redsparkle.api.Capability.Player.spechial.ISpechialCapability;
-import com.redsparkle.api.Capability.Player.spechial.SpechialFactoryProvider;
-import com.redsparkle.api.Capability.Player.water.IWaterCapability;
-import com.redsparkle.api.Capability.Player.water.WaterFactoryProvider;
 import com.redsparkle.api.items.helpers.Item_Instances.Item_AmmoHolder;
 import com.redsparkle.api.items.helpers.Item_Instances.Item_Firearm;
 import com.redsparkle.api.items.helpers.Item_Instances.Item_Saddlebag_harness;
-import com.redsparkle.api.utils.PlayerParamsSetup;
-import com.redsparkle.foe.Init.ItemInit;
 import com.redsparkle.foe.main;
 import com.redsparkle.foe.network.ClientServerOneClass.MessageUpdateAmmoHolders;
 import com.redsparkle.foe.network.ClientServerOneClass.MessageUpdateClientTrigger_Item;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.fml.common.gameevent.PlayerEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
-
-import static com.redsparkle.api.Capability.Player.level.LevelFactoryProvider.LEVEL_CAPABILITY;
 
 /**
  * Created by hoijima on 24.05.17.

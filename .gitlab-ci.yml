@@ -40,7 +40,9 @@ deploy:
   script:
   - pip install awscli
   - aws s3 cp build/libs/Fallout_Equestria*[0-9].jar s3://$S3_BUCKET_NAME/
-
+  only:
+    - master
+  when: manual
 
 
 after_script:

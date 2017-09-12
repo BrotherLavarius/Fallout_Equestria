@@ -32,7 +32,6 @@ public class GUI_AdditionalInventory extends GuiContainer {
     @Override
     public void onGuiClosed() {
         if (this.mc.player != null) {
-            System.out.println("GUI CLOSED!");
             main.simpleNetworkWrapper.sendToServer(new MessageAdvInv_SYNC(mc.player.getCapability(IAdvProvider.Adv_Inv, null)));
             main.simpleNetworkWrapper.sendToServer(new MessageAdvInv("close"));
             this.inventorySlots.onContainerClosed(this.mc.player);

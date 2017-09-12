@@ -15,3 +15,6 @@ out
 build
 .idea
 run
+.gradle/*
+.gradle/gradle.log
+.gradle/2.14/taskArtifacts/*

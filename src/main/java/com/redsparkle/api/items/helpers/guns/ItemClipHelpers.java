@@ -3,12 +3,16 @@ package com.redsparkle.api.items.helpers.guns;
 import com.redsparkle.api.Capability.Items.Ammo.AmmoFactoryProvider;
 import com.redsparkle.api.Capability.Items.Ammo.IAmmoInterface;
 import com.redsparkle.foe.Init.ItemInit;
-import com.redsparkle.foe.Init.SoundInit;
+import com.redsparkle.foe.main;
+import com.redsparkle.foe.network.MessageClientPlaySound;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.SoundCategory;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.common.network.NetworkRegistry;
+import net.minecraftforge.fml.relauncher.Side;
+
 /**
  * Created by hoijima on 23.06.17.
  */
@@ -37,9 +41,16 @@ public class ItemClipHelpers {
         if (ammo == ItemStack.EMPTY) {
             return clip;
         } else if (capa.getAmmo() < capa.getMaxAmmo()){
-            ammo.shrink(1);
-            clip.getCapability(AmmoFactoryProvider.AMMO_STORAGE,null).addAmmo(1);
-            worldIn.playSound(playerIn, playerIn.getPosition(), SoundInit.clip_load, SoundCategory.HOSTILE, 1.0F, 1.0F);
+            if (!worldIn.isRemote & Side.SERVER.isServer()) {
+                ammo.shrink(1);
+                clip.getCapability(AmmoFactoryProvider.AMMO_STORAGE,null).addAmmo(1);
+                double x = playerIn.getPosition().getX();
+                double y = playerIn.getPosition().getY();
+                double z = playerIn.getPosition().getZ();
+
+                main.simpleNetworkWrapper.sendToAllAround(new MessageClientPlaySound("gun_clipReload", x + "," + y + "," + z), new NetworkRegistry.TargetPoint(0,  x,  y, z, 10.0));
+                main.simpleNetworkWrapper.sendTo(new MessageClientPlaySound("gun_clipReload", x + "," + y + "," + z), (EntityPlayerMP) playerIn);
+            }
             return clip;
         }
         return clip;

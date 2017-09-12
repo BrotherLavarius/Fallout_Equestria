@@ -1,10 +1,7 @@
 package com.redsparkle.foe.network;
 
-import com.redsparkle.api.items.helpers.guns.Reload;
+import com.redsparkle.foe.DedicatedServerProxy;
 import io.netty.buffer.ByteBuf;
-import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.util.IThreadListener;
-import net.minecraft.world.WorldServer;
 import net.minecraftforge.fml.common.network.ByteBufUtils;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
@@ -16,7 +13,7 @@ import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 public class MessageGunReload implements IMessage {
 
 
-    String type;
+    public String type;
 
     public MessageGunReload() {
     }
@@ -39,15 +36,7 @@ public class MessageGunReload implements IMessage {
     public static class HandlerServer implements IMessageHandler<MessageGunReload, IMessage> {
         @Override
         public IMessage onMessage(MessageGunReload message, MessageContext ctx) {
-
-            EntityPlayerMP player = ctx.getServerHandler().player;
-            IThreadListener mainThread = (WorldServer) ctx.getServerHandler().player.world;
-            mainThread.addScheduledTask(new Runnable() {
-                @Override
-                public void run() {
-                    Reload.reload_processor(player,message.type);
-                }
-            });
+            DedicatedServerProxy.MessageGunReload_hadnler(message,ctx);
             return null;
         }
 

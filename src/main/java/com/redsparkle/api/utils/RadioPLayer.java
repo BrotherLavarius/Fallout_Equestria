@@ -27,7 +27,6 @@ public class RadioPLayer {
                     try {
                         playerThreadState = "running";
                         URL file = new URL(Url);
-                        //System.out.print("Starting Playing thread");
                         // Get AudioInputStream from given file.
                         in = AudioSystem.getAudioInputStream(file);
                         din = null;

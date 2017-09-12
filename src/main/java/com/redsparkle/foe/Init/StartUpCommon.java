@@ -1,8 +1,10 @@
 package com.redsparkle.foe.Init;
+
 /**
  * Created by hoijima on 14.12.16.
  */
 public class StartUpCommon {
+
     public static void preInitCommon() {
         ConfigInit.preInit();
 //        System.out.println("MBE70: myInteger=" + ConfigInit.myInteger
@@ -26,6 +28,7 @@ public class StartUpCommon {
 
     }
     public static void InitCommon() {
+
     }
     public static void postInitCommon() {
     }
