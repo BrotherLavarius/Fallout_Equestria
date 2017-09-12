@@ -3,7 +3,9 @@ package com.redsparkle.foe.Init;
 import com.redsparkle.api.utils.GlobalNames;
 import net.minecraft.util.SoundEvent;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by hoijima on 25.07.17.
@@ -40,6 +42,16 @@ public enum GlobalsGunStats {
     private String LoadType;
     private List<SoundEvent> sounds;
     private String GunName;
+
+    // Reverse-lookup map for getting a day from an abbreviation
+    public static final Map<String, GlobalsGunStats> lookup = new HashMap<String, GlobalsGunStats>();
+
+    static {
+        for (GlobalsGunStats d : GlobalsGunStats.values()) {
+            lookup.put(d.getGunName(), d);
+        }
+    }
+
 
     GlobalsGunStats(int Damage, int Clipsize, float velocity, float yawOffset, boolean autofireSupport, String ProjectileType, String LoadType, String GunName) {
         this.Damage = Damage;

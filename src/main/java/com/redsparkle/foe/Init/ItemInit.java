@@ -99,7 +99,7 @@ public class ItemInit {
     public static final LaserPistol laserPistol = new LaserPistol(GlobalsGunStats.LASER_PISTOL.getGunName(), GlobalsGunStats.LASER_PISTOL, battery, Items.AIR);
 
     public static final FourFourRevolver fourFourRevolver = new FourFourRevolver(GlobalsGunStats.FOURFOUR_REVOLVER.getGunName(), GlobalsGunStats.FOURFOUR_REVOLVER, Items.AIR, fourFourMagAmmo);
-    public static final SB_shoutgun sb_shoutgun = new SB_shoutgun(GlobalsGunStats.DB_SHOUTGUN.getGunName(), GlobalsGunStats.DB_SHOUTGUN, Items.AIR, sShell);
+    public static final DB_shoutgun db_shoutgun = new DB_shoutgun(GlobalsGunStats.DB_SHOUTGUN.getGunName(), GlobalsGunStats.DB_SHOUTGUN, Items.AIR, sShell);
     public static final FlareGun flareGun = new FlareGun(GlobalsGunStats.FLARE_GUN.getGunName(), GlobalsGunStats.FLARE_GUN, Items.AIR, flare);
 
     public static final Item_bullet itb = new Item_bullet("bullet");
@@ -126,6 +126,7 @@ public class ItemInit {
     public static final Map<String, Object> gun_ammo_lookup = new HashMap<String, Object>();
     public static final Map<String, Object> gun_case_lookup = new HashMap<String, Object>();
     public static final Map<Object, Object> Clip_ammo_lookup = new HashMap<Object, Object>();
+    public static final Map<String, Object> gun_lookup = new HashMap<String, Object>();
 
 
     /**
@@ -189,7 +190,7 @@ public class ItemInit {
                 plasma_pistol,
 
                 fourFourRevolver,
-                sb_shoutgun,
+                db_shoutgun,
                 flareGun,
 
 
@@ -257,7 +258,17 @@ public class ItemInit {
         gun_case_lookup.put(GlobalsGunStats.FLARE_GUN.getGunName(), Items.AIR);
         gun_case_lookup.put(GlobalsGunStats.SEVEN_MM_RIFLE.getGunName(), seven_mm_bulletCase);
 
+        gun_lookup.put(GlobalsGunStats.TEN_MM.getGunName(), tenMM);
+        gun_lookup.put(GlobalsGunStats.TEN_MM_SUB.getGunName(), tenMMsub);
+        gun_lookup.put(GlobalsGunStats.FOUR_TEN_MM.getGunName(), fourTenMM);
+        gun_lookup.put(GlobalsGunStats.FOURFOUR_REVOLVER.getGunName(), fourFourRevolver);
 
+        gun_lookup.put(GlobalsGunStats.DB_SHOUTGUN.getGunName(), db_shoutgun);
+        gun_lookup.put(GlobalsGunStats.LASER_PISTOL.getGunName(), laserPistol);
+        gun_lookup.put(GlobalsGunStats.PLASMA_PISTOL.getGunName(), plasma_pistol);
+
+        gun_lookup.put(GlobalsGunStats.FLARE_GUN.getGunName(), flare);
+        gun_lookup.put(GlobalsGunStats.SEVEN_MM_RIFLE.getGunName(), seven_mm_rifle_LS);
 
 
     }

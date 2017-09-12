@@ -1,22 +1,11 @@
 package com.redsparkle.foe.network;
 
-import com.redsparkle.api.Capability.Player.Inventory.IAdvProvider;
-import com.redsparkle.api.items.helpers.Item_Instances.Item_Firearm;
-import com.redsparkle.api.items.helpers.Item_Instances.Item_SaggleBagGun;
 import com.redsparkle.foe.ClientOnlyProxy;
-import com.redsparkle.foe.Init.GlobalsGunStats;
-import com.redsparkle.foe.Init.SoundInit;
 import io.netty.buffer.ByteBuf;
-import net.minecraft.client.Minecraft;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.util.IThreadListener;
-import net.minecraft.util.SoundCategory;
 import net.minecraftforge.fml.common.network.ByteBufUtils;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
 /**
  * Created by NENYN on 1/13/2017.

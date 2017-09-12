@@ -1,11 +1,7 @@
 package com.redsparkle.foe.network;
 
-import com.redsparkle.api.items.helpers.guns.Reload;
 import com.redsparkle.foe.DedicatedServerProxy;
 import io.netty.buffer.ByteBuf;
-import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.util.IThreadListener;
-import net.minecraft.world.WorldServer;
 import net.minecraftforge.fml.common.network.ByteBufUtils;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;

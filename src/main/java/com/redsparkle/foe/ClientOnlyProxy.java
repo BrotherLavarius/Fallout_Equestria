@@ -18,8 +18,6 @@ import com.redsparkle.api.Capability.Player.spechial.ISpechialCapability;
 import com.redsparkle.api.Capability.Player.spechial.SpechialFactoryProvider;
 import com.redsparkle.api.Capability.Player.water.IWaterCapability;
 import com.redsparkle.api.Capability.Player.water.WaterFactoryProvider;
-import com.redsparkle.api.items.helpers.Item_Instances.Item_Firearm;
-import com.redsparkle.api.items.helpers.Item_Instances.Item_SaggleBagGun;
 import com.redsparkle.api.items.helpers.guns.GunFire;
 import com.redsparkle.api.utils.ItemCatalog;
 import com.redsparkle.foe.Init.GlobalsGunStats;
@@ -286,31 +284,25 @@ public class ClientOnlyProxy extends CommonProxy {
                 String whatToPlay = message.type;
                 String position = message.position;
                 // Types of things vary from sound_env_rads to gun_tenmm_fire
-                String[] whatToPlayArray = whatToPlay.split("_");
+                String[] whatToPlayArray = whatToPlay.split("\\|");
                 String[] positionArray = position.split(",");
                 GlobalsGunStats gunStats = null;
 
                 if (whatToPlayArray[0].equalsIgnoreCase("gun")) {
-                    if (whatToPlayArray[1].equalsIgnoreCase("main")) {
-                        gunStats = ((Item_Firearm) player.getHeldItemMainhand().getItem()).params;
+                    if (whatToPlayArray[1].equalsIgnoreCase("main")||whatToPlayArray[1].equalsIgnoreCase("saddlebagLS")||whatToPlayArray[1].equalsIgnoreCase("saddlebagRS")) {
+                        String search = whatToPlayArray[2];
+                        gunStats = GlobalsGunStats.lookup.get(search);
                     }
-                    if (whatToPlayArray[1].equalsIgnoreCase("saddlebagLS")) {
-                        gunStats = ((Item_SaggleBagGun) player.getCapability(IAdvProvider.Adv_Inv, null).getStackInSlot(6).getItem()).params;
-                    }
-
-                    if (whatToPlayArray[1].equalsIgnoreCase("saddlebagRS")) {
-                        gunStats = ((Item_SaggleBagGun) player.getCapability(IAdvProvider.Adv_Inv, null).getStackInSlot(7).getItem()).params;
-                    }
-                    if (whatToPlayArray[2].equalsIgnoreCase("fire")) {
+                    if (whatToPlayArray[3].equalsIgnoreCase("fire")) {
                         player.world.playSound(Double.parseDouble(positionArray[0]), Double.parseDouble(positionArray[1]), Double.parseDouble(positionArray[2]),
                                 SoundInit.lookup.get(gunStats.getGunName()).get(0), SoundCategory.AMBIENT, 1.0F, 1.0F, true);
-                    } else if (whatToPlayArray[2].equalsIgnoreCase("dry")) {
+                    } else if (whatToPlayArray[3].equalsIgnoreCase("dry")) {
                         player.world.playSound(Double.parseDouble(positionArray[0]), Double.parseDouble(positionArray[1]), Double.parseDouble(positionArray[2]),
                                 SoundInit.lookup.get(gunStats.getGunName()).get(1), SoundCategory.AMBIENT, 1.0F, 1.0F, true);
-                    } else if (whatToPlayArray[2].equalsIgnoreCase("reload")) {
+                    } else if (whatToPlayArray[3].equalsIgnoreCase("reload")) {
                         player.world.playSound(Double.parseDouble(positionArray[0]), Double.parseDouble(positionArray[1]), Double.parseDouble(positionArray[2]),
                                 SoundInit.lookup.get(gunStats.getGunName()).get(2), SoundCategory.AMBIENT, 1.0F, 1.0F, true);
-                    } else if (whatToPlayArray[2].equalsIgnoreCase("clipout")) {
+                    } else if (whatToPlayArray[3].equalsIgnoreCase("clipout")) {
                         player.world.playSound(Double.parseDouble(positionArray[0]), Double.parseDouble(positionArray[1]), Double.parseDouble(positionArray[2]),
                                 SoundInit.lookup.get(gunStats.getGunName()).get(3), SoundCategory.AMBIENT, 1.0F, 1.0F, true);
                     }

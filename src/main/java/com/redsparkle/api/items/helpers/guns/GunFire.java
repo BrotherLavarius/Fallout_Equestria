@@ -101,14 +101,10 @@ public class GunFire {
             xHeading=playerIn.getLookVec().x;
             yHeading=playerIn.getLookVec().y;
             zHeading=playerIn.getLookVec().z;
-            SendSoundMessage(playerIn, xPl, yPl, zPl, type);
-            main.simpleNetworkWrapper.sendToAll(new MessageGunFire(80,xPl,yPl,zPl,xHeading,yHeading,zHeading,params.getVelocity(),1.5F));
+            SendSoundMessage(playerIn,params.getGunName(), xPl, yPl, zPl, type);
+            main.simpleNetworkWrapper.sendToAllAround(new MessageGunFire(80,xPl,yPl,zPl,xHeading,yHeading,zHeading,params.getVelocity(),1.5F),new NetworkRegistry.TargetPoint(0,  xPl,  yPl,  zPl, 60.0));
         }
-        else {
-//            EntityBullet bullet = new EntityBullet(worldIn,x,y+playerIn.getEyeHeight(),z);
-//            bullet.setThrowableHeading(xHeading,yHeading,zHeading,vel,inac);
-//            worldIn.spawnEntity(bullet);
-        }
+
     }
 
     public static void pellet(World worldIn, EntityPlayer playerIn, Item item, GlobalsGunStats params, int type) {
@@ -124,7 +120,7 @@ public class GunFire {
         int y = playerIn.getPosition().getY();
         int z = playerIn.getPosition().getZ();
         if (!worldIn.isRemote & Side.SERVER.isServer()) {
-            SendSoundMessage(playerIn, x, y, z, type);
+            //SendSoundMessage(playerIn, x, y, z, type);
 
             main.simpleNetworkWrapper.sendToAll(new MessageGunFire(incode_type(type)));
         }
@@ -142,7 +138,7 @@ public class GunFire {
         int y = playerIn.getPosition().getY();
         int z = playerIn.getPosition().getZ();
         if (!worldIn.isRemote & Side.SERVER.isServer()) {
-            SendSoundMessage(playerIn, x, y, z, type);
+            //SendSoundMessage(playerIn, x, y, z, type);
 
             main.simpleNetworkWrapper.sendToAll(new MessageGunFire(incode_type(type)));
         }
@@ -156,7 +152,7 @@ public class GunFire {
         int y = playerIn.getPosition().getY();
         int z = playerIn.getPosition().getZ();
         if (!worldIn.isRemote & Side.SERVER.isServer()) {
-            SendSoundMessage(playerIn, x, y, z, type);
+            //SendSoundMessage(playerIn, x, y, z, type);
 
             main.simpleNetworkWrapper.sendToAll(new MessageGunFire(incode_type(type)));
         }
@@ -172,24 +168,24 @@ public class GunFire {
         int y = playerIn.getPosition().getY();
         int z = playerIn.getPosition().getZ();
         if (!worldIn.isRemote & Side.SERVER.isServer()) {
-            SendSoundMessage(playerIn, x, y, z, type);
+            //SendSoundMessage(playerIn, x, y, z, type);
 
             main.simpleNetworkWrapper.sendToAllAround(new MessageGunFire(incode_type(type)),new NetworkRegistry.TargetPoint(0, (double) x, (double) y,(double) z,  20.0));
         }
     }
 
-    public static void SendSoundMessage(EntityPlayer playerIn, double x, double y, double z, int type) {
+    public static void SendSoundMessage(EntityPlayer playerIn,String gunname, double x, double y, double z, int type) {
         if (type == 0) {
-            main.simpleNetworkWrapper.sendToAllAround(new MessageClientPlaySound("gun_main_fire", x + "," + y + "," + z), new NetworkRegistry.TargetPoint(0,  x,  y,  z, 10.0));
-            main.simpleNetworkWrapper.sendTo(new MessageClientPlaySound("gun_main_fire", x + "," + y + "," + z), (EntityPlayerMP) playerIn);
+            main.simpleNetworkWrapper.sendToAllAround(new MessageClientPlaySound("gun|main|"+gunname+"|fire", x + "," + y + "," + z), new NetworkRegistry.TargetPoint(0,  x,  y,  z, 30.0));
+            main.simpleNetworkWrapper.sendTo(new MessageClientPlaySound("gun|main|"+gunname+"|fire", x + "," + y + "," + z), (EntityPlayerMP) playerIn);
         }
         if (type == 10) {
-            main.simpleNetworkWrapper.sendToAllAround(new MessageClientPlaySound("gun_saddlebagLS_fire", x + "," + y + "," + z), new NetworkRegistry.TargetPoint(0,  x,  y, z, 10.0));
-            main.simpleNetworkWrapper.sendTo(new MessageClientPlaySound("gun_saddlebagLS_fire", x + "," + y + "," + z), (EntityPlayerMP) playerIn);
+            main.simpleNetworkWrapper.sendToAllAround(new MessageClientPlaySound("gun|saddlebagLS|"+gunname+"|fire", x + "," + y + "," + z), new NetworkRegistry.TargetPoint(0,  x,  y, z, 30.0));
+            main.simpleNetworkWrapper.sendTo(new MessageClientPlaySound("gun|saddlebagLS|"+gunname+"|fire", x + "," + y + "," + z), (EntityPlayerMP) playerIn);
         }
         if (type == 20) {
-            main.simpleNetworkWrapper.sendToAllAround(new MessageClientPlaySound("gun_saddlebagRS_fire", x + "," + y + "," + z), new NetworkRegistry.TargetPoint(0, x,  y,  z, 10.0));
-            main.simpleNetworkWrapper.sendTo(new MessageClientPlaySound("gun_saddlebagRS_fire", x + "," + y + "," + z), (EntityPlayerMP) playerIn);
+            main.simpleNetworkWrapper.sendToAllAround(new MessageClientPlaySound("gun|saddlebagRS|"+gunname+"|fire", x + "," + y + "," + z), new NetworkRegistry.TargetPoint(0, x,  y,  z, 30.0));
+            main.simpleNetworkWrapper.sendTo(new MessageClientPlaySound("gun|saddlebagRS|"+gunname+"|fire", x + "," + y + "," + z), (EntityPlayerMP) playerIn);
         }
     }
 

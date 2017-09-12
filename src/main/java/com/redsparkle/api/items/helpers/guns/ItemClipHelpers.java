@@ -41,10 +41,9 @@ public class ItemClipHelpers {
         if (ammo == ItemStack.EMPTY) {
             return clip;
         } else if (capa.getAmmo() < capa.getMaxAmmo()){
-            ammo.shrink(1);
-            clip.getCapability(AmmoFactoryProvider.AMMO_STORAGE,null).addAmmo(1);
             if (!worldIn.isRemote & Side.SERVER.isServer()) {
-
+                ammo.shrink(1);
+                clip.getCapability(AmmoFactoryProvider.AMMO_STORAGE,null).addAmmo(1);
                 double x = playerIn.getPosition().getX();
                 double y = playerIn.getPosition().getY();
                 double z = playerIn.getPosition().getZ();

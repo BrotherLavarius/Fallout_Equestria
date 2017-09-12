@@ -94,7 +94,7 @@ public class RenderingInit {
         ModelLoader.setCustomModelResourceLocation(tenMM, 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.TenMM, "inventory"));
         ModelLoader.setCustomModelResourceLocation(fourTenMM, 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.FourTenMM, "inventory"));
         ModelLoader.setCustomModelResourceLocation(laserPistol, 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.LaserPistol, "inventory"));
-        ModelLoader.setCustomModelResourceLocation(sb_shoutgun, 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.db_shoutgun, "inventory"));
+        ModelLoader.setCustomModelResourceLocation(db_shoutgun, 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.db_shoutgun, "inventory"));
         ModelLoader.setCustomModelResourceLocation(flareGun, 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.flare_gun, "inventory"));
         ModelLoader.setCustomModelResourceLocation(fourFourRevolver, 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.fortyfour_revolver, "inventory"));
         ModelLoader.setCustomModelResourceLocation(plasma_pistol, 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.magic_plasma_pistol, "inventory"));

@@ -1,15 +1,12 @@
 package com.redsparkle.foe.mobeffects;
 
 import com.redsparkle.api.utils.PlayerUtil;
-import com.redsparkle.foe.Init.ItemInit;
 import com.redsparkle.foe.Init.PotionInit;
-import com.redsparkle.foe.items.armor.powered.t40head;
 import com.redsparkle.foe.main;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.ResourceLocation;
