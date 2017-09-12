@@ -18,9 +18,21 @@ public class EntityFlame extends EntityThrowable {
     public float damage;
     public EnumParticleTypes effect;
     public EntityLivingBase shootingEntity;
+    public double x;
+    public double y;
+    public double z;
     public EntityFlame(World world) {
         super(world);
     }
+
+    public EntityFlame(World worldIn, double x, double y, double z) {
+        this(worldIn);
+        this.setPosition(x, y, z);
+        this.x = x;
+        this.y = y;
+        this.z = z;
+    }
+
     public EntityFlame(World world, EntityLivingBase entity) {
         super(world, entity);
     }

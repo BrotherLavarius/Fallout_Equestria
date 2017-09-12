@@ -12,7 +12,6 @@ import com.redsparkle.foe.items.guns.entitys.laserFired.EntityLaser;
 import com.redsparkle.foe.items.guns.entitys.spreadPellet_shotgun.*;
 import com.redsparkle.foe.main;
 import com.redsparkle.foe.network.MessageClientPlaySound;
-import com.redsparkle.foe.network.MessageGunFire;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.Item;
@@ -20,12 +19,15 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 
 import java.awt.*;
+import java.text.DecimalFormat;
 
 /**
  * Created by hoijima on 02.09.17.
  */
 @SuppressWarnings("ALL")
 public class GunFire {
+
+    static DecimalFormat df = new DecimalFormat("#.0");
 
 
     public static void GunFire_clienHandler(World worldln, EntityPlayer player,int type,double x,double y,double z,double xHeading,double yHeading,double zHeading ,float vel,float inac){
@@ -96,7 +98,8 @@ public class GunFire {
         if (remote) {
             int damage_firearms = playerIn.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getFirearms();
             EntityBullet bullet = new EntityBullet(worldIn, playerIn);
-            bullet.setHeadingFromThrower(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, params.getVelocity(), 1.5F);
+
+            bullet.setHeadingFromThrower(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, params.getVelocity(), Float.parseFloat(df.format(Math.abs(params.getInaccuracy() / damage_firearms))));
             bullet.setDamage(params.getDamage() + damage_firearms);
             worldIn.spawnEntity(bullet);
             SendRenderMessage(playerIn,params,type,80);
@@ -110,10 +113,11 @@ public class GunFire {
             int damage_firearms = playerIn.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getFirearms();
             Pellet[] pellets = new Pellet[]{new Pellet_one(worldIn, playerIn), new Pellet_two(worldIn, playerIn), new Pellet_tree(worldIn, playerIn), new Pellet_four(worldIn, playerIn), new Pellet_five(worldIn, playerIn), new Pellet_six(worldIn, playerIn)};
             for (int i = 0; i <= (pellets.length - 1); i++) {
-                pellets[i].setHeadingFromThrower(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, params.getVelocity(), 15.5F);
+                pellets[i].setHeadingFromThrower(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, params.getVelocity(), Float.parseFloat(df.format(Math.abs(params.getInaccuracy() / damage_firearms))));
                 pellets[i].setRenderYawOffset(params.getYawOffset());
                 pellets[i].setDamage(params.getDamage() + damage_firearms);
                 worldIn.spawnEntity(pellets[i]);
+
             }
             SendRenderMessage(playerIn,params,type,81);
 
@@ -121,35 +125,48 @@ public class GunFire {
     }
 
     public static void laser(World worldIn, EntityPlayer playerIn, Item item, GlobalsGunStats params, int type, boolean plasma,double x,double y,double z,double xHeading,double yHeading,double zHeading ,float vel,float inac,boolean remote) {
-        int damage_magic_modif = playerIn.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getMagic();
-        int damage_laser_weapons = playerIn.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getEnergyWeapons();
-        EntityLaser laser = new EntityLaser(worldIn, playerIn, plasma);
-        laser.setHeadingFromThrower(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, params.getVelocity(), 0.5F);
-        laser.setRenderYawOffset(params.getYawOffset());
-        laser.setDamage(params.getDamage() + damage_laser_weapons + Math.round(damage_magic_modif / 2));
-        worldIn.spawnEntity(laser);
         int sp_type = 82;
-        if(plasma){sp_type = 83;}
+        if (plasma) {
+            sp_type = 83;
+        }
+        if (remote) {
+            int damage_magic_modif = playerIn.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getMagic();
+            int damage_laser_weapons = playerIn.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getEnergyWeapons();
+            EntityLaser laser = new EntityLaser(worldIn, playerIn, plasma);
+            laser.setHeadingFromThrower(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, params.getVelocity(), Float.parseFloat(df.format(Math.abs(params.getInaccuracy() / (damage_magic_modif + damage_laser_weapons)))));
+            laser.setRenderYawOffset(params.getYawOffset());
+            laser.setDamage(params.getDamage() + damage_laser_weapons + Math.round(damage_magic_modif / 2));
+            worldIn.spawnEntity(laser);
 
-        SendRenderMessage(playerIn,params,type,sp_type);
 
+            SendRenderMessage(playerIn, params, type, sp_type);
+
+        }
     }
 
     public static void flame(World worldIn, EntityPlayer playerIn, Item item, GlobalsGunStats params, int type,double x,double y,double z,double xHeading,double yHeading,double zHeading ,float vel,float inac,boolean remote) {
-        EntityFlame flame = new EntityFlame(worldIn, playerIn);
-        flame.setHeadingFromThrower(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, params.getVelocity(), 3.0F);
-        flame.setDamage(params.getDamage());
-        SendRenderMessage(playerIn,params,type,84);
+        if (remote) {
+            EntityFlame flame = new EntityFlame(worldIn, playerIn);
+            flame.setHeadingFromThrower(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, params.getVelocity(), params.getInaccuracy());
+            flame.setDamage(params.getDamage());
+            SendRenderMessage(playerIn, params, type, 84);
+
+        }
 
     }
 
     public static void flare(World worldIn, EntityPlayer playerIn, Item item, GlobalsGunStats params, int type,double x,double y,double z,double xHeading,double yHeading,double zHeading ,float vel,float inac,boolean remote) {
-        EntityFlare flare = new EntityFlare(worldIn, playerIn);
-        flare.setHeadingFromThrower(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, params.getVelocity(), 3.0F);
-        flare.setRenderYawOffset(params.getYawOffset());
-        flare.setDamage(params.getDamage());
-        worldIn.spawnEntity(flare);
-        SendRenderMessage(playerIn,params,type,85);
+        if (remote) {
+            int damage_firearms = playerIn.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getFirearms();
+            EntityFlare flare = new EntityFlare(worldIn, playerIn);
+
+            flare.setHeadingFromThrower(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, params.getVelocity(), Float.parseFloat(df.format(Math.abs(params.getInaccuracy() / damage_firearms))));
+            flare.setRenderYawOffset(params.getYawOffset());
+            flare.setDamage(params.getDamage());
+            worldIn.spawnEntity(flare);
+            SendRenderMessage(playerIn, params, type, 85);
+
+        }
 
     }
 
@@ -176,7 +193,7 @@ public class GunFire {
         double yHeading=playerIn.getLookVec().y;
         double zHeading=playerIn.getLookVec().z;
         SendSoundMessage(playerIn,params.getGunName(), xPl, yPl, zPl, type);
-        main.simpleNetworkWrapper.sendToAllAround(new MessageGunFire(sp_type,xPl,yPl,zPl,xHeading,yHeading,zHeading,params.getVelocity(),1.5F),new NetworkRegistry.TargetPoint(0,  xPl,  yPl,  zPl, 120.0));
+        //main.simpleNetworkWrapper.sendToAllAround(new MessageGunFire(sp_type,xPl,yPl,zPl,xHeading,yHeading,zHeading,params.getVelocity(),1.5F),new NetworkRegistry.TargetPoint(0,  xPl,  yPl,  zPl, 120.0));
 
     }
     /**
@@ -209,7 +226,7 @@ public class GunFire {
 
         }
         if (projectileType == "laser") {
-            laser(world, player, item, params, type, false,0D,0D,0D,0D,0D,0D,0F,0F,false);
+            laser(world, player, item, params, type, false, 0D, 0D, 0D, 0D, 0D, 0D, 0F, 0F, true);
         }
         if (projectileType == "plasma") {
             laser(world, player, item, params, type, true,0D,0D,0D,0D,0D,0D,0F,0F,true);

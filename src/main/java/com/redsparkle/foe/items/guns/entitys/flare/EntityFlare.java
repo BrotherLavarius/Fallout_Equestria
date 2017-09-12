@@ -16,8 +16,20 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class EntityFlare extends EntityThrowable {
     public float damage;
     public EntityLivingBase shootingEntity;
+    public double x;
+    public double y;
+    public double z;
+
     public EntityFlare(World world) {
         super(world);
+    }
+
+    public EntityFlare(World worldIn, double x, double y, double z) {
+        this(worldIn);
+        this.setPosition(x, y, z);
+        this.x = x;
+        this.y = y;
+        this.z = z;
     }
     public EntityFlare(World world, EntityLivingBase entity) {
         super(world, entity);

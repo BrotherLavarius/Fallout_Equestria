@@ -14,8 +14,20 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 //https://emxtutorials.wordpress.com/creating-a-gun/
 public abstract class EntityAbstractPellet extends EntityThrowable {
     public float damage;
+    public double x;
+    public double y;
+    public double z;
+
     public EntityAbstractPellet(World world) {
         super(world);
+    }
+
+    public EntityAbstractPellet(World worldIn, double x, double y, double z) {
+        this(worldIn);
+        this.setPosition(x, y, z);
+        this.x = x;
+        this.y = y;
+        this.z = z;
     }
     public EntityAbstractPellet(World world, EntityLivingBase entity) {
         super(world, entity);
@@ -57,12 +69,12 @@ public abstract class EntityAbstractPellet extends EntityThrowable {
         if (rayTraceResult.entityHit != null) {
             if (rayTraceResult.entityHit != this.getThrower()) {
                 rayTraceResult.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, this.getThrower()), damage);
-                this.setDead();
+                //this.setDead();
             }
         }
         if (!this.world.isRemote) {
             this.world.setEntityState(this, (byte) 3);
-            this.setDead();
+            //this.setDead();
         }
     }
     public void setDamage(float damage) {
