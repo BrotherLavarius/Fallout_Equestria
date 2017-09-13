@@ -24,6 +24,7 @@ import org.lwjgl.input.Keyboard;
 public class KeyInputHandler {
     public boolean activated = false;
     public int count = 0;
+    public int counter = 0;
     @SubscribeEvent
     public void onKeyInput(InputEvent.KeyInputEvent event) {
         Keyboard.enableRepeatEvents(true);
@@ -70,10 +71,17 @@ public class KeyInputHandler {
 
             if (Keyboard.getEventKeyState()) {
                 if (Keyboard.getEventKeyState()) {
+
+                    int bps = ((Item_Firearm) mc.player.getHeldItemMainhand().getItem()).params.getBps();
                     if (Keyboard.isRepeatEvent()) {
                         // Key held down
                         if (((Item_Firearm) mc.player.getHeldItemMainhand().getItem()).autofireSupport) {
-                            ClientOnlyProxy.FireMessage("gun_main");
+
+                            if (bps == counter) {
+                                ClientOnlyProxy.FireMessage("gun_main");
+                                counter = 0;
+                            }
+                            counter = counter + 1;
                         }
                     } else {
                         // Key pressed
@@ -94,28 +102,39 @@ public class KeyInputHandler {
                 && mc.player.getCapability(IAdvProvider.Adv_Inv, null).getStackInSlot(6).getItem() instanceof Item_SaggleBagGun) {
 
             if (Keyboard.getEventKeyState()) {
+                int bps = ((Item_SaggleBagGun) mc.player.getCapability(IAdvProvider.Adv_Inv, null).getStackInSlot(6).getItem()).params.getBps();
                 if (Keyboard.isRepeatEvent()) {
                     // Key held down
                     if (((Item_SaggleBagGun) mc.player.getCapability(IAdvProvider.Adv_Inv, null).getStackInSlot(6).getItem()).autofireSupport) {
-                        ClientOnlyProxy.FireMessage("gun_saddlebagLS");
+                        if (bps == counter) {
+                            ClientOnlyProxy.FireMessage("gun_saddlebagLS");
+                            counter = 0;
+                        }
+                        counter = counter + 1;
                     }
-                } else {
-                    // Key pressed
-                    ClientOnlyProxy.FireMessage("gun_saddlebagLS");
                 }
-                // Key released
+            } else {
+                // Key pressed
+                ClientOnlyProxy.FireMessage("gun_saddlebagLS");
             }
+                // Key released
         }
+
 
         if (Keyboard.getEventKey() == keyHandler.fire_RSB.getKeyCode()
                 && mc.player.getCapability(ITrigger_item_Provider.TRIGGER_ITEM, null).getStatus()
                 && mc.player.getCapability(IAdvProvider.Adv_Inv, null).getStackInSlot(7).getItem() instanceof Item_SaggleBagGun) {
 
             if (Keyboard.getEventKeyState()) {
+                int bps = ((Item_SaggleBagGun) mc.player.getCapability(IAdvProvider.Adv_Inv, null).getStackInSlot(7).getItem()).params.getBps();
                 if (Keyboard.isRepeatEvent()) {
                     // Key held down
                     if (((Item_SaggleBagGun) mc.player.getCapability(IAdvProvider.Adv_Inv, null).getStackInSlot(7).getItem()).autofireSupport) {
-                        ClientOnlyProxy.FireMessage("gun_saddlebagRS");
+                        if (bps == counter) {
+                            ClientOnlyProxy.FireMessage("gun_saddlebagRS");
+                            counter = 0;
+                        }
+                        counter = counter + 1;
                     }
                 } else {
                     // Key pressed
@@ -145,18 +164,4 @@ public class KeyInputHandler {
 
     }
 
-//    @SubscribeEvent(receiveCanceled = true)
-//    public void onMouseInput(InputEvent.MouseInputEvent event) {
-//        {
-//            //LogHelper.info("At least I get called");
-//            if (Minecraft.getMinecraft().gameSettings.keyBindAttack.isPressed()) {
-//                System.out.println("Left button pressed");
-//                event.setCanceled(true);
-//            }
-//            if (Minecraft.getMinecraft().gameSettings.keyBindUseItem.isPressed()) {
-//                System.out.println("Right button pressed");
-//                event.setCanceled(true);
-//            }
-//        }
-//    }
 }

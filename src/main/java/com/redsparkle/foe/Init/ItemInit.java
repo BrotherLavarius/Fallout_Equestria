@@ -26,10 +26,15 @@ import com.redsparkle.foe.items.meds.RadAway;
 import com.redsparkle.foe.items.meds.RadX;
 import com.redsparkle.foe.items.misc_one_Time_use.LvlingCrystall;
 import com.redsparkle.foe.items.saddlebags.Saddlebags;
+import com.redsparkle.foe.items.saddlebags.Saddlebags_army;
 import com.redsparkle.foe.items.saddlebags.Trigger_Item;
+import com.redsparkle.foe.items.saddlebags.ammo.Five_mmAmmo;
+import com.redsparkle.foe.items.saddlebags.ammo.Five_mm_bulletCase;
 import com.redsparkle.foe.items.saddlebags.ammo.Seven_mmAmmo;
 import com.redsparkle.foe.items.saddlebags.ammo.Seven_mm_bulletCase;
+import com.redsparkle.foe.items.saddlebags.clip.Five_mmClip;
 import com.redsparkle.foe.items.saddlebags.clip.Seven_mmClip;
+import com.redsparkle.foe.items.saddlebags.guns.Five_mm_minigun;
 import com.redsparkle.foe.items.saddlebags.guns.Seven_mm_rifle;
 import com.redsparkle.foe.items.utility.AdvancedEnviropmentMonitor;
 import com.redsparkle.foe.items.utility.PipBuck;
@@ -77,6 +82,8 @@ public class ItemInit {
     public static final TenMMammo tenMMAmmo = new TenMMammo(GlobalNames.TenMMAmmo);
     public static final FourTenMMammo fourTenMMammo = new FourTenMMammo(GlobalNames.FourTenMMAmmo);
     public static final Seven_mmAmmo seven_mmAmmo = new Seven_mmAmmo(GlobalNames.Seven_mmAmmo);
+    public static final Five_mmAmmo five_mmAmmo = new Five_mmAmmo(GlobalNames.Five_mmAmmo);
+
 
 
     public static final TenMMClip tenMMClip = new TenMMClip(GlobalNames.TenMMClip,GlobalsGunStats.TEN_MM.getClipsize(),"for "+GlobalsGunStats.TEN_MM.getGunName());
@@ -85,12 +92,14 @@ public class ItemInit {
     public static final Battery battery = new Battery(GlobalNames.Battery,GlobalsGunStats.SEVEN_MM_RIFLE.getClipsize(),"for "+GlobalsGunStats.LASER_PISTOL.getGunName());
     public static final Seven_mmClip seven_mmClip = new Seven_mmClip(GlobalNames.Seven_mmClip,GlobalsGunStats.SEVEN_MM_RIFLE.getClipsize(),"for "+GlobalsGunStats.SEVEN_MM_RIFLE.getGunName());
     public static final PLasma_Cartridge plasma_cartridge = new PLasma_Cartridge(GlobalNames.plasma_cartidge, GlobalsGunStats.PLASMA_PISTOL.getClipsize(), GlobalsGunStats.PLASMA_PISTOL.getGunName());
-
+    public static final Five_mmClip five_mmClip = new Five_mmClip(GlobalNames.Five_mmClip, GlobalsGunStats.FIVE_MM_MINIGUN.getClipsize(), GlobalsGunStats.FIVE_MM_MINIGUN.getGunName());
 
 
     public static final Seven_mm_bulletCase seven_mm_bulletCase = new Seven_mm_bulletCase(GlobalNames.Seven_mm_bulletCase);
     public static final TenMMbulletCase tenMMbulletCase = new TenMMbulletCase(GlobalNames.TenMMCase);
     public static final FourTenMMbulletCase fourTenMMbulletCase = new FourTenMMbulletCase(GlobalNames.FourTenMMCase);
+    public static final Five_mm_bulletCase five_mm_bulletCase = new Five_mm_bulletCase(GlobalNames.Five_mm_bulletCase);
+
 
     public static final TenMM tenMM = new TenMM(GlobalsGunStats.TEN_MM.getGunName(), GlobalsGunStats.TEN_MM, tenMMClip, tenMMAmmo);
     public static final TenMMSub tenMMsub = new TenMMSub(GlobalsGunStats.TEN_MM_SUB.getGunName(), GlobalsGunStats.TEN_MM_SUB, tenMMSubclip, tenMMAmmo);
@@ -109,8 +118,11 @@ public class ItemInit {
     public static final Seven_mm_rifle seven_mm_rifle_RS = new Seven_mm_rifle(GlobalsGunStats.SEVEN_MM_RIFLE.getGunName() + "_rs", "RS", GlobalsGunStats.SEVEN_MM_RIFLE, seven_mmClip, seven_mmAmmo);
     public static final Seven_mm_rifle seven_mm_rifle_LS = new Seven_mm_rifle(GlobalsGunStats.SEVEN_MM_RIFLE.getGunName() + "_ls", "LS", GlobalsGunStats.SEVEN_MM_RIFLE, seven_mmClip, seven_mmAmmo);
 
+    public static final Five_mm_minigun five_mm_minigun_RS = new Five_mm_minigun(GlobalsGunStats.FIVE_MM_MINIGUN.getGunName() + "_rs", "RS", GlobalsGunStats.FIVE_MM_MINIGUN, five_mmClip, five_mmAmmo);
+    public static final Five_mm_minigun five_mm_minigun_LS = new Five_mm_minigun(GlobalsGunStats.FIVE_MM_MINIGUN.getGunName() + "_ls", "LS", GlobalsGunStats.FIVE_MM_MINIGUN, five_mmClip, five_mmAmmo);
 
     public static final Saddlebags sadlebags = new Saddlebags(GlobalNames.saddlebags);
+    public static final Saddlebags_army saddlebags_army = new Saddlebags_army(GlobalNames.saddlebags_army);
     public static final t40head t40head = new t40head(Armor_material.T40_ARMOR, 0, EntityEquipmentSlot.HEAD);
     public static final t40body t40body = new t40body(Armor_material.T40_ARMOR, 0, EntityEquipmentSlot.CHEST);
     public static final t40legs t40legs = new t40legs(Armor_material.T40_ARMOR, 0, EntityEquipmentSlot.LEGS);
@@ -182,6 +194,7 @@ public class ItemInit {
                 tenMMbulletCase,
                 fourTenMMbulletCase,
 
+
                 tenMM,
                 tenMMsub,
                 fourTenMM,
@@ -195,6 +208,7 @@ public class ItemInit {
 
 
                 itb,
+
                 t40head,
                 t40body,
                 t40legs,
@@ -204,13 +218,23 @@ public class ItemInit {
                 t60head,
                 t60body,
                 t60legs,
+
                 sadlebags,
+                saddlebags_army,
+
                 trigger_item,
+
                 seven_mm_rifle_RS,
                 seven_mm_rifle_LS,
                 seven_mmAmmo,
                 seven_mmClip,
-                seven_mm_bulletCase
+                seven_mm_bulletCase,
+
+                five_mm_minigun_LS,
+                five_mm_minigun_RS,
+                five_mmAmmo,
+                five_mmClip,
+                five_mm_bulletCase,
         };
 
 
@@ -230,17 +254,18 @@ public class ItemInit {
         gun_ammo_lookup.put(GlobalsGunStats.PLASMA_PISTOL.getGunName(), plasma_cartridge);
         gun_ammo_lookup.put(GlobalsGunStats.FOURFOUR_REVOLVER.getGunName(), fourFourMagAmmo);
         gun_ammo_lookup.put(GlobalsGunStats.TEN_MM_SUB.getGunName(), tenMMSubclip);
+        gun_ammo_lookup.put(GlobalsGunStats.FIVE_MM_MINIGUN.getGunName(), five_mmClip);
+
+
 
 
         Clip_ammo_lookup.put(tenMMClip,tenMMAmmo);
         Clip_ammo_lookup.put(fourTenMMClip,fourTenMMammo);
         Clip_ammo_lookup.put(seven_mmClip, seven_mmAmmo);
         Clip_ammo_lookup.put(tenMMSubclip, tenMMAmmo);
-
-
+        Clip_ammo_lookup.put(five_mmClip, five_mmAmmo);
         Clip_ammo_lookup.put(battery,Items.AIR);
         Clip_ammo_lookup.put(plasma_cartridge, Items.AIR);
-
         Clip_ammo_lookup.put(fourFourMagAmmo, Items.AIR);
         Clip_ammo_lookup.put(sShell,Items.AIR);
         Clip_ammo_lookup.put(flare,Items.AIR);
@@ -250,25 +275,23 @@ public class ItemInit {
         gun_case_lookup.put(GlobalsGunStats.TEN_MM_SUB.getGunName(), tenMMbulletCase);
         gun_case_lookup.put(GlobalsGunStats.FOUR_TEN_MM.getGunName(), fourTenMMbulletCase);
         gun_case_lookup.put(GlobalsGunStats.FOURFOUR_REVOLVER.getGunName(), Items.AIR);
-
         gun_case_lookup.put(GlobalsGunStats.DB_SHOUTGUN.getGunName(), Items.AIR);
         gun_case_lookup.put(GlobalsGunStats.LASER_PISTOL.getGunName(), Items.AIR);
         gun_case_lookup.put(GlobalsGunStats.PLASMA_PISTOL.getGunName(), Items.AIR);
-
         gun_case_lookup.put(GlobalsGunStats.FLARE_GUN.getGunName(), Items.AIR);
         gun_case_lookup.put(GlobalsGunStats.SEVEN_MM_RIFLE.getGunName(), seven_mm_bulletCase);
+
 
         gun_lookup.put(GlobalsGunStats.TEN_MM.getGunName(), tenMM);
         gun_lookup.put(GlobalsGunStats.TEN_MM_SUB.getGunName(), tenMMsub);
         gun_lookup.put(GlobalsGunStats.FOUR_TEN_MM.getGunName(), fourTenMM);
         gun_lookup.put(GlobalsGunStats.FOURFOUR_REVOLVER.getGunName(), fourFourRevolver);
-
         gun_lookup.put(GlobalsGunStats.DB_SHOUTGUN.getGunName(), db_shoutgun);
         gun_lookup.put(GlobalsGunStats.LASER_PISTOL.getGunName(), laserPistol);
         gun_lookup.put(GlobalsGunStats.PLASMA_PISTOL.getGunName(), plasma_pistol);
-
         gun_lookup.put(GlobalsGunStats.FLARE_GUN.getGunName(), flare);
         gun_lookup.put(GlobalsGunStats.SEVEN_MM_RIFLE.getGunName(), seven_mm_rifle_LS);
+        gun_lookup.put(GlobalsGunStats.FIVE_MM_MINIGUN.getGunName(), five_mm_minigun_LS);
 
 
     }

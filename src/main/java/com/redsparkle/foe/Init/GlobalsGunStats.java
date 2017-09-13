@@ -21,16 +21,19 @@ public enum GlobalsGunStats {
      * 7.Load Type by (clip,ammo)
      * 8.Gun name
      * 9. Basic inaccuracy - keep in mind this param will be divided by the skill amount
+     * 10. BPS
      */
-    TEN_MM(10, 10, 4.5F, 0.7F, false, "firearm", "clip", GlobalNames.TenMM, 15F),
-    TEN_MM_SUB(8, 30, 4.5F, 0.5F, true, "firearm", "clip", GlobalNames.TenMMSub, 15F),
-    FOURFOUR_REVOLVER(25, 6, 4.5F, 1.5F, false, "firearm", "ammo", GlobalNames.fortyfour_revolver, 15F),
-    PLASMA_PISTOL(14, 19, 4.5F, 0F, false, "plasma", "clip", GlobalNames.magic_plasma_pistol, 5F),
-    FOUR_TEN_MM(17, 9, 4.5F, 0.9F, false, "firearm", "clip", GlobalNames.FourTenMM, 15F),
-    LASER_PISTOL(8, 30, 4.5F, 0F, false, "laser", "clip", GlobalNames.LaserPistol, 15F),
-    FLARE_GUN(1, 1, 4.5F, 0F, false, "flare", "ammo", GlobalNames.flare_gun, 15F),
-    DB_SHOUTGUN(1, 2, 4.5F, 0F, false, "pellet", "ammo", GlobalNames.db_shoutgun, 150F),
-    SEVEN_MM_RIFLE(23, 25, 4.5F, 0F, false, "firearm", "clip", GlobalNames.Seven_mm_rifle, 15F);
+    TEN_MM(10, 10, 4.5F, 0.7F, false, "firearm", "clip", GlobalNames.TenMM, 15F, 0),
+    TEN_MM_SUB(8, 30, 4.5F, 0.5F, true, "firearm", "clip", GlobalNames.TenMMSub, 15F, 5),
+    FOURFOUR_REVOLVER(25, 6, 4.5F, 1.5F, false, "firearm", "ammo", GlobalNames.fortyfour_revolver, 15F, 0),
+    PLASMA_PISTOL(14, 19, 4.5F, 0F, false, "plasma", "clip", GlobalNames.magic_plasma_pistol, 5F, 0),
+    FOUR_TEN_MM(17, 9, 4.5F, 0.9F, false, "firearm", "clip", GlobalNames.FourTenMM, 15F, 0),
+    LASER_PISTOL(8, 30, 4.5F, 0F, false, "laser", "clip", GlobalNames.LaserPistol, 15F, 0),
+    FLARE_GUN(1, 1, 4.5F, 0F, false, "flare", "ammo", GlobalNames.flare_gun, 15F, 0),
+    DB_SHOUTGUN(1, 2, 4.5F, 0F, false, "pellet", "ammo", GlobalNames.db_shoutgun, 150F, 0),
+    SEVEN_MM_RIFLE(23, 25, 4.5F, 0F, false, "firearm", "clip", GlobalNames.Seven_mm_rifle, 15F, 0),
+    FIVE_MM_MINIGUN(9, 200, 4.5F, 0F, true, "firearm", "clip", GlobalNames.Five_mm_minigun, 15F, 2);
+
 
 
     // Reverse-lookup map for getting a day from an abbreviation
@@ -52,9 +55,9 @@ public enum GlobalsGunStats {
     private List<SoundEvent> sounds;
     private String GunName;
     private float inaccuracy;
+    private int bps;
 
-
-    GlobalsGunStats(int Damage, int Clipsize, float velocity, float yawOffset, boolean autofireSupport, String ProjectileType, String LoadType, String GunName, float inaccuracy) {
+    GlobalsGunStats(int Damage, int Clipsize, float velocity, float yawOffset, boolean autofireSupport, String ProjectileType, String LoadType, String GunName, float inaccuracy, int bps) {
         this.Damage = Damage;
         this.Clipsize = Clipsize;
         this.velocity = velocity;
@@ -64,6 +67,7 @@ public enum GlobalsGunStats {
         this.LoadType = LoadType;
         this.GunName = GunName;
         this.inaccuracy = inaccuracy;
+        this.bps = bps;
     }
 
 
@@ -103,4 +107,7 @@ public enum GlobalsGunStats {
         return inaccuracy;
     }
 
+    public int getBps() {
+        return bps;
+    }
 }
