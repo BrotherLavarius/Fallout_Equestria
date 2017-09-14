@@ -1,18 +1,21 @@
 
 repositories {
 	ext.myRepos = {
-		maven { url "https://mvnrepository.com/artifact" }
-		maven { url "http://central.maven.org/maven2"}
-		maven { url "http://clojars.org/repo"}
-  		maven {
-		    url "http://vault.voxelmodpack.com/content/groups/public/"
-		}
-		maven {
-		    url "https://hub.spigotmc.org/nexus/content/groups/public/"
-		}
-		maven {
-		    url "http://repo.spongepowered.org/maven/"
-		}
+            maven { url "https://mvnrepository.com/artifact" }
+            maven { url "http://central.maven.org/maven2"}
+            maven { url "http://clojars.org/repo"}
+            maven {
+                url "http://vault.voxelmodpack.com/content/groups/public/"
+            }
+            maven {
+                url "https://hub.spigotmc.org/nexus/content/groups/public/"
+            }
+            maven {
+                url "http://repo.spongepowered.org/maven/"
+            }
+            maven {
+                url "http://maven.cil.li/"
+            }
     	}
 
 
@@ -23,7 +26,7 @@ repositories {
 
 buildscript {
     repositories {
-        jcenter();
+        jcenter()
         maven { url = "http://files.minecraftforge.net/maven" }
         maven { url = "http://central.maven.org/maven2"}
 
@@ -60,6 +63,7 @@ minecraft {
 }
 
 dependencies {
+compile "li.cil.oc:OpenComputers:MC1.12.1-1.7.0.10+:api"
 compile group: 'org.clojars.aseipp', name: 'jogg', version: '0.0.7'
 compile group: 'org.clojars.aseipp', name: 'jorbis', version: '0.0.15'
 compile group: 'com.googlecode.soundlibs', name: 'tritonus-share', version: '0.3.7.4'
