@@ -4,6 +4,7 @@ import com.redsparkle.api.Capability.Player.Inventory.IAdvProvider;
 import com.redsparkle.api.Capability.Player.saddlegun_shooting.ITrigger_item_Provider;
 import com.redsparkle.api.items.helpers.Item_Instances.Item_Firearm;
 import com.redsparkle.api.items.helpers.Item_Instances.Item_SaggleBagGun;
+import com.redsparkle.api.utils.GunFire_ThreadManager;
 import com.redsparkle.foe.ClientOnlyProxy;
 import com.redsparkle.foe.main;
 import com.redsparkle.foe.network.ClientServerOneClass.MessageAdvInv;
@@ -17,6 +18,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.InputEvent;
 import org.lwjgl.input.Keyboard;
+import org.lwjgl.input.Mouse;
 
 /**
  * Created by NENYN on 1/12/2017.
@@ -25,8 +27,10 @@ public class KeyInputHandler {
     public boolean activated = false;
     public int count = 0;
     public int counter = 0;
+
+    public Thread autofire;
     @SubscribeEvent
-    public void onKeyInput(InputEvent.KeyInputEvent event) {
+    public void onKeyBoardInput(InputEvent.KeyInputEvent event) {
         Keyboard.enableRepeatEvents(true);
         Minecraft mc = Minecraft.getMinecraft();
         EntityPlayerSP player = mc.player;
@@ -164,4 +168,48 @@ public class KeyInputHandler {
 
     }
 
+    @SubscribeEvent
+    public void onMouseInput(InputEvent.MouseInputEvent event) {
+        Minecraft mc = Minecraft.getMinecraft();
+        EntityPlayerSP player = mc.player;
+
+
+//        if (Mouse.getEventButton() == 1
+//                && !mc.player.getCapability(ITrigger_item_Provider.TRIGGER_ITEM, null).getStatus()
+//                && player.getHeldItemMainhand().getItem() instanceof Item_Firearm
+//                ) {
+//
+//
+//            if (Mouse.isButtonDown(1)) {
+//
+//                int bps = ((Item_Firearm) mc.player.getHeldItemMainhand().getItem()).params.getBps();
+//                    // Key held down
+//                if (((Item_Firearm) mc.player.getHeldItemMainhand().getItem()).autofireSupport) {
+//
+//                    while(Mouse.isButtonDown(1)) {
+//                        ClientOnlyProxy.FireMessage("gun_main");
+//                    }
+//                } else {
+//                    // Key pressed
+//                    ClientOnlyProxy.FireMessage("gun_main");
+//
+//                }
+//                // Key released
+//
+//            }
+//
+//        }
+        if (Mouse.getEventButtonState()) {
+            if (Mouse.getEventButton() == 1) {
+                GunFire_ThreadManager.SpawnGunFire("gun_main");
+
+            }
+        } else {
+            if (Mouse.getEventButton() == 1) {
+                GunFire_ThreadManager.StopGunFire("gun_main");
+            }
+        }
+
+
+    }
 }
