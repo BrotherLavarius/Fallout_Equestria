@@ -67,36 +67,7 @@ public class KeyInputHandler {
 
         }
 
-        if (Keyboard.getEventKey() == keyHandler.fire_RSB.getKeyCode()
-                && !mc.player.getCapability(ITrigger_item_Provider.TRIGGER_ITEM, null).getStatus()
-                && player.getHeldItemMainhand().getItem() instanceof Item_Firearm
-                ) {
 
-
-            if (Keyboard.getEventKeyState()) {
-                if (Keyboard.getEventKeyState()) {
-
-                    int bps = ((Item_Firearm) mc.player.getHeldItemMainhand().getItem()).params.getBps();
-                    if (Keyboard.isRepeatEvent()) {
-                        // Key held down
-                        if (((Item_Firearm) mc.player.getHeldItemMainhand().getItem()).autofireSupport) {
-
-                            if (bps == counter) {
-                                ClientOnlyProxy.FireMessage("gun_main");
-                                counter = 0;
-                            }
-                            counter = counter + 1;
-                        }
-                    } else {
-                        // Key pressed
-                        ClientOnlyProxy.FireMessage("gun_main");
-
-                    }
-                    // Key released
-
-                }
-            }
-        }
 
 
 
@@ -200,10 +171,17 @@ public class KeyInputHandler {
 //
 //        }
         if (Mouse.getEventButtonState()) {
-            if (Mouse.getEventButton() == 1) {
-                GunFire_ThreadManager.SpawnGunFire("gun_main");
-
+            if (Mouse.getEventButton() == 1
+                    && !mc.player.getCapability(ITrigger_item_Provider.TRIGGER_ITEM, null).getStatus()
+                    && player.getHeldItemMainhand().getItem() instanceof Item_Firearm) {
+                int bps = ((Item_Firearm) mc.player.getHeldItemMainhand().getItem()).params.getBps();
+                if (((Item_Firearm) mc.player.getHeldItemMainhand().getItem()).autofireSupport) {
+                    GunFire_ThreadManager.SpawnGunFire("gun_main", bps);
+                } else {
+                    ClientOnlyProxy.FireMessage("gun_main");
+                }
             }
+
         } else {
             if (Mouse.getEventButton() == 1) {
                 GunFire_ThreadManager.StopGunFire("gun_main");

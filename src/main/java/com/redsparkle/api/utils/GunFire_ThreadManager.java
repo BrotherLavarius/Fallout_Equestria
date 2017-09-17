@@ -10,8 +10,8 @@ public class GunFire_ThreadManager {
     public static boolean status;
 
 
-    public static void SpawnGunFire(String gunName) {
-        gunFire_thread = new GunFire_Thread(gunName);
+    public static void SpawnGunFire(String gunName, int bps) {
+        gunFire_thread = new GunFire_Thread(gunName, bps);
         status = true;
         gunfire = getThreadByName(gunName);
     }

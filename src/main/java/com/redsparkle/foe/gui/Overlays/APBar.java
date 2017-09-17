@@ -1,18 +1,21 @@
 package com.redsparkle.foe.gui.Overlays;
+
 import com.redsparkle.api.Capability.Items.Ammo.AmmoFactoryProvider;
 import com.redsparkle.api.Capability.Items.Gun.GunFactoryProvider;
 import com.redsparkle.api.items.helpers.Item_Instances.Item_AmmoHolder;
 import com.redsparkle.api.items.helpers.Item_Instances.Item_Firearm;
 import com.redsparkle.api.utils.GlobalNames;
+import com.redsparkle.foe.Init.ConfigInit;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.ScaledResolution;
-import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import org.lwjgl.opengl.GL11;
+import org.lwjgl.util.Color;
+
 /**
  * Created by NENYN on 1/1/2017.
  */
@@ -53,37 +56,50 @@ public class APBar extends Gui {
         ScaledResolution scaled = new ScaledResolution(mc);
         int screenWidth = scaled.getScaledWidth();
         int screenHeight = scaled.getScaledHeight();
-        /* Saving the current state of OpenGL so that I can restore it when I'm done */
+
         GL11.glPushAttrib(GL11.GL_ALL_ATTRIB_BITS);
         GL11.glPushMatrix();
-      /* I like to indent the code whenever I push. It helps me visualize what is
-       * happening better. This is a personal preference though.
-       */
-      /* Set the rendering color to white */
-        GL11.glColor4f(0.0F, 90.0F, 1.0F, 90.0F);
-        //GlStateManager.disableLighting();
-        GlStateManager.enableAlpha();
-        //GlStateManager.disableBlend();
-      /* This method tells OpenGL to draw with the custom texture */
+
+        GL11.glEnable(GL11.GL_BLEND);
+        GL11.glTexEnvi(GL11.GL_TEXTURE_ENV, GL11.GL_TEXTURE_ENV_MODE, GL11.GL_MODULATE);
+        Color color = new Color(ConfigInit.colorR, ConfigInit.colorG, ConfigInit.colorB); // I want to draw the texture to solid red color
+
+        GL11.glColor4f((float) color.getRed() / 255f,
+                (float) color.getGreen() / 255f,
+                (float) color.getBlue() / 255f,
+                (float) color.getAlpha() / 255f);
+
+
+
         mc.renderEngine.bindTexture(overlayBarRad);
         final int PositionX = screenWidth - 120; // leftmost edge of the experience bar
         final int PositionY = screenHeight - 40;  // top of the experience bar
         GL11.glTranslatef(PositionX, PositionY, 0);
         GL11.glScalef(0.76F, 0.76F, 0.76F);
         drawTexturedModalRect(0, 0, 0, 0, BAR_WIDTH, BAR_HEIGHT);
+
         {
             GL11.glPushMatrix();
+
             if (playerFood <= 1) {
             } else if (playerFood >= 1) {
                 drawTexturedModalRect(18, 15, 17, 48, Math.round(6.75F * playerFood), RadBAR_HEIGHT);
                 GL11.glScalef(0.76F, 0.76F, 0.76F);
             }
-            GL11.glPopMatrix();
+
         }
-        GL11.glPopMatrix();
+
+        GL11.glColor3f(1.0f, 1.0f, 1.0f);
+        GL11.glEnable(GL11.GL_TEXTURE_2D);
+        GL11.glDisable(GL11.GL_BLEND);
+
         if (show) {
             fr.drawString(bullets_left, PositionX + 25, PositionY + 25, 900000);
         }
+        GL11.glPopMatrix();
+
+        GL11.glPopMatrix();
+
         GL11.glPopAttrib();
     }
 }

@@ -1,6 +1,7 @@
 package com.redsparkle.foe.gui.Overlays;
 import com.redsparkle.api.Capability.Player.rad.RadsFactoryProvider;
 import com.redsparkle.api.utils.GlobalNames;
+import com.redsparkle.foe.Init.ConfigInit;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.ScaledResolution;
@@ -9,6 +10,8 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import org.lwjgl.opengl.GL11;
+import org.lwjgl.util.Color;
+
 /**
  * Created by NENYN on 14.11.2016.
  */
@@ -33,10 +36,17 @@ public class RadsOverlay extends Gui {
        * happening better. This is a personal preference though.
        */
       /* Set the rendering color to white */
-        GL11.glColor4f(0.0F, 90.0F, 1.0F, 90.0F);
-        GlStateManager.disableLighting();
-        GlStateManager.enableAlpha();
-        GlStateManager.disableBlend();
+        GL11.glEnable(GL11.GL_BLEND);
+        GL11.glTexEnvi(GL11.GL_TEXTURE_ENV, GL11.GL_TEXTURE_ENV_MODE, GL11.GL_MODULATE);
+        Color color = new Color(ConfigInit.colorR, ConfigInit.colorG, ConfigInit.colorB); // I want to draw the texture to solid red color
+
+        GL11.glColor4f((float) color.getRed() / 255f,
+                (float) color.getGreen() / 255f,
+                (float) color.getBlue() / 255f,
+                (float) color.getAlpha() / 255f);
+
+
+        GlStateManager.tryBlendFuncSeparate(770, 771, 1, 1);
       /* This method tells OpenGL to draw with the custom texture */
         mc.renderEngine.bindTexture(overlayBarRad);
         final int PositionX = screenWidth - 75; // leftmost edge of the experience bar

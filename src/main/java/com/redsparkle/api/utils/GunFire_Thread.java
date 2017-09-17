@@ -10,18 +10,19 @@ public class GunFire_Thread {
     public Runnable gunFireR;
     public boolean running = false;
 
-    public GunFire_Thread(String arg) {
+    public GunFire_Thread(String type, int bps) {
         running = true;
-        gunFire(arg);
+        gunFire(type, bps);
     }
 
-    public synchronized void gunFire(final String type) {
+    public synchronized void gunFire(final String type, int bps) {
         gunFireR = new Runnable() {
             public void run() {
                 while (running) {
                     try {
-                        Thread.sleep(200);
                         ClientOnlyProxy.FireMessage(type);
+                        Thread.sleep(bps);
+
 
                     } catch (NullPointerException e) {
                         e.printStackTrace();
