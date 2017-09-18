@@ -13,13 +13,14 @@ import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
  * Created by NENYN on 12/25/2016.
  */
 public class MessageUpdateClientTrigger_Item implements IMessage {
-    public boolean status;
+    public boolean status, interaction_mode;
 
     public MessageUpdateClientTrigger_Item() {
     }
 
-    public MessageUpdateClientTrigger_Item(boolean stats) {
+    public MessageUpdateClientTrigger_Item(boolean stats, boolean interaction_mode) {
         this.status = stats;
+        this.interaction_mode = interaction_mode;
     }
 
     public MessageUpdateClientTrigger_Item(ITrigger_item stats) {
@@ -28,12 +29,15 @@ public class MessageUpdateClientTrigger_Item implements IMessage {
 
     @Override
     public void fromBytes(ByteBuf buf) {
+
         status = buf.readBoolean();
+        interaction_mode = buf.readBoolean();
     }
 
     @Override
     public void toBytes(ByteBuf buf) {
         buf.writeBoolean(status);
+        buf.writeBoolean(interaction_mode);
     }
 
     public static class HandlerClient implements IMessageHandler<MessageUpdateClientTrigger_Item, IMessage> {

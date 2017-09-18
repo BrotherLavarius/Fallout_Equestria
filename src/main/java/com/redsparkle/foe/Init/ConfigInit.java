@@ -1,5 +1,6 @@
 package com.redsparkle.foe.Init;
 
+import com.redsparkle.api.utils.GlobalNames;
 import com.redsparkle.foe.main;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
@@ -52,6 +53,11 @@ public class ConfigInit {
 
     public static String Radio2Name;
     public static String Radio2URL;
+
+    public static int colorR;
+    public static int colorG;
+    public static int colorB;
+
 
     // Define your configuration object
     private static Configuration config = null;
@@ -210,6 +216,20 @@ public class ConfigInit {
         radio2urlProp.setComment("Configuration string (Radio 2 address) ONLY OGG RADIO ALLOWED YOU ARE WARNED");
         radio2urlProp.setLanguageKey("gui.mbe70_configuration.myString").setRequiresWorldRestart(true);
 
+        //RGB
+
+        final String RED_DEAFULT_VALUE = "102";
+        Property redValue = config.get(CATEGORY_NAME_GENERAL, "pipbuck_red", RED_DEAFULT_VALUE);
+        redValue.setComment("RGB numberic red value");
+        redValue.setLanguageKey("gui." + GlobalNames.Domain + ".red").setRequiresWorldRestart(true);
+        final String GREEN_DEAFULT_VALUE = "255";
+        Property greenValue = config.get(CATEGORY_NAME_GENERAL, "pipbuck_green", GREEN_DEAFULT_VALUE);
+        greenValue.setComment("RGB numberic green value");
+        greenValue.setLanguageKey("gui." + GlobalNames.Domain + ".green").setRequiresWorldRestart(true);
+        final String BLUE_DEAFULT_VALUE = "51";
+        Property blueValue = config.get(CATEGORY_NAME_GENERAL, "pipbuck_blue", BLUE_DEAFULT_VALUE);
+        blueValue.setComment("RGB numberic blue value");
+        blueValue.setLanguageKey("gui." + GlobalNames.Domain + ".blue").setRequiresWorldRestart(true);
 
 //        // list of integer values
 //        final int[] MY_INT_LIST_DEFAULT_VALUE = new int[]{1, 2, 3, 4, 5};
@@ -235,6 +255,10 @@ public class ConfigInit {
         propOrderGeneral.add(radio1urlProp.getName());
         propOrderGeneral.add(radio2nameProp.getName());
         propOrderGeneral.add(radio2urlProp.getName());
+        propOrderGeneral.add(redValue.getName());
+        propOrderGeneral.add(greenValue.getName());
+        propOrderGeneral.add(blueValue.getName());
+
 
         config.setCategoryPropertyOrder(CATEGORY_NAME_GENERAL, propOrderGeneral);
         List<String> propOrderOther = new ArrayList<String>();
@@ -281,6 +305,10 @@ public class ConfigInit {
             Radio2Name = radio2nameProp.getString();
             Radio2URL = radio2urlProp.getString();
 
+            colorR = redValue.getInt();
+            colorG = greenValue.getInt();
+            colorB = blueValue.getInt();
+
 
         }
 		/*
@@ -301,6 +329,11 @@ public class ConfigInit {
         radio1urlProp.set(Radio1URL);
         radio2nameProp.set(Radio2Name);
         radio2urlProp.set(Radio2URL);
+
+        redValue.set(colorR);
+        greenValue.set(colorG);
+        blueValue.set(colorB);
+
         if (config.hasChanged()) {
             config.save();
         }

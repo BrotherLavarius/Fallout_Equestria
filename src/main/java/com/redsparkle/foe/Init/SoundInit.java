@@ -166,6 +166,8 @@ public class SoundInit {
         lookup.put(GlobalsGunStats.PLASMA_PISTOL.getGunName(), plasma);
 
         lookup.put(GlobalsGunStats.SEVEN_MM_RIFLE.getGunName(), tenmm);
+        lookup.put(GlobalsGunStats.FIVE_MM_MINIGUN.getGunName(), tenmm);
+
 
 
 

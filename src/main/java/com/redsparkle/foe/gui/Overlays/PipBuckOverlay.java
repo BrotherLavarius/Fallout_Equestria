@@ -1,6 +1,7 @@
 package com.redsparkle.foe.gui.Overlays;
 
 import com.redsparkle.api.utils.GlobalNames;
+import com.redsparkle.foe.Init.ConfigInit;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.Gui;
@@ -11,6 +12,7 @@ import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import org.lwjgl.opengl.GL11;
+import org.lwjgl.util.Color;
 
 /**
  * Created by NENYN on 12/25/2016.
@@ -24,23 +26,10 @@ public class PipBuckOverlay extends Gui {
     private final static int BAR_SPACING_ABOVE_EXP_BAR = 3;  // pixels between the BAR and the Experience Bar below it
     private final static int ACTUAL_BAR_WIDTH = 135;
     private final static int ACTUAL_BAR_HEIGHT = 9;
-    /* This line tells Minecraft/Forge where your texture is. The first argument is your MODID,
-     * and the second argument is the path to your texture starting at "resources/assets/MODID"
-     *
-     * In this case, the location of the texture is
-     *
-     *   "resources/assets/MODID/textures/gui/advanced_overlay.png"
-     */
+    public Color barColor = new Color(ConfigInit.colorR, ConfigInit.colorG, ConfigInit.colorB); // I want to draw the texture to solid red color
+
     NonNullList<String> compas_points = NonNullList.withSize(8,".");
-    /* Sometimes you want to include extra information from the game. This instance of
-     * Minecraft will let you access the World and EntityPlayer objects which is more than
-     * enough for most purposes. It also contains some helper objects for OpenGL which can be
-     * used for drawing things.
-     *
-     * To actually get the instance of Minecraft, you should pass it in through the constructor.
-     * It is possible to import Minecraft and use Minecraft.getMinecraft() here, but this won't
-     * always be possible if you want to include information that's part of another class.
-     */
+
     private Minecraft mc;
 
     public PipBuckOverlay(Minecraft mc, int screenWidht, int screenHeight) {
@@ -52,68 +41,60 @@ public class PipBuckOverlay extends Gui {
         float maxHp = player.getMaxHealth();
         float absorptionAmount = player.getAbsorptionAmount();
         float effectiveHp = player.getHealth() + absorptionAmount;
-    /* Saving the current state of OpenGL so that I can restore it when I'm done */
         GL11.glPushAttrib(GL11.GL_ALL_ATTRIB_BITS);
         GL11.glPushMatrix();
-      /* I like to indent the code whenever I push. It helps me visualize what is
-       * happening better. This is a personal preference though.
-       */
-      /* Set the rendering color to white */
-        GL11.glColor4f(0.0F, 90.0F, 1.0F, 90.0F);
-        GlStateManager.disableLighting();
-        GlStateManager.enableAlpha();
-        GlStateManager.disableBlend();
-      /* This method tells OpenGL to draw with the custom texture */
+
+        GL11.glEnable(GL11.GL_BLEND);
+        GL11.glTexEnvi(GL11.GL_TEXTURE_ENV, GL11.GL_TEXTURE_ENV_MODE, GL11.GL_MODULATE);
+        Color color = new Color(ConfigInit.colorR, ConfigInit.colorG, ConfigInit.colorB); // I want to draw the texture to solid red color
+
+        GL11.glColor4f((float) color.getRed() / 255f,
+                (float) color.getGreen() / 255f,
+                (float) color.getBlue() / 255f,
+                (float) color.getAlpha() / 255f);
+
+
+        GlStateManager.tryBlendFuncSeparate(770, 771, 1, 1);
         mc.renderEngine.bindTexture(overlayBar);
-        // we will draw the status bar just above the hotbar.
-        //  obtained by inspecting the vanilla hotbar rendering code
+
         final int vanillaExpLeftX = 1 + 2; // leftmost edge of the experience bar
         final int vanillaExpTopY = screenHeight - 40;  // top of the experience bar
-      /* Shift our rendering origin to just above the experience bar
-       * The top left corner of the screen is x=0, y=0
-       */
+
         GL11.glTranslatef(vanillaExpLeftX, vanillaExpTopY, 0);
         GL11.glScalef(0.76F, 0.76F, 0.76F);
-      /* Draw a part of the image file at the current position
-       *
-       * The first two arguments are the x,y position that you want to draw the texture at
-       * (with respect to the current transformations).
-       *
-       * The next four arguments specify what part of the image file to draw, in the order below:
-       *
-       *   1. Left-most side
-       *   2. Top-most side
-       *   3. Right-most side
-       *   4. Bottom-most side
-       *
-       * The units of these four arguments are pixels in the image file. These arguments will form a
-       * rectangle, which is then "cut" from your image and used as the texture
-       *
-       * This line draws the background of the custom bar
-       */
+
         drawTexturedModalRect(0, 0, 0, 0, BAR_WIDTH, BAR_HEIGHT);
+
+
         int health = Math.round((ACTUAL_BAR_WIDTH - 2) * Math.min(1, effectiveHp / maxHp));
+
         GL11.glPushMatrix();
-        final int SPACER = 1;
+        GL11.glEnable(GL11.GL_BLEND);
+        GL11.glTexEnvi(GL11.GL_TEXTURE_ENV, GL11.GL_TEXTURE_ENV_MODE, GL11.GL_MODULATE);
         final int NORMAL_TEXTURE_U = 47;     // red texels  -
-        final int REGEN_TEXTURE_U = 57;  //  green texels
-        final int POISON_TEXTURE_U = 67;  // black texels
-        final int WITHER_TEXTURE_U = 77;  // brown texels
-        final int ENERVATION_TEXTURE_U = 87;  // brown texels
+
         final int ARMOR_TEXTURE_U = 97;  // brown texels
+
+
         if (player.isPotionActive(MobEffects.WITHER)) {
-            drawTexturedModalRect(4, 11, 7, WITHER_TEXTURE_U, health, ACTUAL_BAR_HEIGHT);
-            GL11.glScalef(0.76F, 0.76F, 0.76F);
+            barColor = (Color) Color.BLACK;
         } else if (player.isPotionActive(MobEffects.POISON)) {
-            drawTexturedModalRect(4, 11, 7, POISON_TEXTURE_U, health, ACTUAL_BAR_HEIGHT);
-            GL11.glScalef(0.76F, 0.76F, 0.76F);
+            barColor = (Color) Color.CYAN;
         } else if (player.isPotionActive(MobEffects.REGENERATION)) {
-            drawTexturedModalRect(4, 11, 7, REGEN_TEXTURE_U, health, ACTUAL_BAR_HEIGHT);
-            GL11.glScalef(0.76F, 0.76F, 0.76F);
-        } else {
-            drawTexturedModalRect(4, 11, 7, NORMAL_TEXTURE_U, health, ACTUAL_BAR_HEIGHT);
-            GL11.glScalef(0.76F, 0.76F, 0.76F);
+            barColor = (Color) Color.PURPLE;
         }
+
+
+        GL11.glColor4f((float) barColor.getRed() / 255f,
+                (float) barColor.getGreen() / 255f,
+                (float) barColor.getBlue() / 255f,
+                (float) barColor.getAlpha() / 255f);
+        drawTexturedModalRect(4, 11, 7, NORMAL_TEXTURE_U, health, ACTUAL_BAR_HEIGHT);
+        GlStateManager.tryBlendFuncSeparate(770, 771, 1, 1);
+
+
+
+
         if (PLayerArmor == 0) {
             int armor = 0;
             drawTexturedModalRect(4, 10, 7, ARMOR_TEXTURE_U, armor, 3);
@@ -123,6 +104,10 @@ public class PipBuckOverlay extends Gui {
             drawTexturedModalRect(4, 10, 7, ARMOR_TEXTURE_U, armor, 3);
             GL11.glScalef(0.76F, 0.76F, 0.76F);
         }
+
+        GL11.glColor3f(1.0f, 1.0f, 1.0f);
+        GL11.glEnable(GL11.GL_TEXTURE_2D);
+        GL11.glDisable(GL11.GL_BLEND);
 
         GL11.glPushMatrix();
         GL11.glTranslatef(BAR_WIDTH + 25, 1, 0);

@@ -56,7 +56,8 @@ public class GlobalNames {
 
     // Saddle bag guns
     public static final String
-            Seven_mm_rifle = "seven_mm_rifle";
+            Seven_mm_rifle = "seven_mm_rifle",
+            Five_mm_minigun = "five_mm_minigun";
     // Food
     // AMMO
     public static final String
@@ -74,7 +75,11 @@ public class GlobalNames {
             FourTenMMCase = "four_ten_mm_case",
             Seven_mmAmmo = "seven_mm_ammo",
             Seven_mmClip = "seven_mm_clip",
-            Seven_mm_bulletCase = "seven_mm_case";
+            Seven_mm_bulletCase = "seven_mm_case",
+
+    Five_mmAmmo = "five_mm_ammo",
+            Five_mmClip = "five_mm_clip",
+            Five_mm_bulletCase = "five_mm_case";
     // PLACEHOLDERS
     public static final String
             TenMMbullet = "bullet10mm",
@@ -117,5 +122,6 @@ public class GlobalNames {
             StealthBuck = "stealthbuck",
             LevelingCrystall = "lvlcrystal",
             saddlebags = "saddlebags",
+            saddlebags_army = "saddlebags_army",
             trigger_Item = "trigger_Item";
 }

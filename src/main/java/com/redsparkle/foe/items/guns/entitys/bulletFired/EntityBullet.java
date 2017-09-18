@@ -64,12 +64,8 @@ public class EntityBullet extends EntityThrowable {
     protected void onImpact(RayTraceResult rayTraceResult) {
         if (rayTraceResult.entityHit != null) {
             if(rayTraceResult.entityHit != this.getThrower()) {
-//                if(rayTraceResult.entityHit.posX != x &&
-//                        rayTraceResult.entityHit.posY != y &&
-//                        rayTraceResult.entityHit.posZ != z){
                     rayTraceResult.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, this.getThrower()), damage);
                     //setDead();
-//                }
             }
         }
         if (!this.world.isRemote) {

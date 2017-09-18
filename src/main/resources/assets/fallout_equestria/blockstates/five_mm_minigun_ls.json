@@ -2,7 +2,7 @@
   "forge_marker": 1,
   "defaults": {
     "textures": {},
-    "model": "fallout_equestria:weapon/saddle_bags/seven_mm_rifle.obj"
+    "model": "fallout_equestria:weapon/saddle_bags/five_mm_minigun.obj"
   },
   "variants": {
     "normal": [
@@ -43,7 +43,7 @@
                 "z": 0
               }
             ],
-            "scale": 0.35
+            "scale": 0.8
           },
           "ground": {
             "translation": [
@@ -62,26 +62,26 @@
                 "z": 0
               }
             ],
-            "scale": 0.35
+            "scale": 1
           },
           "gui": {
             "translation": [
-              0,
-              0,
-              -7
+              0.2,
+              -0.2,
+              0
             ],
             "rotation": [
               {
-                "y": 160
+                "y": 90
               },
               {
-                "x": -10
+                "x": 10
               },
               {
                 "z": 0
               }
             ],
-            "scale": 0.65
+            "scale": 1
           },
           "head": {
             "translation": [

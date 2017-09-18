@@ -7,4 +7,8 @@ public interface ITrigger_item {
     boolean getStatus();
 
     void setStatus(boolean status);
+
+    boolean getInteraction();
+
+    void setInteraction(boolean interaction);
 }

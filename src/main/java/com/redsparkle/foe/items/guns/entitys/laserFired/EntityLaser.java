@@ -12,16 +12,27 @@ import net.minecraftforge.fml.relauncher.SideOnly;
  * Created by hoijima on 22.06.17.
  */
 public class EntityLaser extends EntityThrowable {
+    public static boolean plasma;
     public float damage;
-    public boolean plasma;
     public EnumParticleTypes effect;
+    public double x;
+    public double y;
+    public double z;
     public EntityLaser(World world) {
         super(world);
     }
 
+    public EntityLaser(World worldIn, double x, double y, double z) {
+        this(worldIn);
+        this.setPosition(x, y, z);
+        this.x = x;
+        this.y = y;
+        this.z = z;
+    }
+
     public EntityLaser(World world, EntityLivingBase entity, boolean plasma) {
         super(world, entity);
-        this.plasma = plasma;
+        EntityLaser.plasma = plasma;
     }
     @Override
     public void onUpdate() {
@@ -44,10 +55,11 @@ public class EntityLaser extends EntityThrowable {
                 world.spawnParticle(EnumParticleTypes.REDSTONE, posX, posY, posZ, 1, 0, 0);
                 world.spawnParticle(EnumParticleTypes.REDSTONE, posX, posY, posZ, 1, 0, 0);
                 world.spawnParticle(EnumParticleTypes.REDSTONE, posX, posY, posZ, 1, 0, 0);
-            } else {
-                world.spawnParticle(EnumParticleTypes.REDSTONE, posX, posY, posZ, 0, 0, 100);
-                world.spawnParticle(EnumParticleTypes.REDSTONE, posX, posY, posZ, 100, 0, 0);
-                world.spawnParticle(EnumParticleTypes.REDSTONE, posX, posY, posZ, 0, 0, 100);
+            } else if (plasma) {
+                plasma = true;
+                world.spawnParticle(EnumParticleTypes.DRAGON_BREATH, posX, posY, posZ, 0, 0, 0);
+                world.spawnParticle(EnumParticleTypes.DRAGON_BREATH, posX, posY, posZ, 0, 0, 0);
+                world.spawnParticle(EnumParticleTypes.DRAGON_BREATH, posX, posY, posZ, 0, 0, 0);
             }
         }
     }
@@ -57,8 +69,9 @@ public class EntityLaser extends EntityThrowable {
             for (int lvt_2_1_ = 0; lvt_2_1_ < 8; ++lvt_2_1_) {
                 if (!plasma) {
                     this.world.spawnParticle(EnumParticleTypes.REDSTONE, this.posX, this.posY, this.posZ, 0.0D, 0.0D, 0.0D);
-                } else {
-                    this.world.spawnParticle(EnumParticleTypes.REDSTONE, this.posX, this.posY, this.posZ, 0.0D, 0.0D, 100.0D);
+                } else if (plasma) {
+                    plasma = true;
+                    this.world.spawnParticle(EnumParticleTypes.DRAGON_BREATH, this.posX, this.posY, this.posZ, 0.0D, 0.0D, 0D);
                 }
 
             }
@@ -73,12 +86,12 @@ public class EntityLaser extends EntityThrowable {
         if (rayTraceResult.entityHit != null) {
             if(rayTraceResult.entityHit != this.getThrower()){
                 rayTraceResult.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, this.getThrower()), damage);
-                this.setDead();
+                //this.setDead();
             }
         }
         if (!this.world.isRemote) {
             this.world.setEntityState(this, (byte) 3);
-            this.setDead();
+            //this.setDead();
         }
     }
     public void setDamage(float damage) {

@@ -113,14 +113,25 @@ public class RenderingInit {
         ModelLoader.setCustomModelResourceLocation(t60legs, 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.T60Legs, "inventory"));
 
         ModelLoader.setCustomModelResourceLocation(sadlebags, 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.saddlebags, "inventory"));
+        ModelLoader.setCustomModelResourceLocation(saddlebags_army, 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.saddlebags_army, "inventory"));
+
         ModelLoader.setCustomModelResourceLocation(trigger_item, 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.trigger_Item, "inventory"));
+
         ModelLoader.setCustomModelResourceLocation(seven_mm_rifle_RS, 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.Seven_mm_rifle+"_rs", "inventory"));
         ModelLoader.setCustomModelResourceLocation(seven_mm_rifle_LS, 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.Seven_mm_rifle+"_ls", "inventory"));
+
+        ModelLoader.setCustomModelResourceLocation(five_mm_minigun_LS, 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.Five_mm_minigun + "_rs", "inventory"));
+        ModelLoader.setCustomModelResourceLocation(five_mm_minigun_RS, 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.Five_mm_minigun + "_ls", "inventory"));
 
 
         ModelLoader.setCustomModelResourceLocation(seven_mmAmmo, 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.Seven_mmAmmo, "inventory"));
         ModelLoader.setCustomModelResourceLocation(seven_mmClip, 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.Seven_mmClip, "inventory"));
         ModelLoader.setCustomModelResourceLocation(seven_mm_bulletCase, 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.Seven_mm_bulletCase, "inventory"));
+
+        ModelLoader.setCustomModelResourceLocation(five_mmAmmo, 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.Five_mmAmmo, "inventory"));
+        ModelLoader.setCustomModelResourceLocation(five_mmClip, 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.Five_mmClip, "inventory"));
+        ModelLoader.setCustomModelResourceLocation(five_mm_bulletCase, 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.Five_mm_bulletCase, "inventory"));
+
 
         RenderingRegistry.registerEntityRenderingHandler(EntityBullet.class, new RenderFactoryBullet(Minecraft.getMinecraft().getRenderManager()));
         RenderingRegistry.registerEntityRenderingHandler(EntityLaser.class, new RenderFactoryLaser(Minecraft.getMinecraft().getRenderManager()));
