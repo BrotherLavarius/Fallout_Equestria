@@ -30,6 +30,9 @@ public class KeyInputHandler {
     public int counter = 0;
 
     public Thread autofire;
+    public boolean rs_pressed = false;
+    public boolean ls_pressed = false;
+
     @SubscribeEvent
     public void onKeyBoardInput(InputEvent.KeyInputEvent event) {
         Keyboard.enableRepeatEvents(true);
@@ -102,68 +105,83 @@ public class KeyInputHandler {
         EntityPlayerSP player = mc.player;
 
 
-
         if (Mouse.getEventButtonState()) {
-            if (Mouse.getEventButton() == 1) {
+            if (Mouse.getEventButton() == 1 && !ls_pressed) {
                 if (!mc.player.getCapability(ITrigger_item_Provider.TRIGGER_ITEM, null).getStatus()
                         && player.getHeldItemMainhand().getItem() instanceof Item_Firearm
                         && !mc.player.getCapability(ITrigger_item_Provider.TRIGGER_ITEM, null).getInteraction()) {
                     int bps = ((Item_Firearm) mc.player.getHeldItemMainhand().getItem()).params.getBps();
                     if (((Item_Firearm) mc.player.getHeldItemMainhand().getItem()).autofireSupport) {
                         GunFire_ThreadManager.SpawnGunFire("gun_main", bps);
+                        rs_pressed = true;
                     } else {
                         ClientOnlyProxy.FireMessage("gun_main");
+                        rs_pressed = false;
                     }
 
                 }
             }
 
         } else {
-            if (Mouse.getEventButton() == 1) {
+            if (Mouse.getEventButton() == 1 && !rs_pressed) {
                 GunFire_ThreadManager.StopGunFire("gun_main");
+                rs_pressed = false;
+
             }
         }
 
 
         if (Mouse.getEventButtonState()) {
-            if (Mouse.getEventButton() == 1 && !Mouse.isButtonDown(0)) {
+            if (Mouse.getEventButton() == 1 && !ls_pressed) {
                 if (mc.player.getCapability(ITrigger_item_Provider.TRIGGER_ITEM, null).getStatus()
                         && mc.player.getCapability(IAdvProvider.Adv_Inv, null).getStackInSlot(7).getItem() instanceof Item_SaggleBagGun
                         && !mc.player.getCapability(ITrigger_item_Provider.TRIGGER_ITEM, null).getInteraction()) {
                     int bps = ((Item_SaggleBagGun) mc.player.getCapability(IAdvProvider.Adv_Inv, null).getStackInSlot(7).getItem()).params.getBps();
                     if (((Item_SaggleBagGun) mc.player.getCapability(IAdvProvider.Adv_Inv, null).getStackInSlot(7).getItem()).autofireSupport) {
                         GunFire_ThreadManager.SpawnGunFire("gun_saddlebagRS", bps);
+                        rs_pressed = true;
 
                     } else {
                         ClientOnlyProxy.FireMessage("gun_saddlebagRS");
+                        rs_pressed = false;
                     }
                 }
             }
         } else {
-            if (Mouse.getEventButton() == 1 && !Mouse.isButtonDown(0)) {
+            if (Mouse.getEventButton() == 1 && !ls_pressed) {
                 GunFire_ThreadManager.StopGunFire("gun_saddlebagRS");
+                rs_pressed = false;
             }
         }
 
         if (Mouse.getEventButtonState()) {
-            if (Mouse.getEventButton() == 0 && !Mouse.isButtonDown(1)) {
+            if (Mouse.getEventButton() == 0 && !rs_pressed) {
                 if (mc.player.getCapability(ITrigger_item_Provider.TRIGGER_ITEM, null).getStatus()
                         && mc.player.getCapability(IAdvProvider.Adv_Inv, null).getStackInSlot(6).getItem() instanceof Item_SaggleBagGun
                         && !mc.player.getCapability(ITrigger_item_Provider.TRIGGER_ITEM, null).getInteraction()) {
                     int bps = ((Item_SaggleBagGun) mc.player.getCapability(IAdvProvider.Adv_Inv, null).getStackInSlot(6).getItem()).params.getBps();
                     if (((Item_SaggleBagGun) mc.player.getCapability(IAdvProvider.Adv_Inv, null).getStackInSlot(6).getItem()).autofireSupport) {
                         GunFire_ThreadManager.SpawnGunFire("gun_saddlebagLS", bps);
+                        ls_pressed = true;
                     } else {
                         ClientOnlyProxy.FireMessage("gun_saddlebagLS");
+                        ls_pressed = false;
                     }
                 }
             }
         } else {
-            if (Mouse.getEventButton() == 0 && !Mouse.isButtonDown(1)) {
+            if (Mouse.getEventButton() == 0 && !rs_pressed) {
 
                 GunFire_ThreadManager.StopGunFire("gun_saddlebagLS");
+                ls_pressed = false;
             }
         }
+
+        if (!rs_pressed) {
+            GunFire_ThreadManager.StopGunFire("gun_main");
+        }
+
+
     }
 }
 
