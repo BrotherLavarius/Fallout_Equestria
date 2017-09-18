@@ -1,5 +1,6 @@
 package com.redsparkle.foe.events.ClientSide;
 
+import com.redsparkle.api.Capability.Player.saddlegun_shooting.ITrigger_item_Provider;
 import com.redsparkle.api.items.helpers.Item_Instances.Item_Firearm;
 import com.redsparkle.api.utils.RadioThreadManager;
 import net.minecraft.entity.player.EntityPlayer;
@@ -43,7 +44,9 @@ public class CommonEventHandler {
     @SubscribeEvent
     public void onINteractOnAir(PlayerInteractEvent.LeftClickBlock e) {
         if (e.getEntityLiving() instanceof EntityPlayer) {
-            if ((((EntityPlayer) e.getEntityLiving()).inventory.getCurrentItem().getItem() instanceof Item_Firearm)) {
+            if ((((EntityPlayer) e.getEntityLiving()).inventory.getCurrentItem().getItem() instanceof Item_Firearm) &&
+                    !e.getEntityLiving().getCapability(ITrigger_item_Provider.TRIGGER_ITEM, null).getInteraction()) {
+
                 e.setCanceled(true);
                 e.setUseBlock(Event.Result.DENY);
                 e.setUseItem(Event.Result.DENY);
@@ -54,7 +57,8 @@ public class CommonEventHandler {
     @SubscribeEvent
     public void onINteractOnAir(PlayerInteractEvent.RightClickBlock e) {
         if (e.getEntityLiving() instanceof EntityPlayer) {
-            if ((((EntityPlayer) e.getEntityLiving()).inventory.getCurrentItem().getItem() instanceof Item_Firearm)) {
+            if ((((EntityPlayer) e.getEntityLiving()).inventory.getCurrentItem().getItem() instanceof Item_Firearm) &&
+                    !e.getEntityLiving().getCapability(ITrigger_item_Provider.TRIGGER_ITEM, null).getInteraction()) {
                 e.setCanceled(true);
                 e.setUseBlock(Event.Result.DENY);
                 e.setUseItem(Event.Result.DENY);

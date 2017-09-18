@@ -32,7 +32,7 @@ public enum GlobalsGunStats {
     FLARE_GUN(1, 1, 4.5F, 0F, false, "flare", "ammo", GlobalNames.flare_gun, 15F, 0),
     DB_SHOUTGUN(1, 2, 4.5F, 0F, false, "pellet", "ammo", GlobalNames.db_shoutgun, 150F, 0),
     SEVEN_MM_RIFLE(23, 25, 4.5F, 0F, false, "firearm", "clip", GlobalNames.Seven_mm_rifle, 15F, 0),
-    FIVE_MM_MINIGUN(9, 200, 4.5F, 0F, true, "firearm", "clip", GlobalNames.Five_mm_minigun, 15F, 2);
+    FIVE_MM_MINIGUN(9, 200, 4.5F, 0F, true, "firearm", "clip", GlobalNames.Five_mm_minigun, 15F, 20);
 
 
 

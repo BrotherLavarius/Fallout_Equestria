@@ -14,8 +14,7 @@ public class keyHandler {
             testButton,
             saddlebags,
             sbag_shooter,
-            fire_LSB,
-            fire_RSB,
+            interaction_mode,
             reloadLSB,
             reloadRSB;
 
@@ -27,8 +26,8 @@ public class keyHandler {
 
     public static String sbag_shooter_S = "Trigger for saddle guns";
 
-    public static String shootLSB_S = "Shoot left Saddle gun";
-    public static String shootRSB_S = "Shoot right Saddle gun";
+    public static String interaction_mode_S = "Switch between interaction and gun fire";
+
 
     public static String reloadLSB_S = "Reload left Saddle gun";
     public static String reloadRSB_S = "Reload right Saddle gun";
@@ -42,8 +41,7 @@ public class keyHandler {
 
         sbag_shooter = new KeyBinding(sbag_shooter_S, Keyboard.KEY_B, main.MODID);
 
-        fire_LSB = new KeyBinding(shootLSB_S, Keyboard.KEY_LBRACKET, main.MODID);
-        fire_RSB = new KeyBinding(shootRSB_S, Keyboard.KEY_RBRACKET, main.MODID);
+        interaction_mode = new KeyBinding(interaction_mode_S, Keyboard.KEY_V, main.MODID);
 
         reloadLSB = new KeyBinding(reloadLSB_S, Keyboard.KEY_COMMA, main.MODID);
         reloadRSB = new KeyBinding(reloadRSB_S, Keyboard.KEY_PERIOD, main.MODID);
@@ -52,15 +50,14 @@ public class keyHandler {
         ClientRegistry.registerKeyBinding(pipbuck);
         ClientRegistry.registerKeyBinding(testButton);
 
-        ClientRegistry.registerKeyBinding(fire_LSB);
-        ClientRegistry.registerKeyBinding(fire_RSB);
-
         ClientRegistry.registerKeyBinding(reloadLSB);
         ClientRegistry.registerKeyBinding(reloadRSB);
 
         ClientRegistry.registerKeyBinding(saddlebags);
 
         ClientRegistry.registerKeyBinding(sbag_shooter);
+        ClientRegistry.registerKeyBinding(interaction_mode);
+
 
     }
 

@@ -235,43 +235,9 @@ public class DedicatedServerProxy extends CommonProxy {
     public static void handleTrigger_Item_Message(MessageUpdateClientTrigger_Item message, EntityPlayerMP playerMP) {
         ITrigger_item status = playerMP.getCapability(ITrigger_item_Provider.TRIGGER_ITEM, null);
         status.setStatus(message.status);
+        status.setInteraction(message.interaction_mode);
         main.simpleNetworkWrapper.sendTo(new MessageUpdateClientTrigger_Item(status), playerMP);
     }
-    /**
-     * Run before anything else. Read your config, create blocks, items, etc, and register them with the GameRegistry
-     */
-    public void preInit() {
-        MinecraftForge.EVENT_BUS.register(new EventHandlerServerSidePre());
-        super.preInit();
-    }
-    public void processer() {
-    }
-    /**
-     * Do your mod setup. Build whatever data structures you care about. Register recipes,
-     * send FMLInterModComms messages to other mods.
-     */
-    public void init() {
-        super.init();
-    }
-    /**
-     * Handle interaction with other mods, complete your setup based on this.
-     */
-    public void postInit() {
-        super.postInit();
-    }
-    @Override
-    public boolean playerIsInCreativeMode(EntityPlayer player) {
-        if (player instanceof EntityPlayerMP) {
-            EntityPlayerMP entityPlayerMP = (EntityPlayerMP) player;
-            return entityPlayerMP.interactionManager.isCreative();
-        }
-        return false;
-    }
-    @Override
-    public boolean isDedicatedServer() {
-        return true;
-    }
-
 
     public static void MessageGunFire_handler(MessageGunFire message, MessageContext ctx) {
         EntityPlayerMP player = ctx.getServerHandler().player;
@@ -325,5 +291,45 @@ public class DedicatedServerProxy extends CommonProxy {
 
                 Reload.reload_processor(player,message.type);
         });
+    }
+
+    /**
+     * Run before anything else. Read your config, create blocks, items, etc, and register them with the GameRegistry
+     */
+    public void preInit() {
+        MinecraftForge.EVENT_BUS.register(new EventHandlerServerSidePre());
+        super.preInit();
+    }
+
+    public void processer() {
+    }
+
+    /**
+     * Do your mod setup. Build whatever data structures you care about. Register recipes,
+     * send FMLInterModComms messages to other mods.
+     */
+    public void init() {
+        super.init();
+    }
+
+    /**
+     * Handle interaction with other mods, complete your setup based on this.
+     */
+    public void postInit() {
+        super.postInit();
+    }
+
+    @Override
+    public boolean playerIsInCreativeMode(EntityPlayer player) {
+        if (player instanceof EntityPlayerMP) {
+            EntityPlayerMP entityPlayerMP = (EntityPlayerMP) player;
+            return entityPlayerMP.interactionManager.isCreative();
+        }
+        return false;
+    }
+
+    @Override
+    public boolean isDedicatedServer() {
+        return true;
     }
 }

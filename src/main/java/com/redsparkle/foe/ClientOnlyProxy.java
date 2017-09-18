@@ -235,46 +235,10 @@ public class ClientOnlyProxy extends CommonProxy {
             EntityPlayer player = Minecraft.getMinecraft().player;
             ITrigger_item status = player.getCapability(ITrigger_item_Provider.TRIGGER_ITEM, null);
             status.setStatus(message.status);
+            status.setInteraction(message.interaction_mode);
         });
 
     }
-
-    public void preInit() {
-        super.preInit();
-        keyHandler.register();
-        MinecraftForge.EVENT_BUS.register(new KeyInputHandler());
-    }
-
-    public void Init() {
-        super.init();
-    }
-
-    public void postInit() {
-        super.postInit();
-        MinecraftForge.EVENT_BUS.register(new CommonEventHandler());
-        MinecraftForge.EVENT_BUS.register(new EventHandlerOverlayPipBuck());
-        MinecraftForge.EVENT_BUS.register(new EventHandlerOverlayAEM());
-        MinecraftForge.EVENT_BUS.register(new EventPlayerGuiHandler());
-        MinecraftForge.EVENT_BUS.register(new EventPlayerRenders());
-
-    }
-
-    @Override
-    public boolean playerIsInCreativeMode(EntityPlayer player) {
-        if (player instanceof EntityPlayerMP) {
-            EntityPlayerMP entityPlayerMP = (EntityPlayerMP) player;
-            return entityPlayerMP.interactionManager.isCreative();
-        } else if (player instanceof EntityPlayerSP) {
-            return Minecraft.getMinecraft().playerController.isInCreativeMode();
-        }
-        return false;
-    }
-
-    @Override
-    public boolean isDedicatedServer() {
-        return false;
-    }
-
 
     public static void MessageClientPlaySound_handler(MessageClientPlaySound message, MessageContext ctx) {
         IThreadListener mainThread = Minecraft.getMinecraft();
@@ -325,5 +289,41 @@ public class ClientOnlyProxy extends CommonProxy {
         mainThread.addScheduledTask(() -> {
                 GunFire.GunFire_clienHandler(player.world,player,message.type,message.x,message.y,message.z,message.xHeading,message.yHeading,message.zHeading,message.vel,message.inac);
         });
+    }
+
+    public void preInit() {
+        super.preInit();
+        keyHandler.register();
+        MinecraftForge.EVENT_BUS.register(new KeyInputHandler());
+    }
+
+    public void Init() {
+        super.init();
+    }
+
+    public void postInit() {
+        super.postInit();
+        MinecraftForge.EVENT_BUS.register(new CommonEventHandler());
+        MinecraftForge.EVENT_BUS.register(new EventHandlerOverlayPipBuck());
+        MinecraftForge.EVENT_BUS.register(new EventHandlerOverlayAEM());
+        MinecraftForge.EVENT_BUS.register(new EventPlayerGuiHandler());
+        MinecraftForge.EVENT_BUS.register(new EventPlayerRenders());
+
+    }
+
+    @Override
+    public boolean playerIsInCreativeMode(EntityPlayer player) {
+        if (player instanceof EntityPlayerMP) {
+            EntityPlayerMP entityPlayerMP = (EntityPlayerMP) player;
+            return entityPlayerMP.interactionManager.isCreative();
+        } else if (player instanceof EntityPlayerSP) {
+            return Minecraft.getMinecraft().playerController.isInCreativeMode();
+        }
+        return false;
+    }
+
+    @Override
+    public boolean isDedicatedServer() {
+        return false;
     }
 }

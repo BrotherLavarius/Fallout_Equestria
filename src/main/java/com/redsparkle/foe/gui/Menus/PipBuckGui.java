@@ -1,6 +1,7 @@
 package com.redsparkle.foe.gui.Menus;
 
 import com.redsparkle.api.utils.*;
+import com.redsparkle.api.utils.gui.Color_and_Etc;
 import com.redsparkle.api.utils.gui.GuiButtonExtFallout;
 import com.redsparkle.api.utils.gui.GuiButtonExtFallout_pipbuck;
 import com.redsparkle.foe.Init.ConfigInit;
@@ -75,13 +76,14 @@ public class PipBuckGui extends GuiScreen {
     Minecraft mc = Minecraft.getMinecraft();
     @Override
     public void drawScreen(int mouseX, int mouseY, float partialTicks) {
+        int colorText = Color_and_Etc.rawColorFromRGB(ConfigInit.colorR, ConfigInit.colorG, ConfigInit.colorB);
+
         Integer[] skills = PlayerStatsRequester.skills(mc.player);
         Integer[] spechials = PlayerStatsRequester.spechials(mc.player);
         Integer[] playerParams = PlayerStatsRequester.lvl(mc.player);
         Integer[] player_RAD_WATER = PlayerStatsRequester.additionalStats(mc.player);
         this.zLevel = 0;
         this.drawDefaultBackground();
-        GlStateManager.color(1, 1, 1, 1);
         GlStateManager.enableAlpha();
         GlStateManager.enableBlend();
         mc.getTextureManager().bindTexture(pipbuck);
@@ -195,7 +197,7 @@ public class PipBuckGui extends GuiScreen {
                             ScreenGrid.XCoordStart(
                                     this.height,
                                     2) + 70,
-                            15465844, true
+                            colorText, true
                     );
                     this.fontRenderer.drawString(
                             player.getDisplayNameString() + " - " + Integer.toString(playerParams[0]),
@@ -205,7 +207,7 @@ public class PipBuckGui extends GuiScreen {
                             ScreenGrid.XCoordStart(
                                     this.height,
                                     2) + 90,
-                            15465844, true
+                            colorText, true
                     );
                     this.fontRenderer.drawString(
                             "Water lvl:" + Integer.toString(player_RAD_WATER[1]),
@@ -215,7 +217,7 @@ public class PipBuckGui extends GuiScreen {
                             ScreenGrid.XCoordStart(
                                     this.height,
                                     2) + 100,
-                            15465844, true
+                            colorText, true
                     );
                     this.fontRenderer.drawString(
                             Lvlutil.progress(100, player_RAD_WATER[1]),
@@ -225,7 +227,7 @@ public class PipBuckGui extends GuiScreen {
                             ScreenGrid.XCoordStart(
                                     this.height,
                                     2) + 110,
-                            15465844, true
+                            colorText, true
                     );
                     GL11.glScaled(1.5,1.5,1.5);
 //                    if (Math.round(player.getHealth()) < (Math.round(player.getMaxHealth() / 4))) {
@@ -277,7 +279,7 @@ public class PipBuckGui extends GuiScreen {
                                 ScreenGrid.XCoordStart(
                                         this.height,
                                         2) + (spechial * 15) + 85,
-                                15465844, true
+                                colorText, true
                         );
                     }
                 }
@@ -291,7 +293,7 @@ public class PipBuckGui extends GuiScreen {
                                 ScreenGrid.XCoordStart(
                                         this.height,
                                         2) + (skillsFR * 15) + 85,
-                                15465844, true
+                                colorText, true
                         );
                     }
                     for (int skillsSR = 6; skillsSR < 13; skillsSR++) {
@@ -303,7 +305,7 @@ public class PipBuckGui extends GuiScreen {
                                 ScreenGrid.XCoordStart(
                                         this.height,
                                         2) + (skillsSR * 15) -15,
-                                15465844, true
+                                colorText, true
                         );
                     }
                 }

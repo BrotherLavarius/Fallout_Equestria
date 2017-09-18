@@ -10,6 +10,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.ScaledResolution;
+import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
@@ -59,8 +60,7 @@ public class APBar extends Gui {
 
         GL11.glPushAttrib(GL11.GL_ALL_ATTRIB_BITS);
         GL11.glPushMatrix();
-
-        GL11.glEnable(GL11.GL_BLEND);
+        GL11.glDisable(GL11.GL_BLEND);
         GL11.glTexEnvi(GL11.GL_TEXTURE_ENV, GL11.GL_TEXTURE_ENV_MODE, GL11.GL_MODULATE);
         Color color = new Color(ConfigInit.colorR, ConfigInit.colorG, ConfigInit.colorB); // I want to draw the texture to solid red color
 
@@ -70,6 +70,7 @@ public class APBar extends Gui {
                 (float) color.getAlpha() / 255f);
 
 
+        GlStateManager.tryBlendFuncSeparate(770, 771, 1, 1);
 
         mc.renderEngine.bindTexture(overlayBarRad);
         final int PositionX = screenWidth - 120; // leftmost edge of the experience bar
@@ -90,16 +91,14 @@ public class APBar extends Gui {
         }
 
         GL11.glColor3f(1.0f, 1.0f, 1.0f);
-        GL11.glEnable(GL11.GL_TEXTURE_2D);
-        GL11.glDisable(GL11.GL_BLEND);
+
 
         if (show) {
             fr.drawString(bullets_left, PositionX + 25, PositionY + 25, 900000);
         }
-        GL11.glPopMatrix();
 
         GL11.glPopMatrix();
-
+        GL11.glPopMatrix();
         GL11.glPopAttrib();
     }
 }

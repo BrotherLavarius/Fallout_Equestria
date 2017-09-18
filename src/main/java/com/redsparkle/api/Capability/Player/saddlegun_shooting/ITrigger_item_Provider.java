@@ -16,14 +16,15 @@ public class ITrigger_item_Provider implements ITrigger_item, ICapabilitySeriali
     public static Capability<ITrigger_item> TRIGGER_ITEM = null;
 
 
-    boolean status;
+    boolean status, interaction;
 
     public ITrigger_item_Provider() {
-        this(false);
+        this(false, true);
     }
 
-    public ITrigger_item_Provider(boolean status_of_item) {
+    public ITrigger_item_Provider(boolean status_of_item, boolean interaction) {
         this.status = status_of_item;
+        this.interaction = interaction;
 
     }
 
@@ -39,6 +40,16 @@ public class ITrigger_item_Provider implements ITrigger_item, ICapabilitySeriali
     @Override
     public void setStatus(boolean status) {
         this.status = status;
+    }
+
+    @Override
+    public boolean getInteraction() {
+        return interaction;
+    }
+
+    @Override
+    public void setInteraction(boolean interaction) {
+        this.interaction = interaction;
     }
 
     public boolean hasCapability(Capability<?> capability, EnumFacing facing) {
@@ -60,11 +71,16 @@ public class ITrigger_item_Provider implements ITrigger_item, ICapabilitySeriali
     public NBTTagCompound serializeNBT() {
         NBTTagCompound nbt = new NBTTagCompound();
         nbt.setBoolean("status", status);
+        nbt.setBoolean("use_mode", interaction);
+
         return nbt;
     }
 
     @Override
     public void deserializeNBT(NBTTagCompound nbt) {
+
         setStatus(nbt.getBoolean("status"));
+        setInteraction(nbt.getBoolean("use_mode"));
+
     }
 }
