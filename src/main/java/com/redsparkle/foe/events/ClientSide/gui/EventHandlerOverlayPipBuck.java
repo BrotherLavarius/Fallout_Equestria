@@ -1,7 +1,9 @@
 package com.redsparkle.foe.events.ClientSide.gui;
+
 import com.redsparkle.api.Capability.Player.Inventory.IAdvProvider;
 import com.redsparkle.foe.Init.ItemInit;
 import com.redsparkle.foe.gui.Overlays.APBar;
+import com.redsparkle.foe.gui.Overlays.Compass_Overlay;
 import com.redsparkle.foe.gui.Overlays.PipBuckOverlay;
 import com.redsparkle.foe.gui.Overlays.RadsOverlay;
 import net.minecraft.client.Minecraft;
@@ -30,6 +32,7 @@ public class EventHandlerOverlayPipBuck {
                 //statusBarRenderer.renderStatusBar(event.getResolution().getScaledWidth(), event.getResolution().getScaledHeight());        /* Call a helper method so that this method stays organized */
                 new RadsOverlay(Minecraft.getMinecraft());
                 new APBar(Minecraft.getMinecraft());
+                new Compass_Overlay(Minecraft.getMinecraft());
                 event.setCanceled(true);
                 break;
             default: // If it's not one of the above cases, do nothing

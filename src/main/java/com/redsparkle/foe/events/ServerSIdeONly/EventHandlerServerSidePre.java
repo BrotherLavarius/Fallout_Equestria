@@ -53,8 +53,9 @@ public class EventHandlerServerSidePre {
         }
 
 
+        if (e.player.getCapability(IAdvProvider.Adv_Inv, null).getStackInSlot(5).getItem() instanceof Item_Saddlebag_harness) {
 
-        if(e.player.getCapability(IAdvProvider.Adv_Inv, null).getStackInSlot(5).getItem() instanceof Item_Saddlebag_harness){}
+        }
         else{
             e.player.getCapability(ITrigger_item_Provider.TRIGGER_ITEM,null).setStatus(false);
             main.simpleNetworkWrapper.sendTo(new MessageUpdateClientTrigger_Item(false, e.player.getCapability(ITrigger_item_Provider.TRIGGER_ITEM, null).getInteraction()), (EntityPlayerMP) e.player);
