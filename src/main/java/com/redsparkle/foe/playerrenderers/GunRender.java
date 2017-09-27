@@ -119,7 +119,7 @@ public class GunRender implements LayerRenderer<EntityLivingBase> {
                 } else {
                     GlStateManager.translate(0.280F, 0.65F, 0F);
                 }
-                minecraft.getItemRenderer().renderItem(entitylivingbaseIn, RS_GUN, ItemCameraTransforms.TransformType.HEAD);
+                minecraft.getItemRenderer().renderItem(entitylivingbaseIn, LS_GUN, ItemCameraTransforms.TransformType.HEAD);
                 GlStateManager.popMatrix();
             }
         }

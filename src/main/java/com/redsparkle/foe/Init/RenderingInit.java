@@ -123,6 +123,10 @@ public class RenderingInit {
         ModelLoader.setCustomModelResourceLocation(five_mm_minigun_LS, 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.Five_mm_minigun + "_rs", "inventory"));
         ModelLoader.setCustomModelResourceLocation(five_mm_minigun_RS, 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.Five_mm_minigun + "_ls", "inventory"));
 
+        ModelLoader.setCustomModelResourceLocation(flam_LS, 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.flammenwarfer + "_rs", "inventory"));
+        ModelLoader.setCustomModelResourceLocation(flam_RS, 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.flammenwarfer + "_ls", "inventory"));
+        ModelLoader.setCustomModelResourceLocation(fl_ammo, 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.flammenwarfer_ammo, "inventory"));
+
 
         ModelLoader.setCustomModelResourceLocation(seven_mmAmmo, 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.Seven_mmAmmo, "inventory"));
         ModelLoader.setCustomModelResourceLocation(seven_mmClip, 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.Seven_mmClip, "inventory"));
