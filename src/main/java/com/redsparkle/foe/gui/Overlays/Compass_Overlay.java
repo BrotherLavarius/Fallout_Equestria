@@ -31,11 +31,8 @@ public class Compass_Overlay extends Gui {
 
         GL11.glPushAttrib(GL11.GL_ALL_ATTRIB_BITS);
         GL11.glPushMatrix();
-      /* I like to indent the code whenever I push. It helps me visualize what is
-       * happening better. This is a personal preference though.
-       */
-      /* Set the rendering color to white */
-        GL11.glDisable(GL11.GL_BLEND);
+
+        GL11.glEnable(GL11.GL_BLEND);
         GL11.glTexEnvi(GL11.GL_TEXTURE_ENV, GL11.GL_TEXTURE_ENV_MODE, GL11.GL_MODULATE);
         Color color = new Color(ConfigInit.colorR, ConfigInit.colorG, ConfigInit.colorB); // I want to draw the texture to solid red color
 
@@ -45,6 +42,7 @@ public class Compass_Overlay extends Gui {
                 (float) color.getAlpha() / 255f);
 
 
+        GlStateManager.tryBlendFuncSeparate(770, 771, 1, 1);
         int k = Math.round(mc.player.rotationYaw);
         if (k < 0)              //due to the yaw running a -360 to positive 360
             k += 360;
@@ -74,6 +72,10 @@ public class Compass_Overlay extends Gui {
 
 
         GlStateManager.tryBlendFuncSeparate(770, 771, 1, 1);
+
+        GL11.glColor3f(1.0f, 1.0f, 1.0f);
+        GL11.glEnable(GL11.GL_TEXTURE_2D);
+        GL11.glDisable(GL11.GL_BLEND);
 
         GL11.glPopMatrix();
         GL11.glPopAttrib();

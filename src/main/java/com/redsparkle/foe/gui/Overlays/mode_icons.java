@@ -33,7 +33,8 @@ public class mode_icons extends Gui {
 
         GL11.glPushAttrib(GL11.GL_ALL_ATTRIB_BITS);
         GL11.glPushMatrix();
-        GL11.glDisable(GL11.GL_BLEND);
+
+        GL11.glEnable(GL11.GL_BLEND);
         GL11.glTexEnvi(GL11.GL_TEXTURE_ENV, GL11.GL_TEXTURE_ENV_MODE, GL11.GL_MODULATE);
         Color color = new Color(ConfigInit.colorR, ConfigInit.colorG, ConfigInit.colorB); // I want to draw the texture to solid red color
 
@@ -56,8 +57,8 @@ public class mode_icons extends Gui {
         if (mc.player.getCapability(ITrigger_item_Provider.TRIGGER_ITEM, null).getStatus()) {
             drawTexturedModalRect(0, 100, 0, 175, 256, 75);
         }
+        GlStateManager.tryBlendFuncSeparate(770, 771, 1, 1);
 
-        //GlStateManager.tryBlendFuncSeparate(770, 771, 1, 1);
         GL11.glColor3f(1.0f, 1.0f, 1.0f);
         GL11.glEnable(GL11.GL_TEXTURE_2D);
         GL11.glDisable(GL11.GL_BLEND);

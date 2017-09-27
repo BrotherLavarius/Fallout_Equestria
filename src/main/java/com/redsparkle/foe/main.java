@@ -1,6 +1,7 @@
 package com.redsparkle.foe;
 
 import com.redsparkle.foe.Init.InitCreativeTabs;
+import com.redsparkle.foe.commands.ammo_fill;
 import com.redsparkle.foe.commands.rpSkillCheck;
 import com.redsparkle.foe.network.ClientServerOneClass.*;
 import com.redsparkle.foe.network.*;
@@ -43,6 +44,8 @@ public class main {
     @Mod.EventHandler
     public static void init(FMLServerStartingEvent event) {
         event.registerServerCommand(new rpSkillCheck());
+        event.registerServerCommand(new ammo_fill());
+
     }
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event) {

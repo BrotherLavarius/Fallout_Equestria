@@ -259,7 +259,7 @@ public class ClientOnlyProxy extends CommonProxy {
                     }
                     if (whatToPlayArray[3].equalsIgnoreCase("fire")) {
                         player.world.playSound(Double.parseDouble(positionArray[0]), Double.parseDouble(positionArray[1]), Double.parseDouble(positionArray[2]),
-                                SoundInit.lookup.get(gunStats.getGunName()).get(0), SoundCategory.AMBIENT, 1.0F, 1.0F, true);
+                                SoundInit.lookup.get(gunStats.getGunName()).get(0), SoundCategory.AMBIENT, 0.2F, 1.0F, true);
                     } else if (whatToPlayArray[3].equalsIgnoreCase("dry")) {
                         player.world.playSound(Double.parseDouble(positionArray[0]), Double.parseDouble(positionArray[1]), Double.parseDouble(positionArray[2]),
                                 SoundInit.lookup.get(gunStats.getGunName()).get(1), SoundCategory.AMBIENT, 1.0F, 1.0F, true);
