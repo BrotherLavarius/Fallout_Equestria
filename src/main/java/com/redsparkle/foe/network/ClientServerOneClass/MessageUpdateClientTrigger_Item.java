@@ -25,6 +25,7 @@ public class MessageUpdateClientTrigger_Item implements IMessage {
 
     public MessageUpdateClientTrigger_Item(ITrigger_item stats) {
         this.status = stats.getStatus();
+        this.interaction_mode = stats.getInteraction();
     }
 
     @Override

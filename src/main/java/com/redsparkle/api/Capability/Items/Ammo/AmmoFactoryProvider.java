@@ -47,6 +47,12 @@ public class AmmoFactoryProvider implements IAmmoInterface, ICapabilitySerializa
             this.Ammo = this.Ammo + Ammo;
         }
     }
+
+    @Override
+    public void setToMax() {
+        this.Ammo = MaxAmmo;
+    }
+
     public NBTTagCompound get() {
         return serializeNBT();
     }

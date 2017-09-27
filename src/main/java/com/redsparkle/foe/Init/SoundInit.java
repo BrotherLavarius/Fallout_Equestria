@@ -61,7 +61,7 @@ public class SoundInit {
     public static List<SoundEvent> flaregun;
     public static List<SoundEvent> laser;
     public static List<SoundEvent> plasma;
-
+    public static List<SoundEvent> flamer;
 
     /**
      *
@@ -121,6 +121,7 @@ public class SoundInit {
         flaregun = new ArrayList<SoundEvent>();
         laser = new ArrayList<SoundEvent>();
         plasma = new ArrayList<SoundEvent>();
+        flamer = new ArrayList<SoundEvent>();
 
         tenmm.add(tenmm_shot);
         tenmm.add(tenmm_dry);
@@ -152,6 +153,11 @@ public class SoundInit {
         plasma.add(plasma_reload);
         plasma.add(plasma_clip_out);
 
+        flamer.add(flamer_shot);
+        flamer.add(plasma_dry);
+        flamer.add(flamer_reload);
+        flamer.add(plasma_clip_out);
+
         lookup.put(GlobalsGunStats.TEN_MM.getGunName()          ,tenmm);
         lookup.put(GlobalsGunStats.TEN_MM_SUB.getGunName(), tenmm);
         lookup.put(GlobalsGunStats.FOURFOUR_REVOLVER.getGunName(), tenmm);
@@ -168,6 +174,7 @@ public class SoundInit {
         lookup.put(GlobalsGunStats.SEVEN_MM_RIFLE.getGunName(), tenmm);
         lookup.put(GlobalsGunStats.FIVE_MM_MINIGUN.getGunName(), tenmm);
 
+        lookup.put(GlobalsGunStats.FLAMMENWERFER.getGunName(), flamer);
 
 
 

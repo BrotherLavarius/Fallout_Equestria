@@ -29,14 +29,11 @@ public class RadsOverlay extends Gui {
         ScaledResolution scaled = new ScaledResolution(mc);
         int screenWidth = scaled.getScaledWidth();
         int screenHeight = scaled.getScaledHeight();
-/* Saving the current state of OpenGL so that I can restore it when I'm done */
+
         GL11.glPushAttrib(GL11.GL_ALL_ATTRIB_BITS);
         GL11.glPushMatrix();
-      /* I like to indent the code whenever I push. It helps me visualize what is
-       * happening better. This is a personal preference though.
-       */
-      /* Set the rendering color to white */
-        GL11.glDisable(GL11.GL_BLEND);
+
+        GL11.glEnable(GL11.GL_BLEND);
         GL11.glTexEnvi(GL11.GL_TEXTURE_ENV, GL11.GL_TEXTURE_ENV_MODE, GL11.GL_MODULATE);
         Color color = new Color(ConfigInit.colorR, ConfigInit.colorG, ConfigInit.colorB); // I want to draw the texture to solid red color
 
@@ -61,6 +58,10 @@ public class RadsOverlay extends Gui {
             GL11.glScalef(0.76F, 0.76F, 0.76F);
         }
         GL11.glPushMatrix();
+
+        GL11.glColor3f(1.0f, 1.0f, 1.0f);
+        GL11.glEnable(GL11.GL_TEXTURE_2D);
+        GL11.glDisable(GL11.GL_BLEND);
         GL11.glPopMatrix();
         GL11.glPopMatrix();
         GL11.glPopMatrix();

@@ -146,9 +146,13 @@ public class GunFire {
 
     public static void flame(World worldIn, EntityPlayer playerIn, Item item, GlobalsGunStats params, int type,double x,double y,double z,double xHeading,double yHeading,double zHeading ,float vel,float inac,boolean remote) {
         if (remote) {
+            int damage_firearms = playerIn.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getFirearms();
             EntityFlame flame = new EntityFlame(worldIn, playerIn);
-            flame.setHeadingFromThrower(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, params.getVelocity(), params.getInaccuracy());
+            flame.setHeadingFromThrower(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, params.getVelocity(), Float.parseFloat(df.format(Math.abs(params.getInaccuracy() / damage_firearms))));
+            flame.setRenderYawOffset(params.getYawOffset());
             flame.setDamage(params.getDamage());
+            worldIn.spawnEntity(flame);
+
             SendRenderMessage(playerIn, params, type, 84);
 
         }

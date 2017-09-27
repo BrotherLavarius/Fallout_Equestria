@@ -4,7 +4,9 @@ import com.redsparkle.api.Capability.Player.level.LevelFactoryProvider;
 import com.redsparkle.api.Capability.Player.skills.SkillsFactoryProvider;
 import com.redsparkle.api.utils.Lvlutil;
 import com.redsparkle.api.utils.ScreenGrid;
+import com.redsparkle.api.utils.gui.Color_and_Etc;
 import com.redsparkle.api.utils.gui.GuiButtonExtFallout;
+import com.redsparkle.foe.Init.ConfigInit;
 import com.redsparkle.foe.main;
 import com.redsparkle.foe.network.ClientServerOneClass.MessageUpdateClientServerSkills;
 import net.minecraft.client.gui.GuiButton;
@@ -22,6 +24,7 @@ public class LvlUpGui extends GuiScreen {
     public Boolean CommitShow = false;
     public int startY = 15;
     public int index=0;
+    int colorText = Color_and_Etc.rawColorFromRGB(ConfigInit.colorR, ConfigInit.colorG, ConfigInit.colorB);
     GuiButtonExtFallout MagicPlus = new GuiButtonExtFallout(index, 0, 0, 0, 0, "+");
     GuiButtonExtFallout MagicMinus = new GuiButtonExtFallout(index++, 0, 0, 0, 0, "-");
     GuiButtonExtFallout Melee_WeaponsPlus = new GuiButtonExtFallout(index++, 0, 0, 0, 0, "+");
@@ -127,7 +130,7 @@ public class LvlUpGui extends GuiScreen {
                         ScreenGrid.YCoordStart(
                                 this.height,
                                 2) + (i * 15) + 30,
-                        8453920, true
+                        colorText, true
                 );
                 this.fontRenderer.drawString(Integer.toString(
                         params[i]),
@@ -137,7 +140,7 @@ public class LvlUpGui extends GuiScreen {
                         ScreenGrid.YCoordStart(
                                 this.height,
                                 2) + (i * 15) + 30,
-                        8453920, true
+                        colorText, true
                 );
                 this.fontRenderer.drawString(" + " + Integer.toString(
                         temp[i]),
@@ -147,7 +150,7 @@ public class LvlUpGui extends GuiScreen {
                         ScreenGrid.YCoordStart(
                                 this.height,
                                 2) + (i * 15) + 30,
-                        8453920, true
+                        colorText, true
                 );
                 this.fontRenderer.drawString(Integer.toString(
                         finished[i] = temp[i] + params[i]),
@@ -157,7 +160,7 @@ public class LvlUpGui extends GuiScreen {
                         ScreenGrid.YCoordStart(
                                 this.height,
                                 2) + (i * 15) + 30,
-                        8453920, true
+                        colorText, true
                 );
                 startY = startY + 4;
             }
@@ -172,7 +175,7 @@ public class LvlUpGui extends GuiScreen {
                     ScreenGrid.YCoordStart(
                             this.height,
                             2) + 10,
-                    8453920, true
+                    colorText, true
             );
             {
                 int startYButtons = 36;

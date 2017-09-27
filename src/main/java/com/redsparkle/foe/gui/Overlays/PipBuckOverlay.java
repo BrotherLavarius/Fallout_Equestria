@@ -3,14 +3,11 @@ package com.redsparkle.foe.gui.Overlays;
 import com.redsparkle.api.utils.GlobalNames;
 import com.redsparkle.foe.Init.ConfigInit;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.MobEffects;
-import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.world.World;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.util.Color;
 
@@ -23,19 +20,14 @@ public class PipBuckOverlay extends Gui {
     /* These two variables describe the size of the bar */
     private final static int BAR_WIDTH = 152;
     private final static int BAR_HEIGHT = 42;
-    private final static int BAR_SPACING_ABOVE_EXP_BAR = 3;  // pixels between the BAR and the Experience Bar below it
     private final static int ACTUAL_BAR_WIDTH = 135;
     private final static int ACTUAL_BAR_HEIGHT = 9;
     public Color barColor = new Color(ConfigInit.colorR, ConfigInit.colorG, ConfigInit.colorB); // I want to draw the texture to solid red color
 
-    NonNullList<String> compas_points = NonNullList.withSize(8,".");
 
-    private Minecraft mc;
 
     public PipBuckOverlay(Minecraft mc, int screenWidht, int screenHeight) {
     /* These are the variables that contain world and player information */
-        FontRenderer fr = mc.fontRenderer;
-        World world = mc.world;
         EntityPlayer player = mc.player;
         Integer PLayerArmor = player.getTotalArmorValue();
         float maxHp = player.getMaxHealth();
@@ -114,14 +106,7 @@ public class PipBuckOverlay extends Gui {
         GL11.glScalef(0.76F, 0.76F, 0.76F);
 
 
-        int k = Math.round(mc.player.rotationYaw);
-        if (k<0)              //due to the yaw running a -360 to positive 360
-        k+=360;
-        k%=360;
 
-
-
-        fr.drawString(String.valueOf(k),10,10,900000);
         GL11.glPopMatrix();
         GL11.glPopMatrix();
         GL11.glPopMatrix();

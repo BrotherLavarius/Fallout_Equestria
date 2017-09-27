@@ -8,4 +8,6 @@ public interface IAmmoInterface {
     int getAmmo();
     void setAmmo(int Ammo);
     void addAmmo(int Ammo);
+
+    void setToMax();
 }

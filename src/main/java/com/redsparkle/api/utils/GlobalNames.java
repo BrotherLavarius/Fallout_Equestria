@@ -57,7 +57,8 @@ public class GlobalNames {
     // Saddle bag guns
     public static final String
             Seven_mm_rifle = "seven_mm_rifle",
-            Five_mm_minigun = "five_mm_minigun";
+            Five_mm_minigun = "five_mm_minigun",
+            flammenwarfer = "flammenwarfer";
     // Food
     // AMMO
     public static final String
@@ -76,6 +77,7 @@ public class GlobalNames {
             Seven_mmAmmo = "seven_mm_ammo",
             Seven_mmClip = "seven_mm_clip",
             Seven_mm_bulletCase = "seven_mm_case",
+            flammenwarfer_ammo = "flammenwarfer_ammo",
 
     Five_mmAmmo = "five_mm_ammo",
             Five_mmClip = "five_mm_clip",
