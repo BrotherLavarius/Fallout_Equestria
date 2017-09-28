@@ -1,6 +1,5 @@
 package com.redsparkle.foe.Init;
 
-import com.redsparkle.api.items.helpers.Item_Instances.Item_bullet;
 import com.redsparkle.api.utils.Armor_material;
 import com.redsparkle.api.utils.GlobalNames;
 import com.redsparkle.foe.items.armor.powered.*;
@@ -38,6 +37,7 @@ import com.redsparkle.foe.items.saddlebags.clip.flammenwerfer_ammo;
 import com.redsparkle.foe.items.saddlebags.guns.Five_mm_minigun;
 import com.redsparkle.foe.items.saddlebags.guns.Seven_mm_rifle;
 import com.redsparkle.foe.items.saddlebags.guns.flammenwarfer;
+import com.redsparkle.foe.items.scrap.*;
 import com.redsparkle.foe.items.utility.AdvancedEnviropmentMonitor;
 import com.redsparkle.foe.items.utility.PipBuck;
 import com.redsparkle.foe.main;
@@ -77,6 +77,30 @@ public class ItemInit {
     public static final Sugar_Bombs sugar_bombs = new Sugar_Bombs(GlobalNames.sugar_bombs);
     public static final Fancy_mare_Snack_Cakes fancy_mare_snack_cakes = new Fancy_mare_Snack_Cakes(GlobalNames.Fancy_mare_Snack_Cakes);
 
+    public static final Aluminum aluminum = new Aluminum(GlobalNames.Aluminum);
+    public static final Asbestos asbestos = new Asbestos(GlobalNames.Asbestos);
+    public static final Ballistic_fiber ballistic_fiber = new Ballistic_fiber(GlobalNames.Ballistic_fiber);
+    public static final Bolts bolts = new Bolts(GlobalNames.Bolts);
+    public static final Ceramic ceramic = new Ceramic(GlobalNames.Ceramic);
+    public static final Cloth cloth = new Cloth(GlobalNames.Cloth);
+    public static final Concrete concrete = new Concrete(GlobalNames.Concrete);
+    public static final Copper copper = new Copper(GlobalNames.Copper);
+    public static final Cork cork = new Cork(GlobalNames.Cork);
+    public static final Crystal crystal = new Crystal(GlobalNames.Crystal);
+    public static final Electronic_parts electronic_parts = new Electronic_parts(GlobalNames.Electronic_parts);
+    public static final Fiberglass fiberglass = new Fiberglass(GlobalNames.Fiberglass);
+    public static final Fiber_optics fiber_optics = new Fiber_optics(GlobalNames.Fiber_optics);
+    public static final Gears gears = new Gears(GlobalNames.Gears);
+    public static final Glue glue = new Glue(GlobalNames.Glue);
+    public static final Lead lead = new Lead(GlobalNames.Lead);
+    public static final Nuclear_material nuclear_material = new Nuclear_material(GlobalNames.Nuclear_material);
+    public static final Oil oil = new Oil(GlobalNames.Oil);
+    public static final Plastic plastic = new Plastic(GlobalNames.Plastic);
+    public static final Rubber rubber = new Rubber(GlobalNames.Rubber);
+    public static final Silver silver = new Silver(GlobalNames.Silver);
+    public static final Spring spring = new Spring(GlobalNames.Spring);
+    public static final Steel steel = new Steel(GlobalNames.Steel);
+
 
     public static final FourFourMagAmmo fourFourMagAmmo = new FourFourMagAmmo(GlobalNames.fortyfour_ammo);
     public static final SShell sShell = new SShell(GlobalNames.shell);
@@ -113,7 +137,6 @@ public class ItemInit {
     public static final DB_shoutgun db_shoutgun = new DB_shoutgun(GlobalsGunStats.DB_SHOUTGUN.getGunName(), GlobalsGunStats.DB_SHOUTGUN, Items.AIR, sShell);
     public static final FlareGun flareGun = new FlareGun(GlobalsGunStats.FLARE_GUN.getGunName(), GlobalsGunStats.FLARE_GUN, Items.AIR, flare);
 
-    public static final Item_bullet itb = new Item_bullet("bullet");
 
     public static final Trigger_Item trigger_item = new Trigger_Item(GlobalNames.trigger_Item);
 
@@ -168,6 +191,32 @@ public class ItemInit {
 
 
         final Item[] items = {
+
+
+                aluminum,
+                asbestos,
+                ballistic_fiber,
+                bolts,
+                ceramic,
+                cloth,
+                concrete,
+                copper,
+                cork,
+                crystal,
+                electronic_parts,
+                fiber_optics,
+                fiberglass,
+                gears,
+                glue,
+                lead,
+                nuclear_material,
+                oil,
+                plastic,
+                rubber,
+                silver,
+                spring,
+                steel,
+
                 radx,
                 radAway,
                 redHealPotion,
@@ -212,8 +261,6 @@ public class ItemInit {
                 db_shoutgun,
                 flareGun,
 
-
-                itb,
 
                 t40head,
                 t40body,

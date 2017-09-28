@@ -15,7 +15,8 @@ public class GlobalNames {
             Creative_tab_Food = "FOE_Food",
             Creative_tab_Meds = "FOE_Meds",
             Creative_tab_Ammo = "FOE_Ammo",
-            Creative_tab_Armor = "FOE_Armor";
+            Creative_tab_Armor = "FOE_Armor",
+            Creative_tab_Scrap = "FOE_Junk";
     // Food
     public static final String
             potato_crisps = "potato_crisps",
@@ -126,4 +127,31 @@ public class GlobalNames {
             saddlebags = "saddlebags",
             saddlebags_army = "saddlebags_army",
             trigger_Item = "trigger_Item";
+
+    //SCRAP
+
+    public static final String
+            Aluminum = "Aluminum",
+            Asbestos = "Asbestos",
+            Ballistic_fiber = "Ballistic_fiber",
+            Bolts = "Bolts",
+            Ceramic = "Ceramic",
+            Cloth = "Cloth",
+            Concrete = "Concrete",
+            Copper = "Copper",
+            Cork = "Cork",
+            Crystal = "Crystal",
+            Electronic_parts = "Electronic_parts",
+            Fiberglass = "Fiberglass",
+            Fiber_optics = "Fiber_optics",
+            Gears = "Gears",
+            Glue = "Glue",
+            Lead = "Lead",
+            Nuclear_material = "Nuclear_material",
+            Oil = "Oil",
+            Plastic = "Plastic",
+            Rubber = "Rubber",
+            Silver = "Silver",
+            Spring = "Spring",
+            Steel = "Steel";
 }

@@ -38,3 +38,6 @@ public class FoeItem extends Item {
     public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
     }
 }
+
+
+
