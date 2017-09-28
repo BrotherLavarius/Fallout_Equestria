@@ -2,6 +2,7 @@ package com.redsparkle.foe.Init;
 
 import com.redsparkle.api.utils.Armor_material;
 import com.redsparkle.api.utils.GlobalNames;
+import com.redsparkle.foe.items.FoeScrap;
 import com.redsparkle.foe.items.armor.powered.*;
 import com.redsparkle.foe.items.food.old.*;
 import com.redsparkle.foe.items.guns.*;
@@ -49,10 +50,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.registries.IForgeRegistry;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 
 /**
@@ -168,7 +166,7 @@ public class ItemInit {
     public static final Map<String, Object> gun_case_lookup = new HashMap<String, Object>();
     public static final Map<Object, Object> Clip_ammo_lookup = new HashMap<Object, Object>();
     public static final Map<String, Object> gun_lookup = new HashMap<String, Object>();
-
+    public static final List<FoeScrap> scrap = new ArrayList<>();
 
     /**
      * Register this mod's {@link Item}s.
@@ -314,7 +312,29 @@ public class ItemInit {
         gun_ammo_lookup.put(GlobalsGunStats.FIVE_MM_MINIGUN.getGunName(), five_mmClip);
         gun_ammo_lookup.put(GlobalsGunStats.FLAMMENWERFER.getGunName(), fl_ammo);
 
-
+        scrap.add(aluminum);
+        scrap.add(asbestos);
+        scrap.add(ballistic_fiber);
+        scrap.add(bolts);
+        scrap.add(ceramic);
+        scrap.add(cloth);
+        scrap.add(concrete);
+        scrap.add(copper);
+        scrap.add(cork);
+        scrap.add(crystal);
+        scrap.add(electronic_parts);
+        scrap.add(fiber_optics);
+        scrap.add(fiberglass);
+        scrap.add(gears);
+        scrap.add(glue);
+        scrap.add(lead);
+        scrap.add(nuclear_material);
+        scrap.add(oil);
+        scrap.add(plastic);
+        scrap.add(rubber);
+        scrap.add(silver);
+        scrap.add(spring);
+        scrap.add(steel);
 
 
 
