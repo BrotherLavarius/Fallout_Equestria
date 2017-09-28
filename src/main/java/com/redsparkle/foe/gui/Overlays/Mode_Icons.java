@@ -16,13 +16,13 @@ import org.lwjgl.util.Color;
 /**
  * Created by hoijima on 19.09.17.
  */
-public class mode_icons extends Gui {
+public class Mode_Icons extends Gui {
 
     private final static ResourceLocation modes = new ResourceLocation(GlobalNames.Domain, "textures/gui_icons/modes.png");
     private Minecraft mc;
 
 
-    public mode_icons(Minecraft mc) {
+    public Mode_Icons(Minecraft mc) {
         FontRenderer fr = mc.fontRenderer;
         int colorText = Color_and_Etc.rawColorFromRGB(ConfigInit.colorR, ConfigInit.colorG, ConfigInit.colorB);
 

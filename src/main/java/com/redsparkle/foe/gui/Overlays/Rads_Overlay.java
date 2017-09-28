@@ -15,14 +15,15 @@ import org.lwjgl.util.Color;
 /**
  * Created by NENYN on 14.11.2016.
  */
-public class RadsOverlay extends Gui {
+public class Rads_Overlay extends Gui {
     private final static ResourceLocation overlayBarRad = new ResourceLocation(GlobalNames.Domain, "textures/gui/rads_hud_overlay.png");
     private final static int BAR_WIDTH = 103;
     private final static int BAR_HEIGHT = 26;
     private final static int RadBAR_WIDTH = 100;
     private final static int RadBAR_HEIGHT = 8;
     private Minecraft mc;
-    public RadsOverlay(Minecraft mc) {
+
+    public Rads_Overlay(Minecraft mc) {
         EntityPlayer player = mc.player;
         World world = mc.world;
         int playerRadlevel = player.getCapability(RadsFactoryProvider.RADIATION_CAPABILITY, null).getRadiation();

@@ -1,6 +1,6 @@
 package com.redsparkle.foe.events.ClientSide.gui;
 
-import com.redsparkle.foe.gui.Overlays.mode_icons;
+import com.redsparkle.foe.gui.Overlays.Mode_Icons;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -14,7 +14,7 @@ public class EventPlayerGuiHandler {
         switch (event.getType()) {
             case HEALTH:
         /* Don't render the vanilla heart bar */
-                new mode_icons(Minecraft.getMinecraft());
+                new Mode_Icons(Minecraft.getMinecraft());
 
                 event.setCanceled(true);
                 break;

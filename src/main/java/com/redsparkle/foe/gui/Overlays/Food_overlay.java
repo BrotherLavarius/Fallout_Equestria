@@ -20,14 +20,15 @@ import org.lwjgl.util.Color;
 /**
  * Created by NENYN on 1/1/2017.
  */
-public class APBar extends Gui {
+public class Food_overlay extends Gui {
     private final static ResourceLocation overlayBarRad = new ResourceLocation(GlobalNames.Domain, "textures/gui/food_hud_overlay.png");
     private final static int BAR_WIDTH = 154;
     private final static int BAR_HEIGHT = 46;
     private final static int RadBAR_WIDTH = 135;
     private final static int RadBAR_HEIGHT = 9;
     private Minecraft mc;
-    public APBar(Minecraft mc) {
+
+    public Food_overlay(Minecraft mc) {
         FontRenderer fr = mc.fontRenderer;
         EntityPlayer player = mc.player;
         World world = mc.world;
