@@ -5,7 +5,7 @@
   "version": "0.9.3.6.1",
   "mcversion": "${mcversion}",
   "url": "https://fallout-equestria.tk",
-  "authorList": ["Roman 'Hoijima - RandomDrago'", "Veleska", "Everyone who contributed to the mod on Gitlab - thank you!"],
+  "authorList": ["Code :'RandomDrago'", "Art and Textures: Veleska", "Music: FelonOnBass"],
   "credits" : "Inspired by Fallout Equestria by KKat.",
   "logoFile" : "assets/fallout_equestria/textures/gui/logo.png",
   "requiredMods": [ "Forge@[14.22.0.2461,)" ],
