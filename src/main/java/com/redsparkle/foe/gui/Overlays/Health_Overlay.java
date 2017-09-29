@@ -14,7 +14,7 @@ import org.lwjgl.util.Color;
 /**
  * Created by NENYN on 12/25/2016.
  */
-public class PipBuckOverlay extends Gui {
+public class Health_Overlay extends Gui {
     private final static ResourceLocation overlayBar = new ResourceLocation(GlobalNames.Domain,
             "textures/gui/health_hud_overlay.png");
     /* These two variables describe the size of the bar */
@@ -25,8 +25,7 @@ public class PipBuckOverlay extends Gui {
     public Color barColor = new Color(ConfigInit.colorR, ConfigInit.colorG, ConfigInit.colorB); // I want to draw the texture to solid red color
 
 
-
-    public PipBuckOverlay(Minecraft mc, int screenWidht, int screenHeight) {
+    public Health_Overlay(Minecraft mc, int screenWidht, int screenHeight) {
     /* These are the variables that contain world and player information */
         EntityPlayer player = mc.player;
         Integer PLayerArmor = player.getTotalArmorValue();

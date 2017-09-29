@@ -2,10 +2,10 @@ package com.redsparkle.foe.events.ClientSide.gui;
 
 import com.redsparkle.api.Capability.Player.Inventory.IAdvProvider;
 import com.redsparkle.foe.Init.ItemInit;
-import com.redsparkle.foe.gui.Overlays.APBar;
 import com.redsparkle.foe.gui.Overlays.Compass_Overlay;
-import com.redsparkle.foe.gui.Overlays.PipBuckOverlay;
-import com.redsparkle.foe.gui.Overlays.RadsOverlay;
+import com.redsparkle.foe.gui.Overlays.Food_overlay;
+import com.redsparkle.foe.gui.Overlays.Health_Overlay;
+import com.redsparkle.foe.gui.Overlays.Rads_Overlay;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
@@ -28,10 +28,10 @@ public class EventHandlerOverlayPipBuck {
         }
         switch (event.getType()) {
             case HEALTH:
-                new PipBuckOverlay(Minecraft.getMinecraft(), event.getResolution().getScaledWidth(), event.getResolution().getScaledHeight());
+                new Health_Overlay(Minecraft.getMinecraft(), event.getResolution().getScaledWidth(), event.getResolution().getScaledHeight());
                 //statusBarRenderer.renderStatusBar(event.getResolution().getScaledWidth(), event.getResolution().getScaledHeight());        /* Call a helper method so that this method stays organized */
-                new RadsOverlay(Minecraft.getMinecraft());
-                new APBar(Minecraft.getMinecraft());
+                new Rads_Overlay(Minecraft.getMinecraft());
+                new Food_overlay(Minecraft.getMinecraft());
                 new Compass_Overlay(Minecraft.getMinecraft());
                 event.setCanceled(true);
                 break;

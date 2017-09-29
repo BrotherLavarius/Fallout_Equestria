@@ -70,7 +70,7 @@ public class BlockInit {
 //
 //
 //        }
-        registry.registerAll(blocks);
+//        registry.registerAll(blocks);
 
 
 
@@ -93,7 +93,7 @@ public class BlockInit {
         for (int i = 0; i < (items.length - 1); i++) {
             items[i].setUnlocalizedName(blocksNames[i]);
             items[i].setRegistryName(blocksNames[i]);
-            registry.register(items[i]);
+//            registry.register(items[i]);
             ITEM_BLOCKS.add(items[i]);
         }
         //registry.registerAll(items);

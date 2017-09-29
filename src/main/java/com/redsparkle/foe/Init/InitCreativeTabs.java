@@ -27,6 +27,15 @@ public class InitCreativeTabs {
             return new ItemStack(Items.POTIONITEM);
         }
     };
+
+
+    public static final CreativeTabs Fallout_scrap = new CreativeTabs(GlobalNames.Creative_tab_Scrap) {
+        @Override
+        public ItemStack getTabIconItem() {
+            return new ItemStack(Items.STRING);
+        }
+    };
+
     public static final CreativeTabs Fallout_guns = new CreativeTabs(GlobalNames.Creative_tab_Guns) {
         @Override
         public ItemStack getTabIconItem() {
