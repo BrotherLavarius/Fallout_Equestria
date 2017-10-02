@@ -13,7 +13,7 @@ hs_err_pid*
 
 out
 build
-.idea
+.idea/*
 run
 .gradle/*
 .gradle/gradle.log

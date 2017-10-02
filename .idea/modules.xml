@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-641795798/IdeaProjects-Fallout_Equestria.iml" filepath="$PROJECT_DIR$/.idea/modules/-641795798/IdeaProjects-Fallout_Equestria.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-1812784548/MineLittlePony.iml" filepath="$PROJECT_DIR$/.idea/modules/-1812784548/MineLittlePony.iml" />
-      <module fileurl="file://$PROJECT_DIR$/../run_module/run_module.iml" filepath="$PROJECT_DIR$/../run_module/run_module.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Fallout_Equestria.iml" filepath="$PROJECT_DIR$/.idea/modules/Fallout_Equestria.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/MineLittlePony.iml" filepath="$PROJECT_DIR$/.idea/modules/MineLittlePony.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../Run_module/Run_module.iml" filepath="$PROJECT_DIR$/../Run_module/Run_module.iml" />
     </modules>
   </component>
 </project>
