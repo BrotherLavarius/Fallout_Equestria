@@ -315,7 +315,7 @@ public class ItemInit {
         gun_ammo_lookup.put(GlobalsGunStats.TEN_MM_SUB.getGunName(), tenMMSubclip);
         gun_ammo_lookup.put(GlobalsGunStats.FIVE_MM_MINIGUN.getGunName(), five_mmClip);
         gun_ammo_lookup.put(GlobalsGunStats.FLAMMENWERFER.getGunName(), fl_ammo);
-        gun_ammo_lookup.put(GlobalsGunStats.FLAMMENWERFER.getGunName(), battery);
+        gun_ammo_lookup.put(GlobalsGunStats.BASS_CANNON.getGunName(), battery);
 
 
         Clip_ammo_lookup.put(tenMMClip, tenMMAmmo);
