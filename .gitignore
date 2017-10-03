@@ -14,7 +14,12 @@ hs_err_pid*
 out
 build
 .idea/*
+.idea
 run
+.gradle
 .gradle/*
 .gradle/gradle.log
 .gradle/2.14/taskArtifacts/*
+Будет удалено .gradle/
+Будет удалено src/api/
+Будет удалено src/test/
