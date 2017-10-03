@@ -2,6 +2,8 @@ package com.redsparkle.foe.Init;
 
 import com.redsparkle.api.utils.GlobalNames;
 import com.redsparkle.foe.Init.model.MeshDefinitionFix;
+import com.redsparkle.foe.items.guns.entitys.bass.EntityBass;
+import com.redsparkle.foe.items.guns.entitys.bass.RenderFactoryBass;
 import com.redsparkle.foe.items.guns.entitys.bulletFired.EntityBullet;
 import com.redsparkle.foe.items.guns.entitys.bulletFired.RenderFactoryBullet;
 import com.redsparkle.foe.items.guns.entitys.flametrower.EntityFlame;
@@ -42,7 +44,6 @@ public class RenderingInit {
 
     private RenderingInit() {
     }
-
 
 
     @SubscribeEvent
@@ -141,8 +142,8 @@ public class RenderingInit {
 
         ModelLoader.setCustomModelResourceLocation(trigger_item, 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.trigger_Item, "inventory"));
 
-        ModelLoader.setCustomModelResourceLocation(seven_mm_rifle_RS, 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.Seven_mm_rifle+"_rs", "inventory"));
-        ModelLoader.setCustomModelResourceLocation(seven_mm_rifle_LS, 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.Seven_mm_rifle+"_ls", "inventory"));
+        ModelLoader.setCustomModelResourceLocation(seven_mm_rifle_RS, 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.Seven_mm_rifle + "_rs", "inventory"));
+        ModelLoader.setCustomModelResourceLocation(seven_mm_rifle_LS, 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.Seven_mm_rifle + "_ls", "inventory"));
 
         ModelLoader.setCustomModelResourceLocation(five_mm_minigun_LS, 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.Five_mm_minigun + "_rs", "inventory"));
         ModelLoader.setCustomModelResourceLocation(five_mm_minigun_RS, 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.Five_mm_minigun + "_ls", "inventory"));
@@ -160,6 +161,8 @@ public class RenderingInit {
         ModelLoader.setCustomModelResourceLocation(five_mmClip, 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.Five_mmClip, "inventory"));
         ModelLoader.setCustomModelResourceLocation(five_mm_bulletCase, 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.Five_mm_bulletCase, "inventory"));
 
+        ModelLoader.setCustomModelResourceLocation(bassCannon_RS, 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.bass_cannon + "_rs", "inventory"));
+
 
         RenderingRegistry.registerEntityRenderingHandler(EntityBullet.class, new RenderFactoryBullet(Minecraft.getMinecraft().getRenderManager()));
         RenderingRegistry.registerEntityRenderingHandler(EntityLaser.class, new RenderFactoryLaser(Minecraft.getMinecraft().getRenderManager()));
@@ -172,9 +175,12 @@ public class RenderingInit {
         RenderingRegistry.registerEntityRenderingHandler(Pellet_five.class, new RenderFactoryBullet(Minecraft.getMinecraft().getRenderManager()));
         RenderingRegistry.registerEntityRenderingHandler(Pellet_six.class, new RenderFactoryBullet(Minecraft.getMinecraft().getRenderManager()));
         RenderingRegistry.registerEntityRenderingHandler(EntityFlare.class, new RenderFactoryBullet(Minecraft.getMinecraft().getRenderManager()));
+        RenderingRegistry.registerEntityRenderingHandler(EntityBass.class, new RenderFactoryBass(Minecraft.getMinecraft().getRenderManager()));
+
 
         INSTANCE.registerFluidModels();
     }
+
     private void registerFluidModels() {
         FluidsInit.MOD_FLUID_BLOCKS.forEach(this::registerFluidModel);
     }

@@ -16,6 +16,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.List;
+
 /**
  * Created by hoijima desu on 29.07.16 desu.
  */
@@ -25,6 +26,7 @@ public class RadX extends FoeItem {
         this.setMaxStackSize(15);
         this.setCreativeTab(InitCreativeTabs.Fallout_meds);
     }
+
     public ItemStack onItemUseFinish(ItemStack stack, World worldIn, EntityLivingBase entityLiving) {
         EntityPlayerMP entityplayer = entityLiving instanceof EntityPlayerMP ? (EntityPlayerMP) entityLiving : null;
         if (entityplayer == null || !entityplayer.capabilities.isCreativeMode) {
@@ -40,22 +42,26 @@ public class RadX extends FoeItem {
         }
         return stack;
     }
+
     /**
      * How long it takes to use or consume an item
      */
     public int getMaxItemUseDuration(ItemStack stack) {
         return 32;
     }
+
     /**
      * returns the action that specifies what animation to play when the items is being used
      */
     public EnumAction getItemUseAction(ItemStack stack) {
         return EnumAction.DRINK;
     }
+
     public ActionResult<ItemStack> onItemRightClick(World itemStackIn, EntityPlayer worldIn, EnumHand playerIn) {
         worldIn.setActiveHand(playerIn);
         return new ActionResult<>(EnumActionResult.SUCCESS, worldIn.getHeldItem(playerIn));
     }
+
     /**
      * allows items to add custom lines of information to the mouseover description
      */
@@ -64,6 +70,7 @@ public class RadX extends FoeItem {
         tooltip.add("Best item to have when radiation is around!");
         tooltip.add("Has a nasty orange after taste. Yuhc");
     }
+
     @SideOnly(Side.CLIENT)
     public boolean hasEffect(ItemStack stack) {
         return false;

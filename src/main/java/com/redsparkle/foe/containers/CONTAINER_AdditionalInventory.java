@@ -10,6 +10,7 @@ import net.minecraft.inventory.Container;
 import net.minecraft.inventory.InventoryBasic;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
+
 /**
  * Created by hoijima on 29.06.17.
  */
@@ -26,6 +27,7 @@ public class CONTAINER_AdditionalInventory extends Container {
     public InventoryBasic additional_inventory;
     public InventoryPlayer inventoryPlayer;
     public IAdvInventory adv_inv;
+
     //TODO: FInish this class
     public CONTAINER_AdditionalInventory(EntityPlayer player) {
         this.adv_inv = player.getCapability(IAdvProvider.Adv_Inv, null);
@@ -66,9 +68,11 @@ public class CONTAINER_AdditionalInventory extends Container {
         }
 
     }
+
     public boolean canInteractWith(EntityPlayer var1) {
         return true;
     }
+
     @Override
     public ItemStack transferStackInSlot(EntityPlayer player, int sourceSlotIndex) {
         Slot sourceSlot = inventorySlots.get(sourceSlotIndex);
@@ -99,6 +103,7 @@ public class CONTAINER_AdditionalInventory extends Container {
         sourceSlot.onTake(player, sourceStack);  //onPickupFromSlot()
         return copyOfSourceStack;
     }
+
     @Override
     public void onContainerClosed(EntityPlayer playerIn) {
         super.onContainerClosed(playerIn);

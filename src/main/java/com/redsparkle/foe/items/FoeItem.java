@@ -21,7 +21,6 @@ public class FoeItem extends Item {
     }
 
 
-
     /**
      * Set the registry name of {@code item} to {@code itemName} and the unlocalised name to the full registry name.
      *

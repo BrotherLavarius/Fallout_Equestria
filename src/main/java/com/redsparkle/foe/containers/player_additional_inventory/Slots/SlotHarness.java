@@ -4,6 +4,7 @@ import com.redsparkle.foe.items.saddlebags.Saddlebags;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
+
 /**
  * Created by hoijima on 28.06.17.
  */
@@ -28,6 +29,7 @@ public class SlotHarness extends Slot {
      * display position of the inventory slot on the screen y axis
      */
     public int yPos;
+
     public SlotHarness(IInventory inventoryIn, int index, int xPosition, int yPosition) {
         super(inventoryIn, index, xPosition, yPosition);
         this.inventory = inventoryIn;
@@ -35,14 +37,17 @@ public class SlotHarness extends Slot {
         this.xPos = xPosition;
         this.yPos = yPosition;
     }
+
     @Override
     public int getSlotIndex() {
         return slotIndex;
     }
+
     @Override
     public int getSlotStackLimit() {
         return 64;
     }
+
     @Override
     public boolean isItemValid(ItemStack stack) {
         return super.isItemValid(stack) && stack.getItem() instanceof Saddlebags;

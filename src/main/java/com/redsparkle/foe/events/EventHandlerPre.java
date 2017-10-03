@@ -32,6 +32,7 @@ import net.minecraftforge.event.entity.player.PlayerContainerEvent;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
+
 /**
  * Created by hoijima on 07.09.16.
  */
@@ -39,6 +40,7 @@ public class EventHandlerPre {
     public static boolean canHaveAttributes(Entity entity) {
         return entity instanceof EntityLivingBase;
     }
+
     @SubscribeEvent
     public void onAddCapabilitiesEntity(AttachCapabilitiesEvent<Entity> event) {
         if (canHaveAttributes(event.getObject())) {
@@ -56,18 +58,20 @@ public class EventHandlerPre {
             }
         }
     }
+
     @SubscribeEvent
     public void onAddCapabilitiesItemStack(AttachCapabilitiesEvent<ItemStack> e) {
         if (e.getObject().getItem() instanceof Item_AmmoHolder || e.getObject().getItem() instanceof Item_SaddleBagAmmo) {
-            if(!e.getObject().hasCapability(AmmoFactoryProvider.AMMO_STORAGE,null)){
+            if (!e.getObject().hasCapability(AmmoFactoryProvider.AMMO_STORAGE, null)) {
                 e.addCapability(new ResourceLocation(main.MODID + ":ammo_capability"), new AmmoFactoryProvider());
             }
         }
         if (e.getObject().getItem() instanceof Item_Firearm || e.getObject().getItem() instanceof Item_SaggleBagGun) {
-            if(!e.getObject().hasCapability(GunFactoryProvider.GUN,null)){
+            if (!e.getObject().hasCapability(GunFactoryProvider.GUN, null)) {
                 e.addCapability(new ResourceLocation(main.MODID + ":gun_capability"), new GunFactoryProvider());
             }
         }
+
     }
 
     @SubscribeEvent
@@ -120,6 +124,7 @@ public class EventHandlerPre {
 
     private void onUpdate(TickEvent.WorldTickEvent event) {
     }
+
     @SubscribeEvent
     public void onPlayerTick(PlayerContainerEvent.Open event) {
         event.getContainer();
@@ -127,8 +132,7 @@ public class EventHandlerPre {
 
 
     @SubscribeEvent(priority = EventPriority.HIGHEST)
-    public void onPlayerDamageEvent(LivingAttackEvent event)
-    {
+    public void onPlayerDamageEvent(LivingAttackEvent event) {
         if (event.getEntityLiving().isPotionActive(PotionInit.STATICPOISON) && event.isCancelable())
             event.setCanceled(false);
     }

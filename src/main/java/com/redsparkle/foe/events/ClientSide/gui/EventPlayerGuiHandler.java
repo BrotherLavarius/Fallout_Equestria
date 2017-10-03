@@ -4,6 +4,7 @@ import com.redsparkle.foe.gui.Overlays.Mode_Icons;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+
 /**
  * Created by hoijima on 02.06.17.
  */
@@ -43,6 +44,7 @@ public class EventPlayerGuiHandler {
         }
 
     }
+
     /* The RenderGameOverlayEvent.Post event is called after each game overlay element is rendered.
  * Similar to the RenderGameOverlayEvent.Pre event, it is called multiple times.
  *

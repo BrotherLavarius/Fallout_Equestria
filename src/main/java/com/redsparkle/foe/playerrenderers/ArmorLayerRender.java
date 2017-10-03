@@ -36,7 +36,7 @@ public class ArmorLayerRender implements LayerRenderer<EntityLivingBase> {
         ItemStack itemstackLegs = entitylivingbaseIn.getItemStackFromSlot(EntityEquipmentSlot.LEGS);
         Item itemLegs = itemstackBody.getItem();
 
-        ItemStack harnes = entitylivingbaseIn.getCapability(IAdvProvider.Adv_Inv,null).getStackInSlot(5);
+        ItemStack harnes = entitylivingbaseIn.getCapability(IAdvProvider.Adv_Inv, null).getStackInSlot(5);
         Item itemHarness = harnes.getItem();
 
         Minecraft minecraft = Minecraft.getMinecraft();

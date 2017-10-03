@@ -88,7 +88,6 @@ public class UpdateEvents {
     }
 
 
-
     @SubscribeEvent
     public void onRespawned(PlayerEvent.PlayerRespawnEvent event) {
         EntityPlayer player = event.player;
@@ -141,6 +140,7 @@ public class UpdateEvents {
 
         }
     }
+
     private void updatePlayerRads(EntityPlayer player) {
         if (!player.world.isRemote) {
             IRadiationCapability rad = player.getCapability(RadsFactoryProvider.RADIATION_CAPABILITY, null);

@@ -1,4 +1,5 @@
 package com.redsparkle.foe.gui.Menus.pipbuck_gui_extenders.DATA;
+
 import com.redsparkle.api.utils.gui.GuiButtonExtFallout;
 import com.redsparkle.foe.Init.ConfigInit;
 

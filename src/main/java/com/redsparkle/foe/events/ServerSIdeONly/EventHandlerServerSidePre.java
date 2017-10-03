@@ -26,38 +26,37 @@ public class EventHandlerServerSidePre {
     @SubscribeEvent
     public void onPlayerTick(TickEvent.PlayerTickEvent e) {
         InventoryPlayer inv = e.player.inventory;
-        IAdvInventory iadv = e.player.getCapability(IAdvProvider.Adv_Inv,null);
-        for(int i = 0; i <= inv.getSizeInventory(); i++){
-            if (inv.getStackInSlot(i).getItem() instanceof Item_AmmoHolder && inv.getStackInSlot(i).hasCapability(AmmoFactoryProvider.AMMO_STORAGE,null)){
-                IAmmoInterface iammo = inv.getStackInSlot(i).getCapability(AmmoFactoryProvider.AMMO_STORAGE,null);
-                main.simpleNetworkWrapper.sendTo(new MessageUpdateAmmoHolders(iammo.getAmmo(),iammo.getMaxAmmo(),i,0,0),(EntityPlayerMP) e.player);
+        IAdvInventory iadv = e.player.getCapability(IAdvProvider.Adv_Inv, null);
+        for (int i = 0; i <= inv.getSizeInventory(); i++) {
+            if (inv.getStackInSlot(i).getItem() instanceof Item_AmmoHolder && inv.getStackInSlot(i).hasCapability(AmmoFactoryProvider.AMMO_STORAGE, null)) {
+                IAmmoInterface iammo = inv.getStackInSlot(i).getCapability(AmmoFactoryProvider.AMMO_STORAGE, null);
+                main.simpleNetworkWrapper.sendTo(new MessageUpdateAmmoHolders(iammo.getAmmo(), iammo.getMaxAmmo(), i, 0, 0), (EntityPlayerMP) e.player);
             }
         }
-        for(int g =0; g < iadv.getSlots(); g++){
-            if(iadv.getStackInSlot(g).getItem() instanceof Item_AmmoHolder && inv.getStackInSlot(g).hasCapability(AmmoFactoryProvider.AMMO_STORAGE,null)){
-                IAmmoInterface iammo = inv.getStackInSlot(g).getCapability(AmmoFactoryProvider.AMMO_STORAGE,null);
-                main.simpleNetworkWrapper.sendTo(new MessageUpdateAmmoHolders(iammo.getAmmo(),iammo.getMaxAmmo(),g,1,0), (EntityPlayerMP) e.player);
+        for (int g = 0; g < iadv.getSlots(); g++) {
+            if (iadv.getStackInSlot(g).getItem() instanceof Item_AmmoHolder && inv.getStackInSlot(g).hasCapability(AmmoFactoryProvider.AMMO_STORAGE, null)) {
+                IAmmoInterface iammo = inv.getStackInSlot(g).getCapability(AmmoFactoryProvider.AMMO_STORAGE, null);
+                main.simpleNetworkWrapper.sendTo(new MessageUpdateAmmoHolders(iammo.getAmmo(), iammo.getMaxAmmo(), g, 1, 0), (EntityPlayerMP) e.player);
             }
         }
-        for(int a = 0; a <= inv.getSizeInventory(); a++){
-            if (inv.getStackInSlot(a).getItem() instanceof Item_Firearm && inv.getStackInSlot(a).hasCapability(GunFactoryProvider.GUN,null)){
-                IGunInterface igun = inv.getStackInSlot(a).getCapability(GunFactoryProvider.GUN,null);
-                main.simpleNetworkWrapper.sendTo(new MessageUpdateAmmoHolders(igun.getAmmo(),igun.getMaxAmmo(),a,0,1),(EntityPlayerMP) e.player);
+        for (int a = 0; a <= inv.getSizeInventory(); a++) {
+            if (inv.getStackInSlot(a).getItem() instanceof Item_Firearm && inv.getStackInSlot(a).hasCapability(GunFactoryProvider.GUN, null)) {
+                IGunInterface igun = inv.getStackInSlot(a).getCapability(GunFactoryProvider.GUN, null);
+                main.simpleNetworkWrapper.sendTo(new MessageUpdateAmmoHolders(igun.getAmmo(), igun.getMaxAmmo(), a, 0, 1), (EntityPlayerMP) e.player);
             }
         }
-        for(int z = 0; z < iadv.getSlots(); z++){
-            if(iadv.getStackInSlot(z).getItem() instanceof Item_Firearm && inv.getStackInSlot(z).hasCapability(GunFactoryProvider.GUN,null)){
-                IGunInterface igun = inv.getStackInSlot(z).getCapability(GunFactoryProvider.GUN,null);
-                main.simpleNetworkWrapper.sendTo(new MessageUpdateAmmoHolders(igun.getAmmo(),igun.getMaxAmmo(),z,1,1), (EntityPlayerMP) e.player);
+        for (int z = 0; z < iadv.getSlots(); z++) {
+            if (iadv.getStackInSlot(z).getItem() instanceof Item_Firearm && inv.getStackInSlot(z).hasCapability(GunFactoryProvider.GUN, null)) {
+                IGunInterface igun = inv.getStackInSlot(z).getCapability(GunFactoryProvider.GUN, null);
+                main.simpleNetworkWrapper.sendTo(new MessageUpdateAmmoHolders(igun.getAmmo(), igun.getMaxAmmo(), z, 1, 1), (EntityPlayerMP) e.player);
             }
         }
 
 
         if (e.player.getCapability(IAdvProvider.Adv_Inv, null).getStackInSlot(5).getItem() instanceof Item_Saddlebag_harness) {
 
-        }
-        else{
-            e.player.getCapability(ITrigger_item_Provider.TRIGGER_ITEM,null).setStatus(false);
+        } else {
+            e.player.getCapability(ITrigger_item_Provider.TRIGGER_ITEM, null).setStatus(false);
             main.simpleNetworkWrapper.sendTo(new MessageUpdateClientTrigger_Item(false, e.player.getCapability(ITrigger_item_Provider.TRIGGER_ITEM, null).getInteraction()), (EntityPlayerMP) e.player);
         }
     }

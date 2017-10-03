@@ -17,10 +17,10 @@ import net.minecraftforge.fml.relauncher.Side;
  * Created by hoijima on 23.06.17.
  */
 public class ItemClipHelpers {
-    public static ItemStack FindAmmo(EntityPlayer player,ItemStack clip) {
-        Item ammoToFind = (Item)ItemInit.Clip_ammo_lookup.get(clip.getItem());
+    public static ItemStack FindAmmo(EntityPlayer player, ItemStack clip) {
+        Item ammoToFind = (Item) ItemInit.Clip_ammo_lookup.get(clip.getItem());
         for (int slot = 0; slot < player.inventory.getSizeInventory(); ++slot)
-            if (player.inventory.getStackInSlot(slot).getItem() == ammoToFind )
+            if (player.inventory.getStackInSlot(slot).getItem() == ammoToFind)
                 return player.inventory.getStackInSlot(slot);
         return ItemStack.EMPTY;
     }
@@ -29,7 +29,7 @@ public class ItemClipHelpers {
     public static ItemStack Cliphelper(ItemStack clip, World worldIn, EntityPlayer playerIn, int MaxDamage) {
         IAmmoInterface capa = clip.getCapability(AmmoFactoryProvider.AMMO_STORAGE, null);
         if (capa.getAmmo() <= capa.getMaxAmmo()) {
-            ItemStack ammo = ItemClipHelpers.FindAmmo(playerIn,clip);
+            ItemStack ammo = ItemClipHelpers.FindAmmo(playerIn, clip);
             triggers(clip, ammo, worldIn, playerIn);
         }
         return clip;
@@ -37,18 +37,18 @@ public class ItemClipHelpers {
 
 
     public static ItemStack triggers(ItemStack clip, ItemStack ammo, World worldIn, EntityPlayer playerIn) {
-        IAmmoInterface capa = clip.getCapability(AmmoFactoryProvider.AMMO_STORAGE,null);
+        IAmmoInterface capa = clip.getCapability(AmmoFactoryProvider.AMMO_STORAGE, null);
         if (ammo == ItemStack.EMPTY) {
             return clip;
-        } else if (capa.getAmmo() < capa.getMaxAmmo()){
+        } else if (capa.getAmmo() < capa.getMaxAmmo()) {
             if (!worldIn.isRemote & Side.SERVER.isServer()) {
                 ammo.shrink(1);
-                clip.getCapability(AmmoFactoryProvider.AMMO_STORAGE,null).addAmmo(1);
+                clip.getCapability(AmmoFactoryProvider.AMMO_STORAGE, null).addAmmo(1);
                 double x = playerIn.getPosition().getX();
                 double y = playerIn.getPosition().getY();
                 double z = playerIn.getPosition().getZ();
 
-                main.simpleNetworkWrapper.sendToAllAround(new MessageClientPlaySound("gun_clipReload", x + "," + y + "," + z), new NetworkRegistry.TargetPoint(0,  x,  y, z, 10.0));
+                main.simpleNetworkWrapper.sendToAllAround(new MessageClientPlaySound("gun_clipReload", x + "," + y + "," + z), new NetworkRegistry.TargetPoint(0, x, y, z, 10.0));
                 main.simpleNetworkWrapper.sendTo(new MessageClientPlaySound("gun_clipReload", x + "," + y + "," + z), (EntityPlayerMP) playerIn);
             }
             return clip;

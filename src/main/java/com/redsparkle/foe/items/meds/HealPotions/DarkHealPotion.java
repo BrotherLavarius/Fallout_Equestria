@@ -1,6 +1,8 @@
 package com.redsparkle.foe.items.meds.HealPotions;
+
 import com.redsparkle.api.items.helpers.meds.meds_Potion;
 import com.redsparkle.foe.Init.InitCreativeTabs;
+
 /**
  * Created by hoijima desu on 29.07.16 desu.
  */
@@ -11,6 +13,7 @@ public class DarkHealPotion extends meds_Potion {
     public String potionId = "poison";
     public int durationIn = 40;
     public int amplifierIn = 0;
+
     public DarkHealPotion(String name) {
         super(name);
         this.setMaxStackSize(NUMBER_OF_BOXES);

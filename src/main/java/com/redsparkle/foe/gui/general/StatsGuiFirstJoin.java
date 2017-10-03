@@ -14,6 +14,7 @@ import org.lwjgl.opengl.GL11;
 
 import java.io.IOException;
 import java.util.stream.IntStream;
+
 /**
  * Created by hoijima on 09.05.17.
  */
@@ -62,6 +63,7 @@ public class StatsGuiFirstJoin extends GuiScreen {
     int[] temp = {0, 0, 0, 0, 0, 0, 0};
     int[] finished = {0, 0, 0, 0, 0, 0, 0};
     Integer pointsAvailable = 0;
+
     @Override
     public void drawScreen(int mouseX, int mouseY, float partialTicks) {
         int startY = 15;
@@ -166,10 +168,12 @@ public class StatsGuiFirstJoin extends GuiScreen {
         GL11.glPopMatrix();
         super.drawScreen(mouseX, mouseY, partialTicks);
     }
+
     @Override
     public boolean doesGuiPauseGame() {
         return false;
     }
+
     @Override
     public void initGui() {
         for (int i = 0; i <= (buttonsPLus.length - 1); i++) {
@@ -181,6 +185,7 @@ public class StatsGuiFirstJoin extends GuiScreen {
         this.buttonList.add(Commit);
         super.initGui();
     }
+
     @Override
     protected void actionPerformed(GuiButton button) throws IOException {
         for (int i = 0; i <= (temp.length - 1); i++) {

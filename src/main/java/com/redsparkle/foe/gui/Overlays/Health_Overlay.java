@@ -84,8 +84,6 @@ public class Health_Overlay extends Gui {
         GlStateManager.tryBlendFuncSeparate(770, 771, 1, 1);
 
 
-
-
         if (PLayerArmor == 0) {
             int armor = 0;
             drawTexturedModalRect(4, 10, 7, ARMOR_TEXTURE_U, armor, 3);
@@ -103,7 +101,6 @@ public class Health_Overlay extends Gui {
         GL11.glPushMatrix();
         GL11.glTranslatef(BAR_WIDTH + 25, 1, 0);
         GL11.glScalef(0.76F, 0.76F, 0.76F);
-
 
 
         GL11.glPopMatrix();

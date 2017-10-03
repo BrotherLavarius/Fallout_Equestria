@@ -14,18 +14,21 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+
 /**
  * Created by hoijima on 04.07.16.
  */
 public class locker extends GeneralAllignBlockOneOTwo {
     public static final locker instance = new locker(GlobalNames.Locker);
+
     public locker(String locker) {
-        super(Material.IRON,locker);
+        super(Material.IRON, locker);
         setLightLevel(0);
         setSoundType(SoundType.METAL);
         setCreativeTab(InitCreativeTabs.Fallout_blocks);
         setSoundType(SoundType.METAL);
     }
+
     public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack) {
         worldIn.setBlockState(pos, state.withProperty(FACING, placer.getHorizontalFacing().getOpposite()), 2);
         if (stack.hasDisplayName()) {
@@ -35,10 +38,12 @@ public class locker extends GeneralAllignBlockOneOTwo {
             }
         }
     }
+
     @Override
     public boolean hasTileEntity(IBlockState state) {
         return true;
     }
+
     @Override
     public IBlockState getExtendedState(IBlockState state, IBlockAccess world, BlockPos pos) {
         if (world.getTileEntity(pos) != null && world.getTileEntity(pos) instanceof TileEntity_locker) {

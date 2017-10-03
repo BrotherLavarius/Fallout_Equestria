@@ -8,11 +8,13 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.List;
+
 /**
  * Created by hoijima desu on 29.07.16 desu.
  */
 public class FlareShell extends FoeItem {
     public int MaxDamage = 1;
+
     public FlareShell(String flareShell) {
         super(flareShell);
         final int NUMBER_OF_BOXES = 40;
@@ -20,6 +22,7 @@ public class FlareShell extends FoeItem {
         this.setCreativeTab(InitCreativeTabs.Fallout_ammo);   // the item will appear on the Miscellaneous tab in creative
         this.setMaxDamage(MaxDamage);
     }
+
     /**
      * allows items to add custom lines of information to the mouseover description
      */

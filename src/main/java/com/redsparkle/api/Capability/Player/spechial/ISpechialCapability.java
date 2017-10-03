@@ -1,26 +1,44 @@
 package com.redsparkle.api.Capability.Player.spechial;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
+
 /**
  * Created by hoijima on 01.03.17.
  */
 public interface ISpechialCapability {
-    Integer setStreinght(Integer newStreinght);
     Integer getStreinght();
-    Integer setPerception(Integer newPerception);
+
+    void setStreinght(Integer newStreinght);
+
     Integer getPerception();
-    Integer setEndurance(Integer newEndurance);
+
+    void setPerception(Integer newPerception);
+
     Integer getEndurance();
-    Integer setCharisma(Integer newCharisma);
+
+    void setEndurance(Integer newEndurance);
+
     Integer getCharisma();
-    Integer setIntelligence(Integer newtIntelligence);
+
+    void setCharisma(Integer newCharisma);
+
     Integer getIntelligence();
-    Integer setAgility(Integer newAgility);
+
+    void setIntelligence(Integer newtIntelligence);
+
     Integer getAgility();
-    Integer setLuck(Integer newLuck);
+
+    void setAgility(Integer newAgility);
+
     Integer getLuck();
+
+    void setLuck(Integer newLuck);
+
     void setAll(Integer all);
+
     void update(EntityPlayer player, World world, TickEvent.Phase phase);
+
     void updateClient(EntityPlayer player);
 }

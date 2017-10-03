@@ -1,4 +1,5 @@
 package com.redsparkle.api.utils;
+
 /**
  * Created by NENYN on 12/16/2016.
  */
@@ -59,7 +60,8 @@ public class GlobalNames {
     public static final String
             Seven_mm_rifle = "seven_mm_rifle",
             Five_mm_minigun = "five_mm_minigun",
-            flammenwarfer = "flammenwarfer";
+            flammenwarfer = "flammenwarfer",
+            bass_cannon = "bass_cannon";
     // Food
     // AMMO
     public static final String

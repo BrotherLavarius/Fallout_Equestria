@@ -1,6 +1,8 @@
 package com.redsparkle.foe.items.meds.HealPotions;
+
 import com.redsparkle.api.items.helpers.meds.meds_Potion;
 import com.redsparkle.foe.Init.InitCreativeTabs;
+
 /**
  * Created by hoijima desu on 29.07.16 desu.
  */
@@ -11,6 +13,7 @@ public class RedHealPotion extends meds_Potion {
     public String potionId = "regeneration";
     public int durationIn = 160;
     public int amplifierIn = 1;
+
     public RedHealPotion(String aem) {
         super(aem);
         this.setMaxStackSize(NUMBER_OF_BOXES);

@@ -18,6 +18,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.MathHelper;
+import net.minecraftforge.client.model.obj.OBJModel;
 
 import static java.lang.Math.abs;
 
@@ -26,9 +27,11 @@ import static java.lang.Math.abs;
  */
 public class GunRender implements LayerRenderer<EntityLivingBase> {
     private final RenderPlayer playerRenderer;
+
     public GunRender(RenderPlayer playerRendererIn) {
         this.playerRenderer = playerRendererIn;
     }
+
     @Override
     public void doRenderLayer(EntityLivingBase entitylivingbaseIn, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch, float scale) {
         ItemStack itemstack = entitylivingbaseIn.getHeldItem(EnumHand.MAIN_HAND);
@@ -36,11 +39,11 @@ public class GunRender implements LayerRenderer<EntityLivingBase> {
         Minecraft minecraft = Minecraft.getMinecraft();
         ITrigger_item triggeritem = minecraft.player.getCapability(ITrigger_item_Provider.TRIGGER_ITEM, null);
 
-        ItemStack harnes = entitylivingbaseIn.getCapability(IAdvProvider.Adv_Inv,null).getStackInSlot(5);
+        ItemStack harnes = entitylivingbaseIn.getCapability(IAdvProvider.Adv_Inv, null).getStackInSlot(5);
         Item itemHarness = harnes.getItem();
 
-        ItemStack RS_GUN = entitylivingbaseIn.getCapability(IAdvProvider.Adv_Inv,null).getStackInSlot(7);
-        ItemStack LS_GUN = entitylivingbaseIn.getCapability(IAdvProvider.Adv_Inv,null).getStackInSlot(6);
+        ItemStack RS_GUN = entitylivingbaseIn.getCapability(IAdvProvider.Adv_Inv, null).getStackInSlot(7);
+        ItemStack LS_GUN = entitylivingbaseIn.getCapability(IAdvProvider.Adv_Inv, null).getStackInSlot(6);
 
         Float yawCorrector = 0F;
         Float rotationPitch = 0F;
@@ -67,12 +70,12 @@ public class GunRender implements LayerRenderer<EntityLivingBase> {
             }
 
 
-
             minecraft.getItemRenderer().renderItem(entitylivingbaseIn, itemstack, ItemCameraTransforms.TransformType.HEAD);
             GlStateManager.popMatrix();
         }
         if (triggeritem.getStatus() && itemstack.getItem() == Items.AIR) {
             Item trigger_item = ItemInit.trigger_item;
+
             ItemStack trigger_item_stack = new ItemStack(trigger_item);
             GlStateManager.pushMatrix();
             if (MathHelper.wrapDegrees(entitylivingbaseIn.getPitchYaw().y) >= 0.0F) {
@@ -89,12 +92,14 @@ public class GunRender implements LayerRenderer<EntityLivingBase> {
             GlStateManager.rotate(netHeadYaw, 0, 1.0F, 0);
             GlStateManager.rotate(headPitch, 1.0F, 0, 0);
             minecraft.getItemRenderer().renderItem(entitylivingbaseIn, trigger_item_stack, ItemCameraTransforms.TransformType.HEAD);
+            OBJModel.OBJBakedModel stuff = (OBJModel.OBJBakedModel) minecraft.getRenderItem().getItemModelWithOverrides(trigger_item_stack, null, entitylivingbaseIn);
+
             GlStateManager.popMatrix();
         }
         if (itemHarness != null && itemHarness instanceof Saddlebags && RS_GUN.getItem() instanceof Item_SaggleBagGun) {
             if (((Item_SaggleBagGun) RS_GUN.getItem()).Side == "RS") {
                 GlStateManager.pushMatrix();
-                GlStateManager.scale(1.5,1.5,1.5);
+                GlStateManager.scale(1.5, 1.5, 1.5);
 
                 //GlStateManager.rotate(180,0,1,0);
                 GlStateManager.translate(-0.25, -0.198, -0.045);
@@ -110,7 +115,7 @@ public class GunRender implements LayerRenderer<EntityLivingBase> {
         if (itemHarness != null && itemHarness instanceof Saddlebags && LS_GUN.getItem() instanceof Item_SaggleBagGun) {
             if (((Item_SaggleBagGun) LS_GUN.getItem()).Side == "LS") {
                 GlStateManager.pushMatrix();
-                GlStateManager.scale(1.5,1.5,1.5);
+                GlStateManager.scale(1.5, 1.5, 1.5);
 
                 //GlStateManager.rotate(180,0,1,0);
                 GlStateManager.translate(0.30, -0.198, -0.045);
@@ -126,6 +131,7 @@ public class GunRender implements LayerRenderer<EntityLivingBase> {
 
 
     }
+
     public boolean shouldCombineTextures() {
         return false;
     }

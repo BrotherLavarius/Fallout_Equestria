@@ -7,6 +7,7 @@ import net.minecraft.inventory.EntityEquipmentSlot;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+
 /**
  * Created by hoijima desu on 06.08.16 desu.
  */

@@ -1,5 +1,7 @@
 package com.redsparkle.api.items.helpers.Item_Instances;
+
 import com.redsparkle.foe.items.FoeItem;
+
 /**
  * Created by NENYN on 12/16/2016.
  */

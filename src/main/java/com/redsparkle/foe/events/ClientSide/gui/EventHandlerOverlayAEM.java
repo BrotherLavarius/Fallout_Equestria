@@ -1,4 +1,5 @@
 package com.redsparkle.foe.events.ClientSide.gui;
+
 import com.redsparkle.api.Capability.Player.Inventory.IAdvProvider;
 import com.redsparkle.foe.Init.ItemInit;
 import com.redsparkle.foe.gui.Overlays.Rads_Overlay;
@@ -6,6 +7,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+
 /**
  * Created by NENYN on 12/25/2016.
  */

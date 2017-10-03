@@ -15,12 +15,12 @@ public class StartUpCommon {
         System.out.println(ConfigInit.Radio2URL);
 
 
-
-
     }
+
     public static void InitCommon() {
 
     }
+
     public static void postInitCommon() {
     }
 }

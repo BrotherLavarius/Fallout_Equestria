@@ -80,21 +80,20 @@ public class KeyInputHandler {
 
 
         if (keyHandler.reload.isPressed()) {
-            if(player.getHeldItemMainhand().getItem() instanceof Item_Firearm){
+            if (player.getHeldItemMainhand().getItem() instanceof Item_Firearm) {
                 main.simpleNetworkWrapper.sendToServer(new MessageGunReload("gun_main"));
             }
         }
         if (keyHandler.reloadLSB.isPressed()) {
-            if(player.getCapability(IAdvProvider.Adv_Inv, null).getStackInSlot(6).getItem() != Items.AIR){
+            if (player.getCapability(IAdvProvider.Adv_Inv, null).getStackInSlot(6).getItem() != Items.AIR) {
                 main.simpleNetworkWrapper.sendToServer(new MessageGunReload("gun_saddlebagLS"));
             }
         }
         if (keyHandler.reloadRSB.isPressed()) {
-            if(player.getCapability(IAdvProvider.Adv_Inv, null).getStackInSlot(7).getItem() != Items.AIR) {
+            if (player.getCapability(IAdvProvider.Adv_Inv, null).getStackInSlot(7).getItem() != Items.AIR) {
                 main.simpleNetworkWrapper.sendToServer(new MessageGunReload("gun_saddlebagRS"));
             }
         }
-
 
 
     }

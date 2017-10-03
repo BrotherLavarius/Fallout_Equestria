@@ -2,21 +2,25 @@ package com.redsparkle.foe.block.effectDispenser.TileEntitys;
 
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ITickable;
+
 /**
  * Created by hoijima desu on 31.07.16 desu.
  */
 public class RadiationBlockTileEntity extends TileEntity implements ITickable {
     private int levels = 1;
+
     public void update() {
         if (this.world.getTotalWorldTime() % 80L == 0L) {
             this.updateRB();
         }
     }
+
     private void updateRB() {
         if (this.world != null) {
             this.addEffectsToPlayers();
         }
     }
+
     private void addEffectsToPlayers() {
         double d0 = (double) (this.levels * 10 + 10);
         double d1 = (double) (this.levels * 10 + 5);
@@ -61,5 +65,5 @@ public class RadiationBlockTileEntity extends TileEntity implements ITickable {
 //            }
 //        }
 //    }
-}
+    }
 }

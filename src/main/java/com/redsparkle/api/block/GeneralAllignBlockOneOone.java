@@ -1,4 +1,5 @@
 package com.redsparkle.api.block;
+
 import com.redsparkle.foe.block.FoeBlock;
 import net.minecraft.block.BlockHorizontal;
 import net.minecraft.block.material.MapColor;
@@ -16,6 +17,7 @@ import net.minecraftforge.client.model.obj.OBJModel;
 import net.minecraftforge.common.property.ExtendedBlockState;
 import net.minecraftforge.common.property.IUnlistedProperty;
 import net.minecraftforge.common.property.Properties;
+
 /**
  * Created by hoijima on 02.06.17.
  */
@@ -24,13 +26,16 @@ public class GeneralAllignBlockOneOone extends FoeBlock {
     public static final AxisAlignedBB FULL_BLOCK_AABB = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 1.0D, 1.0D);
     public AxisAlignedBB Fixed;
     private ExtendedBlockState state = new ExtendedBlockState(this, new IProperty[]{FACING}, new IUnlistedProperty[]{OBJModel.OBJProperty.INSTANCE});
-    public GeneralAllignBlockOneOone(Material blockMaterialIn, MapColor blockMapColorIn,String name) {
-        super(blockMaterialIn, blockMapColorIn,name);
+
+    public GeneralAllignBlockOneOone(Material blockMaterialIn, MapColor blockMapColorIn, String name) {
+        super(blockMaterialIn, blockMapColorIn, name);
     }
-    public GeneralAllignBlockOneOone(Material materialIn,String name) {
-        super(materialIn,name);
+
+    public GeneralAllignBlockOneOone(Material materialIn, String name) {
+        super(materialIn, name);
         this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
     }
+
     private void setDefaultFacing(World worldIn, BlockPos pos, IBlockState state) {
         if (!worldIn.isRemote) {
             IBlockState iblockstate = worldIn.getBlockState(pos.north());
@@ -50,12 +55,15 @@ public class GeneralAllignBlockOneOone extends FoeBlock {
             worldIn.setBlockState(pos, state.withProperty(FACING, enumfacing), 2);
         }
     }
+
     public void onBlockAdded(World worldIn, BlockPos pos, IBlockState state) {
         this.setDefaultFacing(worldIn, pos, state);
     }
+
     public int getMetaFromState(IBlockState state) {
         return state.getValue(FACING).getIndex();
     }
+
     public IBlockState getStateFromMeta(int meta) {
         EnumFacing enumfacing = EnumFacing.getFront(meta);
         if (enumfacing.getAxis() == EnumFacing.Axis.Y) {
@@ -63,22 +71,27 @@ public class GeneralAllignBlockOneOone extends FoeBlock {
         }
         return this.getDefaultState().withProperty(FACING, enumfacing);
     }
+
     @Override
     public boolean isOpaqueCube(IBlockState state) {
         return false;
     }
+
     @Override
     public boolean isFullCube(IBlockState state) {
         return false;
     }
+
     @Override
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
         return BBhelper.caseOne(state);
     }
+
     @Override
     public boolean hasTileEntity(IBlockState state) {
         return true;
     }
+
     @Override
     public BlockStateContainer createBlockState() {
         return new ExtendedBlockState(this, new IProperty[]{FACING}, new IUnlistedProperty[]{Properties.AnimationProperty});

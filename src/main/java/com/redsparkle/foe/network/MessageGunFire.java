@@ -12,33 +12,35 @@ import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
  *///Spawn entity and shit
 public class MessageGunFire implements IMessage {
     public int type = 0;
-    public double x=0;
-    public double y=0;
-    public double z=0;
-    public double xHeading=0.0D;
-    public double yHeading=0.0D;
-    public double zHeading=0.0D;
-    public float vel=0.0F;
-    public float inac=0.0F;
+    public double x = 0;
+    public double y = 0;
+    public double z = 0;
+    public double xHeading = 0.0D;
+    public double yHeading = 0.0D;
+    public double zHeading = 0.0D;
+    public float vel = 0.0F;
+    public float inac = 0.0F;
 
-    public MessageGunFire(){}
-    public MessageGunFire(int type,double x,double y,double z,double xHeading,double yHeading,double zHeading ,float vel,float inac) {
-        this.x=x;
-        this.y=y;
-        this.z=z;
-        this.xHeading=xHeading;
-        this.yHeading=yHeading;
-        this.zHeading=zHeading;
+    public MessageGunFire() {
+    }
 
-        this.vel=vel;
-        this.inac=inac;
+    public MessageGunFire(int type, double x, double y, double z, double xHeading, double yHeading, double zHeading, float vel, float inac) {
+        this.x = x;
+        this.y = y;
+        this.z = z;
+        this.xHeading = xHeading;
+        this.yHeading = yHeading;
+        this.zHeading = zHeading;
+
+        this.vel = vel;
+        this.inac = inac;
 
         this.type = type;
 
     }
 
 
-    public MessageGunFire(String type){
+    public MessageGunFire(String type) {
         if (type == "gun_main") {
             this.type = 0;
         }
@@ -52,8 +54,8 @@ public class MessageGunFire implements IMessage {
         }
 
 
-
     }
+
     @Override
     public void toBytes(ByteBuf buf) {
 
@@ -90,14 +92,15 @@ public class MessageGunFire implements IMessage {
     public static class HandlerServer implements IMessageHandler<MessageGunFire, IMessage> {
         @Override
         public IMessage onMessage(MessageGunFire message, MessageContext ctx) {
-            DedicatedServerProxy.MessageGunFire_handler(message,ctx);
+            DedicatedServerProxy.MessageGunFire_handler(message, ctx);
             return null;
         }
     }
+
     public static class HandlerClient implements IMessageHandler<MessageGunFire, IMessage> {
         @Override
         public IMessage onMessage(MessageGunFire message, MessageContext ctx) {
-            ClientOnlyProxy.MessageGunFire_hadnler(message,ctx);
+            ClientOnlyProxy.MessageGunFire_hadnler(message, ctx);
             return null;
         }
     }

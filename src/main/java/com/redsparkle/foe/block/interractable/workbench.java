@@ -14,18 +14,21 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+
 /**
  * Created by hoijima on 04.07.16.
  */
 public class workbench extends GeneralAllignBlockTwoOTwo {
     public static final workbench instance = new workbench(GlobalNames.Workbench);
+
     public workbench(String workbench) {
-        super(Material.IRON,workbench);
+        super(Material.IRON, workbench);
         setLightLevel(0);
         setSoundType(SoundType.METAL);
         setCreativeTab(InitCreativeTabs.Fallout_blocks);
         setSoundType(SoundType.METAL);
     }
+
     public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack) {
         worldIn.setBlockState(pos, state.withProperty(FACING, placer.getHorizontalFacing().getOpposite()), 2);
         if (stack.hasDisplayName()) {
@@ -35,6 +38,7 @@ public class workbench extends GeneralAllignBlockTwoOTwo {
             }
         }
     }
+
     @Override
     public IBlockState getExtendedState(IBlockState state, IBlockAccess world, BlockPos pos) {
         if (world.getTileEntity(pos) != null && world.getTileEntity(pos) instanceof TileEntity_workbench) {

@@ -1,4 +1,5 @@
 package com.redsparkle.foe.network.ClientServerOneClass;
+
 import com.redsparkle.api.Capability.Player.skills.ISkillsCapability;
 import com.redsparkle.foe.ClientOnlyProxy;
 import com.redsparkle.foe.DedicatedServerProxy;
@@ -8,13 +9,16 @@ import net.minecraft.util.NonNullList;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
+
 /**
  * Created by hoijima on 3/1/2017.
  */
 public class MessageUpdateClientServerSkills implements IMessage {
     public NonNullList<Integer> skills = NonNullList.withSize(13, 0);
+
     public MessageUpdateClientServerSkills() {
     }
+
     public MessageUpdateClientServerSkills(ISkillsCapability skills) {
         /**
          Magic
@@ -46,23 +50,27 @@ public class MessageUpdateClientServerSkills implements IMessage {
         this.skills.set(11, new Integer(skills.getBarter()));
         this.skills.set(12, new Integer(skills.getSurvival()));
     }
+
     public MessageUpdateClientServerSkills(Integer[] Skills) {
         for (int i = 0; i < 13; i++) {
             this.skills.set(i, Skills[i]);
         }
     }
+
     @Override
     public void fromBytes(ByteBuf buf) {
         for (int i = 0; i < 13; i++) {
             skills.set(i, buf.readInt());
         }
     }
+
     @Override
     public void toBytes(ByteBuf buf) {
         for (int i = 0; i < 13; i++) {
             buf.writeInt(skills.get(i));
         }
     }
+
     public static class HandlerClient implements IMessageHandler<MessageUpdateClientServerSkills, IMessage> {
         @Override
         public IMessage onMessage(MessageUpdateClientServerSkills message, MessageContext ctx) {
@@ -70,6 +78,7 @@ public class MessageUpdateClientServerSkills implements IMessage {
             return null;
         }
     }
+
     public static class HandlerServer implements IMessageHandler<MessageUpdateClientServerSkills, IMessage> {
         @Override
         public IMessage onMessage(MessageUpdateClientServerSkills message, MessageContext ctx) {
@@ -78,6 +87,7 @@ public class MessageUpdateClientServerSkills implements IMessage {
             return null;
         }
     }
+
     public static class ServerOnLVLUP implements IMessageHandler<MessageUpdateClientServerSkills, IMessage> {
         @Override
         public IMessage onMessage(MessageUpdateClientServerSkills message, MessageContext ctx) {

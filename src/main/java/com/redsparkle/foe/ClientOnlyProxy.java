@@ -118,8 +118,7 @@ public class ClientOnlyProxy extends CommonProxy {
     }
 
 
-
-    public static void FireMessage(String type){
+    public static void FireMessage(String type) {
         Minecraft.getMinecraft().addScheduledTask(() -> {
             boolean cont_fire = false;
 
@@ -137,14 +136,6 @@ public class ClientOnlyProxy extends CommonProxy {
 
         });
     }
-
-
-
-
-
-
-
-
 
 
     public static void handleLevelMessageOnDemand(MessageUpdateSLSServerReplyOnDemand message) {
@@ -245,39 +236,38 @@ public class ClientOnlyProxy extends CommonProxy {
         EntityPlayer player = Minecraft.getMinecraft().player;
         mainThread.addScheduledTask(() -> {
 
-                String whatToPlay = message.type;
-                String position = message.position;
-                // Types of things vary from sound_env_rads to gun_tenmm_fire
-                String[] whatToPlayArray = whatToPlay.split("\\|");
-                String[] positionArray = position.split(",");
-                GlobalsGunStats gunStats = null;
+            String whatToPlay = message.type;
+            String position = message.position;
+            // Types of things vary from sound_env_rads to gun_tenmm_fire
+            String[] whatToPlayArray = whatToPlay.split("\\|");
+            String[] positionArray = position.split(",");
+            GlobalsGunStats gunStats = null;
 
-                if (whatToPlayArray[0].equalsIgnoreCase("gun")) {
-                    if (whatToPlayArray[1].equalsIgnoreCase("main")||whatToPlayArray[1].equalsIgnoreCase("saddlebagLS")||whatToPlayArray[1].equalsIgnoreCase("saddlebagRS")) {
-                        String search = whatToPlayArray[2];
-                        gunStats = GlobalsGunStats.lookup.get(search);
-                    }
-                    if (whatToPlayArray[3].equalsIgnoreCase("fire")) {
-                        player.world.playSound(Double.parseDouble(positionArray[0]), Double.parseDouble(positionArray[1]), Double.parseDouble(positionArray[2]),
-                                SoundInit.lookup.get(gunStats.getGunName()).get(0), SoundCategory.AMBIENT, 0.2F, 1.0F, true);
-                    } else if (whatToPlayArray[3].equalsIgnoreCase("dry")) {
-                        player.world.playSound(Double.parseDouble(positionArray[0]), Double.parseDouble(positionArray[1]), Double.parseDouble(positionArray[2]),
-                                SoundInit.lookup.get(gunStats.getGunName()).get(1), SoundCategory.AMBIENT, 1.0F, 1.0F, true);
-                    } else if (whatToPlayArray[3].equalsIgnoreCase("reload")) {
-                        player.world.playSound(Double.parseDouble(positionArray[0]), Double.parseDouble(positionArray[1]), Double.parseDouble(positionArray[2]),
-                                SoundInit.lookup.get(gunStats.getGunName()).get(2), SoundCategory.AMBIENT, 1.0F, 1.0F, true);
-                    } else if (whatToPlayArray[3].equalsIgnoreCase("clipout")) {
-                        player.world.playSound(Double.parseDouble(positionArray[0]), Double.parseDouble(positionArray[1]), Double.parseDouble(positionArray[2]),
-                                SoundInit.lookup.get(gunStats.getGunName()).get(3), SoundCategory.AMBIENT, 1.0F, 1.0F, true);
-                    }
-
-
-                    if (whatToPlayArray[1].equalsIgnoreCase("clipReload")) {
-                        player.world.playSound(Double.parseDouble(positionArray[0]), Double.parseDouble(positionArray[1]), Double.parseDouble(positionArray[2]),
-                                SoundInit.clip_load, SoundCategory.AMBIENT, 1.0F, 1.0F, true);
-                    }
+            if (whatToPlayArray[0].equalsIgnoreCase("gun")) {
+                if (whatToPlayArray[1].equalsIgnoreCase("main") || whatToPlayArray[1].equalsIgnoreCase("saddlebagLS") || whatToPlayArray[1].equalsIgnoreCase("saddlebagRS")) {
+                    String search = whatToPlayArray[2];
+                    gunStats = GlobalsGunStats.lookup.get(search);
+                }
+                if (whatToPlayArray[3].equalsIgnoreCase("fire")) {
+                    player.world.playSound(Double.parseDouble(positionArray[0]), Double.parseDouble(positionArray[1]), Double.parseDouble(positionArray[2]),
+                            SoundInit.lookup.get(gunStats.getGunName()).get(0), SoundCategory.AMBIENT, 0.2F, 1.0F, true);
+                } else if (whatToPlayArray[3].equalsIgnoreCase("dry")) {
+                    player.world.playSound(Double.parseDouble(positionArray[0]), Double.parseDouble(positionArray[1]), Double.parseDouble(positionArray[2]),
+                            SoundInit.lookup.get(gunStats.getGunName()).get(1), SoundCategory.AMBIENT, 1.0F, 1.0F, true);
+                } else if (whatToPlayArray[3].equalsIgnoreCase("reload")) {
+                    player.world.playSound(Double.parseDouble(positionArray[0]), Double.parseDouble(positionArray[1]), Double.parseDouble(positionArray[2]),
+                            SoundInit.lookup.get(gunStats.getGunName()).get(2), SoundCategory.AMBIENT, 1.0F, 1.0F, true);
+                } else if (whatToPlayArray[3].equalsIgnoreCase("clipout")) {
+                    player.world.playSound(Double.parseDouble(positionArray[0]), Double.parseDouble(positionArray[1]), Double.parseDouble(positionArray[2]),
+                            SoundInit.lookup.get(gunStats.getGunName()).get(3), SoundCategory.AMBIENT, 1.0F, 1.0F, true);
                 }
 
+
+                if (whatToPlayArray[1].equalsIgnoreCase("clipReload")) {
+                    player.world.playSound(Double.parseDouble(positionArray[0]), Double.parseDouble(positionArray[1]), Double.parseDouble(positionArray[2]),
+                            SoundInit.clip_load, SoundCategory.AMBIENT, 1.0F, 1.0F, true);
+                }
+            }
 
 
         });
@@ -287,7 +277,7 @@ public class ClientOnlyProxy extends CommonProxy {
         IThreadListener mainThread = Minecraft.getMinecraft();
         EntityPlayer player = Minecraft.getMinecraft().player;
         mainThread.addScheduledTask(() -> {
-                GunFire.GunFire_clienHandler(player.world,player,message.type,message.x,message.y,message.z,message.xHeading,message.yHeading,message.zHeading,message.vel,message.inac);
+            GunFire.GunFire_clienHandler(player.world, player, message.type, message.x, message.y, message.z, message.xHeading, message.yHeading, message.zHeading, message.vel, message.inac);
         });
     }
 

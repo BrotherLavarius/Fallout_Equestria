@@ -36,8 +36,6 @@ public class BlockInit {
     public static final RadiationBlock RadiationBlock = new RadiationBlock(GlobalNames.RadBlock);
 
 
-
-
     public static final String[] blocksNames = new String[]{
             GlobalNames.SPCmachine,
             GlobalNames.Workbench,
@@ -49,6 +47,7 @@ public class BlockInit {
     };
 
     public static final Set<ItemBlock> ITEM_BLOCKS = new HashSet<>();
+
     @SubscribeEvent
     public static void registerBlocks(final RegistryEvent.Register<Block> event) {
         final IForgeRegistry<Block> registry = event.getRegistry();
@@ -71,7 +70,6 @@ public class BlockInit {
 //
 //        }
 //        registry.registerAll(blocks);
-
 
 
     }
@@ -105,8 +103,6 @@ public class BlockInit {
         registerTileEntity(TileEntity_workbench_handmade.class, GlobalNames.Workbench_handmade);
         registerTileEntity(RadiationBlockTileEntity.class, GlobalNames.RadBlock);
     }
-
-
 
 
     private static void registerTileEntity(final Class<? extends TileEntity> tileEntityClass, final String name) {

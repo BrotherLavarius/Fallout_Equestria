@@ -11,6 +11,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.List;
+
 /**
  * Created by NENYN on 12/16/2016.
  */
@@ -20,6 +21,7 @@ public class PipBuck extends Item_pipbuck {
         this.setMaxStackSize(1);
         this.setCreativeTab(InitCreativeTabs.Fallout_meds);   // the item will appear on the Miscellaneous tab in creative
     }
+
     @Override
     public void onUpdate(ItemStack stack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected) {
         final int FIRST_HOTBAR_SLOT_NUMBER = 0;
@@ -28,6 +30,7 @@ public class PipBuck extends Item_pipbuck {
         if (worldIn.isRemote) return;
         if (!(entityIn instanceof EntityPlayerMP)) return;
     }
+
     // adds 'tooltip' text
     @SideOnly(Side.CLIENT)
     @Override

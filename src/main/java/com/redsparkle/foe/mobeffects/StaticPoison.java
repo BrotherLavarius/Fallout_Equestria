@@ -92,15 +92,15 @@ public class StaticPoison extends Potion {
     public void performEffect(EntityLivingBase entityLivingBaseIn, int amplifier) {
         if (this == PotionInit.STATICPOISON) {
             {
-                if(entityLivingBaseIn instanceof EntityPlayer){
+                if (entityLivingBaseIn instanceof EntityPlayer) {
 
 
-                    if(PlayerUtil.is_player_in_gas_proof_armin(entityLivingBaseIn)){
-                    }else{
-                        entityLivingBaseIn.setHealth(entityLivingBaseIn.getHealth() -0.1F);
+                    if (PlayerUtil.is_player_in_gas_proof_armin(entityLivingBaseIn)) {
+                    } else {
+                        entityLivingBaseIn.setHealth(entityLivingBaseIn.getHealth() - 0.1F);
                     }
-                }else{
-                    entityLivingBaseIn.attackEntityFrom(MAGIC,0.1F);
+                } else {
+                    entityLivingBaseIn.attackEntityFrom(MAGIC, 0.1F);
                 }
             }
         }

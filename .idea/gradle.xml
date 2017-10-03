@@ -9,7 +9,7 @@
         <option name="gradleJvm" value="#JAVA_HOME" />
         <option name="modules">
           <set>
-            <option value="$PROJECT_DIR$" />
+            <option value="/opt/disk/IdeaProjects/Fallout_Equestria" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />
@@ -21,7 +21,7 @@
         <option name="gradleJvm" value="#JAVA_HOME" />
         <option name="modules">
           <set>
-            <option value="$PROJECT_DIR$/../MineLittlePony-1.12.1.0-pre" />
+            <option value="/opt/disk/IdeaProjects/MineLittlePony-1.12.1.0-pre" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

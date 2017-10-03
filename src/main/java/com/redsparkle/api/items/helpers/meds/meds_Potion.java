@@ -21,6 +21,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.List;
+
 /**
  * Created by hoijima on 17.06.17.
  */
@@ -35,6 +36,7 @@ public abstract class meds_Potion extends FoeItem {
     public String potion;
     public int duration;
     public int amplifier;
+
     public meds_Potion(final String name) {
         super(name);
         this.setMaxStackSize(NUMBER_OF_BOXES);
@@ -45,6 +47,7 @@ public abstract class meds_Potion extends FoeItem {
         this.amplifier = amplifierIn;
         this.HealMoment = HealMomentln;
     }
+
     /**
      * allows items to add custom lines of information to the mouseover description
      */
@@ -52,10 +55,12 @@ public abstract class meds_Potion extends FoeItem {
     public void addInformation(ItemStack stack, EntityPlayer playerIn, List<String> tooltip, boolean advanced) {
         tooltip.add("");
     }
+
     public ActionResult<ItemStack> onItemRightClick(World itemStackIn, EntityPlayer worldIn, EnumHand playerIn) {
         worldIn.setActiveHand(playerIn);
         return new ActionResult<>(EnumActionResult.SUCCESS, worldIn.getHeldItem(playerIn));
     }
+
     public ItemStack onItemUseFinish(ItemStack stack, World worldIn, EntityLivingBase entityLiving) {
         EntityPlayer entityplayer = (EntityPlayer) entityLiving;
         if (entityLiving instanceof EntityPlayer) {
@@ -75,9 +80,11 @@ public abstract class meds_Potion extends FoeItem {
         ItemStack airS = new ItemStack(air);
         return airS;
     }
+
     public EnumAction getItemUseAction(ItemStack stack) {
         return EnumAction.DRINK;
     }
+
     public int getMaxItemUseDuration(ItemStack stack) {
         return 16;
     }

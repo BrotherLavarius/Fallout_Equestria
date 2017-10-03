@@ -75,7 +75,7 @@ public class Reload {
         return false;
     }
 
-    public static void reload_processor(EntityPlayer player, String gun_to_reload){
+    public static void reload_processor(EntityPlayer player, String gun_to_reload) {
         ItemStack gun = ItemStack.EMPTY;
         GlobalsGunStats gun_params = null;
         IGunInterface igun = null;
@@ -86,21 +86,20 @@ public class Reload {
         int z = player.getPosition().getZ();
 
 
-
-        if(gun_to_reload.equalsIgnoreCase("gun_main")){
+        if (gun_to_reload.equalsIgnoreCase("gun_main")) {
             gun = player.getHeldItemMainhand();
             gun_params = ((Item_Firearm) gun.getItem()).params;
         }
-        if(gun_to_reload.equalsIgnoreCase("gun_saddlebagLS")||gun_to_reload.equalsIgnoreCase("gun_saddlebagRS")){
-            if(gun_to_reload.equalsIgnoreCase("gun_saddlebagLS")){
+        if (gun_to_reload.equalsIgnoreCase("gun_saddlebagLS") || gun_to_reload.equalsIgnoreCase("gun_saddlebagRS")) {
+            if (gun_to_reload.equalsIgnoreCase("gun_saddlebagLS")) {
                 gun = player.getCapability(IAdvProvider.Adv_Inv, null).getStackInSlot(6);
             }
-            if(gun_to_reload.equalsIgnoreCase("gun_saddlebagRS")){
+            if (gun_to_reload.equalsIgnoreCase("gun_saddlebagRS")) {
                 gun = player.getCapability(IAdvProvider.Adv_Inv, null).getStackInSlot(7);
             }
             gun_params = ((Item_SaggleBagGun) gun.getItem()).params;
         }
-        if(gun_params.getLoadType().equalsIgnoreCase("clip")){
+        if (gun_params.getLoadType().equalsIgnoreCase("clip")) {
 
 
             clip = (Item) ItemInit.gun_ammo_lookup.get(gun_params.getGunName());
@@ -109,66 +108,111 @@ public class Reload {
             igun = gun.getCapability(GunFactoryProvider.GUN, null);
             IAmmoInterface iclip = clipstack.getCapability(AmmoFactoryProvider.AMMO_STORAGE, null);
 
-            if(igun.clipInserted() ){
-                if(igun.getAmmo() >= 0){
-                    if(findAmmo(player,gun_to_reload) != ItemStack.EMPTY){
-                        foundAmmo = findAmmo(player,gun_to_reload);
+            if (igun.clipInserted()) {
+                if (igun.getAmmo() >= 0) {
+                    if (findAmmo(player, gun_to_reload) != ItemStack.EMPTY) {
+                        foundAmmo = findAmmo(player, gun_to_reload);
                         iclip.setAmmo(igun.getAmmo());
-                        igun.setAmmo(findAmmo(player,gun_to_reload).getCapability(AmmoFactoryProvider.AMMO_STORAGE, null).getAmmo());
+                        igun.setAmmo(findAmmo(player, gun_to_reload).getCapability(AmmoFactoryProvider.AMMO_STORAGE, null).getAmmo());
                         foundAmmo.shrink(1);
                         igun.setClipStatus(true);
-                        gun.setItemDamage(igun.getMaxAmmo()- iclip.getAmmo());
+                        gun.setItemDamage(igun.getMaxAmmo() - iclip.getAmmo());
                         player.inventory.setInventorySlotContents(InventoryManager.FindEmpty(player), clipstack);
-                        SendSoundMessage(player,x,y,z,gun_to_reload+"_reload");
-                    }else if(findAmmo(player,gun_to_reload) == ItemStack.EMPTY){
+                        SendSoundMessage(player, x, y, z, gun_to_reload + "_reload");
+                    } else if (findAmmo(player, gun_to_reload) == ItemStack.EMPTY) {
                         iclip.setAmmo(igun.getAmmo());
                         igun.setAmmo(0);
                         igun.setClipStatus(false);
                         gun.setItemDamage(igun.getMaxAmmo());
                         player.inventory.setInventorySlotContents(InventoryManager.FindEmpty(player), clipstack);
-                        SendSoundMessage(player,x,y,z,gun_to_reload+"_clipout");
+                        SendSoundMessage(player, x, y, z, gun_to_reload + "_clipout");
                     }
                 }
 
             }
-            if(!igun.clipInserted() ){
-                if(findAmmo(player,gun_to_reload) != ItemStack.EMPTY){
-                    foundAmmo = findAmmo(player,gun_to_reload);
+            if (!igun.clipInserted()) {
+                if (findAmmo(player, gun_to_reload) != ItemStack.EMPTY) {
+                    foundAmmo = findAmmo(player, gun_to_reload);
                     iclip.setAmmo(igun.getAmmo());
                     igun.setAmmo(foundAmmo.getCapability(AmmoFactoryProvider.AMMO_STORAGE, null).getAmmo());
                     foundAmmo.shrink(1);
                     igun.setClipStatus(true);
-                    gun.setItemDamage(igun.getMaxAmmo()-iclip.getAmmo());
-                    SendSoundMessage(player,x,y,z,gun_to_reload+"_reload");
+                    gun.setItemDamage(igun.getMaxAmmo() - iclip.getAmmo());
+                    SendSoundMessage(player, x, y, z, gun_to_reload + "_reload");
                 }
             }
 
 
-
         }
 
-        if(gun_params.getLoadType().equalsIgnoreCase("ammo")){
+        if (gun_params.getLoadType().equalsIgnoreCase("ammo")) {
 
             igun = gun.getCapability(GunFactoryProvider.GUN, null);
 
             if (igun.getMaxAmmo() > 1) {
                 if (igun.getAmmo() < igun.getMaxAmmo()) {
-                    if (findAmmo(player,gun_to_reload) != ItemStack.EMPTY) {
-                        foundAmmo = findAmmo(player,gun_to_reload);
+                    if (findAmmo(player, gun_to_reload) != ItemStack.EMPTY) {
+                        foundAmmo = findAmmo(player, gun_to_reload);
                         foundAmmo.shrink(igun.getMaxAmmo() - igun.getAmmo());
-                        igun.addAmmo(igun.getMaxAmmo()- igun.getAmmo());
-                        gun.setItemDamage(igun.getMaxAmmo()-igun.getAmmo());
-                        SendSoundMessage(player,x,y,z,gun_to_reload+"_reload");
+                        igun.addAmmo(igun.getMaxAmmo() - igun.getAmmo());
+                        gun.setItemDamage(igun.getMaxAmmo() - igun.getAmmo());
+                        SendSoundMessage(player, x, y, z, gun_to_reload + "_reload");
                     }
                 }
             }
             if (igun.getAmmo() == 0) {
-                if (findAmmo(player,gun_to_reload) != ItemStack.EMPTY) {
-                    foundAmmo = findAmmo(player,gun_to_reload);
+                if (findAmmo(player, gun_to_reload) != ItemStack.EMPTY) {
+                    foundAmmo = findAmmo(player, gun_to_reload);
                     foundAmmo.shrink(igun.getMaxAmmo());
                     igun.setAmmo(igun.getMaxAmmo());
-                    gun.setItemDamage(igun.getMaxAmmo()-igun.getAmmo());
-                    SendSoundMessage(player,x,y,z,gun_to_reload+"_clipout");
+                    gun.setItemDamage(igun.getMaxAmmo() - igun.getAmmo());
+                    SendSoundMessage(player, x, y, z, gun_to_reload + "_clipout");
+                }
+            }
+
+
+        }
+
+        if (gun_params.getLoadType().equalsIgnoreCase("hybrid_ammo")) {
+
+            igun = gun.getCapability(GunFactoryProvider.GUN, null);
+
+            if (igun.getMaxAmmo() > 1) {
+                if (igun.getAmmo() < igun.getMaxAmmo()) {
+                    if (findAmmo(player, gun_to_reload) != ItemStack.EMPTY) {
+                        foundAmmo = findAmmo(player, gun_to_reload);
+                        if (foundAmmo.getCapability(AmmoFactoryProvider.AMMO_STORAGE, null).getAmmo() == foundAmmo.getCapability(AmmoFactoryProvider.AMMO_STORAGE, null).getMaxAmmo()) {
+                            if (foundAmmo.getCount() >= igun.getMaxAmmo() - igun.getAmmo()) {
+                                foundAmmo.shrink(igun.getMaxAmmo() - igun.getAmmo());
+                                igun.addAmmo(igun.getMaxAmmo() - igun.getAmmo());
+                                gun.setItemDamage(igun.getMaxAmmo() - igun.getAmmo());
+
+                            } else if (foundAmmo.getCount() < igun.getMaxAmmo() - igun.getAmmo()) {
+                                foundAmmo.shrink(foundAmmo.getCount());
+                                igun.addAmmo(foundAmmo.getCount());
+                                gun.setItemDamage(igun.getMaxAmmo() - igun.getAmmo() + foundAmmo.getCount());
+                            }
+                            SendSoundMessage(player, x, y, z, gun_to_reload + "_reload");
+                        }
+                    }
+                }
+            }
+            if (igun.getAmmo() == 0) {
+                if (findAmmo(player, gun_to_reload) != ItemStack.EMPTY) {
+                    foundAmmo = findAmmo(player, gun_to_reload);
+                    if (foundAmmo.getCapability(AmmoFactoryProvider.AMMO_STORAGE, null).getAmmo() == foundAmmo.getCapability(AmmoFactoryProvider.AMMO_STORAGE, null).getMaxAmmo()) {
+                        if (foundAmmo.getCount() >= igun.getMaxAmmo() - igun.getAmmo()) {
+                            foundAmmo.shrink(igun.getMaxAmmo());
+                            igun.setAmmo(igun.getMaxAmmo());
+                            gun.setItemDamage(igun.getMaxAmmo() - igun.getAmmo());
+
+                        } else if (foundAmmo.getCount() < igun.getMaxAmmo() - igun.getAmmo()) {
+                            foundAmmo.shrink(foundAmmo.getCount());
+                            igun.addAmmo(foundAmmo.getCount());
+                            gun.setItemDamage(igun.getMaxAmmo() - igun.getAmmo() + foundAmmo.getCount());
+                        }
+                        SendSoundMessage(player, x, y, z, gun_to_reload + "_clipout");
+                    }
                 }
             }
 
@@ -179,8 +223,8 @@ public class Reload {
     }
 
     public static void SendSoundMessage(EntityPlayer playerIn, int x, int y, int z, String type) {
-            main.simpleNetworkWrapper.sendToAllAround(new MessageClientPlaySound(type, x + "," + y + "," + z), new NetworkRegistry.TargetPoint(0, (double) x, (double) y, (double) z, 10.0));
-            main.simpleNetworkWrapper.sendTo(new MessageClientPlaySound(type, x + "," + y + "," + z), (EntityPlayerMP) playerIn);
+        main.simpleNetworkWrapper.sendToAllAround(new MessageClientPlaySound(type, x + "," + y + "," + z), new NetworkRegistry.TargetPoint(0, (double) x, (double) y, (double) z, 10.0));
+        main.simpleNetworkWrapper.sendTo(new MessageClientPlaySound(type, x + "," + y + "," + z), (EntityPlayerMP) playerIn);
 
     }
 }

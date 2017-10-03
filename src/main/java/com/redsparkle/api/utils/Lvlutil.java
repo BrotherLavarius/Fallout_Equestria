@@ -1,4 +1,5 @@
 package com.redsparkle.api.utils;
+
 /**
  * Created by hoijima on 19.05.17.
  */
@@ -55,6 +56,7 @@ public class Lvlutil {
             "[####MAX###]",
             "[===ERROR==]"
     };
+
     public static String progress(int MaxNum, Integer playerProgress) {
         String answer = "";
         //< 10%
@@ -105,9 +107,11 @@ public class Lvlutil {
                                                 }
         return answer;
     }
+
     public static Boolean canLvlup(Integer currentLvl, Integer currentProgress) {
         return currentProgress > lvls[currentLvl];
     }
+
     public static Integer ponitsAvailable(Integer currentLvl, Integer currentProgress) {
         while (!targetLvl) {
             if (currentProgress > lvls[currentLvl + minus]) {

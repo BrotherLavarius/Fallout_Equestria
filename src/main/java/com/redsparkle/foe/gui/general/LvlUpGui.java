@@ -16,6 +16,7 @@ import org.lwjgl.opengl.GL11;
 
 import java.io.IOException;
 import java.util.stream.IntStream;
+
 /**
  * Created by hoijima on 13.06.17.
  */
@@ -23,7 +24,7 @@ public class LvlUpGui extends GuiScreen {
     public Integer counter = 0;
     public Boolean CommitShow = false;
     public int startY = 15;
-    public int index=0;
+    public int index = 0;
     int colorText = Color_and_Etc.rawColorFromRGB(ConfigInit.colorR, ConfigInit.colorG, ConfigInit.colorB);
     GuiButtonExtFallout MagicPlus = new GuiButtonExtFallout(index, 0, 0, 0, 0, "+");
     GuiButtonExtFallout MagicMinus = new GuiButtonExtFallout(index++, 0, 0, 0, 0, "-");
@@ -52,21 +53,22 @@ public class LvlUpGui extends GuiScreen {
     GuiButtonExtFallout SurvivalPlus = new GuiButtonExtFallout(index++, 0, 0, 0, 0, "+");
     GuiButtonExtFallout SurvivalMinus = new GuiButtonExtFallout(index++, 0, 0, 0, 0, "-");
     GuiButtonExtFallout Commit = new GuiButtonExtFallout(index++, 0, 0, 0, 0, "Level up!");
-    Integer[] buttonsIdsPlus = {0, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22,24};
-    Integer[] buttonsIdsMinus = {1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23,25};
+    Integer[] buttonsIdsPlus = {0, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24};
+    Integer[] buttonsIdsMinus = {1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23, 25};
     GuiButtonExtFallout[] buttonsPLus = {
-           MagicPlus,Melee_WeaponsPlus,FirearmsPlus,EneryWeaponsPlus,Saddlebag_GunsPlus,
-            ExplosivesPlus,RepairPlus,MedicinePlus,LockpickingPlus,SciencePlus,
-            SneakPlus,BarterPlus,SurvivalPlus
+            MagicPlus, Melee_WeaponsPlus, FirearmsPlus, EneryWeaponsPlus, Saddlebag_GunsPlus,
+            ExplosivesPlus, RepairPlus, MedicinePlus, LockpickingPlus, SciencePlus,
+            SneakPlus, BarterPlus, SurvivalPlus
     };
     GuiButtonExtFallout[] buttonsMinus = {
-            MagicMinus,Melee_WeaponsMinus,FirearmsMinus,EneryWeaponsMinus,Saddlebag_GunsMinus,
-            ExplosivesMinus,RepairMinus,MedicineMinus,LockpickingMinus,ScienceMinus,
-            SneakMinus,BarterMinus,SurvivalMinus
+            MagicMinus, Melee_WeaponsMinus, FirearmsMinus, EneryWeaponsMinus, Saddlebag_GunsMinus,
+            ExplosivesMinus, RepairMinus, MedicineMinus, LockpickingMinus, ScienceMinus,
+            SneakMinus, BarterMinus, SurvivalMinus
     };
-    int[] temp = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0};
-    Integer[] finished = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0};
+    int[] temp = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+    Integer[] finished = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
     Integer pointsAvailable = 0;
+
     @Override
     public void drawScreen(int mouseX, int mouseY, float partialTicks) {
         int startY = 15;
@@ -122,7 +124,7 @@ public class LvlUpGui extends GuiScreen {
         GL11.glPushMatrix();
         {
             GL11.glScalef((float) 1.0, (float) 1.0, 1.0f);
-            for (int i = 0; i < params.length ; i++) {
+            for (int i = 0; i < params.length; i++) {
                 this.fontRenderer.drawString(names[i],
                         ScreenGrid.XCoordStart(
                                 this.width,
@@ -179,15 +181,15 @@ public class LvlUpGui extends GuiScreen {
             );
             {
                 int startYButtons = 36;
-                for (int o = 0; o < buttonsIdsPlus.length ; o++) {
-                        this.buttonList.get(buttonsIdsPlus[o]).x = ScreenGrid.XCoordStart(this.width, 2) + 248;
-                        this.buttonList.get(buttonsIdsPlus[o]).y = ScreenGrid.XCoordStart(this.height, 2) + (o * 15) + 30;
-                        this.buttonList.get(buttonsIdsPlus[o]).height = 12;
-                        this.buttonList.get(buttonsIdsPlus[o]).width = 10;
-                        this.buttonList.get(buttonsIdsMinus[o]).x = ScreenGrid.XCoordStart(this.width, 2) + 258;
-                        this.buttonList.get(buttonsIdsMinus[o]).y = ScreenGrid.XCoordStart(this.height, 2) + (o * 15) + 30;
-                        this.buttonList.get(buttonsIdsMinus[o]).height = 10;
-                        this.buttonList.get(buttonsIdsMinus[o]).width = 9;
+                for (int o = 0; o < buttonsIdsPlus.length; o++) {
+                    this.buttonList.get(buttonsIdsPlus[o]).x = ScreenGrid.XCoordStart(this.width, 2) + 248;
+                    this.buttonList.get(buttonsIdsPlus[o]).y = ScreenGrid.XCoordStart(this.height, 2) + (o * 15) + 30;
+                    this.buttonList.get(buttonsIdsPlus[o]).height = 12;
+                    this.buttonList.get(buttonsIdsPlus[o]).width = 10;
+                    this.buttonList.get(buttonsIdsMinus[o]).x = ScreenGrid.XCoordStart(this.width, 2) + 258;
+                    this.buttonList.get(buttonsIdsMinus[o]).y = ScreenGrid.XCoordStart(this.height, 2) + (o * 15) + 30;
+                    this.buttonList.get(buttonsIdsMinus[o]).height = 10;
+                    this.buttonList.get(buttonsIdsMinus[o]).width = 9;
                     startYButtons = startYButtons + 13;
                 }
             }
@@ -201,21 +203,24 @@ public class LvlUpGui extends GuiScreen {
         GL11.glPopMatrix();
         super.drawScreen(mouseX, mouseY, partialTicks);
     }
+
     @Override
     public boolean doesGuiPauseGame() {
         return false;
     }
+
     @Override
     public void initGui() {
-        for (int i = 0; i < buttonsPLus.length ; i++) {
+        for (int i = 0; i < buttonsPLus.length; i++) {
             this.buttonList.add(buttonsPLus[i]);
         }
-        for (int i = 0; i < buttonsMinus.length ; i++) {
+        for (int i = 0; i < buttonsMinus.length; i++) {
             this.buttonList.add(buttonsMinus[i]);
         }
         this.buttonList.add(Commit);
         super.initGui();
     }
+
     @Override
     protected void actionPerformed(GuiButton button) throws IOException {
         for (int i = 0; i < temp.length; i++) {

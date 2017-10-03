@@ -19,6 +19,7 @@ import org.lwjgl.opengl.GL11;
 
 import java.io.IOException;
 import java.util.Collections;
+
 /**
  * Created by hoijima on 3/4/2017.
  */
@@ -74,6 +75,7 @@ public class PipBuckGui extends GuiScreen {
             0,
             0, "Level Up");
     Minecraft mc = Minecraft.getMinecraft();
+
     @Override
     public void drawScreen(int mouseX, int mouseY, float partialTicks) {
         int colorText = Color_and_Etc.rawColorFromRGB(ConfigInit.colorR, ConfigInit.colorG, ConfigInit.colorB);
@@ -229,7 +231,7 @@ public class PipBuckGui extends GuiScreen {
                                     2) + 110,
                             colorText, true
                     );
-                    GL11.glScaled(1.5,1.5,1.5);
+                    GL11.glScaled(1.5, 1.5, 1.5);
 //                    if (Math.round(player.getHealth()) < (Math.round(player.getMaxHealth() / 4))) {
 //
 //                    } else if (Math.round(player.getHealth()) > (Math.round(player.getMaxHealth() / 4)) && player.getHealth() < (Math.round(player.getMaxHealth() / 3))) {
@@ -237,19 +239,19 @@ public class PipBuckGui extends GuiScreen {
 //                    } else if (Math.round(player.getHealth()) > (Math.round(player.getMaxHealth() / 3)) && player.getHealth() < (Math.round(player.getMaxHealth() / 2))) {
 //                    } else if (player.getHealth() > (Math.round(player.getMaxHealth() / 2)) && Math.round(player.getHealth()) <= Math.round(player.getMaxHealth())) {
 //                    }
-                    if(player.getHealth() == player.getMaxHealth() || player.getHealth() >= (player.getMaxHealth() -Math.round(player.getMaxHealth() / 3))){
+                    if (player.getHealth() == player.getMaxHealth() || player.getHealth() >= (player.getMaxHealth() - Math.round(player.getMaxHealth() / 3))) {
                         playerStatusX = 48;
                         playerStatusY = 95;
                     }
-                    if(player.getHealth() <= (player.getMaxHealth() -Math.round(player.getMaxHealth() / 3))){
+                    if (player.getHealth() <= (player.getMaxHealth() - Math.round(player.getMaxHealth() / 3))) {
                         playerStatusX = 116;
                         playerStatusY = 95;
                     }
-                    if(player.getHealth() <= (player.getMaxHealth() -Math.round(player.getMaxHealth() / 2))){
+                    if (player.getHealth() <= (player.getMaxHealth() - Math.round(player.getMaxHealth() / 2))) {
                         playerStatusX = 48;
                         playerStatusY = 177;
                     }
-                    if(player.getHealth() <= Math.round(player.getMaxHealth() / 3)){
+                    if (player.getHealth() <= Math.round(player.getMaxHealth() / 3)) {
                         playerStatusX = 116;
                         playerStatusY = 177;
                     }
@@ -304,7 +306,7 @@ public class PipBuckGui extends GuiScreen {
                                         2) + 315,
                                 ScreenGrid.XCoordStart(
                                         this.height,
-                                        2) + (skillsSR * 15) -15,
+                                        2) + (skillsSR * 15) - 15,
                                 colorText, true
                         );
                     }
@@ -425,6 +427,7 @@ public class PipBuckGui extends GuiScreen {
         super.drawScreen(mouseX, mouseY, partialTicks);
 //
     }
+
     /**
      * Returns true if this GUI should pause the game when it is displayed in single-player
      */
@@ -432,6 +435,7 @@ public class PipBuckGui extends GuiScreen {
     public boolean doesGuiPauseGame() {
         return false;
     }
+
     @Override
     public void initGui() {
         this.buttonList.add(this.Stats);// 0
@@ -445,6 +449,7 @@ public class PipBuckGui extends GuiScreen {
         Collections.addAll(this.buttonList, DataGui.buttonsDATARadio);
         super.initGui();
     }
+
     @Override
     protected void actionPerformed(GuiButton button) throws IOException {
         if (button == this.Stats) {
@@ -630,22 +635,22 @@ public class PipBuckGui extends GuiScreen {
         //Radio start
         if (button == this.buttonList.get(24)) {
 
-                Radio_isOff = false;
-                Radio_stopVisible = true;
+            Radio_isOff = false;
+            Radio_stopVisible = true;
             RadioThreadManager.SpawnRadio("http://home.fallout-equestria.tk:8100/rcr.ogg");
 
         }
         //Radio start
         if (button == this.buttonList.get(25)) {
-                Radio_isOff = false;
-                Radio_stopVisible = true;
+            Radio_isOff = false;
+            Radio_stopVisible = true;
             RadioThreadManager.SpawnRadio(ConfigInit.Radio1URL);
 
         }
         //Radio start
         if (button == this.buttonList.get(26)) {
-                Radio_isOff = false;
-                Radio_stopVisible = true;
+            Radio_isOff = false;
+            Radio_stopVisible = true;
             RadioThreadManager.SpawnRadio(ConfigInit.Radio2URL);
 
         }

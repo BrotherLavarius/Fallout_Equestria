@@ -47,6 +47,7 @@ public class CommonEventHandler {
             }
         }
     }
+
     @SubscribeEvent
     public void onDamageRender(LivingAttackEvent e) {
         if (e.getEntityLiving() instanceof EntityPlayer) {

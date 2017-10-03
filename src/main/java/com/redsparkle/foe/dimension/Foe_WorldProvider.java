@@ -9,7 +9,6 @@ import net.minecraft.world.WorldProvider;
 public class Foe_WorldProvider extends WorldProvider {
 
 
-
     @Override
     public DimensionType getDimensionType() {
         return null;

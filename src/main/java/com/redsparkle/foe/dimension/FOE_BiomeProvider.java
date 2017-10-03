@@ -5,9 +5,6 @@ import net.minecraft.crash.CrashReportCategory;
 import net.minecraft.util.ReportedException;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.GameType;
-import net.minecraft.world.World;
-import net.minecraft.world.WorldSettings;
 import net.minecraft.world.WorldType;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeCache;
@@ -16,11 +13,9 @@ import net.minecraft.world.gen.layer.GenLayer;
 import net.minecraft.world.gen.layer.GenLayerVoronoiZoom;
 import net.minecraft.world.gen.layer.GenLayerZoom;
 import net.minecraft.world.gen.layer.IntCache;
-import net.minecraft.world.storage.WorldInfo;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -29,13 +24,18 @@ import java.util.List;
 public class FOE_BiomeProvider extends BiomeProvider {
 
     private GenLayer genBiomes;
-    /** A GenLayer containing the indices into Biome.biomeList[] */
+    /**
+     * A GenLayer containing the indices into Biome.biomeList[]
+     */
     private GenLayer biomeIndexLayer;
-    /** The BiomeCache object for this world. */
+    /**
+     * The BiomeCache object for this world.
+     */
     private BiomeCache biomeCache;
-    /** A list of biomes that the player can spawn in. */
+    /**
+     * A list of biomes that the player can spawn in.
+     */
     private List<Biome> biomesToSpawnIn;
-
 
 
     /**
@@ -51,7 +51,7 @@ public class FOE_BiomeProvider extends BiomeProvider {
      */
 
     public Biome getBiomeGenerator(BlockPos pos) {
-        return this.getBiomeGenerator(pos, (Biome) null);
+        return this.getBiomeGenerator(pos, null);
     }
 
     public Biome getBiomeGenerator(BlockPos pos, Biome biomeGenBaseIn) {
@@ -198,6 +198,7 @@ public class FOE_BiomeProvider extends BiomeProvider {
             return null;
         }
     }
+
     public static class GenLayerBiomesCustom extends GenLayer {
 
         protected Biome[] allowedBiomes = {Biome.REGISTRY.getObject(new ResourceLocation("hell")),

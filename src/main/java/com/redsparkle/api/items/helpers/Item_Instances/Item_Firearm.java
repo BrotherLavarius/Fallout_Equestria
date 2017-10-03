@@ -63,5 +63,6 @@ public abstract class Item_Firearm extends FoeItem {
         return super.initCapabilities(stack, nbt);
 
     }
+
 }
 

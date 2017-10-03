@@ -18,12 +18,15 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.UUID;
+
 public class PlayerUtil {
     public static HashMap<String, GameProfile> knownSkins = new HashMap();
+
     public static EntityPlayerMP getPlayerForUsernameVanilla(MinecraftServer server, String username) {
         return server.getPlayerList().getPlayerByUsername(username);
 //        return VersionUtil.getPlayerForUsername(server, username);
     }
+
     public static EntityPlayerMP getPlayerBaseServerFromPlayerUsername(String username, boolean ignoreCase) {
         MinecraftServer server = FMLCommonHandler.instance().getMinecraftServerInstance();
         if (server != null) {
@@ -45,6 +48,7 @@ public class PlayerUtil {
         FOELog.severe("Warning: Could not find player base server instance for player " + username);
         return null;
     }
+
     public static EntityPlayerMP getPlayerBaseServerFromPlayer(EntityPlayer player, boolean ignoreCase) {
         if (player == null) {
             return null;
@@ -54,6 +58,7 @@ public class PlayerUtil {
         }
         return PlayerUtil.getPlayerBaseServerFromPlayerUsername(player.getName(), ignoreCase);
     }
+
     @SideOnly(Side.CLIENT)
     public static EntityPlayerSP getPlayerBaseClientFromPlayer(EntityPlayer player, boolean ignoreCase) {
         EntityPlayerSP clientPlayer = FMLClientHandler.instance().getClientPlayerEntity();
@@ -62,10 +67,12 @@ public class PlayerUtil {
         }
         return clientPlayer;
     }
+
     @SideOnly(Side.CLIENT)
     public static GameProfile getOtherPlayerProfile(String name) {
         return knownSkins.get(name);
     }
+
     @SideOnly(Side.CLIENT)
     public static GameProfile makeOtherPlayerProfile(String strName, String strUUID) {
         GameProfile profile = null;
@@ -85,6 +92,7 @@ public class PlayerUtil {
         PlayerUtil.knownSkins.put(strName, profile);
         return profile;
     }
+
     @SideOnly(Side.CLIENT)
     public static GameProfile getSkinForName(String strName, String strUUID, int dimID) {
         GameProfile profile = FMLClientHandler.instance().getClientPlayerEntity().getGameProfile();
@@ -99,6 +107,7 @@ public class PlayerUtil {
         }
         return profile;
     }
+
     public static EntityPlayerMP getPlayerByUUID(UUID theUUID) {
         List players = FMLCommonHandler.instance().getMinecraftServerInstance().getPlayerList().getPlayers();
         EntityPlayerMP entityplayermp;
@@ -110,29 +119,27 @@ public class PlayerUtil {
         }
         return null;
     }
+
     public static boolean isPlayerOnline(EntityPlayerMP player) {
         return player.world.getMinecraftServer().getPlayerList().getPlayers().contains(player);
     }
 
 
+    public static boolean is_player_in_gas_proof_armin(EntityLivingBase player) {
 
-
-    public static boolean is_player_in_gas_proof_armin(EntityLivingBase player){
-
-        if(player.getItemStackFromSlot(EntityEquipmentSlot.HEAD).getItem() == ItemInit.t40head||
-                player.getItemStackFromSlot(EntityEquipmentSlot.HEAD).getItem() == ItemInit.t50head||
-                player.getItemStackFromSlot(EntityEquipmentSlot.HEAD).getItem() == ItemInit.t60head){
-            if(player.getItemStackFromSlot(EntityEquipmentSlot.CHEST).getItem() == ItemInit.t40body||
-                    player.getItemStackFromSlot(EntityEquipmentSlot.CHEST).getItem() == ItemInit.t50body||
-                    player.getItemStackFromSlot(EntityEquipmentSlot.CHEST).getItem() == ItemInit.t60body){
-                if(player.getItemStackFromSlot(EntityEquipmentSlot.LEGS).getItem() == ItemInit.t40legs||
-                        player.getItemStackFromSlot(EntityEquipmentSlot.LEGS).getItem() == ItemInit.t50legs||
-                        player.getItemStackFromSlot(EntityEquipmentSlot.LEGS).getItem() == ItemInit.t60legs){
+        if (player.getItemStackFromSlot(EntityEquipmentSlot.HEAD).getItem() == ItemInit.t40head ||
+                player.getItemStackFromSlot(EntityEquipmentSlot.HEAD).getItem() == ItemInit.t50head ||
+                player.getItemStackFromSlot(EntityEquipmentSlot.HEAD).getItem() == ItemInit.t60head) {
+            if (player.getItemStackFromSlot(EntityEquipmentSlot.CHEST).getItem() == ItemInit.t40body ||
+                    player.getItemStackFromSlot(EntityEquipmentSlot.CHEST).getItem() == ItemInit.t50body ||
+                    player.getItemStackFromSlot(EntityEquipmentSlot.CHEST).getItem() == ItemInit.t60body) {
+                if (player.getItemStackFromSlot(EntityEquipmentSlot.LEGS).getItem() == ItemInit.t40legs ||
+                        player.getItemStackFromSlot(EntityEquipmentSlot.LEGS).getItem() == ItemInit.t50legs ||
+                        player.getItemStackFromSlot(EntityEquipmentSlot.LEGS).getItem() == ItemInit.t60legs) {
                     return true;
                 }
             }
         }
-
 
 
         return false;
