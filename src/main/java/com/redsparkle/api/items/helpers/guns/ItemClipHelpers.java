@@ -1,7 +1,7 @@
 package com.redsparkle.api.items.helpers.guns;
 
-import com.redsparkle.api.Capability.Items.Ammo.AmmoFactoryProvider;
 import com.redsparkle.api.Capability.Items.Ammo.IAmmoInterface;
+import com.redsparkle.api.Capability.Items.Ammo.AmmoFactoryProvider;
 import com.redsparkle.foe.Init.ItemInit;
 import com.redsparkle.foe.main;
 import com.redsparkle.foe.network.MessageClientPlaySound;

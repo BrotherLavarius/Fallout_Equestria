@@ -240,11 +240,16 @@ public class DedicatedServerProxy extends CommonProxy {
         }
     }
 
-    public static void handleTrigger_Item_Message(MessageUpdateClientTrigger_Item message, EntityPlayerMP playerMP) {
-        ITrigger_item status = playerMP.getCapability(ITrigger_item_Provider.TRIGGER_ITEM, null);
-        status.setStatus(message.status);
-        status.setInteraction(message.interaction_mode);
-        main.simpleNetworkWrapper.sendTo(new MessageUpdateClientTrigger_Item(status), playerMP);
+    public static void handleTrigger_Item_Message(MessageUpdateClientTrigger_Item message, MessageContext ctx, EntityPlayerMP playerMP) {
+        EntityPlayerMP player = ctx.getServerHandler().player;
+        IThreadListener mainThread = (WorldServer) ctx.getServerHandler().player.world;
+        mainThread.addScheduledTask(() -> {
+            ITrigger_item status = playerMP.getCapability(ITrigger_item_Provider.TRIGGER_ITEM, null);
+            status.setStatus(message.status);
+            status.setInteraction(message.interaction_mode);
+            main.simpleNetworkWrapper.sendTo(new MessageUpdateClientTrigger_Item(status), playerMP);
+        });
+
     }
 
     public static void MessageGunFire_handler(MessageGunFire message, MessageContext ctx) {

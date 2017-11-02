@@ -1,10 +1,9 @@
 package com.redsparkle.api.items.helpers.Item_Instances;
 
-import com.redsparkle.api.Capability.Items.Ammo.AmmoFactoryProvider;
 import com.redsparkle.api.Capability.Items.Ammo.IAmmoInterface;
 import com.redsparkle.api.items.helpers.guns.ItemClipHelpers;
+import com.redsparkle.api.Capability.Items.Ammo.AmmoFactoryProvider;
 import com.redsparkle.foe.Init.InitCreativeTabs;
-import com.redsparkle.foe.items.FoeItem;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;

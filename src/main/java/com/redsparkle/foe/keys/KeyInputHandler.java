@@ -39,6 +39,7 @@ public class KeyInputHandler {
         Minecraft mc = Minecraft.getMinecraft();
         EntityPlayerSP player = mc.player;
         ITrigger_item status = player.getCapability(ITrigger_item_Provider.TRIGGER_ITEM, null);
+
         if (keyHandler.pipbuck.isPressed()) {
             if (mc.player.getCapability(IAdvProvider.Adv_Inv, null).getStackInSlot(0) != ItemStack.EMPTY) {
                 main.simpleNetworkWrapper.sendToServer(new MessageUpdateSLSClientOnDemand());

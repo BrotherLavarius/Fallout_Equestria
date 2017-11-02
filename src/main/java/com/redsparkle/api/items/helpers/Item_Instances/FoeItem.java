@@ -1,4 +1,4 @@
-package com.redsparkle.foe.items;
+package com.redsparkle.api.items.helpers.Item_Instances;
 
 import com.redsparkle.foe.main;
 import net.minecraft.client.util.ITooltipFlag;

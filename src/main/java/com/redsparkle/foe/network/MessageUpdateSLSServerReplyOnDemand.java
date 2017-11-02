@@ -29,12 +29,14 @@ public class MessageUpdateSLSServerReplyOnDemand implements IMessage {
     public void fromBytes(ByteBuf buf) {
         Level = buf.readInt();
         Progress = buf.readInt();
+
     }
 
     @Override
     public void toBytes(ByteBuf buf) {
         buf.writeInt(Level);
         buf.writeInt(Progress);
+
     }
 
     public static class HandlerClient implements IMessageHandler<MessageUpdateSLSServerReplyOnDemand, IMessage> {

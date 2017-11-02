@@ -2,7 +2,7 @@ package com.redsparkle.api.items.helpers.meds;
 
 import com.redsparkle.api.utils.InventoryManager;
 import com.redsparkle.foe.Init.InitCreativeTabs;
-import com.redsparkle.foe.items.FoeItem;
+import com.redsparkle.api.items.helpers.Item_Instances.FoeItem;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;

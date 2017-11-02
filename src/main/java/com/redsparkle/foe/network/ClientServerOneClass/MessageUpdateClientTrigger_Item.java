@@ -53,7 +53,7 @@ public class MessageUpdateClientTrigger_Item implements IMessage {
         @Override
         public IMessage onMessage(MessageUpdateClientTrigger_Item message, MessageContext ctx) {
             EntityPlayerMP playerMP = ctx.getServerHandler().player;
-            DedicatedServerProxy.handleTrigger_Item_Message(message, playerMP);
+            DedicatedServerProxy.handleTrigger_Item_Message(message,ctx, playerMP);
             return null;
         }
     }

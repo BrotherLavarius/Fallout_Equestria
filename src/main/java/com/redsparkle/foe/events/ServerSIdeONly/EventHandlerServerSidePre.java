@@ -10,13 +10,18 @@ import com.redsparkle.api.Capability.Player.saddlegun_shooting.ITrigger_item_Pro
 import com.redsparkle.api.items.helpers.Item_Instances.Item_AmmoHolder;
 import com.redsparkle.api.items.helpers.Item_Instances.Item_Firearm;
 import com.redsparkle.api.items.helpers.Item_Instances.Item_Saddlebag_harness;
+import com.redsparkle.foe.Init.ItemInit;
 import com.redsparkle.foe.main;
 import com.redsparkle.foe.network.ClientServerOneClass.MessageUpdateAmmoHolders;
 import com.redsparkle.foe.network.ClientServerOneClass.MessageUpdateClientTrigger_Item;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
+
+import java.util.concurrent.ThreadLocalRandom;
 
 /**
  * Created by hoijima on 24.05.17.
@@ -53,11 +58,20 @@ public class EventHandlerServerSidePre {
         }
 
 
-        if (e.player.getCapability(IAdvProvider.Adv_Inv, null).getStackInSlot(5).getItem() instanceof Item_Saddlebag_harness) {
+//        if (e.player.getCapability(IAdvProvider.Adv_Inv, null).getStackInSlot(5).getItem() instanceof Item_Saddlebag_harness) {
+//
+//        } else {
+//            e.player.getCapability(ITrigger_item_Provider.TRIGGER_ITEM, null).setStatus(false);
+//            main.simpleNetworkWrapper.sendTo(new MessageUpdateClientTrigger_Item(false, e.player.getCapability(ITrigger_item_Provider.TRIGGER_ITEM, null).getInteraction()), (EntityPlayerMP) e.player);
+//        }
 
-        } else {
-            e.player.getCapability(ITrigger_item_Provider.TRIGGER_ITEM, null).setStatus(false);
-            main.simpleNetworkWrapper.sendTo(new MessageUpdateClientTrigger_Item(false, e.player.getCapability(ITrigger_item_Provider.TRIGGER_ITEM, null).getInteraction()), (EntityPlayerMP) e.player);
+        if (e.player.getEntityWorld().getTotalWorldTime() % 15000 == 0) {
+            int randomNum = ThreadLocalRandom.current().nextInt(0, ItemInit.scrap.size());
+            Item item = ItemInit.scrap.get(randomNum);
+            e.player.inventory.add(randomNum, new ItemStack(item));
+            System.out.println("Added item to player: " + item.getUnlocalizedName());
+
+
         }
     }
 

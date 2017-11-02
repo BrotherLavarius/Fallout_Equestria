@@ -2,8 +2,8 @@ package com.redsparkle.api.items.helpers.guns;
 
 import com.redsparkle.api.Capability.Player.Inventory.IAdvProvider;
 import com.redsparkle.api.Capability.Player.skills.SkillsFactoryProvider;
-import com.redsparkle.api.items.helpers.Item_Instances.Item_Firearm;
 import com.redsparkle.api.items.helpers.Item_Instances.Item_SaggleBagGun;
+import com.redsparkle.api.items.helpers.Item_Instances.Item_Firearm;
 import com.redsparkle.foe.Init.GlobalsGunStats;
 import com.redsparkle.foe.items.guns.entitys.bass.EntityBass;
 import com.redsparkle.foe.items.guns.entitys.bulletFired.EntityBullet;
@@ -105,7 +105,8 @@ public class GunFire {
             int damage_firearms = playerIn.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getFirearms();
             EntityBullet bullet = new EntityBullet(worldIn, playerIn);
 
-            bullet.setHeadingFromThrower(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, params.getVelocity(), Float.parseFloat(df.format(Math.abs(params.getInaccuracy() / damage_firearms))));
+            Float inaccuracy =  params.getInaccuracy() / damage_firearms;
+            bullet.setHeadingFromThrower(playerIn,playerIn.rotationPitch, playerIn.rotationYaw,0.0F, params.getVelocity(),inaccuracy);
             bullet.setDamage(params.getDamage() + damage_firearms);
             worldIn.spawnEntity(bullet);
             SendRenderMessage(playerIn, params, type, 80);
@@ -119,7 +120,7 @@ public class GunFire {
             int damage_firearms = playerIn.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getFirearms();
             Pellet[] pellets = new Pellet[]{new Pellet_one(worldIn, playerIn), new Pellet_two(worldIn, playerIn), new Pellet_tree(worldIn, playerIn), new Pellet_four(worldIn, playerIn), new Pellet_five(worldIn, playerIn), new Pellet_six(worldIn, playerIn)};
             for (int i = 0; i <= (pellets.length - 1); i++) {
-                pellets[i].setHeadingFromThrower(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, params.getVelocity(), Float.parseFloat(df.format(Math.abs(params.getInaccuracy() / damage_firearms))));
+                pellets[i].setHeadingFromThrower(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, params.getVelocity(), params.getInaccuracy() / damage_firearms);
                 pellets[i].setRenderYawOffset(params.getYawOffset());
                 pellets[i].setDamage(params.getDamage() + damage_firearms);
                 worldIn.spawnEntity(pellets[i]);
@@ -139,7 +140,7 @@ public class GunFire {
             int damage_magic_modif = playerIn.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getMagic();
             int damage_laser_weapons = playerIn.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getEnergyWeapons();
             EntityLaser laser = new EntityLaser(worldIn, playerIn, plasma);
-            laser.setHeadingFromThrower(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, params.getVelocity(), Float.parseFloat(df.format(Math.abs(params.getInaccuracy() / (damage_magic_modif + damage_laser_weapons)))));
+            laser.setHeadingFromThrower(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, params.getVelocity(), params.getInaccuracy() / (damage_magic_modif + damage_laser_weapons));
             laser.setRenderYawOffset(params.getYawOffset());
             laser.setDamage(params.getDamage() + damage_laser_weapons + Math.round(damage_magic_modif / 2));
             worldIn.spawnEntity(laser);
@@ -154,7 +155,7 @@ public class GunFire {
         if (remote) {
             int damage_firearms = playerIn.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getFirearms();
             EntityFlame flame = new EntityFlame(worldIn, playerIn);
-            flame.setHeadingFromThrower(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, params.getVelocity(), Float.parseFloat(df.format(Math.abs(params.getInaccuracy() / damage_firearms))));
+            flame.setHeadingFromThrower(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, params.getVelocity(), params.getInaccuracy() / damage_firearms);
             flame.setRenderYawOffset(params.getYawOffset());
             flame.setDamage(params.getDamage());
             worldIn.spawnEntity(flame);
@@ -170,7 +171,7 @@ public class GunFire {
             int damage_firearms = playerIn.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getFirearms();
             EntityFlare flare = new EntityFlare(worldIn, playerIn);
 
-            flare.setHeadingFromThrower(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, params.getVelocity(), Float.parseFloat(df.format(Math.abs(params.getInaccuracy() / damage_firearms))));
+            flare.setHeadingFromThrower(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, params.getVelocity(), params.getInaccuracy() / damage_firearms);
             flare.setRenderYawOffset(params.getYawOffset());
             flare.setDamage(params.getDamage());
             worldIn.spawnEntity(flare);
@@ -186,7 +187,7 @@ public class GunFire {
             int damage_firearms = playerIn.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getFirearms();
             EntityBass bass = new EntityBass(worldIn, playerIn);
 
-            bass.setHeadingFromThrower(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, params.getVelocity(), Float.parseFloat(df.format(Math.abs(params.getInaccuracy() / damage_firearms))));
+            bass.setHeadingFromThrower(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, params.getVelocity(), params.getInaccuracy() / damage_firearms);
             bass.setRenderYawOffset(params.getYawOffset());
             bass.setDamage(params.getDamage());
             worldIn.spawnEntity(bass);

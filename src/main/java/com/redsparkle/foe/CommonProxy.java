@@ -30,7 +30,7 @@ import com.redsparkle.api.Capability.Player.spechial.SpechialFactoryStorage;
 import com.redsparkle.api.Capability.Player.water.IWaterCapability;
 import com.redsparkle.api.Capability.Player.water.WaterFactoryProvider;
 import com.redsparkle.api.Capability.Player.water.WaterFactoryStorage;
-import com.redsparkle.api.handlers.GuiHandler;
+import com.redsparkle.foe.handlers.GuiHandler;
 import com.redsparkle.api.utils.GlobalNames;
 import com.redsparkle.foe.Init.StartUpCommon;
 import com.redsparkle.foe.events.EventHandlerInit;

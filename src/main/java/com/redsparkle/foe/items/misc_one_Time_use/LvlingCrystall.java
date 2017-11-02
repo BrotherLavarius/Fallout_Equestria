@@ -1,7 +1,7 @@
 package com.redsparkle.foe.items.misc_one_Time_use;
 
 import com.redsparkle.foe.Init.InitCreativeTabs;
-import com.redsparkle.foe.items.FoeItem;
+import com.redsparkle.api.items.helpers.Item_Instances.FoeItem;
 import com.redsparkle.foe.main;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;

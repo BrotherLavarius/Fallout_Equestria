@@ -1,4 +1,4 @@
-package com.redsparkle.foe.items;
+package com.redsparkle.api.items.helpers.Item_Instances;
 
 import com.redsparkle.foe.Init.InitCreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;

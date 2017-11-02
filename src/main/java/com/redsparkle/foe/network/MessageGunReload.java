@@ -20,6 +20,7 @@ public class MessageGunReload implements IMessage {
 
     public MessageGunReload(String type) {
         this.type = type;
+
     }
 
 
@@ -31,6 +32,7 @@ public class MessageGunReload implements IMessage {
     @Override
     public void toBytes(ByteBuf buf) {
         ByteBufUtils.writeUTF8String(buf, type);
+
     }
 
     public static class HandlerServer implements IMessageHandler<MessageGunReload, IMessage> {

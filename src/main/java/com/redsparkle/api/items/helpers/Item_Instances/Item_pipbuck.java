@@ -1,6 +1,5 @@
 package com.redsparkle.api.items.helpers.Item_Instances;
 
-import com.redsparkle.foe.items.FoeItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;

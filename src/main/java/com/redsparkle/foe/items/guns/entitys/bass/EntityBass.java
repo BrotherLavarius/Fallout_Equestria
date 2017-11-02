@@ -1,5 +1,6 @@
 package com.redsparkle.foe.items.guns.entitys.bass;
 
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.projectile.EntityThrowable;
 import net.minecraft.util.DamageSource;
@@ -47,6 +48,7 @@ public class EntityBass extends EntityThrowable {
             this.prevRotationPitch = this.rotationPitch;
         }
         if (ticksExisted > 30) {
+            world.createExplosion(null,this.x,this.y,this.z,10,true);
             setDead();
         }
         for (int i = 0; i < 25; i++) {
@@ -54,8 +56,8 @@ public class EntityBass extends EntityThrowable {
             double y = (double) (rand.nextInt(3) - 5) / 8.0D;
             double z = (double) (rand.nextInt(3) - 5) / 8.0D;
             world.spawnParticle(EnumParticleTypes.NOTE, posX, posY, posZ, 0, 0, 0);
-            world.spawnParticle(EnumParticleTypes.NOTE, posX, posY, posZ, 0, 0, 0);
-            world.spawnParticle(EnumParticleTypes.NOTE, posX, posY, posZ, 0, 0, 0);
+            world.spawnParticle(EnumParticleTypes.NOTE, posX, posY, posZ, 0, 40, 0);
+            world.spawnParticle(EnumParticleTypes.NOTE, posX, posY, posZ, 0, 0, 40);
         }
 
     }
@@ -81,9 +83,12 @@ public class EntityBass extends EntityThrowable {
         if (rayTraceResult.entityHit != null) {
             if (rayTraceResult.entityHit != this.getThrower()) {
                 rayTraceResult.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, this.getThrower()), damage);
-                world.spawnParticle(EnumParticleTypes.EXPLOSION_LARGE, posX, posY, posZ, 0, 0, 0);
-                world.spawnParticle(EnumParticleTypes.NOTE, posX, posY, posZ, 0, 0, 0);
                 //this.setDead();
+            }
+
+            if(rayTraceResult.typeOfHit.equals(RayTraceResult.Type.BLOCK)){
+                this.world.createExplosion((Entity)null, this.posX, this.posY, this.posZ, 6.0F, true);
+
             }
         }
         if (!this.world.isRemote) {

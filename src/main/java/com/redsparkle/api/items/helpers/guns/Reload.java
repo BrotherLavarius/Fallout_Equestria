@@ -1,10 +1,10 @@
 package com.redsparkle.api.items.helpers.guns;
 
-import com.redsparkle.api.Capability.Items.Ammo.AmmoFactoryProvider;
 import com.redsparkle.api.Capability.Items.Ammo.IAmmoInterface;
 import com.redsparkle.api.Capability.Items.Gun.GunFactoryProvider;
-import com.redsparkle.api.Capability.Items.Gun.IGunInterface;
 import com.redsparkle.api.Capability.Player.Inventory.IAdvProvider;
+import com.redsparkle.api.Capability.Items.Ammo.AmmoFactoryProvider;
+import com.redsparkle.api.Capability.Items.Gun.IGunInterface;
 import com.redsparkle.api.items.helpers.Item_Instances.Item_Firearm;
 import com.redsparkle.api.items.helpers.Item_Instances.Item_SaggleBagGun;
 import com.redsparkle.api.utils.InventoryManager;

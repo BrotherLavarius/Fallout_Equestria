@@ -2,7 +2,7 @@ package com.redsparkle.foe.Init;
 
 import com.redsparkle.api.utils.Armor_material;
 import com.redsparkle.api.utils.GlobalNames;
-import com.redsparkle.foe.items.FoeScrap;
+import com.redsparkle.api.items.helpers.Item_Instances.FoeScrap;
 import com.redsparkle.foe.items.armor.powered.*;
 import com.redsparkle.foe.items.food.old.*;
 import com.redsparkle.foe.items.guns.*;

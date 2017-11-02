@@ -1,4 +1,4 @@
-package com.redsparkle.api.handlers;
+package com.redsparkle.foe.handlers;
 
 import com.redsparkle.foe.containers.CONTAINER_AdditionalInventory;
 import com.redsparkle.foe.gui.Inventory_Crafting.GUI_AdditionalInventory;
