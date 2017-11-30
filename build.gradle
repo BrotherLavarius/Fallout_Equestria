@@ -42,7 +42,7 @@ apply plugin: 'com.github.johnrengelman.shadow'
 apply plugin: 'net.minecraftforge.gradle.forge'
 //Only edit below this line, the above code adds and enables the necessary things for Forge to be setup.
 
-version='0.9.3.6.1'
+version='MC:1.12.2-0.9.3.6.2'
 group = "com.redsparkle.foe" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "Fallout_Equestria"
 
@@ -63,7 +63,7 @@ minecraft {
 }
 
 dependencies {
-compile "li.cil.oc:OpenComputers:MC1.12.1-1.7.0.10+:api"
+//compile "li.cil.oc:OpenComputers:MC1.12.1-1.7.0.10+:api"
 compile group: 'org.clojars.aseipp', name: 'jogg', version: '0.0.7'
 compile group: 'org.clojars.aseipp', name: 'jorbis', version: '0.0.15'
 compile group: 'com.googlecode.soundlibs', name: 'tritonus-share', version: '0.3.7.4'
