@@ -12,6 +12,9 @@ import com.redsparkle.api.Capability.Player.FirtsTimeJoin.IFTJCapability;
 import com.redsparkle.api.Capability.Player.Inventory.IAdvInventory;
 import com.redsparkle.api.Capability.Player.Inventory.IAdvProvider;
 import com.redsparkle.api.Capability.Player.Inventory.IAdvStorage;
+import com.redsparkle.api.Capability.Player.Render.IRenders;
+import com.redsparkle.api.Capability.Player.Render.RenderProvider;
+import com.redsparkle.api.Capability.Player.Render.RenderStorage;
 import com.redsparkle.api.Capability.Player.level.ILevelCapability;
 import com.redsparkle.api.Capability.Player.level.LevelFactoryProvider;
 import com.redsparkle.api.Capability.Player.level.LevelFactoryStorage;
@@ -30,12 +33,12 @@ import com.redsparkle.api.Capability.Player.spechial.SpechialFactoryStorage;
 import com.redsparkle.api.Capability.Player.water.IWaterCapability;
 import com.redsparkle.api.Capability.Player.water.WaterFactoryProvider;
 import com.redsparkle.api.Capability.Player.water.WaterFactoryStorage;
-import com.redsparkle.foe.handlers.GuiHandler;
 import com.redsparkle.api.utils.GlobalNames;
 import com.redsparkle.foe.Init.StartUpCommon;
 import com.redsparkle.foe.events.EventHandlerInit;
 import com.redsparkle.foe.events.EventHandlerPre;
 import com.redsparkle.foe.events.UpdateEvents;
+import com.redsparkle.foe.handlers.GuiHandler;
 import com.redsparkle.foe.items.guns.entitys.bass.EntityBass;
 import com.redsparkle.foe.items.guns.entitys.bulletFired.EntityBullet;
 import com.redsparkle.foe.items.guns.entitys.flametrower.EntityFlame;
@@ -98,6 +101,8 @@ public abstract class CommonProxy {
         CapabilityManager.INSTANCE.register(IAmmoInterface.class, new IAmmoStorage(), AmmoFactoryProvider::new);
         CapabilityManager.INSTANCE.register(IGunInterface.class, new IGunStorage(), GunFactoryProvider::new);
         CapabilityManager.INSTANCE.register(ITrigger_item.class, new ITrigger_Item_Storage(), ITrigger_item_Provider::new);
+        CapabilityManager.INSTANCE.register(IRenders.class, new RenderStorage(), RenderProvider::new);
+
         System.out.println("FINISHED BOOTING CAPABILITY SYSTEM");
         MinecraftForge.EVENT_BUS.register(new EventHandlerInit());
     }

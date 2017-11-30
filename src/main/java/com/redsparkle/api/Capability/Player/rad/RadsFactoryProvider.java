@@ -98,6 +98,7 @@ public class RadsFactoryProvider implements IRadiationCapability, ICapabilitySer
 
     @Override
     public void deserializeNBT(NBTTagCompound nbt) {
+
         setRadiation(nbt.getInteger("rads"));
     }
 

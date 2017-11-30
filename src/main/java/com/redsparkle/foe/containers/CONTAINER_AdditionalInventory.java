@@ -7,7 +7,6 @@ import com.redsparkle.foe.containers.player_additional_inventory.Slots.*;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
-import net.minecraft.inventory.IContainerListener;
 import net.minecraft.inventory.InventoryBasic;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
@@ -143,9 +142,10 @@ public class CONTAINER_AdditionalInventory extends Container {
                 if (clientStackChanged)
                     for (int j = 0; j < this.listeners.size(); ++j)
                     {
-                        ((IContainerListener)this.listeners.get(j)).sendSlotContents(this, i, itemstack1);
+                        this.listeners.get(j).sendSlotContents(this, i, itemstack1);
                     }
             }
         }
     }
+
 }

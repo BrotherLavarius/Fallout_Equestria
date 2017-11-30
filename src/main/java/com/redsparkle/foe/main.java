@@ -95,6 +95,10 @@ public class main {
         simpleNetworkWrapper.registerMessage(MessageAdvInv.HandlerServer.class, MessageAdvInv.class, message_start_index++, Side.SERVER);
         simpleNetworkWrapper.registerMessage(MessageUpdateAmmoHolders.HandlerClient.class, MessageUpdateAmmoHolders.class, message_start_index++, Side.CLIENT);
 
+        simpleNetworkWrapper.registerMessage(MessageAdvInv_SYNC_op.HandlerClient.class, MessageAdvInv_SYNC_op.class, message_start_index++, Side.CLIENT);
+
+
+
         simpleNetworkWrapper.registerMessage(MessageUpdateClientTrigger_Item.HandlerClient.class, MessageUpdateClientTrigger_Item.class, message_start_index++, Side.CLIENT);
         simpleNetworkWrapper.registerMessage(MessageUpdateClientTrigger_Item.HandlerServer.class, MessageUpdateClientTrigger_Item.class, message_start_index++, Side.SERVER);
 

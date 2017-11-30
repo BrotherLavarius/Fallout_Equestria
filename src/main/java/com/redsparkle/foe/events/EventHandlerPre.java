@@ -5,6 +5,7 @@ import com.redsparkle.api.Capability.Items.Gun.GunFactoryProvider;
 import com.redsparkle.api.Capability.Player.FirtsTimeJoin.FTJFactoryProvider;
 import com.redsparkle.api.Capability.Player.FirtsTimeJoin.IFTJCapability;
 import com.redsparkle.api.Capability.Player.Inventory.IAdvProvider;
+import com.redsparkle.api.Capability.Player.Render.RenderProvider;
 import com.redsparkle.api.Capability.Player.level.ILevelCapability;
 import com.redsparkle.api.Capability.Player.level.LevelFactoryProvider;
 import com.redsparkle.api.Capability.Player.rad.RadsFactoryProvider;
@@ -54,6 +55,7 @@ public class EventHandlerPre {
                 event.addCapability(new ResourceLocation(main.MODID + ":ftj_capability"), new FTJFactoryProvider());
                 event.addCapability(new ResourceLocation(main.MODID + ":adv_inv_capability"), new IAdvProvider());
                 event.addCapability(new ResourceLocation(main.MODID + ":trigger_cap"), new ITrigger_item_Provider());
+                event.addCapability(new ResourceLocation(main.MODID + ":render_cap"), new RenderProvider());
 
             }
         }

@@ -37,7 +37,7 @@ public class GunRender implements LayerRenderer<EntityLivingBase> {
         ItemStack itemstack = entitylivingbaseIn.getHeldItem(EnumHand.MAIN_HAND);
         Item item = itemstack.getItem();
         Minecraft minecraft = Minecraft.getMinecraft();
-        ITrigger_item triggeritem = minecraft.player.getCapability(ITrigger_item_Provider.TRIGGER_ITEM, null);
+        ITrigger_item triggeritem = entitylivingbaseIn.getCapability(ITrigger_item_Provider.TRIGGER_ITEM, null);
 
         ItemStack harnes = entitylivingbaseIn.getCapability(IAdvProvider.Adv_Inv, null).getStackInSlot(5);
         Item itemHarness = harnes.getItem();

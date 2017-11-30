@@ -34,7 +34,9 @@ import com.redsparkle.foe.network.MessageClientPlaySound;
 import com.redsparkle.foe.network.MessageGunFire;
 import com.redsparkle.foe.network.MessageUpdateSLSServerReplyOnDemand;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.entity.EntityOtherPlayerMP;
 import net.minecraft.client.entity.EntityPlayerSP;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.Item;
@@ -44,6 +46,8 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
+
+import java.util.List;
 
 /**
  * Created by hoijima on 14.12.16.
@@ -184,6 +188,44 @@ public class ClientOnlyProxy extends CommonProxy {
         });
     }
 
+    public static void handleAdv_SYNC_op(MessageAdvInv_SYNC_op message) {
+        IThreadListener mainThread = Minecraft.getMinecraft();
+
+        mainThread.addScheduledTask(() -> {
+
+            List<Entity> list = Minecraft.getMinecraft().world.getLoadedEntityList();
+            EntityPlayer player = null;
+
+            for (int i = 0; i < list.size(); i++) {
+                if (list.get(i) instanceof EntityOtherPlayerMP) {
+                    player = (EntityPlayer) list.get(i);
+                    if (player.getGameProfile().getName() == message.playerName) {
+
+
+                        System.out.println(player);
+                    }
+                }
+            }
+            if (player.hasCapability(IAdvProvider.Adv_Inv, null)) {
+                IAdvInventory advInventory = IAdvProvider.instanceFor(player);
+
+                for (int i = 0; i < 12; i++) {
+                    Item item = Item.getByNameOrId(message.item_id.get(i));
+                    ItemStack stack = ItemCatalog.RequestStack(item, message.item_count.get(i), message.item_damage.get(i));
+                    if (advInventory.getStackInSlot(i) == ItemStack.EMPTY && stack != ItemStack.EMPTY) {
+                        advInventory.insertItem(i, stack, false);
+                    } else if (advInventory.getStackInSlot(i) != ItemStack.EMPTY && stack != ItemStack.EMPTY) {
+                        advInventory.extractItem(i, advInventory.getStackInSlot(i).getCount(), false);
+                        advInventory.insertItem(i, stack, false);
+                    }
+                }
+            } else {
+
+            }
+        });
+
+    }
+
     public static void handleSync_AmmoItems(MessageUpdateAmmoHolders message) {
         Minecraft.getMinecraft().addScheduledTask(() -> {
             EntityPlayer player = Minecraft.getMinecraft().player;
@@ -273,6 +315,7 @@ public class ClientOnlyProxy extends CommonProxy {
         });
     }
 
+
     public static void MessageGunFire_hadnler(MessageGunFire message, MessageContext ctx) {
         IThreadListener mainThread = Minecraft.getMinecraft();
         EntityPlayer player = Minecraft.getMinecraft().player;
@@ -280,6 +323,7 @@ public class ClientOnlyProxy extends CommonProxy {
             GunFire.GunFire_clienHandler(player.world, player, message.type, message.x, message.y, message.z, message.xHeading, message.yHeading, message.zHeading, message.vel, message.inac);
         });
     }
+
 
     public void preInit() {
         super.preInit();
@@ -316,4 +360,6 @@ public class ClientOnlyProxy extends CommonProxy {
     public boolean isDedicatedServer() {
         return false;
     }
+
+
 }

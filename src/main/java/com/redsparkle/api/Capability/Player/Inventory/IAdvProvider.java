@@ -13,10 +13,12 @@ import net.minecraftforge.common.capabilities.CapabilityInject;
 import net.minecraftforge.common.capabilities.ICapabilitySerializable;
 import net.minecraftforge.items.ItemStackHandler;
 
+import java.io.Serializable;
+
 /**
  * Created by hoijima on 18.07.17.
  */
-public class IAdvProvider extends ItemStackHandler implements IAdvInventory, ICapabilitySerializable<NBTTagCompound> {
+public class IAdvProvider extends ItemStackHandler implements IAdvInventory, ICapabilitySerializable<NBTTagCompound>, Serializable {
     @CapabilityInject(IAdvInventory.class)
     public static Capability<IAdvInventory> Adv_Inv = null;
 
@@ -36,19 +38,6 @@ public class IAdvProvider extends ItemStackHandler implements IAdvInventory, ICa
         return player.getCapability(Adv_Inv, null);
     }
 
-    //    @Override
-//    public void inserProcesser(List<String> item_id, List<Integer> item_count, List<Integer> item_damage, EntityPlayerMP player) {
-//
-//        for (int i = 0; i < 12; i++) {
-//            Item item = null;
-//            ItemStack quack= null;
-//            item = ItemCatalog.Request(item_id.get(i));
-//            quack = ItemCatalog.RequestStack(item, item_count.get(i), item_damage.get(i));
-//            this.setStackInSlot(i,quack);
-//        }
-//
-//
-//    }
     @Override
     public int getSlotLimit(int slot) {
         return 64;
