@@ -28,7 +28,7 @@ public class Health_Overlay extends Gui {
     public Health_Overlay(Minecraft mc, int screenWidht, int screenHeight) {
     /* These are the variables that contain world and player information */
         EntityPlayer player = mc.player;
-        Integer PLayerArmor = player.getTotalArmorValue();
+        float PLayerArmor = player.getTotalArmorValue();
         float maxHp = player.getMaxHealth();
         float absorptionAmount = player.getAbsorptionAmount();
         float effectiveHp = player.getHealth() + absorptionAmount;

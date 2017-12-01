@@ -44,8 +44,7 @@ public class MessageAdvInv_SLOT implements IMessage {
     @Override
     public void toBytes(ByteBuf buf) {
         for (int i = 0; i < 12; i++) {
-            String message = new String(item_id.get(i) + "," + item_count.get(i) + "," + item_damage.get(i));
-            ByteBufUtils.writeUTF8String(buf, message);
+            ByteBufUtils.writeUTF8String(buf, new String(item_id.get(i) + "," + item_count.get(i) + "," + item_damage.get(i)));
         }
         buf.writeInt(type);
         buf.writeInt(slot);

@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.io.InputStream;
 
 public class RadioPlayerThread {
-    private final int BUFFER_SIZE = 128000;
+    private final static int BUFFER_SIZE = 128000;
     private AudioInputStream audioStream;
     private AudioFormat audioFormat;
     private SourceDataLine sourceLine;

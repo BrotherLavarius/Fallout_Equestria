@@ -18,6 +18,8 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.InputEvent;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
 
@@ -33,6 +35,7 @@ public class KeyInputHandler {
     public boolean rs_pressed = false;
     public boolean ls_pressed = false;
 
+    @SideOnly(Side.CLIENT)
     @SubscribeEvent
     public void onKeyBoardInput(InputEvent.KeyInputEvent event) {
         Keyboard.enableRepeatEvents(true);
@@ -59,9 +62,9 @@ public class KeyInputHandler {
 
         if (keyHandler.sbag_shooter.isPressed()) {
 
-            if (player.getCapability(IAdvProvider.Adv_Inv, null).getStackInSlot(5).getItem() != Items.AIR
-                    && player.getHeldItemMainhand().getItem() == Items.AIR
-                    && player.getHeldItemOffhand().getItem() == Items.AIR
+            if (!player.getCapability(IAdvProvider.Adv_Inv, null).getStackInSlot(5).getItem().equals(Items.AIR)
+                    && player.getHeldItemMainhand().getItem().equals(Items.AIR)
+                    && player.getHeldItemOffhand().getItem().equals(Items.AIR)
                     ) {
                 if (mc.player.getCapability(ITrigger_item_Provider.TRIGGER_ITEM, null).getStatus()) {
                     main.simpleNetworkWrapper.sendToServer(new MessageUpdateClientTrigger_Item(false, status.getInteraction()));

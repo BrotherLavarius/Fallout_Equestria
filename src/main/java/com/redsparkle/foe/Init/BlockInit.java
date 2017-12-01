@@ -61,17 +61,6 @@ public class BlockInit {
                 locker,
                 RadiationBlock
         };
-
-//        for (int i = 0; i < (blocks.length - 1); i++) {
-//            Block tempB = blocks[i];
-//            //tempB.setRegistryName(blocksNames[i]);
-//            //tempB.setUnlocalizedName(blocksNames[i]);
-//
-//
-//        }
-//        registry.registerAll(blocks);
-
-
     }
 
     @SubscribeEvent

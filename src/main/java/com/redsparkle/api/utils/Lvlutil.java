@@ -4,12 +4,7 @@ package com.redsparkle.api.utils;
  * Created by hoijima on 19.05.17.
  */
 public class Lvlutil {
-    //59 lvl starting from 0 , in the end there are 60 lvls
-    public static Integer points = 0;
-    public static boolean targetLvl = false;
-    public static Integer minus = 0;
-    public static String progrsssbar = "";
-    public static Integer[] lvls = {
+    public final static Integer[] lvls = {
             1000, 2500,
             3500, 4500,
             5500, 6500,
@@ -42,7 +37,7 @@ public class Lvlutil {
             59500, 60500,
             62000
     };
-    public static String[] prorgress = {
+    protected final static String[] prorgress = {
             "[==========]",
             "[#=========]",
             "[##========]",
@@ -56,6 +51,11 @@ public class Lvlutil {
             "[####MAX###]",
             "[===ERROR==]"
     };
+    //59 lvl starting from 0 , in the end there are 60 lvls
+    public static Integer points = 0;
+    public static boolean targetLvl = false;
+    public static Integer minus = 0;
+    public static String progrsssbar = "";
 
     public static String progress(int MaxNum, Integer playerProgress) {
         String answer = "";

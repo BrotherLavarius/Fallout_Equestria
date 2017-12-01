@@ -2,34 +2,19 @@ package com.redsparkle.foe.gui.Overlays;
 
 import com.redsparkle.api.Capability.Player.saddlegun_shooting.ITrigger_item_Provider;
 import com.redsparkle.api.utils.GlobalNames;
-import com.redsparkle.api.utils.gui.Color_and_Etc;
 import com.redsparkle.foe.Init.ConfigInit;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.Gui;
-import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.util.Color;
 
-/**
- * Created by hoijima on 19.09.17.
- */
 public class Mode_Icons extends Gui {
 
     private final static ResourceLocation modes = new ResourceLocation(GlobalNames.Domain, "textures/gui_icons/modes.png");
-    private Minecraft mc;
-
 
     public Mode_Icons(Minecraft mc) {
-        FontRenderer fr = mc.fontRenderer;
-        int colorText = Color_and_Etc.rawColorFromRGB(ConfigInit.colorR, ConfigInit.colorG, ConfigInit.colorB);
-
-
-        ScaledResolution scaled = new ScaledResolution(mc);
-        int screenWidth = scaled.getScaledWidth();
-        int screenHight = scaled.getScaledHeight();
 
         GL11.glPushAttrib(GL11.GL_ALL_ATTRIB_BITS);
         GL11.glPushMatrix();

@@ -28,7 +28,6 @@ public class RadiationBlock extends BlockContainer {
     public static final PropertyDirection FACING = PropertyDirection.create("facing");
     public static final RadiationBlock instance = new RadiationBlock(GlobalNames.RadBlock);
     public static final String name = "RadiationBlock";
-    private final boolean isOn = true;
     boolean red = true;
 
     public RadiationBlock(String radBlock) {

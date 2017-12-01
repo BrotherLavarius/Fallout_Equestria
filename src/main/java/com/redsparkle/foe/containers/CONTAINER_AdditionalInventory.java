@@ -10,28 +10,31 @@ import net.minecraft.inventory.Container;
 import net.minecraft.inventory.InventoryBasic;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
+import net.minecraft.world.WorldServer;
 
 /**
  * Created by hoijima on 29.06.17.
  */
 public class CONTAINER_AdditionalInventory extends Container {
+    private final static int HOTBAR_SLOT_COUNT = 9;
+    private final static int PLAYER_INVENTORY_ROW_COUNT = 3;
+    private final static int PLAYER_INVENTORY_COLUMN_COUNT = 9;
+    private final static int PLAYER_INVENTORY_SLOT_COUNT = PLAYER_INVENTORY_COLUMN_COUNT * PLAYER_INVENTORY_ROW_COUNT;
+    private final static int VANILLA_SLOT_COUNT = HOTBAR_SLOT_COUNT + PLAYER_INVENTORY_SLOT_COUNT;
+    private final static int VANILLA_FIRST_SLOT_INDEX = 0;
+    private final static int ADV_INVENTORY_FIRST_SLOT_INDEX = VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT;
+    private final static int ADV_INVENTORY_SLOT_COUNT = 11;
     private final int numRows;
-    private final int HOTBAR_SLOT_COUNT = 9;
-    private final int PLAYER_INVENTORY_ROW_COUNT = 3;
-    private final int PLAYER_INVENTORY_COLUMN_COUNT = 9;
-    private final int PLAYER_INVENTORY_SLOT_COUNT = PLAYER_INVENTORY_COLUMN_COUNT * PLAYER_INVENTORY_ROW_COUNT;
-    private final int VANILLA_SLOT_COUNT = HOTBAR_SLOT_COUNT + PLAYER_INVENTORY_SLOT_COUNT;
-    private final int VANILLA_FIRST_SLOT_INDEX = 0;
-    private final int ADV_INVENTORY_FIRST_SLOT_INDEX = VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT;
-    private final int ADV_INVENTORY_SLOT_COUNT = 11;
     public InventoryBasic additional_inventory;
     public InventoryPlayer inventoryPlayer;
     public IAdvInventory adv_inv;
+    public EntityPlayer player;
 
     //TODO: FInish this class
     public CONTAINER_AdditionalInventory(EntityPlayer player) {
         this.adv_inv = player.getCapability(IAdvProvider.Adv_Inv, null);
         this.inventoryPlayer = player.inventory;
+        this.player = player;
         this.additional_inventory = new Adv_inv("FOE additional inventory", false, 12);
         additional_inventory.openInventory(player);
         numRows = inventoryPlayer.getSizeInventory() / 9;
@@ -144,6 +147,15 @@ public class CONTAINER_AdditionalInventory extends Container {
                     {
                         this.listeners.get(j).sendSlotContents(this, i, itemstack1);
                     }
+
+
+                for (int g = 0; g < ((WorldServer) this.player.world).getEntityTracker().getTrackingPlayers(this.player).size(); g++) {
+                    ((WorldServer) this.player.world).getEntityTracker().getTrackingPlayers(this.player).iterator().next().getCapability(IAdvProvider.Adv_Inv, null);
+
+                }
+//                ((WorldServer) this.player.world).getEntityTracker().getTrackingPlayers((Entity) this.player).size();
+
+
             }
         }
     }

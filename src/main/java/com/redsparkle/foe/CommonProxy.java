@@ -34,6 +34,7 @@ import com.redsparkle.api.Capability.Player.water.IWaterCapability;
 import com.redsparkle.api.Capability.Player.water.WaterFactoryProvider;
 import com.redsparkle.api.Capability.Player.water.WaterFactoryStorage;
 import com.redsparkle.api.utils.GlobalNames;
+import com.redsparkle.api.utils.ItemCatalog;
 import com.redsparkle.foe.Init.StartUpCommon;
 import com.redsparkle.foe.events.EventHandlerInit;
 import com.redsparkle.foe.events.EventHandlerPre;
@@ -45,7 +46,11 @@ import com.redsparkle.foe.items.guns.entitys.flametrower.EntityFlame;
 import com.redsparkle.foe.items.guns.entitys.flare.EntityFlare;
 import com.redsparkle.foe.items.guns.entitys.laserFired.EntityLaser;
 import com.redsparkle.foe.items.guns.entitys.spreadPellet_shotgun.*;
+import com.redsparkle.foe.network.ClientServerOneClass.MessageAdvInv_SYNC;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
@@ -57,6 +62,30 @@ import net.minecraftforge.fml.common.registry.EntityRegistry;
  * Created by hoijima on 14.12.16.
  */
 public abstract class CommonProxy {
+    public static void handleAdv_SYNC(MessageAdvInv_SYNC message, EntityPlayer player) {
+
+        IAdvInventory advInventory = IAdvProvider.instanceFor(player);
+        slotProcessor(message.item_id, message.item_count, message.item_damage, advInventory);
+    }
+
+    public static void slotProcessor(NonNullList<String> item_id, NonNullList<Integer> item_count, NonNullList<Integer> item_damage, IAdvInventory advInventory) {
+        for (int i = 0; i < 12; i++) {
+            Item item = Item.getByNameOrId(item_id.get(i));//           ItemCatalog.Request(message.item_id.get(slot));
+            ItemStack stack = ItemCatalog.RequestStack(item, item_count.get(i), item_damage.get(i));
+            slotProcessor_sub(advInventory, i, stack);
+        }
+
+    }
+
+    public static void slotProcessor_sub(IAdvInventory advInventory, int i, ItemStack stack) {
+        if (advInventory.getStackInSlot(i) == ItemStack.EMPTY && stack != ItemStack.EMPTY) {
+            advInventory.insertItem(i, stack, false);
+        } else if (advInventory.getStackInSlot(i) != ItemStack.EMPTY && stack != ItemStack.EMPTY) {
+            advInventory.extractItem(i, advInventory.getStackInSlot(i).getCount(), false);
+            advInventory.insertItem(i, stack, false);
+        }
+    }
+
     public void preInit() {
         System.out.println("FOE Initiating");
         System.out.println("WAR...");
@@ -127,4 +156,6 @@ public abstract class CommonProxy {
         // TODO Auto-generated method stub
         return null;
     }
+
+
 }

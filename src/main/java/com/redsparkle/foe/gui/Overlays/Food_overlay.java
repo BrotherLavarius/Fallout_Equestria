@@ -14,7 +14,6 @@ import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.world.World;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.util.Color;
 
@@ -32,7 +31,6 @@ public class Food_overlay extends Gui {
     public Food_overlay(Minecraft mc) {
         FontRenderer fr = mc.fontRenderer;
         EntityPlayer player = mc.player;
-        World world = mc.world;
         int playerFood = player.getFoodStats().getFoodLevel();
         boolean show = false;
         int bullets = 0;
@@ -65,7 +63,6 @@ public class Food_overlay extends Gui {
 
         GlStateManager.disableBlend();
         GL11.glDisable(GL11.GL_BLEND);
-        //GL11.glTexEnvi(GL11.GL_TEXTURE_ENV, GL11.GL_TEXTURE_ENV_MODE, GL11.GL_MODULATE);
         Color color = new Color(ConfigInit.colorR, ConfigInit.colorG, ConfigInit.colorB); // I want to draw the texture to solid red color
 
         GL11.glColor4f((float) color.getRed() / 255f,

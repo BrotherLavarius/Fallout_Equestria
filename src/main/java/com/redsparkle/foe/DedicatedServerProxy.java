@@ -23,7 +23,6 @@ import com.redsparkle.foe.network.ClientServerOneClass.*;
 import com.redsparkle.foe.network.MessageGunFire;
 import com.redsparkle.foe.network.MessageGunReload;
 import com.redsparkle.foe.network.MessageUpdateSLSServerReplyOnDemand;
-import net.minecraft.client.Minecraft;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -118,15 +117,12 @@ public class DedicatedServerProxy extends CommonProxy {
         ), player);
     }
 
-    public static void handleOpenGuiMessage(MessageOpenGuiClient message, EntityPlayerMP playerMP) {
-        Minecraft.getMinecraft().addScheduledTask(() -> {
-            main.simpleNetworkWrapper.sendTo(new MessageOpenGuiClient(message.ID), playerMP);
+    public static void handleOpenGuiMessage(MessageOpenGuiClient message, EntityPlayer player, IThreadListener mainThread) {
+        mainThread.addScheduledTask(() -> {
+            main.simpleNetworkWrapper.sendTo(new MessageOpenGuiClient(message.ID), (EntityPlayerMP) player);
         });
     }
 
-    public static void SendOpenGui(int guiId, EntityPlayerMP player) {
-        main.simpleNetworkWrapper.sendTo(new MessageOpenGuiClient(guiId), player);
-    }
 
     public static void handleSkillsLVLUPMessage(MessageUpdateClientServerSkills message, EntityPlayerMP player) {
         ISkillsCapability skills = SkillsFactoryProvider.instanceFor(player);
@@ -213,43 +209,20 @@ public class DedicatedServerProxy extends CommonProxy {
         }
     }
 
-    public static void handleAdv_SYNC(MessageAdvInv_SYNC message, EntityPlayerMP playerMP) {
-        IAdvInventory advInventory = IAdvProvider.instanceFor(playerMP);
-        for (int i = 0; i < 12; i++) {
-            Item item = Item.getByNameOrId(message.item_id.get(i));//           ItemCatalog.Request(message.item_id.get(slot));
-            ItemStack stack = ItemCatalog.RequestStack(item, message.item_count.get(i), message.item_damage.get(i));
-            if (advInventory.getStackInSlot(i) == ItemStack.EMPTY && stack != ItemStack.EMPTY) {
-                advInventory.insertItem(i, stack, false);
-            } else if (advInventory.getStackInSlot(i) != ItemStack.EMPTY && stack != ItemStack.EMPTY) {
-                advInventory.extractItem(i, advInventory.getStackInSlot(i).getCount(), false);
-                advInventory.insertItem(i, stack, false);
-            }
-        }
-    }
 
     public static void handleAdv_SLOT(MessageAdvInv_SLOT message, EntityPlayerMP playerMP) {
         IAdvInventory advInventory = IAdvProvider.instanceFor(playerMP);
         int slot = message.slot;
         Item item = Item.getByNameOrId(message.item_id.get(slot));//           ItemCatalog.Request(message.item_id.get(slot));
         ItemStack stack = ItemCatalog.RequestStack(item, message.item_count.get(slot), message.item_damage.get(slot));
-        if (advInventory.getStackInSlot(slot) == ItemStack.EMPTY && stack != ItemStack.EMPTY) {
-            advInventory.insertItem(slot, stack, false);
-        } else if (advInventory.getStackInSlot(slot) != ItemStack.EMPTY && stack != ItemStack.EMPTY) {
-            advInventory.extractItem(slot, advInventory.getStackInSlot(slot).getCount(), false);
-            advInventory.insertItem(slot, stack, false);
-        }
+        slotProcessor_sub(advInventory, slot, stack);
     }
 
-    public static void handleTrigger_Item_Message(MessageUpdateClientTrigger_Item message, MessageContext ctx, EntityPlayerMP playerMP) {
-        EntityPlayerMP player = ctx.getServerHandler().player;
-        IThreadListener mainThread = (WorldServer) ctx.getServerHandler().player.world;
-        mainThread.addScheduledTask(() -> {
-            ITrigger_item status = playerMP.getCapability(ITrigger_item_Provider.TRIGGER_ITEM, null);
+    public static void handleTrigger_Item_Message(MessageUpdateClientTrigger_Item message, EntityPlayerMP player) {
+        ITrigger_item status = player.getCapability(ITrigger_item_Provider.TRIGGER_ITEM, null);
             status.setStatus(message.status);
             status.setInteraction(message.interaction_mode);
-            main.simpleNetworkWrapper.sendTo(new MessageUpdateClientTrigger_Item(status), playerMP);
-        });
-
+        main.simpleNetworkWrapper.sendTo(new MessageUpdateClientTrigger_Item(status), player);
     }
 
     public static void MessageGunFire_handler(MessageGunFire message, MessageContext ctx) {
@@ -294,7 +267,7 @@ public class DedicatedServerProxy extends CommonProxy {
         });
     }
 
-    public static void MessageGunReload_hadnler(MessageGunReload message, MessageContext ctx) {
+    public static void MessageGunReload_handler(MessageGunReload message, MessageContext ctx) {
         EntityPlayerMP player = ctx.getServerHandler().player;
         IThreadListener mainThread = (WorldServer) ctx.getServerHandler().player.world;
         mainThread.addScheduledTask(() -> {

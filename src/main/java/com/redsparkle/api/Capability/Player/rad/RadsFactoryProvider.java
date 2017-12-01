@@ -79,7 +79,7 @@ public class RadsFactoryProvider implements IRadiationCapability, ICapabilitySer
     }
 
     public boolean hasChanged() {
-        return this.prevRadiationLevel != this.radiationLevel;
+        return !prevRadiationLevel.equals(radiationLevel);
     }
 
     public boolean hasCapability(Capability<?> capability, EnumFacing facing) {

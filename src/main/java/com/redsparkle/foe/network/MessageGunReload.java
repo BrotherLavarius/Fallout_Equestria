@@ -38,7 +38,7 @@ public class MessageGunReload implements IMessage {
     public static class HandlerServer implements IMessageHandler<MessageGunReload, IMessage> {
         @Override
         public IMessage onMessage(MessageGunReload message, MessageContext ctx) {
-            DedicatedServerProxy.MessageGunReload_hadnler(message, ctx);
+            DedicatedServerProxy.MessageGunReload_handler(message, ctx);
             return null;
         }
 

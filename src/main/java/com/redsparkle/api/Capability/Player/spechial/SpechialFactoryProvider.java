@@ -20,30 +20,12 @@ public class SpechialFactoryProvider implements ISpechialCapability, ICapability
     public static Capability<ISpechialCapability> SPECHIAL_CAPABILITY = null;
     private boolean dirty = true;
     private Integer
-            basicStreinght, //constant 0 to init
             StreinghtLevel, // real level
-            prevStreinghtLevel; // prev before changing
-    private Integer
-            basicPerception, //constant 0 to init
             PerceptionLevel, // real level
-            prevPerceptionLevel; // prev before changing
-    private Integer
-            basicEndurance, //constant 0 to init
             EnduranceLevel, // real level
-            prevEnduranceLevel; // prev before changing
-    private Integer
-            basicCharisma, //constant 0 to init
             CharismaLevel, // real level
-            prevCharismaLevel; // prev before changing
-    private Integer
-            basicIntelligence, //constant 0 to init
             IntelligenceLevel, // real level
-            prevIntelligenceLevel; // prev before changing
-    private Integer
-            basicAgility, //constant 0 to init
             AgilityLevel, // real level
-            prevAgilityLevel; // prev before changing
-    private Integer
             LuckLevel; // real level
 
     public SpechialFactoryProvider() {

@@ -13,7 +13,6 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import net.minecraftforge.client.model.obj.OBJModel;
 import net.minecraftforge.common.property.ExtendedBlockState;
 import net.minecraftforge.common.property.IUnlistedProperty;
 import net.minecraftforge.common.property.Properties;
@@ -23,9 +22,7 @@ import net.minecraftforge.common.property.Properties;
  */
 public class GeneralAllignBlockOneOone extends FoeBlock {
     public static final PropertyDirection FACING = BlockHorizontal.FACING;
-    public static final AxisAlignedBB FULL_BLOCK_AABB = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 1.0D, 1.0D);
-    public AxisAlignedBB Fixed;
-    private ExtendedBlockState state = new ExtendedBlockState(this, new IProperty[]{FACING}, new IUnlistedProperty[]{OBJModel.OBJProperty.INSTANCE});
+
 
     public GeneralAllignBlockOneOone(Material blockMaterialIn, MapColor blockMapColorIn, String name) {
         super(blockMaterialIn, blockMapColorIn, name);

@@ -137,8 +137,8 @@ public class GunFire {
             sp_type = 83;
         }
         if (remote) {
-            int damage_magic_modif = playerIn.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getMagic();
-            int damage_laser_weapons = playerIn.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getEnergyWeapons();
+            float damage_magic_modif = playerIn.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getMagic();
+            float damage_laser_weapons = playerIn.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getEnergyWeapons();
             EntityLaser laser = new EntityLaser(worldIn, playerIn, plasma);
             laser.shoot(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, params.getVelocity(), params.getInaccuracy() / (damage_magic_modif + damage_laser_weapons));
             laser.setRenderYawOffset(params.getYawOffset());
@@ -213,13 +213,7 @@ public class GunFire {
     }
 
     public static void SendRenderMessage(EntityPlayer playerIn, GlobalsGunStats params, int type, int sp_type) {
-        double xPl = playerIn.getPosition().getX();
-        double yPl = playerIn.getPosition().getY();
-        double zPl = playerIn.getPosition().getZ();
-        double xHeading = playerIn.getLookVec().x;
-        double yHeading = playerIn.getLookVec().y;
-        double zHeading = playerIn.getLookVec().z;
-        SendSoundMessage(playerIn, params.getGunName(), xPl, yPl, zPl, type);
+        SendSoundMessage(playerIn, params.getGunName(), playerIn.getPosition().getX(), playerIn.getPosition().getY(), playerIn.getPosition().getZ(), type);
         //main.simpleNetworkWrapper.sendToAllAround(new MessageGunFire(sp_type,xPl,yPl,zPl,xHeading,yHeading,zHeading,params.getVelocity(),1.5F),new NetworkRegistry.TargetPoint(0,  xPl,  yPl,  zPl, 120.0));
 
     }

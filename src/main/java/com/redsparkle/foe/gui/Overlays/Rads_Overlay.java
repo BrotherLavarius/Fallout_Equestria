@@ -9,7 +9,6 @@ import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.world.World;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.util.Color;
 
@@ -22,11 +21,9 @@ public class Rads_Overlay extends Gui {
     private final static int BAR_HEIGHT = 26;
     private final static int RadBAR_WIDTH = 100;
     private final static int RadBAR_HEIGHT = 8;
-    private Minecraft mc;
 
     public Rads_Overlay(Minecraft mc) {
         EntityPlayer player = mc.player;
-        World world = mc.world;
         int playerRadlevel = player.getCapability(RadsFactoryProvider.RADIATION_CAPABILITY, null).getRadiation();
         ScaledResolution scaled = new ScaledResolution(mc);
         int screenWidth = scaled.getScaledWidth();

@@ -13,16 +13,14 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.math.MathHelper;
-
-import static java.lang.Math.abs;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 /**
  * Created by NENYN on 2/12/2017.
  */
+@SideOnly(Side.CLIENT)
 public class ArmorLayerRender implements LayerRenderer<EntityLivingBase> {
-    private Float rotationPitch = 0F;
-
     public ArmorLayerRender(RenderPlayer playerRendererIn) {
         RenderPlayer playerRenderer = playerRendererIn;
     }
@@ -33,19 +31,12 @@ public class ArmorLayerRender implements LayerRenderer<EntityLivingBase> {
         Item itemHead = itemstackHead.getItem();
         ItemStack itemstackBody = entitylivingbaseIn.getItemStackFromSlot(EntityEquipmentSlot.CHEST);
         Item itemBody = itemstackBody.getItem();
-        ItemStack itemstackLegs = entitylivingbaseIn.getItemStackFromSlot(EntityEquipmentSlot.LEGS);
-        Item itemLegs = itemstackBody.getItem();
 
         ItemStack harnes = entitylivingbaseIn.getCapability(IAdvProvider.Adv_Inv, null).getStackInSlot(5);
         Item itemHarness = harnes.getItem();
 
         Minecraft minecraft = Minecraft.getMinecraft();
-        Float yawCorrector = 0F;
-        if (MathHelper.wrapDegrees(entitylivingbaseIn.getPitchYaw().y) >= 0.0F) {
-            yawCorrector = MathHelper.wrapDegrees(entitylivingbaseIn.getPitchYaw().y);
-        } else if (MathHelper.wrapDegrees(entitylivingbaseIn.getPitchYaw().y) < 0.0F) {
-            yawCorrector = abs(MathHelper.wrapDegrees(entitylivingbaseIn.getPitchYaw().y) + 360);
-        }
+
         if (itemstackHead != null && itemHead instanceof ItemHelmet) {
             GlStateManager.pushMatrix();
 
@@ -78,7 +69,6 @@ public class ArmorLayerRender implements LayerRenderer<EntityLivingBase> {
         }
         if (itemHarness != null && itemHarness instanceof Saddlebags) {
             GlStateManager.pushMatrix();
-//            GlStateManager.scale(1.5,1.5,1.5);
             if (entitylivingbaseIn.isSneaking()) {
                 GlStateManager.translate(0.280F, 0.85F, 0F);
             } else {

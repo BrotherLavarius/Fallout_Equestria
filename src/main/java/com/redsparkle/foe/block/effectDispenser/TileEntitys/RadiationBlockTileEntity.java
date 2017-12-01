@@ -22,12 +22,12 @@ public class RadiationBlockTileEntity extends TileEntity implements ITickable {
     }
 
     private void addEffectsToPlayers() {
-        double d0 = (double) (this.levels * 10 + 10);
-        double d1 = (double) (this.levels * 10 + 5);
-        double d2 = (double) (this.levels * 10 + 1);
-        int k = this.pos.getX();
-        int l = this.pos.getY();
-        int i1 = this.pos.getZ();
+//        double d0 = (double) (this.levels * 10 + 10);
+//        double d1 = (double) (this.levels * 10 + 5);
+//        double d2 = (double) (this.levels * 10 + 1);
+//        int k = this.pos.getX();
+//        int l = this.pos.getY();
+//        int i1 = this.pos.getZ();
 //        AxisAlignedBB axisalignedbb = (new AxisAlignedBB((double) k, (double) l, (double) i1, (double) (k + 1), (double) (l + 1), (double) (i1 + 1))).expand(d0,d0,d0) addCoord(0.0D, (double) this.world.getHeight(), 0.0D);
 //        List<EntityPlayerMP> list = this.world.getEntitiesWithinAABB(EntityPlayerMP.class, axisalignedbb);
 //        for (EntityPlayerMP entityplayer : list) {

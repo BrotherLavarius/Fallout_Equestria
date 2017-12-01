@@ -1,8 +1,8 @@
 package com.redsparkle.api.items.helpers.meds;
 
+import com.redsparkle.api.items.helpers.Item_Instances.FoeItem;
 import com.redsparkle.api.utils.InventoryManager;
 import com.redsparkle.foe.Init.InitCreativeTabs;
-import com.redsparkle.api.items.helpers.Item_Instances.FoeItem;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
@@ -26,16 +26,16 @@ import java.util.List;
  * Created by hoijima on 17.06.17.
  */
 public abstract class meds_Potion extends FoeItem {
-    public int NUMBER_OF_BOXES;
-    public int MaxDamage;
-    public float HealMomentln;
-    public float HealMoment;
-    public String potionId;
-    public int durationIn;
-    public int amplifierIn;
-    public String potion;
-    public int duration;
-    public int amplifier;
+    public int NUMBER_OF_BOXES = 0;
+    public int MaxDamage = 0;
+    public float HealMomentln = 0;
+    public float HealMoment = 0;
+    public String potionId = "";
+    public int durationIn = 0;
+    public int amplifierIn = 0;
+    public String potion = "";
+    public int duration = 0;
+    public int amplifier = 0;
 
     public meds_Potion(final String name) {
         super(name);

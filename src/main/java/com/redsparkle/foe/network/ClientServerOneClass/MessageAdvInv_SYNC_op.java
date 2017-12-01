@@ -45,8 +45,7 @@ public class MessageAdvInv_SYNC_op implements IMessage {
     public void toBytes(ByteBuf buf) {
         ByteBufUtils.writeUTF8String(buf, playerName);
         for (int i = 0; i < 12; i++) {
-            String message = new String(item_id.get(i) + "," + item_count.get(i) + "," + item_damage.get(i));
-            ByteBufUtils.writeUTF8String(buf, message);
+            ByteBufUtils.writeUTF8String(buf, new String(item_id.get(i) + "," + item_count.get(i) + "," + item_damage.get(i)));
         }
     }
 

@@ -17,16 +17,16 @@ import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumHand;
-import net.minecraft.util.math.MathHelper;
-import net.minecraftforge.client.model.obj.OBJModel;
-
-import static java.lang.Math.abs;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 /**
  * Created by NENYN on 2/12/2017.
  */
+@SideOnly(Side.CLIENT)
 public class GunRender implements LayerRenderer<EntityLivingBase> {
     private final RenderPlayer playerRenderer;
+    private Item item;
 
     public GunRender(RenderPlayer playerRendererIn) {
         this.playerRenderer = playerRendererIn;
@@ -35,7 +35,12 @@ public class GunRender implements LayerRenderer<EntityLivingBase> {
     @Override
     public void doRenderLayer(EntityLivingBase entitylivingbaseIn, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch, float scale) {
         ItemStack itemstack = entitylivingbaseIn.getHeldItem(EnumHand.MAIN_HAND);
-        Item item = itemstack.getItem();
+        item = Items.AIR;
+        try {
+            item = itemstack.getItem();
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+        }
         Minecraft minecraft = Minecraft.getMinecraft();
         ITrigger_item triggeritem = entitylivingbaseIn.getCapability(ITrigger_item_Provider.TRIGGER_ITEM, null);
 
@@ -45,20 +50,9 @@ public class GunRender implements LayerRenderer<EntityLivingBase> {
         ItemStack RS_GUN = entitylivingbaseIn.getCapability(IAdvProvider.Adv_Inv, null).getStackInSlot(7);
         ItemStack LS_GUN = entitylivingbaseIn.getCapability(IAdvProvider.Adv_Inv, null).getStackInSlot(6);
 
-        Float yawCorrector = 0F;
-        Float rotationPitch = 0F;
         if (itemstack != null && item instanceof Item_Firearm) {
             GlStateManager.pushMatrix();
-            if (MathHelper.wrapDegrees(entitylivingbaseIn.getPitchYaw().y) >= 0.0F) {
-                yawCorrector = MathHelper.wrapDegrees(entitylivingbaseIn.getPitchYaw().y);
-            } else if (MathHelper.wrapDegrees(entitylivingbaseIn.getPitchYaw().y) < 0.0F) {
-                yawCorrector = abs(MathHelper.wrapDegrees(entitylivingbaseIn.getPitchYaw().y) + 360);
-            }
-            if (MathHelper.wrapDegrees(entitylivingbaseIn.rotationPitch) >= 0.0F) {
-                rotationPitch = MathHelper.wrapDegrees(entitylivingbaseIn.rotationPitch);
-            } else if (MathHelper.wrapDegrees(entitylivingbaseIn.rotationPitch) < 0.0F) {
-                rotationPitch = abs(MathHelper.wrapDegrees(entitylivingbaseIn.rotationPitch) + 360);
-            }
+
             GlStateManager.translate(0.0F, 0.0F, 0.0F);
             GlStateManager.rotate(netHeadYaw, 0, 1.0F, 0);
             if (headPitch >= 33.0) {
@@ -78,21 +72,11 @@ public class GunRender implements LayerRenderer<EntityLivingBase> {
 
             ItemStack trigger_item_stack = new ItemStack(trigger_item);
             GlStateManager.pushMatrix();
-            if (MathHelper.wrapDegrees(entitylivingbaseIn.getPitchYaw().y) >= 0.0F) {
-                yawCorrector = MathHelper.wrapDegrees(entitylivingbaseIn.getPitchYaw().y);
-            } else if (MathHelper.wrapDegrees(entitylivingbaseIn.getPitchYaw().y) < 0.0F) {
-                yawCorrector = abs(MathHelper.wrapDegrees(entitylivingbaseIn.getPitchYaw().y) + 360);
-            }
-            if (MathHelper.wrapDegrees(entitylivingbaseIn.rotationPitch) >= 0.0F) {
-                rotationPitch = MathHelper.wrapDegrees(entitylivingbaseIn.rotationPitch);
-            } else if (MathHelper.wrapDegrees(entitylivingbaseIn.rotationPitch) < 0.0F) {
-                rotationPitch = abs(MathHelper.wrapDegrees(entitylivingbaseIn.rotationPitch) + 360);
-            }
+
             GlStateManager.translate(0.0F, 0.0F, 0.0F);
             GlStateManager.rotate(netHeadYaw, 0, 1.0F, 0);
             GlStateManager.rotate(headPitch, 1.0F, 0, 0);
             minecraft.getItemRenderer().renderItem(entitylivingbaseIn, trigger_item_stack, ItemCameraTransforms.TransformType.HEAD);
-            OBJModel.OBJBakedModel stuff = (OBJModel.OBJBakedModel) minecraft.getRenderItem().getItemModelWithOverrides(trigger_item_stack, null, entitylivingbaseIn);
 
             GlStateManager.popMatrix();
         }
@@ -117,7 +101,6 @@ public class GunRender implements LayerRenderer<EntityLivingBase> {
                 GlStateManager.pushMatrix();
                 GlStateManager.scale(1.5, 1.5, 1.5);
 
-                //GlStateManager.rotate(180,0,1,0);
                 GlStateManager.translate(0.30, -0.198, -0.045);
                 if (entitylivingbaseIn.isSneaking()) {
                     GlStateManager.translate(0.280F, 0.79F, 0F);

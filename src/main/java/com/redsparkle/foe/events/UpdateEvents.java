@@ -168,7 +168,6 @@ public class UpdateEvents {
 
     private void updatePlayerSpechial(EntityPlayer player) {
         if (!player.world.isRemote) {
-            ILevelCapability level = player.getCapability(LEVEL_CAPABILITY, null);
             ISpechialCapability spe = player.getCapability(SpechialFactoryProvider.SPECHIAL_CAPABILITY, null);
             spe.setAgility(spe.getAgility());
             spe.setCharisma(spe.getCharisma());

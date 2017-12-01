@@ -96,7 +96,7 @@ public class WaterFactoryProvider implements IWaterCapability, ICapabilitySerial
     }
 
     public boolean hasChanged() {
-        return this.prevWaterLevel != this.waterLevel;
+        return !prevWaterLevel.equals(waterLevel);
     }
 
     public boolean hasCapability(Capability<?> capability, EnumFacing facing) {

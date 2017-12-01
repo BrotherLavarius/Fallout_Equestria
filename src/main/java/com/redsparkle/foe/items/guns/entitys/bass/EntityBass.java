@@ -1,6 +1,5 @@
 package com.redsparkle.foe.items.guns.entitys.bass;
 
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.projectile.EntityThrowable;
 import net.minecraft.util.DamageSource;
@@ -87,7 +86,7 @@ public class EntityBass extends EntityThrowable {
             }
 
             if(rayTraceResult.typeOfHit.equals(RayTraceResult.Type.BLOCK)){
-                this.world.createExplosion((Entity)null, this.posX, this.posY, this.posZ, 6.0F, true);
+                this.world.createExplosion(null, this.posX, this.posY, this.posZ, 6.0F, true);
 
             }
         }

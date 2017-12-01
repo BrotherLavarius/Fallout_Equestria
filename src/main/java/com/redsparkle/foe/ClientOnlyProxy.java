@@ -19,7 +19,6 @@ import com.redsparkle.api.Capability.Player.spechial.SpechialFactoryProvider;
 import com.redsparkle.api.Capability.Player.water.IWaterCapability;
 import com.redsparkle.api.Capability.Player.water.WaterFactoryProvider;
 import com.redsparkle.api.items.helpers.guns.GunFire;
-import com.redsparkle.api.utils.ItemCatalog;
 import com.redsparkle.foe.Init.GlobalsGunStats;
 import com.redsparkle.foe.Init.SoundInit;
 import com.redsparkle.foe.events.ClientSide.CommonEventHandler;
@@ -39,13 +38,14 @@ import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IThreadListener;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.List;
 
@@ -53,9 +53,10 @@ import java.util.List;
  * Created by hoijima on 14.12.16.
  */
 @SuppressWarnings("ALL")
+@SideOnly(Side.CLIENT)
 public class ClientOnlyProxy extends CommonProxy {
-    public static Minecraft mc = Minecraft.getMinecraft();
-
+    private final static Minecraft mc = Minecraft.getMinecraft();
+    public static IThreadListener mainThread = Minecraft.getMinecraft();
     public static World world = mc.world;
 
     public static void handleRadMessage(MessageUpdateClientRads message) {
@@ -154,9 +155,9 @@ public class ClientOnlyProxy extends CommonProxy {
         });
     }
 
-    public static void handleOpenGui(MessageOpenGuiClient message) {
-        Minecraft.getMinecraft().addScheduledTask(() -> {
-            mc.player.openGui(main.instance, message.ID, mc.world, (int) mc.player.posX, (int) mc.player.posY, (int) mc.player.posZ);
+    public static void handleOpenGui(MessageOpenGuiClient message, EntityPlayer player, IThreadListener mainThread) {
+        mainThread.addScheduledTask(() -> {
+            player.openGui(main.instance, message.ID, mc.world, (int) player.posX, (int) player.posY, (int) player.posZ);
         });
     }
 
@@ -171,22 +172,7 @@ public class ClientOnlyProxy extends CommonProxy {
         });
     }
 
-    public static void handleAdv_SYNC(MessageAdvInv_SYNC message) {
-        Minecraft.getMinecraft().addScheduledTask(() -> {
-            EntityPlayer player = Minecraft.getMinecraft().player;
-            IAdvInventory advInventory = IAdvProvider.instanceFor(player);
-            for (int i = 0; i < 12; i++) {
-                Item item = Item.getByNameOrId(message.item_id.get(i));
-                ItemStack stack = ItemCatalog.RequestStack(item, message.item_count.get(i), message.item_damage.get(i));
-                if (advInventory.getStackInSlot(i) == ItemStack.EMPTY && stack != ItemStack.EMPTY) {
-                    advInventory.insertItem(i, stack, false);
-                } else if (advInventory.getStackInSlot(i) != ItemStack.EMPTY && stack != ItemStack.EMPTY) {
-                    advInventory.extractItem(i, advInventory.getStackInSlot(i).getCount(), false);
-                    advInventory.insertItem(i, stack, false);
-                }
-            }
-        });
-    }
+
 
     public static void handleAdv_SYNC_op(MessageAdvInv_SYNC_op message) {
         IThreadListener mainThread = Minecraft.getMinecraft();
@@ -209,16 +195,7 @@ public class ClientOnlyProxy extends CommonProxy {
             if (player.hasCapability(IAdvProvider.Adv_Inv, null)) {
                 IAdvInventory advInventory = IAdvProvider.instanceFor(player);
 
-                for (int i = 0; i < 12; i++) {
-                    Item item = Item.getByNameOrId(message.item_id.get(i));
-                    ItemStack stack = ItemCatalog.RequestStack(item, message.item_count.get(i), message.item_damage.get(i));
-                    if (advInventory.getStackInSlot(i) == ItemStack.EMPTY && stack != ItemStack.EMPTY) {
-                        advInventory.insertItem(i, stack, false);
-                    } else if (advInventory.getStackInSlot(i) != ItemStack.EMPTY && stack != ItemStack.EMPTY) {
-                        advInventory.extractItem(i, advInventory.getStackInSlot(i).getCount(), false);
-                        advInventory.insertItem(i, stack, false);
-                    }
-                }
+                slotProcessor(message.item_id, message.item_count, message.item_damage, advInventory);
             } else {
 
             }
@@ -264,13 +241,12 @@ public class ClientOnlyProxy extends CommonProxy {
     }
 
     public static void handleTrigger_Item_Message(MessageUpdateClientTrigger_Item message) {
-        Minecraft.getMinecraft().addScheduledTask(() -> {
+        mainThread.addScheduledTask(() -> {
             EntityPlayer player = Minecraft.getMinecraft().player;
             ITrigger_item status = player.getCapability(ITrigger_item_Provider.TRIGGER_ITEM, null);
             status.setStatus(message.status);
             status.setInteraction(message.interaction_mode);
         });
-
     }
 
     public static void MessageClientPlaySound_handler(MessageClientPlaySound message, MessageContext ctx) {
