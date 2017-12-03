@@ -1,7 +1,6 @@
 package com.redsparkle.api.utils;
 
 import javax.sound.sampled.FloatControl;
-import java.io.IOException;
 
 public class RadioThreadManager {
     public static RadioPLayer radioPLayer;
@@ -56,13 +55,8 @@ public class RadioThreadManager {
 
     public static void StopPlayer() {
         if (isTreadAlive()) {
-            try {
-                radioPLayer.running = false;
-                radioPLayer.line.close();
-                radioPLayer.din.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            radioPLayer.running = false;
+            radioPLayer.player.stop();
         }
     }
 }

@@ -3,10 +3,6 @@ package com.redsparkle.foe.network.ClientServerOneClass;
 import com.redsparkle.foe.ClientOnlyProxy;
 import com.redsparkle.foe.DedicatedServerProxy;
 import io.netty.buffer.ByteBuf;
-import net.minecraft.client.Minecraft;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.util.IThreadListener;
-import net.minecraft.world.WorldServer;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
@@ -39,18 +35,14 @@ public class MessageOpenGuiClient implements IMessage {
     public static class HandlerClient implements IMessageHandler<MessageOpenGuiClient, IMessage> {
         @Override
         public IMessage onMessage(MessageOpenGuiClient message, MessageContext ctx) {
-            IThreadListener mainThread = Minecraft.getMinecraft();
-            EntityPlayer player = Minecraft.getMinecraft().player;
-            ClientOnlyProxy.handleOpenGui(message, player, mainThread);
+            ClientOnlyProxy.handleOpenGui(message);
             return null;
         }
     }
     public static class HandleServer implements IMessageHandler<MessageOpenGuiClient, IMessage> {
         @Override
         public IMessage onMessage(MessageOpenGuiClient message, MessageContext ctx) {
-            IThreadListener mainThread = (WorldServer) ctx.getServerHandler().player.world;
-            EntityPlayer player = ctx.getServerHandler().player;
-            DedicatedServerProxy.handleOpenGuiMessage(message, player, mainThread);
+            DedicatedServerProxy.handleOpenGuiMessage(message, ctx);
             return null;
         }
     }

@@ -155,7 +155,9 @@ public class ClientOnlyProxy extends CommonProxy {
         });
     }
 
-    public static void handleOpenGui(MessageOpenGuiClient message, EntityPlayer player, IThreadListener mainThread) {
+    public static void handleOpenGui(MessageOpenGuiClient message) {
+        IThreadListener mainThread = Minecraft.getMinecraft();
+        EntityPlayer player = Minecraft.getMinecraft().player;
         mainThread.addScheduledTask(() -> {
             player.openGui(main.instance, message.ID, mc.world, (int) player.posX, (int) player.posY, (int) player.posZ);
         });
@@ -199,6 +201,16 @@ public class ClientOnlyProxy extends CommonProxy {
             } else {
 
             }
+        });
+
+    }
+
+    public static void handleAdv_SYNC(MessageAdvInv_SYNC message) {
+        IThreadListener mainThread = Minecraft.getMinecraft();
+        EntityPlayer player = Minecraft.getMinecraft().player;
+        mainThread.addScheduledTask(() -> {
+            IAdvInventory advInventory = player.getCapability(IAdvProvider.Adv_Inv, null);
+            slotProcessor(message.item_id, message.item_count, message.item_damage, advInventory);
         });
 
     }

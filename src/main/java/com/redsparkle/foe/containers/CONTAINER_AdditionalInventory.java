@@ -10,7 +10,6 @@ import net.minecraft.inventory.Container;
 import net.minecraft.inventory.InventoryBasic;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
-import net.minecraft.world.WorldServer;
 
 /**
  * Created by hoijima on 29.06.17.
@@ -125,39 +124,30 @@ public class CONTAINER_AdditionalInventory extends Container {
         this.additional_inventory.closeInventory(playerIn);
     }
 
-    /**
-     * Looks for changes made in the container, sends them to every listener.
-     */
-    @Override
-    public void detectAndSendChanges()
-    {
-        for (int i = 0; i < additional_inventory.getSizeInventory(); ++i)
-        {
-            ItemStack itemstack = additional_inventory.getStackInSlot(i);
-            ItemStack itemstack1 = additional_inventory.getStackInSlot(i);
-
-            if (!ItemStack.areItemStacksEqual(itemstack1, itemstack))
-            {
-                boolean clientStackChanged = !ItemStack.areItemStacksEqualUsingNBTShareTag(itemstack1, itemstack);
-                itemstack1 = itemstack.isEmpty() ? ItemStack.EMPTY : itemstack.copy();
-                additional_inventory.setInventorySlotContents(i, itemstack1);
-
-                if (clientStackChanged)
-                    for (int j = 0; j < this.listeners.size(); ++j)
-                    {
-                        this.listeners.get(j).sendSlotContents(this, i, itemstack1);
-                    }
-
-
-                for (int g = 0; g < ((WorldServer) this.player.world).getEntityTracker().getTrackingPlayers(this.player).size(); g++) {
-                    ((WorldServer) this.player.world).getEntityTracker().getTrackingPlayers(this.player).iterator().next().getCapability(IAdvProvider.Adv_Inv, null);
-
-                }
-//                ((WorldServer) this.player.world).getEntityTracker().getTrackingPlayers((Entity) this.player).size();
-
-
-            }
-        }
-    }
+//    /**
+//     * Looks for changes made in the container, sends them to every listener.
+//     */
+//    @Override
+//    public void detectAndSendChanges()
+//    {
+//        for (int i = 0; i < additional_inventory.getSizeInventory(); ++i)
+//        {
+//            ItemStack itemstack = additional_inventory.getStackInSlot(i);
+//            ItemStack itemstack1 = additional_inventory.getStackInSlot(i);
+//
+//            if (!ItemStack.areItemStacksEqual(itemstack1, itemstack))
+//            {
+//                boolean clientStackChanged = !ItemStack.areItemStacksEqualUsingNBTShareTag(itemstack1, itemstack);
+//                itemstack1 = itemstack.isEmpty() ? ItemStack.EMPTY : itemstack.copy();
+//                additional_inventory.setInventorySlotContents(i, itemstack1);
+//
+//                if (clientStackChanged)
+//                    for (int j = 0; j < this.listeners.size(); ++j)
+//                    {
+//                        this.listeners.get(j).sendSlotContents(this, i, itemstack1);
+//                    }
+//            }
+//        }
+//    }
 
 }

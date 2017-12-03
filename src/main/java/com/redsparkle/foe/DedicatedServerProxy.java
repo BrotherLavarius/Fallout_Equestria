@@ -117,7 +117,9 @@ public class DedicatedServerProxy extends CommonProxy {
         ), player);
     }
 
-    public static void handleOpenGuiMessage(MessageOpenGuiClient message, EntityPlayer player, IThreadListener mainThread) {
+    public static void handleOpenGuiMessage(MessageOpenGuiClient message, MessageContext ctx) {
+        IThreadListener mainThread = (WorldServer) ctx.getServerHandler().player.world;
+        EntityPlayer player = ctx.getServerHandler().player;
         mainThread.addScheduledTask(() -> {
             main.simpleNetworkWrapper.sendTo(new MessageOpenGuiClient(message.ID), (EntityPlayerMP) player);
         });
@@ -317,5 +319,14 @@ public class DedicatedServerProxy extends CommonProxy {
         return true;
     }
 
+    public static void handleAdv_SYNC(MessageAdvInv_SYNC message, MessageContext ctx) {
+        IThreadListener mainThread = (WorldServer) ctx.getServerHandler().player.world;
+        EntityPlayer player = ctx.getServerHandler().player;
+        mainThread.addScheduledTask(() -> {
+            IAdvInventory advInventory = player.getCapability(IAdvProvider.Adv_Inv, null);
+            slotProcessor(message.item_id, message.item_count, message.item_damage, advInventory);
+            main.simpleNetworkWrapper.sendTo(new MessageAdvInv_SYNC(advInventory), (EntityPlayerMP) player);
+        });
 
+    }
 }

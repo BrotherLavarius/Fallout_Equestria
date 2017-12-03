@@ -75,7 +75,7 @@ public abstract class EntityAbstractPellet extends EntityThrowable {
     protected void onImpact(RayTraceResult rayTraceResult) {
         if (rayTraceResult.entityHit != null) {
             if (rayTraceResult.entityHit != this.getThrower()) {
-                rayTraceResult.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, this.getThrower()), damage);
+                rayTraceResult.entityHit.attackEntityFrom(DamageSource.GENERIC, damage);
                 //this.setDead();
             }
         }

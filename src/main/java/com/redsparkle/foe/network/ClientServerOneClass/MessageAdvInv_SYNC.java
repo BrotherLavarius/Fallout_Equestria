@@ -1,15 +1,12 @@
 package com.redsparkle.foe.network.ClientServerOneClass;
 
 import com.redsparkle.api.Capability.Player.Inventory.IAdvInventory;
-import com.redsparkle.foe.CommonProxy;
+import com.redsparkle.foe.ClientOnlyProxy;
+import com.redsparkle.foe.DedicatedServerProxy;
 import io.netty.buffer.ByteBuf;
-import net.minecraft.client.Minecraft;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.IThreadListener;
 import net.minecraft.util.NonNullList;
-import net.minecraft.world.WorldServer;
 import net.minecraftforge.fml.common.network.ByteBufUtils;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
@@ -78,11 +75,7 @@ public class MessageAdvInv_SYNC implements IMessage {
     public static class HandlerClient implements IMessageHandler<MessageAdvInv_SYNC, IMessage> {
         @Override
         public IMessage onMessage(MessageAdvInv_SYNC message, MessageContext ctx) {
-            IThreadListener mainThread = Minecraft.getMinecraft();
-            mainThread.addScheduledTask(() -> {
-                EntityPlayer player = Minecraft.getMinecraft().player;
-                CommonProxy.handleAdv_SYNC(message, player);
-            });
+            ClientOnlyProxy.handleAdv_SYNC(message);
             return null;
         }
     }
@@ -90,11 +83,7 @@ public class MessageAdvInv_SYNC implements IMessage {
     public static class HandlerServer implements IMessageHandler<MessageAdvInv_SYNC, IMessage> {
         @Override
         public IMessage onMessage(MessageAdvInv_SYNC message, MessageContext ctx) {
-            IThreadListener mainThread = (WorldServer) ctx.getServerHandler().player.world;
-            mainThread.addScheduledTask(() -> {
-                EntityPlayer player = ctx.getServerHandler().player;
-                CommonProxy.handleAdv_SYNC(message, player);
-            });
+            DedicatedServerProxy.handleAdv_SYNC(message, ctx);
             return null;
         }
     }

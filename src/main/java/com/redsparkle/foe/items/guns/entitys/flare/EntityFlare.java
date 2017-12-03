@@ -88,7 +88,7 @@ public class EntityFlare extends EntityThrowable {
                 if (result.entityHit != null) {
                     if (result.entityHit != this.getThrower()) {
                         if (!result.entityHit.isImmuneToFire()) {
-                            boolean flag = result.entityHit.attackEntityFrom(DamageSource.causeIndirectDamage(this, this.shootingEntity), 1.0F);
+                            boolean flag = result.entityHit.attackEntityFrom(DamageSource.GENERIC, 1.0F);
                             if (flag) {
                                 this.applyEnchantments(this.shootingEntity, result.entityHit);
                                 result.entityHit.setFire(5);
