@@ -135,8 +135,8 @@ public class ConfigInit {
         if (loadConfigFromFile) {
             config.load();
         }
-		/*
-		 * Using language keys are a good idea if you are using a config GUI
+        /*
+         * Using language keys are a good idea if you are using a config GUI
 		 * This allows you to provide "pretty" names for the config properties
 		 * in a .lang file as well as allow others to provide other
 		 * localizations for your mod.

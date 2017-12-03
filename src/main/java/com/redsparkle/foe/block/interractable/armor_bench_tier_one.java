@@ -16,19 +16,22 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 import static com.redsparkle.foe.main.MODID;
+
 /**
  * Created by hoijima on 04.07.16.
  */
 public class armor_bench_tier_one extends GeneralAllignBlockTwoOTwo {
     public static final armor_bench_tier_one instance = new armor_bench_tier_one(GlobalNames.ArmorBench_tier_one);
+
     public armor_bench_tier_one(String armorBench_tier_one) {
-        super(Material.IRON,armorBench_tier_one);
+        super(Material.IRON, armorBench_tier_one);
         setLightLevel(0);
         setSoundType(SoundType.METAL);
         setCreativeTab(InitCreativeTabs.Fallout_blocks);
         setSoundType(SoundType.METAL);
         setUnlocalizedName(MODID + ":" + GlobalNames.ArmorBench_tier_one);
     }
+
     public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack) {
         worldIn.setBlockState(pos, state.withProperty(FACING, placer.getHorizontalFacing().getOpposite()), 2);
         if (stack.hasDisplayName()) {
@@ -38,10 +41,12 @@ public class armor_bench_tier_one extends GeneralAllignBlockTwoOTwo {
             }
         }
     }
+
     @Override
     public boolean hasTileEntity(IBlockState state) {
         return true;
     }
+
     @Override
     public IBlockState getExtendedState(IBlockState state, IBlockAccess world, BlockPos pos) {
         if (world.getTileEntity(pos) != null && world.getTileEntity(pos) instanceof TileEntity_ArmorBench_tier_one) {

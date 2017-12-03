@@ -36,6 +36,9 @@ public class CommonEventHandler {
                 main.simpleNetworkWrapper.sendToServer(new MessageUpdateClientTrigger_Item(false, status.getInteraction()));
             }
         }
+//        if (!e.player.getCapability(IAdvProvider.Adv_Inv, null).getStackInSlot(0).isEmpty()) {
+//            RadioThreadManager.StopPlayer();
+//        }
     }
 
     @SubscribeEvent
@@ -47,6 +50,7 @@ public class CommonEventHandler {
             }
         }
     }
+
     @SubscribeEvent
     public void onDamageRender(LivingAttackEvent e) {
         if (e.getEntityLiving() instanceof EntityPlayer) {
@@ -80,5 +84,6 @@ public class CommonEventHandler {
             }
         }
     }
+
 
 }

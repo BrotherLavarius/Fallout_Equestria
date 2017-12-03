@@ -2,7 +2,7 @@ package com.redsparkle.api.items.helpers.food;
 
 import com.redsparkle.api.utils.InventoryManager;
 import com.redsparkle.foe.Init.InitCreativeTabs;
-import com.redsparkle.foe.items.FoeItem;
+import com.redsparkle.api.items.helpers.Item_Instances.FoeItem;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
@@ -19,6 +19,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.List;
+
 /**
  * Created by hoijima on 09.06.17.
  */
@@ -27,6 +28,7 @@ public abstract class FoodMultipleUse extends FoeItem {
     public int NUMBER_OF_BOXES;
     public int MaxDamage;
     public int foodToAdd;
+
     public FoodMultipleUse(final String itemName) {
         super(itemName);
         this.setMaxStackSize(NUMBER_OF_BOXES);
@@ -34,6 +36,7 @@ public abstract class FoodMultipleUse extends FoeItem {
         this.setMaxDamage(MaxDamage);
         this.foodLvl = foodToAdd;
     }
+
     /**
      * allows items to add custom lines of information to the mouseover description
      */
@@ -52,6 +55,7 @@ public abstract class FoodMultipleUse extends FoeItem {
         }
         return new ActionResult<>(EnumActionResult.SUCCESS, playerIn.getHeldItem(handIn));
     }
+
     //TODO: fix food consumption algoritm, it is kinda trash
     public ItemStack onItemUseFinish(ItemStack stack, World worldIn, EntityLivingBase entityLiving) {
         EntityPlayer entityplayer = (EntityPlayer) entityLiving;
@@ -79,9 +83,11 @@ public abstract class FoodMultipleUse extends FoeItem {
         }
         return stack;
     }
+
     public EnumAction getItemUseAction(ItemStack stack) {
         return EnumAction.EAT;
     }
+
     public int getMaxItemUseDuration(ItemStack stack) {
         return 16;
     }

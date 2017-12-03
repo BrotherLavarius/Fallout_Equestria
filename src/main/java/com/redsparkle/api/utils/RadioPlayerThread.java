@@ -1,14 +1,17 @@
 package com.redsparkle.api.utils;
+
 import javax.sound.sampled.*;
 import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+
 public class RadioPlayerThread {
-    private final int BUFFER_SIZE = 128000;
+    private final static int BUFFER_SIZE = 128000;
     private AudioInputStream audioStream;
     private AudioFormat audioFormat;
     private SourceDataLine sourceLine;
     private boolean running = false;
+
     /**
      * @param filename the name of the file that is going to be played
      */
@@ -56,6 +59,7 @@ public class RadioPlayerThread {
             }
         }).start();
     }
+
     public void stopSound() {
         this.running = false;
         if (sourceLine != null) {

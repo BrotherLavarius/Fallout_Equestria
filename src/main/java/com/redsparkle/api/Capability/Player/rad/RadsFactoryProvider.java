@@ -1,4 +1,5 @@
 package com.redsparkle.api.Capability.Player.rad;
+
 import com.redsparkle.foe.main;
 import com.redsparkle.foe.network.ClientServerOneClass.MessageUpdateClientRads;
 import net.minecraft.entity.player.EntityPlayer;
@@ -10,6 +11,7 @@ import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.CapabilityInject;
 import net.minecraftforge.common.capabilities.ICapabilitySerializable;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
+
 /**
  * Created by hoijima on 12.09.16.
  */
@@ -18,9 +20,11 @@ public class RadsFactoryProvider implements IRadiationCapability, ICapabilitySer
     public static Capability<IRadiationCapability> RADIATION_CAPABILITY = null;
     private boolean dirty = true;
     private Integer basicRads, radiationLevel, prevRadiationLevel, radiationTimer, FortificationValue;
+
     public RadsFactoryProvider() {
         this(0, 0, 0, 0, 0);
     }
+
     public RadsFactoryProvider(Integer basicRads, Integer radiationLevel, Integer prevRadiationLevel, Integer radiationTimer, Integer FortificationValue) {
         this.basicRads = basicRads;
         this.radiationLevel = radiationLevel;
@@ -28,21 +32,27 @@ public class RadsFactoryProvider implements IRadiationCapability, ICapabilitySer
         this.radiationTimer = radiationTimer;
         this.FortificationValue = FortificationValue;
     }
+
     public static IRadiationCapability instanceFor(EntityPlayer player) {
         return player.getCapability(RADIATION_CAPABILITY, null);
     }
+
     public Integer getRadiation() {
         return radiationLevel + basicRads;
     }
-    public Integer addRadiation(Integer addRadiationLevel) {
-        return radiationLevel = (radiationLevel + addRadiationLevel + basicRads);
+
+    public void setRadiation(Integer newRadiationLevel) {
+        radiationLevel = (basicRads + newRadiationLevel);
     }
-    public Integer removeRadiation(Integer removeRadiationLevel) {
-        return radiationLevel = (radiationLevel - removeRadiationLevel + basicRads);
+
+    public void addRadiation(Integer addRadiationLevel) {
+        radiationLevel = (radiationLevel + addRadiationLevel + basicRads);
     }
-    public Integer setRadiation(Integer newRadiationLevel) {
-        return radiationLevel = (basicRads + newRadiationLevel);
+
+    public void removeRadiation(Integer removeRadiationLevel) {
+        radiationLevel = (radiationLevel - removeRadiationLevel + basicRads);
     }
+
     public void update(EntityPlayer player, World world, TickEvent.Phase phase) {
         if (phase == TickEvent.Phase.START) {
             radiationTimer = 0;
@@ -51,6 +61,7 @@ public class RadsFactoryProvider implements IRadiationCapability, ICapabilitySer
             } else radiationTimer++;
         }
     }
+
     public void timedRemoveRad(EntityPlayer player, TickEvent.Phase phase, Integer startCycle, Integer Cycles, Integer FortificationValue) {
         if (phase == TickEvent.Phase.START) {
             for (Integer cycle = startCycle; cycle < Cycles; ++cycle) {
@@ -58,30 +69,39 @@ public class RadsFactoryProvider implements IRadiationCapability, ICapabilitySer
             }
         }
     }
+
     public NBTTagCompound get() {
         return serializeNBT();
     }
+
     public void set(NBTTagCompound nbt) {
         deserializeNBT(nbt);
     }
+
     public boolean hasChanged() {
-        return this.prevRadiationLevel != this.radiationLevel;
+        return !prevRadiationLevel.equals(radiationLevel);
     }
+
     public boolean hasCapability(Capability<?> capability, EnumFacing facing) {
         return capability == RADIATION_CAPABILITY;
     }
+
     public <T> T getCapability(Capability<T> capability, EnumFacing facing) {
         return capability == RADIATION_CAPABILITY ? (T) this : null;
     }
+
     public NBTTagCompound serializeNBT() {
         NBTTagCompound nbt = new NBTTagCompound();
         nbt.setInteger("rads", radiationLevel);
         return nbt;
     }
+
     @Override
     public void deserializeNBT(NBTTagCompound nbt) {
+
         setRadiation(nbt.getInteger("rads"));
     }
+
     public void updateClient(EntityPlayer player) {
         if (!player.getEntityWorld().isRemote) {
             if (dirty) main.simpleNetworkWrapper.sendTo(new MessageUpdateClientRads(this), (EntityPlayerMP) player);

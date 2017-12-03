@@ -42,10 +42,11 @@ public class MessageClientPlaySound implements IMessage {
         ByteBufUtils.writeUTF8String(buf, position);
 
     }
+
     public static class HandlerClient implements IMessageHandler<MessageClientPlaySound, IMessage> {
         @Override
         public IMessage onMessage(MessageClientPlaySound message, MessageContext ctx) {
-            ClientOnlyProxy.MessageClientPlaySound_handler(message,ctx);
+            ClientOnlyProxy.MessageClientPlaySound_handler(message, ctx);
             return null;
         }
     }

@@ -1,6 +1,8 @@
 package com.redsparkle.foe.items.food.old;
+
 import com.redsparkle.api.items.helpers.food.FoodMultipleUse;
 import com.redsparkle.foe.Init.InitCreativeTabs;
+
 /**
  * Created by hoijima on 09.06.17.
  */
@@ -9,6 +11,7 @@ public class Blamko_MacCheese extends FoodMultipleUse {
     public int NUMBER_OF_BOXES = 2;
     public int MaxDamage = 2;
     public int foodToAdd = 2;
+
     public Blamko_MacCheese(String name) {
         super(name);
         this.setMaxStackSize(NUMBER_OF_BOXES);

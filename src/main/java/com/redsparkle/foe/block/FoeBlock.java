@@ -20,8 +20,6 @@ public class FoeBlock extends Block {
     }
 
 
-
-
     /**
      * Set the registry name of {@code block} to {@code blockName} and the unlocalised name to the full registry name.
      *  @param block     The block

@@ -14,6 +14,7 @@ import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+
 /**
  * Created by hoijima on 27.05.17.
  */
@@ -29,6 +30,7 @@ public class rpSkillCheck extends CommandBase {
             "LUC"
     };
     protected String fullEntityName;
+
     public rpSkillCheck() {
         aliases = new ArrayList<String>();
         aliases.add("skilldice");
@@ -36,18 +38,22 @@ public class rpSkillCheck extends CommandBase {
         aliases.add("diceskill");
         aliases.add("ds");
     }
+
     @Override
     public String getName() {
         return "skilldice";
     }
+
     @Override
     public String getUsage(ICommandSender sender) {
         return "/skilldice Skillname PLAYER1 PLAYER2";
     }
+
     @Override
     public List<String> getAliases() {
         return aliases;
     }
+
     @Override
     public void execute(MinecraftServer server, ICommandSender sender, String[] args) throws CommandException {
         if (args.length < 3
@@ -99,18 +105,22 @@ public class rpSkillCheck extends CommandBase {
             }
         }
     }
+
     @Override
     public boolean checkPermission(MinecraftServer server, ICommandSender sender) {
         return true;
     }
+
     @Override
     public List<String> getTabCompletions(MinecraftServer server, ICommandSender sender, String[] args, @Nullable BlockPos targetPos) {
         return args.length == 1 ? getListOfStringsMatchingLastWord(args, server.getOnlinePlayerNames()) : (args.length > 1 && args.length <= 4 ? getTabCompletionCoordinate(args, 1, targetPos) : Collections.emptyList());
     }
+
     @Override
     public boolean isUsernameIndex(String[] args, int index) {
         return false;
     }
+
     @Override
     public int compareTo(ICommand o) {
         return 0;

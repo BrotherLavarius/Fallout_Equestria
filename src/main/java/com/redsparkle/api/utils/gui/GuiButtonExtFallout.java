@@ -17,6 +17,7 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  */
 package com.redsparkle.api.utils.gui;
+
 import com.redsparkle.api.utils.GlobalNames;
 import com.redsparkle.foe.Init.ConfigInit;
 import net.minecraft.client.Minecraft;
@@ -37,9 +38,11 @@ import net.minecraftforge.fml.client.config.GuiUtils;
 public class GuiButtonExtFallout extends GuiButtonExt {
     final ResourceLocation FalloutWidgets = new ResourceLocation(GlobalNames.Domain,
             "textures/gui/fallout_widgets.png");
+
     public GuiButtonExtFallout(int id, int xPos, int yPos, String displayString) {
         super(id, xPos, yPos, displayString);
     }
+
     public GuiButtonExtFallout(int id, int xPos, int yPos, int width, int height, String displayString) {
         super(id, xPos, yPos, width, height, displayString);
     }
@@ -50,7 +53,7 @@ public class GuiButtonExtFallout extends GuiButtonExt {
      * Draws this button to the screen.
      */
     @Override
-    public void drawButton(Minecraft mc, int mouseX, int mouseY, float partial){
+    public void drawButton(Minecraft mc, int mouseX, int mouseY, float partial) {
 
         if (this.visible) {
             this.hovered = mouseX >= this.x && mouseY >= this.y && mouseX < this.x + this.width && mouseY < this.y + this.height;

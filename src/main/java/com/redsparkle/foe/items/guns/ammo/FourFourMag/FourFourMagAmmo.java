@@ -1,7 +1,7 @@
 package com.redsparkle.foe.items.guns.ammo.FourFourMag;
 
 import com.redsparkle.foe.Init.InitCreativeTabs;
-import com.redsparkle.foe.items.FoeItem;
+import com.redsparkle.api.items.helpers.Item_Instances.FoeItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;

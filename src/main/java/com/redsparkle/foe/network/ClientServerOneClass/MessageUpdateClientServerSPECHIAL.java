@@ -1,4 +1,5 @@
 package com.redsparkle.foe.network.ClientServerOneClass;
+
 import com.redsparkle.api.Capability.Player.spechial.ISpechialCapability;
 import com.redsparkle.foe.ClientOnlyProxy;
 import com.redsparkle.foe.DedicatedServerProxy;
@@ -7,6 +8,7 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
+
 /**
  * Created by hoijima on 3/1/2017.
  */
@@ -21,8 +23,10 @@ public class MessageUpdateClientServerSPECHIAL implements IMessage {
             this.Agility,
             this.Luck
     };
+
     public MessageUpdateClientServerSPECHIAL() {
     }
+
     public MessageUpdateClientServerSPECHIAL(ISpechialCapability spechial) {
         this.Streinght = spechial.getStreinght();
         this.Perception = spechial.getPerception();
@@ -32,6 +36,7 @@ public class MessageUpdateClientServerSPECHIAL implements IMessage {
         this.Agility = spechial.getAgility();
         this.Luck = spechial.getLuck();
     }
+
     public MessageUpdateClientServerSPECHIAL(int[] finished) {
         this.Streinght = finished[0];
         this.Perception = finished[1];
@@ -41,6 +46,7 @@ public class MessageUpdateClientServerSPECHIAL implements IMessage {
         this.Agility = finished[5];
         this.Luck = finished[6];
     }
+
     @Override
     public void fromBytes(ByteBuf buf) {
         Streinght = buf.readInt();
@@ -51,6 +57,7 @@ public class MessageUpdateClientServerSPECHIAL implements IMessage {
         Agility = buf.readInt();
         Luck = buf.readInt();
     }
+
     @Override
     public void toBytes(ByteBuf buf) {
         buf.writeInt(Streinght);
@@ -61,6 +68,7 @@ public class MessageUpdateClientServerSPECHIAL implements IMessage {
         buf.writeInt(Agility);
         buf.writeInt(Luck);
     }
+
     public static class HandlerClient implements IMessageHandler<MessageUpdateClientServerSPECHIAL, IMessage> {
         @Override
         public IMessage onMessage(MessageUpdateClientServerSPECHIAL message, MessageContext ctx) {
@@ -68,6 +76,7 @@ public class MessageUpdateClientServerSPECHIAL implements IMessage {
             return null;
         }
     }
+
     public static class HandlerServer implements IMessageHandler<MessageUpdateClientServerSPECHIAL, IMessage> {
         @Override
         public IMessage onMessage(MessageUpdateClientServerSPECHIAL message, MessageContext ctx) {

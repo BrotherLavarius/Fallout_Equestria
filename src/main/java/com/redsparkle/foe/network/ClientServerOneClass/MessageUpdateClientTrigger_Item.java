@@ -5,6 +5,8 @@ import com.redsparkle.foe.ClientOnlyProxy;
 import com.redsparkle.foe.DedicatedServerProxy;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.util.IThreadListener;
+import net.minecraft.world.WorldServer;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
@@ -31,8 +33,8 @@ public class MessageUpdateClientTrigger_Item implements IMessage {
     @Override
     public void fromBytes(ByteBuf buf) {
 
-        status = buf.readBoolean();
-        interaction_mode = buf.readBoolean();
+        this.status = buf.readBoolean();
+        this.interaction_mode = buf.readBoolean();
     }
 
     @Override
@@ -50,10 +52,14 @@ public class MessageUpdateClientTrigger_Item implements IMessage {
     }
 
     public static class HandlerServer implements IMessageHandler<MessageUpdateClientTrigger_Item, IMessage> {
+
         @Override
         public IMessage onMessage(MessageUpdateClientTrigger_Item message, MessageContext ctx) {
+            IThreadListener mainThread = (WorldServer) ctx.getServerHandler().player.world;
             EntityPlayerMP playerMP = ctx.getServerHandler().player;
-            DedicatedServerProxy.handleTrigger_Item_Message(message, playerMP);
+            mainThread.addScheduledTask(() -> {
+                DedicatedServerProxy.handleTrigger_Item_Message(message, playerMP);
+            });
             return null;
         }
     }

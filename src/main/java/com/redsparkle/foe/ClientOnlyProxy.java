@@ -19,7 +19,6 @@ import com.redsparkle.api.Capability.Player.spechial.SpechialFactoryProvider;
 import com.redsparkle.api.Capability.Player.water.IWaterCapability;
 import com.redsparkle.api.Capability.Player.water.WaterFactoryProvider;
 import com.redsparkle.api.items.helpers.guns.GunFire;
-import com.redsparkle.api.utils.ItemCatalog;
 import com.redsparkle.foe.Init.GlobalsGunStats;
 import com.redsparkle.foe.Init.SoundInit;
 import com.redsparkle.foe.events.ClientSide.CommonEventHandler;
@@ -34,24 +33,30 @@ import com.redsparkle.foe.network.MessageClientPlaySound;
 import com.redsparkle.foe.network.MessageGunFire;
 import com.redsparkle.foe.network.MessageUpdateSLSServerReplyOnDemand;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.entity.EntityOtherPlayerMP;
 import net.minecraft.client.entity.EntityPlayerSP;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IThreadListener;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
+import java.util.List;
 
 /**
  * Created by hoijima on 14.12.16.
  */
 @SuppressWarnings("ALL")
+@SideOnly(Side.CLIENT)
 public class ClientOnlyProxy extends CommonProxy {
-    public static Minecraft mc = Minecraft.getMinecraft();
-
+    private final static Minecraft mc = Minecraft.getMinecraft();
+    public static IThreadListener mainThread = Minecraft.getMinecraft();
     public static World world = mc.world;
 
     public static void handleRadMessage(MessageUpdateClientRads message) {
@@ -118,8 +123,7 @@ public class ClientOnlyProxy extends CommonProxy {
     }
 
 
-
-    public static void FireMessage(String type){
+    public static void FireMessage(String type) {
         Minecraft.getMinecraft().addScheduledTask(() -> {
             boolean cont_fire = false;
 
@@ -139,14 +143,6 @@ public class ClientOnlyProxy extends CommonProxy {
     }
 
 
-
-
-
-
-
-
-
-
     public static void handleLevelMessageOnDemand(MessageUpdateSLSServerReplyOnDemand message) {
         Minecraft.getMinecraft().addScheduledTask(() -> {
             EntityPlayer player = Minecraft.getMinecraft().player;
@@ -160,8 +156,10 @@ public class ClientOnlyProxy extends CommonProxy {
     }
 
     public static void handleOpenGui(MessageOpenGuiClient message) {
-        Minecraft.getMinecraft().addScheduledTask(() -> {
-            mc.player.openGui(main.instance, message.ID, mc.world, (int) mc.player.posX, (int) mc.player.posY, (int) mc.player.posZ);
+        IThreadListener mainThread = Minecraft.getMinecraft();
+        EntityPlayer player = Minecraft.getMinecraft().player;
+        mainThread.addScheduledTask(() -> {
+            player.openGui(main.instance, message.ID, mc.world, (int) player.posX, (int) player.posY, (int) player.posZ);
         });
     }
 
@@ -176,21 +174,45 @@ public class ClientOnlyProxy extends CommonProxy {
         });
     }
 
-    public static void handleAdv_SYNC(MessageAdvInv_SYNC message) {
-        Minecraft.getMinecraft().addScheduledTask(() -> {
-            EntityPlayer player = Minecraft.getMinecraft().player;
-            IAdvInventory advInventory = IAdvProvider.instanceFor(player);
-            for (int i = 0; i < 12; i++) {
-                Item item = Item.getByNameOrId(message.item_id.get(i));
-                ItemStack stack = ItemCatalog.RequestStack(item, message.item_count.get(i), message.item_damage.get(i));
-                if (advInventory.getStackInSlot(i) == ItemStack.EMPTY && stack != ItemStack.EMPTY) {
-                    advInventory.insertItem(i, stack, false);
-                } else if (advInventory.getStackInSlot(i) != ItemStack.EMPTY && stack != ItemStack.EMPTY) {
-                    advInventory.extractItem(i, advInventory.getStackInSlot(i).getCount(), false);
-                    advInventory.insertItem(i, stack, false);
+
+
+    public static void handleAdv_SYNC_op(MessageAdvInv_SYNC_op message) {
+        IThreadListener mainThread = Minecraft.getMinecraft();
+
+        mainThread.addScheduledTask(() -> {
+
+            List<Entity> list = Minecraft.getMinecraft().world.getLoadedEntityList();
+            EntityPlayer player = null;
+
+            for (int i = 0; i < list.size(); i++) {
+                if (list.get(i) instanceof EntityOtherPlayerMP) {
+                    player = (EntityPlayer) list.get(i);
+                    if (player.getGameProfile().getName() == message.playerName) {
+
+
+                        System.out.println(player);
+                    }
                 }
             }
+            if (player.hasCapability(IAdvProvider.Adv_Inv, null)) {
+                IAdvInventory advInventory = IAdvProvider.instanceFor(player);
+
+                slotProcessor(message.item_id, message.item_count, message.item_damage, advInventory);
+            } else {
+
+            }
         });
+
+    }
+
+    public static void handleAdv_SYNC(MessageAdvInv_SYNC message) {
+        IThreadListener mainThread = Minecraft.getMinecraft();
+        EntityPlayer player = Minecraft.getMinecraft().player;
+        mainThread.addScheduledTask(() -> {
+            IAdvInventory advInventory = player.getCapability(IAdvProvider.Adv_Inv, null);
+            slotProcessor(message.item_id, message.item_count, message.item_damage, advInventory);
+        });
+
     }
 
     public static void handleSync_AmmoItems(MessageUpdateAmmoHolders message) {
@@ -231,13 +253,12 @@ public class ClientOnlyProxy extends CommonProxy {
     }
 
     public static void handleTrigger_Item_Message(MessageUpdateClientTrigger_Item message) {
-        Minecraft.getMinecraft().addScheduledTask(() -> {
+        mainThread.addScheduledTask(() -> {
             EntityPlayer player = Minecraft.getMinecraft().player;
             ITrigger_item status = player.getCapability(ITrigger_item_Provider.TRIGGER_ITEM, null);
             status.setStatus(message.status);
             status.setInteraction(message.interaction_mode);
         });
-
     }
 
     public static void MessageClientPlaySound_handler(MessageClientPlaySound message, MessageContext ctx) {
@@ -245,51 +266,52 @@ public class ClientOnlyProxy extends CommonProxy {
         EntityPlayer player = Minecraft.getMinecraft().player;
         mainThread.addScheduledTask(() -> {
 
-                String whatToPlay = message.type;
-                String position = message.position;
-                // Types of things vary from sound_env_rads to gun_tenmm_fire
-                String[] whatToPlayArray = whatToPlay.split("\\|");
-                String[] positionArray = position.split(",");
-                GlobalsGunStats gunStats = null;
+            String whatToPlay = message.type;
+            String position = message.position;
+            // Types of things vary from sound_env_rads to gun_tenmm_fire
+            String[] whatToPlayArray = whatToPlay.split("\\|");
+            String[] positionArray = position.split(",");
+            GlobalsGunStats gunStats = null;
 
-                if (whatToPlayArray[0].equalsIgnoreCase("gun")) {
-                    if (whatToPlayArray[1].equalsIgnoreCase("main")||whatToPlayArray[1].equalsIgnoreCase("saddlebagLS")||whatToPlayArray[1].equalsIgnoreCase("saddlebagRS")) {
-                        String search = whatToPlayArray[2];
-                        gunStats = GlobalsGunStats.lookup.get(search);
-                    }
-                    if (whatToPlayArray[3].equalsIgnoreCase("fire")) {
-                        player.world.playSound(Double.parseDouble(positionArray[0]), Double.parseDouble(positionArray[1]), Double.parseDouble(positionArray[2]),
-                                SoundInit.lookup.get(gunStats.getGunName()).get(0), SoundCategory.AMBIENT, 0.2F, 1.0F, true);
-                    } else if (whatToPlayArray[3].equalsIgnoreCase("dry")) {
-                        player.world.playSound(Double.parseDouble(positionArray[0]), Double.parseDouble(positionArray[1]), Double.parseDouble(positionArray[2]),
-                                SoundInit.lookup.get(gunStats.getGunName()).get(1), SoundCategory.AMBIENT, 1.0F, 1.0F, true);
-                    } else if (whatToPlayArray[3].equalsIgnoreCase("reload")) {
-                        player.world.playSound(Double.parseDouble(positionArray[0]), Double.parseDouble(positionArray[1]), Double.parseDouble(positionArray[2]),
-                                SoundInit.lookup.get(gunStats.getGunName()).get(2), SoundCategory.AMBIENT, 1.0F, 1.0F, true);
-                    } else if (whatToPlayArray[3].equalsIgnoreCase("clipout")) {
-                        player.world.playSound(Double.parseDouble(positionArray[0]), Double.parseDouble(positionArray[1]), Double.parseDouble(positionArray[2]),
-                                SoundInit.lookup.get(gunStats.getGunName()).get(3), SoundCategory.AMBIENT, 1.0F, 1.0F, true);
-                    }
-
-
-                    if (whatToPlayArray[1].equalsIgnoreCase("clipReload")) {
-                        player.world.playSound(Double.parseDouble(positionArray[0]), Double.parseDouble(positionArray[1]), Double.parseDouble(positionArray[2]),
-                                SoundInit.clip_load, SoundCategory.AMBIENT, 1.0F, 1.0F, true);
-                    }
+            if (whatToPlayArray[0].equalsIgnoreCase("gun")) {
+                if (whatToPlayArray[1].equalsIgnoreCase("main") || whatToPlayArray[1].equalsIgnoreCase("saddlebagLS") || whatToPlayArray[1].equalsIgnoreCase("saddlebagRS")) {
+                    String search = whatToPlayArray[2];
+                    gunStats = GlobalsGunStats.lookup.get(search);
+                }
+                if (whatToPlayArray[3].equalsIgnoreCase("fire")) {
+                    player.world.playSound(Double.parseDouble(positionArray[0]), Double.parseDouble(positionArray[1]), Double.parseDouble(positionArray[2]),
+                            SoundInit.lookup.get(gunStats.getGunName()).get(0), SoundCategory.AMBIENT, 0.2F, 1.0F, true);
+                } else if (whatToPlayArray[3].equalsIgnoreCase("dry")) {
+                    player.world.playSound(Double.parseDouble(positionArray[0]), Double.parseDouble(positionArray[1]), Double.parseDouble(positionArray[2]),
+                            SoundInit.lookup.get(gunStats.getGunName()).get(1), SoundCategory.AMBIENT, 1.0F, 1.0F, true);
+                } else if (whatToPlayArray[3].equalsIgnoreCase("reload")) {
+                    player.world.playSound(Double.parseDouble(positionArray[0]), Double.parseDouble(positionArray[1]), Double.parseDouble(positionArray[2]),
+                            SoundInit.lookup.get(gunStats.getGunName()).get(2), SoundCategory.AMBIENT, 1.0F, 1.0F, true);
+                } else if (whatToPlayArray[3].equalsIgnoreCase("clipout")) {
+                    player.world.playSound(Double.parseDouble(positionArray[0]), Double.parseDouble(positionArray[1]), Double.parseDouble(positionArray[2]),
+                            SoundInit.lookup.get(gunStats.getGunName()).get(3), SoundCategory.AMBIENT, 1.0F, 1.0F, true);
                 }
 
+
+                if (whatToPlayArray[1].equalsIgnoreCase("clipReload")) {
+                    player.world.playSound(Double.parseDouble(positionArray[0]), Double.parseDouble(positionArray[1]), Double.parseDouble(positionArray[2]),
+                            SoundInit.clip_load, SoundCategory.AMBIENT, 1.0F, 1.0F, true);
+                }
+            }
 
 
         });
     }
+
 
     public static void MessageGunFire_hadnler(MessageGunFire message, MessageContext ctx) {
         IThreadListener mainThread = Minecraft.getMinecraft();
         EntityPlayer player = Minecraft.getMinecraft().player;
         mainThread.addScheduledTask(() -> {
-                GunFire.GunFire_clienHandler(player.world,player,message.type,message.x,message.y,message.z,message.xHeading,message.yHeading,message.zHeading,message.vel,message.inac);
+            GunFire.GunFire_clienHandler(player.world, player, message.type, message.x, message.y, message.z, message.xHeading, message.yHeading, message.zHeading, message.vel, message.inac);
         });
     }
+
 
     public void preInit() {
         super.preInit();
@@ -326,4 +348,6 @@ public class ClientOnlyProxy extends CommonProxy {
     public boolean isDedicatedServer() {
         return false;
     }
+
+
 }

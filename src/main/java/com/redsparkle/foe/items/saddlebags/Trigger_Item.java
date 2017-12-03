@@ -1,6 +1,6 @@
 package com.redsparkle.foe.items.saddlebags;
 
-import com.redsparkle.foe.items.FoeItem;
+import com.redsparkle.api.items.helpers.Item_Instances.FoeItem;
 
 /**
  * Created by hoijima on 30.08.17.

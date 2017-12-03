@@ -22,37 +22,37 @@ import java.util.Map;
 
 @Mod.EventBusSubscriber(value = Side.CLIENT, modid = main.MODID)
 public class SoundInit {
-    public static final SoundEvent lowentensity_rad     = registerSound("LowEntensityRad");
-    public static final SoundEvent mediumentensity_rad  = registerSound("MediumEntensityRad");
-    public static final SoundEvent highentensity_rad    = registerSound("HighEntensityRad");
-    public static final SoundEvent enervation           = registerSound("Enervation");
-    public static final SoundEvent tenmm_shot           = registerSound("tenmm_shot");
-    public static final SoundEvent tenmm_dry            = registerSound("tenmm_dry");
-    public static final SoundEvent tenmm_reload         = registerSound("tenmm_reload");
-    public static final SoundEvent four_tenmm_shot      = registerSound("four_tenmm_shot");
-    public static final SoundEvent four_tenmm_dry       = registerSound("four_tenmm_dry");
-    public static final SoundEvent four_tenmm_reload    = registerSound("four_tenmm_reload");
-    public static final SoundEvent db_shotgun_shot      = registerSound("db_shotgun_shot");
-    public static final SoundEvent db_shotgun_reload    = registerSound("db_shotgun_reload");
-    public static final SoundEvent db_shotgun_dry       = registerSound("db_shotgun_dry");
-    public static final SoundEvent flaregun_shot        = registerSound("flaregun_shot");
-    public static final SoundEvent flaregun_dry         = registerSound("flaregun_dry");
-    public static final SoundEvent flaregun_reload      = registerSound("flaregun_reload");
-    public static final SoundEvent plasma_shot          = registerSound("plasma_shot");
-    public static final SoundEvent plasma_dry           = registerSound("plasma_dry");
-    public static final SoundEvent plasma_reload        = registerSound("plasma_reload");
-    public static final SoundEvent flamer_shot          = registerSound("flamer_shot");
-    public static final SoundEvent flamer_reload        = registerSound("flamer_reload");
+    public static final SoundEvent lowentensity_rad = registerSound("LowEntensityRad");
+    public static final SoundEvent mediumentensity_rad = registerSound("MediumEntensityRad");
+    public static final SoundEvent highentensity_rad = registerSound("HighEntensityRad");
+    public static final SoundEvent enervation = registerSound("Enervation");
+    public static final SoundEvent tenmm_shot = registerSound("tenmm_shot");
+    public static final SoundEvent tenmm_dry = registerSound("tenmm_dry");
+    public static final SoundEvent tenmm_reload = registerSound("tenmm_reload");
+    public static final SoundEvent four_tenmm_shot = registerSound("four_tenmm_shot");
+    public static final SoundEvent four_tenmm_dry = registerSound("four_tenmm_dry");
+    public static final SoundEvent four_tenmm_reload = registerSound("four_tenmm_reload");
+    public static final SoundEvent db_shotgun_shot = registerSound("db_shotgun_shot");
+    public static final SoundEvent db_shotgun_reload = registerSound("db_shotgun_reload");
+    public static final SoundEvent db_shotgun_dry = registerSound("db_shotgun_dry");
+    public static final SoundEvent flaregun_shot = registerSound("flaregun_shot");
+    public static final SoundEvent flaregun_dry = registerSound("flaregun_dry");
+    public static final SoundEvent flaregun_reload = registerSound("flaregun_reload");
+    public static final SoundEvent plasma_shot = registerSound("plasma_shot");
+    public static final SoundEvent plasma_dry = registerSound("plasma_dry");
+    public static final SoundEvent plasma_reload = registerSound("plasma_reload");
+    public static final SoundEvent flamer_shot = registerSound("flamer_shot");
+    public static final SoundEvent flamer_reload = registerSound("flamer_reload");
     public static final SoundEvent laser_shot = registerSound("laser_fire");
-    public static final SoundEvent laser_reload         = registerSound("laser_reload");
-    public static final SoundEvent laser_dry            = registerSound("laser_dry");
-    public static final SoundEvent clip_load            = registerSound("clip_load");
-    public static final SoundEvent tenmm_clip_out       = registerSound("tenmm_clip_out");
-    public static final SoundEvent four_tenmm_clip_out  = registerSound("four_tenmm_clip_out");
-    public static final SoundEvent db_shotgun_clip_out  = registerSound("db_shotgun_clip_out");
-    public static final SoundEvent flaregun_clip_out    = registerSound("flaregun_clip_out");
-    public static final SoundEvent laser_clip_out       = registerSound("laser_clip_out");
-    public static final SoundEvent plasma_clip_out      = registerSound("plasma_clip_out");
+    public static final SoundEvent laser_reload = registerSound("laser_reload");
+    public static final SoundEvent laser_dry = registerSound("laser_dry");
+    public static final SoundEvent clip_load = registerSound("clip_load");
+    public static final SoundEvent tenmm_clip_out = registerSound("tenmm_clip_out");
+    public static final SoundEvent four_tenmm_clip_out = registerSound("four_tenmm_clip_out");
+    public static final SoundEvent db_shotgun_clip_out = registerSound("db_shotgun_clip_out");
+    public static final SoundEvent flaregun_clip_out = registerSound("flaregun_clip_out");
+    public static final SoundEvent laser_clip_out = registerSound("laser_clip_out");
+    public static final SoundEvent plasma_clip_out = registerSound("plasma_clip_out");
 
     public static final Map<String, List<SoundEvent>> lookup = new HashMap<String, List<SoundEvent>>();
     public static List<SoundEvent> tenmm;
@@ -64,7 +64,6 @@ public class SoundInit {
     public static List<SoundEvent> flamer;
 
     /**
-     *
      * Register a {@link SoundEvent}.
      *
      * @param soundName The SoundEvent's name without the testmod3 prefix
@@ -158,26 +157,26 @@ public class SoundInit {
         flamer.add(flamer_reload);
         flamer.add(plasma_clip_out);
 
-        lookup.put(GlobalsGunStats.TEN_MM.getGunName()          ,tenmm);
+        lookup.put(GlobalsGunStats.TEN_MM.getGunName(), tenmm);
         lookup.put(GlobalsGunStats.TEN_MM_SUB.getGunName(), tenmm);
+
+        lookup.put(GlobalsGunStats.BASS_CANNON.getGunName(), tenmm);
+
         lookup.put(GlobalsGunStats.FOURFOUR_REVOLVER.getGunName(), tenmm);
 
-        lookup.put(GlobalsGunStats.FOUR_TEN_MM.getGunName()     ,four_tenmm);
+        lookup.put(GlobalsGunStats.FOUR_TEN_MM.getGunName(), four_tenmm);
 
         lookup.put(GlobalsGunStats.FOURFOUR_REVOLVER.getGunName(), tenmm);
-        lookup.put(GlobalsGunStats.DB_SHOUTGUN.getGunName()     ,db_shotgun);
-        lookup.put(GlobalsGunStats.FLARE_GUN.getGunName()       ,flaregun);
+        lookup.put(GlobalsGunStats.DB_SHOUTGUN.getGunName(), db_shotgun);
+        lookup.put(GlobalsGunStats.FLARE_GUN.getGunName(), flaregun);
 
-        lookup.put(GlobalsGunStats.LASER_PISTOL.getGunName()    ,laser);
+        lookup.put(GlobalsGunStats.LASER_PISTOL.getGunName(), laser);
         lookup.put(GlobalsGunStats.PLASMA_PISTOL.getGunName(), plasma);
 
         lookup.put(GlobalsGunStats.SEVEN_MM_RIFLE.getGunName(), tenmm);
         lookup.put(GlobalsGunStats.FIVE_MM_MINIGUN.getGunName(), tenmm);
 
         lookup.put(GlobalsGunStats.FLAMMENWERFER.getGunName(), flamer);
-
-
-
 
 
     }

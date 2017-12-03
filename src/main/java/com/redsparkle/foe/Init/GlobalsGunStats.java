@@ -33,8 +33,8 @@ public enum GlobalsGunStats {
     DB_SHOUTGUN(1, 2, 4.5F, 0F, false, "pellet", "ammo", GlobalNames.db_shoutgun, 150F, 0),
     SEVEN_MM_RIFLE(23, 25, 4.5F, 0F, false, "firearm", "clip", GlobalNames.Seven_mm_rifle, 15F, 0),
     FIVE_MM_MINIGUN(9, 200, 4.5F, 0F, true, "firearm", "clip", GlobalNames.Five_mm_minigun, 15F, 20),
-    FLAMMENWERFER(1, 150, 0.5F, 0F, true, "flame", "clip", GlobalNames.flammenwarfer, 15F, 30);
-
+    FLAMMENWERFER(1, 150, 0.5F, 0F, true, "flame", "clip", GlobalNames.flammenwarfer, 15F, 30),
+    BASS_CANNON(90, 6, 0.5F, 0F, false, "bass", "hybrid_ammo", GlobalNames.bass_cannon, 15F, 0);
 
     // Reverse-lookup map for getting a day from an abbreviation
     public static final Map<String, GlobalsGunStats> lookup = new HashMap<String, GlobalsGunStats>();

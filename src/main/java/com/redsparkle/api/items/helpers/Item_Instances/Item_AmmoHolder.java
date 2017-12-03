@@ -1,10 +1,9 @@
 package com.redsparkle.api.items.helpers.Item_Instances;
 
-import com.redsparkle.api.Capability.Items.Ammo.AmmoFactoryProvider;
 import com.redsparkle.api.Capability.Items.Ammo.IAmmoInterface;
 import com.redsparkle.api.items.helpers.guns.ItemClipHelpers;
+import com.redsparkle.api.Capability.Items.Ammo.AmmoFactoryProvider;
 import com.redsparkle.foe.Init.InitCreativeTabs;
-import com.redsparkle.foe.items.FoeItem;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -18,6 +17,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.List;
+
 /**
  * Created by hoijima on 25.07.17.
  */
@@ -25,7 +25,7 @@ public abstract class Item_AmmoHolder extends FoeItem {
     public String clipInfo;
     public int clipsize;
 
-    public Item_AmmoHolder(String itemName,int clipsize,String clipInfo) {
+    public Item_AmmoHolder(String itemName, int clipsize, String clipInfo) {
 
         super(itemName);
         final int NUMBER_OF_BOXES = 1;
@@ -48,6 +48,7 @@ public abstract class Item_AmmoHolder extends FoeItem {
         tooltip.add("AMMO LEFT:" + capa.getAmmo() + "/" + capa.getMaxAmmo());
         tooltip.add("DEBUG:" + stack.hasCapability(AmmoFactoryProvider.AMMO_STORAGE, null));
     }
+
     @Override
     public void onUpdate(ItemStack stack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected) {
         IAmmoInterface iammo;
@@ -59,12 +60,15 @@ public abstract class Item_AmmoHolder extends FoeItem {
             stack.setItemDamage(iammo.getMaxAmmo() - iammo.getAmmo());
         }
     }
+
     public EnumAction getItemUseAction(ItemStack stack) {
         return EnumAction.NONE;
     }
+
     public int getMaxItemUseDuration(ItemStack stack) {
         return 5;
     }
+
     public ActionResult<ItemStack> onItemRightClick(World itemStackIn, EntityPlayer worldIn, EnumHand playerIn) {
         worldIn.setActiveHand(playerIn);
         return new ActionResult<>(EnumActionResult.SUCCESS, worldIn.getHeldItem(playerIn));

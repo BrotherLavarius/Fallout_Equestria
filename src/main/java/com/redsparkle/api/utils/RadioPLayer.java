@@ -1,7 +1,10 @@
 package com.redsparkle.api.utils;
+
+
 import javax.sound.sampled.*;
 import java.io.IOException;
 import java.net.URL;
+
 /**
  * Created by hoijima on 10.06.17.
  */
@@ -20,6 +23,7 @@ public class RadioPLayer {
         running = true;
         playSound(arg);
     }
+
     public synchronized void playSound(final String Url) {
         playerR = new Runnable() {
             public void run() {
@@ -52,6 +56,7 @@ public class RadioPLayer {
                     }
                 }
             }
+
             private void rawplay(AudioFormat targetFormat,
                                  AudioInputStream din) throws IOException, LineUnavailableException {
                 byte[] data = new byte[4096];
@@ -72,6 +77,7 @@ public class RadioPLayer {
                     playerThreadState = "";
                 }
             }
+
             private SourceDataLine getLine(AudioFormat audioFormat) throws LineUnavailableException {
                 res = null;
                 DataLine.Info info = new DataLine.Info(SourceDataLine.class, audioFormat);

@@ -1,18 +1,20 @@
 package com.redsparkle.foe.items.guns.ammo.shell;
 
 import com.redsparkle.foe.Init.InitCreativeTabs;
-import com.redsparkle.foe.items.FoeItem;
+import com.redsparkle.api.items.helpers.Item_Instances.FoeItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.List;
+
 /**
  * Created by hoijima desu on 29.07.16 desu.
  */
 public class SShell extends FoeItem {
     public int MaxDamage = 1;
+
     public SShell(String shell) {
         super(shell);
         final int NUMBER_OF_BOXES = 40;
@@ -20,6 +22,7 @@ public class SShell extends FoeItem {
         this.setCreativeTab(InitCreativeTabs.Fallout_ammo);   // the item will appear on the Miscellaneous tab in creative
         this.setMaxDamage(MaxDamage);
     }
+
     /**
      * allows items to add custom lines of information to the mouseover description
      */

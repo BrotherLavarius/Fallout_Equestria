@@ -14,18 +14,21 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+
 /**
  * Created by hoijima on 04.07.16.
  */
 public class workbench_handmade extends GeneralAllignBlockTwoOTwo {
     public static final workbench_handmade instance = new workbench_handmade(GlobalNames.Workbench_handmade);
+
     public workbench_handmade(String workbench_handmade) {
-        super(Material.IRON,workbench_handmade);
+        super(Material.IRON, workbench_handmade);
         setLightLevel(0);
         setSoundType(SoundType.METAL);
         setCreativeTab(InitCreativeTabs.Fallout_blocks);
         setSoundType(SoundType.METAL);
     }
+
     /**
      * Called after the block is set in the Chunk data, but before the Tile Entity is set
      */
@@ -38,18 +41,22 @@ public class workbench_handmade extends GeneralAllignBlockTwoOTwo {
             }
         }
     }
+
     @Override
     public boolean isOpaqueCube(IBlockState state) {
         return false;
     }
+
     @Override
     public boolean isFullCube(IBlockState state) {
         return false;
     }
+
     @Override
     public boolean hasTileEntity(IBlockState state) {
         return true;
     }
+
     @Override
     public IBlockState getExtendedState(IBlockState state, IBlockAccess world, BlockPos pos) {
         if (world.getTileEntity(pos) != null && world.getTileEntity(pos) instanceof TileEntity_workbench_handmade) {

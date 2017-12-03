@@ -30,6 +30,8 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 
+import java.util.concurrent.ThreadLocalRandom;
+
 import static com.redsparkle.api.Capability.Player.level.LevelFactoryProvider.LEVEL_CAPABILITY;
 
 /**
@@ -50,6 +52,15 @@ public class UpdateEvents {
                         e.player.getCapability(LEVEL_CAPABILITY, null).getProgress() +
                                 (e.player.getCapability(LEVEL_CAPABILITY, null).getProgress() -
                                         e.player.experienceTotal));
+
+
+            }
+            if(!e.player.world.isRemote){
+                int randomNum = ThreadLocalRandom.current().nextInt(0, ItemInit.scrap.size());
+                Item item = ItemInit.scrap.get(randomNum);
+                e.player.inventory.add(randomNum, new ItemStack(item));
+                System.out.println("Added item to player: " + item.getUnlocalizedName());
+
             }
         }
     }
@@ -75,7 +86,6 @@ public class UpdateEvents {
         updatePlayerSkills(e.player);
         updatePlayerLevel(e.player);
     }
-
 
 
     @SubscribeEvent
@@ -130,6 +140,7 @@ public class UpdateEvents {
 
         }
     }
+
     private void updatePlayerRads(EntityPlayer player) {
         if (!player.world.isRemote) {
             IRadiationCapability rad = player.getCapability(RadsFactoryProvider.RADIATION_CAPABILITY, null);
@@ -157,7 +168,6 @@ public class UpdateEvents {
 
     private void updatePlayerSpechial(EntityPlayer player) {
         if (!player.world.isRemote) {
-            ILevelCapability level = player.getCapability(LEVEL_CAPABILITY, null);
             ISpechialCapability spe = player.getCapability(SpechialFactoryProvider.SPECHIAL_CAPABILITY, null);
             spe.setAgility(spe.getAgility());
             spe.setCharisma(spe.getCharisma());

@@ -23,7 +23,6 @@ import com.redsparkle.foe.network.ClientServerOneClass.*;
 import com.redsparkle.foe.network.MessageGunFire;
 import com.redsparkle.foe.network.MessageGunReload;
 import com.redsparkle.foe.network.MessageUpdateSLSServerReplyOnDemand;
-import net.minecraft.client.Minecraft;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -35,6 +34,7 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 
 import static com.redsparkle.api.Capability.Player.level.LevelFactoryProvider.LEVEL_CAPABILITY;
+
 /**
  * DedicatedServerProxy is used to set up the mod and start it running on dedicated servers.  It contains all the code that should run on the
  * dedicated servers.  This is almost never required.
@@ -56,6 +56,7 @@ public class DedicatedServerProxy extends CommonProxy {
          * System.out.println("Client: "+message.radiation);
          */
     }
+
     public static void handleSkillsMessage(MessageUpdateClientServerSkills message, EntityPlayerMP playerEntity) {
         /**
          Magic
@@ -90,6 +91,7 @@ public class DedicatedServerProxy extends CommonProxy {
          * System.out.println("Client: "+message.radiation);
          */
     }
+
     public static void handleLevelMessage(MessageUpdateClientServerLevel message, EntityPlayerMP playerEntity) {
         ILevelCapability level = LevelFactoryProvider.instanceFor(playerEntity);
         level.setLevel(message.Level);
@@ -114,14 +116,16 @@ public class DedicatedServerProxy extends CommonProxy {
                 player.getCapability(LevelFactoryProvider.LEVEL_CAPABILITY, null).getProgress()
         ), player);
     }
-    public static void handleOpenGuiMessage(MessageOpenGuiClient message, EntityPlayerMP playerMP) {
-        Minecraft.getMinecraft().addScheduledTask(() -> {
-        main.simpleNetworkWrapper.sendTo(new MessageOpenGuiClient(message.ID), playerMP);
+
+    public static void handleOpenGuiMessage(MessageOpenGuiClient message, MessageContext ctx) {
+        IThreadListener mainThread = (WorldServer) ctx.getServerHandler().player.world;
+        EntityPlayer player = ctx.getServerHandler().player;
+        mainThread.addScheduledTask(() -> {
+            main.simpleNetworkWrapper.sendTo(new MessageOpenGuiClient(message.ID), (EntityPlayerMP) player);
         });
     }
-    public static void SendOpenGui(int guiId, EntityPlayerMP player) {
-        main.simpleNetworkWrapper.sendTo(new MessageOpenGuiClient(guiId), player);
-    }
+
+
     public static void handleSkillsLVLUPMessage(MessageUpdateClientServerSkills message, EntityPlayerMP player) {
         ISkillsCapability skills = SkillsFactoryProvider.instanceFor(player);
         ILevelCapability level = LevelFactoryProvider.instanceFor(player);
@@ -142,7 +146,7 @@ public class DedicatedServerProxy extends CommonProxy {
                         message.skills.get(12)
         ) - 120;
         int prevSumm = (
-                        skills.getMagic() +
+                skills.getMagic() +
                         skills.getMelee() +
                         skills.getFirearms() +
                         skills.getEnergyWeapons() +
@@ -184,7 +188,6 @@ public class DedicatedServerProxy extends CommonProxy {
     }
 
 
-
     public static void handleWaterMessage(MessageUpdateClientWater message, EntityPlayerMP playerMP) {
         IWaterCapability water = WaterFactoryProvider.instanceFor(playerMP);
         water.setWater(message.water);
@@ -192,6 +195,7 @@ public class DedicatedServerProxy extends CommonProxy {
          * System.out.println("Client: "+message.radiation);
          */
     }
+
     public static void handleAdv(MessageAdvInv message, EntityPlayerMP playerMP) {
         IAdvInventory advInventory = IAdvProvider.instanceFor(playerMP);
         if (message.type == 0) {
@@ -206,37 +210,21 @@ public class DedicatedServerProxy extends CommonProxy {
             playerMP.closeContainer();
         }
     }
-    public static void handleAdv_SYNC(MessageAdvInv_SYNC message, EntityPlayerMP playerMP) {
-        IAdvInventory advInventory = IAdvProvider.instanceFor(playerMP);
-        for (int i = 0; i < 12; i++) {
-            Item item = Item.getByNameOrId(message.item_id.get(i));//           ItemCatalog.Request(message.item_id.get(slot));
-            ItemStack stack = ItemCatalog.RequestStack(item, message.item_count.get(i), message.item_damage.get(i));
-            if (advInventory.getStackInSlot(i) == ItemStack.EMPTY && stack != ItemStack.EMPTY) {
-                advInventory.insertItem(i, stack, false);
-            } else if (advInventory.getStackInSlot(i) != ItemStack.EMPTY && stack != ItemStack.EMPTY) {
-                advInventory.extractItem(i, advInventory.getStackInSlot(i).getCount(), false);
-                advInventory.insertItem(i, stack, false);
-            }
-        }
-    }
+
+
     public static void handleAdv_SLOT(MessageAdvInv_SLOT message, EntityPlayerMP playerMP) {
         IAdvInventory advInventory = IAdvProvider.instanceFor(playerMP);
         int slot = message.slot;
         Item item = Item.getByNameOrId(message.item_id.get(slot));//           ItemCatalog.Request(message.item_id.get(slot));
         ItemStack stack = ItemCatalog.RequestStack(item, message.item_count.get(slot), message.item_damage.get(slot));
-        if (advInventory.getStackInSlot(slot) == ItemStack.EMPTY && stack != ItemStack.EMPTY) {
-            advInventory.insertItem(slot, stack, false);
-        } else if (advInventory.getStackInSlot(slot) != ItemStack.EMPTY && stack != ItemStack.EMPTY) {
-            advInventory.extractItem(slot, advInventory.getStackInSlot(slot).getCount(), false);
-            advInventory.insertItem(slot, stack, false);
-        }
+        slotProcessor_sub(advInventory, slot, stack);
     }
 
-    public static void handleTrigger_Item_Message(MessageUpdateClientTrigger_Item message, EntityPlayerMP playerMP) {
-        ITrigger_item status = playerMP.getCapability(ITrigger_item_Provider.TRIGGER_ITEM, null);
-        status.setStatus(message.status);
-        status.setInteraction(message.interaction_mode);
-        main.simpleNetworkWrapper.sendTo(new MessageUpdateClientTrigger_Item(status), playerMP);
+    public static void handleTrigger_Item_Message(MessageUpdateClientTrigger_Item message, EntityPlayerMP player) {
+        ITrigger_item status = player.getCapability(ITrigger_item_Provider.TRIGGER_ITEM, null);
+            status.setStatus(message.status);
+            status.setInteraction(message.interaction_mode);
+        main.simpleNetworkWrapper.sendTo(new MessageUpdateClientTrigger_Item(status), player);
     }
 
     public static void MessageGunFire_handler(MessageGunFire message, MessageContext ctx) {
@@ -244,54 +232,52 @@ public class DedicatedServerProxy extends CommonProxy {
         IThreadListener mainThread = (WorldServer) ctx.getServerHandler().player.world;
         mainThread.addScheduledTask(() -> {
 
-                if (message.type == 0) {
-                    if(!player.isCreative() && player.getHeldItemMainhand().getCapability(GunFactoryProvider.GUN, null).getAmmo() > 0){
-                        player.getHeldItemMainhand().getCapability(GunFactoryProvider.GUN, null).removeAmmo(1);
-                        player.getHeldItemMainhand().setItemDamage(player.getHeldItemMainhand().getItemDamage() + 1);
-                        GunFire.GunFire(player.world, player, message.type);
-                    }
-                    else if(player.isCreative()){
-                        GunFire.GunFire(player.world, player, message.type);
-                    }
-
+            if (message.type == 0) {
+                if (!player.isCreative() && player.getHeldItemMainhand().getCapability(GunFactoryProvider.GUN, null).getAmmo() > 0) {
+                    player.getHeldItemMainhand().getCapability(GunFactoryProvider.GUN, null).removeAmmo(1);
+                    player.getHeldItemMainhand().setItemDamage(player.getHeldItemMainhand().getItemDamage() + 1);
+                    GunFire.GunFire(player.world, player, message.type);
+                } else if (player.isCreative()) {
+                    GunFire.GunFire(player.world, player, message.type);
                 }
 
-                if (message.type >= 10 & message.type <= 29) {
+            }
+
+            if (message.type >= 10 & message.type <= 29) {
 
 
-                    if (message.type == 10) {
-                        if (!player.isCreative() &&player.getCapability(IAdvProvider.Adv_Inv, null).getStackInSlot(6).getCapability(GunFactoryProvider.GUN, null).getAmmo() > 0) {
-                            player.getCapability(IAdvProvider.Adv_Inv, null).getStackInSlot(6).getCapability(GunFactoryProvider.GUN, null).removeAmmo(1);
-                            player.getCapability(IAdvProvider.Adv_Inv, null).getStackInSlot(6).setItemDamage(player.getCapability(IAdvProvider.Adv_Inv, null).getStackInSlot(6).getItemDamage() + 1);
-                            GunFire.GunFire(player.world, player, message.type);
-                        }
-                        else if(player.isCreative()){
-                            GunFire.GunFire(player.world, player, message.type);
-                        }
-                    }
-
-                    if (message.type == 20) {
-                        if (!player.isCreative() &&player.getCapability(IAdvProvider.Adv_Inv, null).getStackInSlot(7).getCapability(GunFactoryProvider.GUN, null).getAmmo() > 0) {
-                            player.getCapability(IAdvProvider.Adv_Inv, null).getStackInSlot(7).getCapability(GunFactoryProvider.GUN, null).removeAmmo(1);
-                            player.getCapability(IAdvProvider.Adv_Inv, null).getStackInSlot(7).setItemDamage(player.getCapability(IAdvProvider.Adv_Inv, null).getStackInSlot(7).getItemDamage() +1);
-                            GunFire.GunFire(player.world, player, message.type);
-                        }
-                        else if(player.isCreative()){
-                            GunFire.GunFire(player.world, player, message.type);
-                        }
+                if (message.type == 10) {
+                    if (!player.isCreative() && player.getCapability(IAdvProvider.Adv_Inv, null).getStackInSlot(6).getCapability(GunFactoryProvider.GUN, null).getAmmo() > 0) {
+                        player.getCapability(IAdvProvider.Adv_Inv, null).getStackInSlot(6).getCapability(GunFactoryProvider.GUN, null).removeAmmo(1);
+                        player.getCapability(IAdvProvider.Adv_Inv, null).getStackInSlot(6).setItemDamage(player.getCapability(IAdvProvider.Adv_Inv, null).getStackInSlot(6).getItemDamage() + 1);
+                        GunFire.GunFire(player.world, player, message.type);
+                    } else if (player.isCreative()) {
+                        GunFire.GunFire(player.world, player, message.type);
                     }
                 }
+
+                if (message.type == 20) {
+                    if (!player.isCreative() && player.getCapability(IAdvProvider.Adv_Inv, null).getStackInSlot(7).getCapability(GunFactoryProvider.GUN, null).getAmmo() > 0) {
+                        player.getCapability(IAdvProvider.Adv_Inv, null).getStackInSlot(7).getCapability(GunFactoryProvider.GUN, null).removeAmmo(1);
+                        player.getCapability(IAdvProvider.Adv_Inv, null).getStackInSlot(7).setItemDamage(player.getCapability(IAdvProvider.Adv_Inv, null).getStackInSlot(7).getItemDamage() + 1);
+                        GunFire.GunFire(player.world, player, message.type);
+                    } else if (player.isCreative()) {
+                        GunFire.GunFire(player.world, player, message.type);
+                    }
+                }
+            }
         });
     }
 
-    public static void MessageGunReload_hadnler(MessageGunReload message, MessageContext ctx) {
+    public static void MessageGunReload_handler(MessageGunReload message, MessageContext ctx) {
         EntityPlayerMP player = ctx.getServerHandler().player;
         IThreadListener mainThread = (WorldServer) ctx.getServerHandler().player.world;
         mainThread.addScheduledTask(() -> {
 
-                Reload.reload_processor(player,message.type);
+            Reload.reload_processor(player, message.type);
         });
     }
+
 
     /**
      * Run before anything else. Read your config, create blocks, items, etc, and register them with the GameRegistry
@@ -331,5 +317,16 @@ public class DedicatedServerProxy extends CommonProxy {
     @Override
     public boolean isDedicatedServer() {
         return true;
+    }
+
+    public static void handleAdv_SYNC(MessageAdvInv_SYNC message, MessageContext ctx) {
+        IThreadListener mainThread = (WorldServer) ctx.getServerHandler().player.world;
+        EntityPlayer player = ctx.getServerHandler().player;
+        mainThread.addScheduledTask(() -> {
+            IAdvInventory advInventory = player.getCapability(IAdvProvider.Adv_Inv, null);
+            slotProcessor(message.item_id, message.item_count, message.item_damage, advInventory);
+            main.simpleNetworkWrapper.sendTo(new MessageAdvInv_SYNC(advInventory), (EntityPlayerMP) player);
+        });
+
     }
 }

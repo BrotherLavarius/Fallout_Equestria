@@ -1,9 +1,10 @@
 package com.redsparkle.foe.events.ClientSide.gui;
 
-import com.redsparkle.foe.gui.Overlays.mode_icons;
+import com.redsparkle.foe.gui.Overlays.Mode_Icons;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+
 /**
  * Created by hoijima on 02.06.17.
  */
@@ -14,7 +15,7 @@ public class EventPlayerGuiHandler {
         switch (event.getType()) {
             case HEALTH:
         /* Don't render the vanilla heart bar */
-                new mode_icons(Minecraft.getMinecraft());
+                new Mode_Icons(Minecraft.getMinecraft());
 
                 event.setCanceled(true);
                 break;
@@ -43,6 +44,7 @@ public class EventPlayerGuiHandler {
         }
 
     }
+
     /* The RenderGameOverlayEvent.Post event is called after each game overlay element is rendered.
  * Similar to the RenderGameOverlayEvent.Pre event, it is called multiple times.
  *

@@ -1,8 +1,10 @@
 package com.redsparkle.api.utils;
+
 import com.redsparkle.foe.main;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemArmor;
 import net.minecraftforge.common.util.EnumHelper;
+
 /**
  * Created by hoijima on 3/21/2017.
  */

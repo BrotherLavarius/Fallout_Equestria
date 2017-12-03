@@ -1,10 +1,12 @@
 package com.redsparkle.foe.Init;
+
 import com.redsparkle.api.utils.GlobalNames;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+
 /**
  * Created by hoijima desu on 06.08.16 desu.
  */
@@ -27,6 +29,15 @@ public class InitCreativeTabs {
             return new ItemStack(Items.POTIONITEM);
         }
     };
+
+
+    public static final CreativeTabs Fallout_scrap = new CreativeTabs(GlobalNames.Creative_tab_Scrap) {
+        @Override
+        public ItemStack getTabIconItem() {
+            return new ItemStack(Items.STRING);
+        }
+    };
+
     public static final CreativeTabs Fallout_guns = new CreativeTabs(GlobalNames.Creative_tab_Guns) {
         @Override
         public ItemStack getTabIconItem() {

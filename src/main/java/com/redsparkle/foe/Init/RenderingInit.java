@@ -2,6 +2,8 @@ package com.redsparkle.foe.Init;
 
 import com.redsparkle.api.utils.GlobalNames;
 import com.redsparkle.foe.Init.model.MeshDefinitionFix;
+import com.redsparkle.foe.items.guns.entitys.bass.EntityBass;
+import com.redsparkle.foe.items.guns.entitys.bass.RenderFactoryBass;
 import com.redsparkle.foe.items.guns.entitys.bulletFired.EntityBullet;
 import com.redsparkle.foe.items.guns.entitys.bulletFired.RenderFactoryBullet;
 import com.redsparkle.foe.items.guns.entitys.flametrower.EntityFlame;
@@ -44,17 +46,41 @@ public class RenderingInit {
     }
 
 
-
     @SubscribeEvent
     public static void registerModels(ModelRegistryEvent event) {
         OBJLoader.INSTANCE.addDomain(GlobalNames.Domain);
-        ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(BlockInit.SparkleColaMachineBlock), 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.SPCmachine, "inventory"));
-        ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(BlockInit.RadiationBlock), 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.RadBlock, "inventory"));
-        ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(BlockInit.armor_bench_tier_one), 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.ArmorBench_tier_one, "inventory"));
-        ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(BlockInit.DesktopTerminal), 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.Terminal, "inventory"));
-        ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(BlockInit.locker), 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.Locker, "inventory"));
-        ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(BlockInit.workbench), 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.Workbench, "inventory"));
-        ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(BlockInit.workbench_handmade), 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.Workbench_handmade, "inventory"));
+//        ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(BlockInit.SparkleColaMachineBlock), 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.SPCmachine, "inventory"));
+//        ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(BlockInit.RadiationBlock), 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.RadBlock, "inventory"));
+//        ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(BlockInit.armor_bench_tier_one), 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.ArmorBench_tier_one, "inventory"));
+//        ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(BlockInit.DesktopTerminal), 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.Terminal, "inventory"));
+//        ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(BlockInit.locker), 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.Locker, "inventory"));
+//        ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(BlockInit.workbench), 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.Workbench, "inventory"));
+//        ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(BlockInit.workbench_handmade), 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.Workbench_handmade, "inventory"));
+
+
+        ModelLoader.setCustomModelResourceLocation(aluminum, 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.Aluminum, "inventory"));
+        ModelLoader.setCustomModelResourceLocation(asbestos, 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.Asbestos, "inventory"));
+        ModelLoader.setCustomModelResourceLocation(ballistic_fiber, 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.Ballistic_fiber, "inventory"));
+        ModelLoader.setCustomModelResourceLocation(bolts, 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.Bolts, "inventory"));
+        ModelLoader.setCustomModelResourceLocation(ceramic, 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.Ceramic, "inventory"));
+        ModelLoader.setCustomModelResourceLocation(cloth, 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.Cloth, "inventory"));
+        ModelLoader.setCustomModelResourceLocation(concrete, 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.Concrete, "inventory"));
+        ModelLoader.setCustomModelResourceLocation(copper, 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.Copper, "inventory"));
+        ModelLoader.setCustomModelResourceLocation(cork, 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.Cork, "inventory"));
+        ModelLoader.setCustomModelResourceLocation(crystal, 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.Crystal, "inventory"));
+        ModelLoader.setCustomModelResourceLocation(electronic_parts, 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.Electronic_parts, "inventory"));
+        ModelLoader.setCustomModelResourceLocation(fiberglass, 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.Fiberglass, "inventory"));
+        ModelLoader.setCustomModelResourceLocation(fiber_optics, 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.Fiber_optics, "inventory"));
+        ModelLoader.setCustomModelResourceLocation(gears, 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.Gears, "inventory"));
+        ModelLoader.setCustomModelResourceLocation(glue, 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.Glue, "inventory"));
+        ModelLoader.setCustomModelResourceLocation(lead, 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.Lead, "inventory"));
+        ModelLoader.setCustomModelResourceLocation(nuclear_material, 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.Nuclear_material, "inventory"));
+        ModelLoader.setCustomModelResourceLocation(oil, 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.Oil, "inventory"));
+        ModelLoader.setCustomModelResourceLocation(plastic, 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.Plastic, "inventory"));
+        ModelLoader.setCustomModelResourceLocation(rubber, 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.Rubber, "inventory"));
+        ModelLoader.setCustomModelResourceLocation(silver, 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.Silver, "inventory"));
+        ModelLoader.setCustomModelResourceLocation(spring, 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.Spring, "inventory"));
+        ModelLoader.setCustomModelResourceLocation(steel, 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.Steel, "inventory"));
 
         ModelLoader.setCustomModelResourceLocation(radx, 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.RadX, "inventory"));
         ModelLoader.setCustomModelResourceLocation(radAway, 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.RadAway, "inventory"));
@@ -101,7 +127,6 @@ public class RenderingInit {
         ModelLoader.setCustomModelResourceLocation(tenMMsub, 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.TenMMSub, "inventory"));
 
 
-        ModelLoader.setCustomModelResourceLocation(itb, 0, new ModelResourceLocation(GlobalNames.Domain + ":" + "bullet", "inventory"));
         ModelLoader.setCustomModelResourceLocation(t40head, 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.T40Head, "inventory"));
         ModelLoader.setCustomModelResourceLocation(t40body, 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.T40Body, "inventory"));
         ModelLoader.setCustomModelResourceLocation(t40legs, 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.T40Legs, "inventory"));
@@ -117,8 +142,8 @@ public class RenderingInit {
 
         ModelLoader.setCustomModelResourceLocation(trigger_item, 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.trigger_Item, "inventory"));
 
-        ModelLoader.setCustomModelResourceLocation(seven_mm_rifle_RS, 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.Seven_mm_rifle+"_rs", "inventory"));
-        ModelLoader.setCustomModelResourceLocation(seven_mm_rifle_LS, 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.Seven_mm_rifle+"_ls", "inventory"));
+        ModelLoader.setCustomModelResourceLocation(seven_mm_rifle_RS, 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.Seven_mm_rifle + "_rs", "inventory"));
+        ModelLoader.setCustomModelResourceLocation(seven_mm_rifle_LS, 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.Seven_mm_rifle + "_ls", "inventory"));
 
         ModelLoader.setCustomModelResourceLocation(five_mm_minigun_LS, 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.Five_mm_minigun + "_rs", "inventory"));
         ModelLoader.setCustomModelResourceLocation(five_mm_minigun_RS, 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.Five_mm_minigun + "_ls", "inventory"));
@@ -136,6 +161,8 @@ public class RenderingInit {
         ModelLoader.setCustomModelResourceLocation(five_mmClip, 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.Five_mmClip, "inventory"));
         ModelLoader.setCustomModelResourceLocation(five_mm_bulletCase, 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.Five_mm_bulletCase, "inventory"));
 
+        ModelLoader.setCustomModelResourceLocation(bassCannon_RS, 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.bass_cannon + "_rs", "inventory"));
+
 
         RenderingRegistry.registerEntityRenderingHandler(EntityBullet.class, new RenderFactoryBullet(Minecraft.getMinecraft().getRenderManager()));
         RenderingRegistry.registerEntityRenderingHandler(EntityLaser.class, new RenderFactoryLaser(Minecraft.getMinecraft().getRenderManager()));
@@ -148,9 +175,12 @@ public class RenderingInit {
         RenderingRegistry.registerEntityRenderingHandler(Pellet_five.class, new RenderFactoryBullet(Minecraft.getMinecraft().getRenderManager()));
         RenderingRegistry.registerEntityRenderingHandler(Pellet_six.class, new RenderFactoryBullet(Minecraft.getMinecraft().getRenderManager()));
         RenderingRegistry.registerEntityRenderingHandler(EntityFlare.class, new RenderFactoryBullet(Minecraft.getMinecraft().getRenderManager()));
+        RenderingRegistry.registerEntityRenderingHandler(EntityBass.class, new RenderFactoryBass(Minecraft.getMinecraft().getRenderManager()));
+
 
         INSTANCE.registerFluidModels();
     }
+
     private void registerFluidModels() {
         FluidsInit.MOD_FLUID_BLOCKS.forEach(this::registerFluidModel);
     }

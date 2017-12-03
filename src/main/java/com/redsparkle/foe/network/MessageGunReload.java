@@ -20,26 +20,28 @@ public class MessageGunReload implements IMessage {
 
     public MessageGunReload(String type) {
         this.type = type;
-    }
 
+    }
 
 
     @Override
     public void fromBytes(ByteBuf buf) {
         this.type = ByteBufUtils.readUTF8String(buf);
     }
+
     @Override
     public void toBytes(ByteBuf buf) {
         ByteBufUtils.writeUTF8String(buf, type);
+
     }
 
     public static class HandlerServer implements IMessageHandler<MessageGunReload, IMessage> {
         @Override
         public IMessage onMessage(MessageGunReload message, MessageContext ctx) {
-            DedicatedServerProxy.MessageGunReload_hadnler(message,ctx);
+            DedicatedServerProxy.MessageGunReload_handler(message, ctx);
             return null;
         }
 
-        }
     }
+}
 

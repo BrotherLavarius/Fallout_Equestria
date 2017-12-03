@@ -1,6 +1,8 @@
 package com.redsparkle.api.utils;
+
 import com.redsparkle.foe.Init.ItemInit;
 import net.minecraft.item.Item;
+
 /**
  * Created by NENYN on 1/13/2017.
  */

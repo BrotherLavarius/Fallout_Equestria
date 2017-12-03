@@ -1,8 +1,8 @@
 package com.redsparkle.foe.Init;
 
-import com.redsparkle.api.items.helpers.Item_Instances.Item_bullet;
 import com.redsparkle.api.utils.Armor_material;
 import com.redsparkle.api.utils.GlobalNames;
+import com.redsparkle.api.items.helpers.Item_Instances.FoeScrap;
 import com.redsparkle.foe.items.armor.powered.*;
 import com.redsparkle.foe.items.food.old.*;
 import com.redsparkle.foe.items.guns.*;
@@ -37,7 +37,9 @@ import com.redsparkle.foe.items.saddlebags.clip.Seven_mmClip;
 import com.redsparkle.foe.items.saddlebags.clip.flammenwerfer_ammo;
 import com.redsparkle.foe.items.saddlebags.guns.Five_mm_minigun;
 import com.redsparkle.foe.items.saddlebags.guns.Seven_mm_rifle;
+import com.redsparkle.foe.items.saddlebags.guns.bass_cannon;
 import com.redsparkle.foe.items.saddlebags.guns.flammenwarfer;
+import com.redsparkle.foe.items.scrap.*;
 import com.redsparkle.foe.items.utility.AdvancedEnviropmentMonitor;
 import com.redsparkle.foe.items.utility.PipBuck;
 import com.redsparkle.foe.main;
@@ -49,10 +51,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.registries.IForgeRegistry;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 
 /**
@@ -77,6 +76,30 @@ public class ItemInit {
     public static final Sugar_Bombs sugar_bombs = new Sugar_Bombs(GlobalNames.sugar_bombs);
     public static final Fancy_mare_Snack_Cakes fancy_mare_snack_cakes = new Fancy_mare_Snack_Cakes(GlobalNames.Fancy_mare_Snack_Cakes);
 
+    public static final Aluminum aluminum = new Aluminum(GlobalNames.Aluminum);
+    public static final Asbestos asbestos = new Asbestos(GlobalNames.Asbestos);
+    public static final Ballistic_fiber ballistic_fiber = new Ballistic_fiber(GlobalNames.Ballistic_fiber);
+    public static final Bolts bolts = new Bolts(GlobalNames.Bolts);
+    public static final Ceramic ceramic = new Ceramic(GlobalNames.Ceramic);
+    public static final Cloth cloth = new Cloth(GlobalNames.Cloth);
+    public static final Concrete concrete = new Concrete(GlobalNames.Concrete);
+    public static final Copper copper = new Copper(GlobalNames.Copper);
+    public static final Cork cork = new Cork(GlobalNames.Cork);
+    public static final Crystal crystal = new Crystal(GlobalNames.Crystal);
+    public static final Electronic_parts electronic_parts = new Electronic_parts(GlobalNames.Electronic_parts);
+    public static final Fiberglass fiberglass = new Fiberglass(GlobalNames.Fiberglass);
+    public static final Fiber_optics fiber_optics = new Fiber_optics(GlobalNames.Fiber_optics);
+    public static final Gears gears = new Gears(GlobalNames.Gears);
+    public static final Glue glue = new Glue(GlobalNames.Glue);
+    public static final Lead lead = new Lead(GlobalNames.Lead);
+    public static final Nuclear_material nuclear_material = new Nuclear_material(GlobalNames.Nuclear_material);
+    public static final Oil oil = new Oil(GlobalNames.Oil);
+    public static final Plastic plastic = new Plastic(GlobalNames.Plastic);
+    public static final Rubber rubber = new Rubber(GlobalNames.Rubber);
+    public static final Silver silver = new Silver(GlobalNames.Silver);
+    public static final Spring spring = new Spring(GlobalNames.Spring);
+    public static final Steel steel = new Steel(GlobalNames.Steel);
+
 
     public static final FourFourMagAmmo fourFourMagAmmo = new FourFourMagAmmo(GlobalNames.fortyfour_ammo);
     public static final SShell sShell = new SShell(GlobalNames.shell);
@@ -87,12 +110,11 @@ public class ItemInit {
     public static final Five_mmAmmo five_mmAmmo = new Five_mmAmmo(GlobalNames.Five_mmAmmo);
 
 
-
-    public static final TenMMClip tenMMClip = new TenMMClip(GlobalNames.TenMMClip,GlobalsGunStats.TEN_MM.getClipsize(),"for "+GlobalsGunStats.TEN_MM.getGunName());
+    public static final TenMMClip tenMMClip = new TenMMClip(GlobalNames.TenMMClip, GlobalsGunStats.TEN_MM.getClipsize(), "for " + GlobalsGunStats.TEN_MM.getGunName());
     public static final TenMMSubClip tenMMSubclip = new TenMMSubClip(GlobalNames.TenMMSubClip, GlobalsGunStats.TEN_MM_SUB.getClipsize(), "for " + GlobalsGunStats.TEN_MM_SUB.getGunName());
-    public static final FourTenMMClip fourTenMMClip = new FourTenMMClip(GlobalNames.FourTenMMClip,GlobalsGunStats.FOUR_TEN_MM.getClipsize(),"for "+GlobalsGunStats.FOUR_TEN_MM.getGunName());
-    public static final Battery battery = new Battery(GlobalNames.Battery,GlobalsGunStats.SEVEN_MM_RIFLE.getClipsize(),"for "+GlobalsGunStats.LASER_PISTOL.getGunName());
-    public static final Seven_mmClip seven_mmClip = new Seven_mmClip(GlobalNames.Seven_mmClip,GlobalsGunStats.SEVEN_MM_RIFLE.getClipsize(),"for "+GlobalsGunStats.SEVEN_MM_RIFLE.getGunName());
+    public static final FourTenMMClip fourTenMMClip = new FourTenMMClip(GlobalNames.FourTenMMClip, GlobalsGunStats.FOUR_TEN_MM.getClipsize(), "for " + GlobalsGunStats.FOUR_TEN_MM.getGunName());
+    public static final Battery battery = new Battery(GlobalNames.Battery, GlobalsGunStats.SEVEN_MM_RIFLE.getClipsize(), "for " + GlobalsGunStats.LASER_PISTOL.getGunName());
+    public static final Seven_mmClip seven_mmClip = new Seven_mmClip(GlobalNames.Seven_mmClip, GlobalsGunStats.SEVEN_MM_RIFLE.getClipsize(), "for " + GlobalsGunStats.SEVEN_MM_RIFLE.getGunName());
     public static final PLasma_Cartridge plasma_cartridge = new PLasma_Cartridge(GlobalNames.plasma_cartidge, GlobalsGunStats.PLASMA_PISTOL.getClipsize(), GlobalsGunStats.PLASMA_PISTOL.getGunName());
     public static final Five_mmClip five_mmClip = new Five_mmClip(GlobalNames.Five_mmClip, GlobalsGunStats.FIVE_MM_MINIGUN.getClipsize(), GlobalsGunStats.FIVE_MM_MINIGUN.getGunName());
     public static final flammenwerfer_ammo fl_ammo = new flammenwerfer_ammo(GlobalNames.flammenwarfer_ammo, GlobalsGunStats.FLAMMENWERFER.getClipsize(), GlobalsGunStats.FLAMMENWERFER.getGunName());
@@ -113,7 +135,6 @@ public class ItemInit {
     public static final DB_shoutgun db_shoutgun = new DB_shoutgun(GlobalsGunStats.DB_SHOUTGUN.getGunName(), GlobalsGunStats.DB_SHOUTGUN, Items.AIR, sShell);
     public static final FlareGun flareGun = new FlareGun(GlobalsGunStats.FLARE_GUN.getGunName(), GlobalsGunStats.FLARE_GUN, Items.AIR, flare);
 
-    public static final Item_bullet itb = new Item_bullet("bullet");
 
     public static final Trigger_Item trigger_item = new Trigger_Item(GlobalNames.trigger_Item);
 
@@ -126,6 +147,7 @@ public class ItemInit {
     public static final flammenwarfer flam_LS = new flammenwarfer(GlobalsGunStats.FLAMMENWERFER.getGunName() + "_ls", "LS", GlobalsGunStats.FLAMMENWERFER, fl_ammo, Items.AIR);
     public static final flammenwarfer flam_RS = new flammenwarfer(GlobalsGunStats.FLAMMENWERFER.getGunName() + "_rs", "RS", GlobalsGunStats.FLAMMENWERFER, fl_ammo, Items.AIR);
 
+    public static final bass_cannon bassCannon_RS = new bass_cannon(GlobalsGunStats.BASS_CANNON.getGunName() + "_rs", "RS", GlobalsGunStats.BASS_CANNON, battery, Items.AIR);
 
     public static final Saddlebags sadlebags = new Saddlebags(GlobalNames.saddlebags);
     public static final Saddlebags_army saddlebags_army = new Saddlebags_army(GlobalNames.saddlebags_army);
@@ -145,7 +167,7 @@ public class ItemInit {
     public static final Map<String, Object> gun_case_lookup = new HashMap<String, Object>();
     public static final Map<Object, Object> Clip_ammo_lookup = new HashMap<Object, Object>();
     public static final Map<String, Object> gun_lookup = new HashMap<String, Object>();
-
+    public static final List<FoeScrap> scrap = new ArrayList<>();
 
     /**
      * Register this mod's {@link Item}s.
@@ -168,6 +190,32 @@ public class ItemInit {
 
 
         final Item[] items = {
+
+
+                aluminum,
+                asbestos,
+                ballistic_fiber,
+                bolts,
+                ceramic,
+                cloth,
+                concrete,
+                copper,
+                cork,
+                crystal,
+                electronic_parts,
+                fiber_optics,
+                fiberglass,
+                gears,
+                glue,
+                lead,
+                nuclear_material,
+                oil,
+                plastic,
+                rubber,
+                silver,
+                spring,
+                steel,
+
                 radx,
                 radAway,
                 redHealPotion,
@@ -213,8 +261,6 @@ public class ItemInit {
                 flareGun,
 
 
-                itb,
-
                 t40head,
                 t40body,
                 t40legs,
@@ -244,7 +290,10 @@ public class ItemInit {
 
                 flam_LS,
                 flam_RS,
-                fl_ammo
+                fl_ammo,
+
+                bassCannon_RS
+
         };
 
 
@@ -266,21 +315,19 @@ public class ItemInit {
         gun_ammo_lookup.put(GlobalsGunStats.TEN_MM_SUB.getGunName(), tenMMSubclip);
         gun_ammo_lookup.put(GlobalsGunStats.FIVE_MM_MINIGUN.getGunName(), five_mmClip);
         gun_ammo_lookup.put(GlobalsGunStats.FLAMMENWERFER.getGunName(), fl_ammo);
+        gun_ammo_lookup.put(GlobalsGunStats.BASS_CANNON.getGunName(), battery);
 
 
-
-
-
-        Clip_ammo_lookup.put(tenMMClip,tenMMAmmo);
-        Clip_ammo_lookup.put(fourTenMMClip,fourTenMMammo);
+        Clip_ammo_lookup.put(tenMMClip, tenMMAmmo);
+        Clip_ammo_lookup.put(fourTenMMClip, fourTenMMammo);
         Clip_ammo_lookup.put(seven_mmClip, seven_mmAmmo);
         Clip_ammo_lookup.put(tenMMSubclip, tenMMAmmo);
         Clip_ammo_lookup.put(five_mmClip, five_mmAmmo);
-        Clip_ammo_lookup.put(battery,Items.AIR);
+        Clip_ammo_lookup.put(battery, Items.AIR);
         Clip_ammo_lookup.put(plasma_cartridge, Items.AIR);
         Clip_ammo_lookup.put(fourFourMagAmmo, Items.AIR);
-        Clip_ammo_lookup.put(sShell,Items.AIR);
-        Clip_ammo_lookup.put(flare,Items.AIR);
+        Clip_ammo_lookup.put(sShell, Items.AIR);
+        Clip_ammo_lookup.put(flare, Items.AIR);
         Clip_ammo_lookup.put(fl_ammo, Items.AIR);
 
         gun_case_lookup.put(GlobalsGunStats.TEN_MM.getGunName(), tenMMbulletCase);
@@ -293,7 +340,7 @@ public class ItemInit {
         gun_case_lookup.put(GlobalsGunStats.FLARE_GUN.getGunName(), Items.AIR);
         gun_case_lookup.put(GlobalsGunStats.SEVEN_MM_RIFLE.getGunName(), seven_mm_bulletCase);
         gun_case_lookup.put(GlobalsGunStats.FLAMMENWERFER.getGunName(), Items.AIR);
-
+        gun_case_lookup.put(GlobalsGunStats.FLAMMENWERFER.getGunName(), battery);
 
         gun_lookup.put(GlobalsGunStats.TEN_MM.getGunName(), tenMM);
         gun_lookup.put(GlobalsGunStats.TEN_MM_SUB.getGunName(), tenMMsub);
@@ -306,8 +353,32 @@ public class ItemInit {
         gun_lookup.put(GlobalsGunStats.SEVEN_MM_RIFLE.getGunName(), seven_mm_rifle_LS);
         gun_lookup.put(GlobalsGunStats.FIVE_MM_MINIGUN.getGunName(), five_mm_minigun_LS);
         gun_lookup.put(GlobalsGunStats.FLAMMENWERFER.getGunName(), flam_LS);
+        gun_lookup.put(GlobalsGunStats.BASS_CANNON.getGunName(), bassCannon_RS);
 
 
+        scrap.add(aluminum);
+        scrap.add(asbestos);
+        scrap.add(ballistic_fiber);
+        scrap.add(bolts);
+        scrap.add(ceramic);
+        scrap.add(cloth);
+        scrap.add(concrete);
+        scrap.add(copper);
+        scrap.add(cork);
+        scrap.add(crystal);
+        scrap.add(electronic_parts);
+        scrap.add(fiber_optics);
+        scrap.add(fiberglass);
+        scrap.add(gears);
+        scrap.add(glue);
+        scrap.add(lead);
+        scrap.add(nuclear_material);
+        scrap.add(oil);
+        scrap.add(plastic);
+        scrap.add(rubber);
+        scrap.add(silver);
+        scrap.add(spring);
+        scrap.add(steel);
 
     }
 

@@ -4,7 +4,6 @@ import com.redsparkle.api.Capability.Items.Gun.GunFactoryProvider;
 import com.redsparkle.api.Capability.Items.Gun.IGunInterface;
 import com.redsparkle.foe.Init.GlobalsGunStats;
 import com.redsparkle.foe.Init.InitCreativeTabs;
-import com.redsparkle.foe.items.FoeItem;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -63,5 +62,6 @@ public abstract class Item_Firearm extends FoeItem {
         return super.initCapabilities(stack, nbt);
 
     }
+
 }
 

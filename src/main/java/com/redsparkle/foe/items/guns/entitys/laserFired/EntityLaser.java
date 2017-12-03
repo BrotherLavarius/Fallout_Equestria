@@ -1,4 +1,5 @@
 package com.redsparkle.foe.items.guns.entitys.laserFired;
+
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.projectile.EntityThrowable;
 import net.minecraft.util.DamageSource;
@@ -8,6 +9,7 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
 /**
  * Created by hoijima on 22.06.17.
  */
@@ -18,6 +20,7 @@ public class EntityLaser extends EntityThrowable {
     public double x;
     public double y;
     public double z;
+
     public EntityLaser(World world) {
         super(world);
     }
@@ -34,6 +37,7 @@ public class EntityLaser extends EntityThrowable {
         super(world, entity);
         EntityLaser.plasma = plasma;
     }
+
     @Override
     public void onUpdate() {
         super.onUpdate();
@@ -63,6 +67,7 @@ public class EntityLaser extends EntityThrowable {
             }
         }
     }
+
     @SideOnly(Side.CLIENT)
     public void handleStatusUpdate(byte p_handleStatusUpdate_1_) {
         if (p_handleStatusUpdate_1_ == 3) {
@@ -77,15 +82,17 @@ public class EntityLaser extends EntityThrowable {
             }
         }
     }
+
     @Override
     protected float getGravityVelocity() {
         return 0.005F;
     }
+
     @Override
     protected void onImpact(RayTraceResult rayTraceResult) {
         if (rayTraceResult.entityHit != null) {
-            if(rayTraceResult.entityHit != this.getThrower()){
-                rayTraceResult.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, this.getThrower()), damage);
+            if (rayTraceResult.entityHit != this.getThrower()) {
+                rayTraceResult.entityHit.attackEntityFrom(DamageSource.GENERIC, damage);
                 //this.setDead();
             }
         }
@@ -94,9 +101,11 @@ public class EntityLaser extends EntityThrowable {
             //this.setDead();
         }
     }
+
     public void setDamage(float damage) {
         this.damage = damage;
     }
+
     public void setEffect(EnumParticleTypes eff) {
         this.effect = eff;
     }
