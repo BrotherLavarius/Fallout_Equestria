@@ -1,6 +1,5 @@
 package com.redsparkle.foe.events.ClientSide;
 
-import com.redsparkle.api.Capability.Player.Inventory.IAdvProvider;
 import com.redsparkle.api.Capability.Player.saddlegun_shooting.ITrigger_item;
 import com.redsparkle.api.Capability.Player.saddlegun_shooting.ITrigger_item_Provider;
 import com.redsparkle.api.items.helpers.Item_Instances.Item_Firearm;
@@ -37,9 +36,9 @@ public class CommonEventHandler {
                 main.simpleNetworkWrapper.sendToServer(new MessageUpdateClientTrigger_Item(false, status.getInteraction()));
             }
         }
-        if (!e.player.getCapability(IAdvProvider.Adv_Inv, null).getStackInSlot(0).isEmpty()) {
-            RadioThreadManager.StopPlayer();
-        }
+//        if (!e.player.getCapability(IAdvProvider.Adv_Inv, null).getStackInSlot(0).isEmpty()) {
+//            RadioThreadManager.StopPlayer();
+//        }
     }
 
     @SubscribeEvent
