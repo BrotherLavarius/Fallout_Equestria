@@ -38,11 +38,16 @@ buildscript {
         classpath 'net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT'
     }
 }
+
+def getDate() {
+    new Date().format('yyyyMMddHHmmss')
+}
+
 apply plugin: 'com.github.johnrengelman.shadow'
 apply plugin: 'net.minecraftforge.gradle.forge'
 //Only edit below this line, the above code adds and enables the necessary things for Forge to be setup.
 
-version='MC:1.12.2-0.9.3.6.2'
+version='MC:1.12.2-0.9.3.6.2'+getDate().toString()
 group = "com.redsparkle.foe" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "Fallout_Equestria"
 
