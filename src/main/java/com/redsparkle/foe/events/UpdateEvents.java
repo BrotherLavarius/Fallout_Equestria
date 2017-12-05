@@ -59,7 +59,6 @@ public class UpdateEvents {
                 int randomNum = ThreadLocalRandom.current().nextInt(0, ItemInit.scrap.size());
                 Item item = ItemInit.scrap.get(randomNum);
                 e.player.inventory.add(randomNum, new ItemStack(item));
-                System.out.println("Added item to player: " + item.getUnlocalizedName());
 
             }
         }

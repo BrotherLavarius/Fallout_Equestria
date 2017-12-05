@@ -185,20 +185,16 @@ public class DedicatedServerProxy extends CommonProxy {
     public static void handleWaterMessage(MessageUpdateClientWater message, EntityPlayerMP playerMP) {
         IWaterCapability water = WaterFactoryProvider.instanceFor(playerMP);
         water.setWater(message.water);
-        /** DEBUG MESSAGE ENABLER
-         * System.out.println("Client: "+message.radiation);
-         */
+
     }
 
     public static void handleAdv(MessageAdvInv message, EntityPlayerMP playerMP) {
         IAdvInventory advInventory = IAdvProvider.instanceFor(playerMP);
         if (message.type == 0) {
             main.simpleNetworkWrapper.sendTo(new MessageAdvInv_SYNC(advInventory), playerMP);
-            System.out.println("Server Side Count SYNC " + advInventory.getStackInSlot(5).getCount());
         }
         if (message.type == 1) {
             main.simpleNetworkWrapper.sendTo(new MessageAdvInv_SYNC(advInventory), playerMP);
-            System.out.println("Server Side Count opening Gui " + advInventory.getStackInSlot(5).getCount());
             playerMP.openGui(main.instance, 5, playerMP.world, (int) playerMP.posX, (int) playerMP.posY, (int) playerMP.posZ);
         }
         if (message.type == 2) {
@@ -320,9 +316,7 @@ public class DedicatedServerProxy extends CommonProxy {
         mainThread.addScheduledTask(() -> {
 
             IAdvInventory advInventory = player.getCapability(IAdvProvider.Adv_Inv, null);
-            System.out.println("Server Side Count BEFORE" + advInventory.getStackInSlot(5).getCount());
             slotProcessor(message.item_id, message.item_count, message.item_damage, advInventory);
-            System.out.println("Server Side Count SYNC AFTER" + advInventory.getStackInSlot(5).getCount());
             main.simpleNetworkWrapper.sendTo(new MessageAdvInv_SYNC(advInventory), (EntityPlayerMP) player);
         });
 

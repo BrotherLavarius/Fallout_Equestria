@@ -5,6 +5,7 @@ import com.redsparkle.foe.commands.ammo_fill;
 import com.redsparkle.foe.commands.rpSkillCheck;
 import com.redsparkle.foe.network.ClientServerOneClass.*;
 import com.redsparkle.foe.network.*;
+import com.sun.media.jfxmedia.logging.Logger;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
@@ -99,8 +100,8 @@ public class main {
     @Mod.EventHandler
     public void postInit(FMLPostInitializationEvent event) {
         proxy.postInit();
-        System.out.println("I-----------------------------------I");
-        System.out.println("   Fallout pack fully initialized    ");
-        System.out.println("I-----------------------------------I");
+        Logger.logMsg(Logger.INFO, "I-----------------------------------I");
+        Logger.logMsg(Logger.INFO, "   Fallout pack fully initialized    ");
+        Logger.logMsg(Logger.INFO, "I-----------------------------------I");
     }
 }

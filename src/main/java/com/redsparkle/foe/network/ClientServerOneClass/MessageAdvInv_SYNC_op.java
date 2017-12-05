@@ -2,6 +2,7 @@ package com.redsparkle.foe.network.ClientServerOneClass;
 
 import com.redsparkle.api.Capability.Player.Inventory.IAdvInventory;
 import com.redsparkle.api.Capability.Player.Inventory.IAdvProvider;
+import com.redsparkle.api.utils.InventoryManager;
 import com.redsparkle.foe.ClientOnlyProxy;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.player.EntityPlayer;
@@ -12,13 +13,15 @@ import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 
+import java.util.ArrayList;
+
 /**
  * Created by hoijima on 18.07.17.
  */
 public class MessageAdvInv_SYNC_op implements IMessage {
     public NonNullList<String> item_id = NonNullList.withSize(12, "item.air");
-    public NonNullList<Integer> item_count = NonNullList.withSize(12, 0);
-    public NonNullList<Integer> item_damage = NonNullList.withSize(12, 0);
+    public NonNullList<String> item_count = NonNullList.withSize(12, "0");
+    public NonNullList<String> item_damage = NonNullList.withSize(12, "0");
     public IAdvInventory iAdvInventory;
     public String playerName;
 
@@ -27,13 +30,10 @@ public class MessageAdvInv_SYNC_op implements IMessage {
 
     public MessageAdvInv_SYNC_op(EntityPlayer player) {
         this.iAdvInventory = player.getCapability(IAdvProvider.Adv_Inv, null);
-        for (int i = 0; i < 12; i++) {
-            String item_name = delegeteName(iAdvInventory.getStackInSlot(i).getItem());
-            item_id.set(i, item_name);
-            item_count.set(i, iAdvInventory.getStackInSlot(i).getCount());
-            item_damage.set(i, iAdvInventory.getStackInSlot(i).getItemDamage());
-        }
-        this.playerName = player.getName().toString();
+        ArrayList export = InventoryManager.processorIAdv(iAdvInventory);
+        item_id = (NonNullList<String>) export.get(0);
+        item_count = (NonNullList<String>) export.get(1);
+        item_damage = (NonNullList<String>) export.get(2);
     }
 
     public String delegeteName(Item item) {
@@ -61,8 +61,8 @@ public class MessageAdvInv_SYNC_op implements IMessage {
             String recivedmessage = ByteBufUtils.readUTF8String(buf);
             String[] parts = recivedmessage.split(",");
             item_id.set(i, parts[0]);
-            item_count.set(i, Integer.parseInt(parts[1]));
-            item_damage.set(i, Integer.parseInt(parts[2]));
+            item_count.set(i, parts[1]);
+            item_damage.set(i, parts[2]);
         }
     }
 

@@ -46,6 +46,7 @@ import com.redsparkle.foe.items.guns.entitys.flametrower.EntityFlame;
 import com.redsparkle.foe.items.guns.entitys.flare.EntityFlare;
 import com.redsparkle.foe.items.guns.entitys.laserFired.EntityLaser;
 import com.redsparkle.foe.items.guns.entitys.spreadPellet_shotgun.*;
+import com.sun.media.jfxmedia.logging.Logger;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -63,11 +64,19 @@ import net.minecraftforge.fml.common.registry.EntityRegistry;
 public abstract class CommonProxy {
 
 
+    public static void slotProcessor(NonNullList<String> item_id, NonNullList<String> item_count, NonNullList<String> item_damage, IAdvInventory advInventory) {
+        for (int i = 0; i < 12; i++) {
+            Item item = Item.getByNameOrId(item_id.get(i));//           ItemCatalog.Request(message.item_id.get(slot));
+            ItemStack stack = ItemCatalog.RequestStack(item, Integer.parseInt(item_count.get(i)), Integer.parseInt(item_damage.get(i)));
+            slotProcessor_sub(advInventory, i, stack);
+        }
+
+    }
 
     public void preInit() {
-        System.out.println("FOE Initiating");
-        System.out.println("WAR...");
-        System.out.println("WAR NEVER CHANGES...");
+        Logger.logMsg(Logger.INFO, "FOE Initiating");
+        Logger.logMsg(Logger.INFO, "WAR...");
+        Logger.logMsg(Logger.INFO, "WAR NEVER CHANGES...");
         StartUpCommon.preInitCommon();
         // INIT Handler
         MinecraftForge.EVENT_BUS.register(new EventHandlerPre());
@@ -86,32 +95,6 @@ public abstract class CommonProxy {
         EntityRegistry.registerModEntity(new ResourceLocation(GlobalNames.Domain + ":entity/Flare"), EntityFlare.class, "Flare", 10, main.instance, 64, 10, true);
         EntityRegistry.registerModEntity(new ResourceLocation(GlobalNames.Domain + ":entity/bass"), EntityBass.class, "bass", 11, main.instance, 64, 10, true);
 
-    }
-
-    public void init() {
-        StartUpCommon.InitCommon();
-
-        NetworkRegistry.INSTANCE.registerGuiHandler(main.instance, new GuiHandler());
-        System.out.println("STARTING BOOTING CAPABILITY SYSTEM");
-        CapabilityManager.INSTANCE.register(IRadiationCapability.class, new RadsFactoryStorage(), RadsFactoryProvider::new);
-        System.out.println("RADS--------------CHECK!");
-        CapabilityManager.INSTANCE.register(ISpechialCapability.class, new SpechialFactoryStorage(), () -> new SpechialFactoryProvider());
-        System.out.println("S.P.E.C.H.I.A.L--------------CHECK!");
-        CapabilityManager.INSTANCE.register(ISkillsCapability.class, new SkillsFactoryStorage(), SkillsFactoryProvider::new);
-        System.out.println("SKILLS--------------CHECK!");
-        CapabilityManager.INSTANCE.register(ILevelCapability.class, new LevelFactoryStorage(), LevelFactoryProvider::new);
-        System.out.println("LEVELS--------------CHECK!");
-        CapabilityManager.INSTANCE.register(IFTJCapability.class, new FTJFactoryStorage(), FTJFactoryProvider::new);
-        System.out.println("FTJ--------------CHECK!");
-        CapabilityManager.INSTANCE.register(IWaterCapability.class, new WaterFactoryStorage(), WaterFactoryProvider::new);
-        CapabilityManager.INSTANCE.register(IAdvInventory.class, new IAdvStorage(), IAdvProvider::new);
-        CapabilityManager.INSTANCE.register(IAmmoInterface.class, new IAmmoStorage(), AmmoFactoryProvider::new);
-        CapabilityManager.INSTANCE.register(IGunInterface.class, new IGunStorage(), GunFactoryProvider::new);
-        CapabilityManager.INSTANCE.register(ITrigger_item.class, new ITrigger_Item_Storage(), ITrigger_item_Provider::new);
-        CapabilityManager.INSTANCE.register(IRenders.class, new RenderStorage(), RenderProvider::new);
-
-        System.out.println("FINISHED BOOTING CAPABILITY SYSTEM");
-        MinecraftForge.EVENT_BUS.register(new EventHandlerInit());
     }
 
     public void postInit() {
@@ -135,13 +118,30 @@ public abstract class CommonProxy {
         return null;
     }
 
-    public static void slotProcessor(NonNullList<String> item_id, NonNullList<Integer> item_count, NonNullList<Integer> item_damage, IAdvInventory advInventory) {
-        for (int i = 0; i < 12; i++) {
-            Item item = Item.getByNameOrId(item_id.get(i));//           ItemCatalog.Request(message.item_id.get(slot));
-            ItemStack stack = ItemCatalog.RequestStack(item, item_count.get(i), item_damage.get(i));
-            slotProcessor_sub(advInventory, i, stack);
-        }
+    public void init() {
+        StartUpCommon.InitCommon();
 
+        NetworkRegistry.INSTANCE.registerGuiHandler(main.instance, new GuiHandler());
+        Logger.logMsg(Logger.INFO, "STARTING BOOTING CAPABILITY SYSTEM");
+        CapabilityManager.INSTANCE.register(IRadiationCapability.class, new RadsFactoryStorage(), RadsFactoryProvider::new);
+        Logger.logMsg(Logger.INFO, "RADS--------------CHECK!");
+        CapabilityManager.INSTANCE.register(ISpechialCapability.class, new SpechialFactoryStorage(), () -> new SpechialFactoryProvider());
+        Logger.logMsg(Logger.INFO, "S.P.E.C.H.I.A.L--------------CHECK!");
+        CapabilityManager.INSTANCE.register(ISkillsCapability.class, new SkillsFactoryStorage(), SkillsFactoryProvider::new);
+        Logger.logMsg(Logger.INFO, "SKILLS--------------CHECK!");
+        CapabilityManager.INSTANCE.register(ILevelCapability.class, new LevelFactoryStorage(), LevelFactoryProvider::new);
+        Logger.logMsg(Logger.INFO, "LEVELS--------------CHECK!");
+        CapabilityManager.INSTANCE.register(IFTJCapability.class, new FTJFactoryStorage(), FTJFactoryProvider::new);
+        Logger.logMsg(Logger.INFO, "FTJ--------------CHECK!");
+        CapabilityManager.INSTANCE.register(IWaterCapability.class, new WaterFactoryStorage(), WaterFactoryProvider::new);
+        CapabilityManager.INSTANCE.register(IAdvInventory.class, new IAdvStorage(), IAdvProvider::new);
+        CapabilityManager.INSTANCE.register(IAmmoInterface.class, new IAmmoStorage(), AmmoFactoryProvider::new);
+        CapabilityManager.INSTANCE.register(IGunInterface.class, new IGunStorage(), GunFactoryProvider::new);
+        CapabilityManager.INSTANCE.register(ITrigger_item.class, new ITrigger_Item_Storage(), ITrigger_item_Provider::new);
+        CapabilityManager.INSTANCE.register(IRenders.class, new RenderStorage(), RenderProvider::new);
+
+        Logger.logMsg(Logger.INFO, "FINISHED BOOTING CAPABILITY SYSTEM");
+        MinecraftForge.EVENT_BUS.register(new EventHandlerInit());
     }
 
     public static void slotProcessor_sub(IAdvInventory advInventory, int i, ItemStack stack) {

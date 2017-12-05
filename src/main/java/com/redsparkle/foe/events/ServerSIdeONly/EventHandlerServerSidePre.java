@@ -12,6 +12,7 @@ import com.redsparkle.foe.Init.ItemInit;
 import com.redsparkle.foe.main;
 import com.redsparkle.foe.network.ClientServerOneClass.MessageAdvInv_SYNC_op;
 import com.redsparkle.foe.network.ClientServerOneClass.MessageUpdateAmmoHolders;
+import com.sun.media.jfxmedia.logging.Logger;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.item.Item;
@@ -68,7 +69,7 @@ public class EventHandlerServerSidePre {
             int randomNum = ThreadLocalRandom.current().nextInt(0, ItemInit.scrap.size());
             Item item = ItemInit.scrap.get(randomNum);
             e.player.inventory.add(randomNum, new ItemStack(item));
-            System.out.println("Added item to player: " + item.getUnlocalizedName());
+            Logger.logMsg(Logger.INFO, "Added item to player: " + item.getUnlocalizedName());
 
 
         }
@@ -80,7 +81,6 @@ public class EventHandlerServerSidePre {
             for (int i = 0; i < listiners.length; i++) {
 
                 main.simpleNetworkWrapper.sendTo(new MessageAdvInv_SYNC_op(e.player), (EntityPlayerMP) listiners[i]);
-                System.out.println(e.player.getName());
 
             }
         }

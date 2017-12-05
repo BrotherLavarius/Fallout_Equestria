@@ -28,7 +28,6 @@ public class GuiHandler implements IGuiHandler {
     @Override
     public Object getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
         if (ID == ADV_Inv) {
-            System.out.println("ServerINv called");
             return new CONTAINER_AdditionalInventory(player);
         }
         return null;
@@ -53,7 +52,6 @@ public class GuiHandler implements IGuiHandler {
             return new StatsGuiFirstJoin();
         }
         if (ID == ADV_Inv) {
-            System.out.println("ClientInv called");
             return new GUI_AdditionalInventory(player);
         }
         return null;
