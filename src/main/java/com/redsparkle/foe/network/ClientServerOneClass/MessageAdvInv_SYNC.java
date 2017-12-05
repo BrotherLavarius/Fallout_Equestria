@@ -25,6 +25,7 @@ public class MessageAdvInv_SYNC implements IMessage {
     }
 
     public MessageAdvInv_SYNC(NonNullList<ItemStack> stacks) {
+
         for (int i = 0; i < 12; i++) {
             String item_name = delegeteName(stacks.get(i).getItem());
             item_id.set(i, item_name);
@@ -34,6 +35,7 @@ public class MessageAdvInv_SYNC implements IMessage {
     }
 
     public MessageAdvInv_SYNC(IAdvInventory iAdvInventory) {
+
         this.iAdvInventory = iAdvInventory;
         for (int i = 0; i < 12; i++) {
             String item_name = delegeteName(iAdvInventory.getStackInSlot(i).getItem());

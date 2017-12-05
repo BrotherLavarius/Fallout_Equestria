@@ -190,7 +190,7 @@ public class ClientOnlyProxy extends CommonProxy {
                     if (player.getGameProfile().getName() == message.playerName) {
 
 
-                        System.out.println(player);
+                        System.out.println(player.getName());
                     }
                 }
             }
@@ -198,6 +198,7 @@ public class ClientOnlyProxy extends CommonProxy {
                 IAdvInventory advInventory = IAdvProvider.instanceFor(player);
 
                 slotProcessor(message.item_id, message.item_count, message.item_damage, advInventory);
+                System.out.println("Client Side Count OP " + advInventory.getStackInSlot(5).getCount());
             } else {
 
             }
@@ -210,7 +211,11 @@ public class ClientOnlyProxy extends CommonProxy {
         EntityPlayer player = Minecraft.getMinecraft().player;
         mainThread.addScheduledTask(() -> {
             IAdvInventory advInventory = player.getCapability(IAdvProvider.Adv_Inv, null);
+            System.out.println("Client Side Count SYNC BEFORE " + advInventory.getStackInSlot(5).getCount());
+
             slotProcessor(message.item_id, message.item_count, message.item_damage, advInventory);
+            System.out.println("Client Side Count SYNC AFTER " + advInventory.getStackInSlot(5).getCount());
+
         });
 
     }

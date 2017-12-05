@@ -52,9 +52,7 @@ public class DedicatedServerProxy extends CommonProxy {
         spechial.setLuck(message.Luck);
         PlayerParamsSetup.normalizer(playerEntity);
         main.simpleNetworkWrapper.sendTo(new MessageUpdateClientServerSPECHIAL(spechial), playerEntity);
-        /** DEBUG MESSAGE ENABLER
-         * System.out.println("Client: "+message.radiation);
-         */
+
     }
 
     public static void handleSkillsMessage(MessageUpdateClientServerSkills message, EntityPlayerMP playerEntity) {
@@ -87,18 +85,14 @@ public class DedicatedServerProxy extends CommonProxy {
         skills.setSneak(message.skills.get(10));
         skills.setBarter(message.skills.get(11));
         skills.setSurvival(message.skills.get(12));
-        /** DEBUG MESSAGE ENABLER
-         * System.out.println("Client: "+message.radiation);
-         */
+
     }
 
     public static void handleLevelMessage(MessageUpdateClientServerLevel message, EntityPlayerMP playerEntity) {
         ILevelCapability level = LevelFactoryProvider.instanceFor(playerEntity);
         level.setLevel(message.Level);
         level.setProgress(message.Progress);
-        /** DEBUG MESSAGE ENABLER
-         * System.out.println("Client: "+message.radiation);
-         */
+
     }
 
 
@@ -199,12 +193,13 @@ public class DedicatedServerProxy extends CommonProxy {
     public static void handleAdv(MessageAdvInv message, EntityPlayerMP playerMP) {
         IAdvInventory advInventory = IAdvProvider.instanceFor(playerMP);
         if (message.type == 0) {
-            advInventory.updateClient(playerMP);
+            main.simpleNetworkWrapper.sendTo(new MessageAdvInv_SYNC(advInventory), playerMP);
+            System.out.println("Server Side Count SYNC " + advInventory.getStackInSlot(5).getCount());
         }
         if (message.type == 1) {
-            advInventory.updateClient(playerMP);
+            main.simpleNetworkWrapper.sendTo(new MessageAdvInv_SYNC(advInventory), playerMP);
+            System.out.println("Server Side Count opening Gui " + advInventory.getStackInSlot(5).getCount());
             playerMP.openGui(main.instance, 5, playerMP.world, (int) playerMP.posX, (int) playerMP.posY, (int) playerMP.posZ);
-            //playerMP.openGui(main.instance, 5, mc.world, (int) mc.player.posX, (int) mc.player.posY, (int) mc.player.posZ);
         }
         if (message.type == 2) {
             playerMP.closeContainer();
@@ -323,8 +318,11 @@ public class DedicatedServerProxy extends CommonProxy {
         IThreadListener mainThread = (WorldServer) ctx.getServerHandler().player.world;
         EntityPlayer player = ctx.getServerHandler().player;
         mainThread.addScheduledTask(() -> {
+
             IAdvInventory advInventory = player.getCapability(IAdvProvider.Adv_Inv, null);
+            System.out.println("Server Side Count BEFORE" + advInventory.getStackInSlot(5).getCount());
             slotProcessor(message.item_id, message.item_count, message.item_damage, advInventory);
+            System.out.println("Server Side Count SYNC AFTER" + advInventory.getStackInSlot(5).getCount());
             main.simpleNetworkWrapper.sendTo(new MessageAdvInv_SYNC(advInventory), (EntityPlayerMP) player);
         });
 

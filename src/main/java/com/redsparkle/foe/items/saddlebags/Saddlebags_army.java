@@ -9,6 +9,7 @@ public class Saddlebags_army extends Saddlebags {
 
     public Saddlebags_army(String itemName) {
         super(itemName);
+        this.setMaxStackSize(1);
         this.setCreativeTab(InitCreativeTabs.Fallout_armor);
     }
 }

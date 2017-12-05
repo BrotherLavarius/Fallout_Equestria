@@ -61,6 +61,7 @@ public class IAdvProvider extends ItemStackHandler implements IAdvInventory, ICa
 
     @Override
     public void updateClient(EntityPlayer player) {
+        System.out.println("Server Side Count " + getStackInSlot(5).getCount());
         main.simpleNetworkWrapper.sendTo(new MessageAdvInv_SYNC(stacks), (EntityPlayerMP) player);
     }
 }
