@@ -27,7 +27,7 @@ public class RadioPLayer {
     public synchronized void playSound(final String Url) {
         playerR = new Runnable() {
             public void run() {
-                while (running) {
+                if (running) {
                     try {
                         playerThreadState = "running";
                         URL file = new URL(Url);
@@ -91,23 +91,4 @@ public class RadioPLayer {
         player.setName("RadioPlayerThread");
         player.start();
     }
-
-    public synchronized void LowerSound() {
-        if (player.isAlive()) {
-            gain = (FloatControl) line.getControl(FloatControl.Type.MASTER_GAIN);
-            if (gain.getValue() < (gain.getMaximum() - 2.0F)) {
-                gain.setValue(gain.getValue() + 1.0F);
-            }
-        }
-    }
-
-    public synchronized void RaiseSound() {
-        if (player.isAlive()) {
-            gain = (FloatControl) line.getControl(FloatControl.Type.MASTER_GAIN);
-            if (gain.getValue() > (gain.getMinimum() + 2.0F)) {
-                gain.setValue(gain.getValue() - 1.0F);
-            }
-        }
-    }
-
 }
