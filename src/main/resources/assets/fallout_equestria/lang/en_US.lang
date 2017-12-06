@@ -23,7 +23,7 @@ item.fallout_equestria:blamko_maccheese.name=Blamko Mac and Cheese
 item.fallout_equestria:dandy_boy_apples.name=Dandy Colt Apples
 item.fallout_equestria:gumdrops.name=Gum Drops
 item.fallout_equestria:sugar_bombs.name=Sugar Bombs
-item.fallout_equestria:fansy_mare_snack_cakes.name=Fancy Mare Snack Cakes
+item.fallout_equestria:fancy_mare_snack_cakes.name=Fancy Mare Snack Cakes
 
 #GUNS
 item.fallout_equestria:tenmm_pistol.name=10mm Pistol
@@ -42,6 +42,8 @@ item.fallout_equestria:flammenwarfer_ls.name=Saddlebag Flammenwarfer (LEFT)
 item.fallout_equestria:flammenwarfer_rs.name=Saddlebag Flammenwarfer (RIGHT)
 item.fallout_equestria:saddlebags.name=Civilian Saddlebags
 item.fallout_equestria:saddlebags_army.name=Army Model Saddlebags
+
+item.fallout_equestria:bass_cannon_rs.name=Saddlebag BaSS CaNNoN (RIGHT)
 
 
 
@@ -69,4 +71,34 @@ itemGroup.FOE_Junk=Junk
 #UTILS
 item.fallout_equestria:pipbuck_2000.name=Pip Buck 2000
 item.fallout_equestria:aem.name=Advanced Environment monitor
+item.fallout_equestria:lvlcrystal.name=First time level Crystal
 
+#SCRAP
+item.fallout_equestria:bolts.name=Bolts
+item.fallout_equestria:electronic_parts.name=Electronic parts
+item.fallout_equestria:electronic_parts.name=Electronic parts
+
+
+item.fallout_equestria:aluminum.name=Aluminum
+item.fallout_equestria:asbestos.name=Asbestos
+item.fallout_equestria:ballistic_fiber.name=Ballistic fiber
+item.fallout_equestria:bolts.name=Bolts
+item.fallout_equestria:ceramic.name=Ceramic
+item.fallout_equestria:cloth.name=Cloth
+item.fallout_equestria:concrete.name=Concrete
+item.fallout_equestria:copper.name=Copper
+item.fallout_equestria:cork.name=Cork
+item.fallout_equestria:crystal.name=Crystal
+item.fallout_equestria:electronic_parts.name=Electronic_parts
+item.fallout_equestria:fiberglass.name=Fiberglass
+item.fallout_equestria:fiber_optics.name=Fiber optics
+item.fallout_equestria:gears.name=Gears
+item.fallout_equestria:glue.name=Glue
+item.fallout_equestria:lead.name=Lead
+item.fallout_equestria:nuclear_material.name=Nuclear material
+item.fallout_equestria:oil.name=Oil
+item.fallout_equestria:plastic.name=Plastic
+item.fallout_equestria:rubber.name=Rubber
+item.fallout_equestria:silver.name=Silver
+item.fallout_equestria:spring.name=Spring
+item.fallout_equestria:steel.name=Steel
