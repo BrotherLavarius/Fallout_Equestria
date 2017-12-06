@@ -9,8 +9,8 @@ import net.minecraftforge.common.util.EnumHelper;
  * Created by hoijima on 3/21/2017.
  */
 public class Armor_material {
-    public static ItemArmor.ArmorMaterial X01_ARMOR = EnumHelper.addArmorMaterial("X01_ARMOR", main.MODID + ":x01", 35, new int[]{39, 91, 71, 41}, 0, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 35);
-    public static ItemArmor.ArmorMaterial T60_ARMOR = EnumHelper.addArmorMaterial("T60_ARMOR", main.MODID + ":t60", 30, new int[]{30, 80, 60, 30}, 0, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 30);
-    public static ItemArmor.ArmorMaterial T50_ARMOR = EnumHelper.addArmorMaterial("T50_ARMOR", main.MODID + ":t50", 21, new int[]{21, 69, 48, 25}, 0, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 21);
-    public static ItemArmor.ArmorMaterial T40_ARMOR = EnumHelper.addArmorMaterial("T40_ARMOR", main.MODID + ":t40", 16, new int[]{18, 54, 39, 20}, 0, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 16);
+    public static ItemArmor.ArmorMaterial X01_ARMOR = EnumHelper.addArmorMaterial("X01_ARMOR", main.MODID + ":x01", 65, new int[]{65, 95, 85, 40}, 0, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 66);
+    public static ItemArmor.ArmorMaterial T60_ARMOR = EnumHelper.addArmorMaterial("T60_ARMOR", main.MODID + ":t60", 80, new int[]{45, 58, 51, 45}, 0, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 50);
+    public static ItemArmor.ArmorMaterial T50_ARMOR = EnumHelper.addArmorMaterial("T50_ARMOR", main.MODID + ":t50", 45, new int[]{35, 65, 45, 25}, 0, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 56);
+    public static ItemArmor.ArmorMaterial T40_ARMOR = EnumHelper.addArmorMaterial("T40_ARMOR", main.MODID + ":t40", 35, new int[]{25, 45, 39, 20}, 0, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 25);
 }
