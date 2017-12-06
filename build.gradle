@@ -1,3 +1,4 @@
+import groovy.json.JsonSlurper
 
 repositories {
 	ext.myRepos = {
@@ -42,13 +43,23 @@ buildscript {
 def getDate() {
     new Date().format('ddMMyy')
 }
+def getTime() {
+    new Date().format('HHMM')
+}
+
 
 apply plugin: 'maven'
 apply plugin: 'com.github.johnrengelman.shadow'
 apply plugin: 'net.minecraftforge.gradle.forge'
 //Only edit below this line, the above code adds and enables the necessary things for Forge to be setup.
 
-version='MC-1.12.2-0.9.3.6.3-'+getDate().toString()
+
+def inputFile = new File("src/main/resources/mcmod.info")
+def json = new JsonSlurper().parseText(inputFile.text)
+def minecraftFVersion = "1.12.2-14.23.0.2546"
+
+
+version='MC'+minecraftFVersion+'-'+json.getAt('version')+'-'+getDate().toString()+'-'+getTime().toString()
 group = "com.redsparkle.foe" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "Fallout_Equestria"
 
@@ -60,7 +71,7 @@ compileJava {
 }
 
 minecraft {
-    version = "1.12.2-14.23.0.2546"
+    version = minecraftFVersion
     runDir = "run"
 
 
