@@ -34,6 +34,7 @@ public class MessageAdvInv_SYNC_op implements IMessage {
         item_id = (NonNullList<String>) export.get(0);
         item_count = (NonNullList<String>) export.get(1);
         item_damage = (NonNullList<String>) export.get(2);
+        playerName = player.getName();
     }
 
     public String delegeteName(Item item) {
