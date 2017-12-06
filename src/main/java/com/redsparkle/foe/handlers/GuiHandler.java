@@ -10,12 +10,15 @@ import com.redsparkle.foe.gui.general.StatsGuiFirstJoin;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.IGuiHandler;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nullable;
 
 /**
  * Created by hoijima on 3/15/2017.
  */
+@SideOnly(Side.CLIENT)
 public class GuiHandler implements IGuiHandler {
     public static final int PIPBUCK_GUI = 0;
     public static final int LVL_UP_GUI = 1;
