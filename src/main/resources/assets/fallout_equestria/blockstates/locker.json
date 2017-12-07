@@ -1,0 +1,12 @@
+{
+  "forge_marker": 1,
+  "variants": {
+    "normal": {
+      "model": "falloutequestria:locker"
+    },
+    "inventory": {
+      "model": "falloutequestria:locker",
+      "transform": "forge:default-block"
+    }
+  }
+}

@@ -1,6 +1,8 @@
 package com.redsparkle.foe.Init;
 
 import com.redsparkle.api.utils.GlobalNames;
+import com.redsparkle.foe.block.Locker;
+import com.redsparkle.foe.block.LockerTileEntety;
 import com.redsparkle.foe.main;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
@@ -22,11 +24,11 @@ import java.util.Set;
 @Mod.EventBusSubscriber(modid = main.MODID)
 public class BlockInit {
 //    public static final SparkleColaMachineBlock SparkleColaMachineBlock = new SparkleColaMachineBlock(GlobalNames.SPCmachine);
-
+public static final Locker locker = new Locker(GlobalNames.Locker);
 
 
     public static final String[] blocksNames = new String[]{
-//            GlobalNames.NAMES,
+            GlobalNames.Locker
 
     };
 
@@ -37,15 +39,14 @@ public class BlockInit {
         final IForgeRegistry<Block> registry = event.getRegistry();
 
         final Block[] blocks = {
-                //OBJECTS
+                locker
         };
     }
 
     @SubscribeEvent
     public static void registerItemBlocks(final RegistryEvent.Register<Item> event) {
         final ItemBlock[] items = {
-                // new ItemBlock(OBJECT),
-
+                new ItemBlock(locker)
         };
 
         final IForgeRegistry<Item> registry = event.getRegistry();
@@ -55,7 +56,7 @@ public class BlockInit {
 //            registry.register(items[i]);
             ITEM_BLOCKS.add(items[i]);
         }
-        //registerTileEntity(items, GlobalNames.name);
+        registerTileEntity(LockerTileEntety.class, GlobalNames.Locker);
 
     }
 

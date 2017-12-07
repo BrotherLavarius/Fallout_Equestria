@@ -17,6 +17,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.ModelBakery;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.client.renderer.block.statemap.DefaultStateMapper;
 import net.minecraft.client.renderer.block.statemap.StateMapperBase;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
@@ -29,6 +30,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 
+import static com.redsparkle.foe.Init.BlockInit.locker;
 import static com.redsparkle.foe.Init.ItemInit.*;
 
 
@@ -56,7 +58,8 @@ public class RenderingInit {
 //        ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(BlockInit.locker), 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.Locker, "inventory"));
 //        ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(BlockInit.workbench), 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.Workbench, "inventory"));
 //        ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(BlockInit.workbench_handmade), 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.Workbench_handmade, "inventory"));
-
+        ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(locker), 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.Locker, "normal"));
+        ModelLoader.setCustomStateMapper(locker, new DefaultStateMapper());
 
         ModelLoader.setCustomModelResourceLocation(aluminum, 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.Aluminum, "inventory"));
         ModelLoader.setCustomModelResourceLocation(asbestos, 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.Asbestos, "inventory"));
