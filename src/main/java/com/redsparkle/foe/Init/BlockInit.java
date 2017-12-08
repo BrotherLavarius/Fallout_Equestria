@@ -11,6 +11,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.registries.IForgeRegistry;
 
@@ -32,6 +33,7 @@ public static final Locker locker = new Locker(GlobalNames.Locker);
 
     };
 
+    public static final Set<Block> BLOCKS = new HashSet<>();
     public static final Set<ItemBlock> ITEM_BLOCKS = new HashSet<>();
 
     @SubscribeEvent
@@ -41,6 +43,14 @@ public static final Locker locker = new Locker(GlobalNames.Locker);
         final Block[] blocks = {
                 locker
         };
+        for (int i = 0; i < (blocks.length - 1); i++) {
+            blocks[i].setRegistryName(blocksNames[i]);
+            blocks[i].setUnlocalizedName(blocksNames[i]);
+            BLOCKS.add(blocks[i]);
+            ForgeRegistries.BLOCKS.register(blocks[i]);
+
+        }
+        registry.registerAll(blocks);
     }
 
     @SubscribeEvent
@@ -53,12 +63,14 @@ public static final Locker locker = new Locker(GlobalNames.Locker);
         for (int i = 0; i < (items.length - 1); i++) {
             items[i].setUnlocalizedName(blocksNames[i]);
             items[i].setRegistryName(blocksNames[i]);
-//            registry.register(items[i]);
+            registry.register(items[i]);
             ITEM_BLOCKS.add(items[i]);
+            ForgeRegistries.ITEMS.register(items[i]);
         }
         registerTileEntity(LockerTileEntety.class, GlobalNames.Locker);
 
     }
+
 
 
     private static void registerTileEntity(final Class<? extends TileEntity> tileEntityClass, final String name) {

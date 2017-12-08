@@ -2,11 +2,15 @@
   "forge_marker": 1,
   "variants": {
     "normal": {
-      "model": "falloutequestria:locker"
+      "model": "fallout_equestria:locker"
     },
     "inventory": {
-      "model": "falloutequestria:locker",
+      "model": "fallout_equestria:locker",
       "transform": "forge:default-block"
-    }
+    },
+    "facing=north": { "model": "fallout_equestria:locker" },
+    "facing=south": { "model": "fallout_equestria:locker", "y": 180 },
+    "facing=west":  { "model": "fallout_equestria:locker", "y": 270 },
+    "facing=east":  { "model": "fallout_equestria:locker", "y": 90 }
   }
 }
