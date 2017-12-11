@@ -1,16 +1,45 @@
 {
   "forge_marker": 1,
+  "defaults": {
+    "textures": {},
+    "model": "fallout_equestria:generator",
+    "uvlock": true,
+    "transform": "forge:default-block"
+  },
   "variants": {
-    "normal": {
-      "model": "fallout_equestria:locker"
+    "normal": [
+      {
+        "model": "fallout_equestria:generator",
+        "transform": {
+          "rotation": [
+            {
+              "y": 0
+            },
+            {
+              "x": 0
+            },
+            {
+              "z": 0
+            }
+          ]
+        },
+        "scale": 1
+      }
+    ],
+    "facing=north": {
+      "model": "fallout_equestria:generator"
     },
-    "inventory": {
-      "model": "fallout_equestria:locker",
-      "transform": "forge:default-block"
+    "facing=south": {
+      "model": "fallout_equestria:generator",
+      "y": 180
     },
-    "facing=north": { "model": "fallout_equestria:locker" },
-    "facing=south": { "model": "fallout_equestria:locker", "y": 180 },
-    "facing=west":  { "model": "fallout_equestria:locker", "y": 270 },
-    "facing=east":  { "model": "fallout_equestria:locker", "y": 90 }
+    "facing=west": {
+      "model": "fallout_equestria:generator",
+      "y": 270
+    },
+    "facing=east": {
+      "model": "fallout_equestria:generator",
+      "y": 90
+    }
   }
 }

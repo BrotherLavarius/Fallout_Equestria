@@ -11,13 +11,11 @@ import com.redsparkle.foe.items.guns.entitys.flare.EntityFlare;
 import com.redsparkle.foe.items.guns.entitys.laserFired.EntityLaser;
 import com.redsparkle.foe.items.guns.entitys.laserFired.RenderFactoryLaser;
 import com.redsparkle.foe.items.guns.entitys.spreadPellet_shotgun.*;
-import com.redsparkle.foe.main;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.ModelBakery;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
-import net.minecraft.client.renderer.block.statemap.DefaultStateMapper;
 import net.minecraft.client.renderer.block.statemap.StateMapperBase;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
@@ -32,13 +30,14 @@ import net.minecraftforge.fml.relauncher.Side;
 
 import static com.redsparkle.foe.Init.BlockInit.locker;
 import static com.redsparkle.foe.Init.ItemInit.*;
+import static com.redsparkle.foe.main.MODID;
 
 
 /**
  * Created by hoijima on 23.09.16.
  */
 
-@Mod.EventBusSubscriber(value = Side.CLIENT, modid = main.MODID)
+@Mod.EventBusSubscriber(value = Side.CLIENT, modid = MODID)
 public class RenderingInit {
     public static final RenderingInit INSTANCE = new RenderingInit();
 
@@ -59,7 +58,7 @@ public class RenderingInit {
 //        ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(BlockInit.workbench), 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.Workbench, "inventory"));
 //        ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(BlockInit.workbench_handmade), 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.Workbench_handmade, "inventory"));
         ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(locker), 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.Locker, "normal"));
-        ModelLoader.setCustomStateMapper(locker, new DefaultStateMapper());
+
 
         ModelLoader.setCustomModelResourceLocation(aluminum, 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.Aluminum, "inventory"));
         ModelLoader.setCustomModelResourceLocation(asbestos, 0, new ModelResourceLocation(GlobalNames.Domain + ":" + GlobalNames.Asbestos, "inventory"));
@@ -182,6 +181,11 @@ public class RenderingInit {
 
 
         INSTANCE.registerFluidModels();
+    }
+
+    private static void registerTexture(Item item, String textureName) {
+        Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(item, 0,
+                new ModelResourceLocation(MODID + ":" + textureName, "inventory"));
     }
 
     private void registerFluidModels() {

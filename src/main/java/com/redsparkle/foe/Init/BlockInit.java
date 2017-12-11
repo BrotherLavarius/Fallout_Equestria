@@ -11,7 +11,6 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.registries.IForgeRegistry;
 
@@ -39,35 +38,25 @@ public static final Locker locker = new Locker(GlobalNames.Locker);
     @SubscribeEvent
     public static void registerBlocks(final RegistryEvent.Register<Block> event) {
         final IForgeRegistry<Block> registry = event.getRegistry();
-
         final Block[] blocks = {
                 locker
         };
-        for (int i = 0; i < (blocks.length - 1); i++) {
-            blocks[i].setRegistryName(blocksNames[i]);
-            blocks[i].setUnlocalizedName(blocksNames[i]);
-            BLOCKS.add(blocks[i]);
-            ForgeRegistries.BLOCKS.register(blocks[i]);
-
-        }
+        System.out.println("Finished initializing blocks");
         registry.registerAll(blocks);
+        registerTileEntity(LockerTileEntety.class, GlobalNames.Locker);
     }
 
     @SubscribeEvent
     public static void registerItemBlocks(final RegistryEvent.Register<Item> event) {
+        final IForgeRegistry<Item> registry = event.getRegistry();
         final ItemBlock[] items = {
                 new ItemBlock(locker)
         };
-
-        final IForgeRegistry<Item> registry = event.getRegistry();
-        for (int i = 0; i < (items.length - 1); i++) {
-            items[i].setUnlocalizedName(blocksNames[i]);
+        for (int i = 0; i < items.length; i++) {
             items[i].setRegistryName(blocksNames[i]);
             registry.register(items[i]);
-            ITEM_BLOCKS.add(items[i]);
-            ForgeRegistries.ITEMS.register(items[i]);
         }
-        registerTileEntity(LockerTileEntety.class, GlobalNames.Locker);
+        System.out.println("Finished initializing Items for blocks");
 
     }
 
