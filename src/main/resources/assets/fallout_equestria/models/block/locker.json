@@ -1,214 +1,42 @@
 {
-  "__comment": "Model generated using MrCrayfish's Model Creator (http://mrcrayfish.com/modelcreator/)",
-  "textures": {
-  },
-  "elements": [
-    {
-      "name": "Cube",
-      "from": [
-        2.0,
-        0.0,
-        2.0
-      ],
-      "to": [
-        14.0,
-        15.0,
-        3.0
-      ],
-      "faces": {
-        "north": {
-          "texture": "#-1",
-          "uv": [
-            0.0,
-            0.0,
-            12.0,
-            15.0
-          ]
-        },
-        "east": {
-          "texture": "#-1",
-          "uv": [
-            0.0,
-            0.0,
-            1.0,
-            15.0
-          ]
-        },
-        "south": {
-          "texture": "#-1",
-          "uv": [
-            0.0,
-            0.0,
-            12.0,
-            15.0
-          ]
-        },
-        "west": {
-          "texture": "#-1",
-          "uv": [
-            0.0,
-            0.0,
-            3.0,
-            15.0
-          ]
-        },
-        "up": {
-          "texture": "#-1",
-          "uv": [
-            0.0,
-            0.0,
-            12.0,
-            1.0
-          ]
-        },
-        "down": {
-          "texture": "#-1",
-          "uv": [
-            0.0,
-            0.0,
-            12.0,
-            1.0
-          ]
-        }
+"__comment": "Model generated using MrCrayfish's Model Creator (http://mrcrayfish.com/modelcreator/)",
+"textureSize": "64,64",
+"componentGroups": [
+  {
+    "name": "locker",
+    "components": [
+      {
+        "size": "12,15,1",
+        "origin": "0,0,0",
+        "position": "-6,-15,-6",
+        "rotation": "0,0,0",
+        "textureOffset": "0,0",
+        "textureSize": "12,15,1"
+      },
+      {
+        "size": "14,32,12",
+        "origin": "0,0,0",
+        "position": "-7,-16,-5",
+        "rotation": "0,0,0",
+        "textureOffset": "0,16",
+        "textureSize": "14,32,12"
+      },
+      {
+        "size": "12,15,1",
+        "origin": "0,0,0",
+        "position": "-6,1,-6",
+        "rotation": "0,0,0",
+        "textureOffset": "26,0",
+        "textureSize": "12,15,1"
       }
-    },
-    {
-      "name": "Cube",
-      "from": [
-        1.0,
-        0.0,
-        3.0
-      ],
-      "to": [
-        15.0,
-        32.0,
-        15.0
-      ],
-      "faces": {
-        "north": {
-          "texture": "#-1",
-          "uv": [
-            0.0,
-            0.0,
-            14.0,
-            32.0
-          ]
-        },
-        "east": {
-          "texture": "#-1",
-          "uv": [
-            0.0,
-            0.0,
-            12.0,
-            32.0
-          ]
-        },
-        "south": {
-          "texture": "#-1",
-          "uv": [
-            0.0,
-            0.0,
-            14.0,
-            32.0
-          ]
-        },
-        "west": {
-          "texture": "#-1",
-          "uv": [
-            0.0,
-            0.0,
-            3.0,
-            15.0
-          ]
-        },
-        "up": {
-          "texture": "#-1",
-          "uv": [
-            0.0,
-            0.0,
-            14.0,
-            12.0
-          ]
-        },
-        "down": {
-          "texture": "#-1",
-          "uv": [
-            0.0,
-            0.0,
-            14.0,
-            12.0
-          ]
-        }
-      }
-    },
-    {
-      "name": "Cube",
-      "from": [
-        2.0,
-        16.0,
-        2.0
-      ],
-      "to": [
-        14.0,
-        31.0,
-        3.0
-      ],
-      "faces": {
-        "north": {
-          "texture": "#-1",
-          "uv": [
-            0.0,
-            0.0,
-            12.0,
-            15.0
-          ]
-        },
-        "east": {
-          "texture": "#-1",
-          "uv": [
-            0.0,
-            0.0,
-            1.0,
-            15.0
-          ]
-        },
-        "south": {
-          "texture": "#-1",
-          "uv": [
-            0.0,
-            0.0,
-            12.0,
-            15.0
-          ]
-        },
-        "west": {
-          "texture": "#-1",
-          "uv": [
-            0.0,
-            0.0,
-            3.0,
-            15.0
-          ]
-        },
-        "up": {
-          "texture": "#-1",
-          "uv": [
-            0.0,
-            0.0,
-            12.0,
-            1.0
-          ]
-        },
-        "down": {
-          "texture": "#-1",
-          "uv": [
-            0.0,
-            0.0,
-            12.0,
-            1.0
-          ]
-        }
-      }
-    }
-  ]
+    ]
+  }
+],
+"model": {
+"components": [
+  {
+    "name": "locker"
+  }
+]
+}
 }
