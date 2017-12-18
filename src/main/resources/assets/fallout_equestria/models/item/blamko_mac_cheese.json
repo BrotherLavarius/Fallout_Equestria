@@ -1,7 +1,7 @@
 {
   "parent": "builtin/generated",
   "textures": {
-    "layer0": "fallout_equestria:items/food/blamko_maccheese"
+    "layer0": "fallout_equestria:items/food/blamko_mac_cheese"
   },
   "display": {
     "thirdperson_righthand": {
