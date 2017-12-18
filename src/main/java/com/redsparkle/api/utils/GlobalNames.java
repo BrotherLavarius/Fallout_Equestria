@@ -90,10 +90,8 @@ public class GlobalNames {
 
     sparkle_cola_machine = "sparkle_cola_machine",
     // Blocks -- interract -- world
-    
-            workbench_handmade = "workbench_handmade",
-            workbench = "workbench_industrial",
-                    workbench_sawing = "workbench_sawing",
+
+    workbench_handmade = "workbench_handmade", workbench = "workbench", workbench_sawing = "workbench_sawing",
     // Blocks -- interract -- stable
 
     desktop_terminal = "desktop_terminal",

@@ -14,6 +14,7 @@ import com.redsparkle.api.Capability.Player.water.WaterFactoryProvider;
 import com.redsparkle.api.utils.PlayerParamsSetup;
 import com.redsparkle.foe.Init.FluidsInit;
 import com.redsparkle.foe.Init.ItemInit;
+import com.redsparkle.foe.Init.ModItems;
 import com.redsparkle.foe.Init.PotionInit;
 import net.minecraft.block.BlockLiquid;
 import net.minecraft.block.state.IBlockState;
@@ -70,7 +71,7 @@ public class UpdateEvents {
             ISkillsCapability skills = e.player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null);
             ILevelCapability lvl = e.player.getCapability(LEVEL_CAPABILITY, null);
             ISpechialCapability spe = e.player.getCapability(SpechialFactoryProvider.SPECHIAL_CAPABILITY, null);
-            Item lvliningCrystal = ItemInit.lvlingCrystall;
+            Item lvliningCrystal = ModItems.LVLINGCRYSTALL.getITEM();
             ItemStack lvlingcrystallS = new ItemStack(lvliningCrystal);
             lvlingcrystallS.setCount(1);
             e.player.inventory.addItemStackToInventory(lvlingcrystallS);

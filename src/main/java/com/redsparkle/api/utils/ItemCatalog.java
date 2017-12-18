@@ -1,6 +1,6 @@
 package com.redsparkle.api.utils;
 
-import com.redsparkle.foe.Init.ItemInit;
+import com.redsparkle.foe.Init.ModItems;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -11,9 +11,9 @@ import net.minecraft.item.ItemStack;
 public class ItemCatalog {
     public static Item Request(String name) {
         if (name.equalsIgnoreCase("item.aem")) {
-            return ItemInit.aem;
+            return ModItems.AEM.getITEM();
         } else if (name.equalsIgnoreCase("item.pipbuck")) {
-            return ItemInit.pipbuck;
+            return ModItems.PIPBUCK.getITEM();
         } else {
             return Items.AIR;
         }

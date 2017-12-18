@@ -27,19 +27,20 @@
       }
     ],
     "facing=north": {
-      "model": "fallout_equestria:workbench_handmade.obj"
-    },
-    "facing=south": {
       "model": "fallout_equestria:workbench_handmade.obj",
       "y": 180
     },
+    "facing=south": {
+      "model": "fallout_equestria:workbench_handmade.obj",
+      "y": 0
+    },
     "facing=west": {
       "model": "fallout_equestria:workbench_handmade.obj",
-      "y": 270
+      "y": 90
     },
     "facing=east": {
       "model": "fallout_equestria:workbench_handmade.obj",
-      "y": 90
+      "y": 270
     }
   }
 }

@@ -14,9 +14,11 @@ import javax.annotation.Nonnull;
  * Created by hoijima on 3/25/2017.
  */
 public class t40body extends ItemBody {
-    public t40body(ArmorMaterial materialIn, int renderIndexIn, EntityEquipmentSlot equipmentSlotIn) {
+    public t40body(ArmorMaterial materialIn, int renderIndexIn, EntityEquipmentSlot equipmentSlotIn, String name) {
         super(Armor_material.T40_ARMOR, renderIndexIn, equipmentSlotIn);
         this.setCreativeTab(InitCreativeTabs.Fallout_armor);
+        this.setUnlocalizedName(name);
+        this.setRegistryName(name);
     }
 
     @Override

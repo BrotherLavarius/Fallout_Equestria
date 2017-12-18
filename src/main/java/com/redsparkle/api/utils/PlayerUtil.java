@@ -1,7 +1,7 @@
 package com.redsparkle.api.utils;
 
 import com.mojang.authlib.GameProfile;
-import com.redsparkle.foe.Init.ItemInit;
+import com.redsparkle.foe.Init.ModItems;
 import net.minecraft.client.entity.AbstractClientPlayer;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.entity.EntityLivingBase;
@@ -127,15 +127,15 @@ public class PlayerUtil {
 
     public static boolean is_player_in_gas_proof_armin(EntityLivingBase player) {
 
-        if (player.getItemStackFromSlot(EntityEquipmentSlot.HEAD).getItem() == ItemInit.t40head ||
-                player.getItemStackFromSlot(EntityEquipmentSlot.HEAD).getItem() == ItemInit.t50head ||
-                player.getItemStackFromSlot(EntityEquipmentSlot.HEAD).getItem() == ItemInit.t60head) {
-            if (player.getItemStackFromSlot(EntityEquipmentSlot.CHEST).getItem() == ItemInit.t40body ||
-                    player.getItemStackFromSlot(EntityEquipmentSlot.CHEST).getItem() == ItemInit.t50body ||
-                    player.getItemStackFromSlot(EntityEquipmentSlot.CHEST).getItem() == ItemInit.t60body) {
-                if (player.getItemStackFromSlot(EntityEquipmentSlot.LEGS).getItem() == ItemInit.t40legs ||
-                        player.getItemStackFromSlot(EntityEquipmentSlot.LEGS).getItem() == ItemInit.t50legs ||
-                        player.getItemStackFromSlot(EntityEquipmentSlot.LEGS).getItem() == ItemInit.t60legs) {
+        if (player.getItemStackFromSlot(EntityEquipmentSlot.HEAD).getItem() == ModItems.T40HEAD.getITEM() ||
+                player.getItemStackFromSlot(EntityEquipmentSlot.HEAD).getItem() == ModItems.T50HEAD.getITEM() ||
+                player.getItemStackFromSlot(EntityEquipmentSlot.HEAD).getItem() == ModItems.T60HEAD.getITEM()) {
+            if (player.getItemStackFromSlot(EntityEquipmentSlot.CHEST).getItem() == ModItems.T40BODY.getITEM() ||
+                    player.getItemStackFromSlot(EntityEquipmentSlot.CHEST).getItem() == ModItems.T50BODY.getITEM() ||
+                    player.getItemStackFromSlot(EntityEquipmentSlot.CHEST).getItem() == ModItems.T60BODY.getITEM()) {
+                if (player.getItemStackFromSlot(EntityEquipmentSlot.LEGS).getItem() == ModItems.T40LEGS.getITEM() ||
+                        player.getItemStackFromSlot(EntityEquipmentSlot.LEGS).getItem() == ModItems.T50LEGS.getITEM() ||
+                        player.getItemStackFromSlot(EntityEquipmentSlot.LEGS).getItem() == ModItems.T60LEGS.getITEM()) {
                     return true;
                 }
             }

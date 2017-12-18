@@ -5,7 +5,7 @@ import com.redsparkle.api.Capability.Player.saddlegun_shooting.ITrigger_item;
 import com.redsparkle.api.Capability.Player.saddlegun_shooting.ITrigger_item_Provider;
 import com.redsparkle.api.items.helpers.Item_Instances.Item_Firearm;
 import com.redsparkle.api.items.helpers.Item_Instances.Item_SaggleBagGun;
-import com.redsparkle.foe.Init.ItemInit;
+import com.redsparkle.foe.Init.ModItems;
 import com.redsparkle.foe.items.saddlebags.Saddlebags;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
@@ -68,7 +68,7 @@ public class GunRender implements LayerRenderer<EntityLivingBase> {
             GlStateManager.popMatrix();
         }
         if (triggeritem.getStatus() && itemstack.getItem() == Items.AIR) {
-            Item trigger_item = ItemInit.trigger_item;
+            Item trigger_item = ModItems.TRIGGER_ITEM.getITEM();
 
             ItemStack trigger_item_stack = new ItemStack(trigger_item);
             GlStateManager.pushMatrix();

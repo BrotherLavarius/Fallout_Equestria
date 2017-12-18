@@ -9,8 +9,8 @@ import net.minecraft.inventory.EntityEquipmentSlot;
  * Created by hoijima on 3/5/2017.
  */
 public class t50legs extends ItemHelmet {
-    public t50legs(ArmorMaterial materialIn, int renderIndexIn, EntityEquipmentSlot equipmentSlotIn) {
-        super(Armor_material.T50_ARMOR, renderIndexIn, equipmentSlotIn);
+    public t50legs(ArmorMaterial materialIn, int renderIndexIn, EntityEquipmentSlot equipmentSlotIn, String name) {
+        super(Armor_material.T50_ARMOR, renderIndexIn, equipmentSlotIn, name);
         this.setCreativeTab(InitCreativeTabs.Fallout_armor);
     }
 }

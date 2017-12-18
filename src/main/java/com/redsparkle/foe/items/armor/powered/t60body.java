@@ -9,8 +9,10 @@ import net.minecraft.inventory.EntityEquipmentSlot;
  * Created by hoijima on 3/25/2017.
  */
 public class t60body extends ItemBody {
-    public t60body(ArmorMaterial materialIn, int renderIndexIn, EntityEquipmentSlot equipmentSlotIn) {
+    public t60body(ArmorMaterial materialIn, int renderIndexIn, EntityEquipmentSlot equipmentSlotIn, String name) {
         super(Armor_material.T60_ARMOR, renderIndexIn, equipmentSlotIn);
         this.setCreativeTab(InitCreativeTabs.Fallout_armor);
+        this.setUnlocalizedName(name);
+        this.setRegistryName(name);
     }
 }

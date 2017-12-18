@@ -1,7 +1,7 @@
 package com.redsparkle.foe.events.ClientSide.gui;
 
 import com.redsparkle.api.Capability.Player.Inventory.IAdvProvider;
-import com.redsparkle.foe.Init.ItemInit;
+import com.redsparkle.foe.Init.ModItems;
 import com.redsparkle.foe.gui.Overlays.Rads_Overlay;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
@@ -19,8 +19,8 @@ public class EventHandlerOverlayAEM {
         if (!entityPlayerSP.isCreative()) {
             boolean foundInHotbar = false;
             for (int i = 1; i < 5; i++) {
-                if (entityPlayerSP.getCapability(IAdvProvider.Adv_Inv, null).getStackInSlot(i).getItem() == ItemInit.aem &&
-                        entityPlayerSP.getCapability(IAdvProvider.Adv_Inv, null).getStackInSlot(0).getItem() != ItemInit.pipbuck) {
+                if (entityPlayerSP.getCapability(IAdvProvider.Adv_Inv, null).getStackInSlot(i).getItem() == ModItems.AEM.getITEM() &&
+                        entityPlayerSP.getCapability(IAdvProvider.Adv_Inv, null).getStackInSlot(0).getItem() != ModItems.PIPBUCK.getITEM()) {
                     foundInHotbar = true;
                 }
             }

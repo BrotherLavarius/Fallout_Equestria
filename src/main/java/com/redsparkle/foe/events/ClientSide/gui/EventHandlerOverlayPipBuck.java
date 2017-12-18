@@ -1,7 +1,7 @@
 package com.redsparkle.foe.events.ClientSide.gui;
 
 import com.redsparkle.api.Capability.Player.Inventory.IAdvProvider;
-import com.redsparkle.foe.Init.ItemInit;
+import com.redsparkle.foe.Init.ModItems;
 import com.redsparkle.foe.gui.Overlays.Compass_Overlay;
 import com.redsparkle.foe.gui.Overlays.Food_overlay;
 import com.redsparkle.foe.gui.Overlays.Health_Overlay;
@@ -22,7 +22,7 @@ public class EventHandlerOverlayPipBuck {
         if (!entityPlayerSP.isCreative()) {
             // look for the ItemHUDactivator in the hotbar.  If not present, return without changing the HUD.
             boolean foundInHotbar = false;
-            if (entityPlayerSP.getCapability(IAdvProvider.Adv_Inv, null).getStackInSlot(0).getItem() == ItemInit.pipbuck) {
+            if (entityPlayerSP.getCapability(IAdvProvider.Adv_Inv, null).getStackInSlot(0).getItem() == ModItems.PIPBUCK.getITEM()) {
                 foundInHotbar = true;
             }
             if (!foundInHotbar) return;
