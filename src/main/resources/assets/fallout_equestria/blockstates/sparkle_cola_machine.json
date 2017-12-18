@@ -41,25 +41,6 @@
     "facing=east": {
       "model": "fallout_equestria:sparkle_cola_machine.obj",
       "y": 270
-    },
-    "inventory": [
-      {
-        "model": "fallout_equestria:generator.obj",
-        "transform": {
-          "rotation": [
-            {
-              "y": 0
-            },
-            {
-              "x": 0
-            },
-            {
-              "z": 0
-            }
-          ]
-        },
-        "scale": 0.5
-      }
-    ]
+    }
   }
 }

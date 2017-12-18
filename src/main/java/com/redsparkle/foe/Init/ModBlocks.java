@@ -2,6 +2,7 @@ package com.redsparkle.foe.Init;
 
 import com.redsparkle.api.utils.GlobalNames;
 import com.redsparkle.foe.block.*;
+import com.redsparkle.foe.safe_TE;
 
 /**
  * Created by hoijima on 18.12.17.
@@ -14,7 +15,9 @@ public enum ModBlocks {
     GENERATOR(new generator(GlobalNames.generator, "1x1"), GlobalNames.generator, generator_TE.class),
     LOCKER(new locker(GlobalNames.locker, "1x2"), GlobalNames.locker, locker_TE.class),
     WB_HM(new workbench_handmade(GlobalNames.workbench_handmade, "2x1"), GlobalNames.workbench_handmade, workbench_handmade_TE.class),
-    WB_SW(new workbench_sawing(GlobalNames.workbench_sawing, "2x1"), GlobalNames.workbench_sawing, workbench_sawing_TE.class);
+    WB_SW(new workbench_sawing(GlobalNames.workbench_sawing, "2x1"), GlobalNames.workbench_sawing, workbench_sawing_TE.class),
+    SAFE(new safe(GlobalNames.safe, "1x1"), GlobalNames.safe, safe_TE.class);
+
 
     public Object BLOCK;
     public String NAME;

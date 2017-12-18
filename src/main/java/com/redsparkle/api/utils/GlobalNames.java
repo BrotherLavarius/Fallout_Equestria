@@ -99,6 +99,7 @@ public class GlobalNames {
     
             locker = "locker",
             generator = "generator",
+                    safe = "safe",
     // Blocks - stat dispencers
     
             RadBlock = "radiation_dispencer",
