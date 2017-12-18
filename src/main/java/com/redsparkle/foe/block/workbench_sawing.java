@@ -13,8 +13,8 @@ import net.minecraft.world.World;
 
 public class workbench_sawing extends FoeBlock {
 
-    public workbench_sawing(String blockName) {
-        super(Material.IRON, blockName);
+    public workbench_sawing(String blockName, String bb) {
+        super(Material.IRON, blockName, bb);
         this.setLightLevel(1);
         this.setSoundType(SoundType.METAL);
         this.setCreativeTab(InitCreativeTabs.Fallout_blocks);

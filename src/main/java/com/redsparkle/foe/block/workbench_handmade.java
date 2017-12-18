@@ -12,8 +12,8 @@ import net.minecraft.world.World;
 
 public class workbench_handmade extends FoeBlock {
 
-    public workbench_handmade(String blockName) {
-        super(Material.IRON, blockName);
+    public workbench_handmade(String blockName, String bb) {
+        super(Material.IRON, blockName, "1x2");
         this.setLightLevel(1);
         this.setSoundType(SoundType.METAL);
         this.setCreativeTab(InitCreativeTabs.Fallout_blocks);

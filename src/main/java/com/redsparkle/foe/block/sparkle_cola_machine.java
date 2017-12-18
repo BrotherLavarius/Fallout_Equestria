@@ -1,7 +1,6 @@
 package com.redsparkle.foe.block;
 
-import com.redsparkle.api.block.GeneralAllignBlockOneOone;
-import com.redsparkle.api.utils.GlobalNames;
+
 import com.redsparkle.foe.Init.InitCreativeTabs;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -10,15 +9,12 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-
-import static com.redsparkle.foe.main.MODID;
 
 public class sparkle_cola_machine extends FoeBlock {
 
-    public sparkle_cola_machine(String blockName) {
-        super(Material.IRON, blockName);
+    public sparkle_cola_machine(String blockName, String bb) {
+        super(Material.IRON, blockName, bb);
         this.setLightLevel(1);
         this.setSoundType(SoundType.METAL);
         this.setCreativeTab(InitCreativeTabs.Fallout_blocks);

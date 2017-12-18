@@ -23,18 +23,20 @@ import net.minecraftforge.common.property.Properties;
 /**
  * Created by hoijima on 28.07.17.
  */
-public class FoeBlock extends Block {
+public abstract class FoeBlock extends Block {
     public static final PropertyDirection FACING = BlockHorizontal.FACING;
+    public static String box;
 
-
-    public FoeBlock(final Material material, final MapColor mapColor, final String blockName) {
+    public FoeBlock(final Material material, final MapColor mapColor, final String blockName, String bb) {
         super(material, mapColor);
         setBlockName(this, blockName);
+        box = bb;
     }
 
-    public FoeBlock(final Material materialIn, final String blockName) {
-        this(materialIn, materialIn.getMaterialMapColor(), blockName);
+    public FoeBlock(final Material materialIn, final String blockName, String bb) {
+        this(materialIn, materialIn.getMaterialMapColor(), blockName, bb);
         this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
+        box = bb;
     }
 
 
@@ -100,7 +102,18 @@ public class FoeBlock extends Block {
 
     @Override
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
-        return BBhelper.caseOne(state);
+
+        if (box.equalsIgnoreCase("1x1")) {
+            return BBhelper.caseOne(state);
+        } else if (box.equalsIgnoreCase("1x2")) {
+            return BBhelper.caseTwo(state);
+        } else if (box.equalsIgnoreCase("2x1")) {
+            return BBhelper.caseTree(state);
+        } else if (box.equalsIgnoreCase("2x2")) {
+            return BBhelper.caseFour(state);
+        } else {
+            return BBhelper.caseOne(state);
+        }
     }
 
     @Override

@@ -12,8 +12,8 @@ import net.minecraft.world.World;
 
 public class locker extends FoeBlock {
 
-    public locker(String blockName) {
-        super(Material.IRON, blockName);
+    public locker(String blockName, String bb) {
+        super(Material.IRON, blockName, bb);
         this.setLightLevel(1);
         this.setSoundType(SoundType.METAL);
         this.setCreativeTab(InitCreativeTabs.Fallout_blocks);
