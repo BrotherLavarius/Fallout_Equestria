@@ -8,28 +8,16 @@ Kd 0.811765 0.835294 0.839216
 Ks 0.330000 0.330000 0.330000
 map_Kd minecraft:blocks/concrete_white
 
-newmtl minecraft_concrete_pink
-Ka 0.000000 0.000000 0.000000
-Kd 0.835294 0.396078 0.556863
-Ks 0.330000 0.330000 0.330000
-map_Kd minecraft:blocks/concrete_pink
-
-newmtl minecraft_concrete_magenta
-Ka 0.000000 0.000000 0.000000
-Kd 0.662745 0.188235 0.623529
-Ks 0.330000 0.330000 0.330000
-map_Kd minecraft:blocks/concrete_magenta
-
-newmtl minecraft_concrete_green
-Ka 0.000000 0.000000 0.000000
-Kd 0.286275 0.356863 0.141176
-Ks 0.330000 0.330000 0.330000
-map_Kd minecraft:blocks/concrete_green
-
 newmtl BackColor
 Ka 0.000000 0.000000 0.000000
 Kd 0.643137 0.698039 0.733333
 Ks 0.330000 0.330000 0.330000
+
+newmtl minecraft_iron_block
+Ka 0.000000 0.000000 0.000000
+Kd 0.858824 0.858824 0.858824
+Ks 0.330000 0.330000 0.330000
+map_Kd minecraft:blocks/iron_block
 
 newmtl ForegroundColor
 Ka 0.000000 0.000000 0.000000

@@ -13,6 +13,12 @@ Ka 0.000000 0.000000 0.000000
 Kd 0.643137 0.698039 0.733333
 Ks 0.330000 0.330000 0.330000
 
+newmtl minecraft_concrete_white
+Ka 0.000000 0.000000 0.000000
+Kd 0.811765 0.835294 0.839216
+Ks 0.330000 0.330000 0.330000
+map_Kd minecraft:blocks/concrete_white
+
 newmtl minecraft_iron_block
 Ka 0.000000 0.000000 0.000000
 Kd 0.858824 0.858824 0.858824
@@ -25,23 +31,28 @@ Kd 0.239216 0.152941 0.070588
 Ks 0.330000 0.330000 0.330000
 map_Kd minecraft:blocks/planks_big_oak
 
-newmtl minecraft_stone
+newmtl FrontColor
 Ka 0.000000 0.000000 0.000000
-Kd 0.490196 0.490196 0.490196
+Kd 1.000000 1.000000 1.000000
 Ks 0.330000 0.330000 0.330000
-map_Kd minecraft:blocks/stone
 
-newmtl minecraft_redstone_block
+newmtl minecraft_concrete_green
 Ka 0.000000 0.000000 0.000000
-Kd 0.670588 0.105882 0.035294
+Kd 0.286275 0.356863 0.141176
 Ks 0.330000 0.330000 0.330000
-map_Kd minecraft:blocks/redstone_block
+map_Kd minecraft:blocks/concrete_green
 
-newmtl minecraft_concrete_white
+newmtl minecraft_concrete_pink
 Ka 0.000000 0.000000 0.000000
-Kd 0.811765 0.835294 0.839216
+Kd 0.835294 0.396078 0.556863
 Ks 0.330000 0.330000 0.330000
-map_Kd minecraft:blocks/concrete_white
+map_Kd minecraft:blocks/concrete_pink
+
+newmtl minecraft_concrete_magenta
+Ka 0.000000 0.000000 0.000000
+Kd 0.662745 0.188235 0.623529
+Ks 0.330000 0.330000 0.330000
+map_Kd minecraft:blocks/concrete_magenta
 
 newmtl ForegroundColor
 Ka 0.000000 0.000000 0.000000

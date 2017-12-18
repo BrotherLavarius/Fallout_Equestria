@@ -11,19 +11,19 @@ import net.minecraft.item.ItemStack;
  * Created by hoijima desu on 06.08.16 desu.
  */
 public class InitCreativeTabs {
-    public static final CreativeTabs Fallout_blocks = new CreativeTabs(GlobalNames.Creative_tab_Blocks) {
+    public static final CreativeTabs Fallout_blocks = new CreativeTabs(GlobalNames.creative_tab_Blocks) {
         @Override
         public ItemStack getTabIconItem() {
             return new ItemStack(Item.getItemFromBlock(Blocks.COAL_BLOCK));
         }
     };
-    public static final CreativeTabs Fallout_Food = new CreativeTabs(GlobalNames.Creative_tab_Food) {
+    public static final CreativeTabs Fallout_Food = new CreativeTabs(GlobalNames.creative_tab_food) {
         @Override
         public ItemStack getTabIconItem() {
             return new ItemStack(Items.APPLE);
         }
     };
-    public static final CreativeTabs Fallout_meds = new CreativeTabs(GlobalNames.Creative_tab_Meds) {
+    public static final CreativeTabs Fallout_meds = new CreativeTabs(GlobalNames.creative_tab_meds) {
         @Override
         public ItemStack getTabIconItem() {
             return new ItemStack(Items.POTIONITEM);
@@ -31,32 +31,32 @@ public class InitCreativeTabs {
     };
 
 
-    public static final CreativeTabs Fallout_scrap = new CreativeTabs(GlobalNames.Creative_tab_Scrap) {
+    public static final CreativeTabs Fallout_scrap = new CreativeTabs(GlobalNames.creative_tab_scrap) {
         @Override
         public ItemStack getTabIconItem() {
             return new ItemStack(Items.STRING);
         }
     };
 
-    public static final CreativeTabs Fallout_guns = new CreativeTabs(GlobalNames.Creative_tab_Guns) {
+    public static final CreativeTabs Fallout_guns = new CreativeTabs(GlobalNames.creative_tab_guns) {
         @Override
         public ItemStack getTabIconItem() {
             return new ItemStack(Items.BOW);
         }
     };
-    public static final CreativeTabs Fallout_ammo = new CreativeTabs(GlobalNames.Creative_tab_Ammo) {
+    public static final CreativeTabs Fallout_ammo = new CreativeTabs(GlobalNames.creative_tab_ammo) {
         @Override
         public ItemStack getTabIconItem() {
             return new ItemStack(Items.ARROW);
         }
     };
-    public static final CreativeTabs Fallout_stats_blocks = new CreativeTabs(GlobalNames.Creative_tab_EFFBlocks) {
+    public static final CreativeTabs Fallout_stats_blocks = new CreativeTabs(GlobalNames.creative_tab_effBlocks) {
         @Override
         public ItemStack getTabIconItem() {
             return new ItemStack(Item.getItemFromBlock(Blocks.REDSTONE_BLOCK));
         }
     };
-    public static final CreativeTabs Fallout_armor = new CreativeTabs(GlobalNames.Creative_tab_Armor) {
+    public static final CreativeTabs Fallout_armor = new CreativeTabs(GlobalNames.creative_tab_armor) {
         @Override
         public ItemStack getTabIconItem() {
             return new ItemStack(Items.ARMOR_STAND);

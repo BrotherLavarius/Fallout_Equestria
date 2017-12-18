@@ -2,14 +2,14 @@
   "forge_marker": 1,
   "defaults": {
     "textures": {},
-    "model": "fallout_equestria:locker.obj",
+    "model": "fallout_equestria:desktop_terminal.obj",
     "uvlock": true,
     "transform": "forge:default-block"
   },
   "variants": {
     "normal": [
       {
-        "model": "fallout_equestria:locker.obj",
+        "model": "fallout_equestria:desktop_terminal.obj",
         "transform": {
           "rotation": [
             {
@@ -27,18 +27,18 @@
       }
     ],
     "facing=north": {
-      "model": "fallout_equestria:locker.obj"
+      "model": "fallout_equestria:desktop_terminal.obj"
     },
     "facing=south": {
-      "model": "fallout_equestria:locker.obj",
+      "model": "fallout_equestria:desktop_terminal.obj",
       "y": 180
     },
     "facing=west": {
-      "model": "fallout_equestria:locker.obj",
+      "model": "fallout_equestria:desktop_terminal.obj",
       "y": 270
     },
     "facing=east": {
-      "model": "fallout_equestria:locker.obj",
+      "model": "fallout_equestria:desktop_terminal.obj",
       "y": 90
     }
   }

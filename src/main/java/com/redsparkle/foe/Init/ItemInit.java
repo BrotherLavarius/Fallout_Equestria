@@ -60,70 +60,70 @@ import java.util.*;
 @Mod.EventBusSubscriber(modid = main.MODID)
 public class ItemInit {
 
-    public static final RadX radx = new RadX(GlobalNames.RadX);
-    public static final RadAway radAway = new RadAway(GlobalNames.RadAway);
-    public static final RedHealPotion redHealPotion = new RedHealPotion(GlobalNames.redHealPotion);
-    public static final WhiteHealpotion whiteHealpotion = new WhiteHealpotion(GlobalNames.whiteHealpotion);
-    public static final PurpleHealPotion purpleHealPotion = new PurpleHealPotion(GlobalNames.purpleHealPotion);
-    public static final DarkHealPotion darkHealPotion = new DarkHealPotion(GlobalNames.darkHealPotion);
-    public static final PipBuck pipbuck = new PipBuck(GlobalNames.PipbuckTT);
-    public static final LvlingCrystall lvlingCrystall = new LvlingCrystall(GlobalNames.LevelingCrystall);
-    public static final AdvancedEnviropmentMonitor aem = new AdvancedEnviropmentMonitor(GlobalNames.AEM);
+    public static final RadX radx = new RadX(GlobalNames.radX);
+    public static final RadAway radAway = new RadAway(GlobalNames.radaway);
+    public static final RedHealPotion redHealPotion = new RedHealPotion(GlobalNames.redhealpotion);
+    public static final WhiteHealpotion whiteHealpotion = new WhiteHealpotion(GlobalNames.whitehealpotion);
+    public static final PurpleHealPotion purpleHealPotion = new PurpleHealPotion(GlobalNames.purplehealpotion);
+    public static final DarkHealPotion darkHealPotion = new DarkHealPotion(GlobalNames.darkhealpotion);
+    public static final PipBuck pipbuck = new PipBuck(GlobalNames.pipbucktt);
+    public static final LvlingCrystall lvlingCrystall = new LvlingCrystall(GlobalNames.levelingcrystall);
+    public static final AdvancedEnviropmentMonitor aem = new AdvancedEnviropmentMonitor(GlobalNames.aem);
     public static final Potato_Crisps potato_crisps = new Potato_Crisps(GlobalNames.potato_crisps);
-    public static final Blamko_MacCheese blamko_macCheese = new Blamko_MacCheese(GlobalNames.blamko_macCheese);
+    public static final Blamko_MacCheese blamko_macCheese = new Blamko_MacCheese(GlobalNames.blamko_maccheese);
     public static final Dandy_Boy_Apples dandy_boy_apples = new Dandy_Boy_Apples(GlobalNames.dandy_boy_apples);
     public static final GumDrops gumDrops = new GumDrops(GlobalNames.gumDrops);
     public static final Sugar_Bombs sugar_bombs = new Sugar_Bombs(GlobalNames.sugar_bombs);
-    public static final Fancy_mare_Snack_Cakes fancy_mare_snack_cakes = new Fancy_mare_Snack_Cakes(GlobalNames.Fancy_mare_Snack_Cakes);
+    public static final Fancy_mare_Snack_Cakes fancy_mare_snack_cakes = new Fancy_mare_Snack_Cakes(GlobalNames.fancy_mare_snack_cakes);
 
-    public static final Aluminum aluminum = new Aluminum(GlobalNames.Aluminum);
-    public static final Asbestos asbestos = new Asbestos(GlobalNames.Asbestos);
-    public static final Ballistic_fiber ballistic_fiber = new Ballistic_fiber(GlobalNames.Ballistic_fiber);
-    public static final Bolts bolts = new Bolts(GlobalNames.Bolts);
-    public static final Ceramic ceramic = new Ceramic(GlobalNames.Ceramic);
-    public static final Cloth cloth = new Cloth(GlobalNames.Cloth);
-    public static final Concrete concrete = new Concrete(GlobalNames.Concrete);
-    public static final Copper copper = new Copper(GlobalNames.Copper);
-    public static final Cork cork = new Cork(GlobalNames.Cork);
-    public static final Crystal crystal = new Crystal(GlobalNames.Crystal);
-    public static final Electronic_parts electronic_parts = new Electronic_parts(GlobalNames.Electronic_parts);
-    public static final Fiberglass fiberglass = new Fiberglass(GlobalNames.Fiberglass);
-    public static final Fiber_optics fiber_optics = new Fiber_optics(GlobalNames.Fiber_optics);
-    public static final Gears gears = new Gears(GlobalNames.Gears);
-    public static final Glue glue = new Glue(GlobalNames.Glue);
-    public static final Lead lead = new Lead(GlobalNames.Lead);
-    public static final Nuclear_material nuclear_material = new Nuclear_material(GlobalNames.Nuclear_material);
-    public static final Oil oil = new Oil(GlobalNames.Oil);
-    public static final Plastic plastic = new Plastic(GlobalNames.Plastic);
-    public static final Rubber rubber = new Rubber(GlobalNames.Rubber);
-    public static final Silver silver = new Silver(GlobalNames.Silver);
-    public static final Spring spring = new Spring(GlobalNames.Spring);
-    public static final Steel steel = new Steel(GlobalNames.Steel);
+    public static final Aluminum aluminum = new Aluminum(GlobalNames.aluminum);
+    public static final Asbestos asbestos = new Asbestos(GlobalNames.asbestos);
+    public static final Ballistic_fiber ballistic_fiber = new Ballistic_fiber(GlobalNames.ballistic_fiber);
+    public static final Bolts bolts = new Bolts(GlobalNames.bolts);
+    public static final Ceramic ceramic = new Ceramic(GlobalNames.ceramic);
+    public static final Cloth cloth = new Cloth(GlobalNames.cloth);
+    public static final Concrete concrete = new Concrete(GlobalNames.concrete);
+    public static final Copper copper = new Copper(GlobalNames.copper);
+    public static final Cork cork = new Cork(GlobalNames.cork);
+    public static final Crystal crystal = new Crystal(GlobalNames.crystal);
+    public static final Electronic_parts electronic_parts = new Electronic_parts(GlobalNames.electronic_parts);
+    public static final Fiberglass fiberglass = new Fiberglass(GlobalNames.fiberglass);
+    public static final Fiber_optics fiber_optics = new Fiber_optics(GlobalNames.fiber_optics);
+    public static final Gears gears = new Gears(GlobalNames.gears);
+    public static final Glue glue = new Glue(GlobalNames.glue);
+    public static final Lead lead = new Lead(GlobalNames.lead);
+    public static final Nuclear_material nuclear_material = new Nuclear_material(GlobalNames.nuclear_material);
+    public static final Oil oil = new Oil(GlobalNames.oil);
+    public static final Plastic plastic = new Plastic(GlobalNames.plastic);
+    public static final Rubber rubber = new Rubber(GlobalNames.rubber);
+    public static final Silver silver = new Silver(GlobalNames.silver);
+    public static final Spring spring = new Spring(GlobalNames.spring);
+    public static final Steel steel = new Steel(GlobalNames.steel);
 
 
     public static final FourFourMagAmmo fourFourMagAmmo = new FourFourMagAmmo(GlobalNames.fortyfour_ammo);
     public static final SShell sShell = new SShell(GlobalNames.shell);
     public static final FlareShell flare = new FlareShell(GlobalNames.flare);
-    public static final TenMMammo tenMMAmmo = new TenMMammo(GlobalNames.TenMMAmmo);
-    public static final FourTenMMammo fourTenMMammo = new FourTenMMammo(GlobalNames.FourTenMMAmmo);
-    public static final Seven_mmAmmo seven_mmAmmo = new Seven_mmAmmo(GlobalNames.Seven_mmAmmo);
-    public static final Five_mmAmmo five_mmAmmo = new Five_mmAmmo(GlobalNames.Five_mmAmmo);
+    public static final TenMMammo tenMMAmmo = new TenMMammo(GlobalNames.tenmmammo);
+    public static final FourTenMMammo fourTenMMammo = new FourTenMMammo(GlobalNames.fourtenmmammo);
+    public static final Seven_mmAmmo seven_mmAmmo = new Seven_mmAmmo(GlobalNames.seven_mmammo);
+    public static final Five_mmAmmo five_mmAmmo = new Five_mmAmmo(GlobalNames.five_mmammo);
 
 
-    public static final TenMMClip tenMMClip = new TenMMClip(GlobalNames.TenMMClip, GlobalsGunStats.TEN_MM.getClipsize(), "for " + GlobalsGunStats.TEN_MM.getGunName());
-    public static final TenMMSubClip tenMMSubclip = new TenMMSubClip(GlobalNames.TenMMSubClip, GlobalsGunStats.TEN_MM_SUB.getClipsize(), "for " + GlobalsGunStats.TEN_MM_SUB.getGunName());
-    public static final FourTenMMClip fourTenMMClip = new FourTenMMClip(GlobalNames.FourTenMMClip, GlobalsGunStats.FOUR_TEN_MM.getClipsize(), "for " + GlobalsGunStats.FOUR_TEN_MM.getGunName());
+    public static final TenMMClip tenMMClip = new TenMMClip(GlobalNames.tenmmclip, GlobalsGunStats.TEN_MM.getClipsize(), "for " + GlobalsGunStats.TEN_MM.getGunName());
+    public static final TenMMSubClip tenMMSubclip = new TenMMSubClip(GlobalNames.tenmmsubclip, GlobalsGunStats.TEN_MM_SUB.getClipsize(), "for " + GlobalsGunStats.TEN_MM_SUB.getGunName());
+    public static final FourTenMMClip fourTenMMClip = new FourTenMMClip(GlobalNames.fourtenmmclip, GlobalsGunStats.FOUR_TEN_MM.getClipsize(), "for " + GlobalsGunStats.FOUR_TEN_MM.getGunName());
     public static final Battery battery = new Battery(GlobalNames.Battery, GlobalsGunStats.SEVEN_MM_RIFLE.getClipsize(), "for " + GlobalsGunStats.LASER_PISTOL.getGunName());
-    public static final Seven_mmClip seven_mmClip = new Seven_mmClip(GlobalNames.Seven_mmClip, GlobalsGunStats.SEVEN_MM_RIFLE.getClipsize(), "for " + GlobalsGunStats.SEVEN_MM_RIFLE.getGunName());
+    public static final Seven_mmClip seven_mmClip = new Seven_mmClip(GlobalNames.seven_mmclip, GlobalsGunStats.SEVEN_MM_RIFLE.getClipsize(), "for " + GlobalsGunStats.SEVEN_MM_RIFLE.getGunName());
     public static final PLasma_Cartridge plasma_cartridge = new PLasma_Cartridge(GlobalNames.plasma_cartidge, GlobalsGunStats.PLASMA_PISTOL.getClipsize(), GlobalsGunStats.PLASMA_PISTOL.getGunName());
-    public static final Five_mmClip five_mmClip = new Five_mmClip(GlobalNames.Five_mmClip, GlobalsGunStats.FIVE_MM_MINIGUN.getClipsize(), GlobalsGunStats.FIVE_MM_MINIGUN.getGunName());
+    public static final Five_mmClip five_mmClip = new Five_mmClip(GlobalNames.five_mmclip, GlobalsGunStats.FIVE_MM_MINIGUN.getClipsize(), GlobalsGunStats.FIVE_MM_MINIGUN.getGunName());
     public static final flammenwerfer_ammo fl_ammo = new flammenwerfer_ammo(GlobalNames.flammenwarfer_ammo, GlobalsGunStats.FLAMMENWERFER.getClipsize(), GlobalsGunStats.FLAMMENWERFER.getGunName());
 
 
-    public static final Seven_mm_bulletCase seven_mm_bulletCase = new Seven_mm_bulletCase(GlobalNames.Seven_mm_bulletCase);
-    public static final TenMMbulletCase tenMMbulletCase = new TenMMbulletCase(GlobalNames.TenMMCase);
-    public static final FourTenMMbulletCase fourTenMMbulletCase = new FourTenMMbulletCase(GlobalNames.FourTenMMCase);
-    public static final Five_mm_bulletCase five_mm_bulletCase = new Five_mm_bulletCase(GlobalNames.Five_mm_bulletCase);
+    public static final Seven_mm_bulletCase seven_mm_bulletCase = new Seven_mm_bulletCase(GlobalNames.seven_mm_bulletcase);
+    public static final TenMMbulletCase tenMMbulletCase = new TenMMbulletCase(GlobalNames.tenmmcase);
+    public static final FourTenMMbulletCase fourTenMMbulletCase = new FourTenMMbulletCase(GlobalNames.fourtenmmcase);
+    public static final Five_mm_bulletCase five_mm_bulletCase = new Five_mm_bulletCase(GlobalNames.five_mm_bulletcase);
 
     public static final TenMM tenMM = new TenMM(GlobalsGunStats.TEN_MM.getGunName(), GlobalsGunStats.TEN_MM, tenMMClip, tenMMAmmo);
     public static final TenMMSub tenMMsub = new TenMMSub(GlobalsGunStats.TEN_MM_SUB.getGunName(), GlobalsGunStats.TEN_MM_SUB, tenMMSubclip, tenMMAmmo);
@@ -161,7 +161,7 @@ public class ItemInit {
     public static final t60body t60body = new t60body(Armor_material.T60_ARMOR, 0, EntityEquipmentSlot.CHEST);
     public static final t60legs t60legs = new t60legs(Armor_material.T60_ARMOR, 0, EntityEquipmentSlot.LEGS);
 
-    public static final Set<Item> ITEMS = new HashSet<>();
+    public static final Map<Item,String> ITEMS = new HashMap<Item,String>();
 
     public static final Map<String, Object> gun_ammo_lookup = new HashMap<String, Object>();
     public static final Map<String, Object> gun_case_lookup = new HashMap<String, Object>();
@@ -178,15 +178,15 @@ public class ItemInit {
     public static void registerItems(final RegistryEvent.Register<Item> event) {
         final IForgeRegistry<Item> registry = event.getRegistry();
 
-        t40head.setUnlocalizedName(GlobalNames.T40Head).setRegistryName(GlobalNames.T40Head);
-        t40body.setUnlocalizedName(GlobalNames.T40Body).setRegistryName(GlobalNames.T40Body);
-        t40legs.setUnlocalizedName(GlobalNames.T40Legs).setRegistryName(GlobalNames.T40Legs);
-        t50head.setUnlocalizedName(GlobalNames.T50Head).setRegistryName(GlobalNames.T50Head);
-        t50body.setUnlocalizedName(GlobalNames.T50Body).setRegistryName(GlobalNames.T50Body);
-        t50legs.setUnlocalizedName(GlobalNames.T50Legs).setRegistryName(GlobalNames.T50Legs);
-        t60head.setUnlocalizedName(GlobalNames.T60Head).setRegistryName(GlobalNames.T60Head);
-        t60body.setUnlocalizedName(GlobalNames.T60Body).setRegistryName(GlobalNames.T60Body);
-        t60legs.setUnlocalizedName(GlobalNames.T60Legs).setRegistryName(GlobalNames.T60Legs);
+        t40head.setUnlocalizedName(GlobalNames.t40Head).setRegistryName(GlobalNames.t40Head);
+        t40body.setUnlocalizedName(GlobalNames.t40Body).setRegistryName(GlobalNames.t40Body);
+        t40legs.setUnlocalizedName(GlobalNames.t40legs).setRegistryName(GlobalNames.t40legs);
+        t50head.setUnlocalizedName(GlobalNames.t50Head).setRegistryName(GlobalNames.t50Head);
+        t50body.setUnlocalizedName(GlobalNames.t50Body).setRegistryName(GlobalNames.t50Body);
+        t50legs.setUnlocalizedName(GlobalNames.t50legs).setRegistryName(GlobalNames.t50legs);
+        t60head.setUnlocalizedName(GlobalNames.t60Head).setRegistryName(GlobalNames.t60Head);
+        t60body.setUnlocalizedName(GlobalNames.t60Body).setRegistryName(GlobalNames.t60Body);
+        t60legs.setUnlocalizedName(GlobalNames.t60legs).setRegistryName(GlobalNames.t60legs);
 
 
         final Item[] items = {
@@ -298,9 +298,7 @@ public class ItemInit {
 
 
         for (final Item item : items) {
-
-
-            ITEMS.add(item);
+            ITEMS.put(item,item.getRegistryName().getResourcePath());
         }
         registry.registerAll(items);
 

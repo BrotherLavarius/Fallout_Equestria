@@ -21,7 +21,6 @@ import net.minecraftforge.common.property.Properties;
  * Created by hoijima on 02.06.17.
  */
 public class GeneralAllignBlockOneOone extends FoeBlock {
-    public static final PropertyDirection FACING = BlockHorizontal.FACING;
 
 
     public GeneralAllignBlockOneOone(Material blockMaterialIn, MapColor blockMapColorIn, String name) {
@@ -33,64 +32,8 @@ public class GeneralAllignBlockOneOone extends FoeBlock {
         this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
     }
 
-    private void setDefaultFacing(World worldIn, BlockPos pos, IBlockState state) {
-        if (!worldIn.isRemote) {
-            IBlockState iblockstate = worldIn.getBlockState(pos.north());
-            IBlockState iblockstate1 = worldIn.getBlockState(pos.south());
-            IBlockState iblockstate2 = worldIn.getBlockState(pos.west());
-            IBlockState iblockstate3 = worldIn.getBlockState(pos.east());
-            EnumFacing enumfacing = state.getValue(FACING);
-            if (enumfacing == EnumFacing.NORTH && iblockstate.isFullBlock() && !iblockstate1.isFullBlock()) {
-                enumfacing = EnumFacing.SOUTH;
-            } else if (enumfacing == EnumFacing.SOUTH && iblockstate1.isFullBlock() && !iblockstate.isFullBlock()) {
-                enumfacing = EnumFacing.NORTH;
-            } else if (enumfacing == EnumFacing.WEST && iblockstate2.isFullBlock() && !iblockstate3.isFullBlock()) {
-                enumfacing = EnumFacing.EAST;
-            } else if (enumfacing == EnumFacing.EAST && iblockstate3.isFullBlock() && !iblockstate2.isFullBlock()) {
-                enumfacing = EnumFacing.WEST;
-            }
-            worldIn.setBlockState(pos, state.withProperty(FACING, enumfacing), 2);
-        }
-    }
 
-    public void onBlockAdded(World worldIn, BlockPos pos, IBlockState state) {
-        this.setDefaultFacing(worldIn, pos, state);
-    }
 
-    public int getMetaFromState(IBlockState state) {
-        return state.getValue(FACING).getIndex();
-    }
 
-    public IBlockState getStateFromMeta(int meta) {
-        EnumFacing enumfacing = EnumFacing.getFront(meta);
-        if (enumfacing.getAxis() == EnumFacing.Axis.Y) {
-            enumfacing = EnumFacing.NORTH;
-        }
-        return this.getDefaultState().withProperty(FACING, enumfacing);
-    }
 
-    @Override
-    public boolean isOpaqueCube(IBlockState state) {
-        return false;
-    }
-
-    @Override
-    public boolean isFullCube(IBlockState state) {
-        return false;
-    }
-
-    @Override
-    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
-        return BBhelper.caseOne(state);
-    }
-
-    @Override
-    public boolean hasTileEntity(IBlockState state) {
-        return true;
-    }
-
-    @Override
-    public BlockStateContainer createBlockState() {
-        return new ExtendedBlockState(this, new IProperty[]{FACING}, new IUnlistedProperty[]{Properties.AnimationProperty});
-    }
 }
