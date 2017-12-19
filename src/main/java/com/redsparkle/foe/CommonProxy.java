@@ -33,6 +33,9 @@ import com.redsparkle.api.Capability.Player.spechial.SpechialFactoryStorage;
 import com.redsparkle.api.Capability.Player.water.IWaterCapability;
 import com.redsparkle.api.Capability.Player.water.WaterFactoryProvider;
 import com.redsparkle.api.Capability.Player.water.WaterFactoryStorage;
+import com.redsparkle.api.Capability.block.Locks.LockFactoryProvider;
+import com.redsparkle.api.Capability.block.Locks.LockInterface;
+import com.redsparkle.api.Capability.block.Locks.LockStorage;
 import com.redsparkle.api.utils.GlobalNames;
 import com.redsparkle.api.utils.ItemCatalog;
 import com.redsparkle.foe.Init.StartUpCommon;
@@ -71,6 +74,15 @@ public abstract class CommonProxy {
             slotProcessor_sub(advInventory, i, stack);
         }
 
+    }
+
+    public static void slotProcessor_sub(IAdvInventory advInventory, int i, ItemStack stack) {
+        if (advInventory.getStackInSlot(i) == ItemStack.EMPTY && stack != ItemStack.EMPTY) {
+            advInventory.insertItem(i, stack, false);
+        } else if (advInventory.getStackInSlot(i) != ItemStack.EMPTY && stack != ItemStack.EMPTY) {
+            advInventory.extractItem(i, advInventory.getStackInSlot(i).getCount(), false);
+            advInventory.insertItem(i, stack, false);
+        }
     }
 
     public void preInit() {
@@ -139,18 +151,9 @@ public abstract class CommonProxy {
         CapabilityManager.INSTANCE.register(IGunInterface.class, new IGunStorage(), GunFactoryProvider::new);
         CapabilityManager.INSTANCE.register(ITrigger_item.class, new ITrigger_Item_Storage(), ITrigger_item_Provider::new);
         CapabilityManager.INSTANCE.register(IRenders.class, new RenderStorage(), RenderProvider::new);
-
+        CapabilityManager.INSTANCE.register(LockInterface.class, new LockStorage(), LockFactoryProvider::new);
         Logger.logMsg(Logger.INFO, "FINISHED BOOTING CAPABILITY SYSTEM");
         MinecraftForge.EVENT_BUS.register(new EventHandlerInit());
-    }
-
-    public static void slotProcessor_sub(IAdvInventory advInventory, int i, ItemStack stack) {
-        if (advInventory.getStackInSlot(i) == ItemStack.EMPTY && stack != ItemStack.EMPTY) {
-            advInventory.insertItem(i, stack, false);
-        } else if (advInventory.getStackInSlot(i) != ItemStack.EMPTY && stack != ItemStack.EMPTY) {
-            advInventory.extractItem(i, advInventory.getStackInSlot(i).getCount(), false);
-            advInventory.insertItem(i, stack, false);
-        }
     }
 
 }

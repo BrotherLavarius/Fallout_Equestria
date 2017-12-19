@@ -72,6 +72,7 @@ public class AmmoFactoryProvider implements IAmmoInterface, ICapabilitySerializa
     }
 
     public boolean hasCapability(Capability<?> capability, EnumFacing facing) {
+
         return capability == AMMO_STORAGE;
     }
 

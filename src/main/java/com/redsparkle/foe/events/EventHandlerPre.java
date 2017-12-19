@@ -15,13 +15,16 @@ import com.redsparkle.api.Capability.Player.skills.SkillsFactoryProvider;
 import com.redsparkle.api.Capability.Player.spechial.ISpechialCapability;
 import com.redsparkle.api.Capability.Player.spechial.SpechialFactoryProvider;
 import com.redsparkle.api.Capability.Player.water.WaterFactoryProvider;
+import com.redsparkle.api.Capability.block.Locks.LockFactoryProvider;
 import com.redsparkle.api.items.helpers.Item_Instances.Item_AmmoHolder;
 import com.redsparkle.api.items.helpers.Item_Instances.Item_Firearm;
 import com.redsparkle.api.items.helpers.Item_Instances.Item_SaddleBagAmmo;
 import com.redsparkle.api.items.helpers.Item_Instances.Item_SaggleBagGun;
 import com.redsparkle.api.utils.PlayerParamsSetup;
+import com.redsparkle.foe.Init.ModBlocks;
 import com.redsparkle.foe.Init.PotionInit;
 import com.redsparkle.foe.main;
+import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -61,6 +64,14 @@ public class EventHandlerPre {
         }
     }
 
+
+    @SubscribeEvent
+    public void onAddCapabilitiesBlock(AttachCapabilitiesEvent<Block> event) {
+        if (event.getObject() == ModBlocks.SAFE.getBLOCK()) {
+            event.addCapability(new ResourceLocation(main.MODID + ":lock_capability"), new LockFactoryProvider());
+        }
+
+    }
     @SubscribeEvent
     public void onAddCapabilitiesItemStack(AttachCapabilitiesEvent<ItemStack> e) {
         if (e.getObject().getItem() instanceof Item_AmmoHolder || e.getObject().getItem() instanceof Item_SaddleBagAmmo) {
