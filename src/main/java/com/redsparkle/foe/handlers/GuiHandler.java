@@ -7,6 +7,7 @@ import com.redsparkle.foe.gui.Menus.pipbuck_gui_extenders.DATA.DataGui;
 import com.redsparkle.foe.gui.Menus.pipbuck_gui_extenders.ITEMS.InventoryGui;
 import com.redsparkle.foe.gui.general.LvlUpGui;
 import com.redsparkle.foe.gui.general.StatsGuiFirstJoin;
+import com.redsparkle.foe.gui.mini_games.Lockpicking_screen;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.IGuiHandler;
@@ -23,6 +24,7 @@ public class GuiHandler implements IGuiHandler {
     public static final int PIPBUCK_GUI_DATA = 3;
     public static final int FIRTS_TIME_LVLUP = 4;
     public static final int ADV_Inv = 5;
+    public static final int Lockpicking_minigame = 6;
 
     @Nullable
     @Override
@@ -53,6 +55,9 @@ public class GuiHandler implements IGuiHandler {
         }
         if (ID == ADV_Inv) {
             return new GUI_AdditionalInventory(player);
+        }
+        if (ID == Lockpicking_minigame) {
+            return new Lockpicking_screen(player);
         }
         return null;
     }
