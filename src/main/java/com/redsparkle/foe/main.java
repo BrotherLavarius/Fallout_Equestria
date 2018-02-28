@@ -4,7 +4,10 @@ import com.redsparkle.foe.Init.InitCreativeTabs;
 import com.redsparkle.foe.commands.ammo_fill;
 import com.redsparkle.foe.commands.rpSkillCheck;
 import com.redsparkle.foe.network.ClientServerOneClass.*;
-import com.redsparkle.foe.network.*;
+import com.redsparkle.foe.network.MessageClientPlaySound;
+import com.redsparkle.foe.network.MessageUpdateSLSClientOnDemand;
+import com.redsparkle.foe.network.MessageUpdateSLSServerReplyOnDemand;
+import com.redsparkle.foe.network.UnifiedMessage;
 import com.sun.media.jfxmedia.logging.Logger;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraftforge.common.MinecraftForge;
@@ -62,7 +65,6 @@ public class main {
         simpleNetworkWrapper = NetworkRegistry.INSTANCE.newSimpleChannel("FOE Network Channel");
         simpleNetworkWrapper.registerMessage(MessageUpdateClientRads.Handler.class, MessageUpdateClientRads.class, message_start_index, Side.CLIENT);
         simpleNetworkWrapper.registerMessage(MessageUpdateClientWater.HandlerClient.class, MessageUpdateClientWater.class, message_start_index++, Side.CLIENT);
-        simpleNetworkWrapper.registerMessage(MessageGunReload.HandlerServer.class, MessageGunReload.class, message_start_index++, Side.SERVER);
         simpleNetworkWrapper.registerMessage(MessageUpdateClientServerSPECHIAL.HandlerClient.class, MessageUpdateClientServerSPECHIAL.class, message_start_index++, Side.CLIENT);
         simpleNetworkWrapper.registerMessage(MessageUpdateClientServerSPECHIAL.HandlerServer.class, MessageUpdateClientServerSPECHIAL.class, message_start_index++, Side.SERVER);
 

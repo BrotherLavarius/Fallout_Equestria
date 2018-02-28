@@ -27,8 +27,9 @@ public class UnifiedMessage implements IMessage {
      * "param_two": ""
      * }
      * }
+     *
      * or
-     * <p>
+     *
      * {
      * "type": "type of message",
      * "details": ""
@@ -67,7 +68,6 @@ public class UnifiedMessage implements IMessage {
         public IMessage onMessage(UnifiedMessage message, MessageContext ctx) {
             JsonObject object = new JsonParser().parse(message.json).getAsJsonObject();
             UnifiedProcessor.GP(object, ctx, "client");
-            // ClientOnlyProxy.MessageGunFire_hadnler(message, ctx);
             return null;
         }
     }

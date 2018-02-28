@@ -21,7 +21,6 @@ import com.redsparkle.api.utils.Lvlutil;
 import com.redsparkle.api.utils.PlayerParamsSetup;
 import com.redsparkle.foe.events.ServerSIdeONly.EventHandlerServerSidePre;
 import com.redsparkle.foe.network.ClientServerOneClass.*;
-import com.redsparkle.foe.network.MessageGunReload;
 import com.redsparkle.foe.network.MessageUpdateSLSServerReplyOnDemand;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.player.EntityPlayer;
@@ -164,47 +163,47 @@ public class DedicatedServerProxy extends CommonProxy {
         EntityPlayerMP player = ctx.getServerHandler().player;
         IThreadListener mainThread = (WorldServer) ctx.getServerHandler().player.world;
         mainThread.addScheduledTask(() -> {
-
-            if (message.get("detail").toString().equalsIgnoreCase("gun_main")) {
+            String gunType = message.get("detail").getAsString();
+            if (gunType.equalsIgnoreCase("gun_main")) {
                 if (!player.isCreative() && player.getHeldItemMainhand().getCapability(GunFactoryProvider.GUN, null).getAmmo() > 0) {
                     player.getHeldItemMainhand().getCapability(GunFactoryProvider.GUN, null).removeAmmo(1);
                     player.getHeldItemMainhand().setItemDamage(player.getHeldItemMainhand().getItemDamage() + 1);
-                    GunFire.GunFire(player.world, player, message.get("detail").toString());
+                    GunFire.GunFire(player.world, player, gunType);
                 } else if (player.isCreative()) {
-                    GunFire.GunFire(player.world, player, message.get("detail").toString());
+                    GunFire.GunFire(player.world, player, gunType);
                 }
 
             }
-            if (message.get("detail").toString().equalsIgnoreCase("gun_saddlebagLS")) {
+            if (gunType.equalsIgnoreCase("gun_saddlebagLS")) {
 
                 if (!player.isCreative() && player.getCapability(IAdvProvider.Adv_Inv, null).getStackInSlot(6).getCapability(GunFactoryProvider.GUN, null).getAmmo() > 0) {
                     player.getCapability(IAdvProvider.Adv_Inv, null).getStackInSlot(6).getCapability(GunFactoryProvider.GUN, null).removeAmmo(1);
                     player.getCapability(IAdvProvider.Adv_Inv, null).getStackInSlot(6).setItemDamage(player.getCapability(IAdvProvider.Adv_Inv, null).getStackInSlot(6).getItemDamage() + 1);
-                    GunFire.GunFire(player.world, player, message.get("detail").toString());
+                    GunFire.GunFire(player.world, player, gunType);
                 } else if (player.isCreative()) {
-                    GunFire.GunFire(player.world, player, message.get("detail").toString());
+                    GunFire.GunFire(player.world, player, gunType);
                 }
             }
 
-            if (message.get("detail").toString().equalsIgnoreCase("gun_saddlebagRS")) {
+            if (gunType.equalsIgnoreCase("gun_saddlebagRS")) {
                 if (!player.isCreative() && player.getCapability(IAdvProvider.Adv_Inv, null).getStackInSlot(7).getCapability(GunFactoryProvider.GUN, null).getAmmo() > 0) {
                     player.getCapability(IAdvProvider.Adv_Inv, null).getStackInSlot(7).getCapability(GunFactoryProvider.GUN, null).removeAmmo(1);
                     player.getCapability(IAdvProvider.Adv_Inv, null).getStackInSlot(7).setItemDamage(player.getCapability(IAdvProvider.Adv_Inv, null).getStackInSlot(7).getItemDamage() + 1);
-                    GunFire.GunFire(player.world, player, message.get("detail").toString());
+                    GunFire.GunFire(player.world, player, gunType);
                 } else if (player.isCreative()) {
-                    GunFire.GunFire(player.world, player, message.get("detail").toString());
+                    GunFire.GunFire(player.world, player, gunType);
                 }
             }
 
         });
     }
 
-    public static void MessageGunReload_handler(MessageGunReload message, MessageContext ctx) {
+    public static void MessageGunReload_handler(JsonObject message, MessageContext ctx) {
         EntityPlayerMP player = ctx.getServerHandler().player;
         IThreadListener mainThread = (WorldServer) ctx.getServerHandler().player.world;
         mainThread.addScheduledTask(() -> {
 
-            Reload.reload_processor(player, message.type);
+            Reload.reload_processor(player, message.get("detail").getAsString());
         });
     }
 

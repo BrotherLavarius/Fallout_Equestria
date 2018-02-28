@@ -1,5 +1,6 @@
 package com.redsparkle.foe.keys;
 
+import com.google.gson.JsonObject;
 import com.redsparkle.api.Capability.Player.Inventory.IAdvProvider;
 import com.redsparkle.api.Capability.Player.saddlegun_shooting.ITrigger_item;
 import com.redsparkle.api.Capability.Player.saddlegun_shooting.ITrigger_item_Provider;
@@ -10,8 +11,8 @@ import com.redsparkle.foe.ClientOnlyProxy;
 import com.redsparkle.foe.main;
 import com.redsparkle.foe.network.ClientServerOneClass.MessageAdvInv;
 import com.redsparkle.foe.network.ClientServerOneClass.MessageUpdateClientTrigger_Item;
-import com.redsparkle.foe.network.MessageGunReload;
 import com.redsparkle.foe.network.MessageUpdateSLSClientOnDemand;
+import com.redsparkle.foe.network.UnifiedMessage;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.init.Items;
@@ -85,17 +86,26 @@ public class KeyInputHandler {
 
         if (keyHandler.reload.isPressed()) {
             if (player.getHeldItemMainhand().getItem() instanceof Item_Firearm) {
-                main.simpleNetworkWrapper.sendToServer(new MessageGunReload("gun_main"));
+                JsonObject message = new JsonObject();
+                message.addProperty("type", "gun_reload");
+                message.addProperty("detail", "gun_main");
+                main.simpleNetworkWrapper.sendToServer(new UnifiedMessage(message));
             }
         }
         if (keyHandler.reloadLSB.isPressed()) {
             if (player.getCapability(IAdvProvider.Adv_Inv, null).getStackInSlot(6).getItem() != Items.AIR) {
-                main.simpleNetworkWrapper.sendToServer(new MessageGunReload("gun_saddlebagLS"));
+                JsonObject message = new JsonObject();
+                message.addProperty("type", "gun_reload");
+                message.addProperty("detail", "gun_saddlebagLS");
+                main.simpleNetworkWrapper.sendToServer(new UnifiedMessage(message));
             }
         }
         if (keyHandler.reloadRSB.isPressed()) {
             if (player.getCapability(IAdvProvider.Adv_Inv, null).getStackInSlot(7).getItem() != Items.AIR) {
-                main.simpleNetworkWrapper.sendToServer(new MessageGunReload("gun_saddlebagRS"));
+                JsonObject message = new JsonObject();
+                message.addProperty("type", "gun_reload");
+                message.addProperty("detail", "gun_saddlebagRS");
+                main.simpleNetworkWrapper.sendToServer(new UnifiedMessage(message));
             }
         }
 

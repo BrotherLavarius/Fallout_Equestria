@@ -40,13 +40,19 @@ public class UnifiedProcessor {
 
         } else if (side.equalsIgnoreCase("server")) {
             DedicatedServerProxy.MessageGunFire_handler(process, ctx);
-
         }
 
 
     }
 
     private static void GUNReload(JsonObject process, MessageContext ctx, String side) {
+        if (side.equalsIgnoreCase("client")) {
+
+        } else if (side.equalsIgnoreCase("server")) {
+            DedicatedServerProxy.MessageGunReload_handler(process, ctx);
+        }
+
+
     }
 
     private static void CAPAProcessor(JsonObject process, MessageContext ctx, String side) {
