@@ -1,5 +1,6 @@
 package com.redsparkle.foe;
 
+import com.google.gson.JsonObject;
 import com.redsparkle.api.Capability.Items.Ammo.AmmoFactoryProvider;
 import com.redsparkle.api.Capability.Items.Ammo.IAmmoInterface;
 import com.redsparkle.api.Capability.Items.Gun.GunFactoryProvider;
@@ -18,7 +19,6 @@ import com.redsparkle.api.Capability.Player.spechial.ISpechialCapability;
 import com.redsparkle.api.Capability.Player.spechial.SpechialFactoryProvider;
 import com.redsparkle.api.Capability.Player.water.IWaterCapability;
 import com.redsparkle.api.Capability.Player.water.WaterFactoryProvider;
-import com.redsparkle.api.items.helpers.guns.GunFire;
 import com.redsparkle.foe.Init.GlobalsGunStats;
 import com.redsparkle.foe.Init.SoundInit;
 import com.redsparkle.foe.events.ClientSide.CommonEventHandler;
@@ -30,8 +30,8 @@ import com.redsparkle.foe.keys.KeyInputHandler;
 import com.redsparkle.foe.keys.keyHandler;
 import com.redsparkle.foe.network.ClientServerOneClass.*;
 import com.redsparkle.foe.network.MessageClientPlaySound;
-import com.redsparkle.foe.network.MessageGunFire;
 import com.redsparkle.foe.network.MessageUpdateSLSServerReplyOnDemand;
+import com.redsparkle.foe.network.UnifiedMessage;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityOtherPlayerMP;
 import net.minecraft.client.entity.EntityPlayerSP;
@@ -91,19 +91,8 @@ public class ClientOnlyProxy extends CommonProxy {
         Minecraft.getMinecraft().addScheduledTask(() -> {
             EntityPlayer player = Minecraft.getMinecraft().player;
             ISkillsCapability skills = SkillsFactoryProvider.instanceFor(player);
-            skills.setMagic(message.skills.get(0));
-            skills.setMelee(message.skills.get(1));
-            skills.setFirearms(message.skills.get(2));
-            skills.setEnergyWeapons(message.skills.get(3));
-            skills.setSaddlebag_guns(message.skills.get(4));
-            skills.setExplosives(message.skills.get(5));
-            skills.setRepair(message.skills.get(6));
-            skills.setMedicine(message.skills.get(7));
-            skills.setLockpick(message.skills.get(8));
-            skills.setScience(message.skills.get(9));
-            skills.setSneak(message.skills.get(10));
-            skills.setBarter(message.skills.get(11));
-            skills.setSurvival(message.skills.get(12));
+            skills.setAttribute(message.map);
+
             /** DEBUG MESSAGE ENABLER
              * System.out.println("Client: "+message.radiation);
              */
@@ -129,16 +118,13 @@ public class ClientOnlyProxy extends CommonProxy {
 
             EntityPlayer player = mc.player;
 
-            if (type.equalsIgnoreCase("gun_main")) {
-                main.simpleNetworkWrapper.sendToServer(new MessageGunFire("gun_main"));
-            }
-            if (type.equalsIgnoreCase("gun_saddlebagRS")) {
-                main.simpleNetworkWrapper.sendToServer(new MessageGunFire("gun_saddlebagRS"));
-            }
-            if (type.equalsIgnoreCase("gun_saddlebagLS")) {
-                main.simpleNetworkWrapper.sendToServer(new MessageGunFire("gun_saddlebagLS"));
-            }
+            if (type.matches("gun_main|gun_saddlebagRS|gun_saddlebagLS")) {
 
+                JsonObject message = new JsonObject();
+                message.addProperty("type", "gun_fire");
+                message.addProperty("detail", type.toString());
+                main.simpleNetworkWrapper.sendToServer(new UnifiedMessage(message));
+            }
         });
     }
 
@@ -301,13 +287,6 @@ public class ClientOnlyProxy extends CommonProxy {
     }
 
 
-    public static void MessageGunFire_hadnler(MessageGunFire message, MessageContext ctx) {
-        IThreadListener mainThread = Minecraft.getMinecraft();
-        EntityPlayer player = Minecraft.getMinecraft().player;
-        mainThread.addScheduledTask(() -> {
-            GunFire.GunFire_clienHandler(player.world, player, message.type, message.x, message.y, message.z, message.xHeading, message.yHeading, message.zHeading, message.vel, message.inac);
-        });
-    }
 
 
     public void preInit() {

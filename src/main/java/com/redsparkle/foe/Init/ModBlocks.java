@@ -2,7 +2,6 @@ package com.redsparkle.foe.Init;
 
 import com.redsparkle.api.utils.GlobalNames;
 import com.redsparkle.foe.block.*;
-import com.redsparkle.foe.safe_TE;
 
 /**
  * Created by hoijima on 18.12.17.

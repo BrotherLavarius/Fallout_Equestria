@@ -1,6 +1,8 @@
 package com.redsparkle.api.items.helpers.guns;
 
 import com.redsparkle.api.Capability.Player.Inventory.IAdvProvider;
+import com.redsparkle.api.Capability.Player.skills.ISkillsCapability;
+import com.redsparkle.api.Capability.Player.skills.Skill_names;
 import com.redsparkle.api.Capability.Player.skills.SkillsFactoryProvider;
 import com.redsparkle.api.items.helpers.Item_Instances.Item_Firearm;
 import com.redsparkle.api.items.helpers.Item_Instances.Item_SaggleBagGun;
@@ -31,60 +33,25 @@ public class GunFire {
     static DecimalFormat df = new DecimalFormat("#.0");
 
 
-    public static void GunFire_clienHandler(World worldln, EntityPlayer player, int type, double x, double y, double z, double xHeading, double yHeading, double zHeading, float vel, float inac) {
+    public static void GunFire(World world, EntityPlayer player, String type) {
 
-        if (type == 80) {
-            bullet(worldln, player, null, null, 0, x, y, z, xHeading, yHeading, zHeading, vel, inac, false);
-        }
-        if (type == 81) {
-            pellet(worldln, player, null, null, 0, x, y, z, xHeading, yHeading, zHeading, vel, inac, false);
-        }
-        if (type == 82) {
-            laser(worldln, player, null, null, 0, false, x, y, z, xHeading, yHeading, zHeading, vel, inac, false);
-        }
-        if (type == 83) {
-            laser(worldln, player, null, null, 0, true, x, y, z, xHeading, yHeading, zHeading, vel, inac, false);
-
-        }
-        if (type == 84) {
-            flame(worldln, player, null, null, 0, x, y, z, xHeading, yHeading, zHeading, vel, inac, false);
-
-        }
-        if (type == 85) {
-            flare(worldln, player, null, null, 0, x, y, z, xHeading, yHeading, zHeading, vel, inac, false);
-
-        }
-        //CUSTOM TYPES
-        if (type == 86) {
-            bass(worldln, player, null, null, 0, x, y, z, xHeading, yHeading, zHeading, vel, inac, false);
-        }
-
-
-    }
-
-    public static void GunFire(World world, EntityPlayer player, int type) {
-
-        if (type == 0) {
+        if (type.equalsIgnoreCase("gun_main")) {
 
             Item_Firearm gun = (Item_Firearm) player.getHeldItemMainhand().getItem();
 
             projectyleType(gun, world, player, type);
         }
-        if (type >= 10 && type <= 29) {
+        if (type.equalsIgnoreCase("gun_saddlebagLS")) {
+            Item_SaggleBagGun gun = (Item_SaggleBagGun) player.getCapability(IAdvProvider.Adv_Inv, null).getStackInSlot(6).getItem();
 
-
-            if (type == 10) {
-                Item_SaggleBagGun gun = (Item_SaggleBagGun) player.getCapability(IAdvProvider.Adv_Inv, null).getStackInSlot(6).getItem();
-
-                projectyleType(gun, world, player, type);
-            }
-
-            if (type == 20) {
-                Item_SaggleBagGun gun = (Item_SaggleBagGun) player.getCapability(IAdvProvider.Adv_Inv, null).getStackInSlot(7).getItem();
-
-                projectyleType(gun, world, player, type);
-            }
+            projectyleType(gun, world, player, type);
         }
+        if (type.equalsIgnoreCase("gun_saddlebagRS")) {
+            Item_SaggleBagGun gun = (Item_SaggleBagGun) player.getCapability(IAdvProvider.Adv_Inv, null).getStackInSlot(7).getItem();
+
+            projectyleType(gun, world, player, type);
+        }
+        
 
 
     }
@@ -98,11 +65,11 @@ public class GunFire {
     }
 
 
-    public static void bullet(World worldIn, EntityPlayer playerIn, Item item, GlobalsGunStats params, int type, double x, double y, double z, double xHeading, double yHeading, double zHeading, float vel, float inac, boolean remote) {
+    public static void bullet(World worldIn, EntityPlayer playerIn, Item item, GlobalsGunStats params, String type, double x, double y, double z, double xHeading, double yHeading, double zHeading, float vel, float inac, boolean remote) {
 
 
         if (remote) {
-            int damage_firearms = playerIn.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getFirearms();
+            int damage_firearms = getSkills(playerIn).getAttribute(Skill_names.FIREARMS.getName());
             EntityBullet bullet = new EntityBullet(worldIn, playerIn);
 
             Float inaccuracy =  params.getInaccuracy() / damage_firearms;
@@ -115,9 +82,9 @@ public class GunFire {
 
     }
 
-    public static void pellet(World worldIn, EntityPlayer playerIn, Item item, GlobalsGunStats params, int type, double x, double y, double z, double xHeading, double yHeading, double zHeading, float vel, float inac, boolean remote) {
+    public static void pellet(World worldIn, EntityPlayer playerIn, Item item, GlobalsGunStats params, String type, double x, double y, double z, double xHeading, double yHeading, double zHeading, float vel, float inac, boolean remote) {
         if (remote) {
-            int damage_firearms = playerIn.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getFirearms();
+            int damage_firearms = getSkills(playerIn).getAttribute(Skill_names.FIREARMS.getName());
             Pellet[] pellets = new Pellet[]{new Pellet_one(worldIn, playerIn), new Pellet_two(worldIn, playerIn), new Pellet_tree(worldIn, playerIn), new Pellet_four(worldIn, playerIn), new Pellet_five(worldIn, playerIn), new Pellet_six(worldIn, playerIn)};
             for (int i = 0; i <= (pellets.length - 1); i++) {
                 pellets[i].shoot(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, params.getVelocity(), params.getInaccuracy() / damage_firearms);
@@ -131,14 +98,14 @@ public class GunFire {
         }
     }
 
-    public static void laser(World worldIn, EntityPlayer playerIn, Item item, GlobalsGunStats params, int type, boolean plasma, double x, double y, double z, double xHeading, double yHeading, double zHeading, float vel, float inac, boolean remote) {
+    public static void laser(World worldIn, EntityPlayer playerIn, Item item, GlobalsGunStats params, String type, boolean plasma, double x, double y, double z, double xHeading, double yHeading, double zHeading, float vel, float inac, boolean remote) {
         int sp_type = 82;
         if (plasma) {
             sp_type = 83;
         }
         if (remote) {
-            float damage_magic_modif = playerIn.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getMagic();
-            float damage_laser_weapons = playerIn.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getEnergyWeapons();
+            float damage_magic_modif = getSkills(playerIn).getAttribute(Skill_names.MAGIC.getName());
+            float damage_laser_weapons = getSkills(playerIn).getAttribute(Skill_names.ENERGY_WEAPONS.getName());
             EntityLaser laser = new EntityLaser(worldIn, playerIn, plasma);
             laser.shoot(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, params.getVelocity(), params.getInaccuracy() / (damage_magic_modif + damage_laser_weapons));
             laser.setRenderYawOffset(params.getYawOffset());
@@ -151,9 +118,9 @@ public class GunFire {
         }
     }
 
-    public static void flame(World worldIn, EntityPlayer playerIn, Item item, GlobalsGunStats params, int type, double x, double y, double z, double xHeading, double yHeading, double zHeading, float vel, float inac, boolean remote) {
+    public static void flame(World worldIn, EntityPlayer playerIn, Item item, GlobalsGunStats params, String type, double x, double y, double z, double xHeading, double yHeading, double zHeading, float vel, float inac, boolean remote) {
         if (remote) {
-            int damage_firearms = playerIn.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getFirearms();
+            int damage_firearms = getSkills(playerIn).getAttribute(Skill_names.FIREARMS.getName());
             EntityFlame flame = new EntityFlame(worldIn, playerIn);
             flame.shoot(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, params.getVelocity(), params.getInaccuracy() / damage_firearms);
             flame.setRenderYawOffset(params.getYawOffset());
@@ -166,9 +133,9 @@ public class GunFire {
 
     }
 
-    public static void flare(World worldIn, EntityPlayer playerIn, Item item, GlobalsGunStats params, int type, double x, double y, double z, double xHeading, double yHeading, double zHeading, float vel, float inac, boolean remote) {
+    public static void flare(World worldIn, EntityPlayer playerIn, Item item, GlobalsGunStats params, String type, double x, double y, double z, double xHeading, double yHeading, double zHeading, float vel, float inac, boolean remote) {
         if (remote) {
-            int damage_firearms = playerIn.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getFirearms();
+            int damage_firearms = getSkills(playerIn).getAttribute(Skill_names.FIREARMS.getName());
             EntityFlare flare = new EntityFlare(worldIn, playerIn);
 
             flare.shoot(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, params.getVelocity(), params.getInaccuracy() / damage_firearms);
@@ -182,9 +149,9 @@ public class GunFire {
     }
 
 
-    public static void bass(World worldIn, EntityPlayer playerIn, Item item, GlobalsGunStats params, int type, double x, double y, double z, double xHeading, double yHeading, double zHeading, float vel, float inac, boolean remote) {
+    public static void bass(World worldIn, EntityPlayer playerIn, Item item, GlobalsGunStats params, String type, double x, double y, double z, double xHeading, double yHeading, double zHeading, float vel, float inac, boolean remote) {
         if (remote) {
-            int damage_firearms = playerIn.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getFirearms();
+            int damage_firearms = getSkills(playerIn).getAttribute(Skill_names.FIREARMS.getName());
             EntityBass bass = new EntityBass(worldIn, playerIn);
 
             bass.shoot(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, params.getVelocity(), params.getInaccuracy() / damage_firearms);
@@ -197,27 +164,31 @@ public class GunFire {
 
     }
 
-    public static void SendSoundMessage(EntityPlayer playerIn, String gunname, double x, double y, double z, int type) {
-        if (type == 0) {
+    public static void SendSoundMessage(EntityPlayer playerIn, String gunname, double x, double y, double z, String type) {
+        if (type.equalsIgnoreCase("gun_main")) {
             main.simpleNetworkWrapper.sendToAllAround(new MessageClientPlaySound("gun|main|" + gunname + "|fire", x + "," + y + "," + z), new NetworkRegistry.TargetPoint(0, x, y, z, 30.0));
             main.simpleNetworkWrapper.sendTo(new MessageClientPlaySound("gun|main|" + gunname + "|fire", x + "," + y + "," + z), (EntityPlayerMP) playerIn);
         }
-        if (type == 10) {
+        if (type.equalsIgnoreCase("gun_saddlebagLS")) {
             main.simpleNetworkWrapper.sendToAllAround(new MessageClientPlaySound("gun|saddlebagLS|" + gunname + "|fire", x + "," + y + "," + z), new NetworkRegistry.TargetPoint(0, x, y, z, 30.0));
             main.simpleNetworkWrapper.sendTo(new MessageClientPlaySound("gun|saddlebagLS|" + gunname + "|fire", x + "," + y + "," + z), (EntityPlayerMP) playerIn);
         }
-        if (type == 20) {
+        if (type.equalsIgnoreCase("gun_saddlebagRS")) {
             main.simpleNetworkWrapper.sendToAllAround(new MessageClientPlaySound("gun|saddlebagRS|" + gunname + "|fire", x + "," + y + "," + z), new NetworkRegistry.TargetPoint(0, x, y, z, 30.0));
             main.simpleNetworkWrapper.sendTo(new MessageClientPlaySound("gun|saddlebagRS|" + gunname + "|fire", x + "," + y + "," + z), (EntityPlayerMP) playerIn);
         }
     }
 
-    public static void SendRenderMessage(EntityPlayer playerIn, GlobalsGunStats params, int type, int sp_type) {
+    public static void SendRenderMessage(EntityPlayer playerIn, GlobalsGunStats params, String type, int sp_type) {
         SendSoundMessage(playerIn, params.getGunName(), playerIn.getPosition().getX(), playerIn.getPosition().getY(), playerIn.getPosition().getZ(), type);
         //main.simpleNetworkWrapper.sendToAllAround(new MessageGunFire(sp_type,xPl,yPl,zPl,xHeading,yHeading,zHeading,params.getVelocity(),1.5F),new NetworkRegistry.TargetPoint(0,  xPl,  yPl,  zPl, 120.0));
 
     }
 
+    public static ISkillsCapability getSkills(EntityPlayer playerIn) {
+        return playerIn.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null);
+
+    }
     /**
      * int Damage;
      * int Clipsize;
@@ -228,7 +199,7 @@ public class GunFire {
      * boolean autofireSupport;
      * String ProjectileType;
      **/
-    public static void projectyleType(Item item, World world, EntityPlayer player, int type) {
+    public static void projectyleType(Item item, World world, EntityPlayer player, String type) {
         String projectileType = "";
         GlobalsGunStats params = null;
         if (item instanceof Item_Firearm) {
@@ -264,21 +235,5 @@ public class GunFire {
         }
     }
 
-    public static String incode_type(int type) {
-        if (type == 0) {
-            return "gun_main";
-        }
-
-        if (type == 10) {
-            return "gun_saddlebagLS";
-        }
-
-        if (type == 20) {
-            return "gun_saddlebagRS";
-        }
-
-
-        return "could not process :(";
-    }
 
 }

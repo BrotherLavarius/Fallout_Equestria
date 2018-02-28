@@ -1,5 +1,6 @@
 package com.redsparkle.foe.gui.mini_games;
 
+import com.redsparkle.api.Capability.Player.skills.Skill_names;
 import com.redsparkle.api.Capability.Player.skills.SkillsFactoryProvider;
 import com.redsparkle.api.Capability.block.Locks.LockFactoryProvider;
 import com.redsparkle.api.Capability.block.Locks.LockInterface;
@@ -27,7 +28,7 @@ public class Lockpicking_screen extends GuiScreen {
     }
 
     public Lockpicking_screen(EntityPlayer player, TileEntity block) {
-        lockingSkill = player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getLockpick();
+        lockingSkill = player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getAttribute(Skill_names.LOCK_PICKING.getName());
 
         if (block.hasCapability(LockFactoryProvider.LOCK_CAPABILITY, null)) {
             LockInterface lockstats = block.getCapability(LockFactoryProvider.LOCK_CAPABILITY, null);

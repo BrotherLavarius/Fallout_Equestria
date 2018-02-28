@@ -1,5 +1,6 @@
 package com.redsparkle.foe;
 
+import com.google.gson.JsonObject;
 import com.redsparkle.api.Capability.Items.Gun.GunFactoryProvider;
 import com.redsparkle.api.Capability.Player.Inventory.IAdvInventory;
 import com.redsparkle.api.Capability.Player.Inventory.IAdvProvider;
@@ -20,7 +21,6 @@ import com.redsparkle.api.utils.Lvlutil;
 import com.redsparkle.api.utils.PlayerParamsSetup;
 import com.redsparkle.foe.events.ServerSIdeONly.EventHandlerServerSidePre;
 import com.redsparkle.foe.network.ClientServerOneClass.*;
-import com.redsparkle.foe.network.MessageGunFire;
 import com.redsparkle.foe.network.MessageGunReload;
 import com.redsparkle.foe.network.MessageUpdateSLSServerReplyOnDemand;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -56,35 +56,8 @@ public class DedicatedServerProxy extends CommonProxy {
     }
 
     public static void handleSkillsMessage(MessageUpdateClientServerSkills message, EntityPlayerMP playerEntity) {
-        /**
-         Magic
-         Melee_Weapons
-         Firearms
-         EneryWeapons
-         Saddlebag_Guns
-         Explosives
-         Repair
-         Medicine
-         Lockpicking
-         Science
-         Sneak
-         Barter
-         Survival
-         */
         ISkillsCapability skills = SkillsFactoryProvider.instanceFor(playerEntity);
-        skills.setMagic(message.skills.get(0));
-        skills.setMelee(message.skills.get(1));
-        skills.setFirearms(message.skills.get(2));
-        skills.setEnergyWeapons(message.skills.get(3));
-        skills.setSaddlebag_guns(message.skills.get(4));
-        skills.setExplosives(message.skills.get(5));
-        skills.setRepair(message.skills.get(6));
-        skills.setMedicine(message.skills.get(7));
-        skills.setLockpick(message.skills.get(8));
-        skills.setScience(message.skills.get(9));
-        skills.setSneak(message.skills.get(10));
-        skills.setBarter(message.skills.get(11));
-        skills.setSurvival(message.skills.get(12));
+        skills.setAttribute(message.map);
 
     }
 
@@ -124,53 +97,22 @@ public class DedicatedServerProxy extends CommonProxy {
         ISkillsCapability skills = SkillsFactoryProvider.instanceFor(player);
         ILevelCapability level = LevelFactoryProvider.instanceFor(player);
         ISpechialCapability spechial = SpechialFactoryProvider.instanceFor(player);
-        int summ = (
-                message.skills.get(0) +
-                        message.skills.get(1) +
-                        message.skills.get(2) +
-                        message.skills.get(3) +
-                        message.skills.get(4) +
-                        message.skills.get(5) +
-                        message.skills.get(6) +
-                        message.skills.get(7) +
-                        message.skills.get(8) +
-                        message.skills.get(9) +
-                        message.skills.get(10) +
-                        message.skills.get(11) +
-                        message.skills.get(12)
-        ) - 120;
-        int prevSumm = (
-                skills.getMagic() +
-                        skills.getMelee() +
-                        skills.getFirearms() +
-                        skills.getEnergyWeapons() +
-                        skills.getSaddlebag_guns() +
-                        skills.getExplosives() +
-                        skills.getRepair() +
-                        skills.getMedicine() +
-                        skills.getLockpick() +
-                        skills.getScience() +
-                        skills.getSneak() +
-                        skills.getBarter() +
-                        skills.getSurvival()
-        ) - 120;
+        int summ = 0;
+        int prevSumm = 0;
+
+        for (int f : message.map.values()) {
+            summ += f;
+        }
+        summ = summ - 120;
+        for (int f : skills.getFullMap().values()) {
+            prevSumm += f;
+        }
+        prevSumm = prevSumm - 120;
         if (Lvlutil.ponitsAvailable(
                 player.getCapability(LevelFactoryProvider.LEVEL_CAPABILITY, null).getLevel(),
                 player.getCapability(LevelFactoryProvider.LEVEL_CAPABILITY, null).getProgress()) + prevSumm == summ
                 ) {
-            skills.setMagic(message.skills.get(0));
-            skills.setMelee(message.skills.get(1));
-            skills.setFirearms(message.skills.get(2));
-            skills.setEnergyWeapons(message.skills.get(3));
-            skills.setSaddlebag_guns(message.skills.get(4));
-            skills.setExplosives(message.skills.get(5));
-            skills.setRepair(message.skills.get(6));
-            skills.setMedicine(message.skills.get(7));
-            skills.setLockpick(message.skills.get(8));
-            skills.setScience(message.skills.get(9));
-            skills.setSneak(message.skills.get(10));
-            skills.setBarter(message.skills.get(11));
-            skills.setSurvival(message.skills.get(12));
+            skills.setAttribute(message.map);
             level.setLevel((summ / 10));
             skills.updateClient(player);
             level.updateClient(player);
@@ -218,45 +160,42 @@ public class DedicatedServerProxy extends CommonProxy {
         main.simpleNetworkWrapper.sendTo(new MessageUpdateClientTrigger_Item(status), player);
     }
 
-    public static void MessageGunFire_handler(MessageGunFire message, MessageContext ctx) {
+    public static void MessageGunFire_handler(JsonObject message, MessageContext ctx) {
         EntityPlayerMP player = ctx.getServerHandler().player;
         IThreadListener mainThread = (WorldServer) ctx.getServerHandler().player.world;
         mainThread.addScheduledTask(() -> {
 
-            if (message.type == 0) {
+            if (message.get("detail").toString().equalsIgnoreCase("gun_main")) {
                 if (!player.isCreative() && player.getHeldItemMainhand().getCapability(GunFactoryProvider.GUN, null).getAmmo() > 0) {
                     player.getHeldItemMainhand().getCapability(GunFactoryProvider.GUN, null).removeAmmo(1);
                     player.getHeldItemMainhand().setItemDamage(player.getHeldItemMainhand().getItemDamage() + 1);
-                    GunFire.GunFire(player.world, player, message.type);
+                    GunFire.GunFire(player.world, player, message.get("detail").toString());
                 } else if (player.isCreative()) {
-                    GunFire.GunFire(player.world, player, message.type);
+                    GunFire.GunFire(player.world, player, message.get("detail").toString());
                 }
 
             }
+            if (message.get("detail").toString().equalsIgnoreCase("gun_saddlebagLS")) {
 
-            if (message.type >= 10 & message.type <= 29) {
-
-
-                if (message.type == 10) {
-                    if (!player.isCreative() && player.getCapability(IAdvProvider.Adv_Inv, null).getStackInSlot(6).getCapability(GunFactoryProvider.GUN, null).getAmmo() > 0) {
-                        player.getCapability(IAdvProvider.Adv_Inv, null).getStackInSlot(6).getCapability(GunFactoryProvider.GUN, null).removeAmmo(1);
-                        player.getCapability(IAdvProvider.Adv_Inv, null).getStackInSlot(6).setItemDamage(player.getCapability(IAdvProvider.Adv_Inv, null).getStackInSlot(6).getItemDamage() + 1);
-                        GunFire.GunFire(player.world, player, message.type);
-                    } else if (player.isCreative()) {
-                        GunFire.GunFire(player.world, player, message.type);
-                    }
-                }
-
-                if (message.type == 20) {
-                    if (!player.isCreative() && player.getCapability(IAdvProvider.Adv_Inv, null).getStackInSlot(7).getCapability(GunFactoryProvider.GUN, null).getAmmo() > 0) {
-                        player.getCapability(IAdvProvider.Adv_Inv, null).getStackInSlot(7).getCapability(GunFactoryProvider.GUN, null).removeAmmo(1);
-                        player.getCapability(IAdvProvider.Adv_Inv, null).getStackInSlot(7).setItemDamage(player.getCapability(IAdvProvider.Adv_Inv, null).getStackInSlot(7).getItemDamage() + 1);
-                        GunFire.GunFire(player.world, player, message.type);
-                    } else if (player.isCreative()) {
-                        GunFire.GunFire(player.world, player, message.type);
-                    }
+                if (!player.isCreative() && player.getCapability(IAdvProvider.Adv_Inv, null).getStackInSlot(6).getCapability(GunFactoryProvider.GUN, null).getAmmo() > 0) {
+                    player.getCapability(IAdvProvider.Adv_Inv, null).getStackInSlot(6).getCapability(GunFactoryProvider.GUN, null).removeAmmo(1);
+                    player.getCapability(IAdvProvider.Adv_Inv, null).getStackInSlot(6).setItemDamage(player.getCapability(IAdvProvider.Adv_Inv, null).getStackInSlot(6).getItemDamage() + 1);
+                    GunFire.GunFire(player.world, player, message.get("detail").toString());
+                } else if (player.isCreative()) {
+                    GunFire.GunFire(player.world, player, message.get("detail").toString());
                 }
             }
+
+            if (message.get("detail").toString().equalsIgnoreCase("gun_saddlebagRS")) {
+                if (!player.isCreative() && player.getCapability(IAdvProvider.Adv_Inv, null).getStackInSlot(7).getCapability(GunFactoryProvider.GUN, null).getAmmo() > 0) {
+                    player.getCapability(IAdvProvider.Adv_Inv, null).getStackInSlot(7).getCapability(GunFactoryProvider.GUN, null).removeAmmo(1);
+                    player.getCapability(IAdvProvider.Adv_Inv, null).getStackInSlot(7).setItemDamage(player.getCapability(IAdvProvider.Adv_Inv, null).getStackInSlot(7).getItemDamage() + 1);
+                    GunFire.GunFire(player.world, player, message.get("detail").toString());
+                } else if (player.isCreative()) {
+                    GunFire.GunFire(player.world, player, message.get("detail").toString());
+                }
+            }
+
         });
     }
 

@@ -19,6 +19,7 @@ import org.lwjgl.opengl.GL11;
 
 import java.io.IOException;
 import java.util.Collections;
+import java.util.List;
 
 /**
  * Created by hoijima on 3/4/2017.
@@ -80,7 +81,7 @@ public class PipBuckGui extends GuiScreen {
     public void drawScreen(int mouseX, int mouseY, float partialTicks) {
         int colorText = Color_and_Etc.rawColorFromRGB(ConfigInit.colorR, ConfigInit.colorG, ConfigInit.colorB);
 
-        Integer[] skills = PlayerStatsRequester.skills(mc.player);
+        List<Integer> skills = PlayerStatsRequester.skills(mc.player);
         Integer[] spechials = PlayerStatsRequester.spechials(mc.player);
         Integer[] playerParams = PlayerStatsRequester.lvl(mc.player);
         Integer[] player_RAD_WATER = PlayerStatsRequester.additionalStats(mc.player);
@@ -288,7 +289,7 @@ public class PipBuckGui extends GuiScreen {
                 if (Stats_SKILLS) {
                     for (int skillsFR = 0; skillsFR < 6; skillsFR++) {
                         this.fontRenderer.drawString(
-                                StatsGui.skillsNames[skillsFR] + " : " + Integer.toString(skills[skillsFR]),
+                                StatsGui.skillsNames[skillsFR] + " : " + Integer.toString(skills.get(skillsFR)),
                                 ScreenGrid.XCoordStart(
                                         this.width,
                                         2) + 165,
@@ -300,7 +301,7 @@ public class PipBuckGui extends GuiScreen {
                     }
                     for (int skillsSR = 6; skillsSR < 13; skillsSR++) {
                         this.fontRenderer.drawString(
-                                StatsGui.skillsNames[skillsSR] + " : " + Integer.toString(skills[skillsSR]),
+                                StatsGui.skillsNames[skillsSR] + " : " + Integer.toString(skills.get(skillsSR)),
                                 ScreenGrid.XCoordStart(
                                         this.width,
                                         2) + 315,

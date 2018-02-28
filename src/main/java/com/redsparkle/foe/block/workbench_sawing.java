@@ -1,7 +1,6 @@
 package com.redsparkle.foe.block;
 
 import com.redsparkle.foe.Init.InitCreativeTabs;
-import com.redsparkle.foe.workbench_sawing_TE;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;

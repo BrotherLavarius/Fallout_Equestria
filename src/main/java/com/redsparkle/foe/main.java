@@ -66,9 +66,6 @@ public class main {
         simpleNetworkWrapper.registerMessage(MessageUpdateClientServerSPECHIAL.HandlerClient.class, MessageUpdateClientServerSPECHIAL.class, message_start_index++, Side.CLIENT);
         simpleNetworkWrapper.registerMessage(MessageUpdateClientServerSPECHIAL.HandlerServer.class, MessageUpdateClientServerSPECHIAL.class, message_start_index++, Side.SERVER);
 
-        simpleNetworkWrapper.registerMessage(MessageGunFire.HandlerServer.class, MessageGunFire.class, message_start_index++, Side.SERVER);
-        simpleNetworkWrapper.registerMessage(MessageGunFire.HandlerClient.class, MessageGunFire.class, message_start_index++, Side.CLIENT);
-
         simpleNetworkWrapper.registerMessage(MessageClientPlaySound.HandlerClient.class, MessageClientPlaySound.class, message_start_index++, Side.CLIENT);
 
 
@@ -94,7 +91,8 @@ public class main {
         simpleNetworkWrapper.registerMessage(MessageUpdateClientTrigger_Item.HandlerClient.class, MessageUpdateClientTrigger_Item.class, message_start_index++, Side.CLIENT);
         simpleNetworkWrapper.registerMessage(MessageUpdateClientTrigger_Item.HandlerServer.class, MessageUpdateClientTrigger_Item.class, message_start_index++, Side.SERVER);
 
-
+        simpleNetworkWrapper.registerMessage(UnifiedMessage.HandlerClient.class, UnifiedMessage.class, message_start_index++, Side.CLIENT);
+        simpleNetworkWrapper.registerMessage(UnifiedMessage.HandlerServer.class, UnifiedMessage.class, message_start_index++, Side.SERVER);
     }
 
     @Mod.EventHandler

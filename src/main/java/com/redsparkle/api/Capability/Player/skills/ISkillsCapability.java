@@ -1,83 +1,23 @@
 package com.redsparkle.api.Capability.Player.skills;
 
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.world.World;
-import net.minecraftforge.fml.common.gameevent.TickEvent;
+
+import java.util.HashMap;
 
 /**
  * Created by hoijima on 15.05.17.
  */
 public interface ISkillsCapability {
-    Integer getMagic();
 
-    /**
-     * Magic
-     * Melee_Weapons
-     * Firearms
-     * EneryWeapons
-     * Saddlebag_Guns
-     * Explosives
-     * Repair
-     * Medicine
-     * Lockpicking
-     * Science
-     * Sneak
-     * Barter
-     * Survival
-     */
-    void setMagic(Integer newMagic);
+    Integer getAttribute(String name);
 
-    Integer getMelee();
+    void setAttribute(String name, Integer amount);
 
-    void setMelee(Integer newMelee);
+    void setAttribute(HashMap<String, Integer> new_map);
 
-    Integer getFirearms();
+    HashMap<String, Integer> getFullMap();
 
-    void setFirearms(Integer newFirearms);
-
-    Integer getEnergyWeapons();
-
-    void setEnergyWeapons(Integer newEnergyWeapons);
-
-    Integer getSaddlebag_guns();
-
-    void setSaddlebag_guns(Integer newSaddlebag_guns);
-
-    Integer getExplosives();
-
-    void setExplosives(Integer newExplosives);
-
-    Integer getRepair();
-
-    void setRepair(Integer newRepair);
-
-    Integer getMedicine();
-
-    void setMedicine(Integer newMedicine);
-
-    Integer getLockpick();
-
-    void setLockpick(Integer newLockpick);
-
-    Integer getScience();
-
-    void setScience(Integer newScience);
-
-    Integer getSneak();
-
-    void setSneak(Integer newSneak);
-
-    Integer getBarter();
-
-    void setBarter(Integer newBarter);
-
-    Integer getSurvival();
-
-    void setSurvival(Integer newSurvival);
-
-    void setAll(Integer All);
-
-    void update(EntityPlayer player, World world, TickEvent.Phase phase);
+    Boolean hasChanged();
 
     void updateClient(EntityPlayer player);
 }

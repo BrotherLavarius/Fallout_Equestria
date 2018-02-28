@@ -1,6 +1,8 @@
 package com.redsparkle.foe.gui.general;
 
 import com.redsparkle.api.Capability.Player.level.LevelFactoryProvider;
+import com.redsparkle.api.Capability.Player.skills.ISkillsCapability;
+import com.redsparkle.api.Capability.Player.skills.Skill_names;
 import com.redsparkle.api.Capability.Player.skills.SkillsFactoryProvider;
 import com.redsparkle.api.utils.Lvlutil;
 import com.redsparkle.api.utils.ScreenGrid;
@@ -14,7 +16,8 @@ import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.GlStateManager;
 import org.lwjgl.opengl.GL11;
 
-import java.io.IOException;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.stream.IntStream;
 
 /**
@@ -67,6 +70,8 @@ public class LvlUpGui extends GuiScreen {
     };
     int[] temp = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
     Integer[] finished = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+    LinkedHashMap<String, Integer> skillMap = new LinkedHashMap<>();
+    String[] names = Skill_names.names();
     Integer pointsAvailable = 0;
 
     @Override
@@ -76,56 +81,21 @@ public class LvlUpGui extends GuiScreen {
         GlStateManager.color(1, 1, 1, 1);
         GlStateManager.enableAlpha();
         GlStateManager.enableBlend();
-        /**
-         Magic
-         Melee_Weapons
-         Firearms
-         EneryWeapons
-         Saddlebag_Guns
-         Explosives
-         Repair
-         Medicine
-         Lockpicking
-         Science
-         Sneak
-         Barter
-         Survival
-         */
-        Integer[] params = {
-                mc.player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getMagic(),
-                mc.player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getMelee(),
-                mc.player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getFirearms(),
-                mc.player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getEnergyWeapons(),
-                mc.player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getSaddlebag_guns(),
-                mc.player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getExplosives(),
-                mc.player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getRepair(),
-                mc.player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getMedicine(),
-                mc.player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getLockpick(),
-                mc.player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getScience(),
-                mc.player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getSneak(),
-                mc.player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getBarter(),
-                mc.player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getSurvival(),
-        };
-        String[] names = {
-                "Magic: ",
-                "Melee_Weapons: ",
-                "Firearms: ",
-                "Energy Weapons: ",
-                "Saddlebag_Guns: ",
-                "Explosives: ",
-                "Repair: ",
-                "Medicine: ",
-                "Lockpicking: ",
-                "Science: ",
-                "Sneak: ",
-                "Barter: ",
-                "Survival: "
-        };
+
+        ISkillsCapability skill_cap = mc.player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null);
+
+        for (Skill_names skillName : Skill_names.values()) {
+            skillMap.put(skillName.getName(), 0);
+        }
+
+        HashMap<String, Integer> map = skill_cap.getFullMap();
+        Object[] keys = map.keySet().toArray();
+
         GL11.glPushMatrix();
         {
             GL11.glScalef((float) 1.0, (float) 1.0, 1.0f);
-            for (int i = 0; i < params.length; i++) {
-                this.fontRenderer.drawString(names[i],
+            for (int i = 0; i < map.size(); i++) {
+                this.fontRenderer.drawString(keys[i].toString(),
                         ScreenGrid.XCoordStart(
                                 this.width,
                                 2) + 25,
@@ -135,7 +105,7 @@ public class LvlUpGui extends GuiScreen {
                         colorText, true
                 );
                 this.fontRenderer.drawString(Integer.toString(
-                        params[i]),
+                        map.get(keys[i])),
                         ScreenGrid.XCoordStart(
                                 this.width,
                                 2) + 215,
@@ -155,7 +125,7 @@ public class LvlUpGui extends GuiScreen {
                         colorText, true
                 );
                 this.fontRenderer.drawString(Integer.toString(
-                        finished[i] = temp[i] + params[i]),
+                        finished[i] = temp[i] + map.get(keys[i])),
                         ScreenGrid.XCoordStart(
                                 this.width,
                                 2) + 275,
@@ -222,7 +192,7 @@ public class LvlUpGui extends GuiScreen {
     }
 
     @Override
-    protected void actionPerformed(GuiButton button) throws IOException {
+    protected void actionPerformed(GuiButton button) {
         for (int i = 0; i < temp.length; i++) {
             counter = IntStream.of(temp).sum();
             if (pointsAvailable > 0) {
@@ -239,7 +209,10 @@ public class LvlUpGui extends GuiScreen {
             }
         }
         if (button == this.Commit) {
-            main.simpleNetworkWrapper.sendToServer(new MessageUpdateClientServerSkills(finished));
+            for (int i = 0; i < skillMap.size(); i++) {
+                skillMap.put(Skill_names.valueOf(names[i]).getName(), finished[i]);
+            }
+            main.simpleNetworkWrapper.sendToServer(new MessageUpdateClientServerSkills(skillMap));
             for (int i = 0; i <= (finished.length - 1); i++) {
                 finished[i] = 0;
                 temp[i] = 0;

@@ -1,32 +1,28 @@
 package com.redsparkle.api.utils;
 
-import com.redsparkle.api.Capability.Player.rad.RadsFactoryProvider;
 import com.redsparkle.api.Capability.Player.level.LevelFactoryProvider;
+import com.redsparkle.api.Capability.Player.rad.RadsFactoryProvider;
+import com.redsparkle.api.Capability.Player.skills.ISkillsCapability;
+import com.redsparkle.api.Capability.Player.skills.Skill_names;
 import com.redsparkle.api.Capability.Player.skills.SkillsFactoryProvider;
 import com.redsparkle.api.Capability.Player.spechial.SpechialFactoryProvider;
 import com.redsparkle.api.Capability.Player.water.WaterFactoryProvider;
 import net.minecraft.entity.player.EntityPlayer;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by hoijima on 17.06.17.
  */
 public class PlayerStatsRequester {
-    public static Integer[] skills(EntityPlayer player) {
-        Integer[] skills = new Integer[]{//0-11
-                player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getMagic(),
-                player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getMelee(),
-                player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getFirearms(),
-                player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getEnergyWeapons(),
-                player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getSaddlebag_guns(),
-                player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getExplosives(),
-                player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getRepair(),
-                player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getMedicine(),
-                player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getLockpick(),
-                player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getScience(),
-                player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getSneak(),
-                player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getBarter(),
-                player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).getSurvival()
-        };
+    public static List<Integer> skills(EntityPlayer player) {
+        ISkillsCapability skill_cap = player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null);
+        List<Integer> skills = new ArrayList<>();
+        for (Skill_names names : Skill_names.values()) {
+            skills.add(skill_cap.getAttribute(names.getName()));
+        }
+
         return skills;
     }
 

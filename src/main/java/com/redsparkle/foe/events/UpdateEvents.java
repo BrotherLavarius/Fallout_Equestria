@@ -77,22 +77,22 @@ public class UpdateEvents {
             e.player.inventory.addItemStackToInventory(lvlingcrystallS);
             e.player.getCapability(WaterFactoryProvider.WATER_CAPABILITY, null).setWater(100);
             lvl.initNewplayer();
-            skills.setAll(10);
+            skills.setAttribute("all", 10);
             spe.setAll(0);
             e.player.getCapability(FTJFactoryProvider.FTJ_CAPABILITY, null).setFTJ(false);
         }
         e.player.getCapability(IAdvProvider.Adv_Inv, null).updateClient(e.player);
         updatePlayerSpechial(e.player);
-        updatePlayerSkills(e.player);
+        e.player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).updateClient(e.player);
         updatePlayerLevel(e.player);
     }
 
 
     @SubscribeEvent
-    public void onRespawned(PlayerEvent.PlayerRespawnEvent event) {
-        EntityPlayer player = event.player;
+    public void onRespawned(PlayerEvent.PlayerRespawnEvent e) {
+        EntityPlayer player = e.player;
         updatePlayerSpechial(player);
-        updatePlayerSkills(player);
+        e.player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null).updateClient(e.player);
         updatePlayerLevel(player);
         updatePlayerWater(player);
         updatePlayerRads(player);
@@ -180,25 +180,6 @@ public class UpdateEvents {
         }
     }
 
-    private void updatePlayerSkills(EntityPlayer player) {
-        if (!player.world.isRemote) {
-            ISkillsCapability skill = player.getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null);
-            skill.setMagic(skill.getMagic());
-            skill.setMelee(skill.getMelee());
-            skill.setFirearms(skill.getFirearms());
-            skill.setEnergyWeapons(skill.getEnergyWeapons());
-            skill.setSaddlebag_guns(skill.getSaddlebag_guns());
-            skill.setExplosives(skill.getExplosives());
-            skill.setRepair(skill.getRepair());
-            skill.setMedicine(skill.getMedicine());
-            skill.setLockpick(skill.getLockpick());
-            skill.setScience(skill.getScience());
-            skill.setSneak(skill.getSneak());
-            skill.setBarter(skill.getBarter());
-            skill.setSurvival(skill.getSurvival());
-            skill.updateClient(player);
-        }
-    }
 
 
     @SubscribeEvent

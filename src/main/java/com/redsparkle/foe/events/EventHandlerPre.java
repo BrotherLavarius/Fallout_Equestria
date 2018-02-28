@@ -21,14 +21,14 @@ import com.redsparkle.api.items.helpers.Item_Instances.Item_Firearm;
 import com.redsparkle.api.items.helpers.Item_Instances.Item_SaddleBagAmmo;
 import com.redsparkle.api.items.helpers.Item_Instances.Item_SaggleBagGun;
 import com.redsparkle.api.utils.PlayerParamsSetup;
-import com.redsparkle.foe.Init.ModBlocks;
 import com.redsparkle.foe.Init.PotionInit;
+import com.redsparkle.foe.block.safe_TE;
 import com.redsparkle.foe.main;
-import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
@@ -66,8 +66,8 @@ public class EventHandlerPre {
 
 
     @SubscribeEvent
-    public void onAddCapabilitiesBlock(AttachCapabilitiesEvent<Block> event) {
-        if (event.getObject() == ModBlocks.SAFE.getBLOCK()) {
+    public void onAddCapabilitiesBlock(AttachCapabilitiesEvent<TileEntity> event) {
+        if (event.getObject() instanceof safe_TE) {
             event.addCapability(new ResourceLocation(main.MODID + ":lock_capability"), new LockFactoryProvider());
         }
 
@@ -110,18 +110,7 @@ public class EventHandlerPre {
             if (event.getEntityPlayer().hasCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null)) {
                 ISkillsCapability originalSkills = event.getOriginal().getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null);
                 ISkillsCapability newSkills = event.getEntityPlayer().getCapability(SkillsFactoryProvider.SKILLS_CAPABILITY, null);
-                newSkills.setMagic(originalSkills.getMagic());
-                newSkills.setMelee(originalSkills.getMelee());
-                newSkills.setFirearms(originalSkills.getFirearms());
-                newSkills.setEnergyWeapons(originalSkills.getEnergyWeapons());
-                newSkills.setSaddlebag_guns(originalSkills.getSaddlebag_guns());
-                newSkills.setExplosives(originalSkills.getExplosives());
-                newSkills.setRepair(originalSkills.getRepair());
-                newSkills.setMedicine(originalSkills.getMedicine());
-                newSkills.setLockpick(originalSkills.getLockpick());
-                newSkills.setScience(originalSkills.getScience());
-                newSkills.setSneak(originalSkills.getSneak());
-                newSkills.setBarter(originalSkills.getBarter());
+                newSkills.setAttribute(originalSkills.getFullMap());
             }
             if (event.getEntityPlayer().hasCapability(FTJFactoryProvider.FTJ_CAPABILITY, null)) {
                 IFTJCapability ftjO = event.getOriginal().getCapability(FTJFactoryProvider.FTJ_CAPABILITY, null);
