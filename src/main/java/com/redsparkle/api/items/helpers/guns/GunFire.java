@@ -167,19 +167,20 @@ public class GunFire {
 
     public static void SendSoundMessage(EntityPlayer playerIn, String gunname, double x, double y, double z, String type) {
         JsonObject message, body;
-        message = body = new JsonObject();
+        message = new JsonObject();
+        body = new JsonObject();
         message.addProperty("type", "sound");
 
         if (type.equalsIgnoreCase("gun_main")) {
-            body.addProperty("type", "gun|main|" + gunname + "|fire");
+            body.addProperty("type", new String("gun|main|" + gunname + "|fire"));
             body.addProperty("position", x + "," + y + "," + z);
         }
         if (type.equalsIgnoreCase("gun_saddlebagLS")) {
-            body.addProperty("type", "gun|saddlebagLS|" + gunname + "|fire");
+            body.addProperty("type", new String("gun|saddlebagLS|" + gunname + "|fire"));
             body.addProperty("position", x + "," + y + "," + z);
         }
         if (type.equalsIgnoreCase("gun_saddlebagRS")) {
-            body.addProperty("type", "gun|saddlebagRS|" + gunname + "|fire");
+            body.addProperty("type", new String("gun|saddlebagRS|" + gunname + "|fire"));
             body.addProperty("position", x + "," + y + "," + z);
         }
         message.add("details", body);

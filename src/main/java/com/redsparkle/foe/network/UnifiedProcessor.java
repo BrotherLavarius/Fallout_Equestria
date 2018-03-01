@@ -4,8 +4,6 @@ import com.google.gson.JsonObject;
 import com.redsparkle.foe.ClientOnlyProxy;
 import com.redsparkle.foe.DedicatedServerProxy;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nullable;
 
@@ -26,6 +24,9 @@ public class UnifiedProcessor {
                 break;
             case "gui":
                 GUIProcessor(process, ctx, side);
+                break;
+            case "gui_advInv":
+                GUI_advInv_Processor(process, ctx, side);
                 break;
             case "sound":
                 SoundProcessor(process, ctx, side);
@@ -79,7 +80,6 @@ public class UnifiedProcessor {
     }
 
 
-    @SideOnly(Side.CLIENT)
     private static void SoundProcessor(JsonObject process, MessageContext ctx, String side) {
 
 
@@ -98,6 +98,15 @@ public class UnifiedProcessor {
             DedicatedServerProxy.handleOpenGuiMessage(process, ctx);
         }
     }
+
+    private static void GUI_advInv_Processor(JsonObject process, MessageContext ctx, String side) {
+        if (side.equalsIgnoreCase("client")) {
+
+        } else if (side.equalsIgnoreCase("server")) {
+            DedicatedServerProxy.handleAdv(process, ctx);
+        }
+    }
+
 
     private static void ammo_holder_update(JsonObject process, MessageContext ctx, String side) {
         if (side.equalsIgnoreCase("client")) {

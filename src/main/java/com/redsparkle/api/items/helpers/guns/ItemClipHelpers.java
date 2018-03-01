@@ -1,9 +1,11 @@
 package com.redsparkle.api.items.helpers.guns;
 
+import com.google.gson.JsonObject;
 import com.redsparkle.api.Capability.Items.Ammo.AmmoFactoryProvider;
 import com.redsparkle.api.Capability.Items.Ammo.IAmmoInterface;
 import com.redsparkle.foe.Init.ItemInit;
 import com.redsparkle.foe.main;
+import com.redsparkle.foe.network.UnifiedMessage;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.Item;
@@ -47,8 +49,18 @@ public class ItemClipHelpers {
                 double y = playerIn.getPosition().getY();
                 double z = playerIn.getPosition().getZ();
 
-                main.simpleNetworkWrapper.sendToAllAround(new MessageClientPlaySound("gun_clipReload", x + "," + y + "," + z), new NetworkRegistry.TargetPoint(0, x, y, z, 10.0));
-                main.simpleNetworkWrapper.sendTo(new MessageClientPlaySound("gun_clipReload", x + "," + y + "," + z), (EntityPlayerMP) playerIn);
+                JsonObject message, body;
+                message = body = new JsonObject();
+                message.addProperty("type", "sound");
+
+                body.addProperty("type", "gun_clipReload");
+                body.addProperty("position", x + "," + y + "," + z);
+
+                message.add("details", body);
+
+                main.simpleNetworkWrapper.sendToAllAround(new UnifiedMessage(message), new NetworkRegistry.TargetPoint(0, x, y, z, 30.0));
+                main.simpleNetworkWrapper.sendTo(new UnifiedMessage(message), (EntityPlayerMP) playerIn);
+
             }
             return clip;
         }

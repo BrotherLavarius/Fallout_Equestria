@@ -9,7 +9,6 @@ import com.redsparkle.api.items.helpers.Item_Instances.Item_SaggleBagGun;
 import com.redsparkle.api.utils.GunFire_ThreadManager;
 import com.redsparkle.foe.ClientOnlyProxy;
 import com.redsparkle.foe.main;
-import com.redsparkle.foe.network.ClientServerOneClass.MessageAdvInv;
 import com.redsparkle.foe.network.ClientServerOneClass.MessageUpdateClientTrigger_Item;
 import com.redsparkle.foe.network.UnifiedMessage;
 import net.minecraft.client.Minecraft;
@@ -57,7 +56,10 @@ public class KeyInputHandler {
 
         }
         if (keyHandler.saddlebags.isPressed()) {
-            main.simpleNetworkWrapper.sendToServer(new MessageAdvInv("sync_and_gui"));
+            JsonObject message = new JsonObject();
+            message.addProperty("type", "gui_advInv");
+            message.addProperty("details", "sync_and_gui");
+            main.simpleNetworkWrapper.sendToServer(new UnifiedMessage(message));
 
         }
 

@@ -65,7 +65,6 @@ public class main {
         simpleNetworkWrapper.registerMessage(MessageUpdateClientServerSPECHIAL.HandlerClient.class, MessageUpdateClientServerSPECHIAL.class, message_start_index++, Side.CLIENT);
         simpleNetworkWrapper.registerMessage(MessageUpdateClientServerSPECHIAL.HandlerServer.class, MessageUpdateClientServerSPECHIAL.class, message_start_index++, Side.SERVER);
 
-        simpleNetworkWrapper.registerMessage(MessageClientPlaySound.HandlerClient.class, MessageClientPlaySound.class, message_start_index++, Side.CLIENT);
 
 
         simpleNetworkWrapper.registerMessage(MessageUpdateClientServerSkills.HandlerClient.class, MessageUpdateClientServerSkills.class, message_start_index++, Side.CLIENT);
@@ -76,7 +75,6 @@ public class main {
         simpleNetworkWrapper.registerMessage(MessageAdvInv_SYNC.HandlerClient.class, MessageAdvInv_SYNC.class, message_start_index++, Side.CLIENT);
         simpleNetworkWrapper.registerMessage(MessageAdvInv_SYNC.HandlerServer.class, MessageAdvInv_SYNC.class, message_start_index++, Side.SERVER);
         simpleNetworkWrapper.registerMessage(MessageAdvInv_SLOT.HandlerServer.class, MessageAdvInv_SLOT.class, message_start_index++, Side.SERVER);
-        simpleNetworkWrapper.registerMessage(MessageAdvInv.HandlerServer.class, MessageAdvInv.class, message_start_index++, Side.SERVER);
 
         simpleNetworkWrapper.registerMessage(MessageAdvInv_SYNC_op.HandlerClient.class, MessageAdvInv_SYNC_op.class, message_start_index++, Side.CLIENT);
 

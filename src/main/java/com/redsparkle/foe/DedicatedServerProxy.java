@@ -143,16 +143,18 @@ public class DedicatedServerProxy extends CommonProxy {
 
     }
 
-    public static void handleAdv(MessageAdvInv message, EntityPlayerMP playerMP) {
+    public static void handleAdv(JsonObject message, MessageContext ctx) {
+        EntityPlayerMP playerMP = ctx.getServerHandler().player;
         IAdvInventory advInventory = IAdvProvider.instanceFor(playerMP);
-        if (message.type == 0) {
+        String type = message.get("details").getAsString();
+        if (type.equalsIgnoreCase("sync")) {
             main.simpleNetworkWrapper.sendTo(new MessageAdvInv_SYNC(advInventory), playerMP);
         }
-        if (message.type == 1) {
+        if (type.equalsIgnoreCase("sync_and_gui")) {
             main.simpleNetworkWrapper.sendTo(new MessageAdvInv_SYNC(advInventory), playerMP);
             playerMP.openGui(main.instance, 5, playerMP.world, (int) playerMP.posX, (int) playerMP.posY, (int) playerMP.posZ);
         }
-        if (message.type == 2) {
+        if (type.equalsIgnoreCase("close")) {
             playerMP.closeContainer();
         }
     }

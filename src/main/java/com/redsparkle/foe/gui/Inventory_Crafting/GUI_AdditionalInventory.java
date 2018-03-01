@@ -1,9 +1,10 @@
 package com.redsparkle.foe.gui.Inventory_Crafting;
 
+import com.google.gson.JsonObject;
 import com.redsparkle.api.utils.GlobalNames;
 import com.redsparkle.foe.containers.CONTAINER_AdditionalInventory;
 import com.redsparkle.foe.main;
-import com.redsparkle.foe.network.ClientServerOneClass.MessageAdvInv;
+import com.redsparkle.foe.network.UnifiedMessage;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.player.EntityPlayer;
@@ -37,7 +38,11 @@ public class GUI_AdditionalInventory extends GuiContainer {
     public void onGuiClosed() {
         if (this.mc.player != null) {
             //main.simpleNetworkWrapper.sendToServer(new MessageAdvInv("sync"));
-            main.simpleNetworkWrapper.sendToServer(new MessageAdvInv("close"));
+
+            JsonObject message = new JsonObject();
+            message.addProperty("type", "gui_advInv");
+            message.addProperty("details", "close");
+            main.simpleNetworkWrapper.sendToServer(new UnifiedMessage(message));
             this.inventorySlots.onContainerClosed(this.mc.player);
         }
     }

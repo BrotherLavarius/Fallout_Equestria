@@ -1,5 +1,6 @@
 package com.redsparkle.api.items.helpers.guns;
 
+import com.google.gson.JsonObject;
 import com.redsparkle.api.Capability.Items.Ammo.AmmoFactoryProvider;
 import com.redsparkle.api.Capability.Items.Ammo.IAmmoInterface;
 import com.redsparkle.api.Capability.Items.Gun.GunFactoryProvider;
@@ -11,6 +12,7 @@ import com.redsparkle.api.utils.InventoryManager;
 import com.redsparkle.foe.Init.GlobalsGunStats;
 import com.redsparkle.foe.Init.ItemInit;
 import com.redsparkle.foe.main;
+import com.redsparkle.foe.network.UnifiedMessage;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Items;
@@ -211,8 +213,18 @@ public class Reload {
         }
     }
     public static void SendSoundMessage(EntityPlayer playerIn, int x, int y, int z, String type) {
-        main.simpleNetworkWrapper.sendToAllAround(new MessageClientPlaySound(type, x + "," + y + "," + z), new NetworkRegistry.TargetPoint(0, (double) x, (double) y, (double) z, 10.0));
-        main.simpleNetworkWrapper.sendTo(new MessageClientPlaySound(type, x + "," + y + "," + z), (EntityPlayerMP) playerIn);
+
+        JsonObject message, body;
+        message = body = new JsonObject();
+        message.addProperty("type", "sound");
+
+        body.addProperty("type", type);
+        body.addProperty("position", x + "," + y + "," + z);
+
+        message.add("details", body);
+
+        main.simpleNetworkWrapper.sendToAllAround(new UnifiedMessage(message), new NetworkRegistry.TargetPoint(0, x, y, z, 10.0));
+        main.simpleNetworkWrapper.sendTo(new UnifiedMessage(message), (EntityPlayerMP) playerIn);
 
     }
 }
