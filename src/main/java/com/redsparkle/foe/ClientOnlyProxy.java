@@ -30,7 +30,6 @@ import com.redsparkle.foe.keys.KeyInputHandler;
 import com.redsparkle.foe.keys.keyHandler;
 import com.redsparkle.foe.network.ClientServerOneClass.*;
 import com.redsparkle.foe.network.MessageClientPlaySound;
-import com.redsparkle.foe.network.MessageUpdateSLSServerReplyOnDemand;
 import com.redsparkle.foe.network.UnifiedMessage;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityOtherPlayerMP;
@@ -129,23 +128,28 @@ public class ClientOnlyProxy extends CommonProxy {
     }
 
 
-    public static void handleLevelMessageOnDemand(MessageUpdateSLSServerReplyOnDemand message) {
+    public static void handleLevelMessageOnDemand(JsonObject message) {
         Minecraft.getMinecraft().addScheduledTask(() -> {
+            Integer lvl = message.getAsJsonObject("details").get("lvl").getAsInt();
+            Integer progress = message.getAsJsonObject("details").get("progress").getAsInt();
             EntityPlayer player = Minecraft.getMinecraft().player;
             ILevelCapability level = LevelFactoryProvider.instanceFor(player);
-            player.getCapability(LevelFactoryProvider.LEVEL_CAPABILITY, null).setLevel(message.Level);
-            player.getCapability(LevelFactoryProvider.LEVEL_CAPABILITY, null).setProgress(message.Progress);
-            level.setLevel(message.Level);
-            level.setProgress(message.Progress);
+            player.getCapability(LevelFactoryProvider.LEVEL_CAPABILITY, null).setLevel(lvl);
+            player.getCapability(LevelFactoryProvider.LEVEL_CAPABILITY, null).setProgress(progress);
+            level.setLevel(lvl);
+            level.setProgress(progress);
             System.out.println("player progress: " + player.getCapability(LevelFactoryProvider.LEVEL_CAPABILITY, null).getProgress());
         });
     }
 
-    public static void handleOpenGui(MessageOpenGuiClient message) {
+    public static void handleOpenGui(JsonObject message) {
         IThreadListener mainThread = Minecraft.getMinecraft();
         EntityPlayer player = Minecraft.getMinecraft().player;
         mainThread.addScheduledTask(() -> {
-            player.openGui(main.instance, message.ID, mc.world, (int) player.posX, (int) player.posY, (int) player.posZ);
+
+            int id = message.getAsJsonObject("details").get("ID").getAsInt();
+
+            player.openGui(main.instance, id, mc.world, (int) player.posX, (int) player.posY, (int) player.posZ);
         });
     }
 
@@ -159,7 +163,6 @@ public class ClientOnlyProxy extends CommonProxy {
              */
         });
     }
-
 
 
     public static void handleAdv_SYNC_op(MessageAdvInv_SYNC_op message) {
@@ -198,38 +201,48 @@ public class ClientOnlyProxy extends CommonProxy {
 
     }
 
-    public static void handleSync_AmmoItems(MessageUpdateAmmoHolders message) {
+    public static void handleSync_AmmoItems(JsonObject message) {
         Minecraft.getMinecraft().addScheduledTask(() -> {
             EntityPlayer player = Minecraft.getMinecraft().player;
             IAdvInventory advInventory = IAdvProvider.instanceFor(player);
             IAmmoInterface AmmoCapa;
             IGunInterface GunCapa;
-            if (message.type == 0) {
-                if (message.invType == 0) {
-                    ItemStack stack = player.inventory.getStackInSlot(message.slot);
+
+            JsonObject body = message.getAsJsonObject("details");
+
+            Integer ammo = body.get("ammo").getAsInt();
+            Integer maxAmmo = body.get("maxAmmo").getAsInt();
+            Integer slot = body.get("slot").getAsInt();
+            Integer invType = body.get("invType").getAsInt();
+            Integer type = body.get("type").getAsInt();
+
+
+            if (type == 0) {
+                if (invType == 0) {
+                    ItemStack stack = player.inventory.getStackInSlot(slot);
                     AmmoCapa = stack.getCapability(AmmoFactoryProvider.AMMO_STORAGE, null);
-                    AmmoCapa.setMaxAmmo(message.maxAmmo);
-                    AmmoCapa.setAmmo(message.ammo);
+                    AmmoCapa.setMaxAmmo(maxAmmo);
+                    AmmoCapa.setAmmo(ammo);
                 }
-                if (message.invType == 1) {
+                if (invType == 1) {
                     IAdvInventory stack = player.getCapability(IAdvProvider.Adv_Inv, null);
-                    AmmoCapa = stack.getStackInSlot(message.slot).getCapability(AmmoFactoryProvider.AMMO_STORAGE, null);
-                    AmmoCapa.setMaxAmmo(message.maxAmmo);
-                    AmmoCapa.setAmmo(message.ammo);
+                    AmmoCapa = stack.getStackInSlot(slot).getCapability(AmmoFactoryProvider.AMMO_STORAGE, null);
+                    AmmoCapa.setMaxAmmo(maxAmmo);
+                    AmmoCapa.setAmmo(ammo);
                 }
             }
-            if (message.type == 1) {
-                if (message.invType == 0) {
-                    ItemStack stack = player.inventory.getStackInSlot(message.slot);
+            if (type == 1) {
+                if (invType == 0) {
+                    ItemStack stack = player.inventory.getStackInSlot(slot);
                     GunCapa = stack.getCapability(GunFactoryProvider.GUN, null);
-                    GunCapa.setMaxAmmo(message.maxAmmo);
-                    GunCapa.setAmmo(message.ammo);
+                    GunCapa.setMaxAmmo(maxAmmo);
+                    GunCapa.setAmmo(ammo);
                 }
-                if (message.invType == 1) {
+                if (invType == 1) {
                     IAdvInventory stack = player.getCapability(IAdvProvider.Adv_Inv, null);
-                    GunCapa = stack.getStackInSlot(message.slot).getCapability(GunFactoryProvider.GUN, null);
-                    GunCapa.setMaxAmmo(message.maxAmmo);
-                    GunCapa.setAmmo(message.ammo);
+                    GunCapa = stack.getStackInSlot(slot).getCapability(GunFactoryProvider.GUN, null);
+                    GunCapa.setMaxAmmo(maxAmmo);
+                    GunCapa.setAmmo(ammo);
                 }
             }
         });
@@ -285,8 +298,6 @@ public class ClientOnlyProxy extends CommonProxy {
 
         });
     }
-
-
 
 
     public void preInit() {

@@ -11,7 +11,6 @@ import com.redsparkle.foe.ClientOnlyProxy;
 import com.redsparkle.foe.main;
 import com.redsparkle.foe.network.ClientServerOneClass.MessageAdvInv;
 import com.redsparkle.foe.network.ClientServerOneClass.MessageUpdateClientTrigger_Item;
-import com.redsparkle.foe.network.MessageUpdateSLSClientOnDemand;
 import com.redsparkle.foe.network.UnifiedMessage;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
@@ -46,7 +45,9 @@ public class KeyInputHandler {
 
         if (keyHandler.pipbuck.isPressed()) {
             if (mc.player.getCapability(IAdvProvider.Adv_Inv, null).getStackInSlot(0) != ItemStack.EMPTY) {
-                main.simpleNetworkWrapper.sendToServer(new MessageUpdateSLSClientOnDemand());
+                JsonObject message = new JsonObject();
+                message.addProperty("type", "lvl_update_request");
+                main.simpleNetworkWrapper.sendToServer(new UnifiedMessage(message));
                 player.openGui(main.instance, 0, mc.world, (int) mc.player.posX, (int) mc.player.posY, (int) mc.player.posZ);
                 activated = true;
             }

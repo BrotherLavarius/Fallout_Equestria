@@ -1,6 +1,7 @@
 package com.redsparkle.foe.network;
 
 import com.google.gson.JsonObject;
+import com.redsparkle.foe.ClientOnlyProxy;
 import com.redsparkle.foe.DedicatedServerProxy;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import net.minecraftforge.fml.relauncher.Side;
@@ -23,12 +24,22 @@ public class UnifiedProcessor {
             case "capa":
                 CAPAProcessor(process, ctx, side);
                 break;
-            case "graph":
-                GFProcessor(process, ctx);
+            case "gui":
+                GUIProcessor(process, ctx, side);
                 break;
             case "sound":
                 SoundProcessor(process, ctx);
                 break;
+            case "lvl_update_request":
+                Lvl_update_request(process, ctx, side);
+                break;
+            case "lvl_update_reply":
+                Lvl_update_request(process, ctx, side);
+                break;
+            case "ammo_holder_udpate":
+                ammo_holder_update(process, ctx, side);
+                break;
+
         }
 
 
@@ -58,12 +69,33 @@ public class UnifiedProcessor {
     private static void CAPAProcessor(JsonObject process, MessageContext ctx, String side) {
     }
 
+    private static void Lvl_update_request(JsonObject process, MessageContext ctx, String side) {
+        if (side.equalsIgnoreCase("client")) {
+            ClientOnlyProxy.handleLevelMessageOnDemand(process);
+
+        } else if (side.equalsIgnoreCase("server")) {
+            DedicatedServerProxy.handleSLSOnDemand(ctx);
+        }
+    }
+
 
     @SideOnly(Side.CLIENT)
     private static void SoundProcessor(JsonObject process, MessageContext ctx) {
     }
 
-    @SideOnly(Side.CLIENT)
-    private static void GFProcessor(JsonObject process, MessageContext ctx) {
+    private static void GUIProcessor(JsonObject process, MessageContext ctx, String side) {
+        if (side.equalsIgnoreCase("client")) {
+            ClientOnlyProxy.handleOpenGui(process);
+
+        } else if (side.equalsIgnoreCase("server")) {
+            DedicatedServerProxy.handleOpenGuiMessage(process, ctx);
+        }
+    }
+
+    private static void ammo_holder_update(JsonObject process, MessageContext ctx, String side) {
+        if (side.equalsIgnoreCase("client")) {
+            ClientOnlyProxy.handleSync_AmmoItems(process);
+        } else if (side.equalsIgnoreCase("server")) {
+        }
     }
 }

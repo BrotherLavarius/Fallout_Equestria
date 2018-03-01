@@ -12,7 +12,6 @@ import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.GlStateManager;
 import org.lwjgl.opengl.GL11;
 
-import java.io.IOException;
 import java.util.stream.IntStream;
 
 /**
@@ -187,7 +186,7 @@ public class StatsGuiFirstJoin extends GuiScreen {
     }
 
     @Override
-    protected void actionPerformed(GuiButton button) throws IOException {
+    protected void actionPerformed(GuiButton button) {
         for (int i = 0; i <= (temp.length - 1); i++) {
             counter = IntStream.of(temp).sum();
             if (pointsAvailable > 0) {

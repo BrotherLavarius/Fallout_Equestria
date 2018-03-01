@@ -21,7 +21,7 @@ import com.redsparkle.api.utils.Lvlutil;
 import com.redsparkle.api.utils.PlayerParamsSetup;
 import com.redsparkle.foe.events.ServerSIdeONly.EventHandlerServerSidePre;
 import com.redsparkle.foe.network.ClientServerOneClass.*;
-import com.redsparkle.foe.network.MessageUpdateSLSServerReplyOnDemand;
+import com.redsparkle.foe.network.UnifiedMessage;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -68,7 +68,8 @@ public class DedicatedServerProxy extends CommonProxy {
     }
 
 
-    public static void handleSLSOnDemand(EntityPlayerMP player) {
+    public static void handleSLSOnDemand(MessageContext ctx) {
+        final EntityPlayerMP player = ctx.getServerHandler().player;
         if (player.getCapability(LEVEL_CAPABILITY, null).getProgress() < player.experienceTotal) {
             player.getCapability(LEVEL_CAPABILITY, null).setProgress(player.experienceTotal);
         } else if (player.getCapability(LEVEL_CAPABILITY, null).getProgress() > player.experienceTotal) {
@@ -77,17 +78,30 @@ public class DedicatedServerProxy extends CommonProxy {
                             (player.getCapability(LEVEL_CAPABILITY, null).getProgress() -
                                     player.experienceTotal));
         }
-        main.simpleNetworkWrapper.sendTo(new MessageUpdateSLSServerReplyOnDemand(
-                player.getCapability(LevelFactoryProvider.LEVEL_CAPABILITY, null).getLevel(),
-                player.getCapability(LevelFactoryProvider.LEVEL_CAPABILITY, null).getProgress()
-        ), player);
+
+        JsonObject message = new JsonObject();
+        JsonObject body = new JsonObject();
+        message.addProperty("type", "lvl_update_reply");
+
+        body.addProperty("lvl", player.getCapability(LevelFactoryProvider.LEVEL_CAPABILITY, null).getLevel());
+        body.addProperty("progress", player.getCapability(LevelFactoryProvider.LEVEL_CAPABILITY, null).getProgress());
+        message.add("details", body);
+
+        main.simpleNetworkWrapper.sendTo(new UnifiedMessage(message), player);
     }
 
-    public static void handleOpenGuiMessage(MessageOpenGuiClient message, MessageContext ctx) {
+    public static void handleOpenGuiMessage(JsonObject message, MessageContext ctx) {
         IThreadListener mainThread = (WorldServer) ctx.getServerHandler().player.world;
         EntityPlayer player = ctx.getServerHandler().player;
+
         mainThread.addScheduledTask(() -> {
-            main.simpleNetworkWrapper.sendTo(new MessageOpenGuiClient(message.ID), (EntityPlayerMP) player);
+
+            JsonObject newMessage = new JsonObject();
+            JsonObject body = new JsonObject();
+            newMessage.addProperty("type", "gui");
+            body.addProperty("ID", message.getAsJsonObject("details").get("ID").getAsInt());
+
+            main.simpleNetworkWrapper.sendTo(new UnifiedMessage(newMessage), (EntityPlayerMP) player);
         });
     }
 

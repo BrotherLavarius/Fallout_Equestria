@@ -133,11 +133,9 @@ public class PlayerUtil {
             if (player.getItemStackFromSlot(EntityEquipmentSlot.CHEST).getItem() == ModItems.T40BODY.getITEM() ||
                     player.getItemStackFromSlot(EntityEquipmentSlot.CHEST).getItem() == ModItems.T50BODY.getITEM() ||
                     player.getItemStackFromSlot(EntityEquipmentSlot.CHEST).getItem() == ModItems.T60BODY.getITEM()) {
-                if (player.getItemStackFromSlot(EntityEquipmentSlot.LEGS).getItem() == ModItems.T40LEGS.getITEM() ||
+                return player.getItemStackFromSlot(EntityEquipmentSlot.LEGS).getItem() == ModItems.T40LEGS.getITEM() ||
                         player.getItemStackFromSlot(EntityEquipmentSlot.LEGS).getItem() == ModItems.T50LEGS.getITEM() ||
-                        player.getItemStackFromSlot(EntityEquipmentSlot.LEGS).getItem() == ModItems.T60LEGS.getITEM()) {
-                    return true;
-                }
+                        player.getItemStackFromSlot(EntityEquipmentSlot.LEGS).getItem() == ModItems.T60LEGS.getITEM();
             }
         }
 

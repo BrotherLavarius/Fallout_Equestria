@@ -5,8 +5,6 @@ import com.redsparkle.foe.commands.ammo_fill;
 import com.redsparkle.foe.commands.rpSkillCheck;
 import com.redsparkle.foe.network.ClientServerOneClass.*;
 import com.redsparkle.foe.network.MessageClientPlaySound;
-import com.redsparkle.foe.network.MessageUpdateSLSClientOnDemand;
-import com.redsparkle.foe.network.MessageUpdateSLSServerReplyOnDemand;
 import com.redsparkle.foe.network.UnifiedMessage;
 import com.sun.media.jfxmedia.logging.Logger;
 import net.minecraft.creativetab.CreativeTabs;
@@ -76,15 +74,10 @@ public class main {
         simpleNetworkWrapper.registerMessage(MessageUpdateClientServerSkills.ServerOnLVLUP.class, MessageUpdateClientServerSkills.class, message_start_index++, Side.SERVER);
         simpleNetworkWrapper.registerMessage(MessageUpdateClientServerLevel.HandlerClient.class, MessageUpdateClientServerLevel.class, message_start_index++, Side.CLIENT);
         simpleNetworkWrapper.registerMessage(MessageUpdateClientServerLevel.HandlerServer.class, MessageUpdateClientServerLevel.class, message_start_index++, Side.SERVER);
-        simpleNetworkWrapper.registerMessage(MessageUpdateSLSServerReplyOnDemand.HandlerClient.class, MessageUpdateSLSServerReplyOnDemand.class, message_start_index++, Side.CLIENT);
-        simpleNetworkWrapper.registerMessage(MessageUpdateSLSClientOnDemand.serverSideHandler.class, MessageUpdateSLSClientOnDemand.class, message_start_index++, Side.SERVER);
-        simpleNetworkWrapper.registerMessage(MessageOpenGuiClient.HandlerClient.class, MessageOpenGuiClient.class, message_start_index++, Side.CLIENT);
-        simpleNetworkWrapper.registerMessage(MessageOpenGuiClient.HandleServer.class, MessageOpenGuiClient.class, message_start_index++, Side.SERVER);
         simpleNetworkWrapper.registerMessage(MessageAdvInv_SYNC.HandlerClient.class, MessageAdvInv_SYNC.class, message_start_index++, Side.CLIENT);
         simpleNetworkWrapper.registerMessage(MessageAdvInv_SYNC.HandlerServer.class, MessageAdvInv_SYNC.class, message_start_index++, Side.SERVER);
         simpleNetworkWrapper.registerMessage(MessageAdvInv_SLOT.HandlerServer.class, MessageAdvInv_SLOT.class, message_start_index++, Side.SERVER);
         simpleNetworkWrapper.registerMessage(MessageAdvInv.HandlerServer.class, MessageAdvInv.class, message_start_index++, Side.SERVER);
-        simpleNetworkWrapper.registerMessage(MessageUpdateAmmoHolders.HandlerClient.class, MessageUpdateAmmoHolders.class, message_start_index++, Side.CLIENT);
 
         simpleNetworkWrapper.registerMessage(MessageAdvInv_SYNC_op.HandlerClient.class, MessageAdvInv_SYNC_op.class, message_start_index++, Side.CLIENT);
 
