@@ -1,5 +1,6 @@
 package com.redsparkle.api.items.helpers.guns;
 
+import com.google.gson.JsonObject;
 import com.redsparkle.api.Capability.Player.Inventory.IAdvProvider;
 import com.redsparkle.api.Capability.Player.skills.ISkillsCapability;
 import com.redsparkle.api.Capability.Player.skills.Skill_names;
@@ -14,7 +15,7 @@ import com.redsparkle.foe.items.guns.entitys.flare.EntityFlare;
 import com.redsparkle.foe.items.guns.entitys.laserFired.EntityLaser;
 import com.redsparkle.foe.items.guns.entitys.spreadPellet_shotgun.*;
 import com.redsparkle.foe.main;
-import com.redsparkle.foe.network.MessageClientPlaySound;
+import com.redsparkle.foe.network.UnifiedMessage;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.Item;
@@ -165,23 +166,30 @@ public class GunFire {
     }
 
     public static void SendSoundMessage(EntityPlayer playerIn, String gunname, double x, double y, double z, String type) {
+        JsonObject message, body;
+        message = body = new JsonObject();
+        message.addProperty("type", "sound");
+
         if (type.equalsIgnoreCase("gun_main")) {
-            main.simpleNetworkWrapper.sendToAllAround(new MessageClientPlaySound("gun|main|" + gunname + "|fire", x + "," + y + "," + z), new NetworkRegistry.TargetPoint(0, x, y, z, 30.0));
-            main.simpleNetworkWrapper.sendTo(new MessageClientPlaySound("gun|main|" + gunname + "|fire", x + "," + y + "," + z), (EntityPlayerMP) playerIn);
+            body.addProperty("type", "gun|main|" + gunname + "|fire");
+            body.addProperty("position", x + "," + y + "," + z);
         }
         if (type.equalsIgnoreCase("gun_saddlebagLS")) {
-            main.simpleNetworkWrapper.sendToAllAround(new MessageClientPlaySound("gun|saddlebagLS|" + gunname + "|fire", x + "," + y + "," + z), new NetworkRegistry.TargetPoint(0, x, y, z, 30.0));
-            main.simpleNetworkWrapper.sendTo(new MessageClientPlaySound("gun|saddlebagLS|" + gunname + "|fire", x + "," + y + "," + z), (EntityPlayerMP) playerIn);
+            body.addProperty("type", "gun|saddlebagLS|" + gunname + "|fire");
+            body.addProperty("position", x + "," + y + "," + z);
         }
         if (type.equalsIgnoreCase("gun_saddlebagRS")) {
-            main.simpleNetworkWrapper.sendToAllAround(new MessageClientPlaySound("gun|saddlebagRS|" + gunname + "|fire", x + "," + y + "," + z), new NetworkRegistry.TargetPoint(0, x, y, z, 30.0));
-            main.simpleNetworkWrapper.sendTo(new MessageClientPlaySound("gun|saddlebagRS|" + gunname + "|fire", x + "," + y + "," + z), (EntityPlayerMP) playerIn);
+            body.addProperty("type", "gun|saddlebagRS|" + gunname + "|fire");
+            body.addProperty("position", x + "," + y + "," + z);
         }
+        message.add("details", body);
+
+        main.simpleNetworkWrapper.sendToAllAround(new UnifiedMessage(message), new NetworkRegistry.TargetPoint(0, x, y, z, 30.0));
+        main.simpleNetworkWrapper.sendTo(new UnifiedMessage(message), (EntityPlayerMP) playerIn);
     }
 
     public static void SendRenderMessage(EntityPlayer playerIn, GlobalsGunStats params, String type, int sp_type) {
         SendSoundMessage(playerIn, params.getGunName(), playerIn.getPosition().getX(), playerIn.getPosition().getY(), playerIn.getPosition().getZ(), type);
-        //main.simpleNetworkWrapper.sendToAllAround(new MessageGunFire(sp_type,xPl,yPl,zPl,xHeading,yHeading,zHeading,params.getVelocity(),1.5F),new NetworkRegistry.TargetPoint(0,  xPl,  yPl,  zPl, 120.0));
 
     }
 

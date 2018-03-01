@@ -28,7 +28,7 @@ public class UnifiedProcessor {
                 GUIProcessor(process, ctx, side);
                 break;
             case "sound":
-                SoundProcessor(process, ctx);
+                SoundProcessor(process, ctx, side);
                 break;
             case "lvl_update_request":
                 Lvl_update_request(process, ctx, side);
@@ -80,7 +80,14 @@ public class UnifiedProcessor {
 
 
     @SideOnly(Side.CLIENT)
-    private static void SoundProcessor(JsonObject process, MessageContext ctx) {
+    private static void SoundProcessor(JsonObject process, MessageContext ctx, String side) {
+
+
+        if (side.equalsIgnoreCase("client")) {
+            ClientOnlyProxy.MessageClientPlaySound_handler(process, ctx);
+
+        } else if (side.equalsIgnoreCase("server")) {
+        }
     }
 
     private static void GUIProcessor(JsonObject process, MessageContext ctx, String side) {

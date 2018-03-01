@@ -1,10 +1,9 @@
 package com.redsparkle.api.items.helpers.guns;
 
-import com.redsparkle.api.Capability.Items.Ammo.IAmmoInterface;
 import com.redsparkle.api.Capability.Items.Ammo.AmmoFactoryProvider;
+import com.redsparkle.api.Capability.Items.Ammo.IAmmoInterface;
 import com.redsparkle.foe.Init.ItemInit;
 import com.redsparkle.foe.main;
-import com.redsparkle.foe.network.MessageClientPlaySound;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.Item;

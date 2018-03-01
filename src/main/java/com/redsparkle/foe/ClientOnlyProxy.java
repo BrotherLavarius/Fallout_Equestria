@@ -29,7 +29,6 @@ import com.redsparkle.foe.events.ClientSide.gui.EventPlayerGuiHandler;
 import com.redsparkle.foe.keys.KeyInputHandler;
 import com.redsparkle.foe.keys.keyHandler;
 import com.redsparkle.foe.network.ClientServerOneClass.*;
-import com.redsparkle.foe.network.MessageClientPlaySound;
 import com.redsparkle.foe.network.UnifiedMessage;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityOtherPlayerMP;
@@ -257,13 +256,14 @@ public class ClientOnlyProxy extends CommonProxy {
         });
     }
 
-    public static void MessageClientPlaySound_handler(MessageClientPlaySound message, MessageContext ctx) {
+    public static void MessageClientPlaySound_handler(JsonObject message, MessageContext ctx) {
         IThreadListener mainThread = Minecraft.getMinecraft();
         EntityPlayer player = Minecraft.getMinecraft().player;
         mainThread.addScheduledTask(() -> {
 
-            String whatToPlay = message.type;
-            String position = message.position;
+
+            String whatToPlay = message.getAsJsonObject("details").get("type").getAsString();
+            String position = message.getAsJsonObject("details").get("position").getAsString();
             // Types of things vary from sound_env_rads to gun_tenmm_fire
             String[] whatToPlayArray = whatToPlay.split("\\|");
             String[] positionArray = position.split(",");
