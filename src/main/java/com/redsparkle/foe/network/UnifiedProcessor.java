@@ -43,6 +43,9 @@ public class UnifiedProcessor {
             case "sync_adv_inv":
                 Adv_Inv_Sync(process, ctx, side);
                 break;
+            case "sync_adv_inv_op":
+                Adv_Inv_Sync_op(process, ctx, side);
+                break;
         }
 
 
@@ -122,6 +125,14 @@ public class UnifiedProcessor {
             ClientOnlyProxy.handleAdv_SYNC(process);
         } else if (side.equalsIgnoreCase("server")) {
             DedicatedServerProxy.handleAdv_SYNC(process, ctx);
+        }
+    }
+
+    private static void Adv_Inv_Sync_op(JsonObject process, MessageContext ctx, String side) {
+        if (side.equalsIgnoreCase("client")) {
+            ClientOnlyProxy.handleAdv_SYNC_op(process);
+        } else if (side.equalsIgnoreCase("server")) {
+
         }
     }
 }

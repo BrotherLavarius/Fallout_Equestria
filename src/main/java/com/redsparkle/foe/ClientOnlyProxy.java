@@ -167,22 +167,21 @@ public class ClientOnlyProxy extends CommonProxy {
     public static void handleAdv_SYNC_op(JsonObject message) {
         IThreadListener mainThread = Minecraft.getMinecraft();
 
+
         mainThread.addScheduledTask(() -> {
 
             List<Entity> list = Minecraft.getMinecraft().world.getLoadedEntityList();
             EntityPlayer player = null;
 
             for (int i = 0; i < list.size(); i++) {
-                if (list.get(i) instanceof EntityOtherPlayerMP) {
+                if (list.get(i) instanceof EntityOtherPlayerMP &&
+                        ((EntityPlayer) list.get(i)).getName().equalsIgnoreCase(message.get("player").getAsString())) {
                     player = (EntityPlayer) list.get(i);
                 }
             }
             if (player.hasCapability(IAdvProvider.Adv_Inv, null)) {
                 IAdvInventory advInventory = IAdvProvider.instanceFor(player);
-
                 JsonSlotProcessor(message, advInventory);
-            } else {
-
             }
         });
 

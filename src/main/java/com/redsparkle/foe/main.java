@@ -65,17 +65,11 @@ public class main {
         simpleNetworkWrapper.registerMessage(MessageUpdateClientServerSPECHIAL.HandlerClient.class, MessageUpdateClientServerSPECHIAL.class, message_start_index++, Side.CLIENT);
         simpleNetworkWrapper.registerMessage(MessageUpdateClientServerSPECHIAL.HandlerServer.class, MessageUpdateClientServerSPECHIAL.class, message_start_index++, Side.SERVER);
 
-
-
         simpleNetworkWrapper.registerMessage(MessageUpdateClientServerSkills.HandlerClient.class, MessageUpdateClientServerSkills.class, message_start_index++, Side.CLIENT);
         simpleNetworkWrapper.registerMessage(MessageUpdateClientServerSkills.HandlerServer.class, MessageUpdateClientServerSkills.class, message_start_index++, Side.SERVER);
         simpleNetworkWrapper.registerMessage(MessageUpdateClientServerSkills.ServerOnLVLUP.class, MessageUpdateClientServerSkills.class, message_start_index++, Side.SERVER);
         simpleNetworkWrapper.registerMessage(MessageUpdateClientServerLevel.HandlerClient.class, MessageUpdateClientServerLevel.class, message_start_index++, Side.CLIENT);
         simpleNetworkWrapper.registerMessage(MessageUpdateClientServerLevel.HandlerServer.class, MessageUpdateClientServerLevel.class, message_start_index++, Side.SERVER);
-
-        simpleNetworkWrapper.registerMessage(MessageAdvInv_SYNC_op.HandlerClient.class, MessageAdvInv_SYNC_op.class, message_start_index++, Side.CLIENT);
-
-
 
         simpleNetworkWrapper.registerMessage(MessageUpdateClientTrigger_Item.HandlerClient.class, MessageUpdateClientTrigger_Item.class, message_start_index++, Side.CLIENT);
         simpleNetworkWrapper.registerMessage(MessageUpdateClientTrigger_Item.HandlerServer.class, MessageUpdateClientTrigger_Item.class, message_start_index++, Side.SERVER);

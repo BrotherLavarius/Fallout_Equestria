@@ -11,7 +11,6 @@ import com.redsparkle.api.items.helpers.Item_Instances.Item_AmmoHolder;
 import com.redsparkle.api.items.helpers.Item_Instances.Item_Firearm;
 import com.redsparkle.foe.Init.ItemInit;
 import com.redsparkle.foe.main;
-import com.redsparkle.foe.network.ClientServerOneClass.MessageAdvInv_SYNC_op;
 import com.redsparkle.foe.network.UnifiedMessage;
 import com.sun.media.jfxmedia.logging.Logger;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -128,17 +127,18 @@ public class EventHandlerServerSidePre {
 //                other_players_message ->> opm
                 JsonObject opm = new JsonObject();
                 JsonObject opm_body = new JsonObject();
-                opm.addProperty("type", "sync_adv_inv");
-                for (int i = 0; i < advInventory.getSlots(); i++) {
+                opm.addProperty("type", "sync_adv_inv_op");
+                for (int g = 0; g < iadv.getSlots(); g++) {
                     JsonObject slot = new JsonObject();
-                    slot.addProperty("name", advInventory.getStackInSlot(i).getItem().delegate.name().toString());
-                    slot.addProperty("count", advInventory.getStackInSlot(i).getCount());
-                    slot.addProperty("damage", advInventory.getStackInSlot(i).getItemDamage());
-                    body.add("slot_" + i, slot);
+                    slot.addProperty("name", iadv.getStackInSlot(g).getItem().delegate.name().toString());
+                    slot.addProperty("count", iadv.getStackInSlot(g).getCount());
+                    slot.addProperty("damage", iadv.getStackInSlot(g).getItemDamage());
+                    opm_body.add("slot_" + g, slot);
                 }
-                newMessage.add("details", body);
+                opm.add("details", opm_body);
+                opm.addProperty("player", e.player.getName());
 
-                main.simpleNetworkWrapper.sendTo(new MessageAdvInv_SYNC_op(e.player), (EntityPlayerMP) listiners[i]);
+                main.simpleNetworkWrapper.sendTo(new UnifiedMessage(opm), (EntityPlayerMP) listiners[i]);
 
             }
         }
