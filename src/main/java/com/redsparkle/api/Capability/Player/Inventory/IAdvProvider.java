@@ -1,7 +1,9 @@
 package com.redsparkle.api.Capability.Player.Inventory;
 
+import com.google.gson.JsonObject;
 import com.redsparkle.foe.main;
 import com.redsparkle.foe.network.ClientServerOneClass.MessageAdvInv_SYNC;
+import com.redsparkle.foe.network.UnifiedMessage;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
@@ -61,6 +63,22 @@ public class IAdvProvider extends ItemStackHandler implements IAdvInventory, ICa
 
     @Override
     public void updateClient(EntityPlayer player) {
+
+        JsonObject message = new JsonObject();
+        JsonObject body = new JsonObject();
+
+        message.addProperty("type", "sync_adv_inv");
+
+        for (int i = 0; i < this.getSlots(); i++) {
+            JsonObject slot = new JsonObject();
+            slot.addProperty("name", this.getStackInSlot(i).getItem().delegate.name().toString());
+            slot.addProperty("count", this.getStackInSlot(i).getCount());
+            slot.addProperty("damage", this.getStackInSlot(i).getItemDamage());
+            body.add("slot_" + i, slot);
+        }
+        message.add("details", body);
+
+        main.simpleNetworkWrapper.sendTo(new UnifiedMessage(message), (EntityPlayerMP) player);
         main.simpleNetworkWrapper.sendTo(new MessageAdvInv_SYNC(this), (EntityPlayerMP) player);
     }
 }

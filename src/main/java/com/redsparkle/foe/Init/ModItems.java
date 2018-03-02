@@ -71,6 +71,7 @@ public enum ModItems {
     GUMDROPS(new GumDrops(gumDrops), gumDrops),
     SUGAR_BOMBS(new Sugar_Bombs(sugar_bombs), sugar_bombs),
     FANCY_MARE_SNACK_CAKES(new Fancy_mare_Snack_Cakes(fancy_mare_snack_cakes), fancy_mare_snack_cakes),
+
     ALUMINUM(new Aluminum(aluminum), aluminum),
     ASBESTOS(new Asbestos(asbestos), asbestos),
     BALLISTIC_FIBER(new Ballistic_fiber(ballistic_fiber), ballistic_fiber),

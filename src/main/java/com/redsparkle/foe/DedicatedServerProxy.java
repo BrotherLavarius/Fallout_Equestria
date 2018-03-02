@@ -16,7 +16,6 @@ import com.redsparkle.api.Capability.Player.water.IWaterCapability;
 import com.redsparkle.api.Capability.Player.water.WaterFactoryProvider;
 import com.redsparkle.api.items.helpers.guns.GunFire;
 import com.redsparkle.api.items.helpers.guns.Reload;
-import com.redsparkle.api.utils.ItemCatalog;
 import com.redsparkle.api.utils.Lvlutil;
 import com.redsparkle.api.utils.PlayerParamsSetup;
 import com.redsparkle.foe.events.ServerSIdeONly.EventHandlerServerSidePre;
@@ -25,8 +24,6 @@ import com.redsparkle.foe.network.UnifiedMessage;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.IThreadListener;
 import net.minecraft.world.WorldServer;
 import net.minecraftforge.common.MinecraftForge;
@@ -148,10 +145,45 @@ public class DedicatedServerProxy extends CommonProxy {
         IAdvInventory advInventory = IAdvProvider.instanceFor(playerMP);
         String type = message.get("details").getAsString();
         if (type.equalsIgnoreCase("sync")) {
+
+            JsonObject newMessage = new JsonObject();
+            JsonObject body = new JsonObject();
+
+            newMessage.addProperty("type", "sync_adv_inv");
+
+            for (int i = 0; i < advInventory.getSlots(); i++) {
+                JsonObject slot = new JsonObject();
+                slot.addProperty("name", advInventory.getStackInSlot(i).getItem().delegate.name().toString());
+                slot.addProperty("count", advInventory.getStackInSlot(i).getCount());
+                slot.addProperty("damage", advInventory.getStackInSlot(i).getItemDamage());
+                body.add("slot_" + i, slot);
+            }
+            newMessage.add("details", body);
+
+            System.out.println(newMessage.toString());
+
             main.simpleNetworkWrapper.sendTo(new MessageAdvInv_SYNC(advInventory), playerMP);
         }
         if (type.equalsIgnoreCase("sync_and_gui")) {
+
+            JsonObject newMessage = new JsonObject();
+            JsonObject body = new JsonObject();
+
+            newMessage.addProperty("type", "sync_adv_inv");
+
+            for (int i = 0; i < advInventory.getSlots(); i++) {
+                JsonObject slot = new JsonObject();
+                slot.addProperty("name", advInventory.getStackInSlot(i).getItem().delegate.name().toString());
+                slot.addProperty("count", advInventory.getStackInSlot(i).getCount());
+                slot.addProperty("damage", advInventory.getStackInSlot(i).getItemDamage());
+                body.add("slot_" + i, slot);
+            }
+            newMessage.add("details", body);
+
+            System.out.println(newMessage.toString());
+
             main.simpleNetworkWrapper.sendTo(new MessageAdvInv_SYNC(advInventory), playerMP);
+
             playerMP.openGui(main.instance, 5, playerMP.world, (int) playerMP.posX, (int) playerMP.posY, (int) playerMP.posZ);
         }
         if (type.equalsIgnoreCase("close")) {
@@ -159,14 +191,6 @@ public class DedicatedServerProxy extends CommonProxy {
         }
     }
 
-
-    public static void handleAdv_SLOT(MessageAdvInv_SLOT message, EntityPlayerMP playerMP) {
-        IAdvInventory advInventory = IAdvProvider.instanceFor(playerMP);
-        int slot = message.slot;
-        Item item = Item.getByNameOrId(message.item_id.get(slot));//           ItemCatalog.Request(message.item_id.get(slot));
-        ItemStack stack = ItemCatalog.RequestStack(item, message.item_count.get(slot), message.item_damage.get(slot));
-        slotProcessor_sub(advInventory, slot, stack);
-    }
 
     public static void handleTrigger_Item_Message(MessageUpdateClientTrigger_Item message, EntityPlayerMP player) {
         ITrigger_item status = player.getCapability(ITrigger_item_Provider.TRIGGER_ITEM, null);
@@ -266,12 +290,30 @@ public class DedicatedServerProxy extends CommonProxy {
 
     public static void handleAdv_SYNC(MessageAdvInv_SYNC message, MessageContext ctx) {
         IThreadListener mainThread = (WorldServer) ctx.getServerHandler().player.world;
-        EntityPlayer player = ctx.getServerHandler().player;
+        EntityPlayerMP player = ctx.getServerHandler().player;
         mainThread.addScheduledTask(() -> {
 
-            IAdvInventory advInventory = player.getCapability(IAdvProvider.Adv_Inv, null);
-            slotProcessor(message.item_id, message.item_count, message.item_damage, advInventory);
-            main.simpleNetworkWrapper.sendTo(new MessageAdvInv_SYNC(advInventory), (EntityPlayerMP) player);
+            IAdvInventory adv = player.getCapability(IAdvProvider.Adv_Inv, null);
+            slotProcessor(message.item_id, message.item_count, message.item_damage, adv);
+
+            JsonObject newMessage = new JsonObject();
+            JsonObject body = new JsonObject();
+
+            newMessage.addProperty("type", "sync_adv_inv");
+
+            for (int i = 0; i < adv.getSlots(); i++) {
+                JsonObject slot = new JsonObject();
+                slot.addProperty("name", adv.getStackInSlot(i).getItem().delegate.name().toString());
+                slot.addProperty("count", adv.getStackInSlot(i).getCount());
+                slot.addProperty("damage", adv.getStackInSlot(i).getItemDamage());
+                body.add("slot_" + i, slot);
+            }
+            newMessage.add("details", body);
+
+            System.out.println(newMessage.toString());
+
+            main.simpleNetworkWrapper.sendTo(new UnifiedMessage(newMessage), player);
+            main.simpleNetworkWrapper.sendTo(new MessageAdvInv_SYNC(adv), player);
         });
 
     }

@@ -40,7 +40,9 @@ public class UnifiedProcessor {
             case "ammo_holder_udpate":
                 ammo_holder_update(process, ctx, side);
                 break;
-
+            case "sync_adv_inv":
+                Adv_Inv_Sync(process, ctx, side);
+                break;
         }
 
 
@@ -111,6 +113,13 @@ public class UnifiedProcessor {
     private static void ammo_holder_update(JsonObject process, MessageContext ctx, String side) {
         if (side.equalsIgnoreCase("client")) {
             ClientOnlyProxy.handleSync_AmmoItems(process);
+        } else if (side.equalsIgnoreCase("server")) {
+        }
+    }
+
+    private static void Adv_Inv_Sync(JsonObject process, MessageContext ctx, String side) {
+        if (side.equalsIgnoreCase("client")) {
+
         } else if (side.equalsIgnoreCase("server")) {
         }
     }
