@@ -144,13 +144,11 @@ public class DedicatedServerProxy extends CommonProxy {
         EntityPlayerMP playerMP = ctx.getServerHandler().player;
         IAdvInventory advInventory = IAdvProvider.instanceFor(playerMP);
         String type = message.get("details").getAsString();
-        if (type.equalsIgnoreCase("sync")) {
+        if (type.equalsIgnoreCase("sync") || type.equalsIgnoreCase("sync_and_gui")) {
 
             JsonObject newMessage = new JsonObject();
             JsonObject body = new JsonObject();
-
             newMessage.addProperty("type", "sync_adv_inv");
-
             for (int i = 0; i < advInventory.getSlots(); i++) {
                 JsonObject slot = new JsonObject();
                 slot.addProperty("name", advInventory.getStackInSlot(i).getItem().delegate.name().toString());
@@ -159,30 +157,9 @@ public class DedicatedServerProxy extends CommonProxy {
                 body.add("slot_" + i, slot);
             }
             newMessage.add("details", body);
-
-            System.out.println(newMessage.toString());
-
-            main.simpleNetworkWrapper.sendTo(new MessageAdvInv_SYNC(advInventory), playerMP);
+            main.simpleNetworkWrapper.sendTo(new UnifiedMessage(newMessage), playerMP);
         }
         if (type.equalsIgnoreCase("sync_and_gui")) {
-
-            JsonObject newMessage = new JsonObject();
-            JsonObject body = new JsonObject();
-
-            newMessage.addProperty("type", "sync_adv_inv");
-
-            for (int i = 0; i < advInventory.getSlots(); i++) {
-                JsonObject slot = new JsonObject();
-                slot.addProperty("name", advInventory.getStackInSlot(i).getItem().delegate.name().toString());
-                slot.addProperty("count", advInventory.getStackInSlot(i).getCount());
-                slot.addProperty("damage", advInventory.getStackInSlot(i).getItemDamage());
-                body.add("slot_" + i, slot);
-            }
-            newMessage.add("details", body);
-
-            System.out.println(newMessage.toString());
-
-            main.simpleNetworkWrapper.sendTo(new MessageAdvInv_SYNC(advInventory), playerMP);
 
             playerMP.openGui(main.instance, 5, playerMP.world, (int) playerMP.posX, (int) playerMP.posY, (int) playerMP.posZ);
         }
@@ -247,6 +224,32 @@ public class DedicatedServerProxy extends CommonProxy {
         });
     }
 
+    public static void handleAdv_SYNC(JsonObject message, MessageContext ctx) {
+        IThreadListener mainThread = (WorldServer) ctx.getServerHandler().player.world;
+        EntityPlayerMP player = ctx.getServerHandler().player;
+        mainThread.addScheduledTask(() -> {
+
+            IAdvInventory adv = player.getCapability(IAdvProvider.Adv_Inv, null);
+            JsonSlotProcessor(message, adv);
+
+            JsonObject newMessage = new JsonObject();
+            JsonObject body = new JsonObject();
+
+            newMessage.addProperty("type", "sync_adv_inv");
+
+            for (int i = 0; i < adv.getSlots(); i++) {
+                JsonObject slot = new JsonObject();
+                slot.addProperty("name", adv.getStackInSlot(i).getItem().delegate.name().toString());
+                slot.addProperty("count", adv.getStackInSlot(i).getCount());
+                slot.addProperty("damage", adv.getStackInSlot(i).getItemDamage());
+                body.add("slot_" + i, slot);
+            }
+            newMessage.add("details", body);
+
+            main.simpleNetworkWrapper.sendTo(new UnifiedMessage(newMessage), player);
+        });
+
+    }
 
     /**
      * Run before anything else. Read your config, create blocks, items, etc, and register them with the GameRegistry
@@ -286,35 +289,5 @@ public class DedicatedServerProxy extends CommonProxy {
     @Override
     public boolean isDedicatedServer() {
         return true;
-    }
-
-    public static void handleAdv_SYNC(MessageAdvInv_SYNC message, MessageContext ctx) {
-        IThreadListener mainThread = (WorldServer) ctx.getServerHandler().player.world;
-        EntityPlayerMP player = ctx.getServerHandler().player;
-        mainThread.addScheduledTask(() -> {
-
-            IAdvInventory adv = player.getCapability(IAdvProvider.Adv_Inv, null);
-            slotProcessor(message.item_id, message.item_count, message.item_damage, adv);
-
-            JsonObject newMessage = new JsonObject();
-            JsonObject body = new JsonObject();
-
-            newMessage.addProperty("type", "sync_adv_inv");
-
-            for (int i = 0; i < adv.getSlots(); i++) {
-                JsonObject slot = new JsonObject();
-                slot.addProperty("name", adv.getStackInSlot(i).getItem().delegate.name().toString());
-                slot.addProperty("count", adv.getStackInSlot(i).getCount());
-                slot.addProperty("damage", adv.getStackInSlot(i).getItemDamage());
-                body.add("slot_" + i, slot);
-            }
-            newMessage.add("details", body);
-
-            System.out.println(newMessage.toString());
-
-            main.simpleNetworkWrapper.sendTo(new UnifiedMessage(newMessage), player);
-            main.simpleNetworkWrapper.sendTo(new MessageAdvInv_SYNC(adv), player);
-        });
-
     }
 }

@@ -119,8 +119,9 @@ public class UnifiedProcessor {
 
     private static void Adv_Inv_Sync(JsonObject process, MessageContext ctx, String side) {
         if (side.equalsIgnoreCase("client")) {
-
+            ClientOnlyProxy.handleAdv_SYNC(process);
         } else if (side.equalsIgnoreCase("server")) {
+            DedicatedServerProxy.handleAdv_SYNC(process, ctx);
         }
     }
 }

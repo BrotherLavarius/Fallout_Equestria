@@ -123,6 +123,21 @@ public class EventHandlerServerSidePre {
         if (e.player.getEntityWorld().getTotalWorldTime() % 100 == 0) {
             for (int i = 0; i < listiners.length; i++) {
 
+
+                //TODO : continue from here
+//                other_players_message ->> opm
+                JsonObject opm = new JsonObject();
+                JsonObject opm_body = new JsonObject();
+                opm.addProperty("type", "sync_adv_inv");
+                for (int i = 0; i < advInventory.getSlots(); i++) {
+                    JsonObject slot = new JsonObject();
+                    slot.addProperty("name", advInventory.getStackInSlot(i).getItem().delegate.name().toString());
+                    slot.addProperty("count", advInventory.getStackInSlot(i).getCount());
+                    slot.addProperty("damage", advInventory.getStackInSlot(i).getItemDamage());
+                    body.add("slot_" + i, slot);
+                }
+                newMessage.add("details", body);
+
                 main.simpleNetworkWrapper.sendTo(new MessageAdvInv_SYNC_op(e.player), (EntityPlayerMP) listiners[i]);
 
             }

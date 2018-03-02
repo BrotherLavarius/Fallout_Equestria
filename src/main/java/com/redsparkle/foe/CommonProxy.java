@@ -1,5 +1,6 @@
 package com.redsparkle.foe;
 
+import com.google.gson.JsonObject;
 import com.redsparkle.api.Capability.Items.Ammo.AmmoFactoryProvider;
 import com.redsparkle.api.Capability.Items.Ammo.IAmmoInterface;
 import com.redsparkle.api.Capability.Items.Ammo.IAmmoStorage;
@@ -53,7 +54,6 @@ import com.sun.media.jfxmedia.logging.Logger;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
@@ -67,14 +67,17 @@ import net.minecraftforge.fml.common.registry.EntityRegistry;
 public abstract class CommonProxy {
 
 
-    public static void slotProcessor(NonNullList<String> item_id, NonNullList<String> item_count, NonNullList<String> item_damage, IAdvInventory advInventory) {
-        for (int i = 0; i < 12; i++) {
-            Item item = Item.getByNameOrId(item_id.get(i));//           ItemCatalog.Request(message.item_id.get(slot));
-            ItemStack stack = ItemCatalog.RequestStack(item, Integer.parseInt(item_count.get(i)), Integer.parseInt(item_damage.get(i)));
+    public static void JsonSlotProcessor(JsonObject message, IAdvInventory advInventory) {
+        for (int i = 0; i < advInventory.getSlots(); i++) {
+            JsonObject body = message.getAsJsonObject("details");
+            JsonObject slot = body.getAsJsonObject("slot_" + i);
+            Item item = Item.getByNameOrId(slot.get("name").getAsString());//           ItemCatalog.Request(message.item_id.get(slot));
+            ItemStack stack = ItemCatalog.RequestStack(item, slot.get("count").getAsInt(), slot.get("damage").getAsInt());
             slotProcessor_sub(advInventory, i, stack);
         }
 
     }
+
 
     public static void slotProcessor_sub(IAdvInventory advInventory, int i, ItemStack stack) {
         if (advInventory.getStackInSlot(i) == ItemStack.EMPTY && stack != ItemStack.EMPTY) {

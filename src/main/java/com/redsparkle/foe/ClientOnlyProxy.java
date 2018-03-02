@@ -164,7 +164,7 @@ public class ClientOnlyProxy extends CommonProxy {
     }
 
 
-    public static void handleAdv_SYNC_op(MessageAdvInv_SYNC_op message) {
+    public static void handleAdv_SYNC_op(JsonObject message) {
         IThreadListener mainThread = Minecraft.getMinecraft();
 
         mainThread.addScheduledTask(() -> {
@@ -180,7 +180,7 @@ public class ClientOnlyProxy extends CommonProxy {
             if (player.hasCapability(IAdvProvider.Adv_Inv, null)) {
                 IAdvInventory advInventory = IAdvProvider.instanceFor(player);
 
-                slotProcessor(message.item_id, message.item_count, message.item_damage, advInventory);
+                JsonSlotProcessor(message, advInventory);
             } else {
 
             }
@@ -188,13 +188,13 @@ public class ClientOnlyProxy extends CommonProxy {
 
     }
 
-    public static void handleAdv_SYNC(MessageAdvInv_SYNC message) {
+    public static void handleAdv_SYNC(JsonObject message) {
         IThreadListener mainThread = Minecraft.getMinecraft();
         EntityPlayer player = Minecraft.getMinecraft().player;
         mainThread.addScheduledTask(() -> {
             IAdvInventory advInventory = player.getCapability(IAdvProvider.Adv_Inv, null);
 
-            slotProcessor(message.item_id, message.item_count, message.item_damage, advInventory);
+            JsonSlotProcessor(message, advInventory);
 
         });
 

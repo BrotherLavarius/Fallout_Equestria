@@ -72,8 +72,7 @@ public class main {
         simpleNetworkWrapper.registerMessage(MessageUpdateClientServerSkills.ServerOnLVLUP.class, MessageUpdateClientServerSkills.class, message_start_index++, Side.SERVER);
         simpleNetworkWrapper.registerMessage(MessageUpdateClientServerLevel.HandlerClient.class, MessageUpdateClientServerLevel.class, message_start_index++, Side.CLIENT);
         simpleNetworkWrapper.registerMessage(MessageUpdateClientServerLevel.HandlerServer.class, MessageUpdateClientServerLevel.class, message_start_index++, Side.SERVER);
-        simpleNetworkWrapper.registerMessage(MessageAdvInv_SYNC.HandlerClient.class, MessageAdvInv_SYNC.class, message_start_index++, Side.CLIENT);
-        simpleNetworkWrapper.registerMessage(MessageAdvInv_SYNC.HandlerServer.class, MessageAdvInv_SYNC.class, message_start_index++, Side.SERVER);
+
         simpleNetworkWrapper.registerMessage(MessageAdvInv_SYNC_op.HandlerClient.class, MessageAdvInv_SYNC_op.class, message_start_index++, Side.CLIENT);
 
 

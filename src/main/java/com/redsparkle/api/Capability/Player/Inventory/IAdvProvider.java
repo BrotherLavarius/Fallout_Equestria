@@ -2,7 +2,6 @@ package com.redsparkle.api.Capability.Player.Inventory;
 
 import com.google.gson.JsonObject;
 import com.redsparkle.foe.main;
-import com.redsparkle.foe.network.ClientServerOneClass.MessageAdvInv_SYNC;
 import com.redsparkle.foe.network.UnifiedMessage;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -79,6 +78,5 @@ public class IAdvProvider extends ItemStackHandler implements IAdvInventory, ICa
         message.add("details", body);
 
         main.simpleNetworkWrapper.sendTo(new UnifiedMessage(message), (EntityPlayerMP) player);
-        main.simpleNetworkWrapper.sendTo(new MessageAdvInv_SYNC(this), (EntityPlayerMP) player);
     }
 }
