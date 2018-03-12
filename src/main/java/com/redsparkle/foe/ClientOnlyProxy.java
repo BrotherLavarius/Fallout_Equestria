@@ -31,7 +31,6 @@ import com.redsparkle.foe.keys.keyHandler;
 import com.redsparkle.foe.network.ClientServerOneClass.MessageUpdateClientServerSPECHIAL;
 import com.redsparkle.foe.network.ClientServerOneClass.MessageUpdateClientServerSkills;
 import com.redsparkle.foe.network.ClientServerOneClass.MessageUpdateClientTrigger_Item;
-import com.redsparkle.foe.network.ClientServerOneClass.MessageUpdateClientWater;
 import com.redsparkle.foe.network.UnifiedMessage;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityOtherPlayerMP;
@@ -152,11 +151,11 @@ public class ClientOnlyProxy extends CommonProxy {
         });
     }
 
-    public static void handleWaterMessage(MessageUpdateClientWater message) {
+    public static void handleWaterMessage(JsonObject message) {
         Minecraft.getMinecraft().addScheduledTask(() -> {
             EntityPlayer player = Minecraft.getMinecraft().player;
             IWaterCapability water = WaterFactoryProvider.instanceFor(player);
-            water.setWater(message.water);
+            water.setWater(message.get("water").getAsInt());
             /** DEBUG MESSAGE ENABLER
              * System.out.println("Client: "+message.radiation);
              */

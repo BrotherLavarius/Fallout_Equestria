@@ -104,22 +104,22 @@
           },
           "firstperson_righthand": {
             "translation": [
-              -2,
-              -2.5,
-              -3
+              0,
+              0,
+              0
             ],
             "rotation": [
               {
-                "y": 5
+                "y": 0
               },
               {
-                "x": -3
+                "x": 0
               },
               {
-                "z": -1
+                "z": 0
               }
             ],
-            "scale": 0.5
+            "scale": 1
           }
         }
       }

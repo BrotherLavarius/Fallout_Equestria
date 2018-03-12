@@ -52,9 +52,20 @@ public class UnifiedProcessor {
             case "rad_update":
                 Radiation_update(process, ctx, side);
                 break;
+            case "water_update":
+                Water_update(process, ctx, side);
+                break;
         }
 
 
+    }
+
+    private static void Water_update(JsonObject process, MessageContext ctx, String side) {
+        if (side.equalsIgnoreCase("client")) {
+            ClientOnlyProxy.handleWaterMessage(process);
+        } else if (side.equalsIgnoreCase("server")) {
+            DedicatedServerProxy.handleWaterMessage(process, ctx);
+        }
     }
 
     private static void lvl_msg(JsonObject process, MessageContext ctx, String side) {

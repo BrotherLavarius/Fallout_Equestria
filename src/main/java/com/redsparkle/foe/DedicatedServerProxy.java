@@ -22,7 +22,6 @@ import com.redsparkle.foe.events.ServerSIdeONly.EventHandlerServerSidePre;
 import com.redsparkle.foe.network.ClientServerOneClass.MessageUpdateClientServerSPECHIAL;
 import com.redsparkle.foe.network.ClientServerOneClass.MessageUpdateClientServerSkills;
 import com.redsparkle.foe.network.ClientServerOneClass.MessageUpdateClientTrigger_Item;
-import com.redsparkle.foe.network.ClientServerOneClass.MessageUpdateClientWater;
 import com.redsparkle.foe.network.UnifiedMessage;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.player.EntityPlayer;
@@ -132,9 +131,10 @@ public class DedicatedServerProxy extends CommonProxy {
     }
 
 
-    public static void handleWaterMessage(MessageUpdateClientWater message, EntityPlayerMP playerMP) {
+    public static void handleWaterMessage(JsonObject message, MessageContext ctx) {
+        EntityPlayerMP playerMP = ctx.getServerHandler().player;
         IWaterCapability water = WaterFactoryProvider.instanceFor(playerMP);
-        water.setWater(message.water);
+        water.setWater(message.get("water").getAsInt());
 
     }
 

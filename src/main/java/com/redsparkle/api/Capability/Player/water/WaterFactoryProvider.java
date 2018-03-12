@@ -1,7 +1,8 @@
 package com.redsparkle.api.Capability.Player.water;
 
+import com.google.gson.JsonObject;
 import com.redsparkle.foe.main;
-import com.redsparkle.foe.network.ClientServerOneClass.MessageUpdateClientWater;
+import com.redsparkle.foe.network.UnifiedMessage;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;
@@ -120,8 +121,12 @@ public class WaterFactoryProvider implements IWaterCapability, ICapabilitySerial
 
     public void updateClient(EntityPlayer player) {
         if (!player.getEntityWorld().isRemote) {
-            if (dirty) main.simpleNetworkWrapper.sendTo(new MessageUpdateClientWater(this), (EntityPlayerMP) player);
-            //dirty = false;
+
+            JsonObject message = new JsonObject();
+            message.addProperty("type", "water_update");
+            message.addProperty("water", this.getWater());
+
+            if (dirty) main.simpleNetworkWrapper.sendTo(new UnifiedMessage(message), (EntityPlayerMP) player);
         }
     }
 }
