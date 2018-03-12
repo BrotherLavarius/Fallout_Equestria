@@ -73,7 +73,7 @@ public class SkillsFactoryProvider implements ISkillsCapability, ICapabilitySeri
 
     @Override
     public Boolean hasChanged() {
-        boolean flag = new Boolean(Boolean.FALSE);
+        boolean flag = Boolean.FALSE;
         for (Map.Entry<String, Integer> entry : skills.entrySet()) {
             if (!last_skills.get(entry.getKey()).equals(skills.get(entry.getKey()))) {
                 last_skills.put(entry.getKey(), skills.get(entry.getKey()));

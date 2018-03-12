@@ -21,7 +21,7 @@ public class ammo_fill extends CommandBase {
     private final List<String> aliases;
 
     public ammo_fill() {
-        aliases = new ArrayList<String>();
+        aliases = new ArrayList<>();
         aliases.add("ammo_fill");
     }
 

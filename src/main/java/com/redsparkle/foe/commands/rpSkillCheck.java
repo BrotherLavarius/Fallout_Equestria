@@ -32,7 +32,7 @@ public class rpSkillCheck extends CommandBase {
     protected String fullEntityName;
 
     public rpSkillCheck() {
-        aliases = new ArrayList<String>();
+        aliases = new ArrayList<>();
         aliases.add("skilldice");
         aliases.add("Sdice");
         aliases.add("diceskill");

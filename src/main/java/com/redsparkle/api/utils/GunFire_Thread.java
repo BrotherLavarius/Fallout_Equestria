@@ -16,19 +16,15 @@ public class GunFire_Thread {
     }
 
     public synchronized void gunFire(final String type, int bps) {
-        gunFireR = new Runnable() {
-            public void run() {
-                while (running) {
-                    try {
-                        ClientOnlyProxy.FireMessage(type);
-                        Thread.sleep(bps);
+        gunFireR = () -> {
+            while (running) {
+                try {
+                    ClientOnlyProxy.FireMessage(type);
+                    Thread.sleep(bps);
 
 
-                    } catch (NullPointerException e) {
-                        e.printStackTrace();
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
+                } catch (NullPointerException | InterruptedException e) {
+                    e.printStackTrace();
                 }
             }
         };

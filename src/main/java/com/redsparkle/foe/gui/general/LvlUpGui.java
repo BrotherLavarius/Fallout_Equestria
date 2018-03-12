@@ -16,6 +16,7 @@ import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.GlStateManager;
 import org.lwjgl.opengl.GL11;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.stream.IntStream;
@@ -181,12 +182,8 @@ public class LvlUpGui extends GuiScreen {
 
     @Override
     public void initGui() {
-        for (int i = 0; i < buttonsPLus.length; i++) {
-            this.buttonList.add(buttonsPLus[i]);
-        }
-        for (int i = 0; i < buttonsMinus.length; i++) {
-            this.buttonList.add(buttonsMinus[i]);
-        }
+        Collections.addAll(this.buttonList, buttonsPLus);
+        Collections.addAll(this.buttonList, buttonsMinus);
         this.buttonList.add(Commit);
         super.initGui();
     }

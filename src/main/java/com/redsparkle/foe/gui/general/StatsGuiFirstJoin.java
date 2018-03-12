@@ -12,6 +12,7 @@ import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.GlStateManager;
 import org.lwjgl.opengl.GL11;
 
+import java.util.Arrays;
 import java.util.stream.IntStream;
 
 /**
@@ -175,12 +176,8 @@ public class StatsGuiFirstJoin extends GuiScreen {
 
     @Override
     public void initGui() {
-        for (int i = 0; i <= (buttonsPLus.length - 1); i++) {
-            this.buttonList.add(buttonsPLus[i]);
-        }
-        for (int i = 0; i <= (buttonsMinus.length - 1); i++) {
-            this.buttonList.add(buttonsMinus[i]);
-        }
+        this.buttonList.addAll(Arrays.asList(buttonsPLus).subList(0, (buttonsPLus.length - 1) + 1));
+        this.buttonList.addAll(Arrays.asList(buttonsMinus).subList(0, (buttonsMinus.length - 1) + 1));
         this.buttonList.add(Commit);
         super.initGui();
     }

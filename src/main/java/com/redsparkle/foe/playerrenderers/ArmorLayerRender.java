@@ -10,6 +10,7 @@ import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
 import net.minecraft.client.renderer.entity.RenderPlayer;
 import net.minecraft.client.renderer.entity.layers.LayerRenderer;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.init.Items;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -37,7 +38,7 @@ public class ArmorLayerRender implements LayerRenderer<EntityLivingBase> {
 
         Minecraft minecraft = Minecraft.getMinecraft();
 
-        if (itemstackHead != null && itemHead instanceof ItemHelmet) {
+        if (itemstackHead != ItemStack.EMPTY && itemHead instanceof ItemHelmet) {
             GlStateManager.pushMatrix();
 
             if (entitylivingbaseIn.isSneaking()) {
@@ -56,7 +57,7 @@ public class ArmorLayerRender implements LayerRenderer<EntityLivingBase> {
             minecraft.getItemRenderer().renderItem(entitylivingbaseIn, itemstackHead, ItemCameraTransforms.TransformType.HEAD);
             GlStateManager.popMatrix();
         }
-        if (itemstackBody != null && itemBody instanceof ItemBody) {
+        if (itemstackBody != ItemStack.EMPTY && itemBody instanceof ItemBody) {
             GlStateManager.pushMatrix();
             if (entitylivingbaseIn.isSneaking()) {
                 GlStateManager.rotate(20, 1, 0, 0);
@@ -67,7 +68,7 @@ public class ArmorLayerRender implements LayerRenderer<EntityLivingBase> {
             minecraft.getItemRenderer().renderItem(entitylivingbaseIn, itemstackBody, ItemCameraTransforms.TransformType.HEAD);
             GlStateManager.popMatrix();
         }
-        if (itemHarness != null && itemHarness instanceof Saddlebags) {
+        if (itemHarness != Items.AIR && itemHarness instanceof Saddlebags) {
             GlStateManager.pushMatrix();
             if (entitylivingbaseIn.isSneaking()) {
                 GlStateManager.translate(0.280F, 0.85F, 0F);

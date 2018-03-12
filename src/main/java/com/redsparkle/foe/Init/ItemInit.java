@@ -24,7 +24,7 @@ import static com.redsparkle.foe.Init.ModItems.*;
 public class ItemInit {
 
 
-    public static final Map<Item, String> ITEMS = new HashMap<Item, String>();
+    public static final Map<Item, String> ITEMS = new HashMap<>();
 
     public static final Map<String, Object> gun_ammo_lookup = new HashMap<>();
     public static final Map<String, Object> gun_case_lookup = new HashMap<>();

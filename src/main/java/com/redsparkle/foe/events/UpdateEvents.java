@@ -23,6 +23,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
@@ -117,24 +118,47 @@ public class UpdateEvents {
             boolean flag = false;
             BlockPos.PooledMutableBlockPos blockpos$pooledmutableblockpos = BlockPos.PooledMutableBlockPos.retain();
 
-            try {
-                for (int k1 = i; k1 < j; ++k1) {
-                    for (int l1 = k; l1 < l; ++l1) {
-                        for (int i2 = i1; i2 < j1; ++i2) {
-                            blockpos$pooledmutableblockpos.setPos(k1, l1, i2);
-                            IBlockState iblockstate = event.getWorld().getBlockState(blockpos$pooledmutableblockpos);
 
-                            if (iblockstate.getBlock() == FluidsInit.PINKCLOUD.getBlock()) {
-                                if (iblockstate.getValue(BlockLiquid.LEVEL).intValue() != 0 && !player.getActivePotionEffects().contains(PotionInit.STATICPOISON)) {
+            if (ThreadLocalRandom.current().nextInt(1, 5) == 3) {
 
-                                    player.addPotionEffect(new PotionEffect(PotionInit.STATICPOISON, 100));
+                try {
+                    for (int k1 = i; k1 < j; ++k1) {
+                        for (int l1 = k; l1 < l; ++l1) {
+                            for (int i2 = i1; i2 < j1; ++i2) {
+                                blockpos$pooledmutableblockpos.setPos(k1, l1, i2);
+                                IBlockState iblockstate = event.getWorld().getBlockState(blockpos$pooledmutableblockpos);
+
+                                if (iblockstate.getBlock() == FluidsInit.PINKCLOUD.getBlock()) {
+                                    if (iblockstate.getValue(BlockLiquid.LEVEL).intValue() != 0 && !player.getActivePotionEffects().contains(PotionInit.STATICPOISON)) {
+                                        event.getWorld().spawnParticle(EnumParticleTypes.REDSTONE, player.getPosition().getX(), player.getPosition().getY() + 1, player.getPosition().getZ(), 8, 0, 0);
+
+                                        if (player.getTotalArmorValue() < 15 && ThreadLocalRandom.current().nextInt(1, 3) == 2) {
+                                            player.addPotionEffect(new PotionEffect(PotionInit.STATICPOISON, 100));
+
+                                        }
+
+
+                                        if (player.getTotalArmorValue() > 15 && ThreadLocalRandom.current().nextInt(1, 10) == 5) {
+                                            player.addPotionEffect(new PotionEffect(PotionInit.STATICPOISON, 80));
+
+                                        }
+                                        if (player.getTotalArmorValue() > 40 && ThreadLocalRandom.current().nextInt(1, 15) == 10) {
+                                            player.addPotionEffect(new PotionEffect(PotionInit.STATICPOISON, 60));
+
+                                        }
+
+                                        if (player.getTotalArmorValue() > 70 && ThreadLocalRandom.current().nextInt(1, 25) == 15) {
+                                            player.addPotionEffect(new PotionEffect(PotionInit.STATICPOISON, 30));
+
+                                        }
+                                    }
                                 }
                             }
                         }
                     }
+                } finally {
+                    blockpos$pooledmutableblockpos.release();
                 }
-            } finally {
-                blockpos$pooledmutableblockpos.release();
             }
 
 

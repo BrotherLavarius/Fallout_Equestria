@@ -57,9 +57,7 @@ public class MessageUpdateClientTrigger_Item implements IMessage {
         public IMessage onMessage(MessageUpdateClientTrigger_Item message, MessageContext ctx) {
             IThreadListener mainThread = (WorldServer) ctx.getServerHandler().player.world;
             EntityPlayerMP playerMP = ctx.getServerHandler().player;
-            mainThread.addScheduledTask(() -> {
-                DedicatedServerProxy.handleTrigger_Item_Message(message, playerMP);
-            });
+            mainThread.addScheduledTask(() -> DedicatedServerProxy.handleTrigger_Item_Message(message, playerMP));
             return null;
         }
     }

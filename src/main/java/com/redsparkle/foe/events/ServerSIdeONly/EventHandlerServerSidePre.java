@@ -120,7 +120,7 @@ public class EventHandlerServerSidePre {
 
         //TODO: change this to events, this is ugly and may cause problems in future
         if (e.player.getEntityWorld().getTotalWorldTime() % 100 == 0) {
-            for (int i = 0; i < listiners.length; i++) {
+            for (Object listiner : listiners) {
 
 
                 //TODO : continue from here
@@ -138,7 +138,7 @@ public class EventHandlerServerSidePre {
                 opm.add("details", opm_body);
                 opm.addProperty("player", e.player.getName());
 
-                main.simpleNetworkWrapper.sendTo(new UnifiedMessage(opm), (EntityPlayerMP) listiners[i]);
+                main.simpleNetworkWrapper.sendTo(new UnifiedMessage(opm), (EntityPlayerMP) listiner);
 
             }
         }

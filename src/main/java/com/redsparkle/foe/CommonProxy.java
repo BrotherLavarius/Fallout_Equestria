@@ -55,7 +55,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.capabilities.CapabilityManager;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
@@ -128,11 +127,6 @@ public abstract class CommonProxy {
      */
     abstract public boolean isDedicatedServer();
 
-    public World getClientWorld() {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
     public void init() {
         StartUpCommon.InitCommon();
 
@@ -140,7 +134,7 @@ public abstract class CommonProxy {
         Logger.logMsg(Logger.INFO, "STARTING BOOTING CAPABILITY SYSTEM");
         CapabilityManager.INSTANCE.register(IRadiationCapability.class, new RadsFactoryStorage(), RadsFactoryProvider::new);
         Logger.logMsg(Logger.INFO, "RADS--------------CHECK!");
-        CapabilityManager.INSTANCE.register(ISpechialCapability.class, new SpechialFactoryStorage(), () -> new SpechialFactoryProvider());
+        CapabilityManager.INSTANCE.register(ISpechialCapability.class, new SpechialFactoryStorage(), SpechialFactoryProvider::new);
         Logger.logMsg(Logger.INFO, "S.P.E.C.H.I.A.L--------------CHECK!");
         CapabilityManager.INSTANCE.register(ISkillsCapability.class, new SkillsFactoryStorage(), SkillsFactoryProvider::new);
         Logger.logMsg(Logger.INFO, "SKILLS--------------CHECK!");

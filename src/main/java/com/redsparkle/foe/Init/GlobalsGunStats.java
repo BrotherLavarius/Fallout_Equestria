@@ -37,7 +37,7 @@ public enum GlobalsGunStats {
     BASS_CANNON(90, 6, 0.5F, 0F, false, "bass", "hybrid_ammo", GlobalNames.bass_cannon, 15F, 0);
 
     // Reverse-lookup map for getting a day from an abbreviation
-    public static final Map<String, GlobalsGunStats> lookup = new HashMap<String, GlobalsGunStats>();
+    public static final Map<String, GlobalsGunStats> lookup = new HashMap<>();
 
     static {
         for (GlobalsGunStats d : GlobalsGunStats.values()) {

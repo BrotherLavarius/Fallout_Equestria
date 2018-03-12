@@ -216,10 +216,7 @@ public class DedicatedServerProxy extends CommonProxy {
     public static void MessageGunReload_handler(JsonObject message, MessageContext ctx) {
         EntityPlayerMP player = ctx.getServerHandler().player;
         IThreadListener mainThread = (WorldServer) ctx.getServerHandler().player.world;
-        mainThread.addScheduledTask(() -> {
-
-            Reload.reload_processor(player, message.get("detail").getAsString());
-        });
+        mainThread.addScheduledTask(() -> Reload.reload_processor(player, message.get("detail").getAsString()));
     }
 
     public static void handleAdv_SYNC(JsonObject message, MessageContext ctx) {

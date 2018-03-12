@@ -245,7 +245,7 @@ public class ConfigInit {
 //        propColour.setValidValues(COLOUR_CHOICES);
         // By defining a property order we can control the order of the
         // properties in the config file and GUI. This is defined on a per config-category basis.
-        List<String> propOrderGeneral = new ArrayList<String>();
+        List<String> propOrderGeneral = new ArrayList<>();
 //        propOrderGeneral.add(propMyInt.getName()); // push the config value's name into the ordered list
 //        propOrderGeneral.add(propMyBool.getName());
 //        propOrderGeneral.add(propMyDouble.getName());
@@ -261,7 +261,7 @@ public class ConfigInit {
 
 
         config.setCategoryPropertyOrder(CATEGORY_NAME_GENERAL, propOrderGeneral);
-        List<String> propOrderOther = new ArrayList<String>();
+        List<String> propOrderOther = new ArrayList<>();
 //        propOrderOther.add(propColour.getName());
         config.setCategoryPropertyOrder(CATEGORY_NAME_OTHER, propOrderOther);
 		/*
