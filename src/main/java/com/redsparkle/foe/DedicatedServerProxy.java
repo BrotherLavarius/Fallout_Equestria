@@ -19,7 +19,10 @@ import com.redsparkle.api.items.helpers.guns.Reload;
 import com.redsparkle.api.utils.Lvlutil;
 import com.redsparkle.api.utils.PlayerParamsSetup;
 import com.redsparkle.foe.events.ServerSIdeONly.EventHandlerServerSidePre;
-import com.redsparkle.foe.network.ClientServerOneClass.*;
+import com.redsparkle.foe.network.ClientServerOneClass.MessageUpdateClientServerSPECHIAL;
+import com.redsparkle.foe.network.ClientServerOneClass.MessageUpdateClientServerSkills;
+import com.redsparkle.foe.network.ClientServerOneClass.MessageUpdateClientTrigger_Item;
+import com.redsparkle.foe.network.ClientServerOneClass.MessageUpdateClientWater;
 import com.redsparkle.foe.network.UnifiedMessage;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.player.EntityPlayer;
@@ -57,12 +60,7 @@ public class DedicatedServerProxy extends CommonProxy {
 
     }
 
-    public static void handleLevelMessage(MessageUpdateClientServerLevel message, EntityPlayerMP playerEntity) {
-        ILevelCapability level = LevelFactoryProvider.instanceFor(playerEntity);
-        level.setLevel(message.Level);
-        level.setProgress(message.Progress);
 
-    }
 
 
     public static void handleSLSOnDemand(MessageContext ctx) {

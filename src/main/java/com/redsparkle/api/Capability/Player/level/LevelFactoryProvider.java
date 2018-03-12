@@ -1,7 +1,8 @@
 package com.redsparkle.api.Capability.Player.level;
 
+import com.google.gson.JsonObject;
 import com.redsparkle.foe.main;
-import com.redsparkle.foe.network.ClientServerOneClass.MessageUpdateClientServerLevel;
+import com.redsparkle.foe.network.UnifiedMessage;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;
@@ -96,9 +97,17 @@ public class LevelFactoryProvider implements ILevelCapability, ICapabilitySerial
     }
 
     public void updateClient(EntityPlayer player) {
+        JsonObject message = new JsonObject();
+        JsonObject body = new JsonObject();
         if (!player.getEntityWorld().isRemote) {
             if (dirty)
-                main.simpleNetworkWrapper.sendTo(new MessageUpdateClientServerLevel(this), (EntityPlayerMP) player);
+
+
+                message.addProperty("type", "lvl_msg");
+            body.addProperty("lvl", this.getLevel());
+            body.addProperty("progress", this.getProgress());
+            message.add("details", body);
+            main.simpleNetworkWrapper.sendTo(new UnifiedMessage(message), (EntityPlayerMP) player);
             //dirty = false;
         }
     }

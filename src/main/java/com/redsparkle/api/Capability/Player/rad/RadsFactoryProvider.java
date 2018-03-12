@@ -1,7 +1,8 @@
 package com.redsparkle.api.Capability.Player.rad;
 
+import com.google.gson.JsonObject;
 import com.redsparkle.foe.main;
-import com.redsparkle.foe.network.ClientServerOneClass.MessageUpdateClientRads;
+import com.redsparkle.foe.network.UnifiedMessage;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;
@@ -104,8 +105,11 @@ public class RadsFactoryProvider implements IRadiationCapability, ICapabilitySer
 
     public void updateClient(EntityPlayer player) {
         if (!player.getEntityWorld().isRemote) {
-            if (dirty) main.simpleNetworkWrapper.sendTo(new MessageUpdateClientRads(this), (EntityPlayerMP) player);
-            //dirty = false;
+            JsonObject message = new JsonObject();
+            message.addProperty("type", "rad_update");
+            message.addProperty("rads", this.getRadiation());
+            if (dirty) main.simpleNetworkWrapper.sendTo(new UnifiedMessage(message), (EntityPlayerMP) player);
+
         }
     }
 }

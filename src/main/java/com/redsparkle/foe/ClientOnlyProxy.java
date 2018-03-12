@@ -28,7 +28,10 @@ import com.redsparkle.foe.events.ClientSide.gui.EventHandlerOverlayPipBuck;
 import com.redsparkle.foe.events.ClientSide.gui.EventPlayerGuiHandler;
 import com.redsparkle.foe.keys.KeyInputHandler;
 import com.redsparkle.foe.keys.keyHandler;
-import com.redsparkle.foe.network.ClientServerOneClass.*;
+import com.redsparkle.foe.network.ClientServerOneClass.MessageUpdateClientServerSPECHIAL;
+import com.redsparkle.foe.network.ClientServerOneClass.MessageUpdateClientServerSkills;
+import com.redsparkle.foe.network.ClientServerOneClass.MessageUpdateClientTrigger_Item;
+import com.redsparkle.foe.network.ClientServerOneClass.MessageUpdateClientWater;
 import com.redsparkle.foe.network.UnifiedMessage;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityOtherPlayerMP;
@@ -57,11 +60,11 @@ public class ClientOnlyProxy extends CommonProxy {
     public static IThreadListener mainThread = Minecraft.getMinecraft();
     public static World world = mc.world;
 
-    public static void handleRadMessage(MessageUpdateClientRads message) {
+    public static void handleRadMessage(JsonObject message) {
         Minecraft.getMinecraft().addScheduledTask(() -> {
             EntityPlayer player = Minecraft.getMinecraft().player;
             IRadiationCapability rad = RadsFactoryProvider.instanceFor(player);
-            rad.setRadiation(message.radiation);
+            rad.setRadiation(message.get("rads").getAsInt());
             /** DEBUG MESSAGE ENABLER
              * System.out.println("Client: "+message.radiation);
              */
@@ -97,15 +100,12 @@ public class ClientOnlyProxy extends CommonProxy {
         });
     }
 
-    public static void handleLevelMessage(MessageUpdateClientServerLevel message) {
+    public static void handleLevelMessage(JsonObject message) {
         Minecraft.getMinecraft().addScheduledTask(() -> {
             EntityPlayer player = Minecraft.getMinecraft().player;
             ILevelCapability level = LevelFactoryProvider.instanceFor(player);
-            level.setLevel(message.Level);
-            level.setProgress(message.Progress);
-            /** DEBUG MESSAGE ENABLER
-             * System.out.println("Client: "+message.radiation);
-             */
+            level.setLevel(message.getAsJsonObject("details").get("lvl").getAsInt());
+            level.setProgress(message.getAsJsonObject("details").get("progress").getAsInt());
         });
     }
 

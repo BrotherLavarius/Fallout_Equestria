@@ -46,8 +46,22 @@ public class UnifiedProcessor {
             case "sync_adv_inv_op":
                 Adv_Inv_Sync_op(process, ctx, side);
                 break;
+            case "lvl_msg":
+                lvl_msg(process, ctx, side);
+                break;
+            case "rad_update":
+                Radiation_update(process, ctx, side);
+                break;
         }
 
+
+    }
+
+    private static void lvl_msg(JsonObject process, MessageContext ctx, String side) {
+        if (side.equalsIgnoreCase("client")) {
+            ClientOnlyProxy.handleLevelMessage(process);
+        } else if (side.equalsIgnoreCase("server")) {
+        }
 
     }
 
@@ -131,6 +145,14 @@ public class UnifiedProcessor {
     private static void Adv_Inv_Sync_op(JsonObject process, MessageContext ctx, String side) {
         if (side.equalsIgnoreCase("client")) {
             ClientOnlyProxy.handleAdv_SYNC_op(process);
+        } else if (side.equalsIgnoreCase("server")) {
+
+        }
+    }
+
+    private static void Radiation_update(JsonObject process, MessageContext ctx, String side) {
+        if (side.equalsIgnoreCase("client")) {
+            ClientOnlyProxy.handleRadMessage(process);
         } else if (side.equalsIgnoreCase("server")) {
 
         }

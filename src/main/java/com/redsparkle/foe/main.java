@@ -3,7 +3,10 @@ package com.redsparkle.foe;
 import com.redsparkle.foe.Init.InitCreativeTabs;
 import com.redsparkle.foe.commands.ammo_fill;
 import com.redsparkle.foe.commands.rpSkillCheck;
-import com.redsparkle.foe.network.ClientServerOneClass.*;
+import com.redsparkle.foe.network.ClientServerOneClass.MessageUpdateClientServerSPECHIAL;
+import com.redsparkle.foe.network.ClientServerOneClass.MessageUpdateClientServerSkills;
+import com.redsparkle.foe.network.ClientServerOneClass.MessageUpdateClientTrigger_Item;
+import com.redsparkle.foe.network.ClientServerOneClass.MessageUpdateClientWater;
 import com.redsparkle.foe.network.UnifiedMessage;
 import com.sun.media.jfxmedia.logging.Logger;
 import net.minecraft.creativetab.CreativeTabs;
@@ -60,7 +63,6 @@ public class main {
         MinecraftForge.EVENT_BUS.register(main.instance);
         proxy.init();
         simpleNetworkWrapper = NetworkRegistry.INSTANCE.newSimpleChannel("FOE Network Channel");
-        simpleNetworkWrapper.registerMessage(MessageUpdateClientRads.Handler.class, MessageUpdateClientRads.class, message_start_index, Side.CLIENT);
         simpleNetworkWrapper.registerMessage(MessageUpdateClientWater.HandlerClient.class, MessageUpdateClientWater.class, message_start_index++, Side.CLIENT);
         simpleNetworkWrapper.registerMessage(MessageUpdateClientServerSPECHIAL.HandlerClient.class, MessageUpdateClientServerSPECHIAL.class, message_start_index++, Side.CLIENT);
         simpleNetworkWrapper.registerMessage(MessageUpdateClientServerSPECHIAL.HandlerServer.class, MessageUpdateClientServerSPECHIAL.class, message_start_index++, Side.SERVER);
@@ -68,8 +70,6 @@ public class main {
         simpleNetworkWrapper.registerMessage(MessageUpdateClientServerSkills.HandlerClient.class, MessageUpdateClientServerSkills.class, message_start_index++, Side.CLIENT);
         simpleNetworkWrapper.registerMessage(MessageUpdateClientServerSkills.HandlerServer.class, MessageUpdateClientServerSkills.class, message_start_index++, Side.SERVER);
         simpleNetworkWrapper.registerMessage(MessageUpdateClientServerSkills.ServerOnLVLUP.class, MessageUpdateClientServerSkills.class, message_start_index++, Side.SERVER);
-        simpleNetworkWrapper.registerMessage(MessageUpdateClientServerLevel.HandlerClient.class, MessageUpdateClientServerLevel.class, message_start_index++, Side.CLIENT);
-        simpleNetworkWrapper.registerMessage(MessageUpdateClientServerLevel.HandlerServer.class, MessageUpdateClientServerLevel.class, message_start_index++, Side.SERVER);
 
         simpleNetworkWrapper.registerMessage(MessageUpdateClientTrigger_Item.HandlerClient.class, MessageUpdateClientTrigger_Item.class, message_start_index++, Side.CLIENT);
         simpleNetworkWrapper.registerMessage(MessageUpdateClientTrigger_Item.HandlerServer.class, MessageUpdateClientTrigger_Item.class, message_start_index++, Side.SERVER);
