@@ -1,6 +1,5 @@
 package com.redsparkle.api.utils;
 
-import com.sun.media.jfxmedia.logging.Logger;
 
 import javax.sound.sampled.FloatControl;
 
@@ -29,7 +28,7 @@ public class RadioThreadManager {
                 }
 
             } catch (NullPointerException e) {
-                Logger.logMsg(Logger.ERROR, "Sound System was still warming up");
+                System.out.println("Sound System was still warming up");
             }
         }
     }
@@ -42,7 +41,7 @@ public class RadioThreadManager {
                     gain.setValue(gain.getValue() - 1.0F);
                 }
             } catch (NullPointerException e) {
-                Logger.logMsg(Logger.ERROR, "Sound System was still warming up");
+                System.out.println("Sound System was still warming up");
             }
         }
     }

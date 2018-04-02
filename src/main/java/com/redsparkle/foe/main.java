@@ -7,7 +7,6 @@ import com.redsparkle.foe.network.ClientServerOneClass.MessageUpdateClientServer
 import com.redsparkle.foe.network.ClientServerOneClass.MessageUpdateClientServerSkills;
 import com.redsparkle.foe.network.ClientServerOneClass.MessageUpdateClientTrigger_Item;
 import com.redsparkle.foe.network.UnifiedMessage;
-import com.sun.media.jfxmedia.logging.Logger;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
@@ -20,10 +19,9 @@ import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import net.minecraftforge.fml.relauncher.Side;
 
-@Mod(modid = "fallout_equestria", name = "Fallout Equestria", version = "0.9.3.4", updateJSON = "https://fallout-equestria.tk/update/updates.json")
+@Mod(modid = "fallout_equestria", name = "Fallout Equestria", version = "0.9.3.6.3", updateJSON = "https://fallout-equestria.tk/update/updates.json")
 public class main {
     public static final String MODID = "fallout_equestria";
-    public static final String VERSION = "0.9.3.4";
     public static SimpleNetworkWrapper simpleNetworkWrapper;    // used to transmit your network messages
     @Mod.Instance(main.MODID)
     public static main instance;
@@ -79,8 +77,8 @@ public class main {
     @Mod.EventHandler
     public void postInit(FMLPostInitializationEvent event) {
         proxy.postInit();
-        Logger.logMsg(Logger.INFO, "I-----------------------------------I");
-        Logger.logMsg(Logger.INFO, "   Fallout pack fully initialized    ");
-        Logger.logMsg(Logger.INFO, "I-----------------------------------I");
+        System.out.println("I-----------------------------------I");
+        System.out.println("   Fallout pack fully initialized    ");
+        System.out.println("I-----------------------------------I");
     }
 }

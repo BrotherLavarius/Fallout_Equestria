@@ -46,7 +46,7 @@ public class rpSkillCheck extends CommandBase {
 
     @Override
     public String getUsage(ICommandSender sender) {
-        return "/skilldice Skillname PLAYER1 PLAYER2";
+        return "/skilldice Skillname[STR,PER,END,CHA,INT,AGI,LUC] PLAYER1 PLAYER2";
     }
 
     @Override

@@ -50,7 +50,6 @@ import com.redsparkle.foe.items.guns.entitys.flametrower.EntityFlame;
 import com.redsparkle.foe.items.guns.entitys.flare.EntityFlare;
 import com.redsparkle.foe.items.guns.entitys.laserFired.EntityLaser;
 import com.redsparkle.foe.items.guns.entitys.spreadPellet_shotgun.*;
-import com.sun.media.jfxmedia.logging.Logger;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -88,9 +87,9 @@ public abstract class CommonProxy {
     }
 
     public void preInit() {
-        Logger.logMsg(Logger.INFO, "FOE Initiating");
-        Logger.logMsg(Logger.INFO, "WAR...");
-        Logger.logMsg(Logger.INFO, "WAR NEVER CHANGES...");
+        System.out.println("FOE Initiating");
+        System.out.println("WAR...");
+        System.out.println("WAR NEVER CHANGES...");
         StartUpCommon.preInitCommon();
         // INIT Handler
         MinecraftForge.EVENT_BUS.register(new EventHandlerPre());
@@ -131,17 +130,17 @@ public abstract class CommonProxy {
         StartUpCommon.InitCommon();
 
         NetworkRegistry.INSTANCE.registerGuiHandler(main.instance, new GuiHandler());
-        Logger.logMsg(Logger.INFO, "STARTING BOOTING CAPABILITY SYSTEM");
+        System.out.println("STARTING BOOTING CAPABILITY SYSTEM");
         CapabilityManager.INSTANCE.register(IRadiationCapability.class, new RadsFactoryStorage(), RadsFactoryProvider::new);
-        Logger.logMsg(Logger.INFO, "RADS--------------CHECK!");
+        System.out.println("RADS--------------CHECK!");
         CapabilityManager.INSTANCE.register(ISpechialCapability.class, new SpechialFactoryStorage(), SpechialFactoryProvider::new);
-        Logger.logMsg(Logger.INFO, "S.P.E.C.H.I.A.L--------------CHECK!");
+        System.out.println("S.P.E.C.H.I.A.L--------------CHECK!");
         CapabilityManager.INSTANCE.register(ISkillsCapability.class, new SkillsFactoryStorage(), SkillsFactoryProvider::new);
-        Logger.logMsg(Logger.INFO, "SKILLS--------------CHECK!");
+        System.out.println("SKILLS--------------CHECK!");
         CapabilityManager.INSTANCE.register(ILevelCapability.class, new LevelFactoryStorage(), LevelFactoryProvider::new);
-        Logger.logMsg(Logger.INFO, "LEVELS--------------CHECK!");
+        System.out.println("LEVELS--------------CHECK!");
         CapabilityManager.INSTANCE.register(IFTJCapability.class, new FTJFactoryStorage(), FTJFactoryProvider::new);
-        Logger.logMsg(Logger.INFO, "FTJ--------------CHECK!");
+        System.out.println("FTJ--------------CHECK!");
         CapabilityManager.INSTANCE.register(IWaterCapability.class, new WaterFactoryStorage(), WaterFactoryProvider::new);
         CapabilityManager.INSTANCE.register(IAdvInventory.class, new IAdvStorage(), IAdvProvider::new);
         CapabilityManager.INSTANCE.register(IAmmoInterface.class, new IAmmoStorage(), AmmoFactoryProvider::new);
@@ -149,7 +148,7 @@ public abstract class CommonProxy {
         CapabilityManager.INSTANCE.register(ITrigger_item.class, new ITrigger_Item_Storage(), ITrigger_item_Provider::new);
         CapabilityManager.INSTANCE.register(IRenders.class, new RenderStorage(), RenderProvider::new);
         CapabilityManager.INSTANCE.register(LockInterface.class, new LockStorage(), LockFactoryProvider::new);
-        Logger.logMsg(Logger.INFO, "FINISHED BOOTING CAPABILITY SYSTEM");
+        System.out.println("FINISHED BOOTING CAPABILITY SYSTEM");
         MinecraftForge.EVENT_BUS.register(new EventHandlerInit());
     }
 

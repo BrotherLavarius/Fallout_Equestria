@@ -12,7 +12,6 @@ import com.redsparkle.api.items.helpers.Item_Instances.Item_Firearm;
 import com.redsparkle.foe.Init.ItemInit;
 import com.redsparkle.foe.main;
 import com.redsparkle.foe.network.UnifiedMessage;
-import com.sun.media.jfxmedia.logging.Logger;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.item.Item;
@@ -111,7 +110,7 @@ public class EventHandlerServerSidePre {
             int randomNum = ThreadLocalRandom.current().nextInt(0, ItemInit.scrap.size());
             Item item = ItemInit.scrap.get(randomNum);
             e.player.inventory.add(randomNum, new ItemStack(item));
-            Logger.logMsg(Logger.INFO, "Added item to player: " + item.getUnlocalizedName());
+            System.out.println("Added item to player: " + item.getUnlocalizedName());
 
 
         }
