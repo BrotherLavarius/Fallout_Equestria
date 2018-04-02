@@ -50,7 +50,8 @@ public class ItemClipHelpers {
                 double z = playerIn.getPosition().getZ();
 
                 JsonObject message, body;
-                message = body = new JsonObject();
+                message = new JsonObject();
+                body = new JsonObject();
                 message.addProperty("type", "sound");
 
                 body.addProperty("type", "gun_clipReload");
