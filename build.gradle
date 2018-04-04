@@ -1,4 +1,6 @@
 import groovy.json.JsonSlurper
+import groovyx.net.http.ContentType
+import groovyx.net.http.RESTClient
 
 repositories {
 	ext.myRepos = {
@@ -37,6 +39,7 @@ buildscript {
     dependencies {
         classpath 'com.github.jengelman.gradle.plugins:shadow:1.2.4'
         classpath 'net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT'
+        classpath "org.codehaus.groovy.modules.http-builder:http-builder:0.5.2"
     }
 }
 
@@ -161,3 +164,5 @@ task ftp() << {
         }
     }
 }
+
+
