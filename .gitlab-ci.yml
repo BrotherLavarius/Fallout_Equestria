@@ -31,18 +31,16 @@ build:
     paths:
       - build/libs/Fallout_Equestria*[0-9].jar
     expire_in: 2 week
-  only:
-    - master
+
 
 deploy:
   stage: deploy
-  image: python:latest
-  script:
-  - pip install awscli
-  - aws s3 cp build/libs/Fallout_Equestria*[0-9].jar s3://$S3_BUCKET_NAME/
-  only:
-    - master
-  #when: manual
+  script: gradle ftp -PFTPUserName=$FTPUserName -PFTPdir=$FTPdir -PFTPPassword=$FTPPassword
+  cache:
+    key: "$CI_COMMIT_REF_NAME"
+    policy: push
+    paths:
+      - deploy
 
 
 after_script:
