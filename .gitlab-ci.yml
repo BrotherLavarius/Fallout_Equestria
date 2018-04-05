@@ -42,7 +42,6 @@ deploy:
     paths:
       - deploy
     when: on_success
-    expire_in: 2h
 
 after_script:
 - echo "End CI"
