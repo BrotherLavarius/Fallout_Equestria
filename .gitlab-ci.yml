@@ -41,7 +41,7 @@ deploy:
     policy: push
     paths:
       - deploy
-    when: on_success
+
 
 after_script:
 - echo "End CI"
