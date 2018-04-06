@@ -2,5 +2,5 @@
 set -x
 for i in $(find ./* -name '*.png')
 do
-  convert $i -resize 1024x1024\!  $i
+  convert $i -resize 128x128\!  $i
 done
