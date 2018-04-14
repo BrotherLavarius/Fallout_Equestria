@@ -16,6 +16,10 @@ repositories {
             maven {
                 url "http://maven.cil.li/"
             }
+            maven {
+                name = "leviathan"
+                url = "http://maven.leviathan-studio.com/artifactory/leviathan/"
+            }
     	}
 
 
@@ -36,6 +40,7 @@ buildscript {
     dependencies {
         classpath 'com.github.jengelman.gradle.plugins:shadow:1.2.4'
         classpath 'net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT'
+
     }
 }
 
@@ -84,6 +89,7 @@ compile group: 'org.clojars.aseipp', name: 'jogg', version: '0.0.7'
 compile group: 'org.clojars.aseipp', name: 'jorbis', version: '0.0.15'
 compile group: 'com.googlecode.soundlibs', name: 'tritonus-share', version: '0.3.7.4'
 compile group: 'com.googlecode.soundlibs', name: 'vorbisspi', version: '1.0.3.3'
+compile 'com.leviathanstudio:CraftStudio:1.0.0.93-mc1.12-alpha:dev'
 }
 
 processResources {
