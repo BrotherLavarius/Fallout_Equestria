@@ -1,5 +1,6 @@
 package com.redsparkle.foe.Init;
 
+
 import com.redsparkle.api.utils.GlobalNames;
 import com.redsparkle.foe.Init.model.MeshDefinitionFix;
 import com.redsparkle.foe.items.guns.entitys.bass.EntityBass;
@@ -30,7 +31,7 @@ import net.minecraftforge.fml.relauncher.Side;
 
 import java.util.Map;
 
-import static com.redsparkle.foe.Init.ItemInit.*;
+import static com.redsparkle.foe.Init.ItemInit.ITEMS;
 import static com.redsparkle.foe.main.MODID;
 
 
@@ -110,4 +111,6 @@ public class RenderingInit {
             }
         });
     }
+
+
 }

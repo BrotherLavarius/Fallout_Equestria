@@ -1,6 +1,7 @@
 package com.redsparkle.foe;
 
 import com.google.gson.JsonObject;
+import com.leviathanstudio.craftstudio.client.registry.CraftStudioLoader;
 import com.redsparkle.api.Capability.Items.Ammo.AmmoFactoryProvider;
 import com.redsparkle.api.Capability.Items.Ammo.IAmmoInterface;
 import com.redsparkle.api.Capability.Items.Gun.GunFactoryProvider;
@@ -20,6 +21,7 @@ import com.redsparkle.api.Capability.Player.spechial.SpechialFactoryProvider;
 import com.redsparkle.api.Capability.Player.water.IWaterCapability;
 import com.redsparkle.api.Capability.Player.water.WaterFactoryProvider;
 import com.redsparkle.foe.Init.GlobalsGunStats;
+import com.redsparkle.foe.Init.RenderingInit_CraftStudio;
 import com.redsparkle.foe.Init.SoundInit;
 import com.redsparkle.foe.events.ClientSide.CommonEventHandler;
 import com.redsparkle.foe.events.ClientSide.character.EventPlayerRenders;
@@ -334,5 +336,8 @@ public class ClientOnlyProxy extends CommonProxy {
         return false;
     }
 
-
+    @CraftStudioLoader
+    public void InitRendering_CraftStudio() {
+        RenderingInit_CraftStudio.register();
+    }
 }

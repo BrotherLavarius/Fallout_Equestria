@@ -1,0 +1,39 @@
+{
+  "variants": {
+    "normal": [
+      {
+        "model": "fallout_equestria:alarm_lamp",
+        "transform": {
+          "rotation": [
+            {
+              "y": 0
+            },
+            {
+              "x": 0
+            },
+            {
+              "z": 0
+            }
+          ]
+        },
+        "scale": 1
+      }
+    ],
+    "facing=north": {
+      "model": "fallout_equestria:alarm_lamp",
+      "y": 180
+    },
+    "facing=south": {
+      "model": "fallout_equestria:alarm_lamp",
+      "y": 0
+    },
+    "facing=west": {
+      "model": "fallout_equestria:alarm_lamp",
+      "y": 90
+    },
+    "facing=east": {
+      "model": "fallout_equestria:alarm_lamp",
+      "y": 270
+    }
+  }
+}

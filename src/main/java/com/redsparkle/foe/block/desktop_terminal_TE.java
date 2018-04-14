@@ -10,4 +10,5 @@ public class desktop_terminal_TE extends TileEntityDefault {
 
         this.customInventoryName = customInventoryName;
     }
+
 }

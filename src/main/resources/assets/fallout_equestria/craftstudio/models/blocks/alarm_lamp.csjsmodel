@@ -1,0 +1,33 @@
+{
+  "title": "warning_lamp",
+  "tree": [
+    {
+      "name": "Base",
+      "position": [ 0, 1, 0 ],
+      "offsetFromPivot": [ 0, 0, 0 ],
+      "size": [ 8, 2, 8 ],
+      "rotation": [ 0, 0, 0 ],
+      "texOffset": [ 1, 0 ],
+      "children": [
+        {
+          "name": "LampInside",
+          "position": [ 0, 4, 0 ],
+          "offsetFromPivot": [ 0, 0, 0 ],
+          "size": [ 5, 6, 4 ],
+          "rotation": [ 0, 0, 0 ],
+          "texOffset": [ 0, 22 ],
+          "children": []
+        },
+        {
+          "name": "LampOutside",
+          "position": [ 0, 4, 0 ],
+          "offsetFromPivot": [ 0, 0, 0 ],
+          "size": [ 7, 7, 7 ],
+          "rotation": [ 0, 0, 0 ],
+          "texOffset": [ 15, 11 ],
+          "children": []
+        }
+      ]
+    }
+  ]
+}

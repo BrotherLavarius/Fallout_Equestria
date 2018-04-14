@@ -52,8 +52,7 @@ public abstract class FoeBlock extends Block {
      * @param blockName The block's name
      */
     public static void setBlockName(final Block block, final String blockName) {
-        block.setRegistryName(main.MODID, blockName);
-        block.setUnlocalizedName(block.getRegistryName().toString());
+        block.setRegistryName(main.MODID, blockName).setUnlocalizedName(block.getRegistryName().toString());
     }
 
     private void setDefaultFacing(World worldIn, BlockPos pos, IBlockState state) {

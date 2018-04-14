@@ -24,6 +24,7 @@ import java.util.Set;
 @Mod.EventBusSubscriber(modid = main.MODID)
 public class BlockInit {
     public static final Map<Block,String> BLOCKS = new HashMap<>();
+    public static final Map<Block, String> BLOCKS_CSTUDIO = new HashMap<>();
     public static final Set<ItemBlock> ITEM_BLOCKS = new HashSet<>();
 
     @SubscribeEvent
@@ -37,6 +38,11 @@ public class BlockInit {
             BLOCKS.put((Block) block.getBLOCK(), block.getNAME());
         }
 
+        for (ModBlocks_CStudio block : ModBlocks_CStudio.values()) {
+            registry.register((Block) block.getBLOCK());
+            registerTileEntity(block.getTE_CLASS(), block.getNAME());
+            BLOCKS.put((Block) block.getBLOCK(), block.getNAME());
+        }
         System.out.println("Finished initializing blocks");
 
     }
@@ -46,21 +52,28 @@ public class BlockInit {
         final IForgeRegistry<Item> registry = event.getRegistry();
 
         for(Map.Entry<Block,String> entry : BLOCKS.entrySet()) {
-            Block block = entry.getKey();
-            ItemBlock item = new ItemBlock(block);
-            item.setRegistryName(block.getRegistryName().getResourcePath());
-            ITEM_BLOCKS.add(item);
-            registry.register(item);
+            registerItemBlocks(entry, registry);
+        }
+
+        for (Map.Entry<Block, String> entry : BLOCKS_CSTUDIO.entrySet()) {
+            registerItemBlocks(entry, registry);
         }
 
         System.out.println("Finished initializing Items for blocks");
 
     }
 
-
+    public static void registerItemBlocks(Map.Entry<Block, String> entry, IForgeRegistry<Item> registry) {
+        Block block = entry.getKey();
+        ItemBlock item = new ItemBlock(block);
+        item.setRegistryName(block.getRegistryName().getResourcePath());
+        ITEM_BLOCKS.add(item);
+        registry.register(item);
+    }
 
     private static void registerTileEntity(final Class<? extends TileEntity> tileEntityClass, final String name) {
         GameRegistry.registerTileEntity(tileEntityClass, GlobalNames.Domain + name);
+        RenderingInit_CraftStudio.bindTESR();
     }
 }
 
