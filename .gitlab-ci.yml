@@ -20,7 +20,6 @@ before_script:
 
 build:
   stage: build
-  when: manual
   script: gradle --build-cache setupCiWorkspace build
   cache:
     key: "$CI_COMMIT_REF_NAME"
