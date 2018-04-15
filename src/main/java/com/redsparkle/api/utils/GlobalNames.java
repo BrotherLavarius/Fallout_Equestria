@@ -98,6 +98,7 @@ public class GlobalNames {
     // Blocks -- Inventory -- stable
     
             locker = "locker",
+                    generator_small = "generator_small",
             generator = "generator",
                     safe = "safe",
     // Blocks - stat dispencers

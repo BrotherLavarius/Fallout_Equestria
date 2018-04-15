@@ -1,15 +1,8 @@
 {
-  "forge_marker": 1,
-  "defaults": {
-    "textures": {},
-    "model": "fallout_equestria:generator.obj",
-    "uvlock": true,
-    "transform": "forge:default-block"
-  },
   "variants": {
     "normal": [
       {
-        "model": "fallout_equestria:generator.obj",
+        "model": "fallout_equestria:generator_small",
         "transform": {
           "rotation": [
             {
@@ -27,19 +20,19 @@
       }
     ],
     "facing=north": {
-      "model": "fallout_equestria:generator.obj",
+      "model": "fallout_equestria:generator_small",
       "y": 180
     },
     "facing=south": {
-      "model": "fallout_equestria:generator.obj",
+      "model": "fallout_equestria:generator_small",
       "y": 0
     },
     "facing=west": {
-      "model": "fallout_equestria:generator.obj",
+      "model": "fallout_equestria:generator_small",
       "y": 90
     },
     "facing=east": {
-      "model": "fallout_equestria:generator.obj",
+      "model": "fallout_equestria:generator_small",
       "y": 270
     }
   }
