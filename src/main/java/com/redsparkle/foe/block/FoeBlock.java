@@ -30,6 +30,7 @@ public abstract class FoeBlock extends Block {
     public FoeBlock(final Material material, final MapColor mapColor, final String blockName, String bb) {
         super(material, mapColor);
         setBlockName(this, blockName);
+
         box = bb;
     }
 

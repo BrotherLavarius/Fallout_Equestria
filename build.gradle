@@ -60,7 +60,7 @@ apply plugin: 'net.minecraftforge.gradle.forge'
 
 def inputFile = new File("src/main/resources/mcmod.info")
 def json = new JsonSlurper().parseText(inputFile.text)
-def minecraftFVersion = "1.12.2-14.23.2.2654"
+def minecraftFVersion = "1.12.2-14.23.4.2703"
 
 
 version='MC'+minecraftFVersion+'-'+json.getAt('version')+'-'+getDate().toString()+'-'+getTime().toString()

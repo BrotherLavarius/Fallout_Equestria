@@ -17,11 +17,15 @@ public class RenderingInit_CraftStudio {
         CSRegistryHelper registry = new CSRegistryHelper(main.MODID);
         registry.register(EnumResourceType.MODEL, EnumRenderType.BLOCK, "alarm_lamp");
         registry.register(EnumResourceType.MODEL, EnumRenderType.BLOCK, "generator_small");
+        registry.register(EnumResourceType.MODEL, EnumRenderType.BLOCK, "power_router");
 //  registry.register(EnumResourceType.MODEL, EnumRenderType.ENTITY, "dragon_brun");
 
 
         registry.register(EnumResourceType.ANIM, EnumRenderType.BLOCK, "alarm_lamp_active");
         registry.register(EnumResourceType.ANIM, EnumRenderType.BLOCK, "generator_small_active");
+        registry.register(EnumResourceType.ANIM, EnumRenderType.BLOCK, "power_router_active");
+        registry.register(EnumResourceType.ANIM, EnumRenderType.BLOCK, "power_router_stopping");
+
 //        registry.register(EnumResourceType.ANIM, EnumRenderType.ENTITY, "close_fan");
     }
 

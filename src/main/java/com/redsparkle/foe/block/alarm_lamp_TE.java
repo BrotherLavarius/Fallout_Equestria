@@ -13,6 +13,7 @@ public class alarm_lamp_TE extends BaseTileEntity {
     }
 
     public alarm_lamp_TE() {
+
     }
 
     @Override

@@ -100,6 +100,7 @@ public class GlobalNames {
             locker = "locker",
                     generator_small = "generator_small",
             generator = "generator",
+                    power_router = "power_router",
                     safe = "safe",
     // Blocks - stat dispencers
     

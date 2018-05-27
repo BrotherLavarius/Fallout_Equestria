@@ -3,7 +3,8 @@
 [![forthebadge](http://forthebadge.com/images/badges/built-with-swag.svg)](http://forthebadge.com)
 [![forthebadge](http://forthebadge.com/images/badges/contains-cat-gifs.svg)](http://forthebadge.com)
 
-currently uses `forge 1.12.2-14.23.0.2546`
+currently uses `forge 1.12.2-14.23.4.2703`
+Dependent on `CraftSturioAPI 1.0.0.93-mc1.12-alpha`
 A pack of stuff from FE with a fallout 4 inspired items
 
 Done\in progress
